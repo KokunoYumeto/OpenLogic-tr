@@ -1,0 +1,37 @@
+{
+  "creators": [
+    {"name": "Open Logic Project"}
+  ],
+  "contributors": [
+    {"name": "OpenAI 5.6 Sol, Ultra mode", "type": "Other"}
+  ],
+  "title": "Open Logic Project — Türkçe Kümülatif Sürüm / Turkish Cumulative Edition (OLP-0062, 62/722)",
+  "version": "OLP-0062-20260813",
+  "access_right": "open",
+  "description": "<p><strong>Reader:</strong> <a href=\"https://github.com/KokunoYumeto/OpenLogic-tr/blob/main/reader/00_OPENLOGIC_tr_CUMULATIVE_LINKED_READER_OLP-0062.pdf\">open the Turkish cumulative reader</a>.</p><p>This independently maintained Turkish edition covers OLP-0001 through OLP-0062: 62 of 722 frozen content modules. It is a cumulative partial edition, not a complete-corpus claim. Source authority: Open Logic Project commit 9620cc73f9c8e0ad003c514a5d3748f29611c4c0, CC BY 4.0. Exact source replay and structural QA pass 62/62; independent model/agent mathematical, logic, terminology, and Turkish-language checks are clean; the 103-page reader was built, text-checked, rendered, and inspected in full.</p><p>DataCite intent: this Turkish concept DOI IsTranslationOf the frozen Open Logic Project source. Zenodo cannot currently express that relation value, so it is preserved in evidence/DATACITE_RELATIONS.json. No genuine global Open Logic collection DOI exists yet, so no IsPartOf relation is invented.</p>",
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/OpenLogicProject/OpenLogic/commit/9620cc73f9c8e0ad003c514a5d3748f29611c4c0",
+      "relation": "isDerivedFrom",
+      "resource_type": "software"
+    },
+    {
+      "identifier": "https://github.com/KokunoYumeto/OpenLogic-tr",
+      "relation": "isSupplementTo",
+      "resource_type": "software"
+    }
+  ],
+  "keywords": [
+    "Open Logic Project",
+    "Açık Mantık Projesi",
+    "Turkish",
+    "Türkçe",
+    "translation",
+    "mathematical logic",
+    "open textbook"
+  ],
+  "license": "cc-by-4.0",
+  "upload_type": "publication",
+  "publication_type": "book",
+  "language": "tur"
+}

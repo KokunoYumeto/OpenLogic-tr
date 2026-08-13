@@ -1,0 +1,11 @@
+{
+  "zenodo_record_id": 21921845,
+  "language_concept_doi": "10.5281/zenodo.21921844",
+  "exact_version_doi": "10.5281/zenodo.21921845",
+  "title": "Open Logic Project — Türkçe Kümülatif Sürüm / Turkish Cumulative Edition (OLP-0062, 62/722)",
+  "version": "OLP-0062-20260813",
+  "language_bcp47": "tr",
+  "language_zenodo": "tur",
+  "object_scope": "Turkish cumulative edition, OLP-0001 through OLP-0062, 62/722 modules",
+  "global_collection_relation": "pending: no genuine global Open Logic multilingual concept DOI exists"
+}

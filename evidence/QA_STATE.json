@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "version": "OLP-0062-20260813",
+  "source_replay": "PASS: 62/62 cumulative targets bind to exact sources at commit 9620cc73f9c8e0ad003c514a5d3748f29611c4c0",
+  "model_or_agent_checks": "CLEAN: independent exact-source, mathematical/logic, terminology, structural, and Turkish-language reviews; blocker 0, major 0, minor 0",
+  "deterministic_build": "PASS: latexmk 4.88 / MiKTeX pdfTeX 1.40.29, exit 0; 103 US-Letter pages",
+  "rendered_inspection": "PASS: 103/103 pages rendered at 120 dpi; full contact sheets and enlarged pages 88-103 inspected",
+  "text_layer": "PASS: 226535 UTF-8 bytes, 4123 lines, zero unresolved-reference, citation, token, placeholder, or replacement-glyph markers",
+  "diagnostics": {
+    "fatal_errors": 0,
+    "unresolved_references": 0,
+    "unresolved_citations": 0,
+    "missing_characters": 0,
+    "overfull_boxes": 0,
+    "underfull_hboxes": 12,
+    "underfull_vboxes": 2,
+    "font_warnings": 4
+  },
+  "reader_pages": 103,
+  "reader_bytes": 711458,
+  "reader_sha256": "3598C3CB1ACC9DBEC0B1A92B98BED9E9615030D00CC866133CC738A1DB073CAF",
+  "artifact_manifest": "evidence/ARTIFACT_SHA256.tsv",
+  "unresolved_items": "evidence/UNRESOLVED_ITEMS.tsv",
+  "human_review_required": false,
+  "release_closed": true,
+  "closure_reason": "Exact source replay, independent model/agent review, deterministic build, text QA, all-page render inspection, immutable hashes, and honest scope disclosure all pass."
+}

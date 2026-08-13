@@ -1,0 +1,15 @@
+{
+  "workbench_repository": "https://github.com/KokunoYumeto/OpenLogic",
+  "mirror_branch": "codex/tr-tr-main",
+  "tag": "tr-olp-0062-20260813",
+  "tag_object": "07d9aa69133b7eb196098e5b770b4b6d652a03b3",
+  "tagged_content_commit": "b7a698e7393c42322efed3df8279a74ddeb5c0de",
+  "post_readback_branch_tip": "ea08bf5ceda0b22cebbff9262742eff601ba8c73",
+  "release_url": "https://github.com/KokunoYumeto/OpenLogic/releases/tag/tr-olp-0062-20260813",
+  "reader_url": "https://github.com/KokunoYumeto/OpenLogic/releases/download/tr-olp-0062-20260813/Open_Logic_Project_Turkish_checkpoint_OLP-0062_20260813.pdf",
+  "reader_bytes": 711458,
+  "reader_sha256": "3598C3CB1ACC9DBEC0B1A92B98BED9E9615030D00CC866133CC738A1DB073CAF",
+  "readback_verified": true,
+  "draft": false,
+  "prerelease": false
+}

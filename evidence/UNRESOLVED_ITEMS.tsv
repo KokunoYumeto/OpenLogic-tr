@@ -1,0 +1,5 @@
+item_id	location	type	current_reading	alternatives	evidence	impact	status
+SCOPE-0001	closure OLP-0063--OLP-0722	translation coverage	660 modules remain untranslated	continue in stable closure order	CLOSURE_0062.csv and CURSOR.md	edition is cumulative 62/722, not complete	queued
+HUB-0001	DataCite relation graph	global collection DOI	no genuine global Open Logic multilingual concept DOI exists	add IsPartOf when a real hub is minted	DOI architecture audit 2026-08-13	no invented collection relation	metadata_pending
+CONFIG-0001	configurable inactive connective branches	render coverage	default cumulative configuration rendered	render every tag permutation separately	SOURCE_ADVERSE_0062.md	inactive modular branches are source-reviewed but not all render-tested	disclosed
+UPSTREAM-0001	frozen English authority	source defects	deterministic Turkish emendations are disclosed	propose minimal upstream corrections	SOURCE_ADVERSE.md and SOURCE_ADVERSE_0062.md	upstream remains byte-untouched	open_upstream

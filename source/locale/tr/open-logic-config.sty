@@ -1,0 +1,70 @@
+% Turkish token and notation overrides.
+% Turkish morphology is not captured by English singular/plural templates;
+% add only reviewed overrides here and retain context-specific prose in files.
+
+\settexttoken{element}{eleman}{elemanlar}[Eleman][Elemanlar]
+\settexttoken{formula}*{formül}{formüller}
+\settexttoken{structure}{yapı}{yapılar}[Yapı][Yapılar]
+\settexttoken{valuation}{değerleme}{değerlemeler}[Değerleme][Değerlemeler]
+\settexttoken{propositional variable}{önerme değişkeni}{önerme değişkenleri}[Önerme değişkeni][Önerme değişkenleri]
+\settexttoken{operator}{işleç}{işleçler}[İşleç][İşleçler]
+\settexttoken{conditional}{maddi koşul}{maddi koşullar}[Maddi koşul][Maddi koşullar]
+\settexttoken{biconditional}{iki yönlü koşul}{iki yönlü koşullar}[İki yönlü koşul][İki yönlü koşullar]
+\settexttoken{truth}{doğruluk}{doğruluk}[Doğruluk][Doğruluk]
+\settexttoken{falsity}{yanlışlık}{yanlışlık}[Yanlışlık][Yanlışlık]
+\settexttoken{language}*{dil}{diller}
+\settexttoken{derivation}*{türetim}{türetimler}
+\settexttoken{enumerable}{sayılabilir}{sayılabilir}[Sayılabilir][Sayılabilir]
+\settexttoken{nonenumerable}{sayılamaz}{sayılamaz}[Sayılamaz][Sayılamaz]
+\settexttoken{denumerable}{sayılabilir sonsuz}{sayılabilir sonsuz}[Sayılabilir sonsuz][Sayılabilir sonsuz]
+\settexttoken{injective}{bire bir}{bire bir}[Bire bir][Bire bir]
+\settexttoken{injection}{bire bir fonksiyon}{bire bir fonksiyonlar}[Bire bir fonksiyon][Bire bir fonksiyonlar]
+\settexttoken{surjective}{örten}{örten}[Örten][Örten]
+\settexttoken{surjection}{örten fonksiyon}{örten fonksiyonlar}[Örten fonksiyon][Örten fonksiyonlar]
+\settexttoken{bijective}{bire bir örten}{bire bir örten}[Bire bir örten][Bire bir örten]
+\settexttoken{bijection}{bire bir örten fonksiyon}{bire bir örten fonksiyonlar}[Bire bir örten fonksiyon][Bire bir örten fonksiyonlar]
+
+% Turkish has no indefinite article. Keep upstream token calls structurally
+% intact while suppressing English a/an output for admitted tokens.
+\definetoken{a}{element}{}
+\definetoken{A}{element}{}
+\definetoken{a}{formula}{}
+\definetoken{A}{formula}{}
+\definetoken{a}{structure}{}
+\definetoken{A}{structure}{}
+\definetoken{a}{valuation}{}
+\definetoken{A}{valuation}{}
+\definetoken{a}{propositional variable}{}
+\definetoken{A}{propositional variable}{}
+\definetoken{a}{operator}{}
+\definetoken{A}{operator}{}
+\definetoken{a}{conditional}{}
+\definetoken{A}{conditional}{}
+\definetoken{a}{biconditional}{}
+\definetoken{A}{biconditional}{}
+\definetoken{a}{truth}{}
+\definetoken{A}{truth}{}
+\definetoken{a}{falsity}{}
+\definetoken{A}{falsity}{}
+\definetoken{a}{language}{}
+\definetoken{A}{language}{}
+\definetoken{a}{derivation}{}
+\definetoken{A}{derivation}{}
+\definetoken{a}{enumerable}{}
+\definetoken{A}{enumerable}{}
+\definetoken{a}{nonenumerable}{}
+\definetoken{A}{nonenumerable}{}
+\definetoken{a}{denumerable}{}
+\definetoken{A}{denumerable}{}
+\definetoken{a}{injective}{}
+\definetoken{A}{injective}{}
+\definetoken{a}{injection}{}
+\definetoken{A}{injection}{}
+\definetoken{a}{surjective}{}
+\definetoken{A}{surjective}{}
+\definetoken{a}{surjection}{}
+\definetoken{A}{surjection}{}
+\definetoken{a}{bijective}{}
+\definetoken{A}{bijective}{}
+\definetoken{a}{bijection}{}
+\definetoken{A}{bijection}{}

@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "declared_object_scope": "Turkish cumulative edition of the Open Logic Project, OLP-0001 through OLP-0062 (62/722 frozen content modules)",
+  "original_or_source_title": "Open Logic Project / Open Logic Text",
+  "original_or_source_edition": "official Git commit 9620cc73f9c8e0ad003c514a5d3748f29611c4c0",
+  "original_or_source_identifier": "https://github.com/OpenLogicProject/OpenLogic/commit/9620cc73f9c8e0ad003c514a5d3748f29611c4c0",
+  "source_artifact_path_or_public_url": "https://github.com/OpenLogicProject/OpenLogic/tree/9620cc73f9c8e0ad003c514a5d3748f29611c4c0",
+  "source_content_bytes": 3051826,
+  "source_content_files": 722,
+  "source_git_tree": "f67757bb9305b173634082ab4cefd5601a707a34",
+  "source_closure_manifest": "CLOSURE_0062.csv",
+  "source_closure_manifest_sha256": "EDCB7CBCD6141CA7CEB1F77B38E78AE2715A4DBE09274ABE76E6443E4F541497",
+  "coverage_and_topology": "722-file content closure; 642 complete-reader-reachable and 80 retained non-reader; contiguous Turkish cursor OLP-0062; 660 modules remain",
+  "authority_hierarchy": [
+    "Official OpenLogicProject/OpenLogic Git commit and tree",
+    "Frozen 722-row closure with per-file SHA-256",
+    "Transparent source-adverse ledger for deterministic Turkish emendations"
+  ],
+  "excluded_scope": [
+    "OLP-0063 through OLP-0722",
+    "untranslated proof-system and completeness imports",
+    "other language editions",
+    "claim of a complete 722-module Turkish corpus"
+  ],
+  "license": "CC BY 4.0"
+}
