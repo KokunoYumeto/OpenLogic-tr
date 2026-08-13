@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "graph_type": "typed_evidence_graph",
+  "nodes": [
+    {"id": "authority", "type": "source_authority", "value": "OpenLogic commit 9620cc73f9c8e0ad003c514a5d3748f29611c4c0"},
+    {"id": "closure", "type": "source_closure", "value": "CLOSURE_0062.csv, 722 rows"},
+    {"id": "targets", "type": "translation_targets", "value": "OLP-0001 through OLP-0062, 62 files"},
+    {"id": "terms", "type": "terminology_ledger", "value": "TERMS_0062.csv, 171 rows"},
+    {"id": "adverse", "type": "source_adverse_ledger", "value": "SOURCE_ADVERSE_0062.md"},
+    {"id": "structural_qa", "type": "deterministic_check", "value": "TRANCHE_0062_STRUCTURAL_QA.json, PASS 62/62"},
+    {"id": "review", "type": "independent_model_review", "value": "REVIEW_0062.md, clean 0/0/0"},
+    {"id": "driver", "type": "build_driver", "value": "checkpoint-0062-tr.tex"},
+    {"id": "reader", "type": "reader_pdf", "value": "103 pages, SHA-256 3598C3CB1ACC9DBEC0B1A92B98BED9E9615030D00CC866133CC738A1DB073CAF"},
+    {"id": "workbench_release", "type": "git_release", "value": "KokunoYumeto/OpenLogic tag tr-olp-0062-20260813"},
+    {"id": "publication_repo", "type": "git_publication_repository", "value": "KokunoYumeto/OpenLogic-tr"},
+    {"id": "concept_doi", "type": "language_concept_doi", "value": "10.5281/zenodo.21921844"},
+    {"id": "version_doi", "type": "exact_version_doi", "value": "10.5281/zenodo.21921845"}
+  ],
+  "edges": [
+    {"from": "targets", "relation": "translated_against", "to": "authority"},
+    {"from": "closure", "relation": "enumerates", "to": "authority"},
+    {"from": "targets", "relation": "terminology_governed_by", "to": "terms"},
+    {"from": "targets", "relation": "source_deltas_disclosed_by", "to": "adverse"},
+    {"from": "targets", "relation": "checked_by", "to": "structural_qa"},
+    {"from": "targets", "relation": "checked_by", "to": "review"},
+    {"from": "reader", "relation": "built_from", "to": "driver"},
+    {"from": "driver", "relation": "imports", "to": "targets"},
+    {"from": "reader", "relation": "published_as", "to": "workbench_release"},
+    {"from": "publication_repo", "relation": "mirrors_release", "to": "workbench_release"},
+    {"from": "version_doi", "relation": "identifies", "to": "reader"},
+    {"from": "version_doi", "relation": "is_version_of", "to": "concept_doi"},
+    {"from": "concept_doi", "relation": "is_translation_of", "to": "authority"}
+  ]
+}

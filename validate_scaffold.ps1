@@ -4,13 +4,18 @@ $errors = [System.Collections.Generic.List[string]]::new()
 $required = @(
   'README.md','CITATION.cff','.zenodo.json','LICENSE','source\README.txt','reader\README.txt',
   'evidence\SOURCE_AUTHORITY.json','evidence\QA_STATE.json','evidence\UNRESOLVED_ITEMS.tsv',
-  'evidence\ARTIFACT_SHA256.tsv','evidence\DATACITE_RELATIONS.json','build\BUILD.ps1'
+  'evidence\ARTIFACT_SHA256.tsv','evidence\DATACITE_RELATIONS.json',
+  'evidence\PROVENANCE_GRAPH.json','evidence\DEPENDENCY_TREE.json','build\BUILD.ps1'
 )
 foreach ($rel in $required) {
   $p = Join-Path $root $rel
   if (-not (Test-Path -LiteralPath $p -PathType Leaf)) { $errors.Add("MISSING $rel") }
 }
-foreach ($jsonRel in @('.zenodo.json','evidence\SOURCE_AUTHORITY.json','evidence\QA_STATE.json','evidence\DATACITE_RELATIONS.json')) {
+foreach ($jsonRel in @(
+  '.zenodo.json','evidence\SOURCE_AUTHORITY.json','evidence\QA_STATE.json',
+  'evidence\DATACITE_RELATIONS.json','evidence\PROVENANCE_GRAPH.json',
+  'evidence\DEPENDENCY_TREE.json'
+)) {
   $p = Join-Path $root $jsonRel
   if (Test-Path -LiteralPath $p) {
     try { Get-Content -LiteralPath $p -Raw | ConvertFrom-Json | Out-Null } catch { $errors.Add("INVALID_JSON $jsonRel") }
