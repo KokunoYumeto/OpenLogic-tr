@@ -1,0 +1,51 @@
+% Part: methods
+% Chapter: induction
+% Section: strong-induction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{mth}{ind}{str}
+
+\olsection{Kuvvetli Tümevarım}
+
+Yukarıda ele alınan tümevarım ilkesinde $P(0)$'ı ve ayrıca $P(k)$ ise
+$P(k+1)$ olduğunu kanıtlarız. İkinci kısımda $P(k)$'nin doğru olduğunu
+varsayıp bu varsayımı $P(k+1)$'i kanıtlamak için kullanırız. Elbette
+buna denk olarak $P(k-1)$'i varsayıp onu $P(k)$'yi kanıtlamak için
+kullanabilirdik---önemli olan, herhangi bir sayıdan onun ardılına
+çıkarımı gerçekleştirebilmemiz; söz konusu iddiayı, önceki sayı için
+geçerli olduğu varsayımı altında herhangi bir sayı için
+kanıtlayabilmemizdir.
+
+Tümevarım ilkesinin bir çeşidinde, iddianın yalnızca $k$'nin önceki
+sayısı $k-1$ için geçerli olduğunu değil,~$k$'den küçük bütün sayılar
+için geçerli olduğunu varsayar ve bu varsayımı iddiayı~$k$ için
+belirlemekte kullanırız. Bu da bize bütün~$n \in \Nat$ için $P(n)$
+iddiasını verir. Çünkü $P(0)$'ı belirledikten sonra, $P$'nin~$1$'den
+küçük bütün sayılar için geçerli olduğunu da belirlemiş oluruz. Ayrıca
+bütün $l<k$ için $P(l)$ ise $P(k)$ olduğunu biliyorsak, bunu özellikle
+$k=1$ için biliriz. Böylece $P(1)$ sonucuna varabiliriz. Bununla $P(0)$
+ve $P(1)$'i, yani bütün $l<2$ için $P(l)$'yi kanıtlamış oluruz; bütün
+$l<2$ için $P(l)$ ise $P(2)$ şeklindeki koşullu da elimizde olduğundan
+$P(2)$ sonucuna varabiliriz ve bu böyle sürer.
+
+Aslında ``bütün $k$'ler için, bütün $l<k$ için $P(l)$ ise $P(k)$''
+genel koşullusunu belirleyebilirsek, artık $P(0)$'ı ayrıca belirlememiz
+gerekmez; çünkü ondan çıkar. ``Bütün $l<k$ için $P(l)$'' gibi genel bir
+iddianın, hiçbir $l<k$ yoksa doğru olduğunu hatırlayın. Bu, boş
+nicelemenin bir örneğidir: hiç $A$ yoksa ``bütün $A$'lar $B$'dir''
+doğrudur; hiçbir $x$,~$!A(x)$'i sağlamıyorsa
+$\lforall[x][(!A(x) \lif !B(x))]$ doğrudur. Burada biçimselleştirilmiş
+ifade ``$\lforall[l][(l < k \lif P(l))]$'' olur---ve hiç $l < k$ yoksa
+bu doğrudur. $k=0$ olduğunda da durum tam olarak budur: hiçbir $l<0$
+yoktur; dolayısıyla $P$ ne olursa olsun ``bütün $l<0$ için $P(l)$''
+doğrudur. Böylece ``bütün $l<k$ için $P(l)$ ise $P(k)$''nin bir kanıtı
+$P(0)$'ı kendiliğinden belirler.
+
+Bu çeşit, iddiayı~$k$ için belirlemek yalnızca iddianın $k-1$ için
+geçerli olmasına dayandırılamıyor, fakat onun bir ya da daha fazla
+$l<k$ için doğru olduğu varsayımını gerektiriyorsa yararlıdır.
+
+\end{document}

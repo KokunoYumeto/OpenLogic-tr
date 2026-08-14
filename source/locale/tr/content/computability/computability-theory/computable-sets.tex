@@ -1,0 +1,42 @@
+% Part: computability
+% Chapter: computability-theory
+% Section: computable-sets
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{cmp}{thy}{cps}
+\olsection{Hesaplanabilir Kümeler}
+
+Hesaplanabilirlik kavramını hesaplanabilir fonksiyonlardan hesaplanabilir
+kümelere genişletebiliriz.
+
+\begin{defn}
+  $S$ bir doğal sayılar kümesi olsun. $S$, ancak ve ancak karakteristik
+  fonksiyonu $\Char{S}$ hesaplanabilirse \emph{hesaplanabilir}dir. Başka bir
+  deyişle $S$, ancak ve ancak
+  \[
+    \Char{S}(x)=\begin{cases}
+      1 & \text{$x\in S$ ise}\\
+      0 & \text{aksi durumda}
+    \end{cases}
+  \]
+  fonksiyonu hesaplanabilirse hesaplanabilirdir. Benzer biçimde bir
+  $R(x_0,\dots,x_{k-1})$ bağıntısı ancak ve ancak karakteristik fonksiyonu
+  hesaplanabilirse hesaplanabilirdir.
+
+  Hesaplanabilir küme ve bağıntılara \emph{karar verilebilir} de denir.
+\end{defn}
+
+\begin{explain}
+Artık kısmi fonksiyonlar, fonksiyonlar ve kümeler için ayrı hesaplanabilirlik
+kavramlarımız bulunduğuna dikkat edin; bunları karıştırmayın.
+\iftag{TMs}{Kısmi bir fonksiyonu hesaplayan Turing makinesi, fonksiyonun
+tanımlı olduğu girdi değerlerinde çıktıyı döndürür. Bir kümeyi hesaplayan
+Turing makinesi ise girdi değerinin kümede bulunup bulunmadığına karar
+verdikten sonra $1$ ya da $0$ döndürür.}{}
+\end{explain}
+
+\end{document}
+

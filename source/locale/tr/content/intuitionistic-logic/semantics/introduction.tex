@@ -1,0 +1,68 @@
+% part: intuitionistic-logic
+% chapter: semantics
+% section: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{int}{sem}{int}
+
+\olsection{Giriş}
+
+Hiçbir mantık bir semantik olmadan doyurucu biçimde betimlenemez; sezgici
+mantık da bunun istisnası değildir. Klasik mantıkta !!{valuation}s{}i temel alan
+semantik kanonik iken sezgici mantık için birbiriyle yarışan birkaç semantik
+vardır. Bunların hiçbiri, bağlaçların anlamlarına sezgici bakımdan kabul
+edilebilir bir açıklama getirme yönünden bütünüyle doyurucu değildir.
+
+Kiplik mantıklarının semantiğine benzeyen ve !!{relational model}s{}i temel alan
+semantik belki de bunların en yaygın olanıdır. Bu semantikte
+!!{propositional variable}s dünyalara atanır ve bu dünyalar bir erişilebilirlik
+bağıntısıyla ilişkilendirilir. Bu bağıntı her zaman bir kısmi sıralamadır; yani
+yansımalı, ters simetrik ve geçişlidir.
+
+Sezgisel olarak bu dünyaları bilgi durumları ya da ``kanıtsal durumlar'' diye
+düşünebilirsiniz. Bir~$w'$ durumu~$w$'den ancak ve ancak bildiğimiz kadarıyla
+$w'$ olası (gelecekteki) bir bilgi durumuysa, yani~$w$'de bilinenlerle
+bağdaşıyorsa erişilebilirdir. Bir önerme bilindikten sonra yeniden bilinmez
+hâle gelemez; yani $!A$,~$w$'de biliniyorsa ve~$Rww'$ ise $!A$,~$w'$'de de
+bilinir. Dolayısıyla ``bilgi'', erişilebilirlik bağıntısına göre monotondur.
+
+Epistemik mantıktaki gibi ``$!A$ biliniyor'' ifadesini ``bütün epistemik
+alternatiflerde doğru'' diye tanımlarsak, $!A \land !B$,~$w$'de ancak bütün
+epistemik alternatiflerde hem $!A$ hem de~$!B$ biliniyorsa bilinir. Ancak bilgi
+monoton ve $R$ yansımalı olduğundan bu, $!A \land !B$'nin $w$'de bilinmesinin
+ancak ve ancak $!A$ ile $!B$'nin~$w$'de bilinmesine eşdeğer olduğu anlamına
+gelir. Aynı nedenle
+$!A \lor !B$, $w$'de ancak ve ancak bunlardan en az biri biliniyorsa bilinir.
+Dolayısıyla $\land$ ile $\lor$ için bağlaçların doğruluk koşulları klasik
+mantıktakilerle örtüşür.
+
+Ne var ki koşulun doğruluk koşulları klasik mantıktakilerden farklıdır. $!A
+\lif !B$,~$w$'de ancak ve ancak hiçbir $w'$ için, $Rww'$ geçerliyken $!A$'nın
+$!B$ de bilinmeden bilinmesi söz konusu değilse bilinir. Bu, $!A$'nın bilinmediği ya da $!B$'nin~$w$'de
+bilindiği koşulla aynı değildir. Çünkü ne $!A$'yı ne de $!B$'yi~$w$'de
+biliyorsak, gelecekteki bir~$w'$ epistemik durumu bulunabilir; bu durum için
+$Rww'$ geçerlidir ve $w'$'de $!A$,~$!B$ de öğrenilmeksizin bilinebilir.
+
+$\lnot !A$'yı ancak~$!A$'yı bildiğimiz olası hiçbir gelecek epistemik durum
+yoksa biliriz. Buradaki düşünce şudur: $!A$ bilinebilir olsaydı, olası bir
+gelecek epistemik durumda~$!A$ bilinir hâle gelirdi. $\lfalse$'ı
+bilemeyeceğimizden, o gelecek epistemik durumda $!A$'yı bilir ama~$\lfalse$'ı
+bilmezdik.
+
+Bu yorumda üçüncü hâlin olanaksızlığı ilkesi geçersiz olur. Çünkü henüz
+bilmediğimiz ama ileride bilebileceğimiz bazı $!A$'lar vardır. Böyle
+!!a{formula}~$!A$ için hem $!A$ hem de~$\lnot !A$ bilinmez; dolayısıyla $!A
+\lor \lnot !A$ da bilinmez. Fakat örneğin $\lnot(!A \land \lnot !A)$'yı
+biliriz. Çünkü hem $!A$'yı hem de $\lnot !A$'yı bildiğimiz hiçbir gelecek durum
+mümkün değildir; bunu~$!A$'yı ya da $\lnot !A$'yı bilip bilmediğimizden
+bağımsız olarak biliriz.
+
+Sezgici mantık için kullanılabilen tek semantik !!^{relational model}
+değildir. Topolojik semantik de bir başkasıdır: burada önermeler bir topolojik
+uzaydaki açık kümeler, bağlaçlar da bu kümeler üzerindeki işlemler olarak
+yorumlanır (örneğin $\land$ kesişime karşılık gelir).
+
+\end{document}

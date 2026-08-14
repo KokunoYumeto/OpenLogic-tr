@@ -1,0 +1,223 @@
+% Part: incompleteness
+% Chapter: arithmetization-syntax
+% Section: proofs-in-ax
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{inc}{art}{pax}
+\olsection{Aksiyomatik \usetoken{P}{derivation}}
+
+\begin{explain}
+Aksiyomatik !!{derivation}s{}i aritmetikleştirmek için !!{derivation}s{}i
+sayılarla temsil etmemiz gerekir. !!{derivation}s yalnızca !!{formula}
+dizileri olduğundan en
+açık yaklaşım, her !!{derivation}{}i içindeki !!{formula}s{}in kodlarından oluşan
+dizinin koduyla kodlamaktır.
+\end{explain}
+
+\begin{defn}
+$\delta$, $!A_1$, \dots,~$!A_n$ !!{formula}s{}inden oluşan aksiyomatik bir
+!!{derivation} ise $\Gn{\delta}$
+\[
+\tuple{\Gn{!A_1}, \dots, \Gn{!A_n}}
+\]
+olur.
+\end{defn}
+
+\begin{ex}
+  Şu çok basit !!{derivation}{}i ele alın:
+  \begin{derivation}
+  1. & $!B \lif (!B \lor !A)$ \\
+  2. & $(!B \lif (!B \lor !A)) \lif (!A  \lif (!B \lif (!B \lor !A)))$\\
+  3. & $!A  \lif (!B \lif (!B \lor !A))$
+  \end{derivation}
+  Bu !!{derivation}{}in Gödel numarası
+  \begin{align*}
+  \openTuple\,
+    & \Gn{!B \lif (!B \lor !A)}, \\
+    &\Gn{(!B \lif (!B \lor !A)) \lif (!A  \lif (!B \lif (!B \lor !A)))},\\
+    & \Gn{!A  \lif (!B \lif (!B \lor !A))} \,\closeTuple
+  \end{align*}
+  olurdu.
+\end{ex}
+
+\begin{explain}
+!!{derivation}s için bir temsil belirlediğimize göre bu !!{derivation}s{}i
+ilkel özyinelemeli biçimde işleyebildiğimizi ve temel özellikleriyle
+bağıntılarını da bu biçimde ifade edebildiğimizi göstermeliyiz. Bazı işlemler
+basittir: Örneğin !!a{derivation}{}in $d$ Gödel numarası verildiğinde
+$(d)_{\len{d}-1}$ bize son-!!{formula}{}ünün Gödel numarasını verir. Bazı
+işlemler ise çok daha zordur. En azından bunların nasıl yapılacağını ana
+hatlarıyla göstereceğiz. Amaç, ``$\delta$, $\Gamma$'dan $!A$'nın
+!!a{derivation}{}idir'' bağıntısının $\delta$ ile $!A$'nın Gödel numaraları
+üzerinde ilkel özyinelemeli olduğunu göstermektir.
+\end{explain}
+
+\begin{prop}
+\ollabel{prop:followsby}
+Aşağıdaki bağıntılar ilkel özyinelemelidir:
+\begin{enumerate}
+\item $!A$ bir aksiyomdur.
+\item $\delta$'nın $i$'inci satırı modus ponens ile gerekçelendirilmiştir.
+\item $\delta$'nın $i$'inci satırı \QR{} ile gerekçelendirilmiştir.
+\item $\delta$ doğru bir !!{derivation}{}dir.
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+!!{formula}s{}in Gödel numaraları ile !!{derivation}s{}in Gödel numaraları
+arasındaki karşılık gelen bağıntıların ilkel özyinelemeli olduğunu
+göstermeliyiz.
+\begin{enumerate}
+\item Elimizde verilmiş bir aksiyom şemaları listesi vardır ve $!A$, ancak ve
+  ancak bu şemalardan birinin verdiği biçimdeyse bir aksiyomdur. Şemaların
+  listesi sonlu olduğundan, her aksiyom şeması için $!A$'nın o biçimde olup
+  olmadığını ilkel özyinelemeli olarak sınayabildiğimizi göstermek yeterlidir.
+  Örneğin
+  \[
+  !B \lif (!C \lif !B)
+  \]
+  aksiyom şemasını ele alın. `$($' ile $!B$'yi, `$\lif$' ile `$($'yi,
+  $!C$'yi, `$\lif$' ile $!B$'yi ve son olarak `$))$'yi art arda
+  birleştirdiğimizde $!A$'yı elde ettiğimiz !!{formula}s $!B$ ile $!C$ varsa,
+  $!A$ bu aksiyom şemasının bir örneklemesidir. $!A$'nın Gödel numarası $n$
+  üzerinde karşılık gelen özelliği sınayabiliriz; çünkü dizilerin
+  birleştirilmesi ilkel özyinelemelidir. Ayrıca bağıntı geçerli olduğunda
+  $!B$ ile $!C$, $!A$'nın alt-!!{formula}s{}i oldukları için Gödel numaraları
+  $!A$'nın Gödel numarasından küçük olmalıdır. Dolayısıyla şöyle
+  tanımlayabiliriz:
+  \begin{multline*}
+  \fn{IsAx}_{!B \lif (!C \lif !B)}(n) \defiff \bexists{b< n}{
+    \bexists{c < n}{(\fn{Sent}(b) \land \fn{Sent}(c) \land {}}}\\ n =
+  \Gn{(} \concat b \concat \Gn{\lif} \concat \Gn{(} \concat c \concat
+  \Gn{\lif} \concat b \concat \Gn{))}
+  \end{multline*}
+  Her aksiyom şeması için böyle bir tanımımız varsa bunların ayrışımı,
+  ``$n$ bir aksiyomun Gödel numarasıdır'' biçimindeki $\fn{IsAx}(n)$
+  özelliğini tanımlar.
+\item $\delta$'nın $i$'inci satırı, ancak ve ancak $j,k<i$ olan ve $j$'inci
+  satırdaki !!{sentence} bir $!A$ formülü, $k$'ıncı satırdaki tümce
+  $!A \lif !B$, $i$'inci satırdaki tümce de $!B$ olacak biçimde $j$ ile $k$
+  satırları varsa modus ponens ile gerekçelendirilmiştir:
+  \begin{multline*}
+    \fn{MP}(d, i) \defiff \bexists{j < i}{\bexists{k < i}{}}\\
+    (d)_k = \Gn{(} \concat (d)_j
+      \concat \Gn{\lif} \concat (d)_i \concat \Gn{)}
+  \end{multline*}
+  Sınırlı niceleme, birleştirme ve $=$ ilkel özyinelemeli olduğundan bu, ilkel
+  özyinelemeli bir bağıntı tanımlar.
+\item $\delta$'nın bir satırı, $!B \lif \lforall[x][!A(x)]$ biçimindeyse,
+  önceki bir satır bir $c$ !!{constant}{}i için $!B \lif !A(c)$ ise ve $c$,
+  $!B$ içinde geçmiyorsa \QR{} ile gerekçelendirilmiştir. Bu, ancak ve ancak
+  aşağıdakiler geçerliyse böyledir:
+  \begin{enumerate}
+  \item !!a{sentence}~$!B$ ve
+  \item yalnızca tek bir $x$ değişkeninin serbest olduğu !!a{formula}~$!A(x)$
+    vardır ve
+  \item $i$'inci satır $!B \lif \lforall[x][!A(x)]$ içerir,
+  \item bir $c$ sabiti için $j<i$ olan bir $j$ satırı
+    $!B \lif \Subst{!A}{c}{x}$ içerir,
+  \item ayrıca $c$, $!B$ içinde geçmez.
+  \end{enumerate}
+  Bunların tümü ilkel özyinelemeli biçimde sınanabilir. Çünkü $!B$, $!A(x)$
+  ve $x$'in Gödel numaraları $i$'inci satırdaki formülün Gödel numarasından,
+  $c$'nin Gödel numarası da $j$'inci satırdaki formülün Gödel numarasından
+  küçüktür:
+  \begin{multline*}
+    \fn{QR}_1(d, i) \defiff \bexists{b < (d)_i}{\bexists{x <
+        (d)_i}{\bexists{a < (d)_i}{\bexists{j<i}{\bexists{c < (d)_j}{(}}}}}
+    \\ \fn{Var}(x) \land \fn{Const}(c) \land {} \\
+    (d)_i = \Gn{(} \concat
+    b \concat \Gn{\lif} \concat \Gn{\lforall} \concat x \concat a
+    \concat \Gn{)} \land {}\\
+    (d)_j = \Gn{(} \concat b \concat
+    \Gn{\lif} \concat \fn{Subst}(a,c,x) \concat \Gn{)} \land {}\\ \fn{Sent}(b)
+    \land \fn{Sent}(\fn{Subst}(a,c,x)) \land {} \bforall{k <
+      \len{b}}{(b)_k \neq (c)_0})
+  \end{multline*}
+  Burada $x$ ile $c$'nin, ele alınan değişken ile sabitin terim olarak Gödel
+  numaraları (yani simge kodları değil) olduğunu varsayıyoruz. $x$'in
+  $!A(x)$'in tek serbest değişkeni olduğunu $\Subst{!A(x)}{c}{x}$'in
+  !!a{sentence} olup olmadığını sınayarak belirleriz; $c$'nin $!B$ içinde
+  geçmemesini ise $!B$'nin her simgesinin $c$'den farklı olmasını isteyerek
+  sağlarız.
+
+  \QR{} kuralının öteki sürümünü alıştırma olarak bırakıyoruz.
+\item $d$, ancak ve ancak içindeki her satır bir aksiyomsa ya da modus ponens
+  veya \QR{} ile gerekçelendirilmişse doğru bir !!{derivation}{}in Gödel
+  numarasıdır. Dolayısıyla
+  \[
+  \fn{Deriv}(d) \defiff \bforall{i < \len{d}}{(\fn{IsAx}((d)_i) \lor
+    \fn{MP}(d,i) \lor \fn{QR}(d, i))}
+  \]
+  olur.
+\end{enumerate}
+\end{proof}
+
+\begin{prob}
+Aşağıdaki bağıntıları \olref[inc][art][pax]{prop:followsby}'deki gibi
+tanımlayın:
+\begin{enumerate}
+\item $\fn{IsAx}_{!A \lif (!B \lif (!A \land !B))}(n)$,
+\item $\fn{IsAx}_{\lforall[x][!A(x)] \lif !A(t)}(n)$,
+\item $\fn{QR}_{2}(d, i)$ (\QR{} kuralının öteki sürümü için).
+\end{enumerate}
+\end{prob}
+
+\begin{prop}
+$\Gamma$'nın ilkel özyinelemeli bir !!{sentence}s kümesi olduğunu varsayın.
+O zaman ``$x$, $\Gamma$'dan $!A$'nın !!a{derivation}{}i olan $\delta$'nın kodudur
+ve $y$, $!A$'nın Gödel numarasıdır'' ifadesini veren
+$\Prf[\Gamma](x, y)$ bağıntısı ilkel özyinelemelidir.
+\end{prop}
+
+\begin{proof}
+``$y \in \Gamma$'' ifadesinin ilkel özyinelemeli $R_\Gamma(y)$ yüklemiyle
+verildiğini varsayın. $\Prf[\Gamma](x,y)$ bağıntısının ilkel özyinelemeli
+olduğunu göstermeliyiz; burada $\Prf[\Gamma](x,y)$, ancak ve ancak $y$,
+!!a{sentence}~$!A$'nın Gödel numarasıysa ve $x$, $\Gamma$'dan $!A$'nın
+!!a{derivation}{}inin koduysa geçerlidir.
+
+Önceki önermeye göre $x$'in doğru bir $\delta$ !!{derivation}{}inin kodu olması
+durumunda geçerli olan $\fn{Deriv}(x)$ özelliği ilkel özyinelemelidir. Ancak
+bu tanım, $\Gamma$ kümesini !!{derivation}{}deki satırları gerekçelendirmenin
+ek bir yolu olarak hesaba katmamıştı. Bir satırın \QR{} ile gerekçelendirilip
+gerekçelendirilmediğini sınayan ilkel özyinelemeli sınamamızda, $c$ sabitinin
+$\Gamma$'da geçmesine izin verilmediği koşulunu da hesaba katmamıştık.
+Tanımımızı $\Gamma$'yı doğrudan hesaba katacak biçimde değiştirmek mümkündür;
+ancak $\fn{Deriv}$'i ve tümdengelim teoremini kullanmak daha kolaydır.
+$\Gamma \Proves !A$ olması, ancak ve ancak $!B_1$, \dots, $!B_n \in
+\Gamma$ olan sonlu bir !!{sentence}s listesi için
+$\{!B_1, \dots, !B_n\} \Proves !A$ olması demektir. Tümdengelim teoremine
+göre bu, $\Proves (!B_1 \lif (!B_2 \lif
+\cdots (!B_n \lif !A)\cdots))$ olduğunda geçerlidir. Gödel numarası $z$ olan
+!!a{sentence}{}nin bu biçimde olup olmadığı ilkel özyinelemeli biçimde
+sınanabilir. Böylece $x$'i, Gödel numarası $y$ olan !!{sentence}{}nin
+\emph{$\Gamma$'dan} !!a{derivation}{}inin Gödel numarası olarak görmek yerine,
+yukarıdaki biçimde iç içe geçmiş bir koşullunun $\emptyset$'tan
+!!a{derivation}{}inin Gödel numarası olarak görürüz.
+
+Önce bir !!{sentence}s dizimiz varsa bütün bu tümceleri önbileşen, verilmiş
+!!{sentence}{}yi da artbileşen yapan koşulluyu ilkel özyinelemeli biçimde
+kurabiliriz:
+\begin{align*}
+  \fn{hCond}(s, y, 0) & = y \\
+  \fn{hCond}(s, y, n+1) & = \Gn{(} \concat (s)_{n} \concat \Gn{\lif}
+  \concat \fn{hCond}(s, y, n) \concat \Gn{)}\\
+  \fn{Cond}(s, y) & = \fn{hCond}(s, y, \len{s})\\
+  \intertext{Böylece $\Prf[\Gamma](x, y)$'yi şöyle tanımlayabiliriz:}
+  \Prf[\Gamma](x, y) & \defiff \bexists{s < \fn{sequenceBound}(x,x)}{(} \\
+  &\qquad (x)_{\len{x}-1} = \fn{Cond}(s,y) \land {} \\
+  &\qquad\bforall{i<\len{s}}{(s)_i \in \Gamma} \land {} \\
+  &\qquad\fn{Deriv}(x))
+\end{align*}
+$s$ üzerindeki sınır şöyle elde edilir: Her $(s)_i$, !!{derivation}{}in son
+satırındaki bir alt-!!{formula}{}ün Gödel numarasıdır; dolayısıyla
+$(x)_{\len{x}-1}$'den küçüktür. $!B \in \Gamma$ biçimindeki önbileşenlerin
+sayısı olan $s$'nin uzunluğu da $x$'in son satırının uzunluğundan
+küçüktür.
+\end{proof}
+
+\end{document}

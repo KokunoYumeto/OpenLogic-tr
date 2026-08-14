@@ -1,0 +1,41 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sth}{spine}{valpha}
+
+\olsection{Aşamaları $V_\alpha$'lar Olarak Tanımlamak}
+
+\olref[sth][ordinals][]{chap} içinde iyi sıralamaları ve (von Neumann)
+sıra sayılarını tanımladık. Bu bölümde bunları küme hiyerarşisinin
+\emph{kendisini} nitelemek için kullanacağız. Bunun için
+\olref[sth][ordinals][opps]{sec} içinde ardıl ve limit sıra sayıları
+fikirlerini tanımladığımızı hatırlayın. Bu fikirleri aşağıdaki tanımda
+kullanıyoruz:
+
+\begin{defn}\ollabel{defValphas}
+	\begin{align*}
+	V_\emptyset &\defis \emptyset\\
+	V_{\ordsucc{\alpha}} &\defis \Pow{V_\alpha} & &
+	\text{her $\alpha$ sıra sayısı için}\\
+	V_{\alpha} &\defis \bigcup_{\gamma < \alpha} V_\gamma & &
+	\text{$\alpha$ bir limit sıra sayısı olduğunda.}
+\end{align*}
+\end{defn}
+\noindent
+Bu, sıra sayıları üzerinde \emph{sonlu ötesi özyinelemeyle} yapılmış bir
+tanım olacaktır. Bu bakımdan doğal sayılar üzerindeki fonksiyonların
+özyinelemeli tanımlarıyla karşılaştırılmalıdır.\footnote{Toplama, çarpma ve
+üs alma tanımları için \olref[sfr][infinite][dedekind]{sec} kesimine
+bakın.} Doğal sayılarda olduğu gibi bir başlangıç durumu ile ardıl durumlar
+tanımlanır; fakat sıra sayılarıyla çalışırken \emph{limit} durumlarındaki
+davranışı da betimlememiz gerekir.
+
+$V_\alpha$'ların bu tanımı önemli bir dönüm noktası olacaktır. Küme
+hiyerarşimizi, kümeleri \emph{aşamalar} hâlinde oluşturmakla gayriresmî
+olarak gerekçelendirdik. $V_\alpha$'lar gerçekte tam da bu aşamalardır.
+Ancak önemli olarak bu, aşamaların \emph{içsel} bir nitelenmesidir. Teorinin
+olası bir \emph{modelini} önermek yerine aşamaları küme teorimizin
+\emph{içinde} tanımlamış olacağız.
+
+\end{document}

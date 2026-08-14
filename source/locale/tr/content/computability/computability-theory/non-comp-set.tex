@@ -1,0 +1,69 @@
+% Part: computability
+% Chapter: computability-theory
+% Section: non-comp-set
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{cmp}{thy}{ncp}
+\olsection{Hesaplanabilir Olmayan Kümeler Vardır}
+
+Yukarıda her hesaplanabilir kümenin hesaplanabilir biçimde
+numaralandırılabilir olduğunu gördük. Tersi doğru mudur? Aşağıdaki sonuç
+genel olarak doğru olmadığını gösterir.
+
+\begin{thm}\ollabel{thm:K-0}
+$K_0$, $\Setabs{\tuple{e,x}}{\cfind{e}(x)\fdefined}$ kümesi olsun.
+O zaman $K_0$ hesaplanabilir biçimde numaralandırılabilir, fakat
+hesaplanabilir değildir.
+\end{thm}
+
+\begin{proof}
+$K_0$'ın hesaplanabilir biçimde numaralandırılabilir olduğunu görmek için,
+onun
+\[
+  f(z)=\umin{y}{(\len{z}=2\land T((z)_0,(z)_1,y))}
+\]
+ile tanımlanan $f$ fonksiyonunun tanım kümesi olduğuna dikkat edin.
+Gerçekten $\cfind{e}(x)$ tanımlıysa $f(\tuple{e,x})$ duran bir hesap dizisi
+bulur; $\cfind{e}(x)$ tanımsızsa $f(\tuple{e,x})$ de tanımsızdır. $z$ bir
+çifti bile kodlamıyorsa $f(z)$ yine tanımsızdır.
+
+$K_0$'ın hesaplanabilir olmaması tam olarak durma probleminin karar
+verilemezliğidir; bkz. \olref[hlt]{thm:halting-problem}.
+\end{proof}
+
+$K_0$, $\cfind{e}(x)\fdefined$ olacak $\tuple{e,x}$ çiftleri kümesidir;
+yani $\tuple{e,x}\in K_0$ ancak ve ancak $\cfind{e}$, $x$ girdisinde
+tanımlıysa, başka bir deyişle duruyorsa geçerlidir. Bu nedenle $K_0$'a
+``durma kümesi'' de denir. $K=\Setabs{e}{\cfind{e}(e)\fdefined}$ ise
+``kendi üzerinde durma kümesi''dir ve çoğu kez örnek karar verilemez küme
+olarak kullanılır.
+
+\begin{thm}\ollabel{thm:K}
+Kendi üzerinde durma kümesi
+$K=\Setabs{e}{\cfind{e}(e)\fdefined}$ !!{c.e.} fakat karar verilebilir
+değildir.
+\end{thm}
+
+\begin{proof}
+  $K$ karar verilebilir, yani karakteristik fonksiyonu $\Char{K}$
+  hesaplanabilir olsun. Şöyle tanımlayalım:
+  \[
+    d(e)=\begin{cases}
+      1 & \text{$\Char{K}(e)=0$ ise}\\
+      \fundefined & \text{aksi durumda.}
+    \end{cases}
+  \]
+  $k$, $d$'nin indisi, yani $d\simeq\cfind{k}$ olsun. O zaman
+  $d(k)\simeq\cfind{k}(k)$ olur. Bu, $d$ tanımından çıkan
+  $d(k)\fdefined$ ancak ve ancak $\cfind{k}(k)\fundefined$ olgusuyla
+  çelişir.
+
+  $K$, $f(x)=\umin{y}{T(x,x,y)}$ fonksiyonunun tanım kümesidir;
+  dolayısıyla !!{c.e.}
+\end{proof}
+
+\end{document}
+

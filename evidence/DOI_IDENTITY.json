@@ -1,11 +1,16 @@
 {
-  "zenodo_record_id": 21921845,
+  "zenodo_record_id": 21927145,
   "language_concept_doi": "10.5281/zenodo.21921844",
-  "exact_version_doi": "10.5281/zenodo.21921845",
-  "title": "Open Logic Project — Türkçe Kümülatif Sürüm / Turkish Cumulative Edition (OLP-0062, 62/722)",
-  "version": "OLP-0062-20260813",
+  "exact_version_doi": "10.5281/zenodo.21927145",
+  "title": "Open Logic Project — Türkçe Tam Sürüm / Complete Turkish Edition (OLP-0722, 722/722)",
+  "version": "OLP-0722-20260814",
+  "release_date": "2026-08-14",
   "language_bcp47": "tr",
   "language_zenodo": "tur",
-  "object_scope": "Turkish cumulative edition, OLP-0001 through OLP-0062, 62/722 modules",
-  "global_collection_relation": "pending: no genuine global Open Logic multilingual concept DOI exists"
+  "object_scope": "Complete Turkish edition, OLP-0001 through OLP-0722, all 722/722 frozen content modules",
+  "publication_status": "exact DOI reserved; local package, Git tag and release, Zenodo publication, and public readback pending",
+  "prior_public_exact_version_doi": "10.5281/zenodo.21921845",
+  "prior_version_status": "historical 62-module release; superseded in content by OLP-0722",
+  "global_collection_concept_doi": null,
+  "global_collection_relation": "none asserted because no genuine global Open Logic multilingual concept DOI exists"
 }

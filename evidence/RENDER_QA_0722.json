@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "release": "OLP-0722-20260814",
+  "status": "CLEAN",
+  "reader_pages": 1037,
+  "rendered_png_files": 1037,
+  "page_dimensions_pixels": "612x792",
+  "prior_all_page_inspection_ranges": ["1-352", "353-704", "705-1037"],
+  "prior_contact_sheets": 65,
+  "final_replay": {
+    "pages_byte_identical_to_inspected_render": 1020,
+    "changed_pages": [868, 869, 871, 873, 875, 876, 877, 878, 879, 880, 881, 882, 883, 885, 896, 897, 898],
+    "changed_page_count": 17,
+    "changed_pages_inspection_detail": "original",
+    "changed_pages_result": "CLEAN"
+  },
+  "all_pages_result": "CLEAN 1037/1037",
+  "page_metrics_bytes": 40552,
+  "page_metrics_sha256": "FEBE3788B88808B70BF16D6208B56415DD02D938D4C0C7ABE56D1CDC63D9A8C9"
+}

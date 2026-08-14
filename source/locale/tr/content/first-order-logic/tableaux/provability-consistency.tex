@@ -1,0 +1,148 @@
+% Part: first-order-logic
+% Chapter: tableaux
+% Section: provability-consistency
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[tr]{fol}{tab}{prv}}
+      {\olfileid[tr]{pl}{tab}{prv}}
+
+\olsection{\usetoken{S}{derivability} ve Tutarlılık}
+
+Şimdi !!{derivability} bağıntısının çeşitli özelliklerini belirleyeceğiz.
+Bunlar kendi başlarına da ilginçtir; ayrıca her biri tamlık teoreminin
+ispatında rol oynayacaktır.
+
+\begin{prop}\ollabel{prop:provability-contr}
+  $\Gamma \Proves !A$ ve $\Gamma \cup \{!A\}$ tutarsızsa $\Gamma$
+  tutarsızdır.
+\end{prop}
+
+\begin{proof}
+Aşağıdaki iki kümenin kapalı !!{tableau}s ağaçları olacak biçimde sonlu
+$\Gamma_0 = \{!B_1, \dots, !B_n\} \subseteq \Gamma$ ve
+$\Gamma_1 =\{!C_1, \dots, !C_m\} \subseteq \Gamma$ kümeleri vardır:
+  \begin{align*}
+    \{\sFmla{\False}{!A}, &
+    \sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n}\}, \\
+    \{\sFmla{\True}{!A}, &
+    \sFmla{\True}{!C_1}, \dots, \sFmla{\True}{!C_m}\}.
+  \end{align*}
+  $!A$ üzerinde \Cut{} kuralını kullanarak bunları $\Gamma_0
+  \cup \Gamma_1$ kümesinin tutarsız olduğunu gösteren tek bir kapalı
+  !!{tableau} hâlinde birleştirebiliriz. $\Gamma_0 \subseteq \Gamma$ ve
+  $\Gamma_1 \subseteq \Gamma$ olduğundan $\Gamma_0 \cup
+  \Gamma_1 \subseteq \Gamma$; dolayısıyla $\Gamma$ tutarsızdır.
+\end{proof}
+
+\begin{prop}
+\ollabel{prop:prov-incons}
+$\Gamma \Proves !A$ ancak ve ancak $\Gamma \cup \{\lnot !A\}$ tutarsızsa.
+\end{prop}
+
+\begin{proof}
+Önce $\Gamma \Proves !A$ olduğunu, yani
+\[
+\{\sFmla{\False}{!A},
+\sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n}\}
+\]
+için kapalı bir !!{tableau} bulunduğunu varsayın. $\TRule{\True}{\lnot}$
+kuralı kullanılarak bu,
+\[
+\{\sFmla{\True}{\lnot !A},
+\sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n}\}.
+\]
+için kapalı bir !!{tableau}'ya dönüştürülebilir.
+
+Tersine, ikinci küme için kapalı bir !!{tableau} varsa, ilk
+varsayım~$\sFmla{\True}{\lnot !A}$ ile ona
+\TRule{\True}{\lnot} uygulanarak elde edilen bütün formülleri kaldırıp
+$\sFmla{\False}{!A}$ varsayımını ekleyerek onu ilk kümenin kapalı bir
+!!{tableau}'suna dönüştürebiliriz. Nitekim bir dal daha önce
+$\sFmla{\True}{\lnot !A}$ ifadesine \TRule{\True}{\lnot} uygulanmasının
+sonucu olan $\sFmla{\False}{!A}$ ifadesini içerdiği için kapalıysa, yeni
+!!{tableau}'daki karşılık gelen dal da kapalıdır. Eski tableau'daki bir dal
+$\sFmla{\True}{\lnot !A}$ varsayımının yanı sıra
+$\sFmla{\False}{\lnot !A}$ ifadesini içerdiği için kapalıysa,
+$\sFmla{\False}{\lnot !A}$ ifadesine $\TRule{\False}{\lnot}$ uygulayıp
+$\sFmla{\True}{!A}$ elde ederek onu kapalı bir dala dönüştürebiliriz.
+$\sFmla{\False}{!A}$ ifadesini varsayım olarak eklediğimizden bu dal
+kapanır.
+\end{proof}
+
+\begin{prob}
+$\Gamma \Proves \lnot !A$ olmasının ancak ve ancak
+$\Gamma \cup \{!A\}$ kümesinin tutarsız olmasına denk olduğunu ispatlayın.
+\end{prob}
+
+\begin{prop}\ollabel{prop:explicit-inc}
+  $\Gamma \Proves !A$ ve $\lnot !A \in \Gamma$ ise $\Gamma$ tutarsızdır.
+\end{prop}
+
+\begin{proof}
+  $\Gamma \Proves !A$ ve $\lnot !A \in \Gamma$ olduğunu varsayın. Bu
+  durumda $!B_1$, \dots, $!B_n \in \Gamma$ vardır ve
+  \[
+  \{\sFmla{\False}{!A}, \sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n}\}
+  \]
+  kümesinin kapalı bir tableau'su bulunur. \sFmla{\False}{!A} varsayımını
+  \sFmla{\True}{\lnot !A} ile değiştirin ve
+  \sFmla{\True}{\lnot !A} ifadesine \TRule{\True}{\lnot} uygulanmasının
+  sonucunu varsayımların arkasına ekleyin. Her !!{sentence}, !!{tableau}
+  içinde $1$.~satıra dayanılarak gerekçelendirilmişse eski !!{tableau}'daki
+  bu gerekçe artık $n+2$.~satıra dayanır. Dolayısıyla eski !!{tableau}
+  kapalıysa yenisi de kapalıdır. Tüm varsayımlar~$\Gamma$ içinde olduğundan
+  yeni tableau, $\Gamma$'nın tutarsız olduğunu gösterir.
+\end{proof}
+
+\begin{prop}\ollabel{prop:provability-exhaustive}
+  $\Gamma \cup \{!A\}$ ve $\Gamma \cup \{\lnot !A\}$ kümelerinin ikisi de
+  tutarsızsa $\Gamma$ tutarsızdır.
+\end{prop}
+
+\begin{proof}
+  $!B_1$, \dots, $!B_n \in \Gamma$ ve $!C_1$, \dots,
+  $!C_m \in \Gamma$ var ve
+  \begin{align*}
+    \{\sFmla{\True}{!A}, &
+    \sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n}\} \text{ ile}\\
+    \{\sFmla{\True}{\lnot !A}, &
+    \sFmla{\True}{!C_1}, \dots, \sFmla{\True}{!C_m}\}
+  \end{align*}
+  kümelerinin ikisinin de kapalı !!{tableau}s ağaçları varsa, varsayımlar
+  olarak $\sFmla{\True}{!B_1}$, \dots, $\sFmla{\True}{!B_n}$ ile
+  $\sFmla{\True}{!C_1}$, \dots, $\sFmla{\True}{!C_m}$ ifadelerini birlikte
+  kullanıp ardından \Cut{} kuralını uygulayarak $\Gamma$'nın tutarsız
+  olduğunu gösteren tek bir birleşik !!{tableau} kurabiliriz. Böylece biri
+  $\sFmla{\True}{!A}$, diğeri $\sFmla{\False}{!A}$ ile başlayan iki dal
+  elde edilir.
+  
+  Sol tarafa, ilk !!{tableau}'nun varsayımlarının altında kalan kısmını
+  ekleyin. İlk !!{tableau}'nun $\sFmla{\True}{!A}$ dâhil her varsayımı
+  bulunduğundan, buradaki bütün kural uygulamaları hâlâ doğrudur. Böylece
+  $\sFmla{\True}{!A}$ altındaki her dal kapanır.
+  
+  Sağ tarafa, ikinci !!{tableau}'nun varsayımının altında kalan kısmını;
+  $\sFmla{\True}{\lnot !A}$ ifadesine~$\TRule{\True}{\lnot}$ kuralının
+  uygulanmasıyla elde edilen sonuçları kaldırarak ekleyin.
+  $\sFmla{\True}{\lnot !A}$ ifadesine $\TRule{\True}{\lnot}$ uygulamanın
+  sonucu $\sFmla{\False}{!A}$'dır; bu ifade birleşik !!{tableau}'nun sağ
+  tarafında \Cut{} kuralının sonucu olarak zaten bulunmaktadır.
+
+  İkinci tableau'daki bir dal, birleşik !!{tableau}'da artık varsayım olarak
+  yer almayan $\sFmla{\True}{\lnot !A}$ varsayımının yanı sıra
+  $\sFmla{\False}{\lnot !A}$ ifadesini içerdiği için kapanmışsa,
+  $\sFmla{\False}{\lnot !A}$ ifadesine $\TRule{\False}{\lnot}$ uygulayıp
+  $\sFmla{\True}{!A}$ elde edebiliriz. Birleşik !!{tableau}'daki karşılık
+  gelen dal artık kapanır; çünkü \Cut{} kuralının sağdaki sonucu olan
+  $\sFmla{\False}{!A}$'yı içerir. İkinci !!{tableau}'daki bir dal başka bir
+  nedenle kapanmışsa birleşik !!{tableau}'daki karşılık gelen dal da
+  kapanır; çünkü $\sFmla{\True}{\lnot !A}$ dışındaki her !!{signed formula}s,
+  eski ikinci !!{tableau}'nun dalında geçtiği gibi birleşik !!{tableau}'nun
+  karşılık gelen dalında da geçer.
+  \end{proof}
+
+\end{document}

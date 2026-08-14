@@ -1,0 +1,181 @@
+% Part: normal-modal-logic
+% Chapter: syntax-and-semantics
+% Section: schemas
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{nml}{syn}{sch}
+
+\olsection{Şemalar ve Geçerlilik}
+
+\begin{defn}
+  Bir \emph{şema}, bir !!{formula}s kümesidir; bu küme, $!C$ adlı bir kiplik
+  !!{formula}{}ün bütün ve yalnızca bütün yerine koyma örneklerinden oluşur;
+  yani
+  \[
+  \Setabs{!B}{\lexists[!D_1], \dots, \lexists[!D_n] \left(!B =
+  \SSubst{!C}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}} \right) }.
+  \]
+  $!C$ adlı !!{formula}, şemanın \emph{karakteristik} !!{formula}{}dür;
+  bu formül, !!{propositional variable}s{}nin yeniden adlandırılmasına kadar
+  tektir. !!^a{formula}~$!A$, kümeye aitse şemanın bir \emph{örneği}dir.
+\end{defn}
+
+Bir şemayı, $!C$'nin atomik bileşenleri yerine `$!A$', `$!B$',~\dots,
+koymakla elde edilen üstdilsel ifadeyle göstermek elverişlidir. Örneğin
+`$!A$', `$!A \lif \Box!A$', `$!A \lif (!B \lif !A)$' ifadeleri şemaları
+gösterir. Bunlar sırasıyla $p$, $p \lif \Box p$, $p \lif (q \lif p)$
+karakteristik !!{formula}s{}ine karşılık gelir. `$!A$' şeması \emph{bütün}
+!!{formula}s kümesini gösterir.
+
+\begin{defn}
+  Bir şema, bütün örnekleri bir modelde doğruysa ve ancak o zaman o modelde
+  \emph{doğru}dur; her modelde doğruysa ve ancak o zaman \emph{geçerli}dir.
+\end{defn}
+
+\begin{prop}\ollabel{prop:Kvalid}
+  Aşağıdaki \Ax{K} şeması geçerlidir:
+  \begin{equation*}
+  \Box(!A \lif !B) \lif (\Box !A \lif \Box !B). \tag{\Ax{K}}
+  \end{equation*}
+\end{prop}
+
+\begin{proof}
+  Şemanın bütün örneklerinin her modelin her dünyasında doğru olduğunu
+  göstermeliyiz. Öyleyse $\mModel{M} = \tuple{W,R,V}$ ve $w \in W$ keyfî
+  olsun. Bir koşullu önermenin bir dünyada doğru olduğunu göstermek için ön
+  bileşenin doğru olduğunu varsayıp art bileşenin de doğru olduğunu
+  gösteririz. Bu durumda $\mSat{M}{\Box(!A \lif !B)}[w]$ ve
+  $\mSat{M}{\Box !A}[w]$ olsun. $\mSat{M}{\Box !B}[w]$ olduğunu
+  göstermeliyiz. $Rww'$ olacak biçimde keyfî bir $w'$ alalım. İlk varsayım
+  gereği $\mSat{M}{!A \lif !B}[w']$, ikinci varsayım gereği de
+  $\mSat{M}{!A}[w']$ olur. Buradan $\mSat{M}{!B}[w']$ çıkar. $w'$ keyfî
+  olduğundan $\mSat{M}{\Box !B}[w]$ olur.
+\end{proof}
+
+\begin{prop}\ollabel{prop:Dual-valid}
+  Aşağıdaki \Dual{} şeması geçerlidir:
+  \begin{equation*}
+  \Diamond !A \liff \lnot\Box\lnot !A. \tag{\Dual}
+  \end{equation*}
+\end{prop}
+
+\begin{proof}
+  Alıştırma.
+\end{proof}
+
+\begin{prob}
+  \olref[nml][syn][sch]{prop:Dual-valid} önermesini ispatlayın.
+\end{prob}
+
+\begin{prop}\ollabel{prop:soundMP}
+  $!A$ ile $!A \lif !B$ bir modelin bir dünyasında doğruysa $!B$ de
+  doğrudur. Dolayısıyla geçerli !!{formula}s modus ponens altında kapalıdır.
+\end{prop}
+
+\begin{prop}\ollabel{prop:valid-instances}
+  !!^a{formula}~$!A$, ancak ve ancak bütün yerine koyma örnekleri geçerliyse
+  geçerlidir. Başka bir deyişle bir şema, ancak ve ancak karakteristik
+  !!{formula} geçerliyse geçerlidir.
+\end{prop}
+
+\begin{proof}
+  ``Eğer'' yönü açıktır; çünkü $!A$ kendisinin bir yerine koyma örneğidir.
+
+  ``Ancak'' yönünü ispatlamak için şunu gösterelim: $\mModel{M} =
+  \tuple{W, R, V}$ bir kiplik modeli ve $!B \ident
+  \SSubst{!A}{\subst{!D_1}{p_1},\dots,\subst{!D_n}{p_n}}$, $!A$'nın bir
+  yerine koyma örneği olsun. $V'(p_i) =
+  \Setabs{w}{\mSat{M}{!D_i}[w]}$ koyarak $\mModel{M'} = \tuple{W, R,
+    V'}$ modelini tanımlayalım. O zaman her $w \in W$ için
+  $\mSat{M}{!B}[w]$ ancak ve ancak $\mSat{M'}{!A}[w]$ olur. (İspatı
+  alıştırma olarak bırakıyoruz.) Şimdi $!A$'nın geçerli, fakat $!A$'nın bir
+  yerine koyma örneği olan $!B$'nin geçersiz olduğunu varsayalım. O zaman
+  bir $\mModel{M} = \tuple{W, R, V}$ modeli ve bir $w \in W$ için
+  $\mSat/{M}{!B}[w]$ olur. Fakat iddia gereği
+  $\mSat/{M'}{!A}[w]$ olur; dolayısıyla $!A$ geçerli değildir. Bu bir
+  çelişkidir.
+\end{proof}
+
+\begin{prob}
+  \olref[nml][syn][sch]{prop:valid-instances} önermesinin ispatındaki
+  ``ancak'' kısmında ileri sürülen iddiayı ispatlayın. (İpucu: $!A$ üzerinde
+  tümevarım kullanın.)
+\end{prob}
+
+Bununla birlikte bir şemanın bir modelde doğru olmasının, ancak ve ancak
+karakteristik formülünün o modelde doğru olması demek olmadığına dikkat
+edin. Elbette ``ancak'' yönü geçerlidir: $!A$'nın her örneği
+$\mModel{M}$ modelinde doğruysa $!A$'nın kendisi de $\mModel{M}$ modelinde
+doğrudur. Fakat $!A$, $\mModel{M}$ modelinde doğruyken $!A$'nın bir örneği
+$\mModel{M}$ modelinin bir dünyasında yanlış olabilir. Çok basit bir karşı
+örnek için yalnızca bir $w$ dünyası bulunan ve $V(p) = \{w\}$ olan bir
+modelde $p$'yi ele alın; böylece $p$, $w$'de doğrudur. Ancak $\lfalse$,
+$p$'nin bir örneğidir ve $w$'de doğru değildir.
+
+\begin{prob}
+  Aşağıdaki !!{formula}s{}in hiçbirinin geçerli olmadığını gösterin:
+  \begin{enumerate}
+    \item[\Ax{D}:] \quad $\Box p \lif \Diamond p$;
+    \item[\Ax{T}:] \quad $\Box p \lif p$;
+    \item[\Ax{B}:] \quad $p \lif \Box\Diamond p$;
+    \item[\Ax{4}:] \quad $\Box p \lif \Box \Box p$;
+    \item[\Ax{5}:] \quad $\Diamond p \lif \Box \Diamond
+      p$.
+  \end{enumerate}
+\end{prob}
+
+\begin{table}[t]
+    \centering
+    \begin{tabular}{| l || l |}
+      \hline
+      {\emph{Geçerli Şemalar}} & {\emph{Geçersiz Şemalar}} \\
+      \hline\hline
+      $\Box(!A \lif !B) \lif (\Diamond !A \lif \Diamond !B)$
+      & $\Box (!A \lor !B) \lif (\Box !A \lor \Box !B)$ \\
+      $\Diamond (!A \lif !B) \lif (\Box !A \lif \Diamond
+      !B)$
+      & $(\Diamond !A \land \Diamond !B) \lif \Diamond (!A
+      \land !B)$\\
+      $\Box (!A \land !B) \liff (\Box !A \land \Box !B)$
+      & $!A \lif \Box !A$ \\
+      $\Box !A \lif \Box (!B \lif !A)$
+      & $\Box \Diamond !A \lif !B$ \\
+      $\lnot \Diamond !A \lif \Box (!A \lif !B)$
+      & $\Box \Box !A \lif \Box !A$ \\
+      $\Diamond (!A \lor !B) \liff (\Diamond !A \lor
+      \Diamond !B)$
+      & $\Box \Diamond !A \lif \Diamond \Box !A$. \\
+      \hline
+    \end{tabular}
+    \caption{Geçerli ve geçersiz şemalar.}
+    \ollabel{tab:valid-invalidSchemas}
+\end{table}
+
+\begin{prob}%\ollabel{ex:in/validSchemas}
+  \olref[nml][syn][sch]{tab:valid-invalidSchemas} tablosunun ilk
+  sütunundaki şemaların geçerli, ikinci sütunundakilerin ise geçersiz
+  olduğunu ispatlayın.
+\end{prob}
+
+\begin{prob}
+  Aşağıdaki şemaların geçerli mi, geçersiz mi olduğuna karar verin:
+  \begin{enumerate}
+  \item $(\Diamond !A \lif \Box !B) \lif (\Box !A \lif \Box
+    !B)$;
+  \item $\Diamond(!A \lif !B) \lor \Box(!B \lif !A)$.
+  \end{enumerate}
+\end{prob}
+
+\begin{prob}
+  Aşağıdaki şemaların her biri için, !!{formula}{}ün her örneğinin
+  $\mModel{M}$ modelinde doğru olduğu bir $\mModel{M}$ modeli bulun:
+  \begin{enumerate}
+  \item $p \lif \Diamond\Diamond p$;
+  \item $\Diamond p \lif \Box p$.
+  \end{enumerate}
+\end{prob}
+
+\end{document}

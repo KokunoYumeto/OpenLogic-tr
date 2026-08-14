@@ -1,0 +1,140 @@
+% Part: second-order-logic
+% Chapter: syntax-and-semantics
+% Section: size-of-domain
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sol}{syn}{siz}
+
+\olsection{Sonsuz ve \usetoken{S}{enumerable}
+  \usetoken{P}{domain}in Betimlenmesi}
+
+Bir $M$ kümesi, ancak ve ancak !!a{injective} fonksiyon~$f\colon M \to M$
+var ve bu fonksiyon !!{surjective} değilse, yani $\ran{f} \neq M$ ise
+(Dedekind anlamında) sonsuzdur. Birinci dereceden mantıkta birli bir
+!!{function}~$f$ ele alabilir ve !!a{structure}~$\Struct{M}$ içinde ona
+atanan~$\Assign{f}{M}$ fonksiyonunun !!{injective} olduğunu ve
+$\ran{f} \neq \Domain{M}$ eşitsizliğini söyleyebiliriz:
+\[
+\lforall[x][\lforall[y][(\eq[f(x)][f(y)] \to \eq[x][y])]] \land
+\lexists[y][\lforall[x][\eq/[y][f(x)]]].
+\]
+$\Struct{M}$ bu !!{sentence} ifadesini sağlıyorsa
+$\Assign{f}{M}: \Domain{M} \to \Domain{M}$ !!{injective}{}dir ve
+dolayısıyla $\Domain{M}$ sonsuz olmalıdır. $\Domain{M}$ sonsuzsa ve bu
+nedenle böyle bir fonksiyon varsa $\Assign{f}{M}$'yi bu fonksiyon olarak
+seçebiliriz; o zaman $\Struct{M}$ !!{sentence} ifadesini sağlar. Ancak bunun
+için dilimizin bu amaçla kullandığımız mantıksal olmayan $f$ simgesini
+içermesi gerekir. İkinci dereceden mantıkta böyle bir fonksiyonun
+\emph{var olduğunu} doğrudan söyleyebiliriz. Bu, artık~$f$ gerektirmez ve
+saf ikinci dereceden mantıkta şu !!{sentence} ifadesini elde ederiz:
+\[
+\fn{Inf} \ident \lexists[u][(\lforall[x][\lforall[y][(\eq[u(x)][u(y)]
+      \lif \eq[x][y])]] \land \lexists[y][\lforall[x][\eq/[y][u(x)]]])].
+\]
+$\Sat{M}{\fn{Inf}}$ ancak ve ancak $\Domain{M}$ sonsuzsa geçerlidir.
+O hâlde $\fn{Fin} \ident \lnot \fn{Inf}$ olarak tanımlayabiliriz;
+$\Sat{M}{\fn{Fin}}$ ancak ve ancak $\Domain{M}$ sonluysa geçerlidir.
+Saf birinci dereceden mantığın tek bir !!{sentence} ifadesi !!{domain}
+sonsuz olduğunu ifade edemez; gerçi sonsuz sayıda tümceden oluşan bir küme
+bunu ifade edebilir. Saf birinci dereceden mantıkta öyle bir !!{sentence}s
+kümesi yoktur ki !!a{structure} içinde ancak ve ancak evreni sonluysa sağlansın.
+
+\begin{prop}
+$\Sat{M}{\fn{Inf}}$ ancak ve ancak $\Domain{M}$ sonsuzsa geçerlidir.
+\end{prop}
+
+\begin{proof}
+$\Sat{M}{\fn{Inf}}$ ancak ve ancak bir~$s$ için
+  $\Sat{M}{\lforall[x][\lforall[y][(\eq[u(x)][u(y)] \lif \eq[x][y])]]
+    \land \lexists[y][\lforall[x][\eq/[y][u(x)]]]}[s]$ ise geçerlidir.
+  Bu sağlanıyorsa $s(u)$ !!a{injective} fonksiyondur ve bazı
+  $y \in \Domain{M}$ öğeleri~$s(u)$'nun görüntüsünde değildir. Tersine,
+  $\ran{f} \neq \Domain{M}$ olan !!a{injective}
+  $f\colon \Domain{M} \to \Domain{M}$ varsa $s(u)=f$, gerekli değişken
+  atamasıdır.
+\end{proof}
+
+Bir $M$ kümesi !!{enumerable}{}dir; bunun anlamı, !!{element}s öğelerinin
+\[
+m_0, m_1, m_2, \dots
+\]
+biçiminde tekrarsız, fakat sonlu olabilen bir sıralanışının bulunmasıdır.
+Böyle bir
+sıralanış ancak ve ancak !!a{element}
+$z \in M$ ile $f\colon M \to M$ fonksiyonu var ve $z$, $f(z)$,
+$f(f(z))$, \dots,~$M$'nin bütün !!{element}s öğeleri ise vardır.
+Gerçekten, sıralanış varsa $z=m_0$ ve $f(m_k)=m_{k+1}$ (ya da $m_k$
+sıralanışın son !!{element} öğesiyse $f(m_k)=m_k$), gereken !!{element}
+ile fonksiyondur. Öte yandan, bu tür bir $z$ ile $f$ varsa $z$, $f(z)$,
+$f(f(z))$, \dots,~$M$'nin bir sıralanışıdır ve $M$ !!{enumerable}{}dir.
+İkinci dereceden mantıkta $z$ ile~$f$'nin varlığını ifade ederek şu
+!!{sentence} ifadesini kurabiliriz: bu ifade !!a{structure} içinde ancak ve
+ancak söz konusu !!{structure} !!{enumerable} olduğunda doğrudur:
+\[
+\fn{Count} \ident
+\lexists[z][\lexists[u][\lforall[X][((X(z) \land
+      \lforall[x][(X(x) \lif X(u(x)))]) \lif \lforall[x][X(x)])]]]
+\]
+
+\begin{prop}
+$\Sat{M}{\fn{Count}}$ ancak ve ancak $\Domain{M}$ !!{enumerable} ise
+geçerlidir.
+\end{prop}
+
+\begin{proof}
+$\Domain{M}$ !!{enumerable} olsun ve $m_0$, $m_1$, \dots, bir sıralanışı
+olsun. Tekrarları kaldırarak hiçbir $m_k$'nin iki kez geçmemesini
+sağlayabiliriz. Sonlu sıralanışta son öğeyi kendisine gönderecek biçimde
+$f(m_k)=m_{k+1}$ olarak tanımlayalım ve $s(z)=m_0$,
+$s(u)=f$ olsun. Şunu göstereceğiz:
+\[
+\Sat{M}{\lforall[X][((X(z) \land \lforall[x][(X(x) \lif X(u(x)))] )
+    \lif \lforall[x][X(x)])]}[s]
+\]
+$M \subseteq \Domain{M}$ gelişigüzel olsun. Ayrıca
+$\Sat{M}{(X(z) \land \lforall[x][(X(x) \lif
+X(u(x)))])}[\Subst{s}{M}{X}]$ olduğunu varsayalım. O zaman
+$\Subst{s}{M}{X}(z) \in M$'dir ve $x \in M$ olduğunda
+$(\Subst{s}{M}{X}(u))(x) \in M$ de olur. Başka bir deyişle,
+$\varAssign{\Subst{s}{M}{X}}{s}{X}$ olduğundan $m_0 \in M$'dir ve
+$x \in M$ ise $f(x) \in M$'dir; dolayısıyla $m_0 \in M$,
+$m_1=f(m_0) \in M$, $m_2=f(f(m_0)) \in M$, vb. Böylece
+$M=\Domain{M}$ ve dolayısıyla
+$\Sat{M}{\lforall[x][X(x)]}[\Subst{s}{M}{X}]$ olur.
+$M \subseteq \Domain{M}$ gelişigüzel olduğuna göre ispat tamamdır:
+$\Sat{M}{\fn{Count}}$.
+
+Şimdi $\Sat{M}{\fn{Count}}$, yani bazı~$s$ için
+\[
+\Sat{M}{\lforall[X][((X(z) \land \lforall[x][(X(x) \lif X(u(x)))] )
+    \lif \lforall[x][X(x)])]}[s]
+\]
+olduğunu varsayalım. $m=s(z)$ ve $f=s(u)$ olsun;
+$M=\{m,f(m),f(f(m)),\dots\}$ kümesini ele alalım. Böyle tanımlanan $M$
+açıkça !!{enumerable}{}dir. Varsayım gereği
+\[
+\Sat{M}{(X(z) \land \lforall[x][(X(x) \lif X(u(x)))] )
+    \lif \lforall[x][X(x)]}[\Subst{s}{M}{X}]
+\]
+olur. Ayrıca $M \ni m=\Subst{s}{M}{X}(z)$ olduğundan
+$\Sat{M}{X(z)}[\Subst{s}{M}{X}]$ olur; $x \in M$ olduğunda
+$f(x) \in M$ de olduğundan
+$\Sat{M}{\lforall[x][(X(x) \lif X(u(x)))]}[\Subst{s}{M}{X}]$ de olur.
+Öyleyse hem önbileşen hem de koşullu ifade sağlandığından, artbileşen de
+sağlanmalıdır:
+$\Sat{M}{\lforall[x][X(x)]}[\Subst{s}{M}{X}]$. Fakat bu,
+$M=\Domain{M}$ demektir. Dolayısıyla $M$ tanım gereği sayılabilir
+olduğundan $\Domain{M}$ de !!{enumerable}{}dir.
+\end{proof}
+
+\begin{prob}
+$\fn{Inf} \land \fn{Count}$ !!{sentence} ifadesi, tam ve yalnız
+!!{denumerable} evrenlerde doğrudur. $\fn{Count}$ tanımını farklı bir
+!!{sentence} elde edecek biçimde değiştirin; bu tümcenin evrenin
+!!{denumerable} olduğunu doğrudan ifade ettiğini kanıtlayın.
+\end{prob}
+
+\end{document}

@@ -1,0 +1,115 @@
+% Part: applied-modal-logics
+% Chapter: epistemic-logic
+% Section: truth-at-w
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{aml}{el}{trw}
+
+\olsection{Bir Dünyada Doğruluk}
+
+Normal modal mantıkta olduğu gibi her epistemik model de içindeki hangi
+!!{formula}s{}in hangi dünyalarda doğru sayılacağını belirler. Bağıntısal
+semantiğin temel kavramı için aynı ``$\mModel{M}$ modeli, !!{formula}~$!A$'yı
+$w$ dünyasında doğru kılar'' gösterimini kullanırız. Bu bağıntı tümevarımlı
+olarak tanımlanır ve modal olmayan bütün işleçler için normal modal mantık
+durumuyla aynıdır.
+
+\begin{defn}\ollabel{defn:mmodels}
+  \emph{!!a{formula}~$!A$'nın $w$'deki doğruluğu}, bir $\mModel M$ içinde,
+  yani $\mSat{M}{!A}[w]$ olmak üzere tümevarımlı olarak şöyle tanımlanır:
+  \begin{enumerate}
+  \tagitem{prvFalse}{\indcase{!A}{\lfalse}{$\mSat{M}{\lfalse}[w]$ hiçbir zaman geçerli değildir.}}{}
+  \tagitem{prvTrue}{\indcase{!A}{\ltrue}{$\mSat{M}{\ltrue}[w]$ her zaman geçerlidir.}}{}
+  \item $\mSat{M}{p}[w]$ ancak ve ancak $w \in V(p)$ ise geçerlidir.
+  \tagitem{prvNot}{\indcase{!A}{\lnot !B}{$\mSat{M}{\indfrm}[w]$ ancak ve ancak
+    $\mSat/{M}{!B}[w]$ ise geçerlidir.}}{}
+  \tagitem{prvAnd}{\indcase{!A}{(!B \land !C)}{$\mSat{M}{\indfrm}[w]$ ancak ve ancak
+    $\mSat{M}{!B}[w]$ ve $\mSat{M}{!C}[w]$ ise geçerlidir.}}{}
+  \tagitem{prvOr}{\indcase{!A}{(!B \lor !C)}{$\mSat{M}{\indfrm}[w]$ ancak ve ancak
+    $\mSat{M}{!B}[w]$ ya da $\mSat{M}{!C}[w]$ ise geçerlidir} (ikisi de olabilir).}{}
+  \tagitem{prvIf}{\indcase{!A}{(!B \lif !C)}{$\mSat{M}{\indfrm}[w]$ ancak ve ancak
+    $\mSat/{M}{!B}[w]$ ya da $\mSat{M}{!C}[w]$ ise geçerlidir.}}{}
+  \tagitem{prvIff}{\indcase{!A}{(!B \liff !C)}{$\mSat{M}{\indfrm}[w]$ ancak ve ancak
+    hem $\mSat{M}{!B}[w]$ hem $\mSat{M}{!C}[w]$ geçerliyse ya da
+    ne $\mSat{M}{!B}[w]$ ne de $\mSat{M}{!C}[w]$ geçerliyse doğrudur.}}{}
+  \item\ollabel{defn:sub:mmodels-box}
+    \indcase{!A}{\Knows_a !B}{$\mSat{M}{\indfrm}[w]$ ancak ve ancak
+    $\mSat{M}{!B}[w']$ bütün $w' \in W$ için $R_a ww'$ olduğunda
+    geçerliyse doğrudur}
+  \end{enumerate} 
+\end{defn}
+
+Ne var ki erişilebilirlik bağıntılarımıza getirilecek kısıtları tam burada
+düşünmemiz gerekir. Nitekim \olref{defn:sub:mmodels-box} koşuluna göre,
+!!a{formula}~$\Knows_a !B$, $w$'de, hiçbir $w'$ için $R_a ww'$ geçerli
+olmadığında doğrudur. Bu, normal modal mantıktaki koşulun aynısıdır: bir dünyanın
+ardılı yoksa bütün $\Box$-formülleri o dünyada boşsal olarak doğrudur. Fakat
+$\Knows$ işlecinin \emph{bilgiyi} temsil ettiğini düşünürsek bu son derece
+sezgiye aykırı görünür. Bir öznenin \emph{hiçbir} durumda hem $!A$'yı hem
+$\lnot !A$'yı aynı anda bilemeyeceğini düşünmeye eğilimliyizdir.
+
+Bir çözüm, epistemik mantıktaki erişilebilirlik bağıntımızın her zaman
+\emph{yansımalı} olmasını güvenceye almaktır. Bu kabaca, edimsel dünyanın bir
+öznenin bilgisiyle bağdaşması düşüncesine karşılık gelir. Epistemik mantıklar
+aslında tipik olarak S5 kullanır; ancak tam olarak neyi temsil etmeleri
+istendiğine bağlı olarak $\Knows_a$ bağıntısı için daha zayıf sistemler de
+kullanılabilir.
+
+\begin{figure}
+  \begin{center}
+    \begin{tikzpicture}[modal]
+      \node[world] (w1) [label={[align=right]right:\mTrue{p}\\ \mFalse{q}}]{$w_1$}; 
+      \node[world] (w2) [label={[align=right]right:\mTrue{p}\\ \mTrue{q}},
+        above right=of w1]{$w_2$}; 
+      \node[world] (w3) [label={[align=right]right:\mFalse{p}\\ \mFalse{q}},
+        below right=of w1] {$w_3$};
+      \draw[<->] (w1) to node {$a$} (w2);
+      \draw[->,loop left] (w1) to node {$a,b$} (w1);
+      \draw[<->] (w1) to [swap] node {$b$} (w3);
+      \draw[->,loop above] (w2) to node {$a,b$} (w2) ;
+      \draw[->,loop below] (w3) to node {$a,b$} (w3) ;
+    \end{tikzpicture}
+  \end{center}
+  \caption{Basit bir epistemik model.}
+  \ollabel{fig:simple}
+\end{figure}
+
+\begin{prob}
+  Aşağıdakilerden hangilerinin \olref[aml][el][trw]{fig:simple} içinde
+  geçerli olduğunu belirleyin:
+  \begin{enumerate}
+    \item $\mSat{M}{\lnot q}[w_1]$;
+    \item $\mSat{M}{\Knows_a \lnot q}[w_1]$;
+    \item $\mSat{M}{\Knows_b \lnot q}[w_1]$;
+    \item $\mSat{M}{\Knows_b q \lor \Knows_b \lnot q}[w_2]$;
+    \item $\mSat{M}{\Knows_a( \Knows_b q \lor \Knows_b \lnot q)}[w_2]$;
+    \item $\mSat{M}{\EKnows_{\{a,b\}} \lnot q}[w_3]$;
+    \end{enumerate}
+\end{prob}
+
+Bir dünyada doğruluğun temel tanımını verdiğimize göre modal geçerlilik ve
+gerektirme gibi normal modal mantığın diğer semantik kavramları da modal
+işleçlerin bu yeni yorumlanma biçimine uygulanarak doğrudan aktarılır.
+
+Artık ortak bilgi işleci $\CKnows_G$ için de doğruluk koşulları verebiliriz.
+\olref[sfr][rel][ops]{sec}'den, \emph{geçişli kapanış}~$R^+$'ın bir $R$
+bağıntısı için şöyle tanımlandığını hatırlayın:
+\begin{align*}
+  R^+ &= \bigcup_{ n \in \mathbb{N}} R^n, 
+\intertext{burada}
+  R^0 & = R \text{ ve}\\ 
+  R^{n+1} & = \Setabs{\tuple{x, z}}{\exists y (R^n xy \land Ryz)}.
+\end{align*}
+O hâlde $G$ bir özne grubu olduğunda, bütün öznelerin erişilebilirlik
+bağıntılarının birleşiminin geçişli kapanışı olmak üzere $R_G = ( \bigcup_{b
+\in G} R_b )^+$ tanımını veririz.
+
+\begin{defn}
+$G' \subseteq G$ ise $\mSat{M}{\CKnows_{G'} !A}[ w]$ ancak ve ancak her
+$w'$ için, $R_{G'} w w'$ olduğunda $\mSat{M}{!A}[w']$ ise geçerlidir.
+\end{defn}
+
+\end{document}

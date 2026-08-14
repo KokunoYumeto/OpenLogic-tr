@@ -1,0 +1,65 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sth}{story}{blv}
+
+\olsection{Ek: Frege'nin V. Temel Yasası}
+
+\olref[rus]{sec} içinde Russell'ın paradoksunu, Frege'nin
+\emph{Grundgesetze}'de ana çizgilerini verdiği sistem için bir sorun olarak
+formüle ettiğini açıkladık. Frege'nin sistemi Naif Küme Oluşturma'nın doğrudan
+bir formülasyonunu içermiyordu. Bu ekte Frege'nin sisteminin ne
+\emph{içerdiğini}, bunun Naif Küme Oluşturma ve Russell Paradoksu ile nasıl
+ilişkili olduğunu çok kısaca açıklayacağız.
+
+Frege'nin sistemi \emph{ikinci derecedendi} ve bir \emph{kavramın kaplamı}
+kavramını formüle etmek üzere tasarlanmıştı.\footnote{Kesin konuşursak Frege
+  daha genel bir kavramı, bir fonksiyonun ``değer alanını''
+  biçimselleştirmeye çalışır. Kavramların kaplamları bu daha genel kavramın
+  özel bir durumudur. Ayrıntılar için bkz.
+  \citet[pp.\ 8--9]{Heck2012}.} Frege'den esinlenen gösterimle
+$\fregeext{x}{F(x)}$'i \emph{$F$ kavramının kaplamı} için yazacağız. Bu
+aygıt bir \emph{yüklemi}, ``$F$''yi alıp (birinci dereceden) bir
+\emph{terime}, ``$\fregeext{x}{F(x)}$''e dönüştürür. Frege bu aygıtla
+üyeliğin şu \emph{tanımını} verdi:
+\[
+  a \in b =_\text{df} \exists G(b = \fregeext{x}{G(x)} \land Ga)
+\]
+Kabaca: $a\in b$ ancak ve ancak $a$, kaplamı $b$ olan bir kavramın kapsamına
+girerse. (``$\exists G$'' niceleyicisinin ikinci dereceden olduğuna dikkat
+edin.) Frege ayrıca \emph{V. Temel Yasa} olarak bilinen şu ilkeyi savundu:
+$$\fregeext{x}{F(x)} = \fregeext{x}{G(x)} \liff \forall x (Fx \liff Gx)$$
+Kabaca: Kavramların kaplamları ancak ve ancak aynı kaplama sahiplerse
+özdeştir. (Yine hem ``$F$'' hem ``$G$'' yüklem konumundadır.) Şimdi basit bir
+ilke üyeliği bir özelliği sağlamaya bağlar:
+
+\begin{lem}[\emph{Grundgesetze}'de]\ollabel{lem:Fregeextensions}
+$\forall F \forall a(a \in \fregeext{x}{F(x)} \liff Fa)$
+\end{lem}
+
+\begin{proof}
+$F$ ile $a$'yı sabitleyin. O zaman $a\in\fregeext{x}{F(x)}$, üyelik tanımı
+gereğince ancak ve ancak
+$\exists G(\fregeext{x}{F(x)}=\fregeext{x}{G(x)}\land Ga)$; V. Temel Yasa
+gereğince ancak ve ancak $\exists G(\forall x(Fx\liff Gx)\land Ga)$; temel
+ikinci dereceden mantık gereğince ancak ve ancak $Fa$.
+\end{proof}
+
+Bu da Naif Küme Oluşturma'yı neredeyse doğrudan verir:
+
+\begin{lem}[\emph{Grundgesetze}'de]
+$\forall F \exists s \forall a (a \in s \liff Fa)$
+\end{lem}
+
+\begin{proof}
+$F$'yi sabitleyin. \olref{lem:Fregeextensions},
+$\forall a(a\in\fregeext{x}{F(x)}\liff Fa)$ sonucunu verir; buradan varoluşsal
+genelleştirmeyle $\exists s\forall a(a\in s\liff Fa)$ çıkar. $F$ gelişigüzel
+olduğundan sonuç geçerlidir.
+\end{proof}
+
+$F$'yi $\forall x(Fx\liff x\notin x)$ ile verilen kavram olarak alırsak
+Russell Paradoksu çıkar.
+
+\end{document}

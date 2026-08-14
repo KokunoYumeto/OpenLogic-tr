@@ -1,0 +1,56 @@
+% Part: normal-modal-logic
+% Chapter: axioms-systems
+% Section: soundness
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{nml}{prf}{snd}
+
+\olsection{Sağlamlık}
+
+Bir !!^a{derivation} sistemi, !!{derive} mümkün olan her şey geçerliyse sağlam
+olarak adlandırılır. Modal sistemleri ele alırken---yani !!{derivation}s
+içinde \Ax{K}'ye ek olarak bazı !!{formula}s $!A_1,\dots,!A_n$ örneklerini
+de kullanabildiğimizde---her !!{derivable} formülün
+$!A_1,\dots,!A_n$'nin doğru olduğu her modelde doğru olmasını isteriz.
+
+\begin{thm}[Sağlamlık Teoremi]\ollabel{thm:soundness}
+  $!A_1,\dots,!A_n$'nin her örneği sırasıyla
+  $\mClass{C}_1,\dots,\mClass{C}_n$ model sınıflarında geçerliyse,
+  $\Log{K}!A_1\dots !A_n\Proves !B$ olması $!B$'nin
+  $\mClass{C}_1\cap\dots\cap\mClass{C}_n$ model sınıfında geçerli olmasını
+  gerektirir.
+\end{thm}
+
+\begin{proof}
+  İspatların uzunluğu üzerinde tümevarımla. Kısalık için
+  $\mClass{C}=\mClass{C}_1\cap\dots\cap\mClass{C}_n$ yazalım.
+  \begin{enumerate}
+  \item Tümevarım tabanı: $!B$'nin uzunluğu $1$ olan bir ispatı varsa $!B$
+    ya bir totoloji örneği, \Ax{K}'nin\iftag{prvDiamond}{ ya da~\Dual{}'ın,}{}
+    bir örneği veya $!A_1,\dots,!A_n$ formüllerinden birinin örneğidir.
+    İlk durumda $!B$, $\mClass{C}$ içinde geçerlidir; çünkü
+    \olref[syn][tau]{prop:valid-taut} gereğince totoloji örnekleri
+    \emph{herhangi bir} model sınıfında geçerlidir. İkinci durumda da
+    \olref[syn][sch]{prop:Kvalid}\iftag{prvDiamond}{ ve
+      \olref[syn][sch]{prop:Dual-valid}}{} gereğince aynısı geçerlidir.
+    Son durumda $!B$, $\mClass{C}_i$ içinde geçerli ve
+    $\mClass{C}\subseteq\mClass{C}_i$ olduğundan,
+    \olref[syn][val]{prop:subset-class} gereğince $\mClass{C}$ içinde de
+    geçerlidir.
+  \item Tümevarım adımı: $!B$'nin uzunluğu $k>1$ olan bir ispatı olsun.
+    $!B$ bir totoloji örneği ya da $!A_1,\dots,!A_n$'den birinin örneğiyse
+    önceki adımdaki gibi ilerleriz. Önceki !!{formula}s olan
+    $!C\lif !B$ ve $!C$ kullanılarak $!B$'nin \MP{} ile elde edildiğini varsayalım.
+    $!C\lif !B$ ile $!C$'nin uzunluğu $<k$ olan ispatları vardır; tümevarım varsayımıyla
+    $\mClass{C}$ içinde geçerlidirler. \olref[syn][sch]{prop:soundMP}
+    gereğince $!B$ de $\mClass{C}$ içinde geçerlidir. Son olarak $!B$'nin
+    $!C$'den \Nec{} ile elde edildiğini (yani $!B=\Box!C$ olduğunu)
+    varsayalım. Tümevarım varsayımıyla $!C$, $\mClass{C}$ içinde geçerlidir;
+    \olref[syn][val]{prop:Nec-rule} gereğince $!B$ de öyledir.
+  \end{enumerate}
+\end{proof}
+
+\end{document}

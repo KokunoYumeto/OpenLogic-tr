@@ -1,0 +1,162 @@
+% part: intuitionistic-logic
+% chapter: soundness-completeness
+% section: soundness-nd
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{int}{sc}{snd}
+
+\olsection{Doğal Tümdengelimin Sağlamlığı}
+
+Şimdi bağıntısal semantiğe göre doğal tümdengelimin sağlamlığını
+ispatlayacağız; yani bir !!a{formula} bir varsayımlar kümesinden
+!!{derivable} ise bu varsayımlar kümesinin söz konusu !!{formula} mantıksal
+olarak gerektirdiğini göstereceğiz.
+
+\begin{thm}[Sağlamlık]
+  \ollabel{thm:soundness}
+  $\Gamma \Proves !A$ ise $\Gamma \Entails !A$.
+\end{thm}
+
+\begin{proof}
+  $\Gamma \Proves !A$ ise $\Gamma \Entails !A$ olduğunu ispatlıyoruz.
+  İspat, $!A$'nın $\Gamma$'dan elde edilen !!{derivation} yapısı üzerinde
+  tümevarımladır.
+
+  \begin{enumerate}
+  \item !!{derivation} yalnızca $!A$ varsayımından oluşuyorsa
+    $!A \Proves !A$ elde ederiz ve $!A \Entails !A$ göstermek isteriz.
+    $\mSat{M}{!A}[w]$ olduğunu varsayın. O zaman açıkça
+    $\mSat{M}{!A}[w]$ olur.
+
+  \item !!{derivation}, $\Intro{\land}$ ile bitiyor olsun:
+    \iftag{probAnd}{Alıştırma.}{Öncüllerin !!{derivation}s, $!B$'yi
+      !!{undischarged} varsayımlar~$\Gamma$'dan ve $!C$'yi
+      !!{undischarged} varsayımlar~$\Delta$'dan verir; dolayısıyla
+      $\Gamma \Proves !B$ ve $\Delta \Proves !C$
+      olduğunu gösterir. Tümevarım varsayımı gereği
+      $\Gamma \Entails !B$ ve $\Delta \Entails !C$ olur. Bütün
+      Bütün !!{undischarged} varsayımlar bu !!{derivation} içinde
+      $\Gamma$ ile $\Delta$'nın birleşimi olduğundan
+      $\Gamma\cup\Delta\Entails !B\land !C$
+      göstermeliyiz. $\mSat{M}{\Gamma\cup\Delta}[w]$ varsayın. O zaman
+      $\mSat{M}{\Gamma}[w]$ da olur. $\Gamma\Entails !B$ olduğundan
+      $\mSat{M}{!B}[w]$; benzer biçimde $\mSat{M}{!C}[w]$ olur. Böylece
+      $\mSat{M}{!B\land !C}[w]$ elde edilir.}
+
+  \item !!{derivation}, $\Elim{\land}$ ile bitiyor olsun:
+    \iftag{probAnd}{Alıştırma.}{$!B\land !C$ öncülünün !!{derivation}{}i,
+      !!{undischarged} varsayımlar $\Gamma$'dan başlayarak
+      $\Gamma\Proves !B\land !C$ olduğunu gösterir. Tümevarım varsayımı
+      gereği $\Gamma\Entails !B\land !C$ olur. $\Gamma\Entails !B$
+      göstermeliyiz. $\mSat{M}{\Gamma}[w]$ varsayın.
+      $\Gamma\Entails !B\land !C$ olduğundan
+      $\mSat{M}{!B\land !C}[w]$ ve dolayısıyla $\mSat{M}{!B}[w]$ olur.
+      $\Elim\land$ sonucu $!C$ ile bitiyorsa benzer biçimde
+      $\Gamma\Entails !C$ olur.}
+
+  \item !!{derivation}, $\Intro{\lor}$ ile bitiyor olsun:
+    \iftag{probOr}{Alıştırma.}{Öncül $!B$ olsun ve !!{undischarged}
+      varsayımlar~$\Gamma$, $!B$ ile biten !!{derivation}{}in varsayımları
+      olsun. O zaman
+      $\Gamma\Proves !B$ ve tümevarım varsayımı gereği
+      $\Gamma\Entails !B$ olur. $\Gamma\Entails !B\lor !C$
+      göstermeliyiz. $\mSat{M}{\Gamma}[w]$ varsayın.
+      $\Gamma\Entails !B$ olduğundan $\mSat{M}{!B}[w]$ ve dolayısıyla
+      $\mSat{M}{!B\lor !C}[w]$ olur. Öncül $!C$ ise benzer biçimde
+      $\Gamma\Entails !C$ olur.}
+
+  \item !!{derivation}, $\Elim{\lor}$ ile bitiyor olsun:
+    \iftag{probOr}{Alıştırma.}{Öncüllerle biten !!{derivation}s sırasıyla
+      $!B\lor !C$'nin !!{undischarged} varsayımlar $\Gamma$'dan, $!D$'nin
+      !!{undischarged} varsayımlar $\Delta_1\cup\{!B\}$'den ve $!D$'nin
+      !!{undischarged} varsayımlar $\Delta_2\cup\{!C\}$'den türetimleridir.
+      Dolayısıyla $\Gamma\Proves !B\lor !C$,
+      $\Delta_1\cup\{!B\}\Proves !D$ ve
+      $\Delta_2\cup\{!C\}\Proves !D$ olur. Tümevarım varsayımı gereği
+      $\Gamma\Entails !B\lor !C$,
+      $\Delta_1\cup\{!B\}\Entails !D$ ve
+      $\Delta_2\cup\{!C\}\Entails !D$ olur.
+      $\Gamma\cup\Delta_1\cup\Delta_2\Entails !D$ ispatlanmalıdır.
+
+    $\mSat{M}{\Gamma\cup\Delta_1\cup\Delta_2}[w]$ varsayın. O zaman
+    $\mSat{M}{\Gamma}[w]$ ve $\Gamma\Entails !B\lor !C$ olduğundan
+    $\mSat{M}{!B\lor !C}[w]$ olur. $\mSat{M}{}$ tanımı gereği ya
+    $\mSat{M}{!B}[w]$ ya da $\mSat{M}{!C}[w]$ olur. Durumları ayıralım:
+    (a)~$\mSat{M}{!B}[w]$. O zaman
+    $\mSat{M}{\Delta_1\cup\{!B\}}[w]$. Ayrıca
+    $\Delta_1\cup\{!B\}\Entails !D$ olduğundan $\mSat{M}{!D}[w]$.
+    (b)~$\mSat{M}{!C}[w]$. O zaman
+    $\mSat{M}{\Delta_2\cup\{!C\}}[w]$. Ayrıca
+    $\Delta_2\cup\{!C\}\Entails !D$ olduğundan $\mSat{M}{!D}[w]$.
+    Her iki durumda da istediğimiz gibi $\mSat{M}{!D}[w]$ olur.}
+
+  \item !!{derivation}, $!B\lif !C$ sonucunu veren $\Intro{\lif}$ ile
+    bitiyor olsun. Öncül $!C$'dir ve bu öncülle biten !!{derivation}{}in
+    !!{undischarged} varsayımları $\Gamma\cup\{!B\}$'dir. Dolayısıyla
+    $\Gamma\cup\{!B\}\Proves !C$ ve tümevarım varsayımı gereği
+    $\Gamma\cup\{!B\}\Entails !C$ olur.
+    $\Gamma\Entails !B\lif !C$ göstermeliyiz.
+
+    $\mSat{M}{\Gamma}[w]$ varsayın. $Rww'$ ve $\mSat{M}{!B}[w']$ olan
+    bütün $w'$ için $\mSat{M}{!C}[w']$ göstermeliyiz. Öyleyse $Rww'$ ve
+    $\mSat{M}{!B}[w']$ varsayın.
+    \olref[sem][rel]{prop:true-monotonic} gereği
+    $\mSat{M}{\Gamma}[w']$ olur. $\Gamma\cup\{!B\}\Entails !C$
+    olduğundan $\mSat{M}{!C}[w']$ elde edilir; istediğimiz buydu.
+
+  \item !!{derivation}, $\Elim{\lif}$ ve sonuç $!C$ ile bitiyor olsun.
+    Öncüller $!B\lif !C$ ve $!B$; bunların $\Gamma$ ile $\Delta$'dan
+    !!{derivation}s{}i ve bunlara ait !!{undischarged} varsayımlar vardır.
+    Dolayısıyla
+    $\Gamma\Proves !B\lif !C$ ve $\Delta\Proves !B$ olur. Tümevarım
+    varsayımı gereği $\Gamma\Entails !B\lif !C$ ve
+    $\Delta\Entails !B$ olur. $\Gamma\cup\Delta\Entails !C$
+    göstermeliyiz.
+
+    $\mSat{M}{\Gamma\cup\Delta}[w]$ varsayın.
+    $\mSat{M}{\Gamma}[w]$ ve $\Gamma\Entails !B\lif !C$ olduğundan
+    $\mSat{M}{!B\lif !C}[w]$ olur. Tanım gereği bu, $Rww'$ olan bütün
+    $w'$ için $\mSat{M}{!B}[w']$ ise $\mSat{M}{!C}[w']$ demektir.
+    $R$ yansımalı olduğundan $w$, $Rww'$ olan $w'$ler arasındadır; yani
+    $\mSat{M}{!B}[w]$ ise $\mSat{M}{!C}[w]$ olur.
+    $\mSat{M}{\Delta}[w]$ ve $\Delta\Entails !B$ olduğundan
+    $\mSat{M}{!B}[w]$ ve böylece istediğimiz gibi $\mSat{M}{!C}[w]$ olur.
+
+  \item !!{derivation}, $!A$ sonucunu veren $\FalseInt$ ile bitiyor olsun.
+    Öncül $\lfalse$ ve öncülün !!{undischarged} varsayımları $\Gamma$ olsun;
+    bu öncülün !!{derivation}{}i dolayısıyla $\Gamma\Proves\lfalse$ ve
+    tümevarım varsayımı
+    gereği $\Gamma\Entails\lfalse$ olur. $\Gamma\Entails !A$
+    göstermeliyiz.
+
+    Dolaylı ilerleyelim. $\Gamma\Entails/ !A$ ise bir $\mModel{M}$ modeli
+    ve $w$ dünyası için $\mSat{M}{\Gamma}[w]$ ve $\mSat/{M}{!A}[w]$ olur.
+    $\Gamma\Entails\lfalse$ olduğundan $\mSat{M}{\lfalse}[w]$ olur. Fakat
+    tanım gereği $\mSat/{M}{\lfalse}[w]$ olduğundan bu olanaksızdır.
+    Demek ki $\Gamma\Entails !A$.
+  \item !!{derivation}, $\Intro\lnot$ ile bitiyor olsun: Alıştırma.
+  \item !!{derivation}, $\Elim\lnot$ ile bitiyor olsun: Alıştırma.
+  \end{enumerate}
+\end{proof}
+
+\begin{prob}
+  \olref[int][sc][snd]{thm:soundness} ispatını tamamlayın.
+  $\Intro\lnot$ ile $\Elim\lnot$ durumlarında
+  \olref[int][sem][rel]{defn:true-at-w} içindeki
+  $\mSat{M}{\lnot !A}[w]$ tanımını kullanın; yani $\lnot !A$'yı
+  $!A\lif\lfalse$ ile tanımlanmış saymayın.
+\end{prob}
+
+\begin{prob}
+  Aşağıdaki !!{formula}s{}in sezgici mantıkta !!{derivable} olmadığını gösterin:
+  \begin{enumerate}
+    \item $(!A \lif !B) \lor (!B \lif !A)$
+    \item $(\lnot\lnot !A \lif !A) \lif (!A \lor \lnot !A)$
+    \item $(!A \lif !B \lor !C) \lif \bigl((!A \lif !B)\lor(!A \lif !C)\bigr)$
+  \end{enumerate}
+\end{prob}
+
+\end{document}

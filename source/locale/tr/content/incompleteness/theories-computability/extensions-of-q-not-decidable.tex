@@ -1,0 +1,84 @@
+% Part: incompleteness
+% Chapter: theories-computability
+% Section: extensions-of-q-not-decidable
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{inc}{tcp}{cqn}
+
+\olsection{$\Th{Q}$'nun Tutarlı Genişletmeleri Karar Verilemezdir}
+
+\begin{explain}
+Bir kurama, herhangi bir $!A$ formülü için hem $!A$'yı hem de
+$\lnot !A$'yı ispatlamıyorsa \emph{tutarlı} dendiğini anımsayın. Bir
+çelişkiden her şey çıktığı için tutarsız bir kuram önemsizdir: her tümce
+ispatlanabilir. Bir kuram $\omega$-tutarlıysa elbette tutarlıdır. Ancak
+tutarlılık daha zayıf bir koşuldur (yani tutarlı olup $\omega$-tutarlı
+olmayan kuramlar vardır). \olref[oqn]{thm:oconsis-q}'daki varsayımı yalnızca
+tutarlılık isteyecek biçimde zayıflatıp daha güçlü bir teorem elde
+edebiliriz.
+\end{explain}
+
+\begin{lem}
+“Evrensel hesaplanabilir bağıntı” yoktur. Başka bir deyişle şu özelliğe
+sahip hiçbir ikili hesaplanabilir $R(x,y)$ bağıntısı yoktur: $S(y)$ tekli
+bir hesaplanabilir bağıntı olduğunda, her $y$ için $S(y)$ ancak ve ancak
+$R(k,y)$ doğruysa doğru olacak biçimde bir $k$ vardır.
+\end{lem}
+
+\begin{proof}
+$R(x,y)$'nin evrensel bir hesaplanabilir bağıntı olduğunu varsayın. $S(y)$,
+$\lnot R(y,y)$ bağıntısı olsun. $S(y)$ hesaplanabilir olduğundan bazı $k$
+için $S(y)$ ile $R(k,y)$ eşdeğerdir. Fakat o zaman $S(k)$ hem $R(k,k)$ hem
+de $\lnot R(k,k)$ ile eşdeğer olur; bu bir çelişkidir.
+\end{proof}
+
+
+\begin{thm}
+$\Th{T}$, $\Th{Q}$'yu içeren herhangi bir tutarlı kuram olsun. O zaman
+$\Th{T}$ karar verilebilir değildir.
+\end{thm}
+
+
+\begin{proof}
+$\Th{T}$'nin $\Th{Q}$'nun tutarlı, karar verilebilir bir genişletmesi
+olduğunu varsayın. $\Th{T}$'yi kullanarak evrensel bir hesaplanabilir
+bağıntı tanımlayacak ve bir çelişki elde edeceğiz.
+
+$R(x,y)$ ancak ve ancak şu durumda geçerli olsun:
+\begin{quote}
+$x$, bir $!D(u)$ formülünü kodlar ve $\Th{T}$, $!D(\num y)$'yi ispatlar.
+\end{quote}
+$\Th{T}$'nin karar verilebilir olduğunu varsaydığımız için $R$
+hesaplanabilirdir. $R$'nin evrensel olduğunu gösterelim. $S(y)$ herhangi bir
+hesaplanabilir bağıntıysa $\Th{Q}$ (dolayısıyla $\Th{T}$) içinde bir
+$!D_S(u)$ formülüyle temsil edilebilir. O zaman her $n$ için
+\begin{eqnarray*}
+S(\num n) & \lif & T \vdash !D_S(\num n) \\
+& \lif & R(\Gn{!D_S(u)}, n)
+\end{eqnarray*}
+ve
+\begin{eqnarray*}
+\lnot S(\num n) & \lif & T \vdash \lnot !D_S(\num n) \\
+& \lif & T \not\vdash !D_S(\num n) \quad \text{($\Th{T}$ tutarlı
+  olduğundan)} \\
+& \lif & \lnot R(\Gn{!D_S(u)}, n).
+\end{eqnarray*}
+Yani her $y$ için $S(y)$ doğrudur ancak ve ancak
+$R(\Gn{!D_S(u)}, y)$ doğrudur. Dolayısıyla $R$ evrenseldir ve aradığımız
+çelişkiyi elde etmiş oluruz.
+\end{proof}
+
+“Doğru aritmetik”, $\Setabs{!A}{ \Sat{\Nat}{!A}}$ kuramı, yani aritmetik
+dilinde standart yorumda doğru olan tümceler kümesi olsun.
+
+\begin{cor}
+Doğru aritmetik karar verilebilir değildir.
+\end{cor}
+
+%In Section~\olref{undefinability:truth:section} we will state a stronger
+%result, due to Tarski.
+
+\end{document}

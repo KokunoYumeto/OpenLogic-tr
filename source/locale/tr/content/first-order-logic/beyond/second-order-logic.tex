@@ -1,0 +1,235 @@
+% Part: first-order-logic
+% Chapter: beyond
+% Section: second-order-logic
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{fol}{byd}{sol}
+
+\olsection{İkinci Dereceden Mantık}
+
+İkinci dereceden mantığın dili, yalnızca bireylerden oluşan !!a{domain}
+üzerinde değil, bu !!{domain} üzerindeki bağıntılar üzerinde de niceleme
+yapmaya olanak verir. Birinci dereceden bir $\Lang{L}$ dili verildiğinde, her
+$k$ için $R$ !!{variable}{}i eklenir; bunlar $k$-lı bağıntılar üzerinde değer
+alır ve bu değişkenler üzerinde nicelemeye izin verilir. $R$, $k$-lı bir bağıntı için
+!!a{variable} ve $t_1$, \dots,~$t_k$ sıradan (birinci dereceden) terimlerse,
+$\Atom{R}{t_1,\dots,t_k}$ atomik !!{formula}{}dür. Bunun dışında !!{formula}s
+kümesi, ikinci dereceden nicelemeye ilişkin ek hükümlerle birlikte, birinci
+dereceden mantıktaki gibi tanımlanır. Yalnızca birinci dereceden terimler için
+!!{identity} bulunduğuna dikkat edin: $R$ ile $S$, aynı $k$~aritesine sahip
+bağıntı !!{variable}s{}iyse, $\eq[R][S]$ ifadesini aşağıdakinin kısaltması olarak
+tanımlayabiliriz:
+\[
+\lforall[x_1 \dots][\lforall[x_k][(\Atom{R}{x_1, \dots, x_k} \liff
+  \Atom{S}{x_1, \dots, x_k})]].
+\]
+
+İkinci dereceden mantığın kuralları, niceleyici kurallarını yalnızca yeni
+ikinci dereceden değişkenleri kapsayacak biçimde genişletir. Ancak burada bu
+değişkenlerin $\Lang{L}$'nin !!{predicate}s{}iyle ve daha genel olarak
+$\Lang{L}$'nin !!{formula}s{}iyle nasıl etkileştiğini açıklarken biraz dikkatli
+olmak gerekir. En azından bağıntı değişkenleri terim sayılır; dolayısıyla şu
+biçimde çıkarımlar vardır:
+\[
+!A(R) \Proves \lexists[R][!A(R)]
+\]
+Fakat $\Lang{L}$, sabit bir $<$ bağıntı simgesi içeren aritmetik diliyse, şu
+çıkarımın da geçerli olması beklenir:
+\[
+x < y \Proves \lexists[R][\Atom{R}{x,y}]
+\]
+ya da verilmiş bir $!A$ !!{formula}{}ü için,
+\[
+!A(x_1, \dots, x_k) \Proves \lexists[R][\Atom{R}{x_1,\dots,x_k}]
+\]
+Daha genel olarak şu biçimde çıkarımlara izin vermek isteyebiliriz:
+\[
+\Subst{!A}{\lambd[\vec x][!B(\vec x)]}{R} \Proves
+\lexists[R][!A]
+\]
+Burada $\Subst{!A}{\lambd[\vec x][!B(\vec x)]}{R}$,
+$\Atom{R}{t_1,\dots,t_k}$ biçimindeki her atomik !!{formula}{}ün $!A$ içinde
+$!B(t_1, \dots, t_k)$ ile değiştirilmesinin sonucunu gösterir. Bu son kural,
+bir {\em kavrama şeması}na, yani şu biçimde bir aksiyoma denktir:
+\[
+\lexists[R][\lforall[x_1, \dots, x_k][(!A(x_1, \dots, x_k) \liff
+\Atom{R}{x_1, \dots, x_k})]],
+\]
+İkinci dereceden dildeki her $!A$ !!{formula}{}ü için böyle bir aksiyom vardır
+ve burada $R$ serbest değişken değildir. (Alıştırma: $R$'nin $!A$ içinde
+geçmesine izin verilirse bu şemanın tutarsız olduğunu gösterin!)
+
+Mantıkçılar ``ikinci dereceden mantığın aksiyomları''ndan söz ederken genellikle
+birinci dereceden mantığın ikinci dereceden niceleyici kurallarıyla asgari
+genişletilmesini, kavrama şemasıyla birlikte kastederler. Ancak bu aksiyom ve
+kuralların daha zayıf alt sistemlerini incelemek de çoğu zaman ilgi çekicidir.
+Örneğin kavrama aksiyom şemasının tüm genelliğiyle \emph{impredikatif}
+olduğuna dikkat edin: ikinci dereceden niceleyiciler içeren !!a{formula}
+tarafından ``tanımlanan'' bir $\Atom{R}{x_1, \dots, x_k}$ bağıntısının varlığını
+ileri sürmeye izin verir; bu niceleyiciler ise $R$'nin kendisini de içeren,
+bu tür bütün bağıntılar kümesi üzerinde değer alır!{} Yirminci yüzyılın
+başlarında Russell paradoksuna verilen yaygın bir tepki, suçu bu tür
+tanımlara yüklemek ve matematiğin temellerini geliştirirken onlardan kaçınmak
+oldu. $!A$ !!{formula}{}ünde ikinci dereceden niceleyicilerin kullanımı
+yasaklanırsa, biraz daha zayıf olan {\em predikatif} bir kavrama biçimi elde
+edilir.
+
+Semantik bakımdan ikinci dereceden !!{structure}, dil için birinci dereceden
+!!{structure} ile ikinci dereceden niceleyicilerin üzerinde değer aldığı
+!!{domain} üzerindeki bir bağıntılar kümesinin birleşimi olarak düşünülebilir
+(daha kesin söylersek, her $k$ için aritesi~$k$ olan bir bağıntılar kümesi
+vardır). Elbette kavrama !!{derivation} sistemine dâhilse, ``ikinci dereceden
+kısım''da kavrama aksiyomlarını sağlayacak kadar bağıntı bulunması da gerekir;
+yoksa !!{derivation} sistemi sağlam değildir!{} Yeterince bağıntı bulunmasını
+sağlamanın kolay bir yolu, ikinci dereceden kısmı birinci dereceden kısım
+üzerindeki \emph{bütün} bağıntılardan oluşturmaktır. Böyle !!a{structure}
+\emph{tam} olarak adlandırılır ve bir bakıma gerçekten dilin ``amaçlanan
+!!{structure}''ıdır. Dikkatimizi tam !!{structure}s{}la sınırlandırırsak
+\emph{tam} ikinci dereceden semantik denilen şeyi elde ederiz. Bu durumda bir
+!!{structure} belirtmek, birinci dereceden kısmı belirtmeye indirgenir; çünkü
+ikinci dereceden kısmın içeriği bundan örtük olarak çıkar.
+
+Özetle, ikinci dereceden mantıktan söz ederken bir miktar belirsizlik vardır.
+!!{derivation} sistemi bakımından şu ikisinden biri kastedilebilir:
+\begin{enumerate}
+\item Bazı kavrama aksiyomlarıyla birlikte ``asgari'' bir ikinci dereceden
+  !!{derivation} sistemi.
+\item Tam kavramayı içeren ``standart'' ikinci dereceden !!{derivation}
+  sistemi.
+\end{enumerate}
+Semantik bakımından da şu ikisinden biri ilgi konusu olabilir:
+\begin{enumerate}
+\item !!a{structure}{}nın, birinci dereceden bir kısım ile kavrama aksiyomlarını
+  sağlayacak kadar büyük ikinci dereceden bir kısımdan oluştuğu ``zayıf''
+  semantik.
+\item Yalnızca tam !!{structure}s{}ın ele alındığı ``standart'' ikinci dereceden
+  semantik.
+\end{enumerate}
+Mantıkçılar hangi !!{derivation} sistemini ya da semantiği kastettiklerini
+belirtmediklerinde, genellikle her listedeki ikinci maddeyi kastediyor olurlar.
+Bu semantiği kullanmanın üstünlüğü, göreceğimiz üzere, birçok doğal matematiksel
+yapının kategorik betimlemesini vermesidir; aynı zamanda !!{derivation} sistemi
+oldukça güçlüdür ve bu semantiğe göre sağlamdır. Sakıncasıysa !!{derivation}
+sisteminin bu semantiğe göre \emph{tam olmaması}dır; aslında etkin biçimde
+verilmiş \emph{hiçbir} !!{derivation} sistemi tam ikinci dereceden semantiğe
+göre tam değildir. Öte yandan, !!{derivation} sisteminin zayıflatılmış
+semantiğe göre \emph{tam} olduğunu göreceğiz; bu, bir tümce kanıtlanabilir
+değilse onun yanlış olduğu, tam olması gerekmeyen \emph{bir} !!{structure}
+bulunduğu anlamına gelir.
+
+İkinci dereceden mantığın dili oldukça zengindir. Tekli bağıntılar !!{domain}{}in
+alt kümeleriyle özdeşleştirilebilir; böylece özellikle bu kümeler üzerinde
+niceleme yapılabilir. Örneğin doğal sayılar için tümevarım tek bir aksiyomla
+ifade edilebilir:
+\[
+\lforall[R][((\Atom{R}{\Obj{0}} \land \lforall[x][(\Atom{R}{x} \lif
+    \Atom{R}{x'})]) \lif \lforall[x][\Atom{R}{x}])].
+\]
+Aritmetik dilinde $\Obj 0, \Obj \prime, +, \times$ ve $<$ simgelerinin
+bulunduğunu varsayarsak, davranışlarını betimlemek için şu aksiyomları
+ekleyebiliriz:
+\begin{enumerate}
+\item $\lforall[x][\lnot x' = \Obj 0]$
+\item $\lforall[x][\lforall[y][(x' = y' \lif x = y)]]$
+\item $\lforall[x][(x + \Obj 0) = x]$
+\item $\lforall[x][\lforall[y][(x + y') = (x + y)']]$
+\item $\lforall[x][(x \times \Obj 0) = \Obj 0]$
+\item $\lforall[x][\lforall[y][(x \times y') = ((x \times y) + x)]]$
+\item $\lforall[x][\lforall[y][(x < y \liff \lexists[z][y = (x + z')])]]$
+\end{enumerate}
+Tam ikinci dereceden semantiği kullandığımız sürece bu aksiyomların, yukarıdaki
+tümevarım aksiyomuyla birlikte, aritmetiğin standart modeli olan
+!!{structure}~$\Struct{N}$ için kategorik bir betimleme sağladığını göstermek
+zor değildir. Bu aksiyomların doğru olduğu herhangi bir
+!!{structure}~$\Struct{M}$ verilsin. Bir $f$ fonksiyonunu $\Nat$'tan
+$\Struct{M}$'nin !!{domain}{}ine gidecek biçimde, $\Nat$ üzerinde olağan
+özyinelemeyle tanımlayın; öyle ki $f(0) = \Assign{\Obj 0}{M}$ ve
+$f(x+1) = \Assign{\prime}{M}(f(x))$ olsun. $\Nat$ üzerinde olağan tümevarımı ve
+(1) ile~(2) aksiyomlarının
+$\Struct M$ içinde geçerli olduğu olgusunu kullanarak $f$'nin !!{injective}
+olduğunu görürüz. $f$'nin !!{surjective} olduğunu görmek için $P$,
+$\Domain{M}$'nin $f$'nin görüntüsünde bulunan elemanları kümesi olsun.
+$\Struct M$ tam olduğundan $P$ ikinci dereceden !!{domain} içinde yer alır.
+$f$'nin kuruluşu
+gereği $\Assign{\Obj 0}{M}$'nin $P$ içinde olduğunu ve $P$'nin
+$\Assign{\prime}{M}$ altında kapalı olduğunu biliyoruz. Tümevarım aksiyomunun
+$\Struct M$ içinde (özellikle $P$ için) geçerli olması, $P$'nin $\Struct M$'nin
+birinci dereceden !!{domain}{}inin tamamına eşit olmasını güvence altına alır.
+Bu, $f$'nin !!a{bijection} olduğunu gösterir. $f$'nin bir homomorfizma olduğunu
+göstermek de $\Nat$ üzerinde olağan tümevarımı art arda kullanınca bundan daha
+zor değildir.
+
+Küme kuramsal bakımdan bir fonksiyon yalnızca özel bir bağıntı türüdür;
+örneğin tekli bir $f$ fonksiyonu ikili bir $R$ bağıntısıyla
+özdeşleştirilebilir; bu bağıntının $\lforall[x][\lexists![y][R(x,y)]]$
+koşulunu sağlaması gerekir. Dolayısıyla fonksiyonlar
+üzerinde de niceleme yapılabilir. Tam semantik kullanılarak sonsuz
+!!{structure}s sınıfı, $\Struct M$ !!{structure}{}sı için $\Struct M$'nin
+!!{domain}{}inden kendisinin öz bir alt kümesine bire bir bir fonksiyon bulunması
+koşuluyla tanımlanabilir:
+\[
+\lexists[f][(\lforall[x][\lforall[y][(\eq[f(x)][f(y)] \lif \eq[x][y])]]
+  \land \lexists[y][\lforall[x][\eq/[f(x)][y]]])].
+\]
+Bu tümcenin değillemesi de sonlu !!{structure}s sınıfını tanımlar.
+
+Ayrıca doğrusal sıralama tanımına aşağıdakini ekleyerek iyi sıralamalar sınıfı
+tanımlanabilir:
+\[
+\lforall[P][(\lexists[x][\Atom{P}{x}] \lif \lexists[x][(\Atom{P}{x}
+    \land \lforall[y][(y < x \lif \lnot \Atom{P}{y})])])].
+\]
+Bu, ``küme'' ile ``tekli bağıntı'' özdeşleştirmesi altında, boş olmayan
+her kümenin bir en küçük elemanı bulunduğunu bildirir. Başka bir örnek olarak,
+köşelerin bağlantısız parçalara önemsiz olmayan hiçbir ayrımı bulunmadığını
+söyleyerek çizgelerdeki bağlantılılık kavramı ifade edilebilir:
+\[
+\lnot \lexists[A][(\lexists[x][A(x)] \land \lexists[y][\lnot A(y)]
+  \land \lforall[w][\lforall[z][((\Atom{A}{w} \land \lnot \Atom{A}{z})
+      \lif \lnot \Atom{R}{w,z})]])].
+\]
+Bir başka örnek olarak, sonlu !!{structure}s sınıfının, !!{domain}{}i çift
+büyüklükte olan alt sınıfını tanımlamayı alıştırma olarak deneyebilirsiniz.
+Daha çarpıcısı,
+rasyonel sayıları içeren tam bir sıralı cisim olarak gerçek sayıların kategorik
+bir betimlemesi verilebilir.
+
+Kısacası ikinci dereceden mantığın ifade gücü, birinci dereceden mantığınkinden
+çok daha yüksektir. İyi haber bu; şimdi kötü habere geçelim. Tam ikinci dereceden semantiğe
+göre tam olan etkin bir !!{derivation} sistemi bulunmadığını daha önce
+belirtmiştik. İyi ya da kötü, birinci dereceden mantığın kompaktlık ve
+L\"owenheim--Skolem teoremleri dâhil birçok özelliği burada yoktur.
+
+Öte yandan tam ikinci dereceden semantikten vazgeçip daha zayıf semantiği
+kabul etmeye hazırsak, asgari ikinci dereceden !!{derivation} sistemi bu semantiğe göre
+tamdır. Başka bir deyişle, $\Proves$ simgesini ``asgari sistemde kanıtlar'' ve
+$\Entails$ simgesini ``zayıf semantiğe göre mantıksal olarak gerektirir'' diye
+okursak, $\Gamma \Entails !A$ olduğunda $\Gamma \Proves !A$ olduğunu
+gösterebiliriz. !!{derivation} sistemine belirli kavrama aksiyomları dâhil
+edilmek istenirse, semantik bu aksiyomları sağlayan ikinci dereceden yapılarla
+sınırlandırılmalıdır: örneğin $\Delta$ bir kavrama aksiyomları kümesinden
+(belki de tümünden) oluşuyorsa, $\Gamma \cup \Delta \Entails !A$ olduğunda
+$\Gamma \cup \Delta \Proves !A$ elde edilir. Özellikle $!A$, ele aldığımız
+kavrama aksiyomları kullanılarak kanıtlanamıyorsa, bu kavrama aksiyomlarının
+yine de geçerli olduğu bir $\lnot !A$ modeli vardır.
+
+Zayıf semantik için tamlık teoreminin geçerli olduğunu görmenin en kolay yolu,
+ikinci dereceden mantığı şöyle çok sıralı bir mantık olarak düşünmektir. Bir
+sıra, olağan ``birinci dereceden'' !!{domain} olarak yorumlanır; ardından her
+$k$ için ``aritesi $k$ olan bağıntılar''dan oluşan !!a{domain} bulunur. Dilin,
+yerleşik ``$\Atom{\Obj{true}_k}{R,x_1,\dots,x_k}$'' bağıntı simgelerini
+içerdiğini varsayarız; bu simge $R$ bağıntısının $x_1$, \dots,~$x_k$ için geçerli
+olduğunu savlamak üzere kullanılır. Burada $R$, ``$k$-lı bağıntı'' sırasından
+bir değişken, $x_1$, \dots,~$x_k$ ise birinci dereceden sıranın nesneleridir.
+
+Bu özdeşleştirmeyle zayıf ikinci dereceden semantik, özünde çok sıralı mantığın
+olağan semantiğidir; çok sıralı mantığın birinci dereceden mantığa
+gömülebileceğini de zaten gözlemledik. İki yöndeki çevirileri hesaba katarsak,
+ikinci dereceden mantığın zayıf anlayışı gerçekte kılık değiştirmiş bir birinci
+dereceden mantık biçimidir; burada !!{domain}, uygun aksiyomlarca yönetilen hem
+``nesneleri'' hem de ``bağıntıları'' içerir.
+
+\end{document}

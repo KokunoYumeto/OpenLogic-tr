@@ -1,56 +1,67 @@
-# Open Logic Project — Türkçe Kümülatif Sürüm
+# Open Logic Project — Türkçe Tam Sürüm
 
-[Open the current Turkish reader (OLP-0062, 62/722)](reader/00_OPENLOGIC_tr_CUMULATIVE_LINKED_READER_OLP-0062.pdf)
+> **Complete Turkish edition:** all 722/722 frozen Open Logic Project content
+> modules are translated into Turkish and assembled as one linked reader.
 
+[Open the complete Turkish reader](reader/00_OPENLOGIC_tr_COMPLETE_LINKED_READER_OLP-0722.pdf)
+
+## Release identity
+
+- Exact release DOI (reserved): [10.5281/zenodo.21927145](https://doi.org/10.5281/zenodo.21927145)
 - Stable Turkish concept DOI: [10.5281/zenodo.21921844](https://doi.org/10.5281/zenodo.21921844)
-- Exact OLP-0062 release DOI: [10.5281/zenodo.21921845](https://doi.org/10.5281/zenodo.21921845)
-- Declared object: Turkish cumulative edition of the Open Logic Project
-- Current coverage: OLP-0001–OLP-0062, 62/722 frozen content modules
+- Repository: [KokunoYumeto/OpenLogic-tr](https://github.com/KokunoYumeto/OpenLogic-tr)
+- Planned release tag: `tr-olp-0722-20260814`
+- Version: `OLP-0722-20260814`
+- Release date: 2026-08-14
 - Language: Turkish / Türkçe (BCP 47 `tr`; Zenodo `tur`)
-- Frozen source authority: Open Logic Project commit
+- Frozen authority: Open Logic Project commit
   `9620cc73f9c8e0ad003c514a5d3748f29611c4c0`, tree
   `f67757bb9305b173634082ab4cefd5601a707a34`
-- Workbench mirror release:
-  [tr-olp-0062-20260813](https://github.com/KokunoYumeto/OpenLogic/releases/tag/tr-olp-0062-20260813)
 
-This repository is the standalone publication surface for the independently
-maintained Turkish edition. The default `main` branch is Turkish. It does
-not claim that the remaining 660 content modules have been translated.
+The exact DOI is reserved. At this metadata freeze, the reader and its QA
+evidence are final; local package creation, the planned Git tag and release,
+Zenodo publication, and public readback remain to be performed. Those pending
+external actions do not reopen the completed translation or reader QA.
 
-The OLP-0062 reader contains the complete introductory Sets, Relations,
-Functions, Size of Sets, Arithmetization, and Infinite Sets chapters, plus the
-complete reader-reachable Propositional Logic chapter “Syntax and Semantics.”
-The cumulative driver suppresses untranslated imports, so the reader contains
-no English fallback modules.
+## Reader and evidence
 
-## Public artifacts
+- Reader: `00_OPENLOGIC_tr_COMPLETE_LINKED_READER_OLP-0722.pdf`
+  — 1,037 pages; 5,470,171 bytes;
+  SHA-256 `2D9939692A971EDF468D3B41F38C57283C046BE9D110783CF50D10CDB3152900`.
+- Extracted text: 2,593,270 bytes; 46,990 lines;
+  SHA-256 `26D2CAE84B478ADD70D9EDBC8088F6BD2C761FD47EF01F5DED5E008F6EBFC286`.
+- Source closure: 722/722 rows;
+  SHA-256 `2B424C62612499B15AF475E77367A06FF68E71FCA620A289BA1B37D5B8BC5AEC`.
+- Structural QA: PASS for 722/722;
+  SHA-256 `46F5FE080693D3A99DE234A9588C28D5A683D0FDACFA62AD2323AC3B8EB01499`.
+- Build: exit 0, with zero missing-character diagnostics, unresolved
+  references, or unresolved citations.
+- Text scan: zero `??`, raw `!!` tokens, U+FFFD replacement characters,
+  undefined markers, TODO/TBD/placeholder markers, or TeX-command residue.
+- Visual QA: all 1,037 pages clean. A final render replay found 1,020 pages
+  byte-identical to the inspected render; all 17 changed pages were inspected
+  again at original detail and were clean.
 
-- `reader/00_OPENLOGIC_tr_CUMULATIVE_LINKED_READER_OLP-0062.pdf`: the
-  immediately readable 103-page edition.
-- `source/locale/tr/`: editable Turkish LaTeX, cumulative driver,
-  terminology, source-adverse disclosure, and translation manifest.
-- `build/BUILD.ps1`: build recipe pinned to the exact upstream commit.
-- `evidence/SOURCE_AUTHORITY.json`: source identity, topology, and scope.
-- `evidence/QA_STATE.json`: source replay, model checks, build, render, and
-  release closure.
-- `evidence/UNRESOLVED_ITEMS.tsv`: honest scope and metadata backlog.
-- `evidence/ARTIFACT_SHA256.tsv`: file-byte and SHA-256 bindings.
-- `evidence/DATACITE_RELATIONS.json`: exact relation graph, including
-  `IsTranslationOf`, which Zenodo cannot yet express directly.
+The four-file publication payload is the complete reader, an editable-sources
+ZIP, an evidence-and-provenance ZIP, and a SHA-256 manifest. The source and
+evidence packages preserve the localization configuration, target hashes,
+translation decisions, terminology and source-diff ledgers, authority and
+closure records, build and render receipts, DOI methodology, and the hardened
+Turkic interlanguage notebook.
 
-The matching Zenodo version presents four files: the reader, editable-source
-ZIP, evidence-and-provenance ZIP, and SHA-256 manifest. The evidence archive
-contains the full translation and typesetting decision trail, terminology and
-adverse ledgers, authority and closure records, model/agent review receipts,
-build/extraction/render evidence, Git publication/readback receipts, and DOI
-metadata.
+## Scope and credit
 
-There is not yet a genuine global Open Logic multilingual collection DOI.
-Consequently this edition does not invent an `IsPartOf` relation. That
-relation can be added through a metadata-only update when the real hub exists.
+This is Turkish, not a proxy surface for Uzbek, Uyghur, Azerbaijani, Kazakh,
+or any other Turkic standard. Interlanguage observations are preserved as
+auditable research notes and are not represented as translations into those
+languages.
 
-Source/canonical defects remain tied to the frozen English authority and are
-disclosed with exact locations and Turkish dispositions. Publication is
-closed by direct source replay, independent model/agent checking,
-deterministic build, all-page rendered inspection, hashes, and unresolved-item
-disclosure. Human review is not a release gate.
+Performed at Floris’s direction by “OpenAI 5.6 Sol, Ultra mode” (“OpenAI’s
+current flagship model for complex work”). Human or native review is not a
+release gate. The release evidence instead records exact source replay,
+structural and semantic checks, a deterministic build, complete text-layer
+scans, all-page visual inspection, and immutable hashes.
+
+The Turkish concept DOI records the `IsTranslationOf` intent toward the frozen
+Open Logic Project authority. No genuine global Open Logic multilingual hub
+DOI exists, so this release asserts no active `IsPartOf` relation.

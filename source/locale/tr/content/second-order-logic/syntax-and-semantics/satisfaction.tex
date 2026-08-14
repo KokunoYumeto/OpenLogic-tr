@@ -1,0 +1,219 @@
+% Part: second-order-logic
+% Chapter: syntax-and-semantics
+% Section: satisfaction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sol}{syn}{sat}
+
+\olsection{Sağlama}
+
+\begin{explain}
+İkinci dereceden !!{formula}s için sağlama bağıntısı $\Sat{M}{!A}[s]$'yi
+tanımlamak üzere, tanımları ikinci dereceden !!{variable}s öğelerini
+kapsayacak biçimde genişletmemiz gerekir. !!a{structure} kavramı ikinci
+dereceden mantıkta da birinci dereceden mantıktakiyle aynıdır. Yalnızca
+değişken atamaları~$s$ bakımından bir fark vardır: bunlar artık yalnızca
+birinci dereceden !!{variable}s öğelerine değil, ikinci dereceden
+!!{variable}s öğelerine de değer vermelidir.
+\end{explain}
+
+\begin{defn}[Değişken ataması]
+!!a{structure}~$\Struct{M}$ için bir \emph{değişken ataması}~$s$, her
+\begin{enumerate}
+\item nesne !!{variable}~$\Obj{v_i}$ öğesini~$\Domain M$'nin bir öğesine,
+  yani $s(\Obj{v_i}) \in \Domain{M}$ olacak biçimde;
+\item $n$-li bağıntı değişkeni~$\Obj{V_i^n}$ öğesini~$\Domain{M}$ üzerinde
+  $n$-li bir bağıntıya, yani $s(\Obj{V_i^n}) \subseteq \Domain{M}^n$
+  olacak biçimde;
+\item $n$-li fonksiyon değişkeni~$\Obj{u_i^n}$ öğesini $\Domain{M}$'den
+  $\Domain{M}$'ye $n$-li bir fonksiyona, yani
+  $s(\Obj{u_i^n})\colon \Domain{M}^n \to \Domain{M}$ olacak biçimde
+\end{enumerate}
+gönderen bir fonksiyondur.
+\end{defn}
+
+\begin{explain}
+!!^a{structure}, !!a{value} atayarak her !!{constant} ve !!{function}
+öğesini, bir bağıntı atayarak da her yüklemi yorumlar; ikinci dereceden bir değişken ataması ise her
+nesne, bağıntı ve fonksiyon değişkenine sırasıyla bir nesne, bağıntı ve
+fonksiyon atar. İkisi birlikte her terime bir değer atamamızı sağlar.
+\end{explain}
+
+\begin{defn}[Bir terimin \usetoken{S}{value}]
+$t$,~$\Lang L$ dilinin bir terimi, $\Struct M$,~$\Lang L$ için
+!!a{structure} ve $s$ !!a{variable} ataması bu~$\Struct M$ yapısına ait ise
+\emph{!!{value}}~$\Value{t}{M}[s]$, birinci dereceden terimlerdeki gibi,
+aşağıdaki ek maddeyle tanımlanır:
+\begin{quote}
+\indcase{t}{\Atom{u}{t_1, \ldots, t_n}}{
+\[
+\Value{\indfrm}{M}[s] = s(u)(\Value{t_1}{M}[s], \ldots,
+\Value{t_n}{M}[s]).
+\]}
+\end{quote}
+\end{defn}
+
+\begin{defn}[$x$-değişkesi]
+$s$ bir !!a{variable} ataması ve bu atama !!a{structure}~$\Struct M$'ye ait olsun.
+Yine~$\Struct M$ için olan ve $s$'den en çok $x$'e atadığı değer bakımından
+ayrılan her $s'$ !!{variable}
+atamasına~$s$'nin bir \emph{$x$-değişkesi} denir. $s'$, $s$'nin
+bir $x$-değişkesiyse $\varAssign{s'}{s}{x}$ yazarız. (İkinci dereceden
+değişkenler $X$ ya da $u$ için de benzer biçimde.)
+\end{defn}
+
+\begin{defn}
+  $s$ bir !!a{variable} ataması, bu atama !!a{structure}~$\Struct M$'ye ait ve
+  $m \in \Domain{M}$ ise~$\Subst{s}{m}{x}$ ataması,
+  \[\Subst{s}{m}{y} = \begin{cases}
+    m & \text{eğer } y \ident x\\
+    s(y) & \text{aksi hâlde},
+  \end{cases}\]
+  ile tanımlanan !!{variable} atamasıdır.
+  $X$, $n$-li bir bağıntı !!{variable} ve $M \subseteq \Domain{M}^n$ ise
+  $\Subst{s}{M}{X}$,
+  \[\Subst{s}{M}{y} = \begin{cases}
+    M & \text{eğer } y \ident X\\
+    s(y) & \text{aksi hâlde}.
+  \end{cases}\]
+  ile tanımlanan !!{variable} atamasıdır.
+  $u$, $n$-li bir fonksiyon !!{variable} ve
+  $f\colon \Domain{M}^n \to \Domain{M}$ ise $\Subst{s}{f}{u}$,
+  \[\Subst{s}{f}{y} = \begin{cases}
+    f & \text{eğer } y \ident u\\
+    s(y) & \text{aksi hâlde}.
+  \end{cases}\]
+  ile tanımlanan !!{variable} atamasıdır. Her durumda $y$, birinci
+  ya da ikinci dereceden herhangi bir !!{variable} olabilir.
+\end{defn}
+
+\begin{defn}[Sağlama]
+İkinci dereceden !!{formula}s~$!A$ için sağlama tanımı,
+\olref[fol][syn][sat]{defn:satisfaction} tanımına şu maddelerin eklenmesiyle
+elde edilir:
+\begin{enumerate}
+\item \indcase{!A}{\Atom{X^n}{t_1, \dots, t_n}}{$\Sat{M}{\indfrm}[s]$
+  ancak ve ancak $\langle \Value{t_1}{M}[s], \dots,
+  \Value{t_n}{M}[s] \rangle \in s(X^n)$ ise.}
+\tagitem{prvAll}{%
+  \indcase{!A}{\lforall[X][!B]}{$\Sat{M}{\indfrm}[s]$ ancak ve ancak her
+  $M \subseteq \Domain{M}^n$ için
+  $\Sat{M}{!B}[\Subst{s}{M}{X}]$ ise.}}{}
+
+\tagitem{prvEx}{%
+  \indcase{!A}{\lexists[X][!B]}{$\Sat{M}{\indfrm}[s]$ ancak ve ancak
+  $\Sat{M}{!B}[\Subst{s}{M}{X}]$ olacak en az bir
+  $M \subseteq \Domain{M}^n$ varsa.}}{}
+
+\tagitem{prvAll}{%
+  \indcase{!A}{\lforall[u][!B]}{$\Sat{M}{\indfrm}[s]$ ancak ve ancak her
+  $f\colon \Domain{M}^n \to \Domain{M}$ için
+  $\Sat{M}{!B}[\Subst{s}{f}{u}]$ ise.}}{}
+
+\tagitem{prvEx}{%
+  \indcase{!A}{\lexists[u][!B]}{$\Sat{M}{\indfrm}[s]$ ancak ve ancak
+  $\Sat{M}{!B}[\Subst{s}{f}{u}]$ olacak en az bir
+  $f\colon \Domain{M}^n \to \Domain{M}$ varsa.}}{}
+\end{enumerate}
+\end{defn}
+
+\begin{ex}
+  $\lforall[z][(\Atom{X}{z} \liff \lnot \Atom{Y}{z})]$ !!{formula}
+  ifadesini ele alalım. İkinci dereceden niceleyici içermez; fakat burada
+  birli oldukları kabul edilen ikinci dereceden $X$ ve~$Y$ !!{variable}s
+  öğelerini içerir. Buna karşılık gelen birinci dereceden !!{sentence}
+  $\lforall[z][(\Atom{P}{z} \liff \lnot \Atom{R}{z})]$, $P$'nin yorumu
+  kapsamına giren her şeyin~$R$'nin yorumu kapsamına girmediğini, bunun
+  tersinin de geçerli olduğunu söyler. !!a{structure} içinde
+  !!a{predicate}~$P$'nin yorumu~$\Assign{P}{M}$ ile verilir. Ancak $X$
+  ve~$Y$ gibi ikinci dereceden !!{variable}s öğelerinin yorumunu
+  !!{structure} değil, !!a{variable} ataması verir. İkinci dereceden
+  !!{formula} bir !!a{sentence} olmadığından (serbest $X$ ve~$Y$
+  !!{variable}s öğelerini içerir), ancak !!a{structure}~$\Struct{M}$ ile
+  birlikte !!a{variable} ataması~$s$'ye göre sağlanır.
+
+  $s(X)$'in !!{element}s öğeleri $s(Y)$'nin !!{element}s öğeleri değilse
+  ve bunun tersi de geçerliyse, yani ancak ve ancak
+  $s(Y) = \Domain{M} \setminus s(X)$ ise
+  $\Sat{M}{\lforall[z][(\Atom{X}{z} \liff \lnot \Atom{Y}{z})]}[s]$ olur.
+  Örneğin $\Domain{M} = \{1, 2, 3\}$ olsun. Hiçbir !!{predicate},
+  !!{function} ya da !!{constant} söz konusu olmadığından,
+  $\Struct{M}$'nin yalnızca evreni önemlidir. Şimdi
+  $s_1(X) = \{1, 2\}$ ve $s_1(Y) = \{3\}$ için
+  $\Sat{M}{\lforall[z][(\Atom{X}{z}
+      \liff \lnot \Atom{Y}{z})]}[s_1]$ olur.
+
+  Buna karşılık $s_2(X) = \{1, 2\}$ ve $s_2(Y) = \{2, 3\}$ ise
+  $\Sat/{M}{\lforall[z][(\Atom{X}{z} \liff \lnot
+      \Atom{Y}{z})]}[s_2]$ olur. Çünkü
+  $\Sat{M}{\Atom{X}{z}}[\Subst{s_2}{2}{z}]$ (zira
+  $2 \in \Subst{s_2}{2}{z}(X)$), fakat
+  $\Sat/{M}{\lnot \Atom{Y}{z}}[\Subst{s_2}{2}{z}]$ olur (zira aynı zamanda
+  $2 \in \Subst{s_2}{2}{z}(Y)$).
+\end{ex}
+
+\begin{ex}
+  $\Sat{M}{\lexists[Y][(\lexists[y][\Atom{Y}{y}] \land
+  \lforall[z][(\Atom{X}{z} \liff \lnot \Atom{Y}{z})])]}[s]$ ancak ve
+  ancak öyle bir $N \subseteq \Domain{M}$ vardır ki
+  $\Sat{M}{(\lexists[y][\Atom{Y}{y}] \land \lforall[z][(\Atom{X}{z}
+  \liff \lnot \Atom{Y}{z})])}[\Subst{s}{N}{Y}]$ olur. Bu da hem
+  $N \neq \emptyset$ (dolayısıyla
+  $\Sat{M}{\lexists[y][\Atom{Y}{y}]}[\Subst{s}{N}{Y}]$) hem de önceki
+  örnekteki gibi $N = \Domain{M} \setminus s(X)$ olduğu her durumda
+  geçerlidir. Başka bir deyişle,
+  $\Sat{M}{\lexists[Y][(\lexists[y][\Atom{Y}{y}] \land
+  \lforall[z][(\Atom{X}{z} \liff \lnot \Atom{Y}{z})])]}[s]$ ancak ve
+  ancak $\Domain{M} \setminus s(X)$ boş değilse, yani
+  $s(X) \neq \Domain{M}$ ise geçerlidir. Dolayısıyla !!{formula}, örneğin
+  $\Domain{M} = \{1, 2, 3\}$ ve $s(X) = \{1, 2\}$ olduğunda sağlanır;
+  fakat $s(X) = \{1, 2, 3\} = \Domain{M}$ olduğunda sağlanmaz.
+
+  !!{formula}, $s(X) = \Domain{M}$ olduğunda sağlanmadığından,
+  \[
+  \lforall[X][\lexists[Y][(\lexists[y][\Atom{Y}{y}] \land
+      \lforall[z][(\Atom{X}{z} \liff \lnot \Atom{Y}{z})])]]
+  \]
+  !!{sentence} ifadesi hiçbir zaman sağlanmaz: Her
+  !!{structure}~$\Struct{M}$ için $s(X)=\Domain{M}$ ataması !!{sentence}
+  ifadesini yanlış kılar. Öte yandan,
+  \[
+  \lexists[X][\lexists[Y][(\lexists[y][\Atom{Y}{y}] \land
+      \lforall[z][(\Atom{X}{z} \liff \lnot \Atom{Y}{z})])]]
+  \]
+  tümcesi her~$s$ atamasına göre sağlanır; çünkü her zaman
+  $M \subseteq \Domain{M}$ ve $M \neq \Domain{M}$ olacak bir alt küme
+  (örneğin $M = \emptyset$) seçebiliriz.
+\end{ex}
+
+\begin{ex}
+  İkinci dereceden
+  !!{sentence}~$\lforall[X][\lforall[y][X(y)]]$, her $1$-li bağıntının,
+  yani her özelliğin her nesne için geçerli olduğunu söyler. Bu açıkça
+  hiçbir zaman doğru değildir; çünkü her~$\Struct{M}$ içinde
+  $s(X)=\emptyset$ ve $s(y)=a\in\Domain{M}$ olan bir değişken ataması~$s$
+  için $\Sat/{M}{X(y)}[s]$ olur. Bu, ikinci dereceden mantıkta
+  $!A \lif \lforall[X][\lforall[y][X(y)]]$ ifadesinin $\lnot !A$ ile
+  eşdeğer olduğu anlamına gelir; yani
+  $\Sat{M}{!A \lif \lforall[X][\lforall[y][X(y)]]}$ ancak ve ancak
+  $\Sat{M}{\lnot !A}$ ise geçerlidir. Başka bir deyişle, ikinci dereceden
+  mantıkta $\lnot$ bağlacını $\lforall$ ve~$\lif$ aracılığıyla
+  tanımlayabiliriz.
+\end{ex}
+
+\begin{prob}
+  İkinci dereceden mantıkta $\lforall$ ve~$\lif$ ile öteki bağlaçların
+  tanımlanabildiğini gösterin:
+  \begin{enumerate}
+    \item İkinci dereceden mantıkta $!A \land !B$ ifadesinin
+    $\lforall[X][(!A \lif (!B \lif \lforall[x][X(x)])\lif
+    \lforall[x][X(x)])]$ ile eşdeğer olduğunu kanıtlayın.
+    \item Yalnızca $\lforall$ ve $\lif$ kullanan ve $!A \lor !B$ ile
+    eşdeğer olan ikinci dereceden bir formül bulun.
+  \end{enumerate}
+\end{prob}
+
+\end{document}

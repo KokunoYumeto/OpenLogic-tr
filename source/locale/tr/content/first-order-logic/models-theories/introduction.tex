@@ -1,0 +1,101 @@
+% Part: first-order-logic
+% Chapter: models-theories
+% Section: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{fol}{mat}{int}
+\olsection{Giriş}
+
+\begin{explain}
+Aksiyomatik yöntemin geliştirilmesi bilim tarihinin önemli bir
+başarısıdır ve matematik tarihinde özel bir öneme sahiptir. Bir alanın
+aksiyomatik olarak geliştirilmesi birçok sorunun açıklığa
+kavuşturulmasını içerir: Alan ne hakkındadır? En temel kavramları
+nelerdir? Bunlar nasıl ilişkilidir? Alanın bütün kavramları bu temel
+kavramlar cinsinden tanımlanabilir mi? Bu kavramlar hangi yasalara uyar
+ve uymak zorundadır?
+
+Aksiyomatik yöntem ile mantık birbirleri için biçilmiş kaftandır.
+Biçimsel mantık; aksiyomatik kuramları ifade etmek, kuramın
+aksiyomlarından teoremleri kesin olarak belirtilmiş biçimde ispatlamak
+ve aksiyomları sağlayan bütün sistemlerin özelliklerini sistematik
+olarak incelemek için araçlar sağlar.
+\end{explain}
+
+\begin{defn}
+Bir !!{sentence}s kümesi~$\Gamma$, $\Gamma\Entails !A$ olduğunda
+$!A\in\Gamma$ oluyorsa ve ancak bu durumda \emph{kapalı}dır. Bir
+!!{sentence}s kümesi~$\Gamma$'nın \emph{kapanışı}
+$\Setabs{!A}{\Gamma\Entails !A}$ kümesidir.
+
+$\Gamma$,~$\Delta$'nın kapanışıysa,~$\Gamma$'nın bir tümceler
+kümesi~$\Delta$ tarafından \emph{aksiyomlaştırıldığını} söyleriz.
+\end{defn}
+
+\begin{explain}
+Aksiyomatik bir kuramı, aksiyomları kümesi~$\Delta$ tarafından
+aksiyomlaştırılan tümceler kümesi olarak düşünebiliriz. Başka bir
+deyişle, incelemek istediğimiz aksiyomatik bilimin temel kavramları
+için mantıksal olmayan simgeler içeren bir birinci dereceden dil ile
+bilimin temel yasalarını ifade eden bir !!{sentence}s kümesine sahip
+olduğumuzda kuramı, bu dilde aksiyomların mantıksal olarak gerektirdiği
+bütün !!{sentence}s ile temsil edilmiş sayabiliriz. Bu, tek bir temel
+kavram ve basit aksiyomlar içeren kısmi sıralamalar kuramı gibi basit
+örneklerden Newton mekaniği gibi karmaşık kuramlara kadar uzanır.
+
+Aksiyomatik yönteme yönelik bu biçimsel yaklaşımı önemli kılan başlıca
+mantıksal olgular şunlardır. $\Gamma$ bir kuram için bir aksiyom
+sistemi, yani bir tümceler kümesi olsun.
+\begin{enumerate}
+\item Bir aksiyom sisteminin amaçlanan bir !!{structure}s sınıfını ne
+  zaman yakaladığını kesin olarak söyleyebiliriz. Belirli bir
+  !!{structure}s sınıfıyla ilgileniyorsak bu sınıfı bir aksiyom
+  sistemi~$\Gamma$ ile başarıyla yakalamamız ancak ve ancak söz konusu
+  !!{structure}s tam olarak $\Sat M\Gamma$ olan~$\Struct M$ yapılarıysa
+  mümkündür.
+\item $\Sat M\Gamma$ olduğu halde~$\Struct M$'nin amaçladığımız
+  !!{structure}s arasında bulunmaması yüzünden bu konuda başarısız
+  olabiliriz. Bu,~$\Struct M$ içinde doğru olmayan aksiyomlar
+  eklememize yol açabilir.
+\item En azından~$\Gamma$'nın amaçlanan bütün !!{structure}s içinde
+  doğru olmasını başarabilirsek $\Gamma\Entails !A$ olduğunda~$!A$
+  tümcesi bütün amaçlanan !!{structure}s içinde doğrudur. Böylece
+  tümcelerin bütün amaçlanan !!{structure}s içinde doğru olduğunu,
+  yalnızca aksiyomların onları mantıksal olarak gerektirdiğini
+  göstererek mantıksal araçlarla (örneğin !!{derivation} yöntemleriyle)
+  ortaya koyabiliriz.
+\item Bazen aklımızda amaçlanan !!{structure}s yoktur; bunun yerine
+  aksiyomların kendisinden başlarız. Belirli yasalara uymasını
+  istediğimiz bazı temel kavramlarla başlar ve bu yasaları bir aksiyom
+  sisteminde kodlarız. Hemen doğrulamak istediğimiz şeylerden biri,
+  aksiyomların birbirleriyle çelişmemesidir. Çelişirlerse bu yasalara
+  uyan hiçbir kavram olamaz ve tutarsız bir kuram kurmaya çalışmış
+  oluruz. Bunun olmadığını~$\Gamma$'nın bir modelini bularak
+  doğrulayabiliriz. Kuramımızın modelleri varsa bunları incelemek ve
+  model kurmak için mantıksal yöntemleri kullanabiliriz.
+\item Aksiyomların bağımsızlığı da önemli bir sorudur. Aksiyomlardan
+  biri gerçekte ötekilerin sonucu ve dolayısıyla gereksiz olabilir.
+  $\Gamma$ içindeki bir~$!A$ aksiyomunun gereksiz olduğunu
+  $\Gamma\setminus\{!A\}\Entails !A$ ispatlayarak gösterebiliriz.
+  Bir aksiyomun gereksiz olmadığını ise
+  $(\Gamma\setminus\{!A\})\cup\{\lnot !A\}$ kümesinin sağlanabilir
+  olduğunu göstererek ispatlayabiliriz. Örneğin paralellik
+  postulatının geometrinin öteki aksiyomlarından bağımsız olduğu bu
+  biçimde gösterilmiştir.
+\item Başka önemli bir soru, bir kuramdaki kavramların
+  tanımlanabilirliğidir: Dilin seçimi, bir kuramın modellerinin nelerden
+  oluştuğunu belirler. Fakat kuramın her yönünün modellerinde ayrı ayrı
+  temsil edilmesi gerekmez. Örneğin her~$\leq$ sıralaması karşılık
+  gelen bir katı sıralama~$<$ belirler; biri verildiğinde ötekini
+  tanımlayabiliriz. Dolayısıyla böyle bir sıralamayı içeren bir kuramın
+  modelinin karşılık gelen katı sıralamayı \emph{ayrıca} içermesi
+  gerekmez. Genel olarak bir bağıntı ne zaman ötekiler cinsinden
+  tanımlanabilir? Bir bağıntıyı ötekiler cinsinden tanımlamak ne zaman
+  olanaksızdır (ve bu nedenle dilin temel kavramlarına eklenmelidir)?
+\end{enumerate}
+\end{explain}
+
+\end{document}

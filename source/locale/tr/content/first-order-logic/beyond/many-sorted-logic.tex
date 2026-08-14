@@ -1,0 +1,64 @@
+% Part: first-order-logic
+% Chapter: beyond
+% Section: many-sorted-logic
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{fol}{byd}{msl}
+
+\olsection{Çok Sıralı Mantık}
+
+Birinci dereceden mantıkta değişkenler ile niceleyiciler tek bir !!{domain}
+üzerinde değer alır. Oysa birden çok (ayrık) !!{domain}s kullanmak çoğu zaman
+yararlıdır: örneğin sayılar için bir !!a{domain}, geometrik nesneler için bir
+!!a{domain}, sayılardan sayılara fonksiyonlar için bir !!a{domain}, değişmeli
+gruplar için bir !!a{domain} vb. isteyebiliriz.
+
+Çok sıralı mantık bu tür bir çerçeve sağlar. Önce bir ``sıralar'' listesiyle
+başlanır; bir nesnenin ``sırası'', içinde yer alması öngörülen ``!!{domain}''i
+belirtir. Ardından her sıra için !!{variable}s ve niceleyiciler, ayrıca
+(genellikle) her sıra için bir !!{identity} bulunur. Fonksiyonlar ile
+bağıntılar da argüman olarak alabilecekleri nesnelerin sıralarıyla
+``tiplendirilir.'' Bunun dışında birinci dereceden mantığın olağan kuralları
+korunur; niceleyici kurallarının bir sürümü her sıra için yinelenir.
+
+Örneğin uluslararası ilişkileri incelemek için iki nesne sırası, Fransız
+yurttaşları ile Alman yurttaşları, içeren bir dil seçebiliriz. İlk sıradaki
+nesneler için ``şarap içer'' tekli bağıntısı; ikinci sıradaki nesneler için
+``sosis yer'' başka bir tekli bağıntısı; ilk argümanı ilk, ikinci argümanı da
+ikinci sıradan olan iki argüman alan ``çok uluslu evli çift oluşturur'' ikili
+bağıntısı bulunabilir. $a$, $b$, $c$ değişkenlerini Fransız yurttaşları;
+$x$, $y$, $z$ değişkenlerini Alman yurttaşları üzerinde değer alacak biçimde
+kullanırsak
+\[
+\lforall[a][\lforall x][(\Atom{\Obj{MarriedTo}}{a,x} \lif
+(\Atom{\Obj{DrinksWine}}{a} \lor \lnot \Atom{\Obj{EatsWurst}}{x})]]
+\]
+ifadesi, herhangi bir Fransız bir Almanla evliyse ya Fransızın şarap içtiğini
+ya da Almanın sosis yemediğini bildirir.
+
+Çok sıralı mantık doğal bir biçimde birinci dereceden mantığa gömülebilir.
+Bunun için çok sıralı !!{domain}s içindeki bütün nesneler tek bir birinci
+dereceden !!{domain} içinde bir araya getirilir, sıraları izlemek için tekli
+!!{predicate}s kullanılır ve niceleyiciler görelileştirilir. Örneğin yukarıdaki
+örneğe karşılık gelen birinci dereceden dil, betimlenen diğer bağıntılara ek
+olarak ``$\Obj{German}$'' ve ``$\Obj{French}$'' tekli !!{predicate}s{}ini içerir;
+sıra koşulları ise silinir. Sıralı bir $\lforall[x][!A]$ niceleyicisi, burada
+$x$ Alman sırasından bir !!a{variable} olmak üzere, şu ifadeye çevrilir:
+\[
+\lforall[x][(\Atom{\Obj{German}}{x} \lif !A)].
+\]
+Sıraların ayrık olmasını güvence altına alan aksiyomlar---örneğin
+$\lforall[x][\lnot (\Atom{\Obj{German}}{x} \land
+  \Atom{\Obj{French}}{x})]$---ve ``şarap içer'' bağıntısının yalnızca
+$\Atom{\Obj{French}}{x}$ yüklemini sağlayan nesneler için geçerli olmasını
+güvence altına alan aksiyomlar vb. eklememiz gerekir. Bu uzlaşımlar ve
+aksiyomlarla çok sıralı !!{sentence}s{}in birinci dereceden !!{sentence}s{}e,
+çok sıralı !!{derivation}s{}in da birinci dereceden !!{derivation}s{}e çevrildiğini
+göstermek zor değildir. Çok sıralı !!{structure}s da karşılık gelen birinci
+dereceden !!{structure}s{}a ve tersine ``çevrilir''; dolayısıyla çok sıralı
+mantık için de bir tamlık teoremimiz vardır.
+
+\end{document}

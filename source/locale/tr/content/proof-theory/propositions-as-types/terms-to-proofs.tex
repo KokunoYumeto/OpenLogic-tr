@@ -1,0 +1,97 @@
+% part: intuitionistic-logic
+% chapter: propositions-as-types
+% section: terms-to-proofs
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{int}{pty}{tp}
+
+\olsection{İspat Terimlerinden \usetoken{P}{derivation}{}i Geri Elde Etme}
+
+Şimdi öteki yönü, yani bir ispat terimi~$N$'yi \Log{N2i}'deki bir
+!!a{proof}{}a geri çevirmeyi ele alalım. Genel olarak bu ancak, verilen ispat
+teriminde serbest geçen her~$x$ değişkeni için $x : !A$ çiftini içeren bir
+bağlama göre yapılabilir. Ancak serbest değişken bulunmayan şu terimle
+başlayalım:
+\[
+\lambd[\typeof{x}{!A \land
+  !B}][\pair{\proj{2}{x}}{\proj{1}{x}}]
+\]
+Bu terim $\lambd[\typeof{x}{!A \land !B}][N_1]$ biçimindedir. \Log{tN2i}'de
+bu biçimde bir terim üreten tek kural~\Intro{\lif} olduğundan $N$'nin
+kodladığı !!{proof}{}ın \Intro{\lif} ile bitmek zorunda olduğunu biliriz;
+yani şöyle biter:
+\[
+  \Axiom$x : !A\land !B \fCenter \pair{\proj{2}{x}}{\proj{1}{x}} : 
+    !C$
+  \RightLabel{\Intro\lif}
+  \UnaryInf$\fCenter \lambd[\typeof{x}{!A \land
+  !B}][\pair{\proj{2}{x}}{\proj{1}{x}}] : (!A \land !B) \lif !C$
+  \DisplayProof
+\]
+$!C$'nin ne olduğunu henüz bilmiyoruz; ancak önbileşenin $!A \land !B$
+olduğunu ve öncül bağlamının $x:!A \land !B$'yi içermek zorunda olduğunu
+biliyoruz.
+
+Şimdi öncülle ilişkili ispat terimi zaten belirlenmiştir:
+$\pair{\proj{2}{x}}{\proj{1}{x}}$. Onun kodladığı !!{proof},
+\Intro{\land} ile bitmek zorundadır. $!C$'nin ne olduğunu hâlâ bilmiyoruz;
+ancak \Intro{\land}'ın sonucu olduğu için ve bağlaçlı olması,
+yani $!C \ident (!C_1 \land !C_2)$ olması gerektiğini biliyoruz. Yeniden
+kurmayı sürdürürüz:
+\[
+  \Axiom$x : !A\land !B \fCenter \proj{2}{x} : !C_1$
+  \Axiom$x : !A\land !B \fCenter \proj{1}{x} : !C_2$
+  \RightLabel{\Intro\land}
+  \BinaryInf$x : !A\land !B \fCenter \pair{\proj{2}{x}}{\proj{1}{x}} : 
+    !C_1 \land !C_2$
+  \RightLabel{\Intro\lif}
+  \UnaryInf$\fCenter \lambd[\typeof{x}{!A \land
+  !B}][\pair{\proj{2}{x}}{\proj{1}{x}}] : (!A \land !B) \lif (!C_1 \land !C_2)$
+  \DisplayProof
+\]
+İspat terimi $\proj{2}{x}$, soldaki üst sekantın \Elim{\land}[2] ile elde
+edildiği, yani öncülün $!D \land !C_1$ biçiminde olduğu anlamına gelir.
+Sağda $!C_2$'ye götüren çıkarımın \Elim{\land}[1] olması ve öncülün
+$!C_2 \land !E$ biçiminde bulunması gerektiğini belirleyebiliriz:
+\[
+  \Axiom$x : !A\land !B \fCenter x: !D\land !C_1$
+  \RightLabel{\Elim\land[2]}
+  \UnaryInf$x : !A\land !B \fCenter \proj{2}{x} : !C_1$
+  \Axiom$x : !A\land !B \fCenter x: !C_2\land !E$
+  \RightLabel{\Elim\land[1]}
+  \UnaryInf$x : !A\land !B \fCenter \proj{1}{x} : !C_2$
+  \RightLabel{\Intro\land}
+  \BinaryInf$x : !A\land !B \fCenter \pair{\proj{2}{x}}{\proj{1}{x}} : 
+    !C_1 \land !C_2$
+  \RightLabel{\Intro\lif}
+  \UnaryInf$\fCenter \lambd[\typeof{x}{!A \land
+  !B}][\pair{\proj{2}{x}}{\proj{1}{x}}] : (!A \land !B) \lif (!C_1 \land !C_2)$
+  \DisplayProof
+\]
+En üstteki sekantların ispat terimleri artık değişken olduğundan bunların
+aksiyom olması gerektiğini biliriz. Bu, $!C_1$, $!C_2$, $!D$ ve $!E$'yi
+belirler: $!D \ident !A$ ve $!C_1 \ident !B$ olmalıdır; yoksa sol sekant
+aksiyom değildir. Benzer biçimde $!C_2 \ident !A$ ve $!E \ident !B$
+olmalıdır; yoksa sağ sekant aksiyom değildir. İspatı bütünüyle geri elde
+etmiş olduk:
+\[
+  \Axiom$x : !A\land !B \fCenter x: !A\land !B$
+  \RightLabel{\Elim\land[2]}
+  \UnaryInf$x : !A\land !B \fCenter \proj{2}{x} : !B$
+  \Axiom$x : !A\land !B \fCenter x: !A\land !B$
+  \RightLabel{\Elim\land[1]}
+  \UnaryInf$x : !A\land !B \fCenter \proj{1}{x} : !A$
+  \RightLabel{\Intro\land}
+  \BinaryInf$x : !A\land !B \fCenter \pair{\proj{2}{x}}{\proj{1}{x}} : 
+    !B \land !A$
+  \RightLabel{\Intro\lif}
+  \UnaryInf$\fCenter \lambd[\typeof{x}{!A \land
+  !B}][\pair{\proj{2}{x}}{\proj{1}{x}}] : (!A \land !B) \lif (!B \land !A)$
+  \DisplayProof
+\]
+
+
+\end{document}

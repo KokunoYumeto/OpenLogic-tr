@@ -1,0 +1,60 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sth}{replacement}{strength}
+\olsection{Yerine Koyma'nın Gücü}
+
+Yerine Koyma'nın gücüne ilişkin basit bir gözlemle başlayalım: $\Z$'nin
+ötesine geçmedikçe $\omega + \omega$'ya eşit ya da ondan büyük herhangi bir
+von Neumann sıra sayısının varlığını ispatlayamayız.
+
+Bunun nedenine ilişkin bir taslak verelim. $\ZF$ içinde çalışarak
+$V_{\omega+\omega}$ kümesini ele alın. Bu küme, $\Z$ için bir \emph{modelin}
+evreni olarak iş görür. Bunu görmek için bir formülün
+\emph{görelileştirilmesine} ilişkin bir gösterim tanıtalım:
+\begin{defn}\ollabel{formularelativization}
+	Herhangi bir $M$ kümesi ve herhangi bir $\phi$ formülü için, $\phi^M$,
+	$\phi$'nin bütün niceleyicilerinin $M$ ile sınırlandırılmasıyla ortaya
+	çıkan formül olsun. Yani ``$\lexists[x]$'' yerine
+	``$(\lexists[x \in M])$'', ``$\lforall[x]$'' yerine de
+	``$(\lforall[x \in M])$'' yazın.
+\end{defn}\noindent
+$\Z$'nin her $\phi$ aksiyomu için $\ZF \vdash
+\phi^{V_{\omega+\omega}}$ olduğu gösterilebilir. Ancak
+\olref[spine][rank]{ordsetrankalpha} gereği $\omega+\omega$,
+$V_{\omega+\omega}$'nın \emph{içinde} değildir. Dolayısıyla $\Z$,
+$\omega+\omega$'nın bulunmamasıyla tutarlıdır.
+
+\olref[ordinals][replacement]{sec} içinde
+\olref[ordinals][ordtype]{thmOrdinalRepresentation} sonucunun Yerine Koyma
+olmadan ispatlanamayacağını söylememizin nedeni budur. Çünkü $\Z$ içinde,
+sezgisel olarak sıra tipi $\omega+\omega$ \emph{olması gereken} açık bir iyi
+sıralama tanımlamak kolaydır. Nitekim doğal sayılar üzerinde şu sıralamayı
+sunduğumuz \olref[ordinals][idea]{sec} içinde bunun gayriresmî bir örneğini
+verdik:
+\begin{align*}
+	n \lessdot m \text{ ancak ve ancak }&\text{ya }n < m\text{ ve }m-n\text{ çift,}\\
+	& \text{ya da $n$ çift ve $m$ tek ise.}
+\end{align*}
+Fakat $\omega+\omega$ yoksa bu iyi sıralama hiçbir sıra sayısına izomorf
+değildir. Bu nedenle $\Z$, \olref[ordinals][ordtype]{thmOrdinalRepresentation}
+sonucunu \emph{ispatlamaz}.
+
+Konuyu tersinden ele alalım: Yerine Koyma $\omega+\omega$'nın varlığını ve
+dolayısıyla $V_{\omega+\omega}$'nın varlığını ispatlamamıza olanak verir.
+Üstelik yalnızca bunu değil. Tanımlayabildiğimiz \emph{herhangi bir} iyi
+sıralama için \olref[ordinals][ordtype]{thmOrdinalRepresentation}, o iyi
+sıralamaya izomorf bir $\alpha$ bulunduğunu ve dolayısıyla $V_\alpha$'nın
+var olduğunu söyler. Böylece Yerine Koyma, kümeler hiyerarşisinin
+\emph{çok yüksek} olmasını doğrudan güvenceye alır.
+
+Önümüzdeki birkaç kesimde, ardından
+\olref[card-arithmetic][fix]{sec} içinde yeniden, Yerine Koyma'nın
+hiyerarşiyi tam olarak \emph{ne kadar} yüksek olmaya zorladığına ilişkin daha
+iyi bir fikir edineceğiz. Şimdilik basit nokta şudur: Yerine Koyma'nın
+gerekçelendirilmeye gerçekten \emph{ihtiyacı vardır}!
+% [tr source emendation] Upstream reads `a better sense of better just how`;
+% Turkish renders the evident intended phrase `a better sense of just how`.
+
+\end{document}

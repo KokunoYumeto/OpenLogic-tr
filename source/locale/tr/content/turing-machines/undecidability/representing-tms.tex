@@ -1,0 +1,206 @@
+% Part: turing-machines
+% Chapter: undecidability
+% Section: representing-tms
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{tur}{und}{rep}
+\olsection{Turing Makinelerinin Gösterilmesi}
+
+\begin{explain}
+Turing makinelerini ve davranışlarını birinci dereceden mantığın
+!!a{sentence} ile göstermek için uygun bir dil tanımlamamız gerekir. Dil iki
+bölümden oluşur: Makinenin konfigürasyonlarını betimleyen !!{predicate}s ve
+çalıştırma adımlarını (``anları'') ve şeritteki konumları numaralandıran
+ifadeler.
+
+Her ikisi de iki yerli iki tür !!{predicate} tanıtırız: Her $q$ durumu
+için !!a{predicate}~$\Obj Q_q$ ve her $\sigma$ şerit simgesi için
+!!a{predicate}~$\Obj S_\sigma$. Birinciler $M$'nin durumunu ve şerit kafasının
+konumunu, ikinciler şeridin içeriğini betimlememizi sağlar.
+
+Şerit kafasının konumlarını ve yerine getirilen adımların sayısını ifade etmek
+için sayıları ifade etmenin bir yoluna gereksinim duyarız. Bunun için
+!!a{constant}~$\Obj 0$ ve ardıl fonksiyonu olan $1$ yerli $\prime$
+fonksiyonunu kullanırız. Uzlaşım gereği bu fonksiyon argümanından \emph{sonra}
+yazılır (ve parantezleri yazmayız).
+
+Her $n$ sayısı için onu $\Lang L_M$ içinde gösteren bir kanonik terim
+$\num{n}$, yani $n$'nin \emph{sayısalı} vardır. $\num{0}$, $\Obj 0$;
+$\num{1}$, $\Obj 0'$; $\num{2}$, $\Obj 0''$ vb. biçimindedir. Daha biçimsel
+olarak:
+\begin{align*}
+\num{0} & = \Obj 0 \\
+\num{n+1} &= \num{n}'
+\end{align*}
+$\num{0}$ terimi, yani $\Obj 0$, şeritteki en soldaki konumun yanı sıra ilk
+çalıştırma adımından önceki zamanı (başlangıç konfigürasyonunu) adlandırır.
+$\num{1}$ terimi, yani $\Obj 0'$, en soldaki karenin sağındaki kareyi ve ilk
+çalıştırma adımından sonraki zamanı adlandırır; bu böyle sürer.
+
+Hem şerit konumlarının sıralamasını (``solunda'' anlamına geldiğinde) hem de
+çalıştırma adımlarının sıralamasını (``önce'' anlamına geldiğinde) ifade etmek
+için !!a{predicate}~$<$ da tanıtırız.
+
+Dili kurduktan sonra $!T(M,w)$'nin ``aksiyomlarını'', yani birlikte ele
+alındıklarında $M$'nin $w$ girdisinde çalıştırıldığındaki davranışını
+betimleyen !!{sentence}s listeleriz. $\Obj 0$, $\prime$ ve $<$ üzerine
+koşullar koyan !!{sentence}s, girdi konfigürasyonunu betimleyen !!{sentence}s
+ve $M$ belirli bir yönergeyi yerine getirdikten sonraki konfigürasyonunu
+betimleyen !!{sentence}s bulunacaktır.
+\end{explain}
+
+\begin{defn}
+  \ollabel{defn:tm-descr}
+Bir $M=\tuple{Q,\Sigma,q_0,\delta}$ Turing makinesi verildiğinde
+$\Lang L_M$ dili şunlardan oluşur:
+\begin{enumerate}
+\item Her $q\in Q$ durumu için iki yerli bir !!{predicate}
+  $\Obj Q_q(x,y)$. Sezgisel olarak $\Obj Q_q(\num{m},\num{n})$, ``$n$ adım
+  sonra $M$, $m$. kareyi tararken $q$ durumundadır'' ifadesini dile getirir.
+\item Her $\sigma\in\Sigma$ simgesi için iki yerli bir !!{predicate}
+  $\Obj S_\sigma(x,y)$. Sezgisel olarak
+  $\Obj S_\sigma(\num{m},\num{n})$, ``$n$ adım sonra $m$. kare $\sigma$
+  simgesini içerir'' ifadesini dile getirir.
+\item !!{constant} $\Obj 0$
+\item Bir yerli !!{function} $\prime$
+\item İki yerli !!{predicate} $<$
+\end{enumerate}
+\end{defn}
+
+Turing makinesi~$M$'nin $w=\sigma_{i_1}\dots\sigma_{i_k}$ girdisindeki
+işleyişini betimleyen !!{sentence}s şunlardır:
+\begin{enumerate}
+\item Sayıları ve~$<$ bağıntısını betimleyen aksiyomlar:
+\begin{enumerate}
+\item Her sayının ardılından küçük olduğunu söyleyen !!^a{sentence}:
+\[
+\lforall[x][x < x']
+\]
+\item $<$ bağıntısının geçişli olmasını sağlayan !!^a{sentence}:
+\[
+\lforall[x][\lforall[y][\lforall[z][
+      ((x < y \land y < z) \lif x < z)]]]
+\]
+\end{enumerate}
+\item Girdi konfigürasyonunu betimleyen aksiyomlar:
+\begin{enumerate}
+\item $0$ adım sonra, yani makine başlamadan önce, $M$ ilk durum~$q_0$'da ve
+  $1$. kareyi taramaktadır:
+\[
+\Obj Q_{q_0}(\num{1}, \num{0})
+\]
+\item İlk $k+1$ kare $\TMendtape$, $\sigma_{i_1}$, \dots,
+  $\sigma_{i_k}$ simgelerini içerir:
+\[
+\Obj S_\TMendtape(\num{0}, \num{0}) \land
+\Obj S_{\sigma_{i_1}}(\num{1}, \num{0}) \land
+\dots \land
+\Obj S_{\sigma_{i_k}}(\num{k}, \num{0})
+\]
+\item Bunun dışında şerit boştur:
+\[
+\lforall[x][(\num{k} < x \lif \Obj S_\TMblank(x, \num{0}))]
+\]
+\end{enumerate}
+\item Bir konfigürasyondan sonrakine geçişi betimleyen aksiyomlar:
+
+Aşağıdakiler için $!A(x,y)$, $\sigma\in\Sigma$ olmak üzere
+\[
+\lforall[z][
+  (((z < x \lor x < z) \land \Obj S_\sigma(z, y))
+  \lif \Obj S_\sigma(z, y'))]
+\]
+biçimindeki bütün !!{sentence}s bağlacı olsun. $!A(\num{m},\num{n})$'yi,
+``$m$. kare dışında şerit $n+1$ adım sonrasında $n$ adım sonrasıyla aynıdır''
+ifadesini dile getirmek için kullanırız.
+\begin{enumerate}
+\item \ollabel{rep-right} Her
+$\delta(q_i,\sigma)=\tuple{q_j,\sigma',\TMright}$ yönergesi için şu
+!!{sentence}:
+\begin{align*}
+& \lforall[x][\lforall[y][(
+   (\Obj Q_{q_i}(x, y) \land \Obj S_{\sigma}(x, y)) \lif {}]] \\
+&\qquad   (\Obj Q_{q_j}(x', y') \land \Obj S_{\sigma'}(x, y') \land
+!A(x, y)))
+\end{align*}
+Bu, makine $y$ adım sonra $\sigma$ simgesini içeren $x$. kareyi tararken
+$q_i$ durumundaysa $y+1$ adım sonra $x+1$. kareyi taradığını, $q_j$ durumunda
+olduğunu, $x$. karenin artık $\sigma'$ içerdiğini ve $x$ dışındaki her
+karenin $y$ adım sonra içerdiği simgeyi içerdiğini söyler.
+
+\item \ollabel{rep-left} Her
+$\delta(q_i,\sigma)=\tuple{q_j,\sigma',\TMleft}$ yönergesi için şu
+!!{sentence}:
+\begin{align*}
+& \lforall[x][\lforall[y][
+    ((\Obj Q_{q_i}(x', y) \land \Obj S_{\sigma}(x', y)) \lif {}]]\\
+& \qquad   (\Obj Q_{q_j}(x, y') \land \Obj S_{\sigma'}(x', y') \land
+!A(x', y))) \land {}\\
+& \lforall[y][((\Obj Q_{q_i}(\num{0}, y) \land \Obj S_{\sigma}(\num{0},
+    y)) \lif {}]\\
+& \qquad (\Obj Q_{q_j}(\num{0}, y') \land \Obj S_{\sigma'}(\num{0},
+  y') \land !A(\num{0}, y)))
+\end{align*}
+Bunun nasıl çalıştığını düşünün: Artık ``$x$. kare taranıyorsa \dots'' diye
+değil, ``$x+1$. kare taranıyorsa \dots'' diye başlarız. Sola hareket, sonraki
+adımda makinenin $x$. kareyi taraması demektir. Fakat üzerine yazılan kare
+$x+1$. karedir. Çıkarma ya da öncül fonksiyonumuz bulunmadığı için bunu böyle
+yaparız.
+
+$x+1$ biçimindeki sayıların $1$, $2$, \dots olduğuna dikkat edin; yani bu,
+makinenin $0$. kareyi tarayıp sola gitmesi gereken durumu kapsamaz (elbette
+bunu yapamaz, yalnızca yerinde kalır). Bu özel durum ikinci bağlaçla kapsanır:
+Makine $y$ adım sonra $q_i$ durumunda $0$. kareyi tarıyor ve $0$. kare
+$\sigma$ simgesini içeriyorsa $y+1$ adım sonra hâlâ $0$. kareyi taradığını,
+artık $q_j$ durumunda olduğunu, $0$. karedeki simgenin $\sigma'$ olduğunu ve
+$0$. kare dışındaki karelerin $y$ adım sonra içerdikleri simgeleri içermeyi
+sürdürdüğünü söyler.
+\item \ollabel{rep-stay} Her
+$\delta(q_i,\sigma)=\tuple{q_j,\sigma',\TMstay}$ yönergesi için şu
+!!{sentence}:
+\begin{align*}
+& \lforall[x][\lforall[y][(
+   (\Obj Q_{q_i}(x, y) \land \Obj S_{\sigma}(x, y)) \lif {}]] \\
+&\qquad   (\Obj Q_{q_j}(x, y') \land \Obj S_{\sigma'}(x, y') \land
+!A(x, y)))
+\end{align*}
+\end{enumerate}
+\end{enumerate}
+Turing makinesi~$M$ ile $w$ girdisi için yukarıdaki bütün !!{sentence}s
+bağlacı $!T(M,w)$ olsun.
+
+$M$'nin sonunda durduğunu ifade etmek için ``belirli sayıda adımdan sonra
+geçiş fonksiyonu tanımsız olacaktır'' diyen !!{sentence} bulmamız gerekir.
+$X$, $\delta(q,\sigma)$ tanımsız olacak biçimdeki bütün
+$\tuple{q,\sigma}$ çiftleri kümesi olsun. O zaman $!E(M,w)$ şu !!{sentence}
+olsun:
+\[
+\lexists[x][\lexists[y][(\bigvee_{\tuple{q, \sigma} \in
+      X}(\Obj Q_q(x, y) \land \Obj S_\sigma(x, y)))]]
+\]
+
+Özel olarak belirlenmiş bir durma durumu~$h$ olan bir Turing makinesi
+kullanırsak daha da kolaydır: O zaman
+\[
+\lexists[x][\lexists[y][\Obj Q_h(x, y)]]
+\]
+!!{sentence}~$!E(M,w)$, makinenin sonunda durduğunu ifade eder.
+
+\begin{prop}
+\ollabel{prop:mlessk}
+$m < k$ ise $!T(M, w) \Entails \num{m} < \num{k}$.
+\end{prop}
+
+\begin{proof}
+Alıştırma.
+\end{proof}
+
+\begin{prob}
+\olref[tur][und][rep]{prop:mlessk} önermesini kanıtlayın.
+(İpucu: $k-m$ üzerine tümevarım kullanın.)
+\end{prob}
+
+\end{document}

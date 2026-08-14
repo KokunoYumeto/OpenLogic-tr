@@ -1,0 +1,193 @@
+% Part: incompleteness
+% Chapter: representability-in-q
+% Section: c-representable
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{inc}{req}{cre}
+\olsection{$C$ İçindeki Fonksiyonlar $\Th{Q}$'da Temsil Edilebilir}
+
+$C$ içindeki her fonksiyonun $\Th{Q}$'da temsil edilebilir olduğunu
+göstermeliyiz. Sonunda, $C$ içindeki her $k$-li
+$f(x_0,\dots,x_{k-1})$ fonksiyonuna onu temsil eden bir
+$!A_f(x_0,\dots,x_{k-1},y)$ formülünü nasıl atayacağımızı göstermemiz gerekir.
+
+\begin{lem}
+$n$ ve $m$ doğal sayılarsa ve $n \neq m$ ise
+$Q \Proves \num n \neq \num m$.
+\end{lem}
+
+\begin{proof}
+Her $m$ için $n \neq m$ ise $Q \Proves \eq/[\num n][\num m]$ olduğunu
+$n$ üzerinde tümevarımla gösterin.
+
+Temel durumda $n = 0$. $m$, $0$'a eşit değilse bir $k$ doğal sayısı için
+$m = k + 1$ olur. $\lforall[x][\eq/[0][x']]$ diyen bir aksiyomumuz vardır.
+Bir niceleyici aksiyomuyla $x$ yerine $\num k$ koyarak
+$\eq/[0][\num k']$ sonucunu çıkarabiliriz. Fakat $\num k'$, yalnızca
+$\num m$'dir.
+
+Tümevarım adımında iddianın $n$ için doğru olduğunu varsayıp $n+1$'i ele
+alabiliriz. $m$ herhangi bir doğal sayı olsun. İki olasılık vardır: ya $m=0$
+ya da bir $k$ için $m=k+1$. İlk durum yukarıdaki gibi çözülür. İkinci durumda
+$n+1 \neq k+1$ olduğunu varsayın. O zaman $n \neq k$. $n$ için tümevarım
+varsayımına göre $\Th{Q} \Proves \eq/[\num n][\num k]$. Elimizde
+$\lforall[x][\lforall[y][\eq[x'][y'] \lif \eq[x][y]]]$ diyen bir aksiyom
+vardır. Bir niceleyici aksiyomuyla
+$\eq[\num n'][\num k'] \lif \eq[\num n][\num k]$ elde ederiz. Önerme
+mantığını kullanarak $\Th{Q}$ içinde
+$\eq/[\num n][\num k] \lif \eq/[\num n'][\num k']$ çıkarımını yaparız.
+Modus ponens ile $\eq/[\num n'][\num k']$ elde edilir; $\num k'$,
+$\num m$ olduğundan istediğimiz de budur.
+\end{proof}
+
+Önermenin çok fazla şey söylemediğine dikkat edin: Özünde $\Th{Q}$'nun farklı
+sayımların farklı nesneleri gösterdiğini ispatlayabildiğini söyler. Örneğin
+$\Th{Q}$, $0'' \neq 0'''$ olduğunu ispatlar. Fakat bunun genel olarak
+geçerli olduğunu göstermek biraz özen gerektirir. Tümevarım kullanıyor olsak
+da bunun $\Th{Q}$'nun \emph{dışında} yapılan bir tümevarım olduğuna da dikkat
+edin.
+
+Sıfırı, ardılı, toplamayı, çarpmayı, eşitliğin karakteristik fonksiyonunu ve
+izdüşümleri temsil edebileceğiz. Her durumda uygun temsil eden fonksiyon
+son derece doğrudandır; örneğin sıfır
+\[
+y = 0,
+\]
+formülüyle, ardıl
+\[
+x_0' = y,
+\]
+formülüyle ve toplama
+\[
+x_0 + x_1 = y
+\]
+formülüyle temsil edilir. Yapılması gereken, $\Th{Q}$'nun ilgili ifadeleri
+ispatlayabildiğini göstermektir. Örneğin toplamanın yukarıdaki formülle temsil
+edildiğini söylemek, her $m$ ve $n$ doğal sayı çifti için $\Th{Q}$'nun
+\[
+\eq[\num n + \num m][\num {n+m}]
+\]
+ve
+\[
+\lforall[y][(\eq[(\num n + \num m)][y] \lif \eq[y][\num {n+m}])]
+\]
+ifadelerini ispatladığını göstermeyi gerektirir.
+
+Peki ya bileşke? $h$ şu biçimde tanımlanmış olsun:
+\[
+h(x_0,\dots,x_{l-1}) = f(g_0(x_0,\dots,x_{l-1}), \dots,
+g_{k-1}(x_0,\dots,x_{l-1})).
+\]
+$f,g_0,\dots,g_{k-1}$ fonksiyonlarını sırasıyla temsil eden
+$!A_f, !A_{g_0}, \dots, !A_{g_{k-1}}$ formüllerini zaten bulduğumuzu
+varsayın. O zaman $h$'yi temsil eden bir $!A_h$ formülünü,
+$!A_h(x_0,\dots,x_{l-1},y)$ aşağıdaki formül olacak biçimde tanımlayabiliriz:
+\begin{multline*}
+  \lexists[z_0\dots][\lexists[z_{k-1}][(!A_{g_0}(x_0,\dots,x_{l-1},z_0) \land
+  \dots \land !A_{g_{k-1}}(x_0,\dots,x_{l-1},z_{k-1}) \land]]\\
+  !A_f(z_0,\dots,z_{k-1},y)).
+\end{multline*}
+
+Son olarak sınırsız aramayı ele alalım. $g(x,\vec z)$ düzenli ve
+$\Th{Q}$'da, örneğin $!A_g(x,\vec z,y)$ formülüyle temsil edilebilir olsun.
+$f$, $f(\vec z) = \mu x \; g(x,\vec z)$ ile tanımlansın. $f$'yi temsil eden
+bir $!A_f(\vec z,y)$ formülü bulmak istiyoruz. Doğal bir seçim şudur:
+\[
+!A_f(\vec z,y) \ident !A_g(y,\vec z,0) \land \lforall[w][(w < y
+\lif \lnot !A_g(w,\vec z,0))].
+\]
+
+Bunun işe yaradığı, örneğin aşağıdaki ek önermeler kullanılarak gösterilebilir.
+
+\begin{lem}
+  Her $x$ değişkeni ve her $n$ doğal sayısı için $\Th{Q}$,
+  $\eq[(x' + \num n)][(x + \num n)']$ ifadesini ispatlar.
+\end{lem}
+
+Bunun, $\Th{Q}$'nun
+$\lforall[x][\lforall[y][(x' + y) = (x +y)']]$ ifadesini ispatladığını
+söylemekten daha zayıf olduğunu (ikincisinin yanlış olduğunu) bir kez daha
+belirtmek gerekir.
+
+\begin{proof}
+İspat her zamanki gibi $n$ üzerinde tümevarımladır. $n=0$ temel durumunda
+$\Th{Q}$'nun $\eq[(x'+0)][(x+0)']$ ifadesini ispatladığını göstermeliyiz.
+Fakat elimizde şunlar vardır:
+\begin{eqnarray*}
+& & \eq[(x' + 0)][x'] \quad \text{4. aksiyomdan} \\
+& & \eq[(x + 0)][x] \quad \text{4. aksiyomdan} \\
+& & \eq[(x+0)'][x'] \quad \text{2. satırdan} \\
+& & \eq[(x' + 0)][(x + 0)'] \quad \text{1. ve 3. satırlardan}
+\end{eqnarray*}
+Tümevarım adımında $\Th{Q}$ içinde
+$\eq[(x' + \num n)][(x + \num n)']$ ifadesini türettiğimizi
+varsayabiliriz. $\num{n+1}$, $\num n'$ olduğundan $\Th{Q}$'nun
+$\eq[(x' + \num n')][(x + \num n')']$ ifadesini ispatladığını göstermeliyiz.
+Aşağıdaki eşitlikler zinciri $\Th{Q}$ içinde türetilebilir:
+\begin{eqnarray*}
+(x' + \num n') & \eq & (x' + \num n)' \quad \text{5. aksiyom} \\
+& \eq & (x + \num n')' \quad \text{tümevarım varsayımından}
+\end{eqnarray*}
+\end{proof}
+
+\begin{lem}
+\begin{enumerate}
+\item $\Th{Q}$, $\lnot (x < \num 0)$ ifadesini ispatlar.
+\item Her $n$ doğal sayısı için $\Th{Q}$ şunu ispatlar:
+\[
+x < \num {n+1} \lif (\eq[x][\num 0] \lor \dots \lor \eq[x][\num n]).
+\]
+\end{enumerate}
+\end{lem}
+
+\begin{proof}
+1. maddeyi ve 2. maddenin bir kısmını gayriresmî olarak (yani biçimsel
+!!{derivation}{}in nasıl kurulacağına ilişkin yalnızca ipuçları vererek)
+yapalım.
+
+1. madde için $<$ tanımı gereği $\Th{Q}$ içinde
+$\lnot \lexists[y][\eq[(y'+x)][0]]$ ifadesini ispatlamamız gerekir. Bu,
+birinci dereceden mantığın aksiyomları ve kuralları kullanılarak
+$\lforall[y][\eq/[(y' + x)][0]]$ ifadesine denktir. Fikir şudur:
+$\eq[(y'+x)][0]$ olsun. $x$, $0$ ise $\eq[(y' + 0)][0]$ elde ederiz. Fakat
+$\Th{Q}$'nun 4. aksiyomuna göre $\eq[(y' + 0)][y']$, 2. aksiyomuna göre ise
+$\eq/[y'][0]$ vardır; bu bir çelişkidir. Böylece
+$\lforall[y][\eq/[(y' +x)][0]]$. $x$, $0$ değilse 3. aksiyoma göre
+$\eq[x][z']$ olacak biçimde bir $z$ vardır. O zaman
+$\eq[(y' + z')][0]$. 5. aksiyom uyarınca $\eq[(y' + z)'][0]$ elde edilir ve
+bu yine 2. aksiyomla çelişir.
+
+2. madde için $n$ üzerinde tümevarım kullanın. $n=0$ olan temel durumu ele
+alalım. Bu durumda $x < \num 1 \lif \eq[x][\num 0]$ olduğunu göstermeliyiz.
+$x < \num 1$ olsun. O zaman $<$ tanımlayan aksiyoma göre
+$\lexists[y][\eq[(y'+x)][0']]$. $y$'nin bu özelliği taşıdığını varsayın;
+dolayısıyla $\eq[y'+x][0']$.
+
+$\eq[x][0]$ olduğunu göstermeliyiz. 3. aksiyoma göre $x$, $0$ değilse bir
+$z$ için $z'$ye eşittir. O zaman $\eq[(y' + z')][0']$ elde ederiz.
+$\Th{Q}$'nun 5. aksiyomuna göre $\eq[(y'+z)'][0']$, 1. aksiyomuna göre ise
+$\eq[(y' + z)][0]$. Fakat bu tanım gereği $z < 0$ demektir ve 1. maddeyle
+çelişir.
+\end{proof}
+
+\begin{explain}
+Hesaplanabilir fonksiyonlar kümesinin, $\Th{Q}$'da temsil edilebilir
+fonksiyonlar kümesi olarak nitelenebileceğini gösterdik. Gerçekte ispat daha
+geneldir. Temsil edilebilirlik tanımından, $\Th{Q}$'yu genişleten (ya da
+$\Th{Q}$'nun yorumlanabildiği) her kuramın hesaplanabilir fonksiyonları temsil
+edebildiğini görmek zor değildir. Tersine, ispat kavramının hesaplanabilir
+olduğu her !!{derivation} sisteminde temsil edilebilir her fonksiyon
+hesaplanabilirdir. Dolayısıyla hesaplanabilir fonksiyonlar kümesi, örneğin
+Peano aritmetiğinde, hatta Zermelo--Fraenkel küme kuramında temsil edilen
+fonksiyonlar kümesi olarak nitelenebilir. Gödel'in belirttiği gibi bu biraz
+şaşırtıcıdır. İspatlanabilirlik söz konusu olduğunda soruların ele alınan
+kurama son derece duyarlı olduğunu göreceğiz; kabaca aksiyomlar ne kadar
+güçlüyse o kadar çok şey ispatlanabilir. Buna karşılık geniş bir aksiyomatik
+kuram yelpazesinde temsil edilebilir fonksiyonlar tam olarak hesaplanabilir
+olanlardır.
+\end{explain}
+
+\end{document}

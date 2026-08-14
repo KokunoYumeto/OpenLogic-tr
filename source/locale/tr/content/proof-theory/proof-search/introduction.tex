@@ -1,0 +1,109 @@
+% Part: proof-theory
+% Chapter: proof-search
+% Section: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{pt}{ps}{int}
+
+\olsection{Giriş}
+
+$\Log{G3c}$ ya da $\Log{N1i}$ gibi !!{proof} sistemlerinin aksiyomları ve
+çıkarım kuralları, hangi sekant ya da !!{formula} ağaçlarının doğru
+!!{proof}s sayılacağını tanımlar. Böyle bir sekant ya da !!{formula} ağacı
+(her adımda hangi kuralların uygulandığı veya varsayımlarla onları kapatan
+çıkarım kurallarının etiketleri gibi ek bilgilerle birlikte) verildiğinde,
+aksiyomlarla kuralların tanımları ağacın doğru !!{proof} olup olmadığını
+denetlememizi sağlar. Verilen varsayımlardan, verilmiş bir sekant ya da
+!!{formula} için !!a{proof} \emph{bulmak} ise farklı ve genellikle daha zor
+bir sorundur. Bu, \emph{ispat arama} sorunudur.
+
+İspat aramanın son derece basit bir yordamı vardır. !!{formula}{}leri sonlu bir
+alfabenin simge dizileri olarak düşünebiliriz. Sekantlarla, sekant ya da
+!!{formula} ağaçları da (ağacın dallanmasını göstermek için belki özel
+parantezler kullanılarak) !!{formula} dizileri olarak düşünülebilir.
+Aksiyomlarla kurallar, bir simgeler dizisinin doğru !!{proof} gösterip
+göstermediğini mekanik olarak denetlememizi sağlar. Böylece \emph{bütün
+olanaklı} doğru !!{proof}{}ları mekanik olarak üretebiliriz (!!{proof}{}ları temsil
+etmekte kullanılan alfabenin bütün simge dizilerini üretip her aday dizinin
+doğru bir !!{proof} gösterip göstermediğini denetleyerek). Basit ispat arama
+yordamı şudur: Verilen sekantın (ya da açık varsayımları verilenlerin
+arasında bulunan verilmiş !!{formula}{}ün) bir !!{proof}{}ını bulana kadar bütün
+doğru !!{proof}{}ları üretin.
+
+Daha iyi bir yöntem, elle !!a{proof} bulmak için kullanacağınız saf yöntemi
+kullanmaktır: Son sekantla başlar, !!a{formula} seçer ve bir çıkarım kuralını
+``geriye doğru'' uygulayarak, !!{proof}{}ları bulunsaydı son çıkarımla birleşip
+verilen sekantın bir !!a{proof}{}ını oluşturacak bir ya da daha çok öncül
+üretirsiniz. Benzer (fakat daha karmaşık) bir yöntem doğal tümdengelim
+sisteminde !!a{proof} bulmak için kullanılabilir.
+
+Fakat bu yöntem şaşmaz değildir: Yanlış kuralı ya da !!{formula}{}leri yanlış
+sırada seçerseniz çıkmaza girebilirsiniz. Ayrıca yöntem tam olarak
+belirlenmemiştir: Her aşamada seçilebilecek birden çok !!{formula} ya da
+geriye doğru uygulanabilecek birden çok kural bulunabilir. \emph{İspat arama
+algoritması}, varsa bir !!a{proof} bulacak (yani şaşmaz) tam belirlenmiş bir
+yordamdır.
+
+Bazı !!{proof} sistemleri ötekilerden daha basit ispat arama algoritmalarına
+elverişlidir. Sekant sistemlerinde !!a{formula}{}ün !!{main operator}{}ü ile
+formülün solda mı sağda mı bulunduğu, geriye doğru hangi kuralın uygulanacağını
+belirler. Örneğin $!A \land !B$'nin sağda bulunduğu
+$\Gamma \Sequent \Delta, !A \land !B$ sekantının bir !!a{proof}{}ını bulmak
+istiyorsanız \RightR{\land} kuralını geriye doğru uygulayıp karşılık gelen
+$\Gamma \Sequent \Delta, !A$ ile $\Gamma \Sequent \Delta, !B$ öncüllerini
+üretmelisiniz. Ancak sisteminiz $\Log{G1c}$ ise büzülme size daha çok seçenek
+verdiği için işi zorlaştırır: \RightR{\Contraction} kuralını geriye doğru
+uygulayıp $\Gamma \Sequent \Delta, !A \land !B, !A \land !B$ öncülünü de
+üretebilirsiniz. Ardından
+$\Gamma \Sequent \Delta, !A \land !B, !A \land !B, !A \land !B$ öncülünü
+ve böyle devam eden öncülleri üretirsiniz. $\Log{G2c}$'de durum daha da
+kötüdür. \RightR{\land} kuralını geriye doğru uygulamak, $\Gamma =
+\Gamma_1 \cup \Gamma_2$ olacak $\Gamma_1,\Gamma_2$ ile $\Delta =
+\Delta_1 \cup \Delta_2$ olacak $\Delta_1,\Delta_2$'yi tahmin edip
+$\Gamma_1 \Sequent \Delta_1, !A$ ve $\Gamma_2 \Sequent \Delta_2, !B$
+öncülleriyle şansınızı denemenizi de gerektirir. Yanlış tahmin daha sonra
+çıkmaza götürebilir; başa dönüp başka $\Gamma_1,\Gamma_2,\Delta_1,\Delta_2$
+seçmeniz gerekir. !!{formula}, $!A \lor !B$ ise \RightR{\lor} için iki
+olasılıktan birini seçerek $\Gamma \Sequent \Delta, !A$ ya da
+$\Gamma \Sequent \Delta, !B$ öncüllerinden birini üretmelisiniz. Yanlış
+seçim yine geri dönmeyi gerektirir.
+
+$\Log{G3c}$ sisteminde bu sorunlar yoktur. Yapısal kuralları bulunmaz ve
+çıkarım kuralı seçimini !!{main operator} ile !!{formula}{}ün bulunduğu taraf
+belirler. Dolayısıyla $\Log{G3c}$ ispat aramaya $\Log{G1c}$ ya da
+$\Log{G2c}$'den daha uygundur. Başarılı arama $\Log{G3c}$ içinde !!a{proof}
+verir; bu !!{proof} daha sonra $\Log{G1c}$ ya da $\Log{G2c}$'ye (hatta
+$\Log{N1c}$'ye) çevrilebilir. Dolayısıyla $\Log{G3c}$ için bir ispat arama
+algoritmasıyla $\Log{G3c}$ !!{proof}{}larını öteki sistemlerdeki !!{proof}{}lara
+çeviren algoritmalar, bu sistemlerin ispat arama sorununu da çözer.
+
+Bir ispat arama algoritmasının şaşmaz olduğunu nasıl biliriz? Bunun için,
+algoritma !!a{proof} bulamazsa hiçbir !!{proof}{}ın var olamayacağını
+göstermeliyiz. Sonuçta kötü bir algoritma seçersek ispat var olduğu halde onu
+bulamadığı durumlarla karşılaşabiliriz. Bütün olanaklı !!{proof}{}ları taradığı
+için basit algoritmanın böyle bir sorunu yoktur. Fakat bir ispat arama
+algoritmasının verimli olması ve olabildiğince az çaba harcaması beklenir.
+
+İspat arama algoritmasının şaşmaz olduğunu göstermenin temel fikri şudur:
+Algoritma başarısızsa, başarısızlık biçiminden sekantın hiçbir !!a{proof}{}ının
+var olamayacağını göstermeliyiz. Bunu da sekantın geçerli olmadığını göstererek
+yaparız. Klasik birinci dereceden mantıkta geçerli sekantlar
+$\Gamma \Sequent \Delta$, her !!{structure}{}nın $\Gamma$ içindeki en az bir
+!!{formula}{}yı yanlış ya da $\Delta$ içindeki en az bir !!{formula}{}yı doğru
+yaptığı sekantlardır. $\Log{G3c}$ \emph{sağlam}dır; yani yalnızca geçerli
+sekantları !!{prove}{}r. Bu, !!{proof}s üzerinde tümevarımla gösterilir:
+Aksiyomlar açıkça geçerlidir; bir kuralın öncülleri geçerliyse sonucu da
+geçerlidir. Bir ispat arama algoritmasının şaşmaz olduğunu göstermek için
+$\Gamma \Sequent \Delta$ sekantının bir !!a{proof}{}ını arama başarısız olduğunda,
+$\Gamma$ içindeki bütün !!{formula}{}leri doğru ve $\Delta$ içindeki bütün
+!!{formula}{}leri yanlış yapan !!a{structure} tanımlayabildiğimizi gösteririz.
+Bu aynı zamanda $\Log{G3c}$'nin \emph{tam} olduğunu, yani
+$\Gamma \Sequent \Delta$ geçerliyse onun bir $\Log{G3c}$-!!{proof}{}ı
+bulunduğunu gösterir. Başarısız bütün ispat aramaları sekantın geçersiz
+olduğunu gösterdiği için geçerli bir sekanta yönelik her ispat araması
+başarılı olmak zorundadır.
+
+\end{document}

@@ -1,0 +1,84 @@
+% Part: first-order-logic
+% Chapter: proof-systems
+% Section: natural-deduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[tr]{fol}{prf}{ntd}}
+      {\olfileid[tr]{pl}{prf}{ntd}}
+
+\olsection{Doğal Tümdengelim}
+
+Doğal tümdengelim, fiilî akıl yürütmeyi (özellikle matematikçilerin kullandığı
+düzenli akıl yürütme biçimini) yansıtmayı amaçlayan !!a{derivation}
+sistemidir. Fiilî akıl yürütme birtakım “doğal” örüntülere göre ilerler.
+Örneğin durumlara ayırarak ispat, “veya” bağlaçlı bir öncülden hareketle
+sonucun veya bileşenlerinin her birinden çıktığını ayrı ayrı göstererek bir
+sonuç ortaya koymamızı sağlar. Dolaylı ispat, bir sonucun değillemesinin çelişkiye yol açtığını
+göstererek o sonucu ortaya koymamızı sağlar. Koşullu ispat ise artbileşenin
+önbileşenden çıktığını göstererek “eğer \dots ise \dots” biçimindeki koşullu
+bir iddiayı ortaya koyar. Doğal tümdengelim, bu doğal çıkarımların bazılarının
+biçimselleştirilmesidir. Mantıksal bağlaçların
+\iftag{FOL}{ ve niceleyicilerin}{} her birinin,
+biri giriş diğeri giderme olmak üzere iki kuralı vardır ve bu kuralların her
+biri böyle bir doğal çıkarım örüntüsüne karşılık gelir. Örneğin
+$\Intro{\lif}$ koşullu ispata, $\Elim{\lor}$ ise durumlara ayırarak ispata
+karşılık gelir. Özellikle basit bir kural olan $\Elim{\land}$, $!A \land !B$
+ifadesinden $!A$'nın (veya $!B$'nin) çıkarılmasına izin verir.
+
+Doğal tümdengelimi diğer !!{derivation} sistemlerinden ayıran özelliklerden
+biri varsayımları kullanmasıdır. Doğal tümdengelimde !!^a{derivation},
+!!{formula}s içeren bir ağaçtır. Ağacın kökünde tek bir !!{formula}, ağacın
+“yapraklarında” ise sonucun türetildiği !!{formula}s bulunur. Doğal
+tümdengelimde yapraktaki bazı !!{formula}s, başka !!{formula}s ile birlikte
+!!{derivation} içinde rol oynar ama !!{derivation} sonuca ulaştığında artık
+kullanılmaz. Bu, fiilî akıl
+yürütmede yalnızca kısa süre geçerli olan hipotezler öne sürme pratiğine
+karşılık gelir. Örneğin durumlara ayırarak ispatta veya bileşenlerinin her
+birini ayrı bir durumda doğru varsayarız; koşullu ispatta önbileşeni, dolaylı
+ispatta ise sonucun değillemesini doğru varsayarız. Hipotetik varsayımları öne
+sürüp bir ara adımı elde ettikten sonra ortadan kaldırmak, doğal tümdengelimin
+ayırt edici özelliğidir. Doğal tümdengelim !!{derivation} ağacının
+yapraklarındaki formüllere varsayım denir ve bazı çıkarım kuralları bunların
+belirli örnekleri için “!!{discharge}” işlemini uygulayabilir. Örneğin, aralarında $!A$'nın da
+bulunduğu bazı varsayımlardan $!B$ için !!a{derivation} varsa
+$\Intro{\lif}$ kuralı,
+$!A \lif !B$ sonucunu çıkarmamıza ve $!A$ biçimindeki seçili varsayımları
+kapatmamıza izin verir. (Hangi varsayımların hangi çıkarımda kapatıldığını
+izlemek için çıkarımı ve onun kapattığı varsayımları bir sayıyla etiketleriz.)
+!!{undischarged} kalan varsayımlar, !!{derivation} sonunda birlikte sonucun
+doğruluğu için yeterlidir; böylece !!a{derivation}, !!{undischarged}
+varsayımlarının sonucunu mantıksal olarak gerektirdiğini ortaya koyar.
+
+Doğal tümdengelime dayalı $\Gamma \Proves !A$ bağıntısı, !!a{derivation}
+içinde $!A$ ağaçtaki son !!{sentence} ise ve !!{undischarged} kalan her yaprak
+$\Gamma$'da bulunuyorsa geçerlidir. !!a{derivation} içinde $!A$ son
+!!{sentence} ise ve bütün varsayımlar !!{discharged} ise
+$!A$, doğal tümdengelimde bir teoremdir. Örneğin aşağıdaki !!a{derivation},
+$\Proves (!A \land !B) \lif !A$ olduğunu gösterir:
+\begin{prooftree}
+  \AxiomC{$\Discharge{!A \land !B}{1}$}
+  \RightLabel{\Elim{\land}}
+  \UnaryInfC{$!A$}
+  \DischargeRule{\Intro{\lif}}{1}
+  \UnaryInfC{$(!A \land !B) \lif !A$}
+\end{prooftree}
+$1$ etiketi, $!A \land !B$ varsayımının $\Intro{\lif}$ çıkarımında
+!!{discharged} olduğunu gösterir.
+
+Doğal tümdengelimde bir $\Gamma$ kümesi, ancak ve ancak $\Gamma \Proves
+\lfalse$ ise tutarsızdır. \FalseInt{} kuralı sayesinde tutarsız bir kümeden
+her bir !!{sentence} için onu !!{derive} mümkündür.
+
+Doğal tümdengelim sistemleri 1930'larda Gerhard Gentzen ve Stanis\l{}aw
+Ja\'skowski tarafından geliştirildi; daha sonra Dag Prawitz ve Frederic Fitch
+tarafından ileri götürüldü. Çıkarımları doğal ispat yöntemlerini yansıttığı
+için filozoflarca tercih edilir. Fitch'in geliştirdiği sürümler giriş düzeyi
+mantık ders kitaplarında sıkça kullanılır. Mantık felsefesinde doğal
+tümdengelimin kurallarının bazen mantıksal işleçlere anlamlarını verdiği kabul
+edilmiştir (“ispat kuramsal semantik”).
+
+\end{document}

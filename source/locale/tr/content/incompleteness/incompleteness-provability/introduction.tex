@@ -1,0 +1,89 @@
+% Part: incompleteness
+% Chapter: incompleteness-provability
+% Section: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{inc}{inp}{int}
+
+\olsection{Giriş}
+
+Hilbert, doğal sayılar gibi bir matematiksel yapı için kurulmuş bir aksiyom
+sisteminin, yapı hakkındaki bütün doğru önermelerin türetilmesine izin
+vermediği sürece yetersiz olduğunu düşünüyordu. Daha sonra biçimsel türetim
+sistemlerine duyduğu ilgiyle birlikte ele alındığında bu görüş, örneğin doğal
+sayılar hakkında akıl yürütmek için kullandığımız biçimsel sistemlerin yalnızca
+tutarlı değil, aynı zamanda \emph{tam} olmasını da güvence altına almamız
+gerektiğini düşündüğünü gösterir: sistemin dilindeki her önerme ya kendisi ya
+da değillemesi !!{derivable} olmalıdır. G\"odel'in birinci eksiklik teoremi
+böyle bir aksiyom sisteminin bulunmadığını gösterir: aritmetik için tam,
+tutarlı ve !!{axiomatizable} hiçbir biçimsel sistem yoktur. Hatta ``yeterince
+güçlü'' hiçbir tutarlı, !!{axiomatizable} matematiksel kuram tam değildir.
+
+Hilbert'in daha önemli bir amacı, modern (``klasik'') matematiği temellendirme
+programının odağında yer alan, klasik akıl yürütmeyi temsil eden biçimsel
+sistemler için sonlu yöntemlere dayanan tutarlılık ispatları bulmaktı. Bu
+bakımdan G\"odel'in ikinci eksiklik teoremi Hilbert programına çok daha ağır
+bir darbe indirdi. İkinci eksiklik teoremi, birincisi gibi, yaklaşık terimlerle
+ifade edilebilir. Kabaca, yeterince güçlü hiçbir aritmetik kuramının kendi
+tutarlılığını ispatlayamayacağını söyler. Burada ``yeterince güçlü'' olmayı
+$\Th{Q}$'dan biraz daha fazlasını içerecek biçimde anlamamız gerekecek.
+
+G\"odel'in eksiklik teoremine ilişkin özgün ispatının ardındaki fikir
+Epimenides paradoksunda bulunabilir. Giritli Epimenides bütün Giritlilerin
+yalancı olduğunu ileri sürmüştü; paradoksun daha doğrudan bir biçimi ``bu
+tümce yanlıştır'' önermesidir. G\"odel, doğruluğun yerine !!{derivability}
+koyarak !!a{sentence} biçimselleştirebildi; bu tümce dolaylı bir yoldan
+kendisinin !!{derivable} olmadığını söyler. Bu !!{sentence} !!{derivable} olsaydı
+kuram tutarsız olurdu. G\"odel, ele aldığı aksiyom sisteminden bu
+!!{sentence}'nin değillemesinin de !!{derivable} olmadığını gösterdi. (Bu
+ikinci kısım için G\"odel, $\Th{T}$ kuramının ``$\omega$-tutarlı'' denen
+özelliğe sahip olduğunu varsaymak zorundaydı. $\omega$-tutarlılık,
+tutarlılıkla ilişkili fakat ondan daha güçlü bir özelliktir.\footnote{Yani her
+$\omega$-tutarlı kuram tutarlıdır, fakat bunun tersi doğru değildir.}
+G\"odel'den birkaç yıl sonra Rosser, $\Th{T}$'nin yalnızca tutarlı olduğunu
+varsaymanın yeterli olduğunu gösterdi.)
+
+İlk güçlük, kendisine gönderme yapan !!a{sentence}'nin nasıl kurulabileceğini
+anlamaktır. $\Th{Q}$ dilindeki her $!A$ !!{formula} için $\gn{!A}$,
+$\Gn{!A}$ sayısına karşılık gelen rakamı göstersin. Bunun ne anlama geldiğini
+düşünün: $!A$, $\Th{Q}$ dilinde !!a{formula}; $\Gn{!A}$ bir doğal sayı;
+$\gn{!A}$ ise $\Th{Q}$ dilinde bir \emph{terim}dir. Dolayısıyla $\Th{Q}$
+dilindeki her $!A$ !!{formula}, yine $\Th{Q}$ dilinde bir terim olan
+$\gn{!A}$ \emph{adına} sahiptir. Bu, $\Th{Q}$ dilindeki !!{formula}s{}in başka
+!!{formula}s hakkında bir şeyler ``söyleyebileceği'' kavramsal bir çerçeve
+sağlar. Aşağıdaki lemma sabit nokta lemması olarak bilinir.
+
+\begin{lem}
+$\Th{T}$, $\Th{Q}$'yu genişleten herhangi bir kuram ve $!B(x)$, yalnızca
+$x$ değişkeni serbest olan herhangi bir !!{formula} olsun. O zaman
+$\Th{T} \Proves !A \liff !B(\gn{!A})$ olacak biçimde !!a{sentence}~$!A$
+vardır.
+\end{lem}
+
+Lemma, verilen herhangi bir $!B(x)$ özelliği için ``$!B(x)$ benim için
+doğrudur'' diyen !!a{sentence}~$!A$ bulunduğunu ve $\Th{T}$'nin bunu
+``bildiğini'' ileri sürer.
+
+Böyle !!a{sentence} nasıl kurabiliriz? Epimenides paradoksunun Quine'a ait şu
+biçimini ele alın:
+\begin{quote}
+``Önüne kendi tırnaklı biçimi getirildiğinde yanlışlık verir'' ifadesi,
+önüne kendi tırnaklı biçimi getirildiğinde yanlışlık verir.
+\end{quote}
+Bu tümce doğrudan kendisine gönderme yapmaz. Yalnızca tırnak işaretleri
+arasındaki sözdizimsel nesneler hakkında bir şey ileri sürer ve bu bakımdan
+şu tümcelerle aynı düzeydedir:
+\begin{enumerate}
+\item ``Robert'' güzel bir addır.
+\item ``Koştum.'' kısa bir tümcedir.
+\item ``Üç sözcüğü vardır'' ifadesinin üç sözcüğü vardır.
+\end{enumerate}
+Peki ``önüne kendi tırnaklı biçimi getirildiğinde yanlışlık verir'' ifadesinin
+önüne, kendisinin tırnak içine alınmış biçimini getirirsek ne olur? Özgün
+tümceyi yeniden elde ederiz!{} Kısacası tümce, kendisinin yanlış olduğunu
+ileri sürer.
+
+\end{document}

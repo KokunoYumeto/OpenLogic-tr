@@ -1,0 +1,59 @@
+% Part: second-order-logic
+% Chapter: syntax-and-semantics
+% Section: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sol}{syn}{int}
+
+\olsection{Giriş}
+
+Birinci dereceden mantıkta, belirli bir dilin mantıksal olmayan simgelerini,
+yani o dilin !!{constant}s, !!{function}s ve !!{predicate}s öğelerini,
+birinci dereceden !!{structure}s hakkında şeyler ifade etmek üzere mantıksal
+simgelerle birleştiririz. Bu, !!a{structure}~$\Struct{M}$ ile bir değişken
+ataması~$s$'yi !!a{formula}~$!A$ ile ilişkilendiren sağlama kavramı
+aracılığıyla yapılır: $\Sat{M}{!A}[s]$, ancak ve ancak $!A$'nın
+!!{constant}s, !!{function}s ve !!{predicate}s öğeleri $\Struct{M}$'nin
+belirttiği biçimde, serbest değişkenleri de~$s$'nin belirttiği biçimde
+yorumlandığında ifade ettiği şey doğruysa geçerlidir. !!{identity}~$\eq$
+yorumunun yanı sıra~$\lforall$ ve $\lexists$ yorumları da
+$\Sat{M}{!A}[s]$ tanımına yerleştirilmiştir. İlki her zaman yapının
+!!{domain}~$\Domain{M}$ üzerindeki özdeşlik bağıntısı olarak yorumlanır;
+niceleyiciler de her zaman bütün !!{domain} üzerinde dolaşacak biçimde
+yorumlanır. Fakat can alıcı nokta şudur: niceleme yalnızca !!{domain}
+öğeleri üzerinde yapılabilir ve dolayısıyla bir niceleyicinin ardından
+yalnızca nesne !!{variable}s gelebilir.
+
+İkinci dereceden mantıkta hem dil hem de sağlama tanımı, serbest ve bağlı
+fonksiyon ve yüklem değişkenlerini ve bunlar üzerindeki nicelemeyi içerecek
+biçimde genişletilir. Bu değişkenlerin !!{function}s ve !!{predicate}s ile
+ilişkisi, nesne değişkenlerinin !!{constant}s ile ilişkisiyle aynıdır.
+İkinci dereceden mantığın terimlerinin ve !!{formula}s öğelerinin
+oluşturulmasında aynı rolü oynarlar; üzerlerindeki niceleme de benzer biçimde
+ele alınır. \emph{Standart} semantikte ikinci dereceden niceleyiciler, uygun
+türdeki bütün olası nesneler üzerinde dolaşır (fonksiyon değişkenleri için
+$\Domain{M}$'den~$\Domain{M}$'ye $n$-li fonksiyonlar, yüklem değişkenleri
+için $n$-li bağıntılar). Örneğin,
+$\lforall[\Obj{v_0}][(\Obj{P^1_0}(\Obj{v_0}) \lor \lnot
+  \Obj{P^1_0}(\Obj{v_0}))]$ hem birinci hem de ikinci dereceden mantıkta bir
+formülken, ikincisinde ayrıca
+$\lforall[\Obj{V^1_0}][\lforall[\Obj{v_0}][(\Obj{V^1_0}(\Obj{v_0}) \lor
+    \lnot \Obj{V^1_0}(\Obj{v_0}))]]$ ile
+$\lexists[\Obj{V^1_0}][\lforall[\Obj{v_0}][(\Obj{V^1_0}(\Obj{v_0}) \lor
+    \lnot \Obj{V^1_0}(\Obj{v_0}))]]$ ifadelerini de ele alabiliriz. Bunlar
+hiçbir serbest değişken içermediğinden, ikinci dereceden mantığın
+!!{sentence}s öğeleridir. Burada $\Obj{V^1_0}$, ikinci dereceden bir $1$-li
+yüklem değişkenidir. $\Obj{V^1_0}$ için izin verilen yorumlar,
+$\Obj{P^1_0}$ gibi $1$-li bir !!{predicate} öğesine verebileceğimiz yorumlarla,
+yani~$\Domain{M}$'nin alt kümeleriyle aynıdır. O hâlde bunlar üzerindeki
+niceleme,
+$\lforall[\Obj{v_0}][(\Obj{V^1_0}(\Obj{v_0}) \lor \lnot
+  \Obj{V^1_0}(\Obj{v_0}))]$ ifadesinin, $\Obj{V^1_0}$'a değer olarak
+~$\Domain{M}$'nin bir alt kümesini atamanın bütün yollarında ya da en az bir
+yolunda sağlandığını söylemek demektir. Her küme belirli bir nesneyi ya
+içerdiğinden ya da içermediğinden, her iki tümce de her !!{structure}
+içinde doğrudur.
+\end{document}

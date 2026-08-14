@@ -1,0 +1,50 @@
+% Part: first-order-logic
+% Chapter: natural-deduction
+% Section: soundness-identity
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{fol}{ntd}{sid}
+
+\olsection{\usetoken{S}{identity} ile Sağlamlık}
+
+\begin{prop}
+$\eq$ kurallarını içeren doğal tümdengelim sağlamdır.
+\end{prop}
+
+\begin{proof}
+$\eq[t][t]$ biçimindeki her !!{formula} geçerlidir; çünkü her
+!!{structure}~$\Struct M$ için $\Sat{M}{\eq[t][t]}$ olur. ($t$ teriminin
+kapalı olduğunu, yani hiçbir değişken içermediğini varsaydığımıza dikkat
+edin; dolayısıyla değişken atamalarının bir etkisi yoktur.)
+
+Bir !!a{derivation} içindeki son çıkarımın \Elim{\eq} olduğunu varsayalım;
+bu !!{derivation} şu biçimdedir:
+\begin{prooftree}
+  \AxiomC{$\Gamma_1$}
+  \RightLabel{$\delta_1$}
+  \DeduceC{$\eq[t_1][t_2]$}
+  \AxiomC{$\Gamma_2$}
+  \RightLabel{$\delta_2$}
+  \DeduceC{$!A(t_1)$}
+  \RightLabel{\Elim{\eq}}
+  \BinaryInfC{$!A(t_2)$}
+\end{prooftree}
+$\eq[t_1][t_2]$ ve $!A(t_1)$ öncüllerini !!{derive} mümkündür; kaynakları
+sırasıyla !!{undischarged} varsayımlar~$\Gamma_1$ ve $\Gamma_2$'dir.
+$!A(t_2)$'nin $\Gamma_1 \cup \Gamma_2$'den çıktığını göstermek istiyoruz.
+$\Sat{M}{\Gamma_1 \cup \Gamma_2}$ koşulunu sağlayan
+!!a{structure}~$\Struct{M}$ ele alalım. Tümevarım hipotezi uyarınca hem
+$\Sat{M}{!A(t_1)}$ hem de $\Sat{M}{\eq[t_1][t_2]}$ olur. Dolayısıyla
+$\Value{t_1}{M} = \Value{t_2}{M}$ olur. $s$ herhangi bir değişken ataması ve
+$m = \Value{t_1}{M} = \Value{t_2}{M}$ olsun.
+\olref[fol][syn][ext]{prop:ext-formulas} uyarınca
+$\Sat{M}{!A(t_1)}[s]$, ancak ve ancak
+$\Sat{M}{!A(x)}[\Subst{s}{m}{x}]$, o da ancak ve ancak
+$\Sat{M}{!A(t_2)}[s]$ olur. $\Sat{M}{!A(t_1)}$ olduğundan
+$\Sat{M}{!A(t_2)}$ elde edilir.
+\end{proof}
+
+\end{document}

@@ -1,0 +1,247 @@
+% Part: first-order-logic
+% Chapter: natural-deduction
+% Section: proving-things-quant
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{fol}{ntd}{prq}
+
+\olsection{Niceleyiciler İçeren \usetoken{P}{derivation}}
+
+\begin{ex}
+Niceleyicileri ele alırken özdeğişken koşulunu ihlal etmemeye dikkat
+etmeliyiz; bazen bunun için belirli çıkarımları uygulama sıramızı
+değiştirmemiz gerekir. Genel olarak özdeğişken koşuluna bağlı kuralları önce
+ele almaya çalışmak yararlıdır (tamamlanmış ispatta bu kurallar daha aşağıda
+bulunur).
+
+!!a{derivation} nasıl verilir bakalım; hedef !!{formula},
+$\lexists[x][\lnot !A(x)] \lif \lnot \lforall[x][!A(x)]$ olsun. Her zamanki
+gibi şöyle başlarız:
+\begin{prooftree}
+\AxiomC{}
+\UnaryInfC{$\lexists[x][\lnot !A(x)]\lif \lnot \lforall[x][!A(x)]$}
+\end{prooftree}
+Son adımı \Intro{\lif} kuralıyla gerekçelendirmek için ne gerektiğini
+yazarak başlarız.
+\begin{prooftree}
+\AxiomC{$\Discharge{\lexists[x][\lnot !A(x)]}{1}$}
+\DeduceC{$\lnot \lforall[x][!A(x)]$}
+\DischargeRule{\Intro{\lif}}{1}
+\UnaryInfC{$\lexists[x][\lnot !A(x)]\lif \lnot \lforall[x][!A(x)]$}
+\end{prooftree}
+$\lnot \lforall[x][!A(x)]$ ifadesine uygulanacak belirgin bir kural
+olmadığından, \Elim{\lexists} kuralını kullanabileceğimiz biçimde
+!!{derivation} kurarak ilerleyeceğiz. Burada özdeğişken koşuluna dikkat
+etmeli ve $\lexists[x][\lnot !A(x)]$ öncülünde, sonuçta veya ilgili
+kapatılmamış varsayımlarda geçmeyen bir sabit seçmeliyiz. (!!{constant}s
+kümesi boş olduğundan herhangi bir seçim uygundur.)
+\begin{prooftree}
+\AxiomC{$\Discharge{\lexists[x][\lnot !A(x)]}{1}$}
+\AxiomC{$\Discharge{\lnot !A(a)}{2}$}
+\DeduceC{$\lnot \lforall[x][!A(x)]$}
+\DischargeRule{\Elim{\lexists}}{2}
+\BinaryInfC{$\lnot \lforall[x][!A(x)]$}
+\DischargeRule{\Intro{\lif}}{1}
+\UnaryInfC{$\lexists[x][\lnot !A(x)] \lif \lnot \lforall[x][!A(x)]$}
+\end{prooftree}
+$\lnot \lforall[x][!A(x)]$ ifadesini türetmek için \Intro{\lnot} kuralını
+kullanmayı deneyeceğiz: bunun için, muhtemelen ek varsayım olarak
+$\lforall[x][!A(x)]$'i kullanarak bir çelişki türetmemiz gerekir. Elbette bu
+çelişki, \Elim{\lexists} çıkarımı tarafından kapatılacak $\lnot !A(a)$
+varsayımını içerebilir. Kurulumu şöyle yapabiliriz:
+\begin{prooftree}
+\AxiomC{$\Discharge{\lexists[x][\lnot !A(x)]}{1}$}
+\AxiomC{$\Discharge{\lnot !A(a)}{2}, \Discharge{\lforall[x][!A(x)]}{3}$}
+\DeduceC{$\lfalse$}
+\DischargeRule{\Intro{\lnot}}{3}
+\UnaryInfC{$\lnot \lforall[x][!A(x)]$}
+\DischargeRule{\Elim{\lexists}}{2}
+\BinaryInfC{$\lnot \lforall[x][!A(x)]$}
+\DischargeRule{\Intro{\lif}}{1}
+\UnaryInfC{$\lexists[x][\lnot !A(x)]\lif \lnot \lforall[x][!A(x)]$}
+\end{prooftree}
+Bir çelişkiye ulaşmaya yaklaşmış görünüyoruz. Uygulanacak en kolay kural,
+özdeğişken koşulu bulunmayan \Elim{\lforall} kuralıdır. Evrensel
+niceleyicinin bağladığı $x$ yerine istediğimiz herhangi bir terimi
+koyabildiğimiz için, çelişkiye ulaşmak amacıyla $a$'yı kullanmaya devam
+etmek en uygunudur.
+\begin{prooftree}
+\AxiomC{$\Discharge{\lexists[x][\lnot !A(x)]}{1}$}
+\AxiomC{$\Discharge{\lnot !A(a)}{2}$}
+\AxiomC{$\Discharge{\lforall[x][!A(x)]}{3}$}
+\RightLabel{\Elim{\lforall}}
+\UnaryInfC{$!A(a)$}
+\RightLabel{\Elim{\lnot}}
+\BinaryInfC{$\lfalse$}
+\DischargeRule{\Intro{\lnot}}{3}
+\UnaryInfC{$\lnot \lforall[x][!A(x)]$}
+\DischargeRule{\Elim{\lexists}}{2}
+\BinaryInfC{$\lnot \lforall[x][!A(x)]$}
+\DischargeRule{\Intro{\lif}}{1}
+\UnaryInfC{$\lexists[x][\lnot !A(x)]\lif \lnot \lforall[x][!A(x)]$}
+\end{prooftree}
+
+Özellikle niceleyicilerle uğraşırken, bu aşamada özdeğişken koşulunun ihlal
+edilmediğini yeniden denetlemek önemlidir. Uyguladığımız ve özdeğişken
+koşuluna bağlı olan tek kural \Elim{\lexists} olduğundan ve özdeğişken~$a$
+çıkarımın bağlı olduğu kapatılmamış varsayımların hiçbirinde geçmediğinden bu, doğru bir
+!!{derivation} olur.
+\end{ex}
+
+\begin{ex}
+Bazen !!a{formula}, başka !!{formula}s kullanılarak türetilebilir. Bu durumlarda
+kapatılmamış varsayımlarımız olabilir. Hedefimizin yanı sıra varsayımlarımızı
+da izlemek önemlidir.
+
+Şimdi !!a{derivation} kuracağız; hedef !!{formula} $\lexists[x][!C(x,b)]$,
+varsayımlar ise $\lexists[x][(!A(x) \land !B(x))]$ ve
+$\lforall[x][(!B(x) \lif !C(x,b))]$ olsun. Her zamanki gibi sonucu alta
+yazarız.
+\begin{prooftree}
+\AxiomC{}
+\UnaryInfC{$\lexists[x][!C(x,b)]$}
+\end{prooftree}
+
+Kullanabileceğimiz iki öncül vardır. İlkini kullanmak, yani
+$\lexists[x][(!A(x) \land !B(x))]$ ifadesinden $\lexists[x][!C(x, b)]$ için
+!!a{derivation} bulmaya çalışmak üzere \Elim{\lexists} kuralını kullanırız.
+Bu kuralın özdeğişken koşulu olduğundan önce onu uygularız. Şunu elde ederiz:
+\begin{prooftree}
+\AxiomC{$\lexists[x][(!A(x) \land !B(x))]$}
+\AxiomC{$\Discharge{!A(a) \land !B(a)}{1}$}
+\DeduceC{$\lexists[x][!C(x,b)]$}
+\DischargeRule{\Elim{\lexists}}{1}
+\BinaryInfC{$\lexists[x][!C(x,b)]$}
+\end{prooftree}
+Üzerinde çalıştığımız iki varsayımın ortak bileşeni $!B$'dir. Bu noktada
+\Elim{\land} uygulayıp $!B(a)$'yı ayırmak yararlı olabilir.
+\begin{prooftree}
+\AxiomC{$\lexists[x][(!A(x) \land !B(x)])$}
+\AxiomC{$\Discharge{!A(a) 
+\land !B(a)}{1}$}
+\RightLabel{\Elim{\land}}
+\UnaryInfC{$!B(a)$}
+\DeduceC{$\lexists[x][!C(x,b)]$}
+\DischargeRule{\Elim{\lexists}}{1}
+\BinaryInfC{$\lexists[x][!C(x,b)]$}
+\end{prooftree}
+
+Kullanabileceğimiz ikinci varsayım $\lforall[x][(!B(x) \lif !C(x,b))]$'dir.
+Özdeğişken koşulu bulunmadığından \Elim{\lforall} kullanıp $x$'i
+!!{constant}~$a$ ile örnekleyerek $!B(a) \lif !C(a, b)$ elde edebiliriz.
+Artık hem $!B(a) \lif !C(a,b)$ hem de $!B(a)$ elimizdedir. Sonraki adımımız
+\Elim{\lif} kuralının doğrudan bir uygulaması olmalıdır.
+\begin{prooftree}
+\AxiomC{$\lexists[x][(!A(x) \land !B(x))]$}
+\AxiomC{$\lforall[x][(!B(x) \lif !C(x,b))]$}
+\RightLabel{\Elim{\lforall}}
+\UnaryInfC{$!B(a) \lif !C(a,b)$}
+\AxiomC{$\Discharge{!A(a) 
+\land !B(a)}{1}$}
+\RightLabel{\Elim{\land}}
+\UnaryInfC{$!B(a)$}
+\RightLabel{\Elim{\lif}}
+\BinaryInfC{$!C(a,b)$}
+\DeduceC{$\lexists[x][!C(x,b)]$}
+\DischargeRule{\Elim{\lexists}}{1}
+\insertBetweenHyps{\hspace{-5em}}
+\BinaryInfC{$\lexists[x][!C(x,b)]$}
+\end{prooftree}
+Hedefe çok yaklaştık!{} Bir \Intro{\lexists} uygulamasıyla hedefimize
+ulaşırız.
+\begin{prooftree}
+\AxiomC{$\lexists[x][(!A(x) \land !B(x))]$}
+\AxiomC{$\lforall[x][(!B(x) \lif !C(x,b))]$}
+\RightLabel{\Elim{\lforall}}
+\UnaryInfC{$!B(a) \lif !C(a,b)$}
+\AxiomC{$\Discharge{!A(a) 
+\land !B(a)}{1}$}
+\RightLabel{\Elim{\land}}
+\UnaryInfC{$!B(a)$}
+\RightLabel{\Elim{\lif}}
+\BinaryInfC{$!C(a,b)$}
+\RightLabel{\Intro{\lexists}}
+\UnaryInfC{$\lexists[x][!C(x,b)]$}
+\DischargeRule{\Elim{\lexists}}{1}
+\insertBetweenHyps{\hspace{-5em}}
+\BinaryInfC{$\lexists[x][!C(x,b)]$}
+\end{prooftree}
+Her adımda özdeğişken koşullarının ihlal edilmemesini sağladığımız için
+bunun doğru bir !!{derivation} olduğundan emin olabiliriz.
+\end{ex}
+
+\begin{ex}
+$\lforall[x][!A(x)] \lif \lexists[y][!B(y)]$ ve
+$\lnot\lexists[y][!B(y)]$ varsayımlarından bir !!a{derivation} verin; hedef
+!!{formula} $\lnot\lforall[x][!A(x)]$ olsun. Her zamanki gibi hedef
+!!{formula} ifadesini alta yazarak başlarız.
+\begin{prooftree}
+\AxiomC{}
+\UnaryInfC{$\lnot\lforall[x][!A(x)]$}
+\end{prooftree}
+Bu !!{derivation} içindeki son satır bir değilleme olduğundan \Intro{\lnot}
+kullanmayı deneyelim. Bunun için bir çelişkiyi !!{derive} üzere ne
+yapabileceğimizi bulmamız gerekir.
+\begin{prooftree}
+\AxiomC{$\Discharge{\lforall[x][!A(x)]}{1}$}
+\DeduceC{$\lfalse$}
+\DischargeRule{\Intro{\lnot}}{1}
+\UnaryInfC{$\lnot\lforall[x][!A(x)]$}
+\end{prooftree}
+Buraya kadar iyi. \Elim{\lforall} kullanabiliriz; ama bunun hedefimize
+ulaşmaya yardımcı olacağı açık değildir. Onun yerine varsayımlarımızdan
+birini kullanalım. $\lforall[x][!A(x)] \lif \lexists[y][!B(y)]$, yanında
+$\lforall[x][!A(x)]$ ile birlikte \Elim{\lif} kuralını kullanmamızı sağlar.
+\begin{prooftree}
+\AxiomC{$\lforall[x][!A(x)] \lif \lexists[y][!B(y)]$}
+\AxiomC{$\Discharge{\lforall[x][!A(x)]}{1}$}
+\RightLabel{\Elim{\lif}}
+\BinaryInfC{$\lexists[y][!B(y)]$}
+\DeduceC{$\lfalse$}
+\DischargeRule{\Intro{\lnot}}{1}
+\UnaryInfC{$\lnot\lforall[x][!A(x)]$}
+\end{prooftree}
+Artık kullanabileceğimiz son bir varsayım var; bu varsayım \Elim{\lnot}
+kullanarak çelişkiye ulaşmamızı sağlayacak gibi görünüyor.
+\begin{prooftree}
+\AxiomC{$\lnot\lexists[y][!B(y)]$}
+\AxiomC{$\lforall[x][!A(x)] \lif \lexists[y][!B(y)]$}
+\AxiomC{$\Discharge{\lforall[x][!A(x)]}{1}$}
+\RightLabel{\Elim{\lif}}
+\BinaryInfC{$\lexists[y][!B(y)]$}
+\RightLabel{\Elim{\lnot}}
+\BinaryInfC{$\lfalse$}
+\DischargeRule{\Intro{\lnot}}{1}
+\UnaryInfC{$\lnot\lforall[x][!A(x)]$}
+\end{prooftree}
+\end{ex}
+
+\begin{prob}
+Aşağıdakileri gösteren !!{derivation}s verin:
+\begin{enumerate}
+\item $\Proves (\lforall[x][!A(x)] \land \lforall[y][!B(y)]) \lif
+\lforall[z][(!A(z) \land !B(z))]$.
+\item $\Proves (\lexists[x][!A(x)] \lor \lexists[y][!B(y)]) \lif
+\lexists[z][(!A(z) \lor !B(z))]$.
+\item $\lforall[x][(!A(x) \lif !B)] \Proves \lexists[y][!A(y)] \lif !B$.
+\item $\lforall[x][\lnot !A(x)] \Proves \lnot\lexists[x][!A(x)]$.
+\item $\Proves \lnot\lexists[x][!A(x)] \lif \lforall[x][\lnot !A(x)]$.
+\item $\Proves \lnot\lexists[x][\lforall[y][((!A(x,y) \lif \lnot
+!A(y,y)) \land (\lnot !A(y,y) \lif !A(x,y)))]]$.
+\end{enumerate}
+\end{prob}
+
+\begin{prob}
+Aşağıdakileri gösteren !!{derivation}s verin:
+\begin{enumerate}
+\item $\Proves \lnot\lforall[x][!A(x)] \lif \lexists[x][\lnot!A(x)]$.
+\item $(\lforall[x][!A(x)] \lif !B) \Proves \lexists[y][(!A(y) \lif !B)]$.
+\item $\Proves \lexists[x][(!A(x) \lif \lforall[y][!A(y)])]$.
+\end{enumerate}
+(Bunların hepsi $\FalseCl$ kuralını gerektirir.)
+\end{prob}
+
+\end{document}

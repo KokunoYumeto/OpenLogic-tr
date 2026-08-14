@@ -1,0 +1,125 @@
+% Part: computability
+% Chapter: recursive-functions
+% Section: primitive-recursion
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{cmp}{rec}{pre}
+\olsection{İlkel Özyineleme}
+
+Doğal sayıların bir özelliği, her doğal sayıya $0$'dan başlayıp ardıl
+işlemi~$+1$ sonlu sayıda uygulanarak ulaşılabilmesidir: Her doğal sayı
+ya $0$'dır ya da $0$'ın ardılının ... ardılıdır. Bu olgudan
+yararlanarak bir $h\colon\Nat\to\Nat$ fonksiyonu belirtmenin bir yolu
+şudur: (a) $0$ girdisi için $h$'nin değerini belirtmek ve (b) $h(x)$
+değeri verildiğinde $h(x+1)$ değerinin nasıl hesaplanacağını belirtmek.
+(a), $h(0)$ değerini doğrudan verir; dolayısıyla $h$, $0$ için
+tanımlıdır. Şimdi (b)'deki yönergeyi $x=0$ için kullanarak
+$h(1)=h(0+1)$ değerini $h(0)$'dan hesaplarız. Aynı yönergeyi $x=1$
+için kullanıp $h(2)=h(1+1)$ değerini $h(1)$'den hesaplarız ve böyle
+sürdürürüz. Her doğal sayı~$x$ için sonunda $h(x+1)$'i $h(x)$'den
+tanımladığımız adıma ulaşırız; böylece $h$, bütün $x\in\Nat$ için
+tanımlanır.
+
+Örneğin $h\colon\Nat\to\Nat$ fonksiyonunu şu iki denklemle
+belirttiğimizi varsayalım:
+\begin{align*}
+h(0) & =  1\\
+h(x+1) & =  2 \cdot h(x).
+\end{align*}
+Çarpmayı zaten biliyorsak bu denklemler yukarıdaki (a) ve (b) için
+gereken bilgiyi verir. İkinci denklemi art arda uygulayarak
+\begin{align*}
+  h(1) & = 2\cdot h(0) = 2,\\
+  h(2) & = 2\cdot h(1) = 2\cdot 2,\\
+  h(3) & = 2 \cdot h(2) = 2\cdot 2 \cdot 2,\\
+  & \vdots
+\end{align*}
+elde ederiz. Belirttiğimiz fonksiyonun $h(x)=2^x$ olduğunu görürüz.
+
+Doğal sayıların bu ayırt edici özelliği, bu iki ölçütü karşılayan
+yalnızca bir $h$ fonksiyonu bulunduğunu güvence altına alır. Böyle bir
+denklem çiftine $h$ fonksiyonunun \emph{ilkel özyinelemeyle tanımı}
+denir. ``Özyinelemeli'' denmesinin nedeni tanımın, özellikle ikinci
+denklemin, sağ tarafında $h$'nin kendisini içermesidir. ``İlkel''
+denmesinin nedeni ise $h(x+1)$ tanımlanırken yalnızca bir önceki
+değer~$h(x)$'in kullanılmasıdır. Bu, $\Nat$ üzerinde bir fonksiyonu
+özyinelemeyle tanımlamanın en basit yoludur.
+
+Toplama ve çarpma gibi daha temel fonksiyonları da ilkel özyinelemeyle
+tanımlayabiliriz. Ancak bu durumda söz konusu fonksiyonlar iki
+yerlidir. Girdi yerlerinden birini sabitler, özyineleme için ötekini
+kullanırız. Örneğin $\Add(x,y)$ tanımlamak için $x$'i sabitleyip önce
+$y=0$ değerini, ardından $y+1$ değerini $y$ cinsinden tanımlarız.
+$x$ sabit olduğu için tanımlayıcı denklemlerin her iki tarafında da
+görünür:
+\begin{align*}
+\Add(x,0) & = x\\
+\Add(x,y+1) & = \Add(x,y)+1.
+\end{align*}
+Bu denklemler $\Add$ değerini bütün $x$ ve $y$ için belirtir. Örneğin
+$\Add(2,3)$ bulmak için $x=2$ ile tanımlayıcı denklemleri uygularız:
+Birinciyle $\Add(2,0)=2$; ikinciyi art arda kullanarak
+$\Add(2,1)=2+1=3$, $\Add(2,2)=3+1=4$ ve $\Add(2,3)=4+1=5$ buluruz.
+
+$\Add$ tanımının ikinci denkleminin sağ tarafında $+$ kullandık; fakat
+yalnızca $1$ eklemek için. Başka bir deyişle ardıl fonksiyonu
+$\Succ(z)=z+1$ kullandık ve $\Add(x,y+1)$ değerini tanımlamak için onu
+önceki $\Add(x,y)$ değerine uyguladık. Bu nedenle özyinelemeli tanımı,
+önceki değere uyguladığımız tek bir fonksiyon cinsinden verilmiş
+düşünebiliriz. Ancak fonksiyonun yalnızca önceki değere değil, $x$ ve
+$y$'ye de bağlı olmasına izin vermek sakıncalı değildir, hatta bazen
+gereklidir. Şunu ele alalım:
+\begin{align*}
+  \Mult(x,0) & = 0 \\
+  \Mult(x,y+1) & = \Add(\Mult(x,y),x).
+\end{align*}
+Bu, $\Add$ fonksiyonunu hem önceki değer $\Mult(x,y)$'ye hem ilk
+girdi~$x$'e uygulayarak verilen $\Mult$ fonksiyonunun ilkel
+özyinelemeli tanımıdır. $\Mult(x,y)$ değerini bütün $x$ ve $y$ için
+tanımlar. Örneğin $\Mult(2,3)$, sırasıyla $\Mult(2,0)$,
+$\Mult(2,1)$, $\Mult(2,2)$ ve $\Mult(2,3)$ hesaplanarak belirlenir:
+\begin{align*}
+  \Mult(2,0) & = 0\\
+  \Mult(2,1) & = \Mult(2,0+1) =
+  \Add(\Mult(2,0), 2) = \Add(0, 2) = 2\\
+  \Mult(2,2) & = \Mult(2,1+1) =
+  \Add(\Mult(2,1), 2) = \Add(2, 2) = 4\\
+  \Mult(2,3) & = \Mult(2,2+1) =
+  \Add(\Mult(2,2), 2) = \Add(4, 2) = 6.
+\end{align*}
+
+Genel örüntü şudur: Bir $h(x_0,\dots,x_{k-1},y)$ fonksiyonunun ilkel
+özyinelemeli tanımını vermek için iki denklem veririz. Birincisi
+$h(x_0,\dots,x_{k-1},0)$ değerini $h$'ye başvurmadan tanımlar.
+İkincisi $h(x_0,\dots,x_{k-1},y+1)$ değerini
+$h(x_0,\dots,x_{k-1},y)$, öteki girdiler $x_0,\dots,x_{k-1}$ ve $y$
+cinsinden tanımlar. İkinci denklemde yalnızca $h$'nin hemen önceki
+değeri kullanılabilir. Bu iki denklemin sağ taraflarında verilen
+işlemleri kendileri $f$ ve $g$ fonksiyonları olarak düşünürsek,
+$h$'yi ilkel özyinelemeyle tanımlamanın genel örüntüsü şöyledir:
+\begin{align*}
+  h(x_0, \dots, x_{k-1}, 0) & = f(x_0, \dots, x_{k-1})\\
+  h(x_0, \dots, x_{k-1}, y+1) & =
+  g(x_0, \dots, x_{k-1}, y, h(x_0, \dots, x_{k-1}, y)).
+\end{align*}
+$\Add$ durumunda $k=1$, $f(x_0)=x_0$ (özdeşlik fonksiyonu) ve
+$g(x_0,y,z)=z+1$ (üçüncü girdisinin ardılını döndüren üç yerli
+fonksiyon) olur:
+\begin{align*}
+  \Add(x_0, 0) & = f(x_0) = x_0\\
+  \Add(x_0, y+1) & = g(x_0, y, \Add(x_0, y)) =
+  \Succ(\Add(x_0, y)).
+\end{align*}
+$\Mult$ durumunda $f(x_0)=0$ (her zaman $0$ döndüren sabit fonksiyon)
+ve $g(x_0,y,z)=\Add(z,x_0)$ (son ve ilk girdisinin toplamını döndüren
+üç yerli fonksiyon) olur:
+\begin{align*}
+  \Mult(x_0,0) & = f(x_0) = 0 \\
+  \Mult(x_0,y+1) & = g(x_0, y, \Mult(x_0,y)) =
+  \Add(\Mult(x_0,y), x_0).
+\end{align*}
+
+\end{document}

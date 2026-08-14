@@ -1,0 +1,38 @@
+% Part: normal-modal-logic
+% Chapter: filtrations
+% Section: S5-decidable
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{nml}{fil}{dec}
+
+\olsection{\Log{S5} Karar Verilebilirdir}
+Sonlu model özelliği, şemalarla verilen modal mantık sistemlerinin
+\emph{karar verilebilir} olduğunu, yani !!a{formula}{}ün sistem içinde
+!!{derivable} olup olmadığını belirleyen hesaplanabilir bir yordam
+bulunduğunu göstermenin kolay bir yolunu verir.
+
+\begin{thm}
+  \Log{S5} karar verilebilirdir.
+\end{thm}
+
+\begin{proof}
+  $!A$ verilsin ve $!A$ içinde geçen !!{propositional variable}s{}nin
+  $p_1$,\dots,$p_k$ arasında bulunduğunu varsayalım. Her $n$ için
+  $p_1$,\dots,$p_k$'ye değer atayan $n$ dünyalı yalnızca sonlu sayıda model
+  olduğundan, \Log{S5}'in bütün teoremlerini sistematik bir biçimde
+  ispatlar üreterek ve $1$, $2$, \dots dünyalı bütün evrensel modelleri üretip
+  $!A$'nın bunlardan birinin bir dünyasında yanlış olup olmadığını denetleyerek
+  \emph{paralel olarak} numaralandırabiliriz. İki paralel süreçten biri
+  sonunda yanıt verecektir; çünkü
+  \olref[com][fra]{thm:generaldet} ile \olref[fmp]{cor:S5fmp} gereğince ya
+  $!A$ !!{derivable}{}dir ya da sonlu bir evrensel modelde yanlıştır.
+\end{proof}
+
+Yukarıdaki ispat \Log{S5} için işler; çünkü evrensel modellerin süzmeleri
+kendiliğinden evrenseldir. Aynısı yansımalılık ve serilik için de geçerlidir;
+öteki özellikler için daha çok çalışma gerekir.
+
+\end{document}

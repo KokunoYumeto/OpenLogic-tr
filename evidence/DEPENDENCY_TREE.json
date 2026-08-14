@@ -2,46 +2,48 @@
   "schema_version": 1,
   "tree_type": "declared_release_dependency_tree",
   "root": {
-    "name": "Turkish Open Logic cumulative edition",
+    "name": "Open Logic Project — complete Turkish edition",
     "language": "tr",
-    "scope": "OLP-0001 through OLP-0062",
+    "scope": "OLP-0001 through OLP-0722; 722/722 frozen content modules",
     "children": [
       {
         "name": "frozen upstream source",
         "commit": "9620cc73f9c8e0ad003c514a5d3748f29611c4c0",
+        "tree": "f67757bb9305b173634082ab4cefd5601a707a34",
         "children": [
-          {"name": "722-row source closure"},
+          {"name": "722-row exact source closure"},
           {"name": "CC BY 4.0 license"},
-          {"name": "localization contract"}
+          {"name": "Open Logic localization contract"}
         ]
       },
       {
         "name": "Turkish editable layer",
         "children": [
-          {"name": "62 contiguous translated modules"},
+          {"name": "722 translated target modules"},
           {"name": "Turkish locale and token configuration"},
-          {"name": "171-row terminology ledger"},
-          {"name": "source-adverse and emendation ledgers"},
-          {"name": "cumulative checkpoint driver"}
+          {"name": "terminology and source-diff ledgers"},
+          {"name": "complete-edition driver"},
+          {"name": "per-target SHA-256 manifest"}
         ]
       },
       {
         "name": "verification layer",
         "children": [
-          {"name": "exact source/hash replay"},
-          {"name": "structural QA PASS 62/62"},
-          {"name": "independent model/agent reviews clean"},
-          {"name": "103-page build and text extraction"},
-          {"name": "103/103 rendered-page inspection"}
+          {"name": "exact source/hash replay: PASS 722/722"},
+          {"name": "structural QA: PASS 722/722"},
+          {"name": "deterministic build: exit 0"},
+          {"name": "text-layer residue scan: PASS"},
+          {"name": "all-page rendered inspection: CLEAN 1,037/1,037"}
         ]
       },
       {
         "name": "publication layer",
         "children": [
-          {"name": "upstream-shaped GitHub workbench release"},
-          {"name": "standalone Turkish GitHub publication repository"},
-          {"name": "Zenodo Turkish concept DOI 10.5281/zenodo.21921844"},
-          {"name": "Zenodo exact version DOI 10.5281/zenodo.21921845"}
+          {"name": "local reader frozen and hashed"},
+          {"name": "exact DOI 10.5281/zenodo.21927145 reserved"},
+          {"name": "stable concept DOI 10.5281/zenodo.21921844"},
+          {"name": "Git tag tr-olp-0722-20260814 planned, not yet created"},
+          {"name": "package, Git release, Zenodo publication, and public readback pending"}
         ]
       }
     ]

@@ -1,0 +1,155 @@
+% Part: normal-modal-logic
+% Chapter: frame-definability
+% Section: second-order-definability
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{nml}{frd}{st}
+
+\olsection{İkinci Dereceden Tanımlanabilirlik}
+
+Modal formüllerle tanımlanabilen her çerçeve özelliği birinci dereceden
+tanımlanabilir değildir. Bununla birlikte bir yerli yüklemler üzerinde
+nicelemeye (yani monadik ikinci dereceden nicelemeye) izin verirsek modal
+olarak tanımlanabilir bütün çerçeve özelliklerini tanımlayabiliriz. Buradaki
+yöntem, modal bir !!{formula}{}ün bir dünyada doğru olduğu koşulları birinci
+dereceden !!{formula}s ile ilişkilendirmenin sistemli bir yolundan
+yararlanmaktır. Bu, modal formüllerin yalnızca erişilebilirlik bağıntısı için
+iki yerli bir $Q$ !!{predicate}{}i değil, bir yerli $P_i$ !!{predicate}{}ini
+de içeren bir dildeki birinci dereceden formüllere ``standart çeviri'' adı verilen çevirisidir;
+ikinciler $!A$ içinde geçen !!{propositional variable}s $\Obj p_i$ içindir.
+
+\begin{defn}
+  \emph{Standart çeviri} $\ST_x(!A)$ tümevarımla şöyle tanımlanır:
+  \begin{enumerate}
+  \tagitem{prvFalse}{\indcase{!A}{\lfalse}{$\ST_x(\indfrm) = \lfalse$.}}{}
+  \tagitem{prvTrue}{\indcase{!A}{\ltrue}{$\ST_x(\indfrm) = \ltrue$.}}{}
+  \item \indcase{!A}{\Obj p_i}{$\ST_x(\indfrm) = \Atom{P_i}{x}$.}
+  \tagitem{prvNot}{\indcase{!A}{\lnot !B}{$\ST_x(\indfrm) = \lnot \ST_x(!B)$.}}{}
+  \tagitem{prvAnd}{\indcase{!A}{(!B \land !C)}{$\ST_x(\indfrm) = (\ST_x(!B)
+      \land \ST_x(!C))$.}}{}
+  \tagitem{prvOr}{\indcase{!A}{(!B \lor !C)}{$\ST_x(\indfrm) = (\ST_x(!B)
+      \lor \ST_x(!C))$.}}{}
+  \tagitem{prvIf}{\indcase{!A}{(!B \lif !C)}{$\ST_x(\indfrm) = (\ST_x(!B)
+      \lif \ST_x(!C))$.}}{}
+  \tagitem{prvIff}{\indcase{!A}{(!B \liff !C)}{$\ST_x(\indfrm) = (\ST_x(!B)
+      \liff \ST_x(!C))$.}}{}
+  \tagitem{prvBox}{\indcase{!A}{\Box !B}{$\ST_x(\indfrm) =
+      \lforall[y][(\Atom{Q}{x,y} \lif \ST_y(!B))]$.}}{}
+  \tagitem{prvDiamond}{\indcase{!A}{\Diamond !B}{$\ST_x(\indfrm) =
+      \lexists[y][(\Atom{Q}{x,y} \land \ST_y(!B))]$.}}{}
+  \end{enumerate}
+\end{defn}
+
+Örneğin $\ST_x(\Box p\lif p)$, $\lforall[y][(\Atom{Q}{x,y}
+  \lif \Atom{P}{y})]\lif\Atom{P}{x}$ olur. $\ST_x(!A)$'nın diline ait
+her !!{structure}, bir evren, $Q$'ya atanan iki yerli bir bağıntı ve bir
+yerli $P_i$ !!{predicate}s{}ine atanan evren alt kümeleri gerektirir. Başka
+bir deyişle böyle !!a{structure}{}nın bileşenleri, tam olarak $!A$ için bir
+modelin bileşenleridir: evren dünyalar kümesidir, $Q$'ya atanan iki yerli
+bağıntı erişilebilirlik bağıntısıdır ve $P_i$'ye atanan alt kümeler tam
+olarak $V(\Obj p_i)$ atamalarıdır. Modal bir modelde $!A$'nın sağlanmasıyla
+karşılık gelen !!{structure} içinde $\ST_x(!A)$'nın sağlanmasının uyuşması
+şaşırtıcı değildir:
+
+\begin{prop}\ollabel{prop:st}
+  $\mModel{M}=\tuple{W,R,V}$ olsun; $\Struct{M'}$, $\Domain{M'}=W$,
+  $\Assign{Q}{M'}=R$ ve $\Assign{P_i}{M'}=V(\Obj p_i)$ olan birinci
+  dereceden !!{structure} olsun ve $s(x)=w$ olsun. O zaman
+  \[
+  \mSat{M}{!A}[w] \text{ ancak ve ancak } \Sat{M'}{\ST_x(!A)}[s]
+  \]
+\end{prop}
+
+\begin{proof}
+  $!A$ üzerinde tümevarımla.
+\end{proof}
+
+\begin{prop}
+  $!A$'nın modal bir !!{formula} ve
+  $\mModel{F}=\tuple{W,R}$'nin bir çerçeve olduğunu varsayalım.
+  $\Struct{F'}$, $\Domain{F'}=W$ ve $\Assign{Q}{F'}=R$ olan birinci
+  dereceden !!{structure} olsun; ayrıca $!A'$ şu ikinci dereceden formül
+  olsun:
+  \[
+  \lforall[X_1][\dots\lforall[X_n][\lforall[x][
+        \SSubst{\ST_x(!A)}{\subst{X_1}{P_1}, \dots,
+          \subst{X_n}{P_n}}]]],
+  \]
+  burada $P_1$, \dots, $P_n$, $\ST_x(!A)$ içindeki bütün bir yerli
+  !!{predicate}s{}dir. O zaman
+  \[
+  \mModel{F} \Entails !A \text{ ancak ve ancak } \Sat{F'}{!A'}
+  \]
+\end{prop}
+
+\begin{proof}
+  $\Sat{F'}{!A'}$ ancak ve ancak $i=1$, \dots, $n$ için
+  $\Assign{P_i}{M'}\subseteq W$ olan her !!{structure} $\mModel{M'}$ ve
+  $s(x)\in W$ olan her $s$ için $\Sat{M'}{\ST_x(!A)}[s]$ ise geçerlidir.
+  \olref{prop:st} gereğince bu, ancak ve ancak $\mModel{F}$'ye dayanan bütün
+  $\mModel{M}$ modelleri ve her $w\in W$ dünyası için
+  $\mSat{M}{!A}[w]$, yani $\mModel{F}\Entails !A$ ise geçerlidir.
+\end{proof}
+
+\begin{defn}
+  Bir $\mClass{F}$ çerçeveler sınıfına, ikinci dereceden dilde öyle bir
+  !!a{sentence} $!A$ varsa \emph{ikinci dereceden tanımlanabilir} denir:
+  bu dil tek bir iki yerli !!{predicate} $P$ ile yalnızca monadik küme
+  değişkenleri üzerinde niceleyiciler içerir ve
+  $\mModel{F}=\tuple{W,R}\in\mClass{F}$ olması, $\Domain{M}=W$ ve
+  $\Assign{P}{M}=R$ olan !!{structure} $\Struct{M}$ içinde
+  $\Sat{M}{!A}$ olmasına denktir.
+\end{defn}
+
+\begin{cor}
+  Bir çerçeveler sınıfı !!a{formula} $!A$ ile tanımlanabiliyorsa, karşılık
+  gelen erişilebilirlik bağıntıları sınıfı monadik ikinci dereceden bir
+  tümceyle tanımlanabilir.
+\end{cor}
+
+\begin{proof}
+  Önceki ispatta verilen monadik ikinci dereceden $!A'$ tümcesi gerekli
+  özelliğe sahiptir.
+\end{proof}
+
+Örnek olarak yine $\Box p\lif p$ !!{formula}{}ü ele alalım. Bu formül
+yansımalılığı tanımlar. Yansımalılık elbette $\lforall[x][\Atom{Q}{x,x}]$
+!!{sentence}{}yle birinci dereceden tanımlanabilir. Ancak şu monadik ikinci
+dereceden !!{sentence} ile de tanımlanabilir:
+\[
+\lforall[X][\lforall[x][(\lforall[y][(\Atom{Q}{x,y} \lif \Atom{X}{y})]
+    \lif \Atom{X}{x})]].
+\]
+Bu, elbette iki tümcenin denk olduğu anlamına gelir. Bunu doğrudan şöyle
+görebilirsiniz: önce ikinci dereceden tümcenin !!a{structure}
+$\Struct{M}$ içinde doğru olduğunu varsayalım. $x$ ve $X$ evrensel olarak
+nicelendiğinden kalan bölüm, herhangi bir $x\in W$ ve $X\subseteq W$ kümesi,
+örneğin $R=\Assign{Q}{M}$ olmak üzere $\Setabs{z}{Rxz}$ kümesi için geçerli
+olmalıdır. Dolayısıyla $s(x)\in W$ ve $s(X)=\Setabs{z}{Rxz}$ olan herhangi
+bir $s$ için $\Sat{M}{\lforall[y][(\Atom{Q}{x,y}\lif
+    \Atom{X}{y})]\lif\Atom{X}{x}}$ olur. Ancak $s(X)$'i seçme biçimimize
+göre bu, $\Sat{M}{\lforall[y][(\Atom{Q}{x,y}\lif
+    \Atom{Q}{x,y})]\lif\Atom{Q}{x,x}}[s]$ demektir; önbileşen geçerli
+olduğundan bu da $\Atom{Q}{x,x}$'e denktir. $s(x)$ gelişigüzel olduğundan
+$\Sat{M}{\lforall[x][\Atom{Q}{x,x}]}$ elde edilir.
+
+Şimdi $\Sat{M}{\lforall[x][\Atom{Q}{x,x}]}$ olduğunu varsayalım ve
+$\Sat{M}{\lforall[X][\lforall[x][(\lforall[y][(\Atom{Q}{x,y} \lif
+        \Atom{X}{y})] \lif \Atom{X}{x})]]}$ olduğunu gösterelim.
+Gelişigüzel bir $s$ ataması seçip
+$\Sat{M}{\lforall[y][(\Atom{Q}{x,y}\lif\Atom{X}{y})]}[s]$ olduğunu
+varsayalım. $s'$, $s'(y)=s(x)$ olan $s$'nin $y$-değişkesi olsun;
+$\Sat{M}{\Atom{Q}{x,y}\lif\Atom{X}{y}}[s']$, yani
+$\Sat{M}{\Atom{Q}{x,x}\lif\Atom{X}{x}}[s]$ olur.
+$\Sat{M}{\lforall[x][\Atom{Q}{x,x}]}$ olduğundan önbileşen doğrudur ve
+göstermemiz gereken $\Sat{M}{\Atom{X}{x}}[s]$ sonucunu elde ederiz.
+
+Tanımlanabilir bazı çerçeve sınıfları birinci dereceden tanımlanabilir
+olmadığından, $!A'$ biçimindeki her monadik ikinci dereceden !!{sentence}
+birinci dereceden bir !!{sentence}{}ye denk değildir. Hangilerinin denk olduğuna
+karar veren etkin bir yöntem yoktur.
+
+\end{document}

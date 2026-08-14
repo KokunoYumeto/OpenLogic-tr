@@ -1,0 +1,90 @@
+% Part: computability
+% Chapter: recursive-functions
+% Section: halting-problem
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{cmp}{rec}{hlt}
+\olsection{Durma Problemi}
+
+Genel olarak \emph{durma problemi}, hesaplanabilir bir fonksiyonun belirtimi
+$e$ (örneğin programı) ile bir $n$ sayısı verildiğinde, bu fonksiyonun $n$
+girdisindeki hesabının durup durmadığına, yani bir sonuç üretip üretmediğine
+karar verme problemidir. Alan Turing, bu problemin kendisinin hesaplanabilir
+bir fonksiyonla çözülemeyeceğini ünlü biçimde ispatladı. Yani
+\[
+  h(e,n)=\begin{cases}
+    1 & \text{$e$ hesabı $n$ girdisinde duruyorsa}\\
+    0 & \text{aksi durumda}
+  \end{cases}
+\]
+fonksiyonu hesaplanabilir değildir.
+
+Kısmi özyinelemeli fonksiyonlar bağlamında bir program belirtiminin rolünü,
+Kleene normal biçim teoreminde verilen $e$ indisi oynayabilir. $f$ kısmi
+özyinelemeli bir fonksiyonsa normal biçim teoremindeki denklemin geçerli
+olduğu her $e$, $f$'nin bir indisidir. Bir $e$ sayısı verildiğinde normal
+biçim teoremi
+\[
+  \cfind{e}(x)\simeq U(\mu s\;T(e,x,s))
+\]
+fonksiyonunun kısmi özyinelemeli olduğunu ve her kısmi özyinelemeli
+$f\colon\Nat\to\Nat$ için bütün $x\in\Nat$ değerlerinde
+$\cfind{e}(x)\simeq f(x)$ olacak bir $e\in\Nat$ bulunduğunu söyler. Aslında
+her böyle $f$ için yalnızca bir değil, sonsuz sayıda böyle $e$ vardır.
+\emph{Durma fonksiyonu}~$h$ şöyle tanımlanır:
+\[
+  h(e,x)=\begin{cases}
+    1 & \text{$\cfind{e}(x)\fdefined$ ise}\\
+    0 & \text{aksi durumda.}
+  \end{cases}
+\]
+$\cfind{e}(x)\fundefined$ ise $h(e,x)=0$ olduğuna; kaynağın indis
+gösterimini kısmi bıraktığı okumada $e$ hiçbir kısmi özyinelemeli fonksiyonun
+indisi değilse de aynı değerin verildiğine dikkat edin.
+
+\begin{thm}
+\ollabel{thm:halting-problem}
+Durma fonksiyonu $h$ kısmi özyinelemeli değildir.
+\end{thm}
+
+\begin{proof}
+$h$ kısmi özyinelemeli olsaydı
+\[
+  d(y)=\begin{cases}
+    1 & \text{$h(y,y)=0$ ise}\\
+    \umin{x}{x\neq x} & \text{aksi durumda}
+  \end{cases}
+\]
+fonksiyonunu tanımlayabilirdik. Hiçbir $x$ sayısı $x\neq x$ koşulunu
+sağlamadığından $\umin{x}{x\neq x}$ yoktur ve
+$d(y)\fundefined$ ancak ve ancak $h(y,y)\neq0$ olduğunda geçerlidir.
+Tanımdan şunlar çıkar:
+\begin{enumerate}
+\item $d(y)\fdefined$ ancak ve ancak $\cfind{y}(y)\fundefined$ olduğunda ya
+  da $y$ hiçbir kısmi özyinelemeli fonksiyonun indisi olmadığında geçerlidir.
+\item $d(y)\fundefined$ ancak ve ancak $\cfind{y}(y)\fdefined$ olduğunda
+  geçerlidir.
+\end{enumerate}
+$h$ kısmi özyinelemeli olsaydı $d$ de kısmi özyinelemeli olurdu. O zaman
+Kleene normal biçim teoremi uyarınca $d$'nin bir $e_d$ indisi bulunurdu.
+$h(e_d,e_d)$ değerini ele alalım. İki olası durum vardır: $0$ ve $1$.
+\begin{enumerate}
+\item $h(e_d,e_d)=1$ ise $\cfind{e_d}(e_d)\fdefined$ olur. Fakat
+  $\cfind{e_d}\simeq d$ ve $d(e_d)$ ancak ve ancak $h(e_d,e_d)=0$ ise
+  tanımlıdır. Dolayısıyla $h(e_d,e_d)\neq1$.
+\item $h(e_d,e_d)=0$ ise ya $e_d$ hiçbir kısmi özyinelemeli fonksiyonun
+  indisi değildir ya da bir indistir ve $\cfind{e_d}(e_d)\fundefined$ olur.
+  Fakat yine $\cfind{e_d}\simeq d$ ve $d(e_d)$ ancak ve ancak
+  $\cfind{e_d}(e_d)\fdefined$ ise tanımsızdır.
+\end{enumerate}
+Sonuçta $e_d$ gerçekte bir kısmi özyinelemeli fonksiyonun indisi olamaz.
+Oysa $h$ kısmi özyinelemeli olsaydı $d$ de öyle olur ve $e_d$'yi onun bir
+indisi olarak tanımlamamız geçerli olurdu. Öyleyse $h$ kısmi özyinelemeli
+olamaz.
+\end{proof}
+
+\end{document}
+

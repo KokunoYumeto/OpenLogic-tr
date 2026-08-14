@@ -1,0 +1,104 @@
+% Part: first-order-logic
+% Chapter: completeness
+% Section: lindenbaums-lemma
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[tr]{fol}{com}{lin}}
+      {\olfileid[tr]{pl}{com}{lin}}
+
+\olsection{Lindenbaum Lemması}
+
+\begin{explain}
+Şimdi, tutarlı herhangi bir !!{sentence}s kümesinin yalnızca tutarlı
+değil, aynı zamanda !!{complete} olan bir tümceler kümesinde
+bulunduğunu gösteren bir lemma ispatlayacağız. İspat, her adımda kümenin
+tutarlı kalmasını güvence altına alarak bir seferde bir !!{sentence}
+ekler. Bunu, her~$!A$ için bir aşamada ya $!A$ ya da $\lnot !A$
+eklenecek biçimde yaparız. Kuruluşun bütün aşamalarının birleşimi, her
+$!A$ için ya $!A$'yı ya da değillemesi~$\lnot !A$'yı içerir ve bu
+nedenle tamdır. Her aşamada tutarsızlık sokmamaya dikkat ettiğimizden
+aynı zamanda tutarlıdır.
+\end{explain}
+
+\begin{lem}[Lindenbaum Lemması]
+\ollabel{lem:lindenbaum} Bir~$\Lang L$ dilindeki her tutarlı
+$\Gamma$ kümesi, !!a{complete} ve tutarlı bir~$\Gamma^*$ kümesine
+genişletilebilir.
+\end{lem}
+
+\begin{proof}
+$\Gamma$ tutarlı olsun. $!A_0$, $!A_1$, \dots,~$\Lang L$ dilindeki
+bütün !!{sentence}s ifadelerinin bir numaralandırması olsun.
+$\Gamma_0=\Gamma$ olarak ve
+\[
+\Gamma_{n+1} =
+\begin{cases}
+\Gamma_n \cup \{ !A_n \} & \textrm{$\Gamma_n \cup \{!A_n\}$
+  tutarlıysa;} \\
+\Gamma_n \cup \{ \lnot !A_n \} & \textrm{aksi halde}
+\end{cases}
+\]
+biçiminde tanımlansın. $\Gamma^*=\bigcup_{n\geq0}\Gamma_n$ olsun.
+
+Her $\Gamma_n$ tutarlıdır: $\Gamma_0$ tanım gereği tutarlıdır.
+$\Gamma_{n+1}=\Gamma_n\cup\{!A_n\}$ ise bunun nedeni bu son kümenin
+tutarlı olmasıdır. Tutarlı değilse $\Gamma_{n+1}=\Gamma_n\cup
+\{\lnot !A_n\}$ olur. $\Gamma_n\cup\{\lnot !A_n\}$ kümesinin tutarlı
+olduğunu doğrulamamız gerekir. Tutarlı olmadığını varsayalım. O zaman
+hem $\Gamma_n\cup\{!A_n\}$ hem de $\Gamma_n\cup\{\lnot !A_n\}$
+tutarsızdır. Bu,
+\iftag{FOL}{%
+  \tagrefs{prfAX/{fol:axd:prv:prop:provability-exhaustive},
+    prfSC/{fol:seq:prv:prop:provability-exhaustive},
+    prfND/{fol:ntd:prv:prop:provability-exhaustive},
+    prfTab/{fol:tab:prv:prop:provability-exhaustive}}}{%
+  \tagrefs{prfAX/{pl:axd:prv:prop:provability-exhaustive},
+    prfSC/{pl:seq:prv:prop:provability-exhaustive},
+    prfND/{pl:ntd:prv:prop:provability-exhaustive},
+    prfTab/{pl:tab:prv:prop:provability-exhaustive}}}
+uyarınca $\Gamma_n$ kümesinin tutarsız olması demektir; bu da
+tümevarım varsayımına aykırıdır.
+
+Her~$n$ ve her $i<n$ için $\Gamma_i\subseteq\Gamma_n$. Bu,~$n$
+üzerinde basit bir tümevarımla çıkar. $n=0$ olduğunda $i<0$ olan
+hiçbir~$i$ yoktur; dolayısıyla sav kendiliğinden geçerlidir. Tümevarım
+adımında savın~$n$ için doğru olduğunu varsayalım. $i<n+1$ ise
+$\Gamma_i\subseteq\Gamma_{n+1}$ olduğunu gösterelim. Kuruluş gereği
+$\Gamma_{n+1}=\Gamma_n\cup\{!A_n\}$ ya da
+$\Gamma_{n+1}=\Gamma_n\cup\{\lnot !A_n\}$; dolayısıyla
+$\Gamma_n\subseteq\Gamma_{n+1}$. $i<n+1$ ise tümevarım varsayımıyla
+($i<n$ durumunda) ya da $\Gamma_n\subseteq\Gamma_n$ apaçık olgusuyla
+($i=n$ durumunda) $\Gamma_i\subseteq\Gamma_n$ olur. $\subseteq$
+bağıntısının geçişliliğinden $\Gamma_i\subseteq\Gamma_{n+1}$ elde
+ederiz.
+
+Buradan $\Gamma^*$ kümesinin tutarlı olduğu çıkar. Nedeni şudur:
+$\Gamma'\subseteq\Gamma^*$ sonlu olsun. Boş alt küme durumu açıktır;
+bundan sonra alt kümenin boş olmadığını varsayalım. Her
+$!B\in\Gamma'$ bir~$i$ için $\Gamma_i$ içinde de bulunur. Bu indislerin en büyüğüne
+$n$ diyelim. $i\leq n$ ise $\Gamma_i\subseteq\Gamma_n$ olduğundan,
+$!B\in\Gamma'$ olan her ifade için $!B\in\Gamma_n$ olur; yani
+$\Gamma'\subseteq\Gamma_n$ ve $\Gamma_n$ tutarlıdır. Böylece
+her sonlu $\Gamma'\subseteq\Gamma^*$ tutarlıdır.
+\iftag{FOL}{%
+  \tagrefs{prfAX/{fol:axd:ptn:prop:proves-compact},
+    prfSC/{fol:seq:ptn:prop:proves-compact},
+    prfND/{fol:ntd:ptn:prop:proves-compact},
+    prfTab/{fol:tab:ptn:prop:proves-compact}}}{%
+  \tagrefs{prfAX/{pl:axd:ptn:prop:proves-compact},
+    prfSC/{pl:seq:ptn:prop:proves-compact},
+    prfND/{pl:ntd:ptn:prop:proves-compact},
+    prfTab/{pl:tab:ptn:prop:proves-compact}}}
+uyarınca $\Gamma^*$ tutarlıdır.
+
+$\Frm[L]$ içindeki her !!{sentence},~$\Gamma^*$ tanımlanırken kullanılan
+listede bulunur. $!A_n\notin\Gamma^*$ ise bunun nedeni
+$\Gamma_n\cup\{!A_n\}$ kümesinin tutarsız olmasıdır. Fakat bu durumda
+$\lnot !A_n\in\Gamma^*$ olur; dolayısıyla $\Gamma^*$ !!{complete}{}dır.
+\end{proof}
+
+\end{document}

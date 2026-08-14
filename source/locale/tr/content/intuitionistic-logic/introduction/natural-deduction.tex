@@ -1,0 +1,261 @@
+% part: intuitionistic-logic
+% chapter: introduction
+% section: natural-deduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{int}{int}{ntd}
+
+\olsection{Doğal Tümdengelim}
+
+$\FalseCl$ kuralları bulunmayan doğal tümdengelim, sezgici mantık için
+standart bir !!{derivation} sistemidir. Kuralları burada yeniden veriyor ve
+güdülerini BHK yorumunu kullanarak açıklıyoruz. Her durumda kuralı, öncüllerin
+inşaları varsa sonucun da bir inşası bulunduğu sonucuna varmamıza izin veren
+bir kural olarak düşünebiliriz.
+
+Doğal tümdengelim !!{derivation}s{}inde kapatılmamış varsayımlar bulunduğundan,
+böyle !!a{derivation}{}i---sözgelimi $!A$'yı kapatılmamış~$\Gamma$
+!!{undischarged} varsayımlarından türeten birini---tüm $!B \in \Gamma$'ların
+inşalarını~$!A$'nın bir inşasına dönüştüren bir fonksiyon olarak görmeliyiz.
+!!a{derivation},~$!A$'yı hiçbir !!{undischarged} varsayıma dayanmadan veriyorsa
+BHK yorumu anlamında~$!A$'nın bir inşası vardır. Bununla
+birlikte tartışma sırasında gerekmediğinde~$\Gamma$'yı göstermeyeceğiz.
+
+Tek başına bir~$!A$ varsayımı,~$!A$'nın !!a{derivation}{}idir; buradaki
+!!{undischarged} varsayım~$!A$'dır. Bu, BHK yorumuyla uyuşur: inşalar üzerindeki
+özdeşlik fonksiyonu,~$!A$'nın her inşasını~$!A$'nın bir inşasına dönüştürür.
+
+\subsection{Ve Bağlacı}
+
+\begin{defish}
+\AxiomC{$!A$}
+\AxiomC{$!B$}
+\RightLabel{\Intro{\land}}
+\BinaryInfC{$!A \land !B$}
+\DisplayProof
+\hfill
+\begin{tabular}{l}
+\AxiomC{$!A \land !B$}
+\RightLabel{\Elim{\land}}
+\UnaryInfC{$!A$}
+\DisplayProof
+\\[3ex]
+\AxiomC{$!A \land !B$}
+\RightLabel{\Elim{\land}}
+\UnaryInfC{$!B$}
+\DisplayProof
+\end{tabular}
+\end{defish}
+
+Birer $N_1$, $N_2$ inşasına sahip olduğumuzu varsayın; bunlar sırasıyla
+$!A_1$ ile $!A_2$'nin inşalarıdır. O zaman $!A_1 \land !A_2$'nin de bir
+inşasına, yani $\tuple{N_1,
+N_2}$ çiftine sahibiz.
+
+BHK yorumuna göre $!A_1 \land !A_2$'nin bir inşası bir $\tuple{N_1, N_2}$
+çiftidir. Öyleyse böyle bir çiftimiz olduğunu varsayın. Bu durumda her bir
+bileşenin de bir inşasına sahibiz: $N_1$,~$!A_1$'in; $N_2$ ise $!A_2$'nin
+bir inşasıdır.
+
+\subsection{Koşul}
+
+\begin{defish}
+  \AxiomC{$\Discharge{!A}{u}$}
+  \DeduceC{$!B$}
+  \DischargeRule{$\Intro{\lif}$}{u}
+  \UnaryInfC{$!A \lif !B$}
+  \DisplayProof
+\hfill
+  \AxiomC{$!A \lif !B$}
+  \AxiomC{$!A$}
+  \RightLabel{$\Elim{\lif}$}
+  \BinaryInfC{$!B$}
+  \DisplayProof
+\end{defish}
+
+$!B$'nin kapatılmamış~$!A$ varsayımından !!a{derivation}{}ine ve bu varsayımın
+!!{undischarged} kaldığı bir türetime sahipsek bir~$f$ fonksiyonu vardır; bu
+fonksiyon~$!A$'nın inşalarını~$!B$'nin inşalarına dönüştürür. Aynı fonksiyon
+$!A \lif !B$'nin bir inşasıdır. Dolayısıyla
+$\Intro\lif$ kuralının öncülünün~$!A$'nın bir inşasına bağlı bir inşası varsa,
+sonuç $!A \lif !B$'nin de bir inşası vardır.
+
+Öte yandan, bir~$N$ inşası bulunduğunu, bunun~$!A$'nın inşası olduğunu ve
+ayrıca bir~$f$ inşası bulunduğunu, bunun da $!A \lif !B$'nin inşası olduğunu
+varsayın. $!A \lif !B$'nin inşası,
+$!A$'nın inşalarını~$!B$'nin
+inşalarına dönüştüren bir fonksiyondur. Öyleyse $f(N)$,~$!B$'nin bir inşasıdır;
+yani $\Elim\lif$ kuralının sonucunun bir inşası vardır.
+
+\subsection{Veya Bağlacı}
+
+\begin{defish}
+\begin{tabular}{l}
+\AxiomC{$!A$}
+\RightLabel{\Intro{\lor}}
+\UnaryInfC{$!A \lor !B$}
+\DisplayProof
+\\[3ex]
+\AxiomC{$!B$}
+\RightLabel{\Intro{\lor}}
+\UnaryInfC{$!A \lor !B$}
+\DisplayProof
+\end{tabular}
+\hfill
+\AxiomC{$!A \lor !B$}
+\AxiomC{$\Discharge{!A}{n}$}
+\DeduceC{$!C$}
+\AxiomC{$\Discharge{!B}{n}$}
+\DeduceC{$!C$}
+\DischargeRule{\Elim{\lor}}{n}
+\TrinaryInfC{$!C$}
+\DisplayProof
+\end{defish}
+
+Bir~$N_i$ inşasına sahipsek ve bu~$!A_i$'nin inşasıysa, onu bir
+$\tuple{i, N_i}$ inşasına, yani~$!A_1 \lor !A_2$'nin inşasına
+dönüştürebiliriz. Öte yandan, $!A_1 \lor !A_2$'nin bir inşasına, yani bir
+$\tuple{i, N_i}$ çiftine sahip olduğumuzu varsayın; burada $N_i$,~$!A_i$'nin
+inşasıdır. Ayrıca $f_1$, $f_2$ fonksiyonlarının sırasıyla $!A_1$, $!A_2$
+inşalarını~$!C$ inşalarına dönüştürdüğünü varsayın. O zaman $f_i(N_i)$,
+~$!C$'nin, yani~$\Elim\lor$ kuralının sonucunun bir inşasıdır.
+
+\subsection{Saçmalık}
+
+\begin{defish}
+  \AxiomC{$\lfalse$}
+  \RightLabel{\FalseInt}
+  \UnaryInfC{$!A$}
+  \DisplayProof
+\end{defish}
+
+$\lfalse$'ın kapatılmamış~$!B_1$, \dots, $!B_n$ varsayımlarından
+!!a{derivation}{}ine ve bu varsayımların !!{undischarged} kaldığı bir türetime
+sahipsek, bir $f(M_1, \dots, M_n)$ fonksiyonu vardır; bu fonksiyon $!B_1$,
+\dots, $!B_n$'nin inşalarını $\lfalse$'ın bir inşasına dönüştürür.
+$\lfalse$'ın hiçbir inşası olmadığından, $!B_1$, \dots, $!B_n$'nin tümünün
+inşaları da bulunamaz. Dolayısıyla $f$ şu özelliğe de sahiptir:
+\emph{eğer} $M_1$, \dots, $M_n$ sırasıyla $!B_1$, \dots, $!B_n$'nin
+inşalarıysa, \emph{o zaman} $f(M_1, \dots, M_n)$,~$!A$'nın bir inşasıdır.
+
+\subsection{$\lnot$ için Kurallar}
+
+$\lnot !A$, $!A \lif \lfalse$ olarak tanımlandığından, kesin konuşmak
+gerekirse~$\lnot$ için kurallara ihtiyacımız yoktur. Yine de kurallarımız
+olsaydı şöyle görünürlerdi:
+
+\begin{defish}
+\AxiomC{$\Discharge{!A}{n}$}
+\noLine
+\DeduceC{$\lfalse$}
+\DischargeRule{\Intro{\lnot}}{n}
+\UnaryInfC{$\lnot !A$}
+\DisplayProof
+\hfill
+\AxiomC{$\lnot !A$}
+\AxiomC{$!A$}
+\RightLabel{\Elim{\lnot}}
+\BinaryInfC{$\lfalse$}
+\DisplayProof
+\end{defish}
+
+
+\subsection{\usetoken{P}{derivation} Örnekleri}
+
+\begin{enumerate}
+\item $\Proves !A \lif (\lnot !A \lif \lfalse)$, yani $\Proves !A
+  \lif ((!A \lif \lfalse) \lif \lfalse)$
+  \begin{prooftree}
+    \AxiomC{$\Discharge{!A}{2}$}
+    \AxiomC{$\Discharge{!A \lif \lfalse}{1}$}
+    \RightLabel{\Elim\lif}
+    \BinaryInfC{$\lfalse$}
+    \DischargeRule{\Intro\lif}{1}
+    \UnaryInfC{$(!A \lif \lfalse)\lif \lfalse$}
+    \DischargeRule{\Intro\lif}{2}
+    \UnaryInfC{$!A \lif (!A \lif \lfalse) \lif \lfalse$}
+  \end{prooftree}
+
+\item $\Proves ((!A \land !B) \lif !C) \lif (!A \lif (!B \lif !C))$
+  \begin{prooftree}
+    \AxiomC{$\Discharge{(!A \land !B) \lif !C}{3}$}
+    \AxiomC{$\Discharge{!A}{2}$}
+    \AxiomC{$\Discharge{!B}{1}$}
+    \RightLabel{\Intro\land}
+    \BinaryInfC{$!A \land !B$}
+    \RightLabel{\Elim\lif}
+    \BinaryInfC{$!C$}
+    \DischargeRule{\Intro\lif}{1}
+    \UnaryInfC{$!B \lif !C$}
+    \DischargeRule{\Intro\lif}{2}
+    \UnaryInfC{$!A \lif (!B \lif !C)$}
+    \DischargeRule{\Intro\lif}{3}
+    \UnaryInfC{$((!A \land !B) \lif !C) \lif (!A \lif (!B \lif !C))$}
+  \end{prooftree}
+
+\item $\Proves \lnot(!A \land \lnot !A)$, yani $\Proves (!A \land (!A
+  \lif \lfalse))\lif \lfalse$
+  \begin{prooftree}
+    \AxiomC{$\Discharge{!A \land (!A \lif \lfalse)}{1}$}
+    \RightLabel{\Elim\land}
+    \UnaryInfC{$!A \lif \lfalse$}
+    \AxiomC{$\Discharge{!A \land (!A \lif \lfalse)}{1}$}
+    \RightLabel{\Elim\land}
+    \UnaryInfC{$!A$}
+    \RightLabel{\Elim\lif}
+    \BinaryInfC{$\lfalse$}
+    \DischargeRule{\Intro\lif}{1}
+    \UnaryInfC{$(!A \land (!A \lif \lfalse))\lif \lfalse$}
+  \end{prooftree}
+
+\item $\Proves \lnot\lnot(!A \lor \lnot !A)$, yani $\Proves ((!A \lor
+  (!A \lif \lfalse))\lif \lfalse)\lif \lfalse$
+  \begin{prooftree}\hskip-3em
+    \AxiomC{$\Discharge{(!A \lor (!A \lif \lfalse))\lif \lfalse}{2}$}
+    \AxiomC{$\Discharge{(!A \lor (!A \lif \lfalse))\lif \lfalse}{2}$}
+    \AxiomC{$\Discharge{!A}{1}$}
+    \RightLabel{\Intro\lor}
+    \UnaryInfC{$!A \lor (!A \lif \lfalse)$}
+    \RightLabel{\Elim\lif}
+    \BinaryInfC{$\lfalse$}
+    \DischargeRule{\Intro\lif}{1}
+    \UnaryInfC{$!A \lif \lfalse$}
+    \RightLabel{\Intro\lor}
+    \UnaryInfC{$!A \lor (!A \lif \lfalse)$}
+    \RightLabel{\Elim\lif}
+    \insertBetweenHyps{\hskip -4em}
+    \BinaryInfC{$\lfalse$}
+    \DischargeRule{\Intro\lif}{2}
+    \UnaryInfC{$((!A \lor (!A \lif \lfalse))\lif \lfalse)\lif \lfalse$}
+  \end{prooftree}
+\end{enumerate}
+
+\begin{prop}
+  Sezgici mantık için doğal tümdengelimde $\Gamma \Proves !A$ ise klasik
+  mantıkta da $\Gamma \Proves !A$ olur. Özellikle $!A$ sezgici bir teoremse
+  klasik bir teoremdir.
+\end{prop}
+
+\begin{proof}
+  Her doğal tümdengelim kuralı aynı zamanda klasik doğal tümdengelimin de bir
+  kuralıdır; dolayısıyla sezgici mantıktaki her !!{derivation}, klasik mantıkta
+  da !!a{derivation}{}dir.
+\end{proof}
+
+\begin{prob}
+  Sezgici mantıkta !!{derivation} vererek aşağıdaki !!{formula}s{}i türetin:
+  \begin{enumerate}
+    \item $(\lnot !A \lor !B) \lif (!A \lif !B)$
+    \item $\lnot\lnot\lnot !A \lif \lnot !A$
+    \item $\lnot\lnot (!A \land !B) \liff (\lnot\lnot !A\land \lnot \lnot !B)$
+    \item $\lnot (!A \lor !B) \liff (\lnot !A \land \lnot !B)$
+    \item $(\lnot !A \lor \lnot !B) \lif \lnot (!A \land !B)$
+    \item $\lnot\lnot ( !A \land !B) \lif  (\lnot\lnot !A \lor
+    \lnot\lnot !B)$
+  \end{enumerate}
+\end{prob}
+
+\end{document}

@@ -1,0 +1,33 @@
+% Part: normal-modal-logic
+% Chapter: completeness
+% Section: canonical-models
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{nml}{com}{cmd}
+
+\olsection{Kanonik Modeller}
+
+Bir $\Sigma$ modal sistemi için \emph{kanonik model}, dünyaları bütün tam
+$\Sigma$-tutarlı kümeler olan belirli bir $\mModel{M^\Sigma}$ modelidir.
+Erişilebilirlik bağıntısı $R^\Sigma$ ile değerlemesi $V^\Sigma$, bir
+$\Delta$ dünyasında doğru olan !!{formula}s{}in tam olarak $\Delta$'yı
+oluşturan !!{formula}s olmasını güvence altına alacak biçimde tanımlanır.
+
+\begin{defn}
+  $\Sigma$ normal bir modal mantık olsun. $\Sigma$ için \emph{kanonik model}
+  $\mModel{M}^\Sigma=\tuple{W^\Sigma,R^\Sigma,V^\Sigma}$'dır; burada:
+  \begin{enumerate}
+  \item $W^\Sigma = \Setabs{ \Delta }{\Delta \text{
+      tam ve $\Sigma$-tutarlıdır} }$.
+  \item $R^\Sigma\Delta\Delta'$ ancak ve ancak
+    \iftag{prvBox}{$\Box^{-1}\Delta\subseteq
+      \Delta'$}{$\Diamond\Delta'\subseteq\Delta$} ise geçerlidir.
+  \item $V^\Sigma(p)=\Setabs{\Delta}{p\in\Delta}$.
+  \end{enumerate}
+\end{defn}
+
+
+\end{document}

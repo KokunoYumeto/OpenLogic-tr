@@ -1,0 +1,58 @@
+% Part: first-order-logic
+% Chapter: sequent-calculus
+% Section: provability-quantifiers
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{fol}{seq}{qpr}
+\olsection{\usetoken{S}{derivability} ve Niceleyiciler}
+
+\begin{explain}
+  Tamlık teoremi ayrıca sekant hesabı kurallarının bu kısımda ortaya konan
+  $\Proves$ hakkındaki olguları vermesini gerektirir.
+\end{explain}
+
+\begin{thm}
+\ollabel{thm:strong-generalization} $c$, $\Gamma$ veya $!A(x)$ içinde
+bulunmayan bir sabitse ve $\Gamma\Proves !A(c)$ ise $\Gamma\Proves
+\lforall[x][!A(x)]$.
+\end{thm}
+
+\begin{proof}
+Sonlu bir $\Gamma_0\subseteq\Gamma$ için $\pi_0$, $\Gamma_0\Sequent !A(c)$
+sekantının bir $\Log{LK}$-!!{derivation}{}i olsun. Bir $\RightR{\lforall}$
+çıkarımı ekleyerek $\Gamma_0\Sequent\lforall[x][!A(x)]$ sekantının
+!!a{derivation}{}ini elde ederiz; çünkü $c$, $\Gamma$ veya $!A(x)$ içinde
+bulunmaz ve dolayısıyla özdeğişken koşulu sağlanır.
+\end{proof}
+
+\begin{prop}
+\ollabel{prop:provability-quantifiers}
+\begin{tagenumerate}{prvEx,prvAll}
+\tagitem{prvEx}{$!A(t)\Proves\lexists[x][!A(x)]$.}{}
+\tagitem{prvAll}{$\lforall[x][!A(x)]\Proves !A(t)$.}{}
+\end{tagenumerate}
+\end{prop}
+
+\begin{proof}
+\begin{tagenumerate}{prvEx,prvAll}
+\tagitem{prvEx}{$!A(t)\Sequent\lexists[x][!A(x)]$ sekantı
+!!{derivable}{}dir:
+  \begin{prooftree}
+    \Axiom$!A(t) \fCenter !A(t)$
+    \RightLabel{\RightR{\lexists}}
+    \UnaryInf$!A(t) \fCenter \lexists[x][!A(x)]$
+    \end{prooftree}}{}
+\tagitem{prvAll}{$\lforall[x][!A(x)]\Sequent !A(t)$ sekantı
+!!{derivable}{}dir:
+  \begin{prooftree}
+    \Axiom$!A(t) \fCenter !A(t)$
+    \RightLabel{\LeftR{\lforall}}
+    \UnaryInf$\lforall[x][!A(x)] \fCenter !A(t)$
+    \end{prooftree}}{}
+\end{tagenumerate}
+\end{proof}
+
+\end{document}

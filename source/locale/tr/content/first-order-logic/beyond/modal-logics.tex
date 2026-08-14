@@ -1,0 +1,83 @@
+% Part: first-order-logic
+% Chapter: beyond
+% Section: modal-logics
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{fol}{byd}{mod}
+
+\olsection{Kiplik Mantıkları}
+
+Şu koşullu tümce örneğini ele alın:
+\begin{quote}
+  Jeremy o odada yalnızsa sarhoş ve çıplaktır ve sandalyelerin üzerinde dans
+  ediyordur.
+\end{quote}
+Bu, maddi bakımdan doğru olabilen ama yine de yanıltıcı olan bir koşullu sav
+örneğidir; çünkü öncülle sonuç arasında yalnızca öncülün yanlış ya da sonucun
+doğru olmasından daha güçlü bir bağ bulunduğunu düşündürür. Başka bir deyişle
+ifade, savın yalnızca bu belirli dünyada (Jeremy odada yalnız olmadığı için
+önemsiz biçimde doğru olabileceği dünyada) doğru olduğunu değil, dahası öncül
+doğru \emph{olsaydı} sonucun da doğru \emph{olacağını} düşündürür. Yani savın,
+yalnızca bu dünyada değil her ``olanaklı'' dünyada doğru olduğu; ya da yalnızca
+bu belirli dünyada doğru olmanın tersine \emph{zorunlu olarak} doğru olduğu
+anlamına alınabilir.
+
+Kiplik mantığı bu tür zorunluluğu anlamlandırmak üzere tasarlanmıştır. Olağan
+önermeler mantığına bir kutu işleci eklenerek modal önermeler mantığı elde
+edilir; yani $!A$ !!a{formula} ise $\Box !A$ da öyledir. Sezgisel olarak
+$\Box !A$, $!A$'nın \emph{zorunlu olarak} doğru ya da her olanaklı dünyada
+doğru olduğunu savlar. $\Diamond !A$ genellikle $\lnot \Box \lnot !A$'nın
+kısaltması sayılır ve $!A$'nın doğru olmasının \emph{olanaklı} olduğunu
+savladığı biçiminde okunabilir. Elbette kiplik, yüklem mantığına da eklenebilir.
+
+Kripke !!{structure}{}sı kiplik mantığına bir semantik sağlamak için
+kullanılabilir; aslında Kripke bu semantiği ilk kez kiplik mantığını düşünerek
+tasarlamıştır. Kısmi sıralamalarla sınırlanmak yerine, daha genel olarak bir
+``olanaklı dünyalar'' kümesi $P$ ve dünyalar arasında ikili bir
+``erişilebilirlik'' bağıntısı $\Atom{R}{x,y}$ vardır. Sezgisel olarak
+$\Atom{R}{p,q}$, $q$~dünyasının $p$~dünyasıyla bağdaşabilir olduğunu savlar;
+yani $p$~dünyasında ``bulunuyorsak'', dünyanın $q$~dünyası gibi olabileceği
+olasılığını hesaba katmamız gerekir.
+
+Kiplik mantığına, ``kaplamsal'' mantığın karşıtı olarak bazen ``içlemsel''
+mantık denir. Klasik mantık gibi kaplamsal bir mantığın amaçlanan semantiği,
+yalnızca tek bir dünyaya, ``edimsel'' dünyaya gönderimde bulunur; ``içlemsel''
+bir mantığın semantiğiyse daha ayrıntılı bir ontolojiye dayanır. Zorunluluğu
+!!{structure}{}landırmanın yanı sıra kiplik, uygulamaya göre $\Box$ ile $\Diamond$
+yeniden yorumlanarak başka dilsel kuruluşları da !!{structure}{}landırmak için
+kullanılabilir. Örneğin:
+\begin{enumerate}
+\item Kanıtlanabilirlik mantığında $\Box !A$, ``$!A$ kanıtlanabilir'' ve
+  $\Diamond !A$, ``$!A$ tutarlıdır'' diye okunur.
+\item Epistemik mantıkta $\Box !A$, ``$!A$'yı biliyorum'' ya da ``$!A$'ya
+  inanıyorum'' diye okunabilir.
+\item Zamansal mantıkta $\Box !A$, ``$!A$ her zaman doğrudur'' ve
+  $\Diamond !A$, ``$!A$ bazen doğrudur'' diye okunabilir.
+\end{enumerate}
+
+Mantığı, kipliği ele alan kurallar ve aksiyomlarla genişletmek isteriz. Örneğin
+$\Log{S4}$ sistemi, önermeler mantığının olağan aksiyomları ve kurallarıyla
+birlikte şu aksiyomlardan oluşur:
+\begin{align*}
+& \Box (!A \lif !B) \lif (\Box !A \lif \Box !B)\\
+& \Box !A \lif !A \\
+& \Box !A \lif \Box \Box !A
+\intertext{ve ayrıca ``$!A$'dan $\Box !A$ sonucunu çıkar'' kuralından oluşur.
+  $\Log{S5}$ ise şu aksiyomu ekler:}
+& \Diamond !A \lif \Box \Diamond !A
+\end{align*}
+Bu aksiyomların çeşitlemeleri farklı uygulamalara uygun olabilir; örneğin S5'in
+genellikle mantıksal zorunluluk kavramını nitelediği kabul edilir. Güzel olan
+şudur ki !!{derivation} sisteminin sağlam ve tam olduğu bir semantik, Kripke
+!!{structure}{}sındaki erişilebilirlik bağıntısını doğal biçimlerde kısıtlayarak
+genellikle bulunabilir. Örneğin $\Log{S4}$, erişilebilirlik bağıntısı
+yansımalı ve geçişli olan Kripke !!{structure}s sınıfına karşılık gelir.
+$\Log{S5}$ ise erişilebilirlik bağıntısı {\em evrensel}, yani her dünyanın
+öteki her dünyadan erişilebilir olduğu Kripke !!{structure}s sınıfına karşılık
+gelir; dolayısıyla $\Box !A$ ancak ve ancak $!A$ her dünyada geçerliyse
+geçerlidir.
+
+\end{document}

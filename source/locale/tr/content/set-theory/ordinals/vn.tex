@@ -1,0 +1,60 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sth}{ordinals}{vn}	
+\olsection[Von Neumann'ın Kuruluşu]{Von Neumann'ın Sıra Sayıları Kuruluşu}
+
+\olref[sth][ordinals][iso]{thm:woalwayscomparable} bir düşünce doğurur.
+İyi sıralamaları temsil etmeleri için \emph{sıra tipleri} denen belirli
+nesneler tanıtabiliriz. $\tuple{A,<}$ iyi sıralamasının sıra tipi için
+$\ordtype{A,<}$ yazarak şu iki ilkeyi elde etmeyi umarız:
+\begin{align*}
+	\ordtype{A, <} = \ordtype{B, \lessdot} &
+	\text{ ancak ve ancak } \ordeq{\tuple{A, <}}{\tuple{B, \lessdot}}\\
+	\ordtype{A, <} < \ordtype{B, \lessdot}&
+	\text{ ancak ve ancak bir }b \in B\text{ için }
+	\ordeq{\tuple{A, <}}{\tuple{B_b, \lessdot_b}}.
+\end{align*}
+Ayrıca doğal sayıları belirli kümeler olarak tanıtabildiğimiz gibi, sıra
+tiplerini de \emph{belirli kümeler olarak} tanıtmayı umabiliriz.
+
+Bunu yapmanın en yaygın yolu---ve bizim izleyeceğimiz yaklaşım---bu sıra
+tiplerini belirli \emph{kanonik} iyi sıralanmış kümeler aracılığıyla
+tanımlamaktır. Bu kanonik kümeleri ilk kez von Neumann tanıtmıştır:
+
+\begin{defn}
+$A$ kümesi, $(\forall x\in A)x\subseteq A$ ise \emph{geçişlidir}.
+$A$, ancak ve ancak geçişli ve $\in$ ile iyi sıralanmışsa bir
+\emph{sıra sayısıdır}.
+\end{defn}
+\noindent
+Bundan sonra sıra sayıları için Yunan harfleri kullanacağız. Tanımdan
+hemen şu çıkar: $\alpha$ bir sıra sayısıysa
+$\tuple{\alpha,\in_\alpha}$ bir iyi sıralamadır; burada
+$\in_\alpha=\Setabs{\tuple{x,y}\in\alpha^2}{x\in y}$'dir. Böylece
+gösterimi biraz kötüye kullanarak $\alpha$'nın \emph{kendisinin} bir iyi
+sıralama olduğunu söyleyebiliriz.
+
+İlk birkaç sıra sayımız şunlardır:
+\[
+	\emptyset, \{\emptyset\},
+	\{\emptyset, \{\emptyset\}\},
+	\{\emptyset, \{\emptyset\}, \{\emptyset, \{\emptyset\}\}\}, \ldots
+\]
+Bunların, Sonsuzluk Aksiyomumuzda, yani von Neumann'ın $\omega$ tanımında
+karşılaştığımız ilk birkaç sayı olduğunu fark edeceksiniz
+(\olref[sth][z][infinity-again]{sec} kesimine bakın). Bu rastlantı değildir.
+Von Neumann'ın sıra sayıları tanımı doğal sayıları sıra sayıları olarak ele
+alır, fakat sonlu ötesi sıra sayılarına da izin verir.
+
+Her zamanki gibi artık şunu sorabiliriz: sıra sayıları bunlar \emph{mıdır}?
+Yoksa von Neumann bize yalnızca sıra sayıları \emph{olarak ele
+alabileceğimiz} bazı kümeler mi vermiştir? Bu soru hakkındaki tartışmalar,
+\olref[sfr][rel][ref]{sec}, \olref[sfr][arith][ref]{sec},
+\olref[sfr][infinite][dedekindsproof]{sec} ve
+\olref[sth][z][nat]{sec} içinde yürüttüğümüz tartışmalara benzer; bu yüzden
+konuyu uzatmayacağız. Bundan sonra ``sıra sayıları'' ifadesini yalnızca
+``von Neumann sıra sayıları'' anlamında kullanacağız.
+
+\end{document}

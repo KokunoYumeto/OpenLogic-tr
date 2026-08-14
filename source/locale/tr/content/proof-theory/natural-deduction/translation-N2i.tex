@@ -1,0 +1,124 @@
+% Part: proof-theory
+% Chapter: natural-deduction
+% Section: translation-N2i
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{pt}{nat}{tni}
+
+\olsection{\Log{N2}'den \Log{G2}'ye Çeviri}
+
+\begin{prop}\ollabel{prop:N2-to-G2} $\Log{N2c}\ (\Log{N2i}) \Proves
+\Gamma \Sequent !A$ ise $\Log{G2c}\ (\Log{G2i}) + \Cut \Proves \Gamma'
+\Sequent \Delta$ olur; burada $\Gamma'$, $\Gamma$'dan etiketlerin
+kaldırılmasıyla elde edilen !!{formula}s{}in çoklu kümesidir ve $!A$,
+$\lfalse$ değilse $\Delta = \{!A\}$, öyleyse $\Delta = \emptyset$'dir.
+\end{prop}
+
+\begin{proof}
+İspat yine, $\Gamma \Sequent !A$'nın $\delta$ !!{proof}{}ının yüksekliği üzerinde
+tümevarımladır. $\delta$, $x:!A \Sequent !A$ aksiyomuysa $\pi$, karşılık gelen
+$!A \Sequent !A$ aksiyomudur; $!A \ident \lfalse$ ise $\lfalse \Sequent \ $
+aksiyomudur.
+
+$\delta$ bir çıkarım kuralıyla bitiyorsa durumları ayırırız:
+\begin{enumerate}
+  \item $R$, ana formülü $!B \lif !C$ olan \Intro{\lif} ise ve $x:!B$
+  öncülün bağlamında bulunup sonucun bağlamında bulunmuyorsa $\delta$ şöyle
+  biter:
+  \[
+  \AxiomC{}
+  \RightLabel{$\delta_1$}
+  \Deduce$x:!B, \Gamma \fCenter !C$
+  \RightLabel{\Intro{\lif}}
+  \UnaryInf$\Gamma \fCenter !B \lif !C$
+  \DisplayProof
+  \]
+  Tümevarım varsayımı, $!B, \Gamma' \Sequent !C$'nin (ya da $!C \ident
+  \lfalse$ ise $!B, \Gamma' \Sequent \ $'nin) bir $\pi_1$ !!a{proof}{}ını
+  verir; buradan~\RightR{\lif} uygulayarak ($!C \ident \lfalse$ durumunda
+  önce \RightR{\Weakening} uyguladıktan sonra) $\pi$'yi elde ederiz.
+  \item $R$, \Intro{\lif} ise, fakat $x:!B$ öncülün bağlamında bulunmuyorsa
+  $\delta$ şöyle biter:
+  \[
+  \AxiomC{}
+  \RightLabel{$\delta_1$}
+  \Deduce$\Gamma \fCenter !C$
+  \RightLabel{\Intro{\lif}}
+  \UnaryInf$\Gamma \fCenter !B \lif !C$
+  \DisplayProof
+  \]
+  Tümevarım varsayımı $\Gamma' \Sequent !C$'nin bir $\pi_1$ !!a{proof}{}ını
+  verir; buradan $!B$ ile \LeftR{\Weakening}, ardından~\RightR{\lif}
+  uygulayarak $\pi$'yi elde ederiz.
+  \item $R$, \Elim{\lif} ise $\delta$ şöyle biter:
+  \[
+  \AxiomC{}
+  \RightLabel{$\delta_1$}
+  \Deduce$\Gamma_1 \fCenter !B \lif !A$
+  \AxiomC{}
+  \RightLabel{$\delta_2$}
+  \Deduce$\Gamma_2 \fCenter !B$
+  \RightLabel{\Elim{\lif}}
+  \BinaryInf$\Gamma_1, \Gamma_2 \fCenter !A$
+  \DisplayProof
+  \]
+  burada $\Gamma = \Gamma_1 \cup \Gamma_2$'dir. Tümevarım varsayımı
+  !!{proof}s $\pi_1$ ile $\pi_2$'yi verir: birincisi $\Gamma_1' \Sequent !B
+  \lif !A$'yı, ikincisi $\Gamma_2' \Sequent !B$'yi ispatlar.
+  !!{proof}~$\pi$'yi şöyle elde ederiz:
+  \[
+  \AxiomC{}
+  \RightLabel{$\pi_1$}
+  \Deduce$\Gamma_1' \fCenter !B \lif !A$
+  \AxiomC{}
+  \RightLabel{$\pi_2$}
+  \Deduce$\Gamma_2' \fCenter !B$
+  \Axiom$!A \fCenter !A$
+  \RightLabel{\LeftR{\lif}}
+  \BinaryInf$!B \lif !A, \Gamma_2' \fCenter !A$
+  \RightLabel{\Cut}
+  \BinaryInf$\Gamma_1', \Gamma_2' \fCenter !A$
+  \DisplayProof
+  \]
+  $\Gamma_1' \cup \Gamma_2'$ çoklu kümesi $\Gamma' = (\Gamma_1 \cup
+  \Gamma_2)'$'ne eşit olmayabilir: örneğin hem $\Gamma_1$ hem de $\Gamma_2$
+  $x:!C$'yi içerirse $\Gamma_1' \cup \Gamma_2'$ iki $!C$ kopyası içerir,
+  fakat $(\Gamma_1 \cup \Gamma_2)'$ yalnızca bir kopya içerir. Uygun
+  \LeftR{\Contraction} çıkarımları ekleyerek bunu düzeltebiliriz.
+
+  $!A \ident \lfalse$ olması durumunda $\delta_2$'ye uygulanan tümevarım
+  varsayımı $\Gamma_2' \Sequent \ $'nin bir !!a{proof}{}ını verir; buradan uygun
+  \LeftR{\Weakening} çıkarımları ve $!A$ ile bir \RightR{\Weakening} ekleyerek
+  $\pi$ !!{proof}{}ını elde edebiliriz.
+\item $R$, \FalseCl{} ise $\delta$ şöyle biter:
+  \[
+  \AxiomC{}
+  \RightLabel{$\delta_1$}
+  \Deduce$x: \lnot !A, \Gamma \fCenter \lfalse$
+  \RightLabel{\FalseCl}
+  \UnaryInf$\Gamma \fCenter !A$
+  \DisplayProof
+  \]
+  Tümevarım varsayımı gereği $\lnot !A, \Gamma' \Sequent \ $'nin bir
+  $\pi_1$ !!a{proof}{}ı vardır. $\pi$ !!{proof}{}ını şöyle alırız:
+  \[
+  \Axiom$!A \fCenter !A$
+  \RightLabel{\RightR{\lnot}}
+  \UnaryInf$\fCenter !A, \lnot !A$
+  \AxiomC{}
+  \RightLabel{$\pi_1$}
+  \Deduce$\lnot !A, \Gamma' \fCenter $
+  \RightLabel{\Cut}
+  \BinaryInf$\Gamma' \fCenter !A$
+  \DisplayProof
+  \]
+\end{enumerate}
+Yalnızca \FalseCl{} çevirisinin !!a{proof}~$\pi$ ürettiğine ve bu ispatın
+sağında birden çok !!{formula} bulunduğuna dikkat edin. Başka bir deyişle bir~\Log{N2i}
+!!{proof}{}ının çevirisi bir \Log{G2i}-!!{proof}{}ıdır.
+\end{proof}
+
+\end{document}

@@ -1,0 +1,193 @@
+% Part: first-order-logic
+% Chapter: tableaux
+% Section: proof-theoretic-notions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[tr]{fol}{tab}{ptn}}
+      {\olfileid[tr]{pl}{tab}{ptn}}
+      
+\olsection{İspat Kuramsal Kavramlar}
+
+\begin{editorial}
+Bu bölüm, tableau ağaçları için ispatlanabilirlik bağıntısı ile tutarlılık
+tanımlarını bir araya getirir.
+\end{editorial}
+
+\begin{explain}
+Bir dizi önemli semantik kavramı (geçerlilik, mantıksal gerektirme,
+sağlanabilirlik) tanımladığımız gibi, şimdi bunlara karşılık gelen
+\emph{ispat kuramsal kavramları} tanımlıyoruz. Bunlar, !!{sentence}s
+ifadelerinin \iftag{FOL}{!!{structure}s}{değerlemeler} içinde sağlanmasına başvurularak değil, belirli
+kapalı !!{tableau}s varlığına başvurularak tanımlanır. Bu kavramların
+örtüştüğünün keşfedilmesi önemliydi. Örtüştüklerini söyleyen sonuçlar
+\emph{sağlamlık} ve \emph{tamlık teoremleridir}.
+\end{explain}
+
+
+\begin{defn}[Teoremler]
+Bir !!{sentence}~$!A$, $\sFmla{\False}{!A}$ için kapalı bir !!{tableau}
+varsa \emph{teorem}dir. $!A$ teoremse $\Proves !A$, değilse $\Proves/ !A$
+yazarız.
+\end{defn}
+
+\begin{defn}[!!^{derivability}]
+Bir !!^a{sentence} için \emph{!!{derivable}} terimini şöyle kullanırız:
+$!A$, bir !!{sentence}s kümesi~$\Gamma$'dan ancak ve ancak sonlu bir
+$\{!B_1, \dots, !B_n\} \subseteq \Gamma$ kümesi ve
+\[
+\{
+  \sFmla{\False}{!A},
+  \sFmla{\True}{!B_1}, \dots,
+  \sFmla{\True}{!B_n}
+  \}.
+\]
+kümesi için kapalı bir !!{tableau} varsa türetilebilirdir; bunu
+$\Gamma \Proves !A$ ile gösteririz. $!A$, $\Gamma$'dan !!{derivable}
+değilse $\Gamma \Proves/ !A$ yazarız.
+\end{defn}
+
+\begin{defn}[Tutarlılık]
+Bir !!{sentence}s kümesi~$\Gamma$, ancak ve ancak sonlu bir
+$\{!B_1, \dots, !B_n\} \subseteq \Gamma$ kümesi ve
+\[
+\{
+  \sFmla{\True}{!B_1}, \dots,
+  \sFmla{\True}{!B_n}  
+  \}.
+\]
+kümesi için kapalı bir !!{tableau} varsa \emph{tutarsızdır}. $\Gamma$
+tutarsız değilse ona \emph{tutarlı} deriz.
+\end{defn}
+
+\begin{prop}[Yansımalılık]
+\ollabel{prop:reflexivity}
+$!A \in \Gamma$ ise $\Gamma \Proves !A$.
+\end{prop}
+
+\begin{proof}
+$!A \in \Gamma$ ise $\{!A\}$,~$\Gamma$'nın sonlu bir alt kümesidir ve şu
+!!{tableau} kapalıdır:
+\begin{oltableau}
+  [\sFmla{\False}{\formula{A}}, just = \TAss
+    [\sFmla{\True}{\formula{A}}, just = \TAss,close]
+  ]
+\end{oltableau}
+\end{proof}
+  
+
+\begin{prop}[Monotonluk]
+\ollabel{prop:monotonicity}
+$\Gamma \subseteq \Delta$ ve $\Gamma \Proves !A$ ise $\Delta
+\Proves !A$.
+\end{prop}
+
+\begin{proof}
+~$\Gamma$'nın her sonlu alt kümesi aynı zamanda~$\Delta$'nın sonlu bir alt
+kümesidir.
+\end{proof}
+
+\begin{prop}[Geçişlilik]
+\ollabel{prop:transitivity}
+$\Gamma \Proves !A$ ve $\{!A\} \cup
+\Delta \Proves !B$ ise $\Gamma \cup \Delta \Proves !B$.
+\end{prop}
+
+\begin{proof}
+$\{!A\} \cup \Delta \Proves !B$ ise, aşağıdaki kümenin kapalı bir
+!!{tableau}'su olacak biçimde sonlu bir $\Delta_0 =
+\{!C_1, \dots, !C_n\} \subseteq \Delta$ alt kümesi vardır:
+\begin{align*}
+\{\sFmla{\False}{!B}, & \sFmla{\True}{!A}, \sFmla{\True}{!C_1},
+\dots, \sFmla{\True}{!C_n}\}.
+\intertext{$\Gamma \Proves !A$ ise, aşağıdaki kümenin kapalı bir
+  !!{tableau}'su olacak biçimde $\{!D_1, \dots, !D_m\} \subseteq \Gamma$
+  vardır:}
+\{\sFmla{\False}{!A}, & \sFmla{\True}{!D_1},
+\dots, \sFmla{\True}{!D_m}\}.
+\end{align*}
+
+Şimdi varsayımları
+\[
+\sFmla{\False}{!B},
+\sFmla{\True}{!C_1}, \dots, \sFmla{\True}{!C_n},
+\sFmla{\True}{!D_1}, \dots, \sFmla{\True}{!D_m}.
+\]
+olan !!{tableau}'yu ele alın. $!A$ üzerinde \Cut{} kuralını uygulayın. Bu,
+biri $\sFmla{\True}{!A}$, diğeri $\sFmla{\False}{!A}$ içeren iki dal
+oluşturur. Dolayısıyla dallardan birinde
+\[
+\{\sFmla{\False}{!B}, \sFmla{\True}{!A},
+\sFmla{\True}{!C_1}, \dots, \sFmla{\True}{!C_n}\}
+\]
+ifadelerinin tümü bulunur. Bu varsayımlar için kapalı bir !!{tableau}
+olduğundan onu bu dala ekleyebiliriz; $\sFmla{\True}{!A}$ içinden geçen her
+dal kapanır. Diğer dalda
+\[
+\{\sFmla{\False}{!A}, \sFmla{\True}{!D_1}, \dots,
+\sFmla{\True}{!D_m}\}
+\]
+ifadelerinin tümü bulunur; bu nedenle kapalı bir !!{tableau} elde etmek için
+öteki tarafı da tamamlayabiliriz. Böylece $\Gamma \cup \Delta \Proves !B$
+olduğu gösterilir.
+\end{proof}
+
+Bunun özellikle şu anlama geldiğine dikkat edin: $\Gamma \Proves !A$ ve
+$!A \Proves !B$ ise $\Gamma \Proves !B$. Ayrıca $!A_1,
+\dots, !A_n \Proves !B$ ve her~$i$ için $\Gamma \Proves !A_i$ ise
+$\Gamma \Proves !B$ sonucu çıkar.
+
+\begin{prop}
+\ollabel{prop:incons}
+$\Gamma$ ancak ve ancak her !!{sentence}~$!A$ için $\Gamma \Proves !A$
+ise tutarsızdır.
+\end{prop}
+
+\begin{proof}
+Alıştırma.
+\end{proof}
+
+\tagprob{FOL}
+\begin{prob}
+\olref[fol][tab][ptn]{prop:incons} önermesini ispatlayın.
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+\olref[pl][tab][ptn]{prop:incons} önermesini ispatlayın.
+\end{prob}
+\tagendprob
+
+\begin{prop}[Kompaktlık]
+  \ollabel{prop:proves-compact}
+  \begin{enumerate}
+  \item $\Gamma \Proves !A$ ise $\Gamma_0 \Proves !A$ olacak biçimde sonlu
+    bir $\Gamma_0 \subseteq \Gamma$ alt kümesi vardır.
+  \item ~$\Gamma$'nın her sonlu alt kümesi tutarlıysa $\Gamma$ tutarlıdır.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+    \item $\Gamma \Proves !A$ ise sonlu bir
+      $\Gamma_0 = \{!B_1, \dots, !B_n\} \subseteq \Gamma$ alt kümesi ve
+      \[
+      \{\sFmla{\False}{!A}, \sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n}\}
+      \]
+      için kapalı bir !!{tableau} vardır. Bu !!{tableau} aynı zamanda
+      $\Gamma_0 \Proves !A$ olduğunu gösterir.
+    \item $\Gamma$ tutarsızsa sonlu bir
+      $\Gamma_0 = \{!B_1, \dots, !B_n\}$ alt kümesi için
+      \[
+      \{\sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n}\}
+      \]
+      kümesinin kapalı bir !!{tableau}'su vardır. Bu kapalı !!{tableau},
+      $\Gamma_0$'ın tutarsız olduğunu gösterir.
+  \end{enumerate}
+\end{proof}
+
+\end{document}

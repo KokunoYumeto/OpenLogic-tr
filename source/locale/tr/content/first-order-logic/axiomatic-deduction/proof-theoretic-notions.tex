@@ -1,0 +1,139 @@
+% Part: first-order-logic
+% Chapter: axiomatic-deduction
+% Section: proof-theoretic-notions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[tr]{fol}{axd}{ptn}}
+      {\olfileid[tr]{pl}{axd}{ptn}}
+
+\olsection{İspat Kuramsal Kavramlar}
+
+\begin{explain}
+Bir dizi önemli semantik kavramı
+(\iftag{FOL}{geçerlilik}{totoloji}, mantıksal gerektirme, sağlanabilirlik)
+tanımladığımız gibi, şimdi bunlara karşılık gelen \emph{ispat kuramsal
+kavramları} tanımlıyoruz. Bunlar, !!{sentence}s ile
+\iftag{FOL}{!!{structure}s}{değerlemeler} arasındaki sağlama bağıntısına değil,
+belirli formüllerin !!{derivability} ya da
+!!{nonderivability} durumuna dayanarak tanımlanır. Bu kavramların çakıştığının bulunması
+önemliydi. Çakıştıklarını söyleyen sonuçlar \emph{sağlamlık} ve
+\emph{tamlık teoremleridir}.
+\end{explain}
+
+\begin{defn}[!!^{derivability}]
+Bir !!^a{formula}~$!A$, $\Gamma$'dan \emph{!!{derivable}} sayılır; bunun
+koşulu $!A$ ile biten ve $\Gamma$'dan başlayan !!a{derivation} bulunmasıdır.
+Bunu $\Gamma \Proves !A$ ile gösteririz.
+\end{defn}
+
+\begin{defn}[Teoremler]
+Bir !!^a{formula}~$!A$, boş kümeden $!A$ için bir !!a{derivation} varsa
+\emph{teorem}dir. $!A$ teoremse $\Proves !A$, değilse $\Proves/ !A$ yazarız.
+\end{defn}
+
+\begin{defn}[Tutarlılık]
+!!{formula}s içeren bir $\Gamma$ kümesi ancak ve ancak
+$\Gamma\Proves/ \lfalse$ ise \emph{tutarlı}, aksi hâlde \emph{tutarsız}dır.
+\end{defn}
+
+\begin{prop}[Yansımalılık]
+\ollabel{prop:reflexivity}
+$!A \in \Gamma$ ise $\Gamma \Proves !A$.
+\end{prop}
+
+\begin{proof}
+  Tek başına !!{formula}~$!A$, $\Gamma$'dan $!A$ için bir
+  !!a{derivation} oluşturur.
+\end{proof}
+
+\begin{prop}[Monotonluk]
+\ollabel{prop:monotonicity}
+$\Gamma \subseteq \Delta$ ve $\Gamma \Proves !A$ ise $\Delta \Proves !A$.
+\end{prop}
+
+\begin{proof}
+$\Gamma$'dan $!A$ için her !!{derivation}, $\Delta$'dan $!A$ için de bir
+!!a{derivation} oluşturur.
+\end{proof}
+
+\begin{prop}[Geçişlilik]
+\ollabel{prop:transitivity}
+$\Gamma \Proves !A$ ve $\{!A\} \cup \Delta \Proves !B$ ise
+$\Gamma \cup \Delta \Proves !B$.
+\end{prop}
+
+\begin{proof}
+  $\{!A\} \cup \Delta \Proves !B$ olduğunu varsayalım. O zaman
+  $\{!A\} \cup \Delta$'dan $!B$ için $!B_1$, \dots, $!B_l = !B$
+  biçiminde bir !!a{derivation} vardır. Bu !!{derivation} içindeki bazı
+  adımlar, önceki bir $!B_i = !A$ satırına başvuran bir kuralla doğru
+  olabilir. Varsayım gereği $\Gamma$'dan $!A$ için bir !!a{derivation}
+  vardır; başka deyişle şu !!a{derivation} söz konusudur:
+  $!A_1$, \dots, $!A_k = !A$. Burada her $!A_i$ aksiyom, $\Gamma$ içinde
+  yer alan bir !!a{element} veya bir çıkarım kuralınca doğru bir adımdır.
+  Şu diziyi düşünelim:
+  \[
+  !A_1, \dots, !A_k = !A, !B_1, \dots, !B_l = !B.
+  \]
+  İkinci !!{derivation} içinde $\{!A\}$ varsayımıyla gerekçelendirilen her
+  $!B_i=!A$ satırını silip bu satıra yapılan başvuruları daha önceki
+  $!A_k=!A$ satırına yönlendirirsek, $\Gamma\cup\Delta$'dan $!B$ için doğru
+  bir türetim elde ederiz. Diğer bütün satırların gerekçeleri aynen
+  kalır.
+\end{proof}
+
+Özellikle $\Gamma \Proves !A$ ve $!A \Proves !B$ ise $\Gamma \Proves !B$
+olur. Ayrıca $!A_1, \dots, !A_n \Proves !B$ ve her $i$ için
+$\Gamma \Proves !A_i$ ise $\Gamma \Proves !B$ sonucu çıkar.
+
+\begin{prop}
+\ollabel{prop:incons}
+$\Gamma$ ancak ve ancak her $!A$ için $\Gamma \Proves !A$ olduğunda
+tutarsızdır.
+\end{prop}
+
+\begin{proof}
+Alıştırma.
+\end{proof}
+
+\tagprob{FOL}
+\begin{prob}
+\olref[fol][axd][ptn]{prop:incons} önermesini ispatlayın.
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+\olref[pl][axd][ptn]{prop:incons} önermesini ispatlayın.
+\end{prob}
+\tagendprob
+
+\begin{prop}[Kompaktlık]
+\ollabel{prop:proves-compact}
+  \begin{enumerate}
+  \item $\Gamma \Proves !A$ ise $\Gamma_0 \Proves !A$ olacak biçimde sonlu
+    bir $\Gamma_0 \subseteq \Gamma$ vardır.
+  \item $\Gamma$'nın her sonlu alt kümesi tutarlıysa $\Gamma$ tutarlıdır.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+    \item $\Gamma \Proves !A$ ise sonlu bir !!{formula}s dizisi
+      $!A_1$, \dots,~$!A_n$ vardır; $!A \ident !A_n$ olur ve her $!A_i$
+      mantıksal aksiyom, $\Gamma$ içinde yer alan bir !!a{element} ya da
+      önceki !!{formula}s üzerine uygulanan izinli bir çıkarım kuralının
+      sonucudur.
+      $\Gamma_0$, bu $!A_i$'ler arasından $\Gamma$'da bulunanların kümesi
+      olsun. Aynı !!{derivation}, $\Gamma_0$ bakımından da geçerlidir; yani
+      yine !!a{derivation} olur;
+      dolayısıyla $\Gamma_0 \Proves !A$.
+    \item Bu, $!A \ident \lfalse$ özel durumunda (1)'in karşıt tersidir.
+  \end{enumerate}
+\end{proof}
+
+\end{document}

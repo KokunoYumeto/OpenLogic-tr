@@ -1,0 +1,252 @@
+% Part: incompleteness
+% Chapter: representability-in-q
+% Section: minimization-representable
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{inc}{req}{min}
+\olsection{Düzenli Minimizasyon $\Th{Q}$ İçinde Temsil Edilebilir}
+
+Sınırsız aramayı ele alalım. $g(x,z)$'nin düzenli olduğunu ve örneğin
+!!{formula}~$!A_g(x,z,y)$ ile $\Th{Q}$ içinde temsil edildiğini varsayın.
+$f$, $f(z)=\umin{x}{[g(x,z)=0]}$ ile tanımlansın. $f$'yi temsil eden
+!!a{formula}~$!A_f(z,y)$ bulmak isteriz. $f(z)$'nin değeri, (a)
+$g(x,z)=0$'ı sağlayan ve (b) böyle olanların en küçüğü, yani her $w<x$
+için $g(w,z)\neq0$ olan $x$ sayısıdır. Dolayısıyla aşağıdaki doğal bir
+seçimdir:
+\[
+!A_f(z,y) \ident !A_g(y, z, \Obj 0) \land \lforall[w][(w < y \lif \lnot
+  !A_g(w, z, \Obj 0))].
+\]
+Elbette genel durumda $z$ yerine $z_0$, \dots, $z_k$ koymamız gerekir.
+
+İspat yine $\Th{Q}$'nun ispatlayacak kadar güçlü olduğu şeyler hakkında
+bazı lemmalar içerecektir.
+
+\begin{lem}
+\ollabel{lem:succ} Her !!{constant}~$a$ ve her $n$ doğal sayısı için
+\[
+\Th{Q} \Proves \eq[(a' + \num n)][(a + \num n)'].
+\]
+\end{lem}
+
+\begin{proof}
+İspat her zamanki gibi $n$ üzerinde tümevarımladır. Başlangıç durumunda
+$n=0$ için $\Th{Q}$'nun $\eq[(a'+\Obj 0)][(a+\Obj 0)']$ formülünü
+ispatladığını göstermeliyiz. Elimizde şunlar vardır:
+\begin{align}
+  \Th{Q} & \Proves \eq[(a' + \Obj 0)][a'] \quad \text{$Q_4$ aksiyomu uyarınca}
+  \ollabel{step1}\\
+  \Th{Q} & \Proves  \eq[(a + \Obj 0)][a] \quad \text{$Q_4$ aksiyomu uyarınca}
+  \ollabel{step2} \\
+  \Th{Q} & \Proves \eq[(a + \Obj 0)'][a'] \quad \text{\olref{step2} uyarınca}
+  \ollabel{step3} \\
+  \Th{Q} & \Proves \eq[(a' + \Obj 0)][(a + \Obj 0)'] \quad
+  \text{\olref{step1} ve \olref{step3} uyarınca}\notag
+\end{align}
+Tümevarım adımında $\Th{Q} \Proves
+\eq[(a'+\num n)][(a+\num n)']$ olduğunu gösterdiğimizi varsayabiliriz.
+$\num{n+1}$, $\num{n}'$ olduğundan $\Th{Q}$'nun
+$\eq[(a'+\num{n}')][(a+\num{n}')']$ formülünü ispatladığını göstermeliyiz.
+Elimizde şunlar vardır:
+% [tr source emendation] Upstream reverses the intermediate equality and
+% the conclusion: its step6 line already states the induction target, while
+% its final line is the intermediate equality needed with step5.  The order
+% below restores the intended transitivity argument.
+\begin{align}
+  \Th{Q} & \Proves \eq[(a' + \num n')][(a' + \num n)'] \quad
+  \text{$!Q_5$ aksiyomu uyarınca} \ollabel{step5}\\
+  \Th{Q} & \Proves \eq[(a' + \num n)'][(a + \num n')'] \quad
+  \text{tümevarım varsayımıyla} \ollabel{step6}\\
+  \Th{Q} & \Proves \eq[(a' + \num n')][(a + \num n')'] \quad
+  \text{\olref{step5} ve \olref{step6} uyarınca.} \notag
+\end{align}
+\end{proof}
+
+Bunun $\Th{Q}$'nun
+$\lforall[x][\lforall[y][(x'+y)=(x+y)']]$ formülünü ispatladığını
+söylemekten daha zayıf olduğunu yeniden belirtmek gerekir. Bu !!{sentence},
+$\Struct{N}$ içinde doğru olsa da $\Th{Q}$ onu ispatlamaz.
+
+\begin{lem}
+\ollabel{lem:less-zero}
+$\Th{Q} \Proves \lforall[x][\lnot x < \Obj 0]$.
+\end{lem}
+
+\begin{proof}
+İspatı biçimsel olmayan biçimde veriyoruz (yani biçimsel !!{derivation}{}in
+nasıl kurulacağına ilişkin yalnızca ipuçları veriyoruz).
+
+Keyfî bir $a$ için $\lnot a<\Obj 0$'ı ispatlamalıyız. $<$'ın tanımı
+uyarınca $\Th{Q}$ içinde
+$\lnot\lexists[y][\eq[(y'+a)][\Obj 0]]$'ı ispatlamamız gerekir.
+$\lexists[y][\eq[(y'+a)][\Obj 0]]$'ı varsayıp bir çelişki ispatlayacağız.
+$\eq[(b'+a)][\Obj 0]$ olduğunu varsayın. $!Q_3$'ü kullanarak
+$\eq[a][\Obj 0]\lor\lexists[y][\eq[a][y']]$ elde ederiz. Durumları ayıralım.
+
+1. durum: $\eq[a][\Obj 0]$ geçerli olsun. $\eq[(b'+a)][\Obj 0]$'dan
+$\eq[(b'+\Obj 0)][\Obj 0]$ elde ederiz. $\Th{Q}$'nun $!Q_4$ aksiyomu
+uyarınca $\eq[(b'+\Obj 0)][b']$ ve dolayısıyla $\eq[b'][\Obj 0]$ olur.
+Fakat $!Q_2$ aksiyomu uyarınca $\eq/[b'][\Obj 0]$ da vardır; bu bir
+çelişkidir.
+
+2. durum: Bir $c$ için $\eq[a][c']$ olsun. O zaman
+$\eq[(b'+c')][\Obj 0]$ olur. $!Q_5$ aksiyomu uyarınca
+$\eq[(b'+c)'][\Obj 0]$ elde edilir ve bu yine $Q_2$ aksiyomuyla çelişir.
+\end{proof}
+
+\begin{lem}
+\ollabel{lem:less-nsucc}
+Her $n$ doğal sayısı için
+  \[
+  \Th{Q} \Proves
+  \lforall[x][(x < \num {n+1} \lif (\eq[x][\Obj 0] \lor \dots \lor
+    \eq[x][\num n]))].
+  \]
+\end{lem}
+
+\begin{proof}
+$n$ üzerinde tümevarım kullanırız. $n=0$ olan başlangıç durumunu ele alalım.
+Bu durumda keyfî $a$ için $a<\num 1\lif\eq[a][\Obj 0]$ olduğunu
+göstermeliyiz. $a<\num 1$ olduğunu varsayın. O zaman $<$'ın tanımlayıcı
+aksiyomu uyarınca $\lexists[y][\eq[(y'+a)][\Obj 0']]$ elde ederiz
+($\num 1\ident\Obj 0'$ olduğundan).
+
+$b$'nin bu özelliğe sahip, yani $\eq[(b'+a)][\Obj 0']$ olduğunu varsayın.
+$\eq[a][\Obj 0]$ göstermeliyiz. $!Q_3$ aksiyomu uyarınca ya
+$\eq[a][\Obj 0]$ olur ya da $\eq[a][c']$ olacak bir $c$ bulunur. İlk durumda
+gösterecek bir şey yoktur. Dolayısıyla $\eq[a][c']$ olduğunu varsayın.
+O zaman $\eq[(b'+c')][\Obj 0']$ olur. $\Th{Q}$'nun $!Q_5$ aksiyomu
+uyarınca $\eq[(b'+c)'][\Obj 0']$ elde ederiz. $!Q_1$ aksiyomu uyarınca
+$\eq[(b'+c)][\Obj 0]$ olur. Fakat $!Q_8$ aksiyomu uyarınca bu
+$c<\Obj 0$ demektir ve \olref{lem:less-zero} ile çelişir.
+
+Şimdi tümevarım adımına geçelim. $n$ durumunu varsayarak $n+1$ durumunu
+ispatlarız. $a<\num{n+2}$ olduğunu varsayın. Yine $!Q_3$'ü kullanarak iki
+durum ayırabiliriz: $\eq[a][\Obj 0]$ ya da bir $b$ için $\eq[a][b']$.
+İlk durumda $\eq[a][\Obj 0]\lor\dots\lor\eq[a][\num{n+1}]$ hemen çıkar.
+İkinci durumda $b'<\num{n+2}$, yani $b'<\num{n+1}'$ olur. $!Q_8$ aksiyomu
+uyarınca bir $c$ için $\eq[(c'+b')][\num{n+1}']$ olur. $!Q_5$ aksiyomu
+uyarınca $\eq[(c'+b)'][\num{n+1}']$; $!Q_1$ uyarınca
+$\eq[(c'+b)][\num{n+1}]$ elde edilir. Dolayısıyla $!Q_8$ uyarınca
+$b<\num{n+1}$ olur. Tümevarım varsayımı uyarınca
+$\eq[b][\Obj 0]\lor\dots\lor\eq[b][\num n]$ olur. Buradan mantıkla
+$\eq[b'][\Obj 0']\lor\dots\lor\eq[b'][\num n']$ ve $\eq[a][b']$
+olduğundan $\eq[a][\num 1]\lor\dots\lor\eq[a][\num{n+1}]$ elde ederiz.
+\end{proof}
+
+\begin{lem}
+  \ollabel{lem:trichotomy} Her $m$ doğal sayısı için
+  \[
+  \Th{Q} \Proves
+  \lforall[y][((y < \num{m} \lor \num{m} < y) \lor \eq[y][\num{m}])].
+  \]
+\end{lem}
+
+\begin{proof}
+$m$ üzerinde tümevarımla. Önce $m=0$ durumunu ele alın.
+$!Q_3$ uyarınca
+$\Th{Q} \Proves \lforall[y][(\eq[y][\Obj 0]\lor
+\lexists[z][\eq[y][z']])]$ olur. $a$ keyfî olsun. O zaman ya
+$\eq[a][\Obj 0]$ ya da bir $b$ için $\eq[a][b']$ olur. İlk durumda
+$(a<\Obj 0\lor\Obj 0<a)\lor\eq[a][\Obj 0]$ da vardır. Fakat
+$\eq[a][b']$ ise $\eq$ mantığı uyarınca
+$\eq[(b'+\Obj 0)][(a+\Obj 0)]$ olur. $!Q_4$ uyarınca
+$\eq[(a+\Obj 0)][a]$ olduğundan $\eq[(b'+\Obj 0)][a]$ ve dolayısıyla
+$\lexists[z][\eq[(z'+\Obj 0)][a]]$ elde ederiz. $!Q_8$'deki $<$ tanımı
+uyarınca $\Obj 0<a$ olur. $\Obj 0<a$ ise
+$(\Obj 0<a\lor a<\Obj 0)\lor\eq[a][\Obj 0]$ da olur.
+
+Şimdi
+\begin{align*}
+  \Th{Q} & \Proves \lforall[y][((y < \num{m} \lor \num{m} < y) \lor
+    \eq[y][\num{m}])]
+  \intertext{olduğunu varsayalım ve şunu göstermek isteyelim:}
+  \Th{Q} & \Proves \lforall[y][((y < \num{m+1} \lor \num{m+1} < y) \lor
+    \eq[y][\num{m+1}])].
+\end{align*}
+$a$ keyfî olsun. $!Q_3$ uyarınca ya $\eq[a][\Obj 0]$ ya da bir $b$ için
+$\eq[a][b']$ olur. İlk durumda $!Q_4$ uyarınca
+$\eq[\num{m}'+a][\num{m+1}]$ ve dolayısıyla $!Q_8$ uyarınca
+$a<\num{m+1}$ elde ederiz.
+
+Şimdi ikinci durumu, $\eq[a][b']$ durumunu ele alın. Tümevarım varsayımı
+uyarınca $(b<\num m\lor\num m<b)\lor\eq[b][\num m]$ olur.
+
+İlk ayrılan $b<\num m$, $!Q_8$ uyarınca
+$\lexists[z][\eq[(z'+b)][\num m]]$'ye denktir. $c$'nin bu özelliğe sahip
+olduğunu varsayın. $\eq[(c'+b)][\num m]$ ise
+$\eq[(c'+b)'][\num m']$ de olur. $!Q_5$ uyarınca
+$\eq[(c'+b)'][(c'+b')]$ olur. Dolayısıyla $\eq[(c'+b')][\num m']$ elde
+ederiz. $c'$ üzerinde varlıksal genelleme yaparak ve
+$\num m'\ident\num{m+1}$ olduğunu akılda tutarak
+$\lexists[u][\eq[(u'+b')][\num{m+1}]]$ elde ederiz. Demek ki
+$b<\num m$ ise $b'<\num{m+1}$ ve dolayısıyla $a<\num{m+1}$ olur.
+
+Şimdi $\num m<b$, yani $\lexists[z][\eq[(z'+\num m)][b]]$ olduğunu
+varsayın. $c$, böyle bir $z$, yani $\eq[(c'+\num m)][b]$ olsun. Mantık
+uyarınca $\eq[(c'+\num m)'][b']$ olur. $!Q_5$ uyarınca
+$\eq[(c'+\num m')][b']$ elde edilir. $\eq[a][b']$ ve
+$\num m'\ident\num{m+1}$ olduğundan $\eq[(c'+\num{m+1})][a]$ olur.
+$!Q_8$ uyarınca $\num{m+1}<a$ elde edilir.
+
+Son olarak $\eq[b][\num m]$ varsayalım. O zaman mantık uyarınca
+$\eq[b'][\num m']$ ve dolayısıyla $\eq[a][\num{m+1}]$ olur.
+
+Böylece $m$ ve $b$ durumundaki her ayrık terimden, $m+1$ ve $a$ durumu için
+karşılık gelen ayrık terimi elde edebiliriz.
+\end{proof}
+
+\begin{prop}
+\ollabel{prop:rep-minimization}
+$!A_g(x,z,y)$, $g(x,z)$'yi $\Th{Q}$ içinde temsil ediyorsa
+\[
+!A_f(z,y) \ident !A_g(y, z, \Obj 0) \land \lforall[w][(w < y \lif \lnot
+  !A_g(w, z, \Obj 0))]
+\]
+formülü $f(z)=\umin{x}{[g(x,z)=0]}$ fonksiyonunu temsil eder.
+\end{prop}
+
+\begin{proof}
+Önce $f(n)=m$ ise $\Th{Q} \Proves !A_f(\num n,\num m)$, yani
+\begin{align}
+  \Th{Q} & \Proves !A_g(\num{m}, \num{n}, \Obj 0) \land \lforall[w][(w <
+    \num{m} \lif \lnot !A_g(w, \num{n}, \Obj 0))]. \notag
+  \intertext{$!A_g(x,z,y)$, $g(x,z)$'yi temsil ettiğine ve $f(n)=m$ ise
+    $g(m,n)=0$ olduğuna göre}
+\Th{Q} & \Proves !A_g(\num{m}, \num{n}, \Obj 0). \notag
+\intertext{$f(n)=m$ ise her $k<m$ için $g(k,n)\neq0$ olur. Dolayısıyla}
+\Th{Q} & \Proves \lnot !A_g(\num{k}, \num{n}, \Obj 0). \notag
+\intertext{Şunu elde ederiz:}
+\Th{Q} & \Proves \lforall[w][(w < \num{m} \lif \lnot
+  !A_g(w, \num{n}, \Obj 0))]. \ollabel{rep-less}
+\end{align}
+olduğunu gösteririz. Bu, $m=0$ durumunda \olref{lem:less-zero}, öteki
+durumlarda ise \olref{lem:less-nsucc} uyarınca çıkar.
+
+Şimdi $f(n)=m$ ise
+$\Th{Q} \Proves \lforall[y][(!A_f(\num{n},y)\lif\eq[y][\num m])]$
+olduğunu gösterelim. Savı yine biçimsel olmayan biçimde taslaklandırıp
+biçimselleştirmeyi okura bırakıyoruz.
+
+$!A_f(\num n,b)$ olduğunu varsayın. Buradan (a)
+$!A_g(b,\num n,\Obj 0)$ ve (b)
+$\lforall[w][(w<b\lif\lnot !A_g(w,\num n,\Obj 0))]$ elde ederiz.
+\olref{lem:trichotomy} uyarınca
+$(b<\num m\lor\num m<b)\lor\eq[b][\num m]$ olur. Hem $b<\num m$ hem de
+$\num m<b$ durumlarının çelişkiye yol açtığını göstereceğiz.
+
+$\num m<b$ ise (b)'den $\lnot !A_g(\num m,\num n,\Obj 0)$ çıkar. Fakat
+$m=f(n)$ olduğundan $g(m,n)=0$ olur; $!A_g$, $g$'yi temsil ettiği için de
+$\Th{Q} \Proves !A_g(\num m,\num n,\Obj 0)$ olur. Dolayısıyla bir çelişki
+elde ederiz.
+
+Şimdi $b<\num m$ olduğunu varsayın. \olref{rep-less} uyarınca
+$\Th{Q} \Proves \lforall[w][(w<\num m\lif\lnot
+!A_g(w,\num n,\Obj 0))]$ olduğundan $\lnot !A_g(b,\num n,\Obj 0)$ elde
+ederiz. Bu da (a) ile çelişir.
+\end{proof}
+
+\end{document}

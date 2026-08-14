@@ -1,0 +1,109 @@
+% Part: first-order-logic
+% Chapter: syntax-and-semantics
+% Section: subformulas
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{fol}{syn}{sbf}
+
+\olsection{\printtoken{P}{subformula}}
+
+\begin{explain}
+Belirli bir formülü ``oluşturan'' !!{formula}s hakkında konuşmak çoğu
+kez yararlıdır. Verilen !!{formula} için bunları
+\emph{!!{subformula}s} diye adlandırırız. Her !!{formula}, kendi kendisinin bir
+!!a{subformula} sayılır; $!A$ söz konusu olduğunda, $!A$'nın kendisi dışındaki bir alt formüle
+\emph{öz !!{subformula}} denir.
+\end{explain}
+
+\begin{defn}[Dolaysız !!^{subformula}]
+$!A$ bir !!a{formula} ise \emph{dolaysız !!{subformula}s}, $!A$ için
+aşağıdaki gibi tümevarımsal olarak tanımlanır:
+\begin{enumerate}
+\item Atomik !!{formula}s için dolaysız !!{subformula}s yoktur.
+
+\tagitem{prvNot}{\indcase{!A}{\lnot !B}{$\indfrm$'nin tek dolaysız
+    !!{subformula}{}ü $!B$'dir.}}{}
+
+\item \indcase{!A}{(!B \ast !C)}{$\indfrm$'nin dolaysız
+  !!{subformula}s{}i $!B$ ve $!C$'dir ($\ast$, iki yerli bağlaçlardan
+  herhangi biridir).}
+
+\tagitem{prvAll}{\indcase{!A}{\lforall[x][!B]}{$\indfrm$'nin tek dolaysız
+    !!{subformula}{}ü $!B$'dir.}}{}
+
+\tagitem{prvEx}{\indcase{!A}{\lexists[x][!B]}{$\indfrm$'nin tek dolaysız
+    !!{subformula}{}ü $!B$'dir.}}{}
+\end{enumerate}
+\end{defn}
+
+\begin{defn}[Öz !!^{subformula}]
+$!A$ bir !!a{formula} ise \emph{öz !!{subformula}s}, $!A$ için
+aşağıdaki gibi özyinelemeli olarak tanımlanır:
+\begin{enumerate}
+\item Atomik !!{formula}s için öz !!{subformula}s yoktur.
+
+\tagitem{prvNot}{\indcase{!A}{\lnot !B}{$\indfrm$'nin öz
+    !!{subformula}s{}i, $!B$ ile $!B$'nin bütün öz !!{subformula}s{}idir.}}{}
+
+\item \indcase{!A}{(!B \ast !C)}{$\indfrm$'nin öz !!{subformula}s{}i;
+  $!B$, $!C$, $!B$'nin bütün öz !!{subformula}s{}i ve $!C$'nin bütün öz
+  alt formülleridir.}
+
+\tagitem{prvAll}{\indcase{!A}{\lforall[x][!B]}{$\indfrm$'nin öz
+    !!{subformula}s{}i, $!B$ ile $!B$'nin bütün öz !!{subformula}s{}idir.}}{}
+
+\tagitem{prvEx}{\indcase{!A}{\lexists[x][!B]}{$\indfrm$'nin öz
+    !!{subformula}s{}i, $!B$ ile $!B$'nin bütün öz !!{subformula}s{}idir.}}{}
+\end{enumerate}
+\end{defn}
+
+\begin{defn}[!!^{subformula}]
+$!A$'nın !!{subformula}s{}i, $!A$'nın kendisi ile bütün öz
+!!{subformula}s{}dir.
+\end{defn}
+
+\begin{explain}
+Dolaysız !!{subformula}s ile öz !!{subformula}s arasındaki tanım
+farkına dikkat edin. İlkinde, bir formül~$!A$ için, $!A$'nın her olası
+biçimindeki dolaysız !!{subformula}s kümesini doğrudan tanımladık. Bu,
+durumlara göre açık bir tanımdır ve durumlar
+!!{formula}s kümesinin tümevarımsal tanımını yansıtır. İkincisinde yine
+bütün !!{formula}s kümesinin tanımlanma biçimini yansıttık; ancak her
+durumda öz !!{subformula}s kümesini de kullandık: daha küçük
+!!{formula}s $!B$ ile $!C$ için bu kümeyi, söz konusu !!{formula}s ile
+birlikte tanıma kattık. Bu, tanımı \emph{özyinelemeli}
+kılar. Genel olarak, tümevarımsal tanımlanmış bir küme (bizim
+durumumuzda !!{formula}s) üzerindeki bir fonksiyonun tanımı, fonksiyon
+tanımındaki durumlar fonksiyonun kendisini kullanıyorsa özyinelemelidir.
+Ancak tanımın iyi tanımlanmış olması için yalnızca tanımladığımız
+argümandan ``önce'' gelen argümanlardaki fonksiyon değerlerini
+kullandığımızdan emin olmalıyız---bizim durumumuzda $(!B \ast !C)$ için
+``öz !!{subformula}'' tanımlarken yalnızca öz !!{subformula}s kümesini, yani
+``daha önceki'' !!{formula}s $!B$ ile $!C$ için olanları kullanırız.
+\end{explain}
+
+\begin{prop}
+\ollabel{prop:subfrm-trans}
+$!B$, $!A$'nın bir alt formülü ve $!C$, $!B$'nin bir alt formülü olsun.
+O zaman $!C$, $!A$'nın bir alt formülüdür. Başka bir deyişle alt formül
+bağıntısı geçişlidir.
+\end{prop}
+
+\begin{prob}
+\olref[fol][syn][sbf]{prop:subfrm-trans}'i ispatlayın.
+\end{prob}
+
+\begin{prop}
+\ollabel{prop:count-subfrms}
+$!A$, $n$ bağlaç ve niceleyici içeren bir formül olsun. O zaman $!A$'nın
+en çok $2n+1$ alt formülü vardır.
+\end{prop}
+
+\begin{prob}
+\olref[fol][syn][sbf]{prop:count-subfrms}'i ispatlayın.
+\end{prob}
+
+\end{document}

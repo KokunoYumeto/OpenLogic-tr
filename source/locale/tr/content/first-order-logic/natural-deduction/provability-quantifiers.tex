@@ -1,0 +1,63 @@
+% Part: first-order-logic
+% Chapter: natural-deduction
+% Section: provability-quantifiers
+
+% verification of properties of provability needed for maximally
+% consistent sets in the completeness chapter.
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{fol}{ntd}{qpr}
+
+\olsection{\usetoken{S}{derivability} ve Niceleyiciler}
+
+\begin{explain}
+  Tamlık teoremi, doğal tümdengelim kurallarının bu bölümde $\Proves$
+  hakkında ortaya konan olguları vermesini de gerektirir.
+\end{explain}
+
+\begin{thm}
+\ollabel{thm:strong-generalization} $c$, $\Gamma$ veya $!A(x)$ içinde
+geçmeyen bir sabitse ve $\Gamma \Proves !A(c)$ ise
+$\Gamma \Proves \lforall[x][!A(x)]$ olur.
+\end{thm}
+
+\begin{proof}
+$\delta$, $\Gamma$'dan $!A(c)$ için !!a{derivation} olsun. Bir
+\Intro{\lforall} çıkarımı ekleyerek $\lforall[x][!A(x)]$ için
+!!a{derivation} elde ederiz. $c$, $\Gamma$ veya $!A(x)$ içinde geçmediği
+için özdeğişken koşulu sağlanır.
+\end{proof}
+
+\begin{prop}
+\ollabel{prop:provability-quantifiers}
+\begin{tagenumerate}{prvEx,prvAll}
+\tagitem{prvEx}{$!A(t) \Proves \lexists[x][!A(x)]$.}{}
+
+\tagitem{prvAll}{$\lforall[x][!A(x)] \Proves !A(t)$.}{}
+\end{tagenumerate}
+\end{prop}
+
+\begin{proof}
+\begin{tagenumerate}{prvEx,prvAll}
+\tagitem{prvEx}{Aşağıdaki, $!A(t)$'den $\lexists[x][!A(x)]$ için
+  !!a{derivation} örneğidir:
+\begin{prooftree}
+\AxiomC{$!A(t)$}
+\RightLabel{\Intro{\lexists}}
+\UnaryInfC{$\lexists[x][!A(x)]$}
+\end{prooftree}}{}
+
+\tagitem{prvAll}{Aşağıdaki, $\lforall[x][!A(x)]$'den $!A(t)$ için
+  !!a{derivation} örneğidir:
+\begin{prooftree}
+\AxiomC{$\lforall[x][!A(x)]$}
+\RightLabel{\Elim{\lforall}}
+\UnaryInfC{$!A(t)$}
+\end{prooftree}}{}
+\end{tagenumerate}
+\end{proof}
+
+\end{document}

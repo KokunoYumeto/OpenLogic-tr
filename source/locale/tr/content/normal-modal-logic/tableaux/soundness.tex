@@ -1,0 +1,258 @@
+% Part: normal-modal-logic
+% Chapter: tableaux
+% Section: soundness
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{nml}{tab}{sou}
+
+\olsection{\Log{K} için Sağlamlık}
+
+\begin{editorial}
+  Bu sağlamlık ispatı, klasik önerme mantığının sağlamlık ispatını yeniden
+  kullanmak yerine her şeyi baştan ispatlar. Kendi kendine yeterli bir sağlamlık
+  ispatı isteniyorsa bu uygundur. Olağan tabloların sağlamlığı daha önce
+  görülmüşse tekrarlı olacaktır. Kendi kendine yeterli sürüm ile modal olmayan
+  duruma dayanan bir sürüm arasında seçim yapılabilmesi planlanmaktadır.
+\end{editorial}
+
+\begin{explain}
+  Önekli !!{tableau}s{}nın sağlam olduğunu göstermek için
+  \[
+  \sFmla{\True}{!B_1}[1], \dots, \sFmla{\True}{!B_n}[1], \sFmla{\False}{!A}[1]
+  \]
+  kapalı bir !!{tableau}{}ya sahipse $!B_1, \dots, !B_n \Entails !A$ olduğunu
+  göstermeliyiz. Karşıt tersini ispatlamak daha kolaydır: bazı $\mModel{M}$
+  modeli ve $w$ dünyası için her $i=1$, \dots, $n$ bakımından
+  $\mSat{M}{!B_i}[w]$, fakat $\mSat/{M}{!A}[w]$ ise hiçbir !!{tableau}
+  kapanamaz. Böyle bir karşı-model, !!{tableau}{}nun başlangıç varsayımlarının
+  sağlanabilir olduğunu gösterir. İspat stratejisi şudur: !!a{tableau} dalındaki
+  bütün önekli !!{formula}s sağlanabilir olduğunda, herhangi bir kuralın
+  uygulanması sonucunda genişletilmiş dallardan en az biri de sağlanabilir
+  olur. Kapalı dallar sağlanamaz olduğundan, sağlanabilir bir önekli
+  !!{formula}s kümesinin her !!{tableau}{}sunda en az bir açık dal bulunmalıdır.
+
+  Bu stratejiyi modal durumda uygulamak için ``sağlanabilir'' tanımımızı modal
+  formülleri ve önekleri kapsayacak biçimde genişletmeliyiz. Bu yapıldıktan
+  sonra ispat doğrudandır.
+\end{explain}
+
+\begin{defn}
+  $P$ bir önekler kümesi, yani $P \subseteq (\PosInt)^*
+  \setminus \{\emptyseq\}$ ve $\mModel{M}$ bir model olsun. $\sigma$ ile
+  $\sigma.n$'nin ikisi de $P$ içinde olduğunda $Rf(\sigma)f(\sigma.n)$
+  geçerli oluyorsa, $f\colon P \to W$ fonksiyonuna $P$'nin $\mModel{M}$
+  içindeki bir \emph{yorumu} denir.
+
+  $P$ öneklerinin bir yorumuna göre şunları tanımlarız:
+  \begin{enumerate}
+  \item $\mModel{M}$, $\sFmla{\True}{!A}[\sigma]$'yı ancak ve ancak
+    $\mSat{M}{!A}[f(\sigma)]$ ise sağlar.
+  \item $\mModel{M}$, $\sFmla{\False}{!A}[\sigma]$'yı ancak ve ancak
+    $\mSat/{M}{!A}[f(\sigma)]$ ise sağlar.
+  \end{enumerate}
+\end{defn}
+
+\begin{defn}
+  $\Gamma$ bir önekli !!{formula}s kümesi ve $P(\Gamma)$, onda geçen önekler
+  kümesi olsun. $f$, $P(\Gamma)$'nın $\mModel{M}$ içindeki bir yorumuysa,
+  $\mModel{M}$, $\Gamma$ içindeki her önekli !!{formula}{}ü $f$'ye göre
+  sağladığında $\mModel{M}$'nin $\Gamma$'yı $f$'ye göre sağladığını söyler ve bunu
+  $\mSat{M}{\Gamma}[f]$ ile gösteririz. $\mSat{M}{\Gamma}[f]$ olacak biçimde
+  bir $\mModel{M}$ modeli ve $P(\Gamma)$'nın bir $f$ yorumu varsa $\Gamma$
+  \emph{sağlanabilirdir}.
+\end{defn}
+
+\begin{prop}
+  $\Gamma$, bazı !!{formula} $!A$ ve $\sigma$ öneki için hem
+  $\sFmla{\True}{!A}[\sigma]$ hem $\sFmla{\False}{!A}[\sigma]$ içeriyorsa
+  $\Gamma$ sağlanamazdır.
+\end{prop}
+
+\begin{proof}
+  Hem $\mSat{M}{!A}[f(\sigma)]$ hem $\mSat/{M}{!A}[f(\sigma)]$ olacak
+  biçimde bir $\mModel{M}$ modeli ile $P(\Gamma)$'nın bir $f$ yorumu olamaz.
+\end{proof}
+
+\begin{thm}[Sağlamlık]
+  \ollabel{thm:tableau-soundness}
+  $\Gamma$ kapalı bir !!{tableau}{}ya sahipse $\Gamma$ sağlanamazdır.
+\end{thm}
+
+\begin{proof}
+!!a{tableau}{}nun bir dalına, üzerindeki !!{signed formula}s kümesi
+sağlanabilir olduğunda sağlanabilir diyelim; en az bir sağlanabilir dal içeren
+!!a{tableau}{}ya da sağlanabilir diyelim.
+
+Şunu göstereceğiz: Sağlanabilir bir !!{tableau}{}yu çıkarım kurallarından
+biriyle genişletmek her zaman sağlanabilir bir !!{tableau} verir. Bu, teoremi
+ispatlar: her kapalı !!{tableau}, yalnızca $\Gamma$'dan gelen varsayımlardan
+oluşan !!{tableau}{}ya çıkarım kuralları uygulanarak elde edilir. Dolayısıyla
+$\Gamma$ sağlanabilir olsaydı onun her !!{tableau}{}su sağlanabilir olurdu.
+Oysa bütün dalları kapalı ve kapalı dallar sağlanamaz olduğundan kapalı bir
+!!{tableau} açıkça sağlanabilir değildir.
+
+Sağlanabilir bir !!{tableau}{}muz, yani en az bir sağlanabilir dalı bulunan
+!!a{tableau}, olsun.
+Bir çıkarım kuralının uygulanması ya bir dala !!{signed formula}s ekler ya da
+bir dalı ikiye ayırır. !!{tableau}{}nun söz konusu kural uygulamasıyla
+genişletilmeyen sağlanabilir bir dalı varsa bu dal genişletilmiş !!{tableau}{}da
+da sağlanabilir kalır; dolayısıyla genişletilmiş tablo sağlanabilirdir. Bu
+nedenle yalnızca kuralın sağlanabilir bir dala uygulandığı durumu incelemeliyiz.
+
+$\Gamma$ o daldaki !!{signed formula}s kümesi ve
+$\sFmla{S}{!A}[\sigma] \in \Gamma$, kuralın uygulandığı !!{signed formula}
+olsun. Kural dalı ayırmıyorsa genişletilmiş dalın, yani $\Gamma$ ile kuralın
+sonuçlarının birlikte hâlâ sağlanabilir olduğunu göstermeliyiz. Kural dalı
+ayırıyorsa ortaya çıkan iki daldan en az birinin sağlanabilir olduğunu
+göstermeliyiz.
+\tagfalse{prvDiamond}
+Önce tek öncüllü olası çıkarımları ele alalım.
+\begin{enumerate}
+\item Dal, $\sFmla{\True}{\lnot !B}[\sigma] \in \Gamma$'ya
+  $\TRule{\True}{\lnot}$ uygulanarak genişletilsin. Genişletilmiş dal
+  $\Gamma \cup \{\sFmla{\False}{!B}[\sigma]\}$ !!{signed formula}s{}i
+  içerir. $\mSat{M}{\Gamma}[f]$ olsun. Özellikle
+  $\mSat{M}{\lnot !B}[f(\sigma)]$. Dolayısıyla
+  $\mSat/{M}{!B}[f(\sigma)]$; yani $\mModel{M}$,
+  $\sFmla{\False}{!B}[\sigma]$'yı $f$'ye göre sağlar.
+\item Dal, $\sFmla{\False}{\lnot !B}[\sigma] \in \Gamma$'ya
+  $\TRule{\False}{\lnot}$ uygulanarak genişletilsin: Alıştırma.
+\item Dal, $\sFmla{\True}{!B \land !C}[\sigma] \in \Gamma$'ya
+  $\TRule{\True}{\land}$ uygulanarak genişletilsin. Bu, dala iki yeni
+  !!{signed formula}, $\sFmla{\True}{!B}[\sigma]$ ile
+  $\sFmla{\True}{!C}[\sigma]$ ekler. $\mSat{M}{\Gamma}[f]$, özellikle
+  $\mSat{M}{!B \land !C}[f(\sigma)]$ olsun. O zaman
+  $\mSat{M}{!B}[f(\sigma)]$ ve $\mSat{M}{!C}[f(\sigma)]$. Bu,
+  $\mModel{M}$'nin hem $\sFmla{\True}{!B}[\sigma]$'yı hem
+  $\sFmla{\True}{!C}[\sigma]$'yı $f$'ye göre sağladığı anlamına gelir.
+\item Dal, $\sFmla{\False}{!B \lor !C} \in \Gamma$'ya
+  $\TRule{\False}{\lor}$ uygulanarak genişletilsin: Alıştırma.
+\item Dal, $\sFmla{\False}{!B \lif !C}[\sigma] \in \Gamma$'ya
+  $\TRule{\False}{\lif}$ uygulanarak genişletilsin. Bu, dala iki yeni
+  !!{signed formula}, $\sFmla{\True}{!B}[\sigma]$ ile
+  $\sFmla{\False}{!C}[\sigma]$ ekler. $\mSat{M}{\Gamma}[f]$, özellikle
+  $\mSat/{M}{!B \lif !C}[f(\sigma)]$ olsun. O zaman
+  $\mSat{M}{!B}[f(\sigma)]$ ve $\mSat/{M}{!C}[f(\sigma)]$. Bu,
+  $\mModel{M},f$'nin hem $\sFmla{\True}{!B}[\sigma]$'yı hem de
+  $\sFmla{\False}{!C}[\sigma]$'yı sağladığı anlamına gelir.
+
+\iftag{prvBox}{%
+\item Dal, $\sFmla{\True}{\Box !B}[\sigma] \in \Gamma$'ya
+  $\TRule{\True}{\Box}$ uygulanarak genişletilsin:
+  \iftag{probBox}{Alıştırma.}{Bunun sonucunda, $\sigma.n$ kullanılmış olmak
+    zorunda olduğundan, bazı $\sigma.n \in P(\Gamma)$ için dala yeni bir
+    !!{signed formula} $\sFmla{\True}{!B}[\sigma.n]$ eklenir.
+    $\mSat{M}{\Gamma}[f]$, özellikle $\mSat{M}{\Box !B}[f(\sigma)]$ olsun.
+    $f$ öneklerin bir yorumu ve hem $\sigma$ hem
+    $\sigma.n \in P(\Gamma)$ olduğundan $Rf(\sigma)f(\sigma.n)$.
+    Dolayısıyla $\mSat{M}{!B}[f(\sigma.n)]$; yani $\mModel{M},f$,
+    $\sFmla{\True}{!B}[\sigma.n]$'yı sağlar.}
+
+\item Dal, $\sFmla{\False}{\Box !B}[\sigma] \in \Gamma$'ya
+  $\TRule{\False}{\Box}$ uygulanarak genişletilsin:
+  \iftag{probBox}{Alıştırma.}{Bunun sonucunda dala yeni bir !!{signed
+      formula} $\sFmla{\False}{!B}[\sigma.n]$ eklenir; burada $\sigma.n$
+    dalda yeni bir önektir, yani $\sigma.n \notin P(\Gamma)$. $\Gamma$
+    sağlanabilir olduğundan, $\Sat{M}{\Gamma}[f]$ olacak biçimde bir
+    $\Struct{M}$ ile $P(\Gamma)$'nın bir $f$ yorumu vardır; özellikle
+    $\mSat/{M}{\Box !B}[f(\sigma)]$. $\Gamma \cup
+    \{\sFmla{\False}{!B}[\sigma.n]\}$ kümesinin sağlanabilir olduğunu
+    göstermeliyiz. Bunun için $P(\Gamma) \cup \{\sigma.n\}$'nin bir yorumunu
+    şöyle tanımlarız:
+
+  $\mSat/{M}{\Box !B}[f(\sigma)]$ olduğundan $Rf(\sigma)w$ ve
+  $\mSat/{M}{!B}[w]$ olacak biçimde bir $w \in W$ vardır. $f'$,
+  $f'(\sigma.n)=w$ olması dışında $f$ gibi olsun. $f'(\sigma)=f(\sigma)$ ve
+  $Rf(\sigma)w$ olduğundan $Rf'(\sigma)f'(\sigma.n)$; dolayısıyla $f'$,
+  $P(\Gamma) \cup \{\sigma.n\}$'nin bir yorumudur. Açıkça
+  $\mSat/{M}{!B}[f'(\sigma.n)]$. Her $\sigma' \in P(\Gamma)$ için
+  $f(\sigma')=f'(\sigma')$ olduğundan $\mSat{M}{\Gamma}[f']$. Böylece
+  $\mModel{M},f'$, $\Gamma \cup
+  \{\sFmla{\False}{!B}[\sigma.n]\}$ kümesini sağlar.}
+  }{}
+
+\iftag{prvDiamond}{%
+\item Dal, $\sFmla{\True}{\Diamond !B}[\sigma] \in \Gamma$'ya
+  $\TRule{\True}{\Diamond}$ uygulanarak genişletilsin:
+  \iftag{probDiamond}{Alıştırma.}{Bunun sonucunda dala yeni bir !!{signed
+      formula} $\sFmla{\True}{!B}[\sigma.n]$ eklenir; burada $\sigma.n$
+    dalda yeni bir önektir, yani $\sigma.n \notin P(\Gamma)$. $\Gamma$
+    sağlanabilir olduğundan, $\Sat{M}{\Gamma}[f]$ olacak biçimde bir
+    $\Struct{M}$ ile $P(\Gamma)$'nın bir $f$ yorumu vardır; özellikle
+    $\mSat{M}{\Diamond !B}[f(\sigma)]$. $\Gamma \cup
+    \{\sFmla{\True}{!B}[\sigma.n]\}$ kümesinin sağlanabilir olduğunu
+    göstermeliyiz. Bunun için $P(\Gamma) \cup \{\sigma.n\}$'nin bir yorumunu
+    şöyle tanımlarız:
+
+  $\mSat{M}{\Diamond !B}[f(\sigma)]$ olduğundan $Rf(\sigma)w$ ve
+  $\mSat{M}{!B}[w]$ olacak biçimde bir $w \in W$ vardır. $f'$,
+  $f'(\sigma.n)=w$ olması dışında $f$ gibi olsun. $f'(\sigma)=f(\sigma)$ ve
+  $Rf(\sigma)w$ olduğundan $Rf'(\sigma)f'(\sigma.n)$; dolayısıyla $f'$,
+  $P(\Gamma) \cup \{\sigma.n\}$'nin bir yorumudur. Açıkça
+  $\mSat{M}{!B}[f'(\sigma.n)]$. Her $\sigma' \in P(\Gamma)$ için
+  $f(\sigma')=f'(\sigma')$ olduğundan $\mSat{M}{\Gamma}[f']$. Böylece
+  $\mModel{M},f'$, $\Gamma \cup
+  \{\sFmla{\True}{!B}[\sigma.n]\}$ kümesini sağlar.}
+\item Dal, $\sFmla{\False}{\Diamond !B}[\sigma] \in \Gamma$'ya
+  $\TRule{\False}{\Diamond}$ uygulanarak genişletilsin:
+  \iftag{probDiamond}{Alıştırma.}{Bunun sonucunda, $\sigma.n$ kullanılmış
+    olmak zorunda olduğundan, bazı $\sigma.n \in P(\Gamma)$ için dala yeni
+    bir !!{signed formula} $\sFmla{\False}{!B}[\sigma.n]$ eklenir.
+    $\mSat{M}{\Gamma}[f]$, özellikle
+    $\mSat/{M}{\Diamond !B}[f(\sigma)]$ olsun. $f$ öneklerin bir yorumu ve
+    hem $\sigma$ hem $\sigma.n \in P(\Gamma)$ olduğundan
+    $Rf(\sigma)f(\sigma.n)$. Dolayısıyla
+    $\mSat/{M}{!B}[f(\sigma.n)]$; yani $\mModel{M},f$,
+    $\sFmla{\False}{!B}[\sigma.n]$'yı sağlar.}
+  }{}
+\end{enumerate}
+Şimdi iki sonuç dalı bulunan olası çıkarımları ele alalım.
+\begin{enumerate}
+\item Dal, $\sFmla{\False}{!B \land !C}[\sigma] \in \Gamma$'ya
+  $\TRule{\False}{\land}$ uygulanarak genişletilsin. Bunun sonucunda
+  $\sFmla{\False}{!B}[\sigma]$ ile devam eden bir sol dal ve
+  $\sFmla{\False}{!C}[\sigma]$ ile devam eden bir sağ dal ortaya çıkar.
+  $\mSat{M}{\Gamma}[f]$, özellikle
+  $\mSat/{M}{!B \land !C}[f(\sigma)]$ olsun. O zaman
+  $\mSat/{M}{!B}[f(\sigma)]$ ya da $\mSat/{M}{!C}[f(\sigma)]$. İlk durumda
+  $\mModel{M},f$, $\sFmla{\False}{!B}[\sigma]$'yı sağlar; yani sol dal
+  sağlanabilirdir. İkinci durumda $\mModel{M},f$,
+  $\sFmla{\False}{!C}[\sigma]$'yı sağlar; yani sağ dal sağlanabilirdir.
+\item Dal, $\sFmla{\True}{!B \lor !C}[\sigma] \in \Gamma$'ya
+    $\TRule{\True}{\lor}$ uygulanarak genişletilsin: Alıştırma.
+\item Dal, $\sFmla{\True}{!B \lif !C}[\sigma] \in \Gamma$'ya
+    $\TRule{\True}{\lif}$ uygulanarak genişletilsin: Alıştırma.
+\end{enumerate}
+\end{proof}
+
+\begin{prob}
+\olref[nml][tab][sou]{thm:tableau-soundness} teoreminin ispatını tamamlayın.
+\end{prob}
+
+\begin{cor}
+\ollabel{cor:entailment-soundness}
+$\Gamma \Proves !A$ ise $\Gamma \Entails !A$.
+\end{cor}
+
+\begin{proof}
+  $\Gamma \Proves !A$ ise bazı $!B_1$, \dots, $!B_n \in \Gamma$ için
+  $\Delta = \{\sFmla{\False}{!A}[1], \sFmla{\True}{!B_1}[1],
+  \dots, \sFmla{\True}{!B_n}[1]\}$ kapalı bir !!{tableau}{}ya sahiptir.
+  $\Gamma \Entails !A$ olduğunu göstermek istiyoruz. Aksini varsayalım; o
+  zaman bazı $\mModel{M}$ ile $w$ için $i=1$, \dots, $n$ olmak üzere
+  $\mSat{M}{!B_i}[w]$, fakat $\mSat/{M}{!A}[w]$. $f(1)=w$ olsun; o zaman
+  $f$, $P(\Delta)$'nın $\mModel{M}$ içindeki bir yorumudur ve $\mModel{M}$,
+  $\Delta$'yı $f$'ye göre sağlar. Fakat \olref{thm:tableau-soundness}
+  gereğince $\Delta$, kapalı bir !!{tableau}{}ya sahip olduğu için sağlanamazdır;
+  çelişki. Dolayısıyla $\Gamma \Entails !A$ olmalıdır.
+\end{proof}
+
+\begin{cor}
+\ollabel{cor:weak-soundness}
+$\Proves !A$ ise $!A$ bütün modellerde doğrudur.
+\end{cor}
+
+\end{document}

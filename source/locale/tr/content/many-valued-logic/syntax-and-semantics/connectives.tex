@@ -1,0 +1,63 @@
+% Part: many-valued-logic
+% Chapter: syntax-and-semantics
+% Section: connectives
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{mvl}{syn}{con}
+
+\olsection{Diller ve Bağlaçlar}
+
+Klasik önerme mantığı ve başka birçok mantık, \emph{önerme sabitleri} ile
+\emph{bağlaçlardan} oluşan sabit bir dağarcık kullanır. Örneğin
+aşağıdakileri ilkel kabul ederiz:
+\begin{enumerate}
+\tagitem{prvFalse}{!!{falsity} için önerme sabiti $\lfalse$.}{}
+\tagitem{prvTrue}{!!{truth} için önerme sabiti $\ltrue$.}{}
+\item Mantıksal bağlaçlar:
+  \startycommalist
+  \iftag{prvNot}{\ycomma $\lnot$ (değilleme)}{}%
+  \iftag{prvAnd}{\ycomma $\land$ (ve bağlacı)}{}%
+  \iftag{prvOr}{\ycomma $\lor$ (veya bağlacı)}{}%
+  \iftag{prvIf}{\ycomma $\lif$ (!!{conditional})}{}%
+  \iftag{prvIff}{\ycomma $\liff$ (!!{biconditional})}{}%
+\end{enumerate}
+\iftag{defNot,defOr,defAnd,defIf,defIff,defTrue,defFalse,defEx,defAll}{%
+Yukarıdaki ilkel bağlaçlara ek olarak, kısaltma olarak tanımlanan şu
+simgeleri de kullanırız:
+\startycommalist
+  \iftag{defNot}{\ycomma $\lnot$ (değilleme)}{}%
+  \iftag{defAnd}{\ycomma $\land$ (ve bağlacı)}{}%
+  \iftag{defOr}{\ycomma $\lor$ (veya bağlacı)}{}%
+  \iftag{defIf}{\ycomma $\lif$ (!!{conditional})}{}%
+  \iftag{defIff}{\ycomma $\liff$ (!!{biconditional})}{}%
+  \iftag{defFalse}{\ycomma $\lfalse$ (!!{falsity})}{}%
+  \iftag{defTrue}{\ycomma $\ltrue$ (!!{truth}).}{}% 
+}{}
+
+Aynı bağlaçlar çok değerli mantıklarda da kullanılır. Bununla birlikte,
+örneğin ve bağlacının farklı sürümlerini aynı mantıkta içermek çoğu zaman
+yararlıdır; sürümleri ayrı tutmak için de farklı simgeler gerekir. Bazı çok
+değerli mantıklar klasik mantıkta karşılığı olmayan bağlaçlar da içerir.
+Dolayısıyla alışıldığından biraz daha genel olacağız.
+
+\begin{defn}
+Bir \emph{önerme dili}, \emph{bağlaçlardan} oluşan bir $\Lang L$ kümesidir.
+Her $\star$ bağlacının bir \emph{aritesi} vardır; aritesi $n$ olan bağlaca
+\emph{$n$-konumlu} denir. Aritesi $0$ olan bağlaçlara \emph{sabitler},
+aritesi $1$ olanlara \emph{tekli}, aritesi $2$ olanlara \emph{ikili} denir.
+\end{defn}
+
+\begin{ex}
+Önerme mantığının standart dili $\Lang L_0$, şu bağlaçlardan (yanlarında
+arite değerleriyle) oluşur: $\lfalse$~($0$), $\lnot$~($1$),
+$\land$~($2$), $\lor$~($2$), $\lif$~($2$). Ele alacağımız mantıkların çoğu
+bu dili kullanacaktır. Bazı mantıklar gelenek ve uzlaşım gereği bazı
+bağlaçlar için farklı simgeler kullanır. Örneğin çarpım mantığında ve bağlacı
+için $\land$ yerine çoğu zaman $\odot$ kullanılır. Bazen belirlenmişlik
+işleci $\triangle$ (tek konumlu) gibi yeni bir işleç eklemek elverişlidir.
+\end{ex}
+
+\end{document}

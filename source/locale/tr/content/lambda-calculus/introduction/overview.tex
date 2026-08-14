@@ -1,0 +1,68 @@
+% Part: lambda-calculus
+% Chapter: introduction
+% Section: overview
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{lam}{int}{ovr}
+\olsection{Genel Bakış}
+
+Lambda kalkülüsü ilk olarak Alonzo Church tarafından 1930'ların başında
+yapıcı mantığın temeli olarak tasarlanmıştı; hesaplanabilir fonksiyonların
+bir modeli olarak \emph{tasarlanmamıştı}. Ancak kısa süre sonra Turing
+hesaplanabilir fonksiyonları ve kısmi özyinelemeli fonksiyonlar gibi diğer
+hesaplanabilirlik tanımlarına eşdeğer olduğu gösterildi. Bunun başlangıçta
+biraz şaşırtıcı olması, nitelendirmeyi daha da ilginç kılar.
+
+Lambda gösterimi, bir fonksiyona ad tanımlamak yerine, fonksiyonu tanımlayan
+simgesel bir ifadeyle doğrudan gönderme yapmanın elverişli bir yoludur.
+``$f$, $f(x)=x+3$ ile tanımlanan fonksiyon olsun'' demek yerine, ``$f$,
+$\lambd[x][(x+3)]$ fonksiyonu olsun'' denebilir. Başka bir deyişle
+$\lambd[x][(x+3)]$, argümanına üç ekleyen fonksiyonun yalnızca bir
+\emph{adıdır}. Bu ifadede $x$ bir kukla değişken ya da yer tutucudur: aynı
+fonksiyon $\lambd[y][(y+3)]$ ile de gösterilebilir. Gösterim başka
+parametreler varken de çalışır. Örneğin $g(x,y)$ iki değişkenli bir fonksiyon
+ve $k$ bir doğal sayı olsun. O zaman $\lambd[x][g(x,k)]$, her $x$'i
+$g(x,k)$'ye götüren fonksiyondur.
+
+Bir fonksiyonun simgesel bir ifadeden bu biçimde tanımlanmasına
+\emph{lambda soyutlaması} denir. Lambda soyutlamasının öbür yüzü
+\emph{uygulamadır}: bir $f$ fonksiyonu (diyelim doğal sayılar üzerinde
+tanımlı) verildiğinde, fonksiyon $2$ gibi herhangi bir değere
+\emph{uygulanabilir}. Alışılmış gösterimde sonuç elbette $f(2)$ ile yazılır.
+
+Lambda soyutlamasını uygulamayla birleştirince ne olur? Ortaya çıkan ifade,
+uygulanılan ifadeyi soyutlanan değişkenin yerine ``koyarak'' sadeleştirilebilir.
+Örneğin
+\[
+(\lambd[x][(x + 3)])(2)
+\]
+ifadesi $2+3$'e sadeleştirilebilir.
+
+Buraya kadar alışılmış kavramlar için yeni gösterimler sunmaktan başka bir
+şey yapmadık. Fakat lambda kalkülüsü, küme kuramsal bakış açısından daha
+köklü bir kopuşu temsil eder. Bu çerçevede:
+\begin{enumerate}
+\item Her şey bir fonksiyon gösterir.
+\item Fonksiyonlar lambda soyutlamasıyla tanımlanabilir.
+\item Her şey başka her şeye uygulanabilir.
+\end{enumerate}
+Örneğin $F$, lambda kalkülüsünde bir terimse $F(F)$ ifadesinin her zaman
+anlamlı olduğu varsayılır. Bu özgür çerçeveye \emph{türsüz} lambda kalkülüsü
+denir; burada ``türsüz'', ``neyin neye uygulanabileceği üzerinde hiçbir
+kısıtlama yok'' demektir.
+
+\begin{digress}
+Türsüz sürümün önemli bir değişkesi olan \emph{türlü} lambda kalkülüsü de
+vardır. Türlü lambda kalkülüsü birçok bakımdan türsüz olana benzese de klasik
+küme kuramsal çerçeveyle bağdaştırılması çok daha kolaydır ve oldukça farklı
+bazı özelliklere sahiptir.
+
+Lambda kalkülüsü araştırmaları kuramsal bilgisayar biliminde ve programlama
+dillerinin tasarımında merkezi önem kazanmıştır. John McCarthy'nin 1950'lerde
+tasarladığı LISP, bu düşüncelerden etkilenen ilk dillerden biridir.
+\end{digress}
+
+\end{document}

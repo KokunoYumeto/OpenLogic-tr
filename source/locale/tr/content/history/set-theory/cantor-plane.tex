@@ -1,0 +1,79 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{his}{set}{cantorplane}
+\olsection{Cantor'da Doğru ve Düzlem}
+
+Schr\"oder--Bernstein ispatını çevreleyen koşulların bazıları,
+\olref[his][set][pathology]{sec}'te ele aldığımız tarihle bağlantılıdır.
+Cantor'un 1877'de bir karenin üzerindeki noktalarla bir kenarının üzerindeki
+noktaların tam olarak aynı sayıda olduğunu ispatladığını anımsayın. Burada
+onun (ilk giriştiği) ispatı sunacağız.
+
+$\unitline$, birim doğru parçası, yani $[0,1]$ noktaları kümesi olsun.
+$\unitsquare$, birim kare, yani $\unitline \times \unitline$ noktaları kümesi
+olsun. Bu terimlerle Cantor $\cardeq{\unitline}{\unitsquare}$ olduğunu
+ispatladı. Dedekind'e, özünde aşağıdaki argümanı içeren bir not yazdı.
+
+\begin{thm}\ollabel{thm:cantorplane}
+$\cardeq{\unitline}{\unitsquare}$
+\end{thm}
+
+\begin{proof}[İspat: birinci kısım.] 
+$a, b \in \unitline$ sabitleyin. Bunları ikili gösterimle yazın; böylece
+$0$'lar ile $1$'lerden oluşan $a_1$, $a_2$, \dots{} ve $b_1$, $b_2$,
+\dots{} sonsuz dizilerini şöyle elde ederiz:
+\begin{align*}
+a &= 0.a_1a_2a_3a_4\dots\\
+b &= 0.b_1b_2b_3b_4\dots
+\intertext{Şimdi şu biçimde verilen $f \colon \unitsquare \to \unitline$
+fonksiyonunu ele alın:} 
+f(a, b) & = 0.a_1b_1a_2b_2a_3b_3a_4b_4\dots
+\end{align*}
+$f$ bir !!a{injection}{}dur; çünkü $f(a, b) = f(c,d)$ ise $a_n = c_n$ ve
+$b_n = d_n$ olur; bu, her $n \in \Nat$ için geçerlidir, dolayısıyla $a = c$
+ve $b = d$'dir.
+\end{proof}
+
+Ne yazık ki Dedekind'in Cantor'a belirttiği gibi bu, özgün soruyu yanıtlamaz.
+$0.\dot{1}\dot{0} = 0.1010101010\ldots$ sayısını ele alın.
+$f(a,b) = 0.\dot{1}\dot{0}$ olmasına ihtiyacımız vardır; burada:
+\begin{align*}
+a&= 0.\dot{1}\dot{1} = 0.111111\ldots\\
+b&= 0
+\end{align*}
+Fakat $a = 0.\dot{1}\dot{1} = 1$'dir. Öyleyse ``$a$ ile $b$'yi ikili
+gösterimle yazın'' dediğimizde \emph{hangi} gösterimi kullanacağımızı
+seçmeliyiz; $f$ bir \emph{fonksiyon} olacağı için olası iki gösterimden
+yalnızca \emph{birini} kullanabiliriz. Ama örneğin sonlu gösterimi kullanıp
+$a$'yı ``$1.000\ldots$'' diye yazarsak hiçbir $\tuple{a, b}$ ikilisi için
+$f(a, b) = 0.\dot{1}\dot{0}$ olmaz.
+
+Özetlersek Dedekind, belirli yinelenen ikili açılımların mümkün olması
+nedeniyle Cantor'un $f$ fonksiyonunun bir !!a{injection} olduğunu, fakat bir
+!!a{surjection} \emph{olmadığını} belirtti. Dolayısıyla Cantor yalnızca
+$\cardle{\unitsquare}{\unitline}$ olduğunu göstermiştir;
+$\cardeq{\unitsquare}{\unitline}$ olduğunu \emph{değil}.
+
+Cantor hemen hemen anında Dedekind'e yanıt yazarak ispatın özünde şöyle
+tamamlanabileceğini ileri sürdü:
+
+\begin{proof}[İspat: tamamlanmış biçimi.] 
+Demek ki $\cardle{\unitsquare}{\unitline}$ olduğunu gösterdik. Ancak
+$\unitline$'dan $\unitsquare$'e açıkça bir !!a{injection} vardır: doğru
+parçasını karenin bir kenarı boyunca yatırmak yeterlidir. Öyleyse
+$\cardle{\unitline}{\unitsquare}$ ve
+$\cardle{\unitsquare}{\unitline}$ olur. Schr\"{o}der--Bernstein gereği
+(\olref[sfr][siz][sb]{thm:schroder-bernstein}),
+$\cardeq{\unitline}{\unitsquare}$.
+\end{proof}
+
+Ama Cantor elbette son satırı bu terimlerle tamamlayamazdı; çünkü
+Schr\"{o}der--Bernstein Teoremi henüz ispatlanmamıştı. Gerçekten de Cantor
+daha sonra bunu genel bir varsayım olarak formüle edecek olsa da doyurucu bir
+ispat ancak 1897'de verildi. (Dolayısıyla Cantor 1877'nin ilerleyen
+aylarında, Schr\"{o}der--Bernstein üzerinden gitmeyen farklı bir
+\olref{thm:cantorplane} ispatı sundu.)
+
+\end{document}

@@ -1,0 +1,43 @@
+% Part: first-order-logic
+% Chapter: sequent-calculus
+% Section: soundness-identity
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{fol}{seq}{sid}
+
+\olsection{\usetoken{S}{identity} ile Sağlamlık}
+
+\begin{prop}
+Özdeşlik için başlangıç sekantları ve kurallar eklenmiş $\Log{LK}$ sağlamdır.
+\end{prop}
+
+\begin{proof}
+${}\Sequent\eq[t][t]$ biçimindeki başlangıç sekantları geçerlidir; çünkü her
+!!{structure}~$\Struct M$ için $\Sat{M}{\eq[t][t]}$. ($t$ teriminin kapalı,
+yani değişken içermeyen bir terim olduğunu varsaydığımıza göre değişken
+atamaları önemsizdir.)
+
+Bir !!a{derivation} içindeki son çıkarımın $=$ kuralı olduğunu varsayalım. O zaman
+öncül $\eq[t_1][t_2],\Gamma\Sequent\Delta,!A(t_1)$, sonuç ise
+$\eq[t_1][t_2],\Gamma\Sequent\Delta,!A(t_2)$ olur. Bir
+!!a{structure}~$\Struct M$ ele alalım. Sonucun geçerli olduğunu göstermemiz
+gerekir; yani $\Sat{M}{\eq[t_1][t_2]}$ ve $\Sat{M}{\Gamma}$ ise ya bir
+$!C\in\Delta$ için $\Sat{M}{!C}$ ya da $\Sat{M}{!A(t_2)}$.
+
+Tümevarım hipotezine göre öncül geçerlidir. Bu, $\Sat{M}{\eq[t_1][t_2]}$
+ve $\Sat{M}{\Gamma}$ ise ya (a) bir $!C\in\Delta$ için $\Sat{M}{!C}$ ya da
+(b) $\Sat{M}{!A(t_1)}$ olduğu anlamına gelir. (a) durumunda işimiz bitmiştir.
+(b) durumunu ele alalım. $s(x)=\Value{t_1}{M}$ olan bir $s$ değişken ataması
+olsun. \olref[syn][ass]{prop:sentence-sat-true} uyarınca
+$\Sat{M}{!A(t_1)}[s]$. $\varAssign{s}{s}{x}$ olduğundan
+\olref[syn][ext]{prop:ext-formulas} uyarınca $\Sat{M}{!A(x)}[s]$.
+$\Sat{M}{\eq[t_1][t_2]}$ olduğu için $\Value{t_1}{M}=\Value{t_2}{M}$ ve
+dolayısıyla $s(x)=\Value{t_2}{M}$. \olref[syn][ext]{prop:ext-formulas}
+önermesini yeniden uygulayınca $\Sat{M}{!A(t_2)}[s]$ elde ederiz.
+\olref[syn][ass]{prop:sentence-sat-true} uyarınca $\Sat{M}{!A(t_2)}$.
+\end{proof}
+
+\end{document}

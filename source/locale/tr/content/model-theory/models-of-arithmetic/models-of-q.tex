@@ -1,0 +1,212 @@
+% Part: model-theory
+% Chapter: models-of-arithmetic
+% Section: non-standard-models
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{mod}{mar}{mdq}
+\section{$\Th Q$ Modelleri}
+
+\begin{explain}
+$\Struct N$ ile aynı !!{sentence}s ifadelerini doğru kılan, yani
+$\Th{TA}$ modelleri olan standart dışı !!{structure}s bulunduğunu
+biliyoruz. $\Sat{N}{\Th Q}$ olduğundan her $\Th{TA}$ modeli aynı
+zamanda $\Th Q$ modelidir. $\Th Q$, $\Th{TA}$ kuramından çok daha
+zayıftır; örneğin
+$\Th Q\Proves/\lforall[x][\lforall[y][\eq[(x+y)][(y+x)]]]$.
+Zayıf kuramları sağlamak daha kolaydır ve daha çok modelleri vardır.
+Örneğin $\Th Q$'nun
+$\lforall[x][\lforall[y][\eq[(x+y)][(y+x)]]]$ tümcesini yanlış kılan
+modelleri vardır; fakat bunlar $\Th{TA}$ ya da $\Th{PA}$ modelleri
+olamaz. $\Th Q$ modelleri de görece basittir: Onları açıkça
+belirtebiliriz.
+\end{explain}
+
+\begin{ex}
+\ollabel{ex:model-K-of-Q}
+$\Domain K=\Nat\cup\{a\}$ evrenli ve şu yorumlara sahip
+!!{structure}~$\Struct K$ ifadesini ele alalım:
+\begin{align*}
+  \Assign{\Obj{0}}{K} & = 0\\
+  \Assign{\prime}{K}(x) & =
+  \begin{cases}
+    x+1 & \text{$x\in\Nat$ ise}\\
+    a & \text{$x=a$ ise}
+  \end{cases}\\
+  \Assign{+}{K}(x, y) & =
+  \begin{cases}
+    x+y & \text{$x,y\in\Nat$ ise}\\
+    a & \text{aksi halde}
+  \end{cases}\\
+  \Assign{\times}{K}(x, y) & =
+  \begin{cases}
+    xy & \text{$x,y\in\Nat$ ise}\\
+    0 & \text{$x=0$ ya da $y=0$ ise}\\
+    a & \text{aksi halde}\\
+  \end{cases}\\
+  \Assign{<}{K} & =
+  \Setabs{\tuple{x,y}}{x, y \in \Nat \text{ ve } x<y} \cup
+  \Setabs{\tuple{x,a}}{x \in \Domain{K}}.
+\end{align*}
+$\Sat{K}{\Th Q}$ göstermek için $\Th Q$'nun bütün aksiyomlarının
+$\Struct K$ içinde doğru olduğunu doğrulamalıyız. Kolaylık için
+$\Assign{\prime}{K}(x)$ yerine $x^\nssucc$ ($\Struct K$ içindeki
+``ardıl''), $\Assign{+}{K}(x,y)$ yerine $x\nsplus y$ ($\Struct K$
+içindeki ``toplam''), $\Assign{\times}{K}(x,y)$ yerine
+$x\nstimes y$ ($\Struct K$ içindeki ``çarpım'') ve
+$\tuple{x,y}\in\Assign{<}{K}$ yerine $x\nsless y$ yazalım. Bu
+kısaltmalarla $\Struct K$ içindeki işlemleri daha açık biçimde şöyle
+verebiliriz:
+\[
+\begin{array}{c|c}
+  x & x^\nssucc \\
+  \hline
+  n & n+1 \\
+  a & a
+\end{array}
+\qquad
+\begin{array}{c|ccc}
+  x \nsplus y & 0 & m & a \\
+  \hline
+  0 & 0 & m & a \\
+  n & n & n+m & a \\
+  a & a & a & a \\
+\end{array}
+\qquad
+\begin{array}{c|ccc}
+  x \nstimes y & 0 & m & a \\
+  \hline
+  0 & 0 & 0 & 0 \\
+  n & 0 & nm & a \\
+  a & 0 & a & a \\
+\end{array}
+\]
+$n,m\in\Nat$ için $n\nsless m$ ancak ve ancak $n<m$ ve bütün
+$x\in\Domain K$ için $x\nsless a$.
+
+$\nssucc$ !!{injective} olduğundan
+$\Sat{K}{\lforall[x][\lforall[y][(\eq[x'][y']\lif\eq[x][y])]]}$.
+$0$, $\Struct K$ içinde bir $\nssucc$-ardılı olmadığından
+$\Sat{K}{\lforall[x][\eq/[\Obj0][x']]}$. Her $n>0$ için
+$n=(n-1)^\nssucc$ ve $a=a^\nssucc$ olduğundan
+$\Sat{K}{\lforall[x][(\eq[x][\Obj0]\lor
+\lexists[y][\eq[x][y']])]}$.
+
+$n\nsplus0=n+0=n$ ve $a\nsplus0=a$ olduğundan
+$\Sat{K}{\lforall[x][\eq[(x+\Obj0)][x]]}$. Şu aksiyom biraz daha
+inceliklidir:
+$\Sat{K}{\lforall[x][\lforall[y][\eq[(x+y')][(x+y)']]]}$.
+$n,m$ standartsa
+\begin{align*}
+(n \nsplus m^\nssucc) & = (n+(m+1)) = (n+m)+1 = (n \nsplus m)^\nssucc
+\intertext{olur; çünkü $\nsplus$ ve $^\nssucc$, standart sayılar üzerinde
+$+$ ve $\prime$ ile uyuşur. Şimdi $x\in\Domain K$ olsun:}
+(x \nsplus a^\nssucc) & = (x \nsplus a) = a = a^\nssucc = (x \nsplus a)^\nssucc.
+\intertext{Kalan durumda $y\in\Domain K$ iken $x=a$'dır. Burada
+$y=n$ standart mı yoksa $y=a$ mı diye iki durumu ayırırız:}
+(a \nsplus n^\nssucc) & = (a \nsplus (n+1)) = a = a^\nssucc = (a \nsplus n)^\nssucc\\
+(a \nsplus a^\nssucc) & = (a \nsplus a) = a = a^\nssucc = (a \nsplus a)^\nssucc.
+\end{align*}
+Bu elbette gerekenden daha ayrıntılıdır. Örneğin $z$ ne olursa olsun
+$a\nsplus z=a$ olduğundan $a\nsplus a^\nssucc=a$ sonucunu hemen
+çıkarabiliriz. Kalan aksiyomlar aynı biçimde doğrulanabilir.
+
+Dolayısıyla $\Struct K$, $\Th Q$'nun bir modelidir. ``Toplam'' işlemi
+$\nsplus$ da değişmelidir. Fakat $\Struct N$ içinde doğru olup
+$\Struct K$ içinde yanlış olan ve tersi yönde başka tümceler vardır.
+Örneğin $a\nsless a$, dolayısıyla
+$\Sat{K}{\lexists[x][x<x]}$ ve
+$\Sat/{K}{\lforall[x][\lnot x<x]}$. Bu,
+$\Th Q\Proves/\lforall[x][\lnot x<x]$ olduğunu gösterir.
+\end{ex}
+
+\begin{prob}
+\olref[mod][mar][mdq]{ex:model-K-of-Q} içindeki $\Struct K$ yapısının
+$\Th Q$'nun kalan aksiyomlarını sağladığını gösterin:
+\begin{align*}
+  & \lforall[x][\eq[(x \times \Obj 0)][\Obj 0]] \tag{$!Q_6$}\\
+  & \lforall[x][\lforall[y][\eq[(x \times y')][((x \times y) + x)]]] \tag{$!Q_7$}\\
+  & \lforall[x][\lforall[y][(x < y \liff \lexists[z][\eq[(z' + x)][y]])]] \tag{$!Q_8$}.
+\end{align*}
+Yalnızca $\prime$ simgesini içeren, $\Struct N$ içinde doğru fakat
+$\Struct K$ içinde yanlış !!a{sentence} bulun.
+\end{prob}
+
+\begin{ex}
+\ollabel{ex:model-L-of-Q} $\Domain L=\Nat\cup\{a,b\}$ evrenli,
+$\Assign{\prime}{L}=\nssucc$ ve $\Assign{+}{L}=\nsplus$ yorumları
+\[
+\begin{array}{c|c}
+  x & x^\nssucc \\
+  \hline
+  n & n+1 \\
+  a & a\\
+  b & b
+\end{array}
+\qquad
+\begin{array}{c|ccc}
+  x \nsplus y & m & a & b\\
+  \hline
+  n & n+m & b & a\\
+  a & a & b & a\\
+  b & b & b & a
+\end{array}
+\]
+ile verilen !!{structure}~$\Struct L$ ifadesini ele alalım.
+$\nssucc$ !!{injective}, $0$ görüntü kümesinde değil ve
+$\Domain L$ içindeki $0$ dışındaki her $x$ görüntü kümesinde olduğundan
+$!Q_1$--$!Q_3$ aksiyomları $\Struct L$ içinde doğrudur. Her $x$ için
+$x\nsplus0=x$ olduğundan $!Q_4$ de doğrudur. $!Q_5$ için
+$x\nsplus y^\nssucc$ ile $(x\nsplus y)^\nssucc$ ifadelerini ele
+alalım. $x$ ve $y$ standartsa bunlar eşittir; çünkü $\nssucc$ ile
+$\nsplus$, $\prime$ ile $+$ işlemleriyle uyuşur. $x$ standart olmayan,
+$y$ standartsa $x\nsplus y^\nssucc=x=x^\nssucc=
+(x\nsplus y)^\nssucc$. $x$ ve $y$ standart değilse dört durum vardır:
+\begin{align*}
+&  a \nsplus a^\nssucc  = b = b^\nssucc = (a \nsplus a)^\nssucc\\
+&  b \nsplus b^\nssucc  = a = a^\nssucc = (b \nsplus b)^\nssucc\\
+&  b \nsplus a^\nssucc  = b = b^\nssucc = (b \nsplus y)^\nssucc\\
+&  a \nsplus b^\nssucc  = a = a^\nssucc = (a \nsplus b)^\nssucc
+\intertext{$x$ standart, $y$ standart değilse}
+&  n \nsplus a^\nssucc  = n \nsplus a = b = b^\nssucc = (n \nsplus a)^\nssucc\\
+&  n \nsplus b^\nssucc  = n \nsplus b = a = a^\nssucc = (n \nsplus b)^\nssucc.
+\end{align*}
+Dolayısıyla $\Sat{L}{!Q_5}$. Ancak $a\nsplus0\neq0\nsplus a$;
+bu yüzden
+$\Sat/{L}{\lforall[x][\lforall[y][\eq[(x+y)][(y+x)]]]}$.
+\end{ex}
+
+\begin{prob}
+\olref[mod][mar][mdq]{ex:model-L-of-Q} içindeki $\Struct L$ yapısını
+$\times$ ve $<$ simgelerini yorumlayan $\nstimes$ ve $\nsless$
+işlemleriyle genişletin. Yapınızın $\Th Q$'nun kalan aksiyomlarını
+sağladığını gösterin:
+\begin{align*}
+& \lforall[x][\eq[(x \times \Obj 0)][\Obj 0]] \tag{$!Q_6$}\\ &
+  \lforall[x][\lforall[y][\eq[(x \times y')][((x \times y) + x)]]]
+  \tag{$!Q_7$}\\ & \lforall[x][\lforall[y][(x < y \liff \lexists[z][\eq[(z'+x)][y]])]] \tag{$!Q_8$}.
+\end{align*}
+\end{prob}
+
+\begin{prob}
+\olref[mod][mar][mdq]{ex:model-L-of-Q} içindeki $\Struct L$ yapısında
+$a^\nssucc=a$ ve $b^\nssucc=b$. $a^\nssucc=b$ ve $b^\nssucc=a$ olan
+bir $\Th Q$ modeli var mıdır?
+\end{prob}
+
+\begin{explain}
+Standart olmayan !!{element}s ifadelerinin standart elemanların
+``ötesinde'' yaşadığı $\Th Q$ modellerini açıkça kurduk. Aslında
+aksiyomlar en az bu kadarını gerektirir. Standart olmayan
+!!a{element}~$x$, ${}\nsless0$ olamaz; çünkü
+$\Th Q\Proves\lforall[x][\lnot x<0]$
+(bkz. \olref[inc][req][min]{lem:less-zero}). Ayrıca her $n$ için
+$\Th Q\Proves\lforall[x][(x<\num n'\lif
+(\eq[x][\num0]\lor\eq[x][\num1]\lor\dots\lor\eq[x][\num n]))]$
+(\olref[inc][req][min]{lem:less-nsucc}); dolayısıyla hiçbir $n>0$ için
+$a\nsless n$ olamaz.
+\end{explain}
+
+\end{document}

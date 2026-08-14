@@ -1,0 +1,49 @@
+% Part: lambda-calculus
+% Chapter: lambda-definability
+% Section: lambda-definable-recursive
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{lam}{dfl}{ldr}
+\olsection{\usetoken{S}{lambda definable} Fonksiyonlar Özyinelemelidir}
+
+Bütün kısmi özyinelemeli fonksiyonlar !!{lambda definable} olmakla kalmaz;
+tersi de doğrudur. Yani bütün !!{lambda definable} fonksiyonlar kısmi
+özyinelemelidir.
+
+\begin{thm}
+  \ollabel{thm:lambda-computable} Bir kısmi $f$ fonksiyonu
+  !!{lambda definable} ise kısmi özyinelemelidir.
+\end{thm}
+
+\begin{proof}
+  İspatın yalnızca taslağını veriyoruz. Önce $\lambd$-terimlerini
+  aritmetikleştiririz; yani dizilerin alışılmış asal kuvvetleri kodlamasını
+  kullanarak $\lambd$-terimlerine dizgesel biçimde Gödel sayıları atarız.
+  Sonra bir lambda teriminin Gödel sayısı $t$ üzerinde çalışan kısmi
+  özyinelemeli $\fn{normalize}(t)$ fonksiyonunu tanımlarız: terimin normal
+  biçimi varsa bunun Gödel sayısını döndürür, yoksa tanımsızdır. Ayrıca doğal
+  sayılar ile bunlara karşılık gelen Church sayılarının Gödel sayıları
+  arasında iki yönde eşleme yapan kısmi özyinelemeli $\fn{toChurch}$ ve
+  $\fn{fromChurch}$ fonksiyonlarını tanımlarız.
+
+  Bu özyinelemeli fonksiyonları kullanarak $f$'yi kısmi özyinelemeli bir
+  fonksiyon olarak tanımlayabiliriz. $f$'yi !!{lambda define}s bir
+  $\lambd$-terimi $F$ vardır. $f(n_1,\dots,n_k)$'yi hesaplamak için önce
+  $\fn{toChurch}(n_i)$ ile karşılık gelen Church sayılarının Gödel sayılarını
+  elde ederiz; bunları $\Gn{F}$'ye ekleyerek
+  $F\num{n_1}\dots\num{n_k}$ teriminin Gödel sayısını kurarız. Şimdi bu
+  Gödel sayısına $\fn{normalize}$ uygularız. $f(n_1,\dots,n_k)$ tanımlıysa
+  $F\num{n_1}\dots\num{n_k}$ bir normal biçime sahiptir ve bu normal biçim
+  bir Church sayısı olmak zorundadır. $f(n_1,\dots,n_k)$ tanımsızsa normal
+  biçim yoktur; dolayısıyla
+  \[
+  \fn{normalize}(\Gn{F\num{n_1}\dots\num{n_k}})
+  \]
+  tanımsızdır. Son olarak normalleştirilmiş terimin Gödel sayısına
+  $\fn{fromChurch}$ uygularız.
+\end{proof}
+
+\end{document}

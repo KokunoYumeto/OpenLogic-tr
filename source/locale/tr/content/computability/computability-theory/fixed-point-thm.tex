@@ -1,0 +1,244 @@
+% Part: computability
+% Chapter: computability-theory
+% Section: fixed-point-thm
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{cmp}{thy}{fix}
+\olsection{Sabit Nokta Teoremi}
+
+Durma problemini yeniden ele alalım. Geçici bir gösterim olarak
+$\tuple{x,y}$ yerine $\gn{\cfind{x}(y)}$ yazalım ve bunu
+$\cfind{x}(y)$ değerinin bir ``adı'' olarak düşünelim. Bu gösterimle durma
+probleminin karar verilemez olduğuna ilişkin ispatlarımızdan birini yeniden
+ifade edebiliriz.
+
+Soru: Her $x$ ve $y$ için
+\[
+  h(\gn{\cfind{x}(y)})=\begin{cases}
+    1 & \text{$\cfind{x}(y)\fdefined$ ise}\\
+    0 & \text{aksi durumda}
+  \end{cases}
+\]
+özelliğini taşıyan hesaplanabilir bir $h$ fonksiyonu var mıdır?
+
+Yanıt: Hayır. Olsaydı
+\[
+  g(x)\simeq\begin{cases}
+    0 & \text{$h(\gn{\cfind{x}(x)})=0$ ise}\\
+    \text{tanımsız} & \text{aksi durumda}
+  \end{cases}
+\]
+kısmi fonksiyonu hesaplanabilir olur ve dolayısıyla bir $e$ indisine sahip
+olurdu. Fakat o zaman
+\[
+  \cfind{e}(e)\simeq\begin{cases}
+    0 & \text{$h(\gn{\cfind{e}(e)})=0$ ise}\\
+    \text{tanımsız} & \text{aksi durumda}
+  \end{cases}
+\]
+olur ve $\cfind{e}(e)$ ancak ve ancak tanımlı değilse tanımlı olurdu; bu bir
+çelişkidir.
+
+Şimdi $\cfind{e}$ içeren denkleme bakın. Bir anlamda burada kendine gönderme
+vardır: $\cfind{e}(e)$ değerinin belirli bir yolla
+$\gn{\cfind{e}(e)}$ ifadesine bağlı olmasını sağladık. Sabit nokta teoremi,
+bunu yalnızca çelişki ispatlamak amacıyla değil, genel olarak
+\emph{yapabileceğimizi} söyler.
+
+\olref{lem:fixed-equiv}, sabit nokta teoremini ifade etmenin iki eşdeğer
+yolunu verir. Mantıksal bakımdan ifadelerin eşdeğerliği ikisinin de doğru
+olmasından çıkar; fakat asıl kastımız her birinin ötekinden doğrudan çıkması
+ve böylece aynı teoremin alternatif ifadeleri olarak alınabilmeleridir.
+
+\begin{lem}
+\ollabel{lem:fixed-equiv}
+Aşağıdaki ifadeler eşdeğerdir:
+\begin{enumerate}
+\item Her kısmi hesaplanabilir $g(x,y)$ fonksiyonu için öyle bir $e$ indisi
+  vardır ki her $y$ için
+  \[
+    \cfind{e}(y)\simeq g(e,y)
+  \]
+  olur.
+\item Her hesaplanabilir $f(x)$ fonksiyonu için öyle bir $e$ indisi vardır
+  ki her $y$ için
+  \[
+    \cfind{e}(y)\simeq\cfind{f(e)}(y)
+  \]
+  olur.
+\end{enumerate}
+\end{lem}
+
+\begin{proof}
+$(1)\Rightarrow(2)$: $f$ verilsin ve
+$g(x,y)\simeq\fn{Un}(f(x),y)$ olarak tanımlansın. (1)'i kullanarak her $y$
+için
+\begin{align*}
+  \cfind{e}(y) & = \fn{Un}(f(e),y)\\
+  & = \cfind{f(e)}(y)
+\end{align*}
+olacak bir $e$ indisi elde edin.
+
+$(2)\Rightarrow(1)$: $g$ verilsin. $s$-$m$-$n$ teoremini kullanarak her
+$x$ ve $y$ için $\cfind{f(x)}(y)\simeq g(x,y)$ olacak bir $f$ elde edin.
+(2)'yi kullanarak
+\begin{align*}
+  \cfind{e}(y) & = \cfind{f(e)}(y)\\
+  & = g(e,y)
+\end{align*}
+olacak bir $e$ indisi elde edin. Bu, ispatı tamamlar.
+\end{proof}
+
+\begin{explain}
+(1) ifadesinin doğru olduğunu, dolayısıyla (2)'nin de doğru olduğunu
+göstermeden önce ne kadar şaşırtıcı olduğunu düşünün. $e$'yi bir bilgisayar
+programı olarak düşünürsek (1), herhangi bir kısmi hesaplanabilir $g(x,y)$
+verildiğinde $g_e(y)\simeq g(e,y)$ fonksiyonunu hesaplayan bir $e$ programı
+bulabileceğinizi söyler. Başka bir deyişle kendisine gönderme yapan bir
+fonksiyonu hesaplayan bilgisayar programı bulabilirsiniz.
+\end{explain}
+
+\begin{thm}
+\olref{lem:fixed-equiv} içindeki iki ifade doğrudur. Özellikle her kısmi
+hesaplanabilir $g(x,y)$ fonksiyonu için öyle bir $e$ indisi vardır ki her
+$y$ için
+\[
+  \cfind{e}(y)\simeq g(e,y)
+\]
+olur.
+\end{thm}
+
+\begin{proof}
+Bileşenler yukarıdaki durma problemi tartışmasında zaten örtük olarak
+bulunur. $\fn{diag}(x)$, her $x$ için
+$f_x(y)\simeq\cfind{x}(x,y)$ fonksiyonunun bir indisini döndüren
+hesaplanabilir bir fonksiyon olsun; yani
+\[
+  \cfind{\fn{diag}(x)}(y)\simeq\cfind{x}(x,y).
+\]
+$\fn{diag}$ fonksiyonunu, iki yerli bir fonksiyon programını ilk argümanı
+olarak özgün programı sabitleyerek elde edilen tek yerli fonksiyonun
+programına dönüştüren bir fonksiyon olarak düşünün. $\fn{diag}$ biçimsel
+olarak şöyle tanımlanabilir: Önce
+\[
+  s(x,y)\simeq\fn{Un}^2(x,x,y)
+\]
+ile $s$'yi tanımlayın; burada $\fn{Un}^2$, iki yerli kısmi hesaplanabilir
+fonksiyonlar için evrensel olan üç yerli bir fonksiyondur. Ardından
+$s$-$m$-$n$ teoremi uyarınca
+\[
+  \cfind{\fn{diag}(x)}(y)\simeq s(x,y)
+\]
+koşulunu sağlayan ilkel özyinelemeli bir $\fn{diag}$ fonksiyonu bulabiliriz.
+
+Şimdi $l$ fonksiyonunu
+\[
+  l(x,y)\simeq g(\fn{diag}(x),y)
+\]
+ile tanımlayalım ve $\gn{l}$, $l$ için bir indis olsun. Son olarak
+$e=\fn{diag}(\gn{l})$ diyelim. O zaman her $y$ için
+\begin{align*}
+  \cfind{e}(y) & \simeq\cfind{\fn{diag}(\gn{l})}(y)\\
+  & \simeq\cfind{\gn{l}}(\gn{l},y)\\
+  & \simeq l(\gn{l},y)\\
+  & \simeq g(\fn{diag}(\gn{l}),y)\\
+  & \simeq g(e,y)
+\end{align*}
+olur; istenen buydu.
+\end{proof}
+
+\begin{explain}
+Burada ne oluyor? Kendisini çıktı olarak veren bir bilgisayar programı yazma
+görevinin size verildiğini düşünün. Ayrıca dizge fonksiyonlarından oluşan
+zengin ve tuhaf bir kitaplığa sahip bir programlama diliyle çalıştığınızı
+varsayın. Özellikle programlama dilinizde şu şekilde çalışan bir
+$\fn{diag}$ fonksiyonu bulunsun: $s$ girdi dizgesi verildiğinde $\fn{diag}$,
+$s$ içinde geçen her `x' simgesini bulup özgün dizgenin tırnak içine alınmış
+bir sürümüyle değiştirir. Örneğin girdi olarak
+\begin{quote}
+\begin{verbatim}
+hello x world
+\end{verbatim}
+\end{quote}
+dizgesi verildiğinde çıktı olarak
+\begin{quote}
+\begin{verbatim}
+hello 'hello x world' world
+\end{verbatim}
+\end{quote}
+döndürür. Bu durumda istenen programı yazmak kolaydır; şu kodun işe
+yaradığını denetleyebilirsiniz:
+\begin{quote}
+\begin{verbatim}
+print(diag('print(diag(x))'))
+\end{verbatim}
+\end{quote}
+C++ ve Java gibi daha yaygın programlama dillerinde aynı düşünce, daha
+ayrıntılı bir uygulamayla yine çalışır.
+
+Sabit nokta teoreminin ispatına yalnızca birkaç adım uzaktayız. Yazdırma
+fonksiyonunun bir $x$ dizgesi ile başka bir sayısal $y$ argümanı alan ve
+$x$ dizgesini $y$ kez yazdıran $\fn{print}(x,y)$ sürümünü düşünelim. O zaman
+\begin{quote}
+\begin{verbatim}
+getinput(y);
+print(diag('getinput(y); print(diag(x), y)'), y)
+\end{verbatim}
+\end{quote}
+``programı'', $y$ girdisinde kendisini $y$ kez yazdırır.
+$\fn{getinput}$--$\fn{print}$--$\fn{diag}$ iskeletini keyfî bir $g(x,y)$
+fonksiyonuyla değiştirdiğimizde
+\begin{quote}
+\begin{verbatim}
+g(diag('g(diag(x), y)'), y)
+\end{verbatim}
+\end{quote}
+elde edilir. Bu, $y$ girdisinde $g$'yi programın kendisi ve $y$ üzerinde
+çalıştıran bir programdır. ``Tırnak içine alma''yı ``bir indis kullanma''
+olarak düşünürsek yukarıdaki ispatı elde ederiz.
+
+Şimdilik ispatı biçimsel bir hile ya da kara büyü gibi düşünebilirsiniz.
+Fakat yukarıda verilen savın ayrıntılarını yeniden kurabilmelisiniz.
+Eksiklik teoremlerini ve ilişkili ``sabit nokta teoremi''ni ispatladığımızda
+neden çalıştığını anlamanın başka yollarını tartışacağız.
+\end{explain}
+
+\begin{tagblock}{lambda}
+\begin{digress}
+Aynı düşünce bir ``sabit nokta'' birleşimleyicisi elde etmek için de
+kullanılabilir. Bir lambda terimi $g$ verilsin ve $k$'nin $gk$ ile
+$\beta$-eşdeğer olduğu bir $k$ terimi istensin. Gösterim uzlaşımlarımızla
+\[
+  \fn{diag}(x)=xx
+\]
+ve
+\[
+  l(x)=g(\fn{diag}(x))
+\]
+terimlerini tanımlayalım; başka bir deyişle $l$, $\lambd[x][g(xx)]$
+terimidir. $k$, $ll$ terimi olsun. O zaman
+\begin{align*}
+  k & = (\lambd[x][g(xx)])(\lambd[x][g(xx)])\\
+  & \red g((\lambd[x][g(xx)])(\lambd[x][g(xx)]))\\
+  & = gk
+\end{align*}
+olur. Eğer
+\[
+  Y=\lambd[g][((\lambd[x][g(xx)])(\lambd[x][g(xx)]))]
+\]
+alınırsa $Yg$ ile $g(Yg)$ ortak bir terime indirgenir; dolayısıyla
+$Yg\equiv_\beta g(Yg)$ olur. Buna ``Curry birleşimleyicisi'' denir. Bunun
+yerine
+\[
+  Y=(\lambd[xg][g(xxg)])(\lambd[xg][g(xxg)])
+\]
+alınırsa gerçekten $Yg$, $g(Yg)$'ye indirgenir; bu daha güçlü bir ifadedir.
+$Y$'nin bu son sürümüne ``Turing birleşimleyicisi'' denir.
+\end{digress}
+\end{tagblock}
+
+\end{document}
+

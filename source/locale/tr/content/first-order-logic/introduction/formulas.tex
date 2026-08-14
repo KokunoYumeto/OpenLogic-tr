@@ -1,0 +1,93 @@
+% Part: first-order-logic
+% Chapter: introduction
+% Section: formulas
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{fol}{int}{fml}
+
+\section{\usetoken{P}{formula}}
+
+Birinci dereceden mantığın !!{sentence}s ifadelerini titizlikle
+belirlemek ve !!{variable}s kullanımından doğan sorunları ele almak
+için şu yaklaşımı kullanacağız. Önce \emph{farklı} bir ifadeler kümesi
+tanımlarız: !!{formula}s. Bunu yaptıktan sonra !!{variable}s
+ifadelerinin bunlarda oynadığı rolü ele alabilir ve ``serbest'' ile
+``bağlı'' !!{variable}s fikirlerine dayanarak !!a{sentence} ifadesini
+(yani serbest !!{variable}s içermeyen !!a{formula} ifadesini)
+tanımlayabiliriz. Bunu yalnızca ``!!{sentence}'' tanımını daha kolay
+yönetilebilir kıldığı için değil, semantik sağlama kavramını tanımlama
+biçimimiz açısından belirleyici olacağı için de yaparız.
+
+``!!{formula}''yı yalnızca tek bir !!{predicate}~$\Obj P$, tek bir
+!!{constant}~$\Obj a$ ve yalnızca $\lnot$, $\land$ ve~$\lexists$
+mantıksal simgelerini içeren basit bir birinci dereceden dil için
+tanımlayalım. Tam tanımlarımız çok daha genel olacaktır: sonsuz sayıda
+!!{predicate}s ve !!{constant}s bulunmasına izin vereceğiz. Hatta
+!!{constant}s ve !!{variable}s ile birleştirilerek ``terimler''
+oluşturabilen !!{function}s ifadelerini de ele alacağız. Şimdilik
+yalnızca $\Obj a$ ile değişkenler terimimiz olacak. Sonsuz sayıda
+!!{variable}s gerekir. Resmî olarak $\Obj v_0$, $\Obj v_1$, \dots\
+simgelerini değişken olarak kullanacağız.
+
+\begin{defn}
+\emph{!!{formula}s} kümesi~$\Frm$ aşağıdaki gibi tanımlanır:
+\begin{enumerate}
+\item\ollabel{fmls-atom} $\Atom{\Obj P}{\Obj a}$ ve
+  $\Atom{\Obj P}{\Obj v_i}$ birer !!{formula}s ifadesidir
+  ($i\in\Nat$).
+
+\tagitem{prvNot}{\ollabel{fmls-not}$!A$ !!a{formula} ise
+  $\lnot !A$ da bir !!{formula} ifadesidir.}{}
+
+\tagitem{prvAnd}{$!A$ ve $!B$ !!{formula}s ise $(!A\land !B)$
+  bir !!a{formula} ifadesidir.}{}
+
+\tagitem{prvEx}{\ollabel{fmls-ex}$!A$ !!a{formula} ve $x$
+  !!a{variable} ise $\lexists[x][!A]$ bir !!a{formula} ifadesidir.}{}
+
+\tagitem{limitClause}{\ollabel{fmls-limit}Bunların dışında hiçbir şey
+  !!a{formula} değildir.}{}
+\end{enumerate}
+\end{defn}
+
+\olref{fmls-atom}, herhangi bir $i\in\Nat$ için
+$\Atom{\Obj P}{\Obj a}$ ile $\Atom{\Obj P}{\Obj v_i}$ ifadelerinin
+!!{formula}s olduğunu söyler. Bunlara \emph{atomik} !!{formula}s
+denir. Başlangıç noktamızı bunlar verir. Öteki maddeler, daha önce
+oluşturduğumuz !!{formula}s ifadelerinden yenilerini oluşturma yolları
+verir. Örneğin $\Atom{\Obj P}{\Obj v_2}$,~\olref{fmls-atom} uyarınca
+zaten !!a{formula} olduğundan \olref{fmls-not} uyarınca
+$\lnot\Atom{\Obj P}{\Obj v_2}$ bir !!a{formula} ifadesidir. Ardından
+\olref{fmls-ex} uyarınca
+$\lexists[\Obj v_2][\lnot\Atom{\Obj P}{\Obj v_2}]$ başka bir
+!!{formula} ifadesidir; süreç böyle sürer. \olref{fmls-limit}, \emph{yalnızca}
+bu biçimde oluşturabileceğimiz dizgelerin !!{formula}s sayıldığını
+söyler. Özellikle $\lexists[\Obj v_0][\Atom{\Obj P}{\Obj a}]$ ile
+$\lexists[\Obj v_0][\lexists[\Obj v_0][\Atom{\Obj P}{\Obj a}]]$
+!!{formula}s \emph{sayılır}; fakat gereksiz dış parantezler nedeniyle
+$(\lnot\Atom{\Obj P}{\Obj a})$ sayılmaz.
+
+!!{formula}s ifadelerini bu biçimde tanımlamaya \emph{tümevarımlı
+tanım} denir ve bu tanım, \emph{yapısal tümevarım} denen bir tümevarımla
+ispat biçimini kullanarak !!{formula}s hakkında ispatlar vermemizi
+sağlar. Bunlar \olref[mth][ind][idf]{sec} ve
+\olref[mth][ind][sti]{sec} içinde genel olarak ele alınmıştır; daha
+sonraki ispatlara geçmeden önce bu kısımları gözden geçirmelisiniz.
+Temel fikir şudur: Bir şeyin bütün !!{formula}s ifadeleri için doğru
+olduğunu ispatlamak istiyorsanız önce atomik !!{formula}s için doğru
+olduğunu, ardından herhangi bir~$!A$ (ve~$!B$) !!{formula} ifadesi
+için doğru \emph{ise} $\lnot !A$, $(!A\land !B)$ ve
+$\lexists[x][!A]$ için de doğru olduğunu gösterirsiniz. Örneğin bu,
+özelliğin $\lexists[\Obj v_2][\lnot\Atom{\Obj P}{\Obj v_2}]$ için
+doğru olduğunu ispatlar: ilk bölümden atomik
+!!{formula}~$\Atom{\Obj P}{\Obj v_2}$ için doğru olduğunu bilirsiniz.
+İkinci bölümle $\lnot\Atom{\Obj P}{\Obj v_2}$ için ve yine aynı
+bölümle $\lexists[\Obj v_2][\lnot\Atom{\Obj P}{\Obj v_2}]$ için doğru
+olduğunu elde edersiniz. Bütün !!{formula}s, atomik !!{formula}s
+ifadelerinden tümevarımlı olarak üretildiğinden yöntem bunların hepsi
+için çalışır.
+
+\end{document}

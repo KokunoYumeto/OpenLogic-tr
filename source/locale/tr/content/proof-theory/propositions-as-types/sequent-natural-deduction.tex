@@ -1,0 +1,136 @@
+% part: intuitionistic-logic
+% chapter: propositions-as-types
+% section: sequent-natural-deduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{int}{pty}{snd}
+
+\olsection{Sekant Biçiminde Doğal Tümdengelim}
+
+!!{undischarged} varsayımları $\Gamma$, sonucu $!A$ olan bir doğal
+tümdengelim !!{derivation}{}i varsa $\Gamma \Sequent !A$; $\Gamma$ boşsa
+$\Sequent !A$ yazalım.
+
+$\Gamma \cup \{!A_1, \dots, !A_n\}$ yerine $\Gamma, !A_1, \dots, !A_n$;
+$\Gamma \cup \Delta$ yerine $\Gamma, \Delta$ yazıyoruz.
+
+$\Gamma \Sequent !A \land !B$ olduğunda, yani !!{undischarged}
+varsayımları $\Gamma$ ve son-!!{formula}{}ü $!A \land !B$ olan bir
+!!a{derivation} bulunduğunda, en alta $\Elim{\land}$ uygulayarak aynı
+!!{undischarged} varsayımlara ve sonuç olarak $!A$'ya sahip bir
+!!a{derivation} elde edebiliriz. Başka bir deyişle $\Gamma \Sequent !A
+\land !B$ ise $\Gamma \Sequent !A$ olur.
+\begin{prooftree}
+  \Axiom$\Gamma \fCenter !A \land !B$
+  \RightLabel{$\Elim{\land}$}
+  \UnaryInf$\Gamma \fCenter !A$
+  \DisplayProof\qquad\bottomAlignProof
+  \Axiom$\Gamma \fCenter !A \land !B$
+  \RightLabel{$\Elim{\land}$}
+  \UnaryInf$\Gamma \fCenter !B$
+\end{prooftree}
+$\Elim{\land}$ etiketi, doğal tümdengelimdeki aynı adlı kuralla ilişkiye
+işaret eder.
+
+Benzer biçimde $\Gamma, !A \Sequent !B$ olduğunu, yani !!{undischarged}
+varsayımları $\Gamma, !A$ ve son-!!{formula}{}ü~$!B$ olan bir
+!!a{derivation} bulunduğunu varsayın. $\Intro{\lif}$ kuralını uygularsak
+!!{undischarged} varsayımları $\Gamma$ ve son-!!{formula}{}ü $!A \lif !B$
+olan bir !!a{derivation} elde ederiz; yani $\Gamma \Sequent !A \lif !B$.
+Bunun varsayımların !!{discharge} işlemini nasıl daha açık kıldığına dikkat
+edin.
+\begin{prooftree}
+  \Axiom $\Gamma, !A \fCenter !B$
+  \RightLabel{$\Intro{\lif}$}
+  \UnaryInf $\Gamma \fCenter !A \lif !B$
+\end{prooftree}
+
+Diğer kurallardan da aynı biçimde sonuçlar çıkarabiliriz; bunlar açıkça
+şöyle yazılır:
+\begin{gather*}
+  \Axiom $\Gamma \fCenter !A$
+  \Axiom $\Delta \fCenter !B$
+  \RightLabel{$\Intro{\land}$}
+  \BinaryInf $\Gamma,\Delta \fCenter !A \land !B$
+  \DisplayProof\\
+  \Axiom $\Gamma \fCenter !A \land !B$
+  \RightLabel{$\Elim{\land}_1$}
+  \UnaryInf $\Gamma \fCenter !A$
+  \DisplayProof
+  \qquad
+  \Axiom $\Gamma \fCenter !A \land !B$
+  \RightLabel{$\Elim{\land}_2$}
+  \UnaryInf $\Gamma \fCenter !B$
+  \DisplayProof
+  \\
+  \Axiom $\Gamma \fCenter !A$
+  \RightLabel{$\Intro{\lor}_1$}
+  \UnaryInf $\Gamma \fCenter !A \lor !B$
+  \DisplayProof\qquad
+  \Axiom $\Gamma \fCenter !B$
+  \RightLabel{$\Intro{\lor}_2$}
+  \UnaryInf $\Gamma \fCenter !A \lor !B$
+  \DisplayProof\\
+  \Axiom $\Gamma \fCenter !A \lor !B$
+  \Axiom $\Delta, !A \fCenter !C$
+  \Axiom $\Delta', !B \fCenter !C$
+  \RightLabel{$\Elim{\lor}$}
+  \TrinaryInf $\Gamma, \Delta, \Delta' \fCenter !C$
+  \DisplayProof
+  \\
+  \Axiom $\Gamma, !A \fCenter !B$
+  \RightLabel{$\Intro{\lif}$}
+  \UnaryInf $\Gamma \fCenter !A \lif !B$
+  \DisplayProof
+  \qquad
+  \Axiom $\Delta \fCenter !A \lif !B$
+  \Axiom $\Gamma \fCenter !A$
+  \RightLabel{$\Elim{\lif}$}
+  \BinaryInf $\Gamma, \Delta \fCenter !B$
+  \DisplayProof
+  \\
+  \Axiom $\Gamma \fCenter \lfalse$
+  \RightLabel{$\FalseInt$}
+  \UnaryInf $\Gamma \fCenter !A$
+  \DisplayProof
+\end{gather*}
+
+Her varsayım tek başına $!A$'nın~$!A$'dan bir !!a{derivation}{}idir; yani her
+zaman $!A \Sequent !A$ olur.
+
+\begin{prooftree}
+  \AxiomC{$ $}
+  \UnaryInfC{$!A \fCenter !A$}
+\end{prooftree}
+
+Bu kurallar birlikte, hangi doğal tümdengelim !!{derivation}s{}inin var
+olduğunu belirleyen bir hesap olarak alınabilir. Ayrıca her adımda yalnız
+!!{derive} eylemiyle elde edilen !!{formula} değil, onun hangi
+!!{undischarged} varsayımlardan !!{derive} eylemiyle elde edildiği de
+kaydedildiğinden doğal
+tümdengelimin gösterimsel bir
+çeşitlemesi olarak da görülebilirler.
+
+\begin{prooftree}
+  \Axiom$!A \fCenter !A$
+  \RightLabel{$\Intro{\lor}_1$}
+  \UnaryInf $!A \fCenter !A \lor (!A \lif \lfalse)$
+  \Axiom $!B \fCenter !B$
+  \RightLabel{$\Elim{\lif}$}
+  \BinaryInf$!A, !B \fCenter \lfalse$
+  \RightLabel{$\Intro{\lif}$}
+  \UnaryInf$!B \fCenter !A \lif \lfalse$
+  \RightLabel{$\Intro{\lor}_2$}
+  \UnaryInf$!B \fCenter !A \lor (!A \lif \lfalse)$
+  \Axiom$!B \fCenter !B$
+  \RightLabel{$\Elim{\lif}$}
+  \BinaryInf$!B \fCenter \lfalse$
+  \RightLabel{$\Intro{\lif}$}
+  \UnaryInf$\fCenter !B \lif \lfalse$
+\end{prooftree}
+burada $!B$, $(!A \lor (!A \lif \lfalse))\lif \lfalse$'ın kısaltmasıdır.
+
+\end{document}

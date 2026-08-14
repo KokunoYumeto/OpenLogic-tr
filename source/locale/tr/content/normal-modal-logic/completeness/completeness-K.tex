@@ -1,0 +1,62 @@
+% Part: normal-modal-logic
+% Chapter: completeness
+% Section: completeness-K
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{nml}{com}{cmk}
+
+\olsection{$\Log{K}$ İçin Belirleme ve Tamlık}
+
+Artık kanonik modeli kullanarak tamlığı kurmaya hazırız. Tamlık,
+$\Sigma$'nın kanonik modelinde doğru olan !!{formula}s{}in tam olarak
+$\Sigma$-!!{derivable} formüller olması olgusundan çıkar. Bu özelliğe sahip
+modellerin $\Sigma$'yı \emph{belirlediği} söylenir.
+
+\begin{defn}
+  Bir $\mModel{M}$ modeli, bütün $!A$ !!{formula}s{}i için
+  $\mSat{M}{!A}$ olması $\Sigma\Proves !A$ olmasına denkse bir normal modal
+  mantık $\Sigma$'yı \emph{belirler}.
+\end{defn}
+
+\begin{thm}[Belirleme]\ollabel{thm:determination}
+   $\mSat{M^\Sigma}{!A}$ ancak ve ancak $\Sigma\Proves !A$.
+\end{thm}
+
+\begin{proof}
+  $\mSat{M^\Sigma}{!A}$ ise her tam $\Sigma$-tutarlı $\Delta$ için
+  $\mSat{M^\Sigma}{!A}[\Delta]$ olur. Dolayısıyla Doğruluk Lemması
+  gereğince her tam $\Sigma$-tutarlı $\Delta$ için $!A\in\Delta$;
+  buradan \olref[lin]{cor:provability-characterization} (burada
+  $\Gamma=\emptyset$) gereğince $\Sigma\Proves !A$ çıkar.
+
+  Tersine, $\Sigma\Proves !A$ ise
+  \olref[ccs]{prop:ccs-properties}\olref[ccs]{prop:ccs-closed} gereğince
+  her tam $\Sigma$-tutarlı $\Delta$, $!A$'yı içerir. Doğruluk Lemması
+  gereğince her $\Delta\in W^\Sigma$ için
+  $\mSat{M^\Sigma}{!A}[\Delta]$; yani $\mSat{M^\Sigma}{!A}$ olur.
+\end{proof}
+
+$\Log{K}$'nin kanonik modeli $\Log{K}$'yi belirlediğinden, $\Log{K}$'nin
+tamlığını hemen bir sonuç olarak elde ederiz:
+
+\begin{cor}\ollabel{cor:Kcomplete}
+  Temel modal mantık $\Log{K}$ bütün modeller sınıfına göre tamdır; yani
+  $\Entails !A$ ise $\Log{K}\Proves !A$.
+\end{cor}
+
+\begin{proof}
+  Karşıt-ters yönde, $\Log{K}\Proves/ !A$ ise Belirleme gereğince
+  $\mSat/{M^{\Log{K}}}{!A}$ ve dolayısıyla $!A$ geçerli değildir.
+\end{proof}
+
+Bir $\Sigma$ sisteminin bir modeller sınıfına göre tamlığının genel
+durumunda---örneğin $\Log{KTB4}$'ün yansımalı, simetrik ve geçişli modeller
+sınıfına göre tamlığında---yalnızca belirleme yeterli değildir. Ayrıca
+$\Sigma$ sisteminin kanonik modelinin bu sınıfın bir üyesi olduğunu
+göstermeliyiz. Bu, kanonik model yapımından açıkça çıkmaz; hatta her zaman
+doğru da değildir!
+
+\end{document}

@@ -1,0 +1,44 @@
+% Part: applied-modal-logics
+% Chapter: temporal-logic
+% Section: extra-operators
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{aml}{tl}{ext}
+
+\olsection{Zamansal Mantık İçin Ek İşleçler}
+
+Geçmiş ve geleceğe ilişkin birli işleçlere ek olarak zamansal mantıklar,
+bazen ``-den beri'' ile ``-e kadar'' ifadelerini simgelemesi amaçlanan ikili
+$\Since$ ve~$\Until$ işleçlerini de içerir. Bunun için zamansal mantık
+diline $\Since$ ile~$\Until$ eklenir ve zamansal !!{formula} tanımına şu
+koşul katılır:
+
+\begin{itemize}
+\item[] $!A$ ve $!B$ !!{formula}s ise $(\Since !A !B)$ ile
+  $(\Until !A !B)$ de !!{formula}s olur.
+\end{itemize}
+
+Bu işleçlerin semantiği şöyle verilir:
+
+\begin{defn}\ollabel{defn:since-until}
+  \emph{!!a{formula}~$!A$'nın $t$'deki doğruluğu}, bir $\mModel M$ içinde:
+  \begin{enumerate}
+  \item\ollabel{defn:sub:mmodels-since} \indcase{!A}{\Since !B
+    !C}{$\mSat{M}{\indfrm}[t]$ ancak ve ancak $\mSat{M}{!B}[t']$ olan
+    bazı $t'\in T$ bulunup $t'\prec t$ ve her $s$ için
+    $t'\prec s\prec t$ olduğunda $\mSat{M}{!C}[s]$ ise geçerlidir}
+  \item\ollabel{defn:sub:mmodels-until} \indcase{!A}{\Until !B
+    !C}{$\mSat{M}{\indfrm}[t]$ ancak ve ancak $\mSat{M}{!B}[t']$ olan
+    bazı $t'\in T$ bulunup $t\prec t'$ ve her $s$ için
+    $t\prec s\prec t'$ olduğunda $\mSat{M}{!C}[s]$ ise geçerlidir}
+  \end{enumerate} 
+\end{defn}
+
+$\Since !B !C$'nin sezgisel okuması ``$!B$ olduğundan beri $!C$
+olagelmiştir'' biçimindedir. $\Until !B !C$'nin sezgisel okuması ise
+``$!B$ olana kadar $!C$ olacaktır'' biçimindedir.
+
+\end{document}

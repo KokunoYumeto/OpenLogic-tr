@@ -1,0 +1,55 @@
+% Part: incompleteness
+% Chapter: theories-computability
+% Section: q-is-ce
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{inc}{tcp}{qce}
+
+\olsection{$\Th{Q}$, \printtoken{S}{c.e.}-Tamdır}
+
+
+\begin{thm}
+$\Th{Q}$, !!{c.e.} fakat karar verilebilir değildir. Hatta tam bir
+  !!{c.e.} kümedir.
+\end{thm}
+
+\begin{proof}
+$\Th{Q}$'nun !!{c.e.} olduğunu görmek zor değildir; çünkü bu kuram,
+$\Th{Q}$ içinde $y$'nin bir $x$ ispatı bulunan tümce kodlarının, yani
+$y$'lerin kümesidir:
+\[
+Q = \Setabs{y}{\lexists[x][\Prf[\Th{Q}](x,y)]}.
+\]
+Oysa $\Prf[\Th{Q}](x,y)$'nin hesaplanabilir (hatta ilkel özyinelemeli)
+olduğunu biliyoruz ve yukarıdaki biçimde yazılabilen her küme hesaplanabilir
+biçimde numaralandırılabilirdir.
+
+Tam bir hesaplanabilir biçimde numaralandırılabilir küme olduğunu söylemek,
+$K \leq_m Q$ demeye denktir; burada
+$K = \Setabs{x}{!A_x(x) \downarrow}$'dır. Öyleyse $K$'nin $\Th{Q}$'ya
+indirgenebilir olduğunu gösterelim. Kleene'in $T(e,x,s)$ yüklemi ilkel
+özyinelemeli olduğundan $\Th{Q}$ içinde, diyelim $!A_T$ ile temsil
+edilebilir. O zaman her $x$ için
+\begin{align*}
+x \in K & \lif \lexists[s][T(x,x,s)] \\
+& \lif \lexists[s][(\Th{Q} \Proves !A_T(\num x,\num x, \num s))]
+  \\
+& \lif \Th{Q} \Proves \lexists[s][!A_T(\num x, \num x, s)].
+\end{align*}
+Tersine $\Th{Q} \Proves \lexists[s][!A_T(\num x, \num x, s)]$ ise gerçekte
+bazı $n$ doğal sayıları için $!A_T(\num x, \num x, \num n)$ formülü doğru
+olmalıdır. Şimdi $T(x,x,n)$ yanlış olsaydı $!A_T$, $T$'yi temsil ettiği için
+$\Th{Q}$, $\lnot !A_T(\num x, \num x, \num n)$'yi ispatlardı. Fakat o zaman
+$\Th{Q}$ yanlış bir formülü ispatlamış olurdu; bu bir çelişkidir. Dolayısıyla
+$T(x,x,n)$ doğru olmalıdır ve bu da $!A_x(x) \downarrow$ sonucunu verir.
+
+Kısacası her $x$ için $x$, $K$'dedir ancak ve ancak $\Th{Q}$,
+$\lexists[s][!A_T(\num x,\num x,s)]$'yi ispatlar. Öyleyse $x$'i
+$\lexists[s][!A_T(\num x, \num x, s)]$ tümcesinin bir koduna götüren $f$
+fonksiyonu, $K$'nin $\Th{Q}$'ya bir indirgemesidir.
+\end{proof}
+
+\end{document}

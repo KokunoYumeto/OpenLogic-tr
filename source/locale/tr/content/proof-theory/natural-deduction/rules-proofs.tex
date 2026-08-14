@@ -1,0 +1,280 @@
+% Part: proof-theory
+% Chapter: natural-deduction
+% Section: rules-proofs
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{pt}{nat}{rp}
+
+\olsection{Kurallar ve \usetoken{P}{proof}}
+
+Bazı tanımlar vererek ve bazı terimleri sabitleyerek başlıyoruz.
+
+\Log{N1c} ve~\Log{N1i}'de $!A \lif !B$'den söz eden iki kuralı ele alın.
+\[
+\bottomAlignProof
+\AxiomC{$\Discharge{!A}{x}$}
+\shortDeduce
+\DeduceC{$!B$}
+\DischargeRule{\Intro{\lif}}{x}
+\UnaryInfC{$!A \lif !B$}
+\DisplayProof
+\qquad
+\bottomAlignProof
+\AxiomC{$!A \lif !B$}
+\AxiomC{$!A$}
+\RightLabel{\Elim{\lif}}
+\BinaryInfC{$!B$}
+\DisplayProof
+\]
+\Elim{\lif} kuralı yeterince basittir. Çizginin üstündeki !!{formula}s
+\emph{öncüllerdir}. Soldaki !!{formula}, \emph{ana} !!{formula}~$!A \lif
+!B$'dir. Bütün !!{elimination} kurallarında her zaman en solda böyle bir öncül
+bulunur. Buna çıkarımın \emph{ana} öncülü denir. Bu durumdaki gibi başka
+öncüller de varsa bunlara \emph{yan} öncüller denir. !!{introduction}
+kurallarının öncüllerine de ana öncül denir. Çizginin altındaki !!{formula},
+\emph{sonuçtur}.
+
+\Intro{\lif} kuralının yalnızca bir öncülü vardır ve burada sonuç ana
+formül~$!A \lif !B$'dir. Bütün !!{introduction} kuralları böyledir: sonuç ana
+formüldür; onun ana işlemcisi ``ortaya sokulan'' işlemcidir.
+
+$\Discharge{!A}{x}$ gösterimi şu anlama gelir. Bir !!a{proof} içinde
+\Intro{\lif} çıkarımı, öncül olarak bir $!B$ !!a{formula}{}üne uygulanır.
+$!B$ ile biten alt-!!{proof}{}ın başlangıcında birtakım !!{formula}s bulunur.
+Bunlara \emph{varsayımlar} denir. $!A$ biçimindeki bir ya da daha çok
+varsayımdan $!B$'nin bir !!^a{proof}{}ı, $!A$'nın $!B$'yi gerektirdiğinin bir
+!!a{proof}{}ıdır. \Intro{\lif} kuralını uyguladığımızda $!A \lif !B$ sonucuna
+varırız ve sonuç artık $!A$ varsayımına dayanmaz. Bunu göstermek için,
+\Intro{\lif} çıkarımını içeren !!{proof} içindeki $!A$ biçimindeki varsayımlar
+\emph{boşaltılır} ya da \emph{kapatılır}. Kural, hangi varsayımların
+boşaltılabileceğini belirtir. Sonucu $!A \lif !B$ olan \Intro{\lif} durumunda
+bunlar $!A$ biçimindeki, yani koşullunun ön bileşeniyle örtüşen varsayımlardır.
+Hangi varsayımların hangi kuralda boşaltıldığını belirtmek bazen önemlidir;
+bu, boşaltma etiketi~$x$ ile yapılır. Önemli olarak, varsayımları boşaltan
+kurallar gerekli biçimdeki varsayımların \emph{tümünü}, hatta herhangi birini
+boşaltmak \emph{zorunda değildir}. Örneğin birinci \Intro{\lif} hiçbir
+varsayımı boşaltmadığı hâlde aşağıdaki doğrudur:
+\[
+\AxiomC{$\Discharge{!A}{y}$}
+\DischargeRule{\Intro{\lif}}{x}
+\UnaryInfC{$!B \lif !A$}
+\DischargeRule{\Intro{\lif}}{y}
+\UnaryInfC{$!A \lif (!B \lif !A)$}
+\DisplayProof
+\]
+Bir kural hiçbir varsayımı boşaltmadığında boşaltma etiketini yazmayız
+(burada yaptığımız gibi).
+
+Şu !!{proof} içinde
+\[
+\AxiomC{$\Discharge{!A}{x}$}
+\AxiomC{$\Discharge{!A}{y}$}
+\RightLabel{\Intro{\land}}
+\BinaryInfC{$!A \land !A$}
+\RightLabel{\Elim{\land}}
+\UnaryInfC{$!A$}
+\DischargeRule{\Intro{\lif}}{x}
+\UnaryInfC{$!A \lif !A$}
+\DischargeRule{\Intro{\lif}}{y}
+\UnaryInfC{$!A \lif (!A \lif !A)$}
+\DisplayProof
+\]
+birinci \Intro{\lif} çıkarımı soldaki $!A^x$ varsayımını, ikincisi sağdaki
+$!A^y$ varsayımını boşaltır. Başka bir deyişle $x$ ile etiketlenmiş bütün
+varsayımlar $x$ etiketli \Intro{\lif} tarafından, $y$ ile etiketlenmiş bütün
+varsayımlar da $y$ etiketli olan tarafından boşaltılır. Bunun işlemesi için
+aynı etikete sahip bütün varsayımların aynı zamanda aynı !!{formula} olması
+önemlidir.
+
+Niceleyici kuralları biraz daha karmaşıktır. Örneğin \Log{N1i}'de $\lexists$
+için kurallar şunlardır:
+\[
+\bottomAlignProof
+\AxiomC{$!A(t)$}
+\RightLabel{\Intro{\lexists}}
+\UnaryInfC{$\lexists[x][!A(x)]$}
+\DisplayProof
+\qquad
+\bottomAlignProof
+\AxiomC{$\lexists[x][!A(x)]$} 
+\AxiomC{$\Discharge{!A(c)}{x}$}
+\shortDeduce
+\DeduceC{$!B$}
+\DischargeRule{\Elim{\lexists}}{x}
+\BinaryInfC{$!B$} \DisplayProof 
+\bottomAlignProof
+\] \Intro{\lexists} kuralında öncül $!A(t)$'dir; burada $t$ kapalı bir terim,
+yani değişken içermeyen bir terimdir. Bir çıkarım, bir $!A$ !!{formula}{}ü,
+bir $x$ değişkeni ve kapalı bir $t$ terimi bulunup sonuç
+$\lexists[x][!A]$, öncül de~$\Subst{!A}{t}{x}$ olduğunda doğrudur---yani
+\Intro{\lexists} şematik kuralına uyar. \Elim{\lexists}, $!A(c)$ biçimindeki
+varsayımları boşaltmamıza izin verir; yani her çıkarım için bir !!{constant}~$c$
+vardır ve $\Subst{!A}{c}{x}$ biçimindeki varsayımlar boşaltılabilir. Tek bir
+çıkarımda boşaltılan varsayımların tümü aynı~$c$'yi kullanmalıdır. Bu sabite
+\Elim{\lexists} çıkarımının \emph{özdeğişkeni} denir. Çıkarım ancak $c$,
+boşaltılan $!A(c)$ dışındaki bir açık varsayımda, $!B$ içinde ve $!A$ içinde
+geçmiyorsa doğrudur. Buna \emph{özdeğişken koşulu} denir.
+
+\Log{N1c} ve~\Log{N1i}'deki !!^{proof}s, çıkarım kuralları kullanılarak
+aksiyomlardan tümevarımsal biçimde üretilen sonlu formül ağaçlarıdır. Her
+yaprak, bir boşaltma etiketiyle etiketlenmiş olabilen bir varsayımdır; diğer
+her !!{formula}, sistemin çıkarım kurallarından biri aracılığıyla hemen
+üstündeki !!{formula}s{}den çıkar. Bir çıkarımın üstündeki ağaçta varsayım olarak
+geçen bir !!{formula}, onun üstündeki bir çıkarım tarafından boşaltılmamışsa
+(o çıkarımda) \emph{açık} denir.
+
+\begin{defn}\ollabel{defn:proof}
+\Log{N1c} ve~\Log{N1i}'deki \emph{!!^{proof}s}, tümevarımsal olarak aşağıdaki
+biçimde oluşturulan sonlu !!{formula} ağaçlarıdır:
+\begin{enumerate}
+  \item\ollabel{defn:prf:assumption} $x$ ya da $y$ gibi bir boşaltma etiketiyle
+  etiketlenmiş her !!{formula}, tek başına bir !!a{proof}{}tır. Bir
+  !!a{proof}, tek bir !!{formula}{}den oluşuyorsa bu !!{formula} açık varsayım
+  sayılır.
+  \item\ollabel{defn:prf:one-prem} $R$, bir, iki ya da üç öncülü $!A_1$,
+  $!A_2$, $!A_3$, sonucu~$!A$ olan bir kural ve $\delta_1$, $\delta_2$,
+  $\delta_3$ sırasıyla $!A_1$, $!A_2$, $!A_3$ ile biten !!{proof}s ise
+  sırasıyla
+  \[
+  \AxiomC{}
+  \RightLabel{$\delta_1$}
+  \DeduceC{$!A_1$}
+  \RightLabel{$R$}
+  \UnaryInfC{$!A$}
+  \DisplayProof
+\qquad
+  \AxiomC{}
+  \RightLabel{$\delta_1$}
+  \DeduceC{$!A_1$}
+  \AxiomC{}
+  \RightLabel{$\delta_2$}
+  \DeduceC{$!A_2$}
+  \RightLabel{$R$}
+  \BinaryInfC{$!A$}
+  \DisplayProof
+\qquad
+  \AxiomC{}
+  \RightLabel{$\delta_1$}
+  \DeduceC{$!A_1$}
+  \AxiomC{}
+  \RightLabel{$\delta_2$}
+  \DeduceC{$!A_2$}
+  \AxiomC{}
+  \RightLabel{$\delta_3$}
+  \DeduceC{$!A_3$}
+  \RightLabel{$R$}
+  \TrinaryInfC{$!A$}
+  \DisplayProof
+  \]
+  birer !!a{proof}{}tır; yeter ki bu !!{proof}s içindeki varsayım etiketleri
+  uyumlu olsun (iki farklı !!{formula} aynı boşaltma etiketine sahip olmasın)
+  ve çıkarımlar $R$'nin doğru uygulamaları olsun.
+  \item En üst !!{formula} geçişleri, yeni !!{proof} içinde $\delta_1$,
+  $\delta_2$ ya da~$\delta_3$'ün açık varsayımlarıysa, kural tarafından
+  boşaltılan geçişler dışında, bu !!{proof}{}ın \emph{açık varsayımları} sayılır.
+  Kural $x$ (ya da $x\, y$) ile etiketlenmişse \Intro{\lif} ve~\Intro{\lnot}
+  için bunlar $\delta_1$ içinde $x$ ile etiketlenmiş bütün açık varsayımlardır;
+  \Elim{\lexists} için $\delta_2$ içinde $x$ ile etiketlenmiş bütün açık
+  varsayımlardır; \Elim{\lor} için $\delta_2$ içinde $x$ ile ve $\delta_3$
+  içinde $y$ ile etiketlenmiş bütün açık varsayımlardır.
+\end{enumerate}
+\end{defn}
+
+Tümevarımsal kuruluşta kullanılan !!{proof}s{}a, ilgili !!a{proof}{}ın
+\emph{alt-!!{proof}s{}ı} denir. Bir çıkarımın öncülleriyle biten alt-!!{proof}s{}a
+çıkarımın \emph{doğrudan alt-!!{proof}s{}ı} denir. \Log{N1c} ve \Log{N1i}
+kuralları \olref{tab:N1}'de verilmiştir.
+
+\subfile{rules-N1}
+
+\begin{defn}
+\emph{!!{height}}~$\pheight{\delta}$ değeri, !!a{proof}~$\delta$ için
+tümevarımsal olarak şöyle tanımlanır.
+\begin{enumerate}
+  \item $\delta$ bir varsayımdan oluşuyorsa $\pheight{\delta} = 0$.
+  \item $\delta$, doğrudan alt-!!{proof}{}ı~$\delta_1$ olan tek öncüllü bir
+  çıkarımla bitiyorsa $\pheight{\delta} = \pheight{\delta_1} + 1$.
+  \item $\delta$, doğrudan alt-!!{proof}s{}ı~$\delta_1$ ve~$\delta_2$ olan iki
+  öncüllü bir çıkarımla bitiyorsa $\pheight{\delta} =
+  \max(\pheight{\delta_1}, \pheight{\delta_2}) + 1$.
+  \item $\delta$, doğrudan alt-!!{proof}s{}ı~$\delta_1$, $\delta_2$ ve
+  $\delta_3$ olan \Elim{\lor} ile bitiyorsa $\pheight{\delta} =
+  \max(\pheight{\delta_1}, \pheight{\delta_2}, \pheight{\delta_3}) + 1$.
+\end{enumerate}
+Bir $S$ sekantının yüksekliği $\le n$ olan bir !!a{proof}{}ı varsa
+$\Proves[n] S$ yazarız.
+\end{defn}
+
+\begin{ex}
+\Log{N1i}'de herhangi bir !!{formula}, açık varsayım olarak kendisinden elde
+edilen bir !!a{proof} sayılır. Öyleyse
+\[
+!A \land !B^x
+\]
+bir $\delta_1$ !!a{proof}{}ıdır. Yüksekliği~$0$'dır. $\delta_1$'den,
+\Elim{\land}'ın iki sürümünden birini uygulayarak iki $\delta_2$ ve~$\delta_3$
+!!{proof}{}ı elde edebiliriz:
+\[
+\AxiomC{$!A \land !B^x$}
+\RightLabel{\Elim{\land}[2]}
+\UnaryInfC{$!B$}
+\DisplayProof
+\qquad
+\AxiomC{$!A \land !B^x$}
+\RightLabel{\Elim{\land}[1]}
+\UnaryInfC{$!A$}
+\DisplayProof
+\]
+$\delta_2$ ve~$\delta_3$'teki son çıkarımın doğrudan alt-!!{proof}{}ı aynıdır:
+$!A \land !B$. Her iki !!{proof} da $!A\land !B$ geçişini açık varsayım
+olarak içerir. $\pheight{\delta_1} = 0$ ve
+$\pheight{\delta_2} = \pheight{\delta_3} = 1$ olur.
+
+\Intro{\land} kuralı, $!B \land !A$ biçimindeki bir sonucu gerekçelendirmek
+için $!B$ ve $!A$ biçiminde iki öncül gerektirir. Dolayısıyla aşağıdaki bir
+$\delta_4$ !!a{proof}{}ıdır:
+\[
+\AxiomC{$!A \land !B^x$}
+\RightLabel{\Elim{\land}[2]}
+\UnaryInfC{$!B$}
+\LeftSubproofLabel{$\delta_2$}
+\AxiomC{$!A \land !B^x$}
+\RightLabel{\Elim{\land}[1]}
+\UnaryInfC{$!A$}
+\RightSubproofLabel{$\delta_3$}
+\RightLabel{\Intro{\land}}
+\BinaryInfC{$!B \land !A$}
+\DisplayProof
+\]
+Yüksekliği $\pheight{\delta_4} = \max(\pheight{\delta_2},
+\pheight{\delta_3})+1 = \max(1,1) + 1 = 2$'dir. Varsayım olarak iki
+$!A \land !B$ geçişi vardır ve ikisi de açıktır.
+
+Son olarak $\delta_5$'i elde etmek için \Intro{\lif} uygulayabiliriz:
+\[
+\AxiomC{$\Discharge{!A \land !B}{x}$}
+\RightLabel{\Elim{\land}[2]}
+\UnaryInfC{$!B$}
+\LeftSubproofLabel{$\delta_2$}
+\AxiomC{$\Discharge{!A \land !B}{x}$}
+\RightLabel{\Elim{\land}[1]}
+\UnaryInfC{$!A$}
+\RightSubproofLabel{$\delta_3$}
+\RightLabel{\Intro{\land}}
+\BinaryInfC{$!B \land !A$}
+\DischargeRule{\Intro{\lif}}{x}
+\UnaryInfC{$(!A \land !B) \lif (!B \land !A)$}
+\DisplayProof
+\]
+Yüksekliği $\pheight{\delta_4} + 1 = 3$'tür. \Intro{\lif} çıkarımı $x$ ile
+etiketlenmiş $!A \land !B$ biçimindeki bütün varsayım geçişlerini, yani
+doğrudan alt ispatın daha önce açık olan iki varsayımını da boşaltır. Bunlar
+$\delta_5$'in tek varsayımları olduğundan hiçbir açık varsayımı kalmaz;
+dolayısıyla bir !!a{proof}{}tır; ispat ettiği son-!!{formula}, $(!A \land !B)
+\lif (!B \land !A)$'dır.
+\end{ex}
+
+\end{document}

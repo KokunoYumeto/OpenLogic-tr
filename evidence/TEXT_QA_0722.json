@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "release": "OLP-0722-20260814",
+  "status": "PASS",
+  "text_bytes": 2593270,
+  "text_lines": 46990,
+  "text_sha256": "26D2CAE84B478ADD70D9EDBC8088F6BD2C761FD47EF01F5DED5E008F6EBFC286",
+  "scan_counts": {
+    "question_mark_pairs": 0,
+    "raw_localization_tokens": 0,
+    "unicode_replacement_characters": 0,
+    "undefined_markers": 0,
+    "todo_markers": 0,
+    "tbd_markers": 0,
+    "placeholder_markers": 0,
+    "tex_command_residue": 0
+  }
+}

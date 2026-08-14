@@ -1,0 +1,57 @@
+% Part: first-order-logic
+% Chapter: sequent-calculus
+
+\documentclass[../../../include/open-logic-chapter]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olchapter[tr]{fol}{seq}{Sekant Hesabı}}
+      {\olchapter[tr]{pl}{seq}{Sekant Hesabı}}
+
+\begin{editorial}
+  Bu bölüm, \iftag{FOL}{klasik birinci dereceden mantık}{klasik önerme
+  mantığı} için Gentzen'in standart sekant hesabı LK'yi sunar. Daha
+  fazla örnek ve alıştırma eklenebilir.
+  Sekant hesabıyla bir ispat sistemi olarak ilgili malzemeyi dahil etmek veya
+  dışarıda bırakmak için ``prfSC'' etiketi kullanılır.
+\end{editorial}
+
+\olimport{rules-and-proofs}
+
+\olimport{propositional-rules}
+
+\iftag{FOL}{%
+  \olimport{quantifier-rules}
+}{}
+
+\olimport{structural-rules}
+
+\olimport{derivations}
+
+\olimport{proving-things}
+
+\iftag{FOL}{%
+  \olimport{proving-things-quant}
+}{}
+
+\olimport{proof-theoretic-notions}
+
+\olimport{provability-consistency}
+
+\olimport{provability-propositional}
+
+\iftag{FOL}{%
+  \olimport{provability-quantifiers}
+}{}
+
+\olimport{soundness}
+
+\iftag{FOL}{%
+  \olimport{identity}
+  \olimport{soundness-identity}
+}{}
+
+\OLEndChapterHook
+
+\end{document}

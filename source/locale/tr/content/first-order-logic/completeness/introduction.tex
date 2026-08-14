@@ -1,0 +1,72 @@
+% Part: first-order-logic
+% Chapter: completeness
+% Section: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[tr]{fol}{com}{int}}
+      {\olfileid[tr]{pl}{com}{int}}
+
+\olsection{Giriş}
+
+Tamlık teoremi, mantık hakkındaki en temel sonuçlardan biridir.
+Birbirine denk olduklarını ispatlayacağımız iki biçimde ifade edilir.
+İlk biçimi, semantik sonuç ile !!{derivation} sistemimiz arasındaki
+ilişkiye dair temel bir şey söyler: !!a{sentence}~$!A$, bir
+!!{sentence}s kümesi~$\Gamma$'dan çıkıyorsa, $\Gamma \Proves !A$
+olduğunu ortaya koyan !!a{derivation} da vardır. Dolayısıyla
+!!{derivation} sistemi, gerçekte çıkmayan şeyleri ispatlamaksızın
+olabileceği kadar güçlüdür.
+
+İkinci biçimi bir model varlığı sonucu olarak ifade edilebilir: her
+tutarlı !!{sentence}s kümesi sağlanabilirdir. Tutarlılık ispat
+kuramsal bir kavramdır; !!{derivation} sistemimizin belirli
+!!{derivation}s üretemediğini söyler. Fakat sırf~$\Gamma$'dan belirli
+türde !!{derivation}s bulunmuyor diye
+\iftag{FOL}{!!a{structure}~$\Struct{M}$}{!!{valuation}{~$\pAssign{v}$}
+ve $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$ olduğunu} kim güvence altına
+alabilir? Tamlık teoremi ilk kez ispatlanmadan önce---hatta bugün
+kullandığımız !!{derivation} sistemleri ortaya çıkmadan önce---büyük
+Alman matematikçi David Hilbert, matematiksel kuramların tutarlılığının
+bu kuramların konu ettiği nesnelerin varlığını güvence altına aldığı
+görüşündeydi. Gottlob Frege'ye yazdığı bir mektupta bunu şöyle dile
+getirmişti:
+\begin{quote}
+  Keyfî olarak verilen aksiyomlar, bütün sonuçlarıyla birlikte birbiriyle
+  çelişmiyorsa doğrudurlar ve aksiyomların tanımladığı şeyler vardır. Benim
+  için doğruluğun ve varlığın ölçütü budur.
+\end{quote}
+Frege buna şiddetle karşı çıktı. Tamlık teoreminin ikinci biçimi,
+aksiyomlar tutarlıysa en azından hepsini doğru kılan \emph{bir}
+\iftag{FOL}{!!{structure}}{!!{valuation}} var olduğu anlamında
+Hilbert'in haklı olduğunu gösterir.
+
+Tamlık teoreminin---daha doğrusu ispatının---önemli olmasının tek
+nedenleri bunlar değildir. Ayrı ayrı ele alacağımız bir dizi önemli
+sonucu da vardır. Örneğin $\Gamma \Proves !A$ olduğunu gösteren her
+!!{derivation} sonludur ve bu nedenle~$\Gamma$ içindeki
+!!{sentence}s arasından yalnızca sonlu sayıda olanı kullanabilir.
+Tamlık teoremi uyarınca bundan şu sonuç çıkar: $!A$,~$\Gamma$'nın bir
+sonucuysa zaten~$\Gamma$'nın sonlu bir alt kümesinin sonucudur. Buna
+\emph{tıkızlık} denir. Buna denk olarak, $\Gamma$'nın her sonlu alt
+kümesi tutarlıysa $\Gamma$'nın kendisi de tutarlı olmalıdır.
+
+Tıkızlık teoremi, !!{derivation}s üzerinden dolanan bir yolla tamlık
+teoreminden çıksa da \emph{tamlık teoreminin ispatını} kullanarak onu
+doğrudan ortaya koymak da mümkündür. Çünkü ispat, belirli bir özelliğe
+---tutarlılığa---sahip bir !!{sentence}s kümesinden yola çıkar ve bu
+kümeden belirli özellikleri olan !!a{structure} kurar (burada yapı söz
+konusu kümeyi sağlar). Hemen hemen aynı kuruluş, tutarlı kümeler yerine
+``sonlu olarak sağlanabilir'' !!{sentence}s kümelerinden başlanarak
+tıkızlığı doğrudan ortaya koymak için kullanılabilir.
+\iftag{FOL}{Bu kuruluş başka sonuçlar da verir; örneğin sağlanabilir her
+  !!{sentence}s kümesinin sonlu ya da !!{denumerable}s bir modeli
+  vardır. (Bu sonuca Löwenheim--Skolem teoremi denir.) Genel olarak
+  !!{structure}s kurmak için !!{sentence}s kümelerinden yararlanma
+  yöntemi mantıkta,
+  hatta bazen felsefede bile sıkça kullanılır.}{}
+
+\end{document}

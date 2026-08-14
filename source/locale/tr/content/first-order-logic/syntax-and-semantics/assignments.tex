@@ -1,0 +1,368 @@
+% Part: first-order-logic
+% Chapter: syntax-and-semantics
+% Section: assignments
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{fol}{syn}{ass}
+
+\olsection{Değişken Atamaları}
+
+\begin{explain}
+Bir !!{variable} ataması~$s$, \emph{her} değişkene bir değer verir; bu
+değişkenlerden sonsuz sayıda vardır. Elbette buna gerek yoktur.
+!!{variable} atamalarının bütün !!{variable}s ifadelerine değer
+atamasını yalnızca işleri çok kolaylaştırdığı için isteriz. Bir
+terim~$t$'nin değeri ve !!a{formula}~$!A$ ifadesinin !!a{structure}
+içinde~$s$'ye göre sağlanıp sağlanmaması, yalnızca~$s$'nin~$t$ içindeki
+!!{variable}s ifadelerine ve~$!A$'nın serbest !!{variable}s ifadelerine
+yaptığı atamalara bağlıdır. Sonraki iki önerme tam olarak bunu söyler.
+``Bağlıdır'' düşüncesini kesinleştirmek için,~$t$ içindeki bütün
+değişkenler üzerinde uyuşan herhangi iki değişken atamasının aynı değeri
+verdiğini ve~$!A$'nın bütün serbest değişkenleri üzerinde uyuşan iki
+değişken ataması varsa~$!A$'nın birine göre sağlanmasının ancak ve ancak
+ötekine göre sağlanmasıyla eşdeğer olduğunu gösteririz.
+\end{explain}
+
+\begin{prop}\ollabel{prop:valindep}
+Bir terim~$t$ içindeki !!{variable}s, $x_1$, \dots,~$x_n$ arasındaysa
+ve $i = 1$, \dots,~$n$ için $s_1(x_i) = s_2(x_i)$ ise
+$\Value{t}{M}[s_1] = \Value{t}{M}[s_2]$.
+\end{prop}
+
+\begin{proof}
+~$t$'nin karmaşıklığı üzerinde tümevarımla. Temel durumda~$t$,
+!!a{constant} ya da $x_1$, \dots,~$x_n$ değişkenlerinden biri olabilir.
+$t = c$ ise $\Value{t}{M}[s_1] = \Assign{c}{M} =
+\Value{t}{M}[s_2]$. $t = x_i$ ise önerme varsayımı gereği
+$s_1(x_i) = s_2(x_i)$; dolayısıyla $\Value{t}{M}[s_1] = s_1(x_i) =
+s_2(x_i) = \Value{t}{M}[s_2]$.
+
+Tümevarım adımı için $t = \Atom{f}{t_1, \dots, t_k}$ olduğunu ve savın
+$t_1$, \dots, $t_k$ için geçerli olduğunu varsayalım. O zaman
+\begin{align*}
+  \Value{t}{M}[s_1] & = \Value{\Atom{f}{t_1, \dots, t_k}}{M}[s_1] \\
+  & = \Assign{f}{M}(\Value{t_1}{M}[s_1], \dots, \Value{t_k}{M}[s_1]).
+\intertext{$j = 1$, \dots,~$k$ için~$t_j$ içindeki !!{variable}s,
+    $x_1$, \dots,~$x_n$ arasındadır. Tümevarım varsayımı gereği
+    $\Value{t_j}{M}[s_1] = \Value{t_j}{M}[s_2]$. Dolayısıyla}
+\Value{t}{M}[s_1] & = \Value{\Atom{f}{t_1, \dots, t_k}}{M}[s_1] \\
+  & = \Assign{f}{M}(\Value{t_1}{M}[s_1], \dots, \Value{t_k}{M}[s_1]) \\
+  & = \Assign{f}{M}(\Value{t_1}{M}[s_2], \dots, \Value{t_k}{M}[s_2]) \\
+  & = \Value{\Atom{f}{t_1, \dots, t_k}}{M}[s_2] = \Value{t}{M}[s_2].
+\end{align*}
+\end{proof}
+
+\begin{prop}\ollabel{prop:satindep}
+$!A$ içindeki serbest !!{variable}s, $x_1$, \dots,~$x_n$ arasındaysa
+ve $i = 1$, \dots,~$n$ için $s_1(x_i) = s_2(x_i)$ ise
+$\Sat{M}{!A}[s_1]$ ancak ve ancak $\Sat{M}{!A}[s_2]$.
+\end{prop}
+
+\begin{proof}
+$!A$'nın karmaşıklığı üzerinde tümevarım kullanırız. $!A$'nın atomik
+olduğu temel durumda~$!A$ şunlardan biri olabilir:
+\iftag{prvTrue}{$\ltrue$,}{}
+\iftag{prvFalse}{$\lfalse$,}{}
+$k$-li bir yüklem~$R$ ve $t_1$, \dots,~$t_k$ terimleri için
+$\Atom{R}{t_1, \dots, t_k}$ ya da $t_1$ ve~$t_2$ terimleri için
+$\eq[t_1][t_2]$. Son iki durumda !!{biconditional} ifadesinin yalnızca
+ileri yönünü gösteririz; çünkü ters yönün ispatı simetriktir.
+
+\begin{enumerate}
+\tagitem{prvTrue}{%
+  \indcase{!A}{\ltrue}{hem $\Sat{M}{\indfrm}[s_1]$ hem de
+    $\Sat{M}{\indfrm}[s_2]$.}}{}
+
+\tagitem{prvFalse}{%
+  \indcase{!A}{\lfalse}{hem $\Sat/{M}{!A}[s_1]$ hem de
+    $\Sat/{M}{!A}[s_2]$.}}{}
+
+\item
+  \indcase{!A}{\Atom{R}{t_1, \ldots, t_k}}{
+    $\Sat{M}{\indfrm}[s_1]$ olsun. O zaman
+    \[
+    \langle \Value{t_1}{M}[s_1], \ldots, \Value{t_k}{M}[s_1] \rangle
+    \in \Assign{R}{M}.
+    \]
+    $i = 1$, \dots,~$k$ için \olref{prop:valindep} gereği
+    $\Value{t_i}{M}[s_1] = \Value{t_i}{M}[s_2]$. Dolayısıyla ayrıca
+    $\langle \Value{t_1}{M}[s_2], \ldots, \Value{t_k}{M}[s_2] \rangle
+    \in \Assign{R}{M}$ ve buradan $\Sat{M}{\indfrm}[s_2]$.}
+\item
+  \indcase{!A}{\eq[t_1][t_2]}{$\Sat{M}{\indfrm}[s_1]$ varsayılsın.
+    O zaman $\Value{t_1}{M}[s_1] = \Value{t_2}{M}[s_1]$. Dolayısıyla
+    \begin{align*}
+      \Value{t_1}{M}[s_2] & = \Value{t_1}{M}[s_1]
+      & \text{(\olref{prop:valindep} gereği)} \\
+      & = \Value{t_2}{M}[s_1]
+      & \text{($\Sat{M}{\eq[t_1][t_2]}[s_1]$ olduğundan)}\\
+      &= \Value{t_2}{M}[s_2]
+      & \text{(\olref{prop:valindep} gereği),}
+    \end{align*}
+    öyleyse $\Sat{M}{\eq[t_1][t_2]}[s_2]$.}
+\end{enumerate}
+
+Şimdi~$!A$'dan daha az karmaşık bütün !!{formula}s~$!B$ için
+$\Sat{M}{!B}[s_1]$ ancak ve ancak $\Sat{M}{!B}[s_2]$ olduğunu
+varsayalım. Tümevarım adımı,~$!A$'nın ana işlecinin belirlediği
+durumlara göre ilerler. Her durumda !!{biconditional} ifadesinin yalnızca
+ileri yönünü gösteririz; ters yönün ispatı simetriktir. Niceleyici
+durumları dışındaki bütün durumlarda tümevarım varsayımını~$!A$'nın
+alt-!!{formula}s ifadeleri~$!B$'ye uygularız. $!B$'nin serbest
+değişkenleri~$!A$'nın serbest değişkenleri arasındadır. Dolayısıyla
+$s_1$ ile $s_2$,~$!A$'nın serbest değişkenleri üzerinde uyuşuyorsa
+~$!B$'ninkiler üzerinde de uyuşur ve tümevarım varsayımı~$!B$'ye
+uygulanır.
+
+\begin{enumerate}
+\tagitem{defNot}{}{%
+  \iftag{probNot}{%
+    \indcase!{!A}{\lnot !B}{}}{%
+    \indcase{!A}{\lnot !B}{$\Sat{M}{\indfrm}[s_1]$ ise
+      $\Sat/{M}{!B}[s_1]$; tümevarım varsayımı gereği
+      $\Sat/{M}{!B}[s_2]$ ve dolayısıyla $\Sat{M}{\indfrm}[s_2]$.}}}
+
+\tagitem{defAnd}{}{%
+  \iftag{probAnd}{%
+    \indcase!{!A}{!B \land !C}{}}{%
+    \indcase{!A}{!B \land !C}{$\Sat{M}{\indfrm}[s_1]$ ise
+      $\Sat{M}{!B}[s_1]$ ve $\Sat{M}{!C}[s_1]$; tümevarım varsayımı
+      gereği $\Sat{M}{!B}[s_2]$ ve $\Sat{M}{!C}[s_2]$. Dolayısıyla
+      $\Sat{M}{\indfrm}[s_2]$.}}}
+
+\tagitem{defOr}{}{%
+  \iftag{probOr}{%
+    \indcase!{!A}{!B \lor !C}{}}{%
+    \indcase{!A}{!B \lor !C}{$\Sat{M}{\indfrm}[s_1]$ ise
+      $\Sat{M}{!B}[s_1]$ ya da $\Sat{M}{!C}[s_1]$. Tümevarım
+      varsayımı gereği $\Sat{M}{!B}[s_2]$ ya da $\Sat{M}{!C}[s_2]$;
+      dolayısıyla $\Sat{M}{\indfrm}[s_2]$.}}}
+
+\tagitem{defIf}{}{%
+  \iftag{probIf}{%
+    \indcase!{!A}{!B \lif !C}{}}{%
+    \indcase{!A}{!B \lif !C}{$\Sat{M}{\indfrm}[s_1]$ ise
+    $\Sat/{M}{!B}[s_1]$ ya da $\Sat{M}{!C}[s_1]$. Tümevarım varsayımı
+    gereği $\Sat/{M}{!B}[s_2]$ ya da $\Sat{M}{!C}[s_2]$; dolayısıyla
+    $\Sat{M}{\indfrm}[s_2]$.}}}
+
+\tagitem{defIff}{}{%
+  \iftag{probIff}{%
+    \indcase!{!A}{!B \liff !C}{}}{%
+    \indcase{!A}{!B \liff !C}{$\Sat{M}{\indfrm}[s_1]$ ise ya
+      $\Sat{M}{!B}[s_1]$ ve $\Sat{M}{!C}[s_1]$, ya da
+      $\Sat/{M}{!B}[s_1]$ ve $\Sat/{M}{!C}[s_1]$. Tümevarım varsayımı
+      gereği ya $\Sat{M}{!B}[s_2]$ ve $\Sat{M}{!C}[s_2]$, ya da
+      $\Sat/{M}{!B}[s_2]$ ve $\Sat/{M}{!C}[s_2]$. Her iki durumda da
+      $\Sat{M}{\indfrm}[s_2]$.}}}
+
+\tagitem{defEx}{}{%
+  \iftag{probEx}{%
+    \indcase!{!A}{\lexists[x][!B]}{}}{%
+    \indcase{!A}{\lexists[x][!B]}{$\Sat{M}{\indfrm}[s_1]$ ise
+      $\Sat{M}{!B}[\Subst{s_1}{m}{x}]$ olacak bir
+      $m \in \Domain{M}$ vardır. $s_1' = \Subst{s_1}{m}{x}$ ve
+      $s_2' = \Subst{s_2}{m}{x}$ olsun. $!B$'nin serbest değişkenleri
+      $x_1$, \dots, $x_n$ ve $x$ arasındadır. $s_1'$ ile $s_2'$ sırasıyla
+      $s_1$ ve~$s_2$'nin $x$-varyantları olduğundan ve varsayım gereği
+      $s_1(x_i) = s_2(x_i)$ olduğundan $s_1'(x_i) = s_2'(x_i)$.
+      $s_1'$ ve~$s_2'$ tanımlarımız gereği $s_1'(x) = s_2'(x) = m$.
+      O halde tümevarım varsayımı~$!B$ ile $s_1'$, $s_2'$ için uygulanır
+      ve $\Sat{M}{!B}[s_2']$ elde edilir. $s_2' =
+      \Subst{s_2}{m}{x}$ olduğuna göre $\Sat{M}{!B}[\Subst{s_2}{m}{x}]$
+      olacak bir $m \in \Domain{M}$ vardır; dolayısıyla
+      $\Sat{M}{\indfrm}[s_2]$.}}}
+
+\tagitem{defAll}{}{%
+  \iftag{probAll}{%
+    \indcase!{!A}{\lforall[x][!B]}{}}{%
+    \indcase{!A}{\lforall[x][!B]}{$\Sat{M}{\indfrm}[s_1]$ ise her
+      $m \in \Domain{M}$ için $\Sat{M}{!B}[\Subst{s_1}{m}{x}]$.
+      Her $m \in \Domain{M}$ için ayrıca
+      $\Sat{M}{!B}[\Subst{s_2}{m}{x}]$ olduğunu göstermek istiyoruz.
+      Öyleyse gelişigüzel bir $m \in \Domain{M}$ alıp
+      $s_1' = \Subst{s_1}{m}{x}$ ve $s_2' = \Subst{s_2}{m}{x}$
+      atamalarını ele alalım. $\Sat{M}{!B}[s_1']$. $!B$'nin serbest
+      değişkenleri $x_1$, \dots, $x_n$ ve $x$ arasındadır. $s_1'$ ile
+      $s_2'$ sırasıyla $s_1$ ve~$s_2$'nin $x$-varyantları olduğundan ve
+      varsayım gereği $s_1(x_i) = s_2(x_i)$ olduğundan
+      $s_1'(x_i) = s_2'(x_i)$. $s_1'$ ve~$s_2'$ tanımlarımız gereği
+      $s_1'(x) = s_2'(x) = m$. O halde tümevarım varsayımı~$!B$ ile
+      $s_1'$, $s_2'$ için uygulanır ve $\Sat{M}{!B}[s_2']$ elde edilir.
+      Bu, her $m \in \Domain{M}$ için geçerlidir; yani bütün
+      $m \in \Domain{M}$ için $\Sat{M}{!B}[\Subst{s_2}{m}{x}]$ ve
+      dolayısıyla $\Sat{M}{\indfrm}[s_2]$.}}}
+\end{enumerate}
+Tümevarımla,~$!A$ içindeki serbest !!{variable}s, $x_1$, \dots, $x_n$
+arasındayken ve $i = 1$, \dots,~$n$ için $s_1(x_i)=s_2(x_i)$ iken
+$\Sat{M}{!A}[s_1]$ ancak ve ancak $\Sat{M}{!A}[s_2]$ sonucunu elde
+ederiz.
+\end{proof}
+
+\begin{probtag}{probNot,probOr,probAnd,probIf,probIff,probEx,probAll}
+\olref[fol][syn][ass]{prop:satindep} önermesinin ispatını tamamlayın.
+\end{probtag}
+
+\begin{explain}
+!!^{sentence}s serbest değişken içermez; dolayısıyla herhangi iki
+değişken ataması, herhangi bir tümcenin (sıfır tane olan) bütün serbest
+değişkenlerine aynı şeyleri atar. Az önce ispatlanan önerme, bu durumda
+!!a{sentence} ifadesinin bir yapı içinde değişken atamasına göre
+sağlanıp sağlanmamasının atamadan bütünüyle bağımsız olduğu anlamına
+gelir. Bu olguyu kaydedelim. Olgu, aşağıda gelecek olan, !!a{sentence}
+ifadesinin !!a{structure} içinde sağlanması tanımını (değişken
+atamasından söz etmeden) haklı çıkarır.
+\end{explain}
+
+\begin{cor}
+\ollabel{cor:sat-sentence}
+$!A$ !!a{sentence} ve $s$ bir değişken atamasıysa,
+$\Sat{M}{!A}[s]$ ancak ve ancak her değişken ataması~$s'$ için
+$\Sat{M}{!A}[s']$.
+\end{cor}
+
+\begin{proof}
+  Gelişigüzel bir değişken ataması~$s'$ alalım. $!A$ !!a{sentence}
+  olduğundan serbest değişken içermez; dolayısıyla her değişken
+  ataması~$s'$,~$!A$'nın bütün serbest değişkenlerine, önemsiz biçimde,
+  ~ $s$ ile aynı şeyleri atar. Böylece \olref{prop:satindep} koşulu
+  sağlanır ve $\Sat{M}{!A}[s]$ ancak ve ancak $\Sat{M}{!A}[s']$.
+\end{proof}
+
+\begin{defn}
+\ollabel{defn:satisfaction}
+$!A$ !!a{sentence} ise !!a{structure}~$\Struct M$ yapısının~$!A$'yı
+\emph{sağladığını}, yani $\Sat{M}{!A}$ olduğunu, ancak ve ancak bütün
+değişken atamaları~$s$ için $\Sat{M}{!A}[s]$ olduğunda söyleriz.
+\end{defn}
+
+$\Sat{M}{!A}$ ise kısaca \emph{$!A$,~$\Struct{M}$ içinde doğrudur} da
+deriz. Sağlama kavramı, tek tek !!{sentence}s ifadelerinden
+!!{sentence}s kümelerine doğal olarak genişler.
+
+\begin{defn}
+\ollabel{defn:sat}
+$\Gamma$ bir !!{sentence}s kümesiyse, !!a{structure}~$\Struct M$
+yapısının~$\Gamma$'yı \emph{sağladığını}, yani $\Sat{M}{\Gamma}$
+olduğunu, ancak ve ancak her $!A \in \Gamma$ için $\Sat{M}{!A}$
+olduğunda söyleriz.
+\end{defn}
+
+\begin{prop}\ollabel{prop:sentence-sat-true}
+  $\Struct{M}$ !!a{structure}, $!A$ !!a{sentence} ve $s$ bir değişken
+  ataması olsun. $\Sat{M}{!A}$ ancak ve ancak $\Sat{M}{!A}[s]$.
+\end{prop}
+
+\begin{proof}
+Alıştırma.
+\end{proof}
+
+\begin{prob}
+\olref[fol][syn][ass]{prop:sentence-sat-true} önermesini ispatlayın.
+\end{prob}
+
+\begin{prop}\ollabel{prop:sat-quant}
+  $!A(x)$'in yalnızca~$x$'i serbest içerdiğini ve $\Struct M$'nin
+  !!a{structure} olduğunu varsayın. O zaman:
+  \begin{tagenumerate}{prvEx,prvAll}
+    \tagitem{prvEx}{$\Sat{M}{\lexists[x][!A(x)]}$ ancak ve ancak en az
+      bir değişken ataması~$s$ için $\Sat{M}{!A(x)}[s]$.}{}
+    \tagitem{prvAll}{$\Sat{M}{\lforall[x][!A(x)]}$ ancak ve ancak bütün
+      değişken atamaları~$s$ için $\Sat{M}{!A(x)}[s]$.}{}
+\end{tagenumerate}
+\end{prop}
+
+\begin{proof}
+Alıştırma.
+\end{proof}
+
+\begin{prob}
+\olref[fol][syn][ass]{prop:sat-quant} önermesini ispatlayın.
+\end{prob}
+
+\begin{prob}
+\DeclareRobustCommand{\VDash}{\mathrel{||}\joinrel\Relbar}
+$\Lang L$'nin !!{function}s içermeyen bir dil olduğunu varsayın.
+!!{structure}~$\Struct M$, !!a{constant}~$c$ ve $a \in \Domain M$
+verildiğinde $\Struct M[a/c]$ ifadesini,~$\Struct M$ ile aynı olup
+yalnızca $\Assign{c}{M[a/c]} = a$ olacak biçimde ayrılan !!{structure}
+olarak tanımlayın. !!{sentence}s~$!A$ için $\Struct M \VDash !A$
+bağıntısını şöyle tanımlayın:
+\begin{enumerate}
+\tagitem{prvFalse}{%
+  \indcase{!A}{\lfalse}{$\Struct{M} \VDash \indfrm$ değil.}}{}
+
+\tagitem{prvTrue}{%
+  \indcase{!A}{\ltrue}{$\Struct{M} \VDash \indfrm$.}}{}
+
+\item \indcase{!A}{\Atom{R}{d_1, \dots, d_n}}{$\Struct M \VDash \indfrm$
+  ancak ve ancak $\langle \Assign{d_1}{M}, \dots,
+  \Assign{d_n}{M} \rangle \in \Assign{R}{M}$.}
+
+\item \indcase{!A}{\eq[d_1][d_2]}{$\Struct M \VDash \indfrm$ ancak ve
+  ancak $\Assign{d_1}{M} = \Assign{d_2}{M}$.}
+
+\tagitem{prvNot}{%
+  \indcase{!A}{\lnot !B}{$\Struct{M} \VDash \indfrm$ ancak ve ancak
+    $\Struct{M} \VDash {!B}$ değil.}}{}
+
+\tagitem{prvAnd}{%
+  \indcase{!A}{(!B \land !C)}{$\Struct{M} \VDash
+    \indfrm$ ancak ve ancak $\Struct{M} \VDash!B$ ve
+    $\Struct{M} \VDash !C$.}}{}
+
+\tagitem{prvOr}{%
+  \indcase{!A}{(!B \lor !C)}{$\Struct{M} \VDash \indfrm$ ancak ve ancak
+    $\Struct{M} \VDash !B$ ya da $\Struct{M} \VDash !C$
+    (veya her ikisi).}}{}
+
+\tagitem{prvIf}{%
+  \indcase{!A}{(!B \lif !C)}{$\Struct{M} \VDash \indfrm$ ancak ve ancak
+    $\Struct {M} \VDash !B$ değil ya da $\Struct M \VDash !C$
+    (veya her ikisi).}}{}
+
+\tagitem{prvIff}{%
+  \indcase{!A}{(!B \liff !C)}{$\Struct{M} \VDash {\indfrm}$ ancak ve
+    ancak ya hem $\Struct{M} \VDash {!B}$ hem $\Struct{M} \VDash {!C}$,
+    ya da ne $\Struct{M} \VDash {!B}$ ne de $\Struct{M} \VDash {!C}$.}}{}
+
+\tagitem{prvAll}{%
+  \indcase{!A}{\lforall[x][!B]}{$c$,~$!B$ içinde geçmiyorsa,
+    $\Struct{M} \VDash {\indfrm}$ ancak ve ancak her
+    $a \in \Domain{M}$ için
+    $\Struct{M[a/c]} \VDash \Subst{!B}{c}{x}$.}}{}
+
+\tagitem{prvEx}{%
+  \indcase{!A}{\lexists[x][!B]}{$c$,~$!B$ içinde geçmiyorsa,
+  $\Struct{M} \VDash {\indfrm}$ ancak ve ancak
+  $\Struct{M[a/c]} \VDash \Subst{!B}{c}{x}$ olacak bir
+  $a \in \Domain M$ vardır.}}{}
+\end{enumerate}
+$x_1$, \dots, $x_n$,~$!A$'daki bütün serbest !!{variable}s;
+$c_1$, \dots, $c_n$,~$!A$ içinde bulunmayan sabit simgeleri;
+$a_1$, \dots, $a_n \in \Domain M$ ve $s(x_i) = a_i$ olsun.
+
+$\Sat{M}{!A}[s]$ ancak ve ancak
+$\Struct M[a_1/c_1,\dots,a_n/c_n]
+\VDash \Subst{\Subst{!A}{c_1}{x_1}\dots}{c_n}{x_n}$ olduğunu gösterin.
+
+(Bu problem, birinci dereceden mantığa ilişkin semantiğin değişken
+atamaları kullanılmadan da verilebileceğini gösterir.)
+\end{prob}
+
+\begin{prob}
+$f$'nin~$!A(x,y)$ içinde bulunmayan bir fonksiyon simgesi olduğunu
+varsayın. $\Sat{M}{\lforall[x][\lexists[y][!A(x,y)]]}$ olacak bir
+!!a{structure}~$\Struct{M}$ bulunmasının, ancak ve ancak
+$\Sat{M'}{\lforall[x][!A(x,f(x))]}$ olacak bir~$\Struct M'$ bulunmasıyla
+eşdeğer olduğunu gösterin.
+
+(Bu problem, Skolem Teoremi diye bilinen sonucun özel bir durumudur;
+$\lforall[x][!A(x,f(x))]$,~$\lforall[x][\lexists[y][!A(x,y)]]$ ifadesinin
+\emph{Skolem normal biçimi} diye adlandırılır.)
+\end{prob}
+
+\end{document}

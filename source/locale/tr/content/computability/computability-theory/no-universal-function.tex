@@ -1,0 +1,51 @@
+% Part: computability
+% Chapter: computability-theory
+% Section: no-universal-function
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{cmp}{thy}{nou}
+\olsection{Evrensel Hesaplanabilir Fonksiyon Yoktur}
+
+Kısmi hesaplanabilir fonksiyonlar için evrensel olan kısmi hesaplanabilir bir
+fonksiyon bulunsa da tümel hesaplanabilir fonksiyonlar için evrensel olan
+tümel hesaplanabilir bir fonksiyon yoktur.
+
+\begin{thm}
+\ollabel{thm:no-univ}
+Evrensel bir hesaplanabilir fonksiyon yoktur. Başka bir deyişle, $f(x)$
+herhangi bir tümel hesaplanabilir fonksiyon olduğunda her $x$ için
+$f(x)=\fn{Un}'(k,x)$ olacak bir $k$ doğal sayısının bulunmasını sağlayan
+her $\fn{Un}'(k,x)$ fonksiyonu hesaplanabilir değildir.
+\end{thm}
+
+\begin{proof}
+İspat basit bir köşegenleştirmedir. $\fn{Un}'(k,x)$ tümel ve hesaplanabilir
+olsaydı
+\[
+  d(x)=\fn{Un}'(x,x)+1
+\]
+de tümel ve hesaplanabilir olurdu. Fakat tanım gereği
+$d(k)\neq\fn{Un}'(k,k)$ olur. Dolayısıyla her $k$ için $d(x)$ ile
+$\fn{Un}'(k,x)$ fonksiyonlarının değerleri en az bir $x$'te, özellikle
+$x=k$ iken farklıdır.
+\end{proof}
+
+\begin{explain}
+Yukarıdaki \olref[uni]{thm:univ-comp}, bu köşegenleştirme savının ancak
+evrensel fonksiyonun kısmi olmasına izin verme pahasına aşılabildiğini
+gösterir. Yani $\fn{Un}$ tümel hesaplanabilir fonksiyonlar için evrenseldir,
+fakat kendisi tümel değildir. Köşegenleştirme savı kısmi durumda işlemez.
+\end{explain}
+
+\begin{prob}
+  \olref{thm:no-univ} ispatındaki köşegenleştirme savının kısmi durumda neden
+  işlemediğini anlamak için $f(x)\simeq\fn{Un}(x,x)+1$ fonksiyonunu ele alın.
+  Bu fonksiyon kısmi hesaplanabilir midir? Öyleyse bir $e$ indisi vardır,
+  yani $f(x)\simeq\fn{Un}(e,x)$ olur. $f(e)$ hakkında ne söyleyebilirsiniz?
+\end{prob}
+
+\end{document}
+

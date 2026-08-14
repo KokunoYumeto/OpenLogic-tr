@@ -1,0 +1,58 @@
+% part: intuitionistic-logic
+% chapter: soundness-completeness
+% section: soundness-axd
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{int}{sc}{sax}
+
+\olsection{Aksiyomatik \usetoken{P}{derivation}in Sağlamlığı}
+
+\begin{editorial}
+  Sağlamlık ispatı bütün aksiyomların sezgici bakımdan geçerli olduğu
+  olgusuna dayanır; bunun hâlâ, örneğin Semantik bölümünde, ispatlanması
+  gerekir.
+\end{editorial}
+
+\begin{thm}[Sağlamlık]
+  \ollabel{thm:soundness}
+  $\Gamma \Proves !A$ ise $\Gamma \Entails !A$.
+\end{thm}
+
+\begin{proof}
+  $\Gamma \Proves !A$ ise $\Gamma \Entails !A$ olduğunu ispatlarız.
+  İspat, $\Gamma$'dan $!A$'ya giden !!{formula}s{}in sayısı~$n$ üzerinde
+  tümevarımladır; bu formüller $!A$'nın !!{derivation}{}ini oluşturur.
+  $!A_1$, \dots, $!A_n=!A$, $\Gamma$'dan bir !!a{derivation} ise
+  $\Gamma\Entails !A_n$ olduğunu gösteririz. Bu !!a{derivation} verildiğinde,
+  her $k<n$ için $!A_1$, \dots, $!A_k$ başlangıç parçası da bir türetimdir.
+
+  Uzunluğu~$0$ olan bir !!{derivation} yoktur; dolayısıyla $n=0$ için sav
+  boş olarak doğrudur. Öyleyse sav, uzunluğu~$<n$ olan bütün !!{derivation}s
+  için geçerli olsun. $!A_n$'nin gerekçesine göre durumları ayırırız.
+
+  \begin{enumerate}
+  \item $!A_n$ bir aksiyomdur. Bütün aksiyomlar geçerli olduğundan her
+    $\Gamma$ için $\Gamma\Entails !A_n$.
+  \item $!A_n\in\Gamma$. O zaman her $\mModel{M}$ ve $w$ için
+    $\mSat{M}{\Gamma}[w]$ ise açıkça $\mSat{M}{!A_n}[w]$; yani
+    $\Gamma\Entails !A$.
+  \item $!A_n$, $!A_i$ ve $!A_j\ident !A_i\lif !A_n$'den \MP{} ile
+    çıkar. $!A_1$, \dots, $!A_i$ ile $!A_1$, \dots, $!A_j$,
+    $\Gamma$'dan !!{derivation}s olduğundan tümevarım varsayımıyla
+    $\Gamma\Entails !A_i$ ve $\Gamma\Entails !A_i\lif !A_n$.
+
+    $\mSat{M}{\Gamma}[w]$ olduğunu varsayalım. Bu varsayım ve
+    $\Gamma\Entails !A_i\lif !A_n$ nedeniyle
+    $\mSat{M}{!A_i\lif !A_n}[w]$. Tanım gereğince bu, $Rww'$ olan bütün
+    $w'$ için $\mSat{M}{!A_i}[w']$ ise $\mSat{M}{!A_n}[w']$ demektir.
+    $R$ yansımalı olduğundan $w$, $Rww'$ olan $w'$ler arasındadır; yani
+    $\mSat{M}{!A_i}[w]$ ise $\mSat{M}{!A_n}[w]$. Ayrıca
+    $\Gamma\Entails !A_i$ olduğundan $\mSat{M}{!A_i}[w]$. Dolayısıyla
+    göstermek istediğimiz gibi $\mSat{M}{!A_n}[w]$.
+  \end{enumerate}
+\end{proof}
+
+\end{document}

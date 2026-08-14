@@ -1,0 +1,204 @@
+% Part: first-order-logic
+% Chapter: syntax-and-semantics
+% Section: unique-readability
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{fol}{syn}{unq}
+
+\olsection{Tek Türlü Okunabilirlik}
+
+\begin{explain}
+!!{formula}s için verdiğimiz tanım, her !!{formula} açısından \emph{tek türlü
+okunabilirliği} güvence altına alır; başka bir deyişle, !!{formula}s için
+verdiğimiz oluşum kurallarına göre onu kurmanın ve ``yorumlamanın'' özünde
+yalnızca bir yolu vardır. Böyle olmasaydı belirsiz !!{formula}s ortaya
+çıkardı; yani birden çok okuması ya da yorumu olan !!{formula}s söz konusu olurdu---ki
+bunu istemediğimiz açıktır. Daha da önemlisi, bu özellik olmasaydı
+vereceğimiz tanımların ve ispatların çoğu işlemezdi.
+
+Bunu açıklığa kavuşturmanın belki de en iyi yolu, !!{formula}s için tek
+türlü okunabilirliği güvence altına almayan kötü oluşum kuralları
+vermiş olsaydık ne olacağını görmektir. Örneğin bağlaçlara ilişkin
+oluşum kurallarında parantezleri unutmuş ve şuna izin vermiş
+olabilirdik:
+\begin{quote}
+$!A$ ve $!B$ !!{formula}s ise $!A \lif !B$ de formüldür.
+\end{quote}
+Atomik bir $!D$ formülünden başlayarak bu kural $!D \lif !D$'yi
+kurmamıza izin verirdi. Bundan ve $!D$'den de $!D \lif !D \lif !D$
+elde ederdik. Fakat bunu yapmanın iki yolu vardır:
+\begin{enumerate}
+\item $!D$'yi $!A$, $!D \lif !D$'yi ise $!B$ olarak alırız.
+\item $!A$'yı $!D \lif !D$, $!B$'yi ise~$!D$ olarak alırız.
+\end{enumerate}
+Buna karşılık $!D \lif !D \lif !D$ için ortaya çıkan !!{formula}
+biçimini ``okumanın'' da iki yolu vardır. $!B$'nin $!D$, $!C$'nin $!D \lif !D$ olduğu $!B \lif !C$
+biçimindedir; ama $!B$'nin $!D \lif !D$, $!C$'nin ise~$!D$ olduğu $!B
+\lif !C$ biçiminde de \emph{bulunur}.
+
+Böyle bir şey olursa tanımlarımız her zaman işlemez. Örneğin bir
+formül için !!{main operator} kavramını tanımlarken şöyle deriz: $!B \lif !C$
+biçimindeki bir formülde !!{main operator}, gösterilen $\lif$
+oluşumudur. Fakat $!D \lif !D \lif !D$ formülünü yukarıda belirtilen iki
+farklı yoldan $!B \lif !C$ ile eşleştirebiliyorsak, bir durumda
+$\lif$'in ilk oluşumunu, öteki durumda ise ikinci oluşumunu !!{main
+operator} olarak elde ederiz. Oysa !!{main operator} belirleme işleminin
+!!{formula} üzerinde bir \emph{fonksiyon} olmasını amaçlarız; yani her !!{formula} için tam
+olarak bir !!{main
+  operator} oluşumu bulunmalıdır.
+\end{explain}
+
+\begin{lem}
+Bir !!a{formula}~$!A$ içindeki sol ve sağ parantezlerin sayıları
+eşittir.
+\end{lem}
+
+\begin{proof}
+Bunu $!A$'nın kuruluşu üzerinde tümevarımla ispatlarız. Bunun için iki
+şey gerekir: (a) Önce bütün atomik formüllerin söz konusu özelliğe sahip
+olduğunu ispatlamalıyız (tümevarım tabanı). (b) Sonra, verilmiş
+formüllerden yeni formüller kurduğumuzda, eski formüller bu özelliğe
+sahipse yeni formüllerin de sahip olduğunu ispatlamalıyız.
+
+$l(!A)$, $!A$'daki sol parantezlerin, $r(!A)$ ise sağ parantezlerin
+sayısı olsun; benzer biçimde $l(t)$ ve $r(t)$ de $t$ terimindeki sol ve
+sağ parantezlerin sayıları olsun.
+
+\begin{prob}
+    Her $t$ terimi için $l(t) = r(t)$ olduğunu ispatlayın.
+\end{prob}
+
+\begin{enumerate}
+\tagitem{prvFalse}{\indcase{!A}{\lfalse}{$\indfrm$ $0$ sol ve $0$
+    sağ parantez içerir.}}{}
+
+\tagitem{prvTrue}{\indcase{!A}{\ltrue}{$\indfrm$ $0$ sol ve $0$
+    sağ parantez içerir.}}{}
+
+\item \indcase{!A}{\Atom{R}{t_1,\dots,t_n}}{$l(\indfrm) = 1 + l(t_1) +
+  \dots + l(t_n) = 1 + r(t_1) + \dots + r(t_n) = r(\indfrm)$. Burada
+  alıştırma olarak bırakılan, her $t$ terimi için $l(t) = r(t)$ olduğu
+  olgusunu kullanırız.}
+
+\item \indcase{!A}{\eq[t_1][t_2]}{$l(\indfrm) = l(t_1) + l(t_2) =
+  r(t_1) + r(t_2) = r(\indfrm)$.}
+
+\tagitem{prvNot}{\indcase{!A}{\lnot !B}{Tümevarım varsayımı uyarınca
+    $l(!B) = r(!B)$'dir. Dolayısıyla $l(\indfrm) = l(!B) = r(!B) =
+    r(\indfrm)$'dir.}}{}
+
+\item \indcase{!A}{(!B \ast !C)}{Tümevarım varsayımı uyarınca $l(!B) =
+  r(!B)$ ve $l(!C) = r(!C)$'dir. Dolayısıyla $l(\indfrm) = 1 + l(!B) + l(!C) =
+  1 + r(!B) + r(!C) = r(\indfrm)$'dir.}
+
+\tagitem{prvAll}{\indcase{!A}{\lforall[x][!B]}{Tümevarım
+    varsayımı uyarınca $l(!B) = r(!B)$'dir. Dolayısıyla $l(\indfrm) = l(!B) = r(!B) =
+    r(\indfrm)$'dir.}}{}
+
+% Print case for \lexists if prvEx and not prvAll
+\tagitem{prvAll,notprvEx}{}{\indcase{!A}{\lexists[x][!B]}{Tümevarım
+    varsayımı uyarınca $l(!B) = r(!B)$'dir. Dolayısıyla $l(\indfrm) = l(!B) = r(!B) =
+    r(\indfrm)$'dir.}}
+
+% Just say similarly if prvEx and prvAll
+\tagitem{notprvAll,notprvEx}{}{\indcase{!A}{\lexists[x][!B]}{Benzer biçimde.}}
+\end{enumerate}
+\end{proof}
+
+\begin{defn}[Öz önek]
+$!B$ simge dizisi, $!A$ simge dizisinin \emph{öz öneki}dir; bunun
+anlamı, boş olmayan bir simge dizisinin $!B$'ye eklenmesiyle~$!A$ elde
+edilmesidir.
+\end{defn}
+
+\begin{lem}\ollabel{lem:no-prefix}
+$!A$ bir !!a{formula} ve $!B$, $!A$'nın öz önekiyse $!B$ bir
+!!a{formula} değildir.
+\end{lem}
+
+\begin{proof}
+Alıştırma.
+\end{proof}
+
+\begin{prob}
+\olref[fol][syn][unq]{lem:no-prefix}'i ispatlayın.
+\end{prob}
+
+\begin{prop}
+\ollabel{prop:unique-atomic}
+$!A$ atomik bir !!{formula} ise aşağıdaki koşullardan yalnızca birini
+sağlar.
+\begin{enumerate}
+\tagitem{prvFalse}{$!A \ident \lfalse$.}{}
+\tagitem{prvTrue}{$!A \ident \ltrue$.}{}
+\item $!A \ident \Atom{R}{t_1,\dots,t_n}$; burada $R$, $n$-yerli bir
+  !!{predicate}; $t_1$, \dots, $t_n$ terimlerdir ve $R$,
+  $t_1$, \dots, $t_n$ öğelerinin her biri tek türlü belirlenmiştir.
+\item $!A \ident \eq[t_1][t_2]$; burada $t_1$ ile $t_2$ tek türlü
+  belirlenmiş terimlerdir.
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+Alıştırma.
+\end{proof}
+
+\begin{prob}
+\olref[fol][syn][unq]{prop:unique-atomic}'i ispatlayın (İpucu: Terimler
+için \olref[fol][syn][unq]{lem:no-prefix}'in bir sürümünü ifade edip
+ispatlayın.)
+\end{prob}
+
+\begin{prop}[Tek Türlü Okunabilirlik]
+Her !!{formula} aşağıdaki koşullardan yalnızca birini sağlar.
+\begin{enumerate}
+\item $!A$ atomiktir.
+
+\tagitem{prvNot}{$!A$, $\lnot !B$ biçimindedir.}{}
+
+\tagitem{prvAnd}{$!A$, $(!B \land !C)$ biçimindedir.}{}
+
+\tagitem{prvOr}{$!A$, $(!B \lor !C)$ biçimindedir.}{}
+
+\tagitem{prvIf}{$!A$, $(!B \lif !C)$ biçimindedir.}{}
+
+\tagitem{prvIff}{$!A$, $(!B \liff !C)$ biçimindedir.}{}
+
+\tagitem{prvAll}{$!A$, $\lforall[x][!B]$ biçimindedir.}{}
+
+\tagitem{prvEx}{$!A$, $\lexists[x][!B]$ biçimindedir.}{}
+\end{enumerate}
+Ayrıca her durumda $!B$ ya da $!B$ ile $!C$ tek türlü belirlenmiştir.
+Bu, örneğin $!A$'nın hem
+\iftag{prvIf}{$(!B \lif !C)$ hem de $(!B' \lif !C')$ biçiminde} {
+    \iftag{prvOr}{$(!B \lor !C)$ hem de $(!B' \lor !C')$ biçiminde} {
+      \iftag{prvAnd}{$(!B \land !C)$ hem de $(!B' \land !C')$ biçiminde}{}}}
+olmasını sağlayan farklı $!B$, $!C$ ve $!B'$, $!C'$ çiftlerinin
+bulunmadığı anlamına gelir.
+\end{prop}
+
+\begin{proof}
+Oluşum kuralları, bir !!a{formula} atomik değilse bir açma
+parantezi~(, \iftag{prvNot}{$\lnot$,}{} veya bir niceleyiciyle başlamasını
+gerektirir. Öte yandan aşağıdaki simgelerden biriyle başlayan her
+!!{formula} atomik olmalıdır: !!a{predicate}, bir değişken,
+!!a{function}, !!a{constant}\iftag{prvFalse}{, $\lfalse$}{}\iftag{prvTrue}{, $\ltrue$}{}.
+
+Dolayısıyla gerçekte yalnızca $!A$ hem $(!B \ast !C)$ hem de $(!B'
+\mathbin{\ast'} !C')$ biçimindeyse $!B \ident !B'$, $!C \ident !C'$ ve
+$\ast = {\ast'}$ olduğunu göstermeliyiz.
+
+Hem $!A \ident (!B \ast !C)$ hem de $!A \ident (!B'
+\mathbin{\ast'} !C')$ olduğunu varsayalım. Ya $!B \ident !B'$'dir ya
+da değildir. İlki geçerliyse, aynı yerde başlayıp aynı uzunlukta olan
+$!A$ alt dizileri oldukları için açıkça $\ast = {\ast'}$ ve
+$!C \ident !C'$'dir. Öteki durumda $!B \not\ident !B'$'dir. $!B$ ve
+$!B'$ aynı yerde başlayan $!A$ alt dizileri olduğundan, biri ötekinin
+öz öneki olmalıdır. Fakat bu, \olref{lem:no-prefix} uyarınca olanaksızdır.
+\end{proof}
+
+
+\end{document}

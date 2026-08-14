@@ -1,0 +1,143 @@
+% Part: incompleteness
+% Chapter: introduction
+% Section: decidability
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{inc}{int}{dec}
+
+\olsection{Karar Verilemezlik ve Eksiklik}
+
+G\"odel'in eksiklik teoremleri ispatı sözdizimin aritmetikleştirilmesini
+gerektirir. Fakat bu olmadan da, yalnızca bir kuramın belirli bağıntıları
+!!{represents} ettiği ve bunların tam olarak !!{decidable} bağıntılar
+olduğu varsayımıyla bazı güzel sonuçlar elde
+edebiliriz. İspat, durma probleminin karar verilemezliği ispatına benzer bir
+köşegen savıdır.
+
+\begin{thm}
+$\Gamma$ her bağıntıyı !!{represents} eden tutarlı bir kuramsa---burada
+``her bağıntı'' ile her !!{decidable} bağıntı kastedilmektedir---$\Gamma$
+!!{decidable} olma özelliğini taşımaz.
+\end{thm}
+
+\begin{proof}
+$\Gamma$'nın !!{decidable} olduğunu varsayalım. $\Gamma$ her bağıntıyı
+!!{represents} ediyorsa---yine !!{decidable} bağıntıları kastediyoruz---
+tutarsız olmak zorunda olduğunu göstereceğiz.
+
+!!^{decidable} özellikler (tek yerli bağıntılar), tek bir serbest değişkeni
+olan !!{formula}s{}le temsil edilir. $!A_0(x)$, $!A_1(x)$, \dots, böyle
+bütün !!{formula}s{}in hesaplanabilir bir sayımı olsun. Şimdi aşağıdaki
+$D \subseteq \Nat$ kümesini ele alın:
+\[
+D = \Setabs{n}{\Gamma \Proves \lnot !A_n(\num{n})}
+\]
+$D$ kümesi !!{decidable} olur; çünkü $n \in D$ olup olmadığını önce
+$!A_n(x)$'i ve bundan da $\lnot !A_n(\num{n})$'i hesaplayarak sınayabiliriz.
+% [tr source emendation] Upstream writes !A rather than the indexed !A_n
+% in the next two occurrences; the defined diagonal family requires !A_n.
+Açıkça $!A_n(x)$ içindeki her serbest $x$ geçişi yerine $\num{n}$ terimini
+koymak ve $!A_n(\num{n})$'in başına $\lnot$ getirmek mekanik bir iştir.
+Varsayım gereği $\Gamma$ !!{decidable} olduğundan
+$\lnot !A_n(\num{n}) \in \Gamma$ olup olmadığını sınayabiliriz. Öyleyse
+$n \in D$; değilse $n \notin D$ olur. Dolayısıyla $D$ de !!{decidable} olur.
+
+$\Gamma$ bütün özellikleri !!{represents} ettiğine ve söz konusu özellikler
+!!{decidable} olduğuna göre $D$'yi de !!{represents} eder. $D$'yi
+$\Gamma$ içinde temsil eden !!{formula}s da $!A_0(x)$, $!A_1(x)$, \dots
+arasında yer alır ve bu kümeyi !!{represents} eder. Öyleyse $!A_d(x)$'in
+$D$'yi $\Gamma$ içinde !!{represents} edeceği bir $d$ sayısı
+seçin. $d \notin D$ ise $!A_d(x)$, $D$'yi !!{represents} ettiğinden
+$\Gamma \Proves \lnot !A_d(\num{d})$ olur. Fakat bu, $d$'nin $D$'nin
+tanımlayıcı koşulunu karşıladığı ve dolayısıyla $d \in D$ olduğu anlamına
+gelir. Bu, $d \notin D$ ile çelişir. Dolaylı ispatla $d \in D$'dir.
+
+$d \in D$ olduğundan $D$'nin tanımı gereği
+$\Gamma \Proves \lnot !A_d(\num{d})$ olur. Öte yandan $!A_d(x)$, $D$'yi
+$\Gamma$ içinde !!{represents} ettiğinden $\Gamma \Proves !A_d(\num{d})$
+olur. O hâlde $\Gamma$ tutarsızdır.
+\end{proof}
+
+\begin{explain}
+Önceki teorem, bütün bağıntıları !!{represents} eden hiçbir tutarlı kuramın,
+bu bağıntılar !!{decidable} olduğunda, !!{decidable} olamayacağını gösterir.
+$\Th{Q}$'nun bütün bağıntıları !!{represents} ettiğini---burada
+!!{decidable} bağıntıları kastediyoruz---göstereceğiz; bu,
+$\Th{PA}$ ve $\Th{TA}$ gibi $\Th{Q}$'yu içeren bütün kuramların da bunları
+temsil ettiği ve dolayısıyla !!{decidable} olmadığı anlamına gelir.
+(Bu kuramların hepsi standart modelde doğru olduğundan hepsi tutarlıdır.)
+
+Bu sonucu birinci eksiklik teoreminin zayıf bir sürümünü elde etmek için de
+kullanabiliriz. !!{axiomatizable} ve !!{complete} olan her kuram
+!!{decidable} olur. Öyleyse !!{axiomatizable} olan ve bütün özellikleri
+!!{represents} eden (bu özellikler !!{decidable} olur) tutarlı kuramlar
+!!{complete} olamaz.
+\end{explain}
+
+\begin{thm}
+$\Gamma$ !!{axiomatizable} ve !!{complete} ise !!{decidable} olur.
+\end{thm}
+
+\begin{proof}
+Her tutarsız kuram !!{decidable} olur; çünkü tutarsız kuramlar bütün
+!!{sentence}s{}i içerir. Dolayısıyla ``$!A \in \Gamma$ mı?'' sorusunun
+yanıtı her zaman ``evet''tir ve böylece karar verilebilir.
+
+Şimdi $\Gamma$'nın tutarlı, ayrıca !!{axiomatizable} ve !!{complete}
+olduğunu varsayalım. $\Gamma$ !!{axiomatizable} olduğundan
+!!{computably enumerable} olur. Çünkü $\Gamma$'nın aksiyomlarından bütün
+doğru !!{derivation}s{}i hesaplanabilir bir fonksiyonla sayabiliriz. Doğru
+bir !!{derivation}{}den onun ürettiği !!{sentence}{}yi hesaplayabiliriz; bu
+tümceyi o türetim !!{derive} eder;
+böylece bunlar birlikte $\Gamma$'nın bütün teoremlerini sayan hesaplanabilir
+bir fonksiyon verir. Bir !!{sentence}, ancak ve ancak $\lnot !A$ bir teorem
+değilse $\Gamma$'nın bir teoremidir; çünkü $\Gamma$ tutarlı ve
+!!{complete}{}dır. Dolayısıyla $!A \in \Gamma$ olup olmadığına şöyle karar
+verebiliriz. $\Gamma$'nın bütün teoremlerini sayın. Bu listede $!A$
+belirdiğinde $\Gamma \Proves !A$ olduğunu biliriz. Listede $\lnot !A$
+belirdiğinde $\Gamma \Proves/ !A$ olduğunu biliriz. $\Gamma$ !!{complete}
+olduğundan bu durumlardan biri sonunda gerçekleşir; böylece yordam sonunda
+bir yanıt üretir.
+\end{proof}
+
+\begin{cor}
+\ollabel{cor:incompleteness}
+$\Gamma$ tutarlı ve !!{axiomatizable} olup her özelliği !!{represents}
+ediyorsa---bu özellikler !!{decidable} sayılır---!!{complete} değildir.
+\end{cor}
+
+\begin{proof}
+$\Gamma$ !!{complete} olsaydı önceki teorem uyarınca !!{decidable} olurdu;
+çünkü tutarlı ve !!{axiomatizable} bir kuramdır. Fakat $\Gamma$ her özelliği
+!!{represents} ettiğinden ve bu özellikler !!{decidable} olduğundan, ilk
+teorem uyarınca !!{decidable} olma özelliğini taşımaz.
+\end{proof}
+
+\begin{prob}
+$\Th{TA} = \Setabs{!A}{\Sat{N}{!A}}$'nın !!{axiomatizable} olmadığını
+gösterin. $\Th{TA}$'nın bütün karar verilebilir özellikleri temsil ettiğini
+varsayabilirsiniz.
+\end{prob}
+
+Örneğin $\Th{Q}$'nun bütün özellikleri !!{represents} ettiğini---burada
+!!{decidable} özellikleri kastediyoruz---kurduğumuzda, sonuç $\Th{Q}$'nun
+eksik olmak zorunda olduğunu söyler. Ancak
+ispatı bağımsız bir !!{sentence} örneği vermez; yalnızca böyle !!a{sentence}{}nin
+var olmak zorunda olduğunu gösterir. Bunun için sözdizimi aritmetikleştirmeli
+ve G\"odel'in özgün ispat düşüncesini izlemeliyiz. Elbette ilk iddiayı, yani
+$\Th{Q}$'nun gerçekten bütün özellikleri !!{represents} ettiğini---burada da
+!!{decidable} özellikleri kastediyoruz---hâlâ göstermemiz gerekir.
+
+Her \emph{ilginç} kuramın eksik veya karar verilemez olmadığı belirtilmelidir.
+İlginç matematiksel olguları betimleyecek kadar güçlü olup G\"odel sonucunun
+koşullarını sağlamayan birçok kuram vardır. Örneğin standart modelde doğru
+olan, aritmetik dilinin $\times$ içermeyen !!{sentence}s{}i kümesi
+$\Th{Pres} = \Setabs{!A \in \Lang{L_{A^+}}}{\Sat{N}{!A}}$ hem tam hem de
+karar verilebilirdir. Bu kurama Presburger aritmetiği denir; yalnızca
+$\Obj{0}$, $\prime$ ve $+$ ile kurulabilen doğal sayılar hakkındaki bütün
+doğruları ispatlar.
+
+\end{document}

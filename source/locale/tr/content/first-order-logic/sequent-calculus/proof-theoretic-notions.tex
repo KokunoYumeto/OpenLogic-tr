@@ -1,0 +1,167 @@
+% Part: first-order-logic
+% Chapter: sequent-calculus
+% Section: proof-theoretic-notions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\begin{editorial}
+  Bu kısım, sekant hesabı için türetilebilirlik bağıntısının ve tutarlılığın
+  tanımlarını bir araya getirir.
+\end{editorial}
+
+\iftag{FOL}
+      {\olfileid[tr]{fol}{seq}{ptn}}
+      {\olfileid[tr]{pl}{seq}{ptn}}
+
+\olsection{İspat Kuramsal Kavramlar}
+
+\begin{explain}
+Bir dizi önemli semantik kavramı (geçerlilik, mantıksal gerektirme,
+sağlanabilirlik) tanımladığımız gibi şimdi de bunlara karşılık gelen
+\emph{ispat kuramsal kavramları} tanımlayacağız. Bunlar, !!{sentence}s için
+\iftag{FOL}{!!{structure}s}{değerlemeler} içinde sağlanma bağıntısına başvurularak değil, belirli sekantlarla ilgili
+!!{derivability} ile !!{nonderivability} kavramlarına başvurularak tanımlanır. Bu
+kavramların örtüştüğünün keşfedilmesi önemliydi. Örtüşmeleri, \emph{sağlamlık}
+ve \emph{tamlık teoremlerinin} içeriğidir.
+\end{explain}
+
+\begin{defn}[Teoremler]
+!!^a{sentence}~$!A$, $\quad \Sequent !A$ sekantının $\Log{LK}$ içinde
+!!a{derivation}{}i varsa bir \emph{teoremdir}. $!A$ bir teoremse $\Proves !A$,
+değilse $\Proves/ !A$ yazarız.
+\end{defn}
+
+\begin{defn}[!!^{derivability}]
+!!^a{sentence}~$!A$'nın $\Gamma$'dan \emph{!!{derivable}} olması,
+$\Gamma$ öğeleri !!{sentence}s olan bir küme olmak üzere, ancak ve ancak sonlu bir
+$\Gamma_0\subseteq\Gamma$ alt kümesi ile öğeleri !!{sentence}s olan,
+$\Gamma_0$'daki her tümceyi en az bir kez içeren ve başka hiçbir tümce
+içermeyen bir $\Gamma_0'$ dizisi bulunuyor ve $\Log{LK}$ içinde $\Gamma_0'\Sequent
+!A$ sekantını !!{derive}s mümkünse geçerlidir; bunu $\Gamma\Proves !A$ ile gösteririz.
+$!A$, $\Gamma$'dan !!{derivable}
+değilse $\Gamma \Proves/ !A$ yazarız.
+\end{defn}
+
+Daraltma, zayıflatma ve yer değiştirme kuralları nedeniyle $\Gamma_0'$ içindeki
+!!{sentence}s arasındaki sıra ve bunların sayısı önemli değildir: $\Gamma_0' \Sequent !A$
+sekantı !!{derivable} ise içeriğindeki !!{sentence}s $\Gamma_0'$ ile aynı olan herhangi
+bir $\Gamma_0''$ için $\Gamma_0'' \Sequent !A$ sekantı da türetilebilir.
+Örneğin $\Gamma_0=\{!B,!C\}$ ise hem $\Gamma_0'=\tuple{!B,!B,!C}$ hem de
+$\Gamma_0''=\tuple{!C,!C,!B}$, öğeleri yalnızca $\Gamma_0$'daki !!{sentence}s olan
+ve her birini en az bir kez barındıran dizilerdir. Bu dizilerden birini öncül
+olarak kullanan bir sekant !!{derivable} ise diğeri de öyledir; örneğin:
+\begin{prooftree}
+  \AxiomC{}
+  \Deduce$!B, !B, !C \fCenter !A$
+  \RightLabel{\LeftR{\Contraction}}
+  \UnaryInf$!B, !C \fCenter !A$
+  \RightLabel{\LeftR{\Exchange}}
+  \UnaryInf$!C, !B \fCenter !A$
+  \RightLabel{\LeftR{\Weakening}}
+  \UnaryInf$!C, !C, !B \fCenter !A$
+\end{prooftree}
+Bundan böyle $\Gamma_0$, öğeleri !!{sentence}s olan sonlu bir kümeyse $\Gamma_0 \Sequent
+!A$ ile, öncülünde $\Gamma_0$'daki her tümcenin en az bir kez bulunduğu ve içeriği bu
+!!{sentence}s ile sınırlı olan herhangi bir sekantı göstereceğiz; gerektiğinde daraltma,
+yer değiştirme ve zayıflatmaları örtük olarak dahil edeceğiz.
+
+\begin{defn}[Tutarlılık]
+Bir tümce kümesi $\Gamma$, ancak ve ancak sonlu bir $\Gamma_0\subseteq\Gamma$
+alt kümesi varsa ve $\Log{LK}$ içinde $\Gamma_0\Sequent\quad$ sekantını
+!!{derive}s mümkünse \emph{tutarsızdır}. $\Gamma$ tutarsız değilse, yani her
+sonlu $\Gamma_0\subseteq\Gamma$ için $\Log{LK}$ içinde $\Gamma_0\Sequent
+\quad$ sekantını !!{derive} mümkün değilse $\Gamma$'ya \emph{tutarlı} deriz.
+\end{defn}
+
+\begin{prop}[Yansıma]
+\ollabel{prop:reflexivity}
+$!A \in \Gamma$ ise $\Gamma \Proves !A$.
+\end{prop}
+
+\begin{proof}
+$!A \Sequent !A$ başlangıç sekantı !!{derivable}{}dir ve $\{!A\}\subseteq
+\Gamma$.
+\end{proof}
+
+\begin{prop}[Monotonluk]
+\ollabel{prop:monotonicity}
+$\Gamma \subseteq \Delta$ ve $\Gamma \Proves !A$ ise $\Delta \Proves !A$.
+\end{prop}
+
+\begin{proof}
+$\Gamma \Proves !A$ olduğunu varsayalım; yani $\Gamma_0 \Sequent !A$
+sekantı !!{derivable} olacak biçimde sonlu bir $\Gamma_0 \subseteq \Gamma$ vardır.
+$\Gamma \subseteq \Delta$ olduğundan $\Gamma_0$, $\Delta$'nın da sonlu bir
+alt kümesidir. Böylece $\Gamma_0 \Sequent !A$ sekantının !!{derivation}{}i,
+$\Delta \Proves !A$ olduğunu da gösterir.
+\end{proof}
+
+\begin{prop}[Geçişlilik]
+\ollabel{prop:transitivity}
+$\Gamma \Proves !A$ ve $\{!A\}\cup\Delta \Proves !B$ ise $\Gamma\cup
+\Delta \Proves !B$.
+\end{prop}
+
+\begin{proof}
+$\Gamma \Proves !A$ ise sonlu bir $\Gamma_0 \subseteq \Gamma$ ve $\Gamma_0
+\Sequent !A$ sekantının !!a{derivation}{}i $\pi_0$ vardır. $\{!A\}\cup\Delta
+\Proves !B$ ise sonlu bir $\Delta_0\subseteq\Delta$ için $!A,\Delta_0
+\Sequent !B$ sekantının !!a{derivation}{}i $\pi_1$ vardır. Şu
+!!{derivation}{}i ele alalım:
+\begin{prooftree}
+  \AxiomC{}
+  \RightLabel{$\pi_0$}
+  \Deduce$\Gamma_0 \fCenter !A$
+  \AxiomC{}
+  \RightLabel{$\pi_1$}
+  \Deduce$!A, \Delta_0 \fCenter !B$
+  \RightLabel{\Cut}
+  \BinaryInf$\Gamma_0, \Delta_0 \fCenter !B$
+\end{prooftree}
+$\Gamma_0\cup\Delta_0\subseteq\Gamma\cup\Delta$ olduğundan bu,
+$\Gamma\cup\Delta\Proves !B$ olduğunu gösterir.
+\end{proof}
+
+Özellikle $\Gamma \Proves !A$ ve $!A \Proves !B$ ise $\Gamma \Proves !B$
+olduğu sonucu çıkar. Ayrıca $!A_1,\dots,!A_n\Proves !B$ ve her $i$ için
+$\Gamma\Proves !A_i$ ise $\Gamma\Proves !B$ olduğu da çıkar.
+
+\begin{prop}
+\ollabel{prop:incons}
+$\Gamma$, ancak ve ancak her tümce~$!A$ için $\Gamma \Proves {!A}$ ise
+tutarsızdır.
+\end{prop}
+
+\begin{proof}
+Alıştırma.
+\end{proof}
+
+\begin{prob}
+\iftag{FOL}{\olref[fol][seq][ptn]{prop:incons}}{\olref[pl][seq][ptn]{prop:incons}}
+önermesini ispatlayın.
+\end{prob}
+
+\begin{prop}[Tıkızlık]
+  \ollabel{prop:proves-compact}
+  \begin{enumerate}
+  \item $\Gamma \Proves !A$ ise $\Gamma_0 \Proves !A$ olacak biçimde sonlu
+    bir $\Gamma_0\subseteq\Gamma$ alt kümesi vardır.
+  \item $\Gamma$'nın her sonlu alt kümesi tutarlıysa $\Gamma$ tutarlıdır.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+    \item $\Gamma \Proves !A$ ise $\Gamma_0 \Sequent !A$ sekantının
+      !!a{derivation}{}i olacak biçimde sonlu bir $\Gamma_0\subseteq\Gamma$
+      alt kümesi vardır. Dolayısıyla $\Gamma_0\Proves !A$.
+    \item $\Gamma$ tutarsızsa sonlu bir $\Gamma_0\subseteq\Gamma$ alt
+      kümesi vardır ve $\Log{LK}$ içinde $\Gamma_0\Sequent\quad$ sekantını
+      !!{derive}s mümkündür. Ancak o zaman $\Gamma_0$, $\Gamma$'nın tutarsız bir
+      sonlu alt kümesidir.
+  \end{enumerate}
+\end{proof}
+
+\end{document}

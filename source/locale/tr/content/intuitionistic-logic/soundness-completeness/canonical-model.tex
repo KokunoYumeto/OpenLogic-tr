@@ -1,0 +1,66 @@
+% part: intuitionistic-logic
+% chapter: soundness-completeness
+% section: canonical-model
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{int}{sc}{mod}
+
+\olsection{Kanonik Model}
+
+Modelimizin dünyaları, doğal sayıların sonlu dizileri~$\sigma$, yani
+$\sigma\in\Nat^*$ olacaktır. $\Nat^*$'ın tümevarımla şöyle tanımlandığına
+dikkat edin:
+\begin{enumerate}
+\item $\emptyseq\in\Nat^*$.
+\item $\sigma\in\Nat^*$ ve $n\in\Nat$ ise $\sigma.n\in\Nat^*$ (burada
+  $\sigma.n$, $\sigma\concat\tuple{n}$'dir; $\sigma\concat\sigma'$ ise
+  $\sigma$ ile $\sigma'$ dizilerinin art arda eklenmesidir).
+\item Bunların dışında hiçbir şey $\Nat^*$ içinde değildir.
+\end{enumerate}
+Dolayısıyla tümevarımlı tanımlar vermek için $\Nat^*$'ı kullanabiliriz.
+
+$\tuple{!B_1,!C_1}$, $\tuple{!B_2,!C_2}$, \dots, bütün !!{formula}
+çiftlerinin bir numaralandırması olsun. Bir $\Delta$ !!{formula} kümesi
+verildiğinde $\Delta(\sigma)$'yı tümevarımla şöyle tanımlayın:
+\begin{enumerate}
+\item $\Delta(\emptyseq)=\Delta$
+\item $\Delta(\sigma.n)={}$
+  \[
+  \begin{cases}
+    (\Delta(\sigma) \cup \{!B_n\})^* &
+    \text{$\Delta(\sigma)\cup\{!B_n\}\Proves/ !C_n$ ise} \\
+    \Delta(\sigma) & \text{aksi hâlde.}
+  \end{cases}
+  \]
+\end{enumerate}
+Burada $(\Delta(\sigma)\cup\{!B_n\})^*$ ile,
+\olref[lin]{lem:lindenbaum}'ın $\Delta(\sigma)\cup\{!B_n\}$ kümesine
+ve $!C_n$ !!{formula}{}üne uygulanmasıyla varlığı elde edilen asal
+!!{formula} kümesini kastediyoruz. Bu tanım gereğince
+$\Delta(\sigma)\cup\{!B_n\}\Proves/ !C_n$ ise
+$\Delta(\sigma.n)\Proves !B_n$ ve $\Delta(\sigma.n)\Proves/ !C_n$.
+Ayrıca her~$n$ için $\Delta(\sigma)\subseteq\Delta(\sigma.n)$.
+$\Delta$ asalsa her~$\sigma$ için $\Delta(\sigma)$ da asaldır.
+
+\begin{defn}\ollabel{defn:canonical-model}
+  $\Delta$ asal olsun. $\Delta$ için \emph{kanonik model}
+  $\mModel{M(\Delta)}$ şöyle tanımlanır:
+  \begin{enumerate}
+  \item $W=\Nat^*$, doğal sayıların sonlu dizileri kümesidir.
+  \item $R$, $R\sigma\sigma'$ ancak ve ancak $\sigma$, $\sigma'$'nün bir
+    başlangıç parçası olduğunda (yani bazı $\sigma''$ dizisi için
+    $\sigma'=\sigma\concat\sigma''$ olduğunda) geçerli olan kısmi sıradır.
+  \item $V(p)=\Setabs{\sigma}{p\in\Delta(\sigma)}$.
+  \end{enumerate}
+\end{defn}
+
+$R$'nin gerçekten bir kısmi sıra olduğu kolayca doğrulanır. $V$ üzerindeki
+  monotonluk koşulu da sağlanır. $\Delta(\sigma)\subseteq\Delta(\sigma.n)$
+  olduğundan, $\sigma'$yi $\sigma$'dan ayıran sonlu uzantının uzunluğu
+  üzerinde tümevarımla, $R\sigma\sigma'$ olduğunda
+  $\Delta(\sigma)\subseteq\Delta(\sigma')$ elde ederiz.
+
+\end{document}

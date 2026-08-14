@@ -1,0 +1,56 @@
+% Part: second-order-logic
+% Chapter: metatheory
+% Section: compactness
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sol}{met}{lst}
+
+\olsection{Löwenheim--Skolem Teoremi İkinci Dereceden Mantıkta Geçersizdir}
+
+\begin{explain}
+(Aşağı Doğru) Löwenheim--Skolem Teoremi, sonsuz bir modeli olan her
+!!{sentence} kümesinin !!a{enumerable} modeli bulunduğunu söyler. Bu da tamlık
+teoreminin bir sonucudur: tamlık ispatı, her tutarlı !!{sentence} kümesi için
+bir model üretir ve bu model !!{enumerable}{}dir. Bir de bir !!{sentence}
+kümesinin !!a{denumerable} modeli varsa !!a{nonenumerable} modelinin de
+bulunduğunu güvence altına alan Yukarı Doğru Löwenheim--Skolem Teoremi
+vardır. İki teorem de ikinci dereceden mantıkta geçersizdir.
+\end{explain}
+
+
+\begin{thm}
+\ollabel{thm:sol-no-ls} Löwenheim--Skolem Teoremi ikinci dereceden mantıkta
+geçersizdir: !!{sentence}s vardır ki sonsuz modelleri bulunur, fakat
+!!{enumerable} modelleri bulunmaz.
+\end{thm}
+
+\begin{proof}
+\[
+\fn{Count} \ident \lexists[z][\lexists[u][\lforall[X][((X(z) \land
+      \lforall[x][(X(x) \lif X(u(x)))]) \lif \lforall[x][X(x)])]]]
+\]
+ifadesinin !!a{structure} $\Struct{M}$ içinde ancak ve ancak $\Domain{M}$
+!!{enumerable} ise doğru olduğunu anımsayın. Dolayısıyla
+$\lnot\fn{Count}$, $\Struct{M}$ içinde ancak ve ancak $\Domain{M}$
+!!{nonenumerable} ise doğrudur. Böyle !!{structure}s vardır: herhangi bir
+!!{nonenumerable} kümeyi !!{domain} olarak, örneğin $\Pow{\Nat}$ ya da
+$\Real$'i alın. Böylece $\lnot\fn{Count}$'un sonsuz modelleri vardır, fakat
+!!{enumerable} modeli yoktur.
+\end{proof}
+
+\begin{thm}
+!!{sentence}s vardır ki !!{denumerable} modelleri bulunur, fakat
+!!{nonenumerable} modelleri bulunmaz.
+\end{thm}
+
+\begin{proof}
+$\fn{Count}\land\fn{Inf}$, $\Nat$ içinde doğrudur; fakat
+!!{structure}~$\Struct{M}$, $\Domain{M}$ !!{nonenumerable} olduğunda bu
+tümceyi sağlamaz.
+\end{proof}
+
+
+\end{document}

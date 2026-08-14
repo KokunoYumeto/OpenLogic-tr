@@ -1,0 +1,90 @@
+% Part: normal-modal-logic
+% Chapter: syntax-and-semantics
+% Section: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{nml}{syn}{int}
+
+\olsection{Giriş}
+
+Kiplik mantığı, \emph{kiplik önermeleri}ni ve bunlar arasındaki gerektirme
+bağıntılarını ele alır. Aşağıdakiler kiplik önermelerine örnektir:
+\begin{enumerate}
+\item $2+2=4$ olması zorunludur.
+\item Yarın yağmur yağması zorunlu olarak olanaklıdır.
+\item $!A$'nın zorunlu olarak olanaklı olması, $!A$'nın olanaklı olmasını
+  gerektirir.
+\end{enumerate}
+Olanaklılık ile zorunluluk yegâne kiplikler değildir: ``$!A$ öyle
+olmalıdır'', ``$!A$ öyle olacaktır'', ``Dana $!A$ olduğunu biliyor'' ya da
+``Dana $!A$ olduğuna inanıyor'' gibi başka bir-konumlu bağlaçlar da kiplik
+olarak sınıflandırılır.
+
+Kiplik mantığı ilk kez Aristoteles'in \emph{De Interpretatione} adlı
+eserinde ortaya çıkar. Zorunluluğun olanaklılığı gerektirdiğini fakat tersinin
+geçerli olmadığını; olanaklılık ile zorunluluğun birbirleri aracılığıyla
+tanımlanabildiğini; $!A \land !B$'nin doğru olmasının olanaklı olması hâlinde
+hem $!A$'nın hem de $!B$'nin doğru olmasının olanaklı olduğunu fakat tersinin
+geçerli olmadığını; ayrıca $!A \to !B$ zorunluysa $!A$ zorunlu olduğunda
+$!B$'nin de zorunlu olduğunu ilk fark eden oydu.
+
+Kiplik mantığına ilk modern yaklaşım C.~I. Lewis'in çalışmasıydı ve Lewis ile
+Langford'un \emph{Symbolic Logic} (1932) adlı eseriyle doruğa ulaştı. Lewis
+ve Langford, gerektirmenin maddi koşulla temsil edilmesinden hoşnut değildi:
+$!A \lif !B$, ``$!A$, $!B$'yi gerektirir'' ifadesinin yetersiz bir
+karşılığıdır. Bunun yerine gerektirmeyi ``Zorunlu olarak, eğer $!A$ ise
+$!B$'' biçiminde nitelemeyi önerdiler ve bunu $!A \strictif !B$ ile
+simgelediler. Lewis farklı özellikleri açıklığa kavuşturmaya çalışırken beş
+ayrı kiplik sistemi belirledi: \Log{S1}, \ldots, \Log{S4}, \Log{S5};
+bunların son ikisi hâlâ kullanılmaktadır.
+
+Lewis ile Langford'un yaklaşımı bütünüyle \emph{sözdizimseldi}: Makul
+aksiyomlar ve kurallar belirleyip bu araçlarla nelerin ispatlanabilir olduğunu
+araştırdılar. Semantik bir yaklaşım uzun süre ulaşılamaz kaldı. İlk denemeyi
+Rudolf Carnap, \emph{Meaning and Necessity} (1947) adlı eserinde
+\emph{durum betimi} kavramını, yani o durum betiminde ``doğru'' olan atomik
+tümcelerin bir topluluğunu kullanarak yaptı. Doğruluk tanımını keyfî
+tümceler~$!A$ için genişlettikten sonra Carnap, $!A$ bütün durum betimlerinde
+doğruysa onu \emph{zorunlu olarak doğru} diye tanımlar. Carnap'ın yaklaşımı
+\emph{yinelenmiş} kiplikleri ele alamıyordu; ``Olanaklı olarak zorunlu
+\ldots olanaklı olarak $!A$'' biçimindeki tümceler her zaman en içteki
+kipliğe indirgeniyordu.
+
+Kiplik semantiğindeki büyük atılım Saul Kripke'nin ``A Completeness Theorem
+in Modal Logic'' (JSL 1959) başlıklı makalesiyle geldi. Kripke çalışmasını,
+bir önermenin ``bütün olanaklı dünyalarda'' doğruysa zorunlu olarak doğru
+olduğuna ilişkin Leibnizci düşünceye dayandırdı. Ne var ki bu düşünce de
+Carnap'ın yaklaşımıyla aynı sakıncayı taşır: Bir önermenin $w$ dünyasındaki
+(ya da $s$ durum betimindeki) doğruluğu $w$'ye hiçbir biçimde bağlı değildir.
+Bu nedenle Kripke dünyaların bir $R$ \emph{erişilebilirlik bağıntısı} ile
+ilişkili olduğunu ve ``Zorunlu olarak $!A$'' biçimindeki bir önermenin
+$w$ dünyasında, ancak ve ancak $!A$, $w$'den \emph{erişilebilir} bütün
+$w'$ dünyalarında doğruysa doğru olduğunu varsaydı. Bu yaklaşımın bir
+sürümünü sağlayan semantiklere Kripke semantiği denir; bunlar kiplik
+mantıklarının (çoğul anlamda) olağanüstü gelişmesini mümkün kılmıştır.
+
+Kiplik mantığı Kripke semantiğiyle yorumlandığında bize \emph{bağıntısal
+yapıların} ``içeriden'' nasıl göründüğünü gösterir. Bağıntısal yapı, yalnızca
+üzerinde ikili bir bağıntı bulunan bir kümedir (örneğin sınıftaki öğrencilerin
+sosyal güvenlik numaralarına göre sıralandığı küme bir bağıntısal yapıdır).
+Aslında bağıntısal yapıların alanları çok çeşitli olabilir: Dünya
+durumlarının göreli olanaklılığının yanı sıra bir öznenin epistemik
+olanaklılıkla ilişkili epistemik durumları ya da bir dinamik sistemin durum
+geçişleriyle ilişkili durumları bulunabilir. Kiplik mantığı bunların tümünü
+modellemek için kullanılabilir: İlki bize olağan, aletik kiplik mantığını;
+diğerleri ise epistemik mantığı, dinamik mantığı vb. verir.
+
+Kiplik mantıkçılarının ``karşılık kuramı'' dediği belirli bir bakış açısına
+odaklanıyoruz. Kripke'nin ilk önemli keşiflerinden biri, erişilebilirlik
+bağıntısı~$R$'nin birçok özelliğinin (geçişli, simetrik vb. olup olmadığının)
+uygun ``kiplik şemaları'' aracılığıyla bizzat \emph{kiplik dilinde}
+nitelenebilmesidir. Örneğin kiplik mantıkçıları $R$'nin yansımalı olmasının
+``Zorunlu olarak $!A$ ise $!A$'' şemasına ``karşılık geldiğini'' söyler.
+Başlıca, \Ax{D}, \Ax{T}, \Ax{B}, \Ax{4} ve~\Ax{5} şemalarının
+birleşimleriyle elde edilen bazı klasik kiplik mantığı sistemlerinin
+(örneğin \Log{S4} ile \Log{S5}'in) karşılık kuramını inceleyeceğiz.
+
+\end{document}

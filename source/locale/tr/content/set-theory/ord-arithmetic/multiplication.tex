@@ -1,0 +1,111 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sth}{ord-arithmetic}{mult}
+
+\olsection{Sıra Sayısı Çarpımı}
+
+Şimdi sıra sayısı çarpımına yöneliyoruz ve buna, sıra sayısı toplamına
+yaklaştığımız gibi yaklaşacağız. $\alpha$ ile~$\beta$'yı çarpmak
+istediğimizi varsayalım. Bunun için genişliği $\alpha$, yüksekliği $\beta$
+olan dikdörtgen bir ızgara düşünebilirsiniz. $\alpha$ ile $\beta$'nın
+çarpımı, her satır boyunca ilerleyip sonra bir sonraki satıra geçerek
+\ldots{} bütün ızgarayı dolaşmanın sonucudur. Başka bir deyişle, $\alpha$
+ile $\beta$'nın çarpımı, $\beta$'nın \emph{her} elemanının yerine
+$\alpha$'nın bir kopyasını koyarak elde edilir.
+
+Bunu biçimselleştirmek için $\alpha$ ile $\beta$'nın Kartezyen çarpımı
+üzerindeki ters sözlük sıralamasını kullanmamız yeterlidir:
+
+\begin{defn}
+Her $\alpha,\beta$ sıra sayısı için bunların çarpımı
+$\alpha\ordtimes\beta=\ordtype{\alpha\times\beta,\rlexless}$'dır.
+\end{defn}
+\noindent
+Bu tanımın iyi kurulmuş olduğunu yine doğrulamamız gerekir:
+
+\begin{lem}\ollabel{ordtimeslessiswo}
+Her $\alpha$ ve $\beta$ sıra sayısı için
+$\tuple{\alpha\times\beta,\rlexless}$ bir iyi sıralamadır.
+\end{lem}
+
+\begin{proof}
+Tam olarak \olref[add]{ordsumlessiswo} için olduğu gibi.
+\end{proof}
+\noindent
+Çarpımın aşağıdaki gibi davrandığını ispatlamak da zor değildir:
+
+\begin{lem}\ollabel{ordtimesrecursion}
+Her $\alpha,\beta$ sıra sayısı için:
+\begin{align*}
+	\alpha \ordtimes 0 &= 0\\
+	\alpha \ordtimes (\beta \ordplus 1) &= 
+		(\alpha \ordtimes \beta) \ordplus \alpha\\
+	\alpha  \ordtimes \beta &= 
+		\supstrict_{\delta < \beta}(\alpha \ordtimes \delta) && 
+		\text{$\beta$ bir limit sıra sayısı olduğunda.}
+\end{align*}
+\end{lem}
+
+\begin{proof}
+Alıştırma olarak bırakılmıştır.
+\end{proof}
+
+Gerçekten de toplamada olduğu gibi sıra sayısı çarpımını doğrudan bir tanım
+vermek yerine bu özyineleme denklemleri aracılığıyla tanımlayabilirdik.
+Yine toplamada olduğu gibi bazı davranışlar tanıdıktır:
+
+\begin{lem}\ollabel{ordinalmultiplicationisnice}
+$\alpha,\beta,\gamma$ sıra sayılarıysa:
+\begin{enumerate}
+	\item\ollabel{ordtimes1} $\alpha\neq 0$ ve $\beta<\gamma$ ise
+	$\alpha\ordtimes\beta<\alpha\ordtimes\gamma$;
+	\item\ollabel{ordtimes2} $\alpha\neq 0$ ve
+	$\alpha\ordtimes\beta=\alpha\ordtimes\gamma$ ise $\beta=\gamma$;
+	\item\ollabel{ordtimes3} $\alpha\ordtimes(\beta\ordtimes\gamma)
+	=(\alpha\ordtimes\beta)\ordtimes\gamma$;
+	\item\ollabel{ordtimes4} $\alpha\leq\beta$ ise
+	$\alpha\ordtimes\gamma\leq\beta\ordtimes\gamma$;
+	\item\ollabel{ordtimes5} $\alpha\ordtimes(\beta\ordplus\gamma)
+	=(\alpha\ordtimes\beta)\ordplus(\alpha\ordtimes\gamma)$.
+\end{enumerate}
+\end{lem}
+
+\begin{proof}
+Alıştırma olarak bırakılmıştır.
+\end{proof}
+
+Dilediğiniz kadar başka sonuç ispatlayabilir (ya da kaynaklardan
+bulabilirsiniz). Fakat
+\olref[ord-arithmetic][add]{ordsumnotcommute} göz önüne alındığında aşağıdaki
+sonuç şaşırtıcı olmamalıdır:
+
+\begin{prop}
+Sıra sayısı çarpımı değişmeli değildir:
+$2\ordtimes\omega=\omega<\omega\ordtimes 2$.
+\end{prop}
+
+\begin{proof}
+$2\ordtimes\omega=\supstrict_{n<\omega}(2\ordtimes n)=\omega
+\in\supstrict_{n<\omega}(\omega\ordplus n)=\omega\ordplus\omega
+=\omega\ordtimes 2$.
+\end{proof}
+\noindent
+Sezgisel gerekçe yine oldukça açıktır. $2\ordtimes\omega$'yı hesaplamak için
+her doğal sayının yerine iki nesne koyarsınız. Bütün ``yarım'' sayıları doğal
+sayıların arasına yerleştirseniz, yani
+$\Setabs{\nicefrac{n}{2}}{n\in\omega}$ üzerindeki doğal sıralamayı ele
+alsanız da aynı sıra tipini elde ederdiniz. Bu biçimde söylendiğinde sıra
+tipinin $\omega$'nın sıra tipiyle aynı olduğu açıktır. Buna karşılık
+$\omega\ordtimes 2$'yi hesaplamak için $\omega$'nın iki kopyasını art arda
+yerleştirirsiniz.
+
+\begin{prob}
+\olref[sth][ord-arithmetic][mult]{ordtimeslessiswo},
+\olref[sth][ord-arithmetic][mult]{ordtimesrecursion} ve
+\olref[sth][ord-arithmetic][mult]{ordinalmultiplicationisnice} sonuçlarını
+ispatlayın.
+\end{prob}
+
+\end{document}

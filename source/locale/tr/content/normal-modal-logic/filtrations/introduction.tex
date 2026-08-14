@@ -1,0 +1,118 @@
+% Part: normal-modal-logic
+% Chapter: filtrations
+% Section: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{nml}{fil}{int}
+
+\olsection{Giriş}
+
+Bir mantıkla ilgili önemli sorulardan biri, onun karar verilebilir olup
+olmadığıdır; yani ``bu !!{formula} geçerli mi?'' sorusunu yanıtlayacak etkili
+bir yordam bulunup bulunmadığıdır. Önerme mantığı karar verilebilirdir: bir
+!!a{formula}{}ün totoloji olup olmadığını doğruluk tablosu kurarak etkili
+biçimde sınayabiliriz ve verilmiş bir !!{formula} için doğruluk tablosu
+sonludur. Fakat sonsuz sayıda modal model olduğundan, modal bir formülün
+bütün modellerde doğru olup olmadığını açık bir biçimde sınayamayız. Verilmiş
+  verilmiş bir formülle ilgili bütün sonlu modelleri listeleyebiliriz; çünkü yalnızca
+!!{formula} içinde gerçekten geçen !!{propositional variable}s için dünya
+alt kümelerinin ataması önemlidir. Erişilebilirlik bağıntısı sabitse olası
+farklı $V(p)$ atamaları $W$'nin bütün alt kümeleridir; $\card{W}=n$ ise
+bunlardan $2^n$ tane vardır. $!A$ !!{formula}{}ümüz $m$ !!{propositional
+variable}s içeriyorsa $n$ dünyalı $2^{nm}$ farklı model vardır. Bunların her
+  birinde $!A$'nın bütün dünyalarda doğru olup olmadığını, her dünyadaki
+  doğruluk değerini hesaplayarak sınayabiliriz. Elbette bütün olası
+erişilebilirlik bağıntılarını da denetlemeliyiz; ancak $n$ dünya üzerinde de
+yalnızca sonlu sayıda bağıntı vardır (özellikle $W\times W$'nin alt kümeleri
+kadar, yani $2^{n^2}$ tane).
+
+  \Log{K} mantığıyla değil, bir modeller sınıfıyla tanımlanmış bir mantıkla
+(örneğin yansımalı geçişli modellerle) ilgileniyorsak, erişilebilirlik
+bağıntısının doğru türden olup olmadığını da sınayabilmeliyiz. İlgilendiğimiz
+çerçeveler modal !!{formula}s ile tanımlanabildiğinde bunu yapabiliriz
+(örneğin \Ax{T} ile \Ax{4}'ün çerçevede geçerli olup olmadığını sınayarak).
+O hâlde fikir, bütün sonlu çerçeveleri sırayla ele almak, her birinin
+ilgilendiğimiz sınıftan olup olmadığını sınamak, sonra o çerçeve üzerindeki
+bütün olası modelleri listeleyip $!A$'nın her birinde doğru olup olmadığını
+denetlemektir. Doğru değilse dururuz: $!A$, ilgilenilen modeller sınıfında
+geçerli değildir.
+
+Bu fikrin bir sorunu vardır: aramayı ne zaman durdurabileceğimizi bilmiyoruz.
+!!{formula}{}ün sonlu bir karşı-modeli varsa yordamımız onu bulur. Fakat sonlu
+karşı-modeli yoksa yanıt alamayız. !!{formula} geçerli olabilir (hiç
+karşı-modeli yoktur) veya yalnızca sonsuz bir karşı-modeli olabilir; buna
+hiç bakmayacağız. Karşı-modeli olan her !!{formula}{}ün sonlu bir karşı-modeli
+de olduğunu gösterebilirsek bu sorun aşılır. Bu durumda mantığın
+\emph{sonlu model özelliğine} sahip olduğunu söyleriz.
+
+Peki bir mantığın sonlu model özelliğine sahip olduğunu nasıl gösterebiliriz?
+Bunun bir yolu, $!A$'nın sonsuz bir (karşı-)modelini sonlu bir modele
+dönüştürme yolu bulmaktır. Bu yapılabiliyorsa $!A$'nın doğru olmadığı bir
+model bulunduğunda ortaya çıkan sonlu model de $!A$'yı doğru yapmaz. Bu
+sonlu model bütün sonlu modeller listemizde görünür ve geçerli olmayan her
+formülün geçersiz olduğunu sonunda belirleriz. Formül geçerliyse yordamımız
+sona ermez. Ek olarak, yordamımızın verdiği sonlu modelin yalnızca $!A$
+!!{formula}{}üne bağlı bir azami büyüklüğü olduğunu gösterebilirsek,
+karşı-model ararken sonlu modelleri hangi büyüklüğe kadar sınamamız
+gerektiğini biliriz. O noktaya kadar karşı-model bulamadıysak hiç yoktur.
+  Yordamımız o zaman her !!{formula} $!A$ için ``$!A$ geçerli mi?'' sorusuna
+  gerçekten karar verir.
+
+Sonsuz yapıları sonlu yapılara dönüştürmekte sık işe yarayan bir strateji,
+yapının ilgili bakımlardan aynı davranan !!{element}s{}ını
+``özdeşleştirmektir.'' $\mModel{M}$ içinde ilgili bakımlardan aynı davranan
+sonsuz sayıda dünya varsa, \emph{bütün} dünyaları bu tür dünyaların sonlu
+sayıda (kendileri sonsuz olabilen) ``sınıfında'' toplayabiliriz. Başka bir
+deyişle dünyalar kümesini doğru biçimde bölümlemeliyiz: her bölüm sonsuz
+sayıda dünya içerebilir, ama yalnızca sonlu sayıda bölüm bulunmalıdır. Sonra
+dünyaları bu bölümler olan yeni bir $\mModel{M^*}$ modeli tanımlarız. Eski
+modelde sonlu sayıda bölüm, yeni modelde sonlu sayıda dünya; yani sonlu bir
+model verir. Bir $w$ dünyasının bulunduğu bölüme $[w]$ diyelim. Eski model
+$!A$'nın bir karşı-modeliyse yenisinin de öyle olmasını istediğimizden
+$\mSat{M}{!A}[w]$ ancak ve ancak $\mSat{M^*}{!A}[{[w]}]$ olmalıdır. Bunun
+için hem bölümlemeyi hem $\mModel{M^*}$ modelinin erişilebilirlik bağıntısını
+doğru biçimde tanımlamalıyız.
+
+  Bunun nasıl işleyeceğini görmek için önce erişilebilirlik bağıntısının
+  tümel olduğu basitleştirilmiş durumu düşünün. $\mSat{M}{\Box!B}[w]$ ancak
+  ve ancak her $v\in W$ için $\mSat{M}{!B}[v]$; $\mModel{M^*}$ için de ancak
+  ve ancak $W^*$ içindeki her $[v]$ için $\mSat{M^*}{!B}[{[v]}]$ geçerli olsun. İlk
+  fikir olarak, $u$ ile $v$ dünyaları $\mModel{M}$ içindeki
+bütün !!{propositional variable}s konusunda uyuşuyorsa, yani
+$\mSat{M}{p}[u]$ ancak ve ancak $\mSat{M}{p}[v]$ ise denk (aynı bölümde)
+sayılsın. $V^*(p)=\Setabs{[w]}{\mSat{M}{p}[w]}$ olsun. Amacımız
+$\mSat{M}{!A}[w]$ ancak ve ancak $\mSat{M^*}{!A}[{[w]}]$ göstermektir.
+Bunu açıkça tümevarımla ispatlarız. Taban durumu $!A\equiv p$ olsun. Önce
+  $\mSat{M}{p}[w]$ varsayalım. Tanım gereğince $[w]\in V^*(p)$; dolayısıyla
+$\mSat{M^*}{p}[{[w]}]$. Tersine $\mSat{M^*}{p}[{[w]}]$ varsayalım. Bu,
+$[w]\in V^*(p)$, yani $w$'ye denk bazı $v$ için $\mSat{M}{p}[v]$ demektir.
+Fakat ``$w$, $v$'ye denk'' demek, ``$w$ ile $v$ tam olarak aynı
+!!{propositional variable}s{}ni doğru yapar'' demektir; dolayısıyla
+$\mSat{M}{p}[w]$. Tümevarım adımında örneğin $!A\ident\lnot!B$ olsun.
+O zaman $\mSat{M}{\lnot!B}[w]$ ancak ve ancak $\mSat/{M}{!B}[w]$ ancak ve
+ancak (tümevarım varsayımıyla) $\mSat/{M^*}{!B}[{[w]}]$ ancak ve ancak
+$\mSat{M^*}{\lnot!B}[{[w]}]$. Modal olmayan diğer işleçler için de
+benzerdir. $\Box$ için de işler: $\mSat{M^*}{\Box!B}[{[w]}]$ varsayalım.
+Bu, her $[u]$ için $\mSat{M^*}{!B}[{[u]}]$ demektir. Tümevarım
+varsayımıyla her $u$ için $\mSat{M}{!B}[u]$; dolayısıyla
+$\mSat{M}{\Box!B}[w]$.
+
+$\mModel{M^*}$ için erişilebilirlik bağıntısını da tanımlamamız gereken
+genel durumda işler daha karmaşıktır. Yukarıdaki tümevarımlı ispatın
+işlemesi için gereken koşulları erişilebilirlik bağıntısı $R^*$ sağlıyorsa
+bir $\mModel{M^*}$ modeline \emph{süzme} diyeceğiz. O zaman her
+$\mModel{M^*}$ süzmesi, $!A$'yı $[w]$'de ancak ve ancak $\mModel{M}$
+$!A$'yı $w$'de doğru yapıyorsa doğru yapar. Fakat artık süzmelerin
+\emph{var} olduğunu, yani $R^*$'yi gereken koşulları sağlayacak biçimde
+  tanımlayabildiğimizi de göstermeliyiz. Bunun işlemesi için $u$ ve $v$ dünyalarını
+yalnızca bütün !!{propositional variable}s konusunda değil, $!A$'nın bütün
+alt !!{formula}s{}i konusunda uyuştuklarında denk saymalıyız. $!A$ yalnızca
+sonlu sayıda alt !!{formula}s içerdiğinden bu yine süzmenin sonlu olmasını
+güvence altına alır. Bir süzmeyi tanımlamanın tek bir yolu yoktur ve
+süzmenin erişilebilirlik bağıntısının gerekli özellikleri (yansımalılık,
+geçişlilik vb.) sağlaması için $R^*$'nin tanımında yaratıcı olmamız gerekir.
+
+\end{document}

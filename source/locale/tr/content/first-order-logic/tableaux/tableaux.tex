@@ -1,0 +1,54 @@
+% Part: first-order-logic
+% Chapter: tableaux
+
+\documentclass[../../../include/open-logic-chapter]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olchapter[tr]{fol}{tab}{Tableau Ağaçları}}
+      {\olchapter[tr]{pl}{tab}{Tableau Ağaçları}}
+
+\begin{editorial}
+Bu bölüm işaretli bir analitik tableau sistemi sunar.
+  
+Tableau ağaçlarını bir ispat sistemi olarak ilgilendiren içeriği eklemek
+veya dışarıda bırakmak için ``prfTab'' etiketini kullanın.
+\end{editorial}
+
+\olimport{rules-and-proofs}
+
+\olimport{propositional-rules}
+
+\iftag{FOL}{%
+  \olimport{quantifier-rules}
+}{}
+
+\olimport{derivations}
+
+\olimport{proving-things}
+
+\iftag{FOL}{%
+  \olimport{proving-things-quant}
+}{}
+
+\olimport{proof-theoretic-notions}
+
+\olimport{provability-consistency}
+
+\olimport{provability-propositional}
+
+\iftag{FOL}{%
+  \olimport{provability-quantifiers}
+}{}
+
+\olimport{soundness}
+
+\iftag{FOL}{%
+  \olimport{identity}
+  \olimport{soundness-identity}
+}{}
+
+\OLEndChapterHook
+
+\end{document}

@@ -1,0 +1,34 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sth}{story}{extensionality}
+\olsection{Kaplamsallık}
+
+Söylenmesi gereken ilk şey, kümelerin !!{element}s{}ınca bireyleştirilmesidir.
+Daha kesin olarak:
+
+\begin{axiom}[Kaplamsallık]
+$A$ ve $B$ kümeleri aynı !!{element}s{}ına sahipse $A$ ile $B$ aynı kümedir.
+\[
+  \lforall[A][\lforall[B][(\lforall[x][(x \in A \liff x \in B)] \lif
+  \eq[A][B])]]
+\]
+\end{axiom}
+
+Bunu \olref[sfr][][]{part} boyunca varsaydık. Fakat yinelemeye değer.
+Kaplamsallık Aksiyomu, bir kümenin !!{element}s{}ınca belirlendiği temel
+düşüncesini ifade eder. (Dolayısıyla kümeler, tam olarak aynı nesnelerin pek
+çok farklı kavramın kapsamına girebildiği \emph{kavramlarla} karşılaştırılabilir.)
+
+Bu ilkeyi neden benimseyelim? Kaplamsallığın reddinin, \emph{küme teorisi}
+diye adlandırılabilecek her şeyi terk etme kararı olduğunu söylemek
+akla yatkındır. Küme teorisi, kaplamsal koleksiyonların teorisinden ne daha
+fazla ne daha azdır.
+
+Ne var ki \olref[sth][][]{part} içindeki asıl güçlük, \emph{hangi kümelerin
+var olduğunu} söyleyen ilkeler ortaya koymaktır. Bu soruya gerçekten
+``apaçık'' görünen tek yanıtın kanıtlanabilir biçimde yanlış olduğu ortaya
+çıkar.
+
+\end{document}

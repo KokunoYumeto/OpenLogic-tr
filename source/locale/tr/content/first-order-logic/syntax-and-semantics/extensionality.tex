@@ -1,0 +1,141 @@
+% Part: first-order-logic
+% Chapter: syntax-and-semantics
+% Section: substitution
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{fol}{syn}{ext}
+
+\olsection{Kaplamsallık}
+
+\begin{explain}
+Bazen ilgililik de denen kaplamsallık, gayriresmî olarak şöyle ifade
+edilebilir: !!{formula}~$!A$ ifadesinin !!a{structure}~$\Struct M$
+içinde !!a{variable} ataması~$s$'ye göre sağlanmasını etkileyen
+tek etmenler, !!{domain} büyüklüğü ile $\Struct M$ ve $s$ tarafından
+$!A$ içinde gerçekten geçen dil ögelerine yapılan atamalardır.
+
+Kaplamsallığın doğrudan bir sonucu şudur: İki !!{structure}s~$\Struct
+M$ ve $\Struct M'$ aynı evrene sahipse ve $!A$ tümcesinde geçen bütün
+dil ögeleri üzerinde uyuşuyorsa $!A$'nın doğru olup olmadığı konusunda
+da uyuşmak zorundadır.
+\end{explain}
+
+\begin{prop}[Kaplamsallık]
+  \ollabel{prop:extensionality}
+  $!A$ !!a{formula}; $\Struct M_1$ ve $\Struct M_2$,
+  $\Domain{M_1}=\Domain{M_2}$ olan !!{structure}s; $s$ ise ortak
+  evren üzerinde bir değişken ataması olsun. $!A$ içinde geçen her
+  !!{constant}~$c$, bağıntı simgesi~$R$ ve !!{function}~$f$ için
+  $\Assign{c}{M_1}=\Assign{c}{M_2}$,
+  $\Assign{R}{M_1}=\Assign{R}{M_2}$ ve
+  $\Assign{f}{M_1}=\Assign{f}{M_2}$ ise
+  $\Sat{M_1}{!A}[s]$ ancak ve ancak $\Sat{M_2}{!A}[s]$.
+\end{prop}
+
+\begin{proof}
+  Önce her terim için $\Value{t}{M_1}[s]=\Value{t}{M_2}[s]$
+  eşitliğini $t$ üzerinde tümevarımla ispatlayın. Ardından, tümevarımın
+  $!A$'nın atomik olduğu temel durumunda az önce ispatlanan savı
+  kullanarak önermeyi $!A$ üzerinde tümevarımla ispatlayın.
+\end{proof}
+
+\begin{prob}
+\olref[fol][syn][ext]{prop:extensionality} önermesinin ispatını
+ayrıntılı olarak verin.
+\end{prob}
+
+\begin{cor}[!!^{sentence}s için kaplamsallık]
+  \ollabel{cor:extensionality-sent}
+  $!A$ !!a{sentence}; $\Struct M_1$ ve $\Struct M_2$ ise
+  \olref{prop:extensionality} önermesindeki gibi olsun. O zaman
+  $\Sat{M_1}{!A}$ ancak ve ancak $\Sat{M_2}{!A}$.
+\end{cor}
+
+\begin{proof}
+Sonuç, \olref{prop:extensionality} önermesinden
+\olref[ass]{cor:sat-sentence} aracılığıyla çıkar.
+\end{proof}
+
+Ayrıca bir terimin değeri ve !!a{structure} ifadesinin !!a{formula}
+ifadesini sağlayıp sağlamadığı yalnızca alt terimlerin değerlerine
+bağlıdır.
+
+\begin{prop}\ollabel{prop:ext-terms}
+$\Struct M$ !!a{structure}; $t$ ile $t'$ terimler; $s$ bir değişken
+ataması olsun. O zaman
+$\Value{\Subst{t}{t'}{x}}{M}[s]=
+\Value{t}{M}[\Subst{s}{\Value{t'}{M}[s]}{x}]$.
+\end{prop}
+
+\begin{proof}
+$t$ üzerinde tümevarımla.
+\begin{enumerate}
+\item $t$ bir sabitse, örneğin $t\ident c$ ise
+  $\Subst{t}{t'}{x}=c$ ve
+  $\Value{c}{M}[s]=\Assign{c}{M}=
+  \Value{c}{M}[\Subst{s}{\Value{t'}{M}[s]}{x}]$.
+
+\item $t$, $x$ dışında bir değişkense, örneğin $t\ident y$ ise
+  $\Subst{t}{t'}{x}=y$ ve
+  $\varAssign{s}{\Subst{s}{\Value{t'}{M}[s]}{x}}{x}$ olduğundan
+  $\Value{y}{M}[s]=
+  \Value{y}{M}[\Subst{s}{\Value{t'}{M}[s]}{x}]$.
+
+\item $t\ident x$ ise $\Subst{t}{t'}{x}=t'$ olur. Öte yandan
+  $\Subst{s}{\Value{t'}{M}[s]}{x}$ tanımı gereği
+  $\Value{x}{M}[\Subst{s}{\Value{t'}{M}[s]}{x}]
+  =\Value{t'}{M}[s]$.
+
+\item $t\ident\Atom{f}{t_1,\dots,t_n}$ ise:
+\begin{multline*}
+  \Value{\Subst{t}{t'}{x}}{M}[s]  = \\
+  \begin{aligned}[b]
+& = \Value{\Atom{f}{\Subst{t_1}{t'}{x}, \dots, \Subst{t_n}{t'}{x}}}{M}[s]\\
+& \qquad    \text{$\Subst{t}{t'}{x}$ tanımı gereği}\\
+& = \Assign{f}{M}(\Value{\Subst{t_1}{t'}{x}}{M}[s], \dots,
+    \Value{\Subst{t_n}{t'}{x}}{M}[s])\\
+& \qquad  \text{$\Value{\Atom{f}{\dots}}{M}[s]$ tanımı gereği}\\
+& = \Assign{f}{M}(\Value{t_1}{M}[\Subst{s}{\Value{t'}{M}[s]}{x}], \dots,
+   \Value{t_n}{M}[\Subst{s}{\Value{t'}{M}[s]}{x}])\\
+& \qquad    \text{tümevarım varsayımı gereği}\\
+& = \Value{t}{M}[\Subst{s}{\Value{t'}{M}[s]}{x}]
+    \text{, $\Value{\Atom{f}{\dots}}{M}[\Subst{s}{\Value{t'}{M}[s]}{x}]$ tanımı gereği.}
+  \end{aligned}
+\end{multline*}
+\end{enumerate}
+\end{proof}
+
+\begin{prop}\ollabel{prop:ext-formulas} $\Struct M$ !!a{structure},
+$!A$ !!a{formula}, $t'$ bir terim ve $s$ bir değişken ataması olsun.
+O zaman $\Sat{M}{\Subst{!A}{t'}{x}}[s]$ ancak ve ancak
+$\Sat{M}{!A}[\Subst{s}{\Value{t'}{M}[s]}{x}]$.
+\end{prop}
+
+\begin{proof}
+Alıştırma.
+\end{proof}
+
+\begin{prob}
+\olref[fol][syn][ext]{prop:ext-formulas} önermesini ispatlayın.
+\end{prob}
+
+\begin{explain}
+  \cref{fol:syn:ext:prop:ext-terms,fol:syn:ext:prop:ext-formulas}
+  sonuçlarının önemi şudur. Bir $t$ terimi ya da !!a{formula}~$!A$ ile
+  bir $t'$ terimimiz olsun; $\Subst{t}{t'}{x}$ değerini ya da
+  $\Subst{!A}{t'}{x}$ ifadesinin !!a{structure}~$\Struct M$ içinde
+  !!a{variable} ataması~$s$'ye göre sağlanıp sağlanmadığını öğrenmek
+  isteyelim. Önce yerine koymayı yapıp ardından $\Struct M$ ve $s$'ye
+  göre değeri veya sağlanmayı inceleyebiliriz. Ya da önce $t'$ teriminin
+  $\Struct M$ içinde $s$'ye göre $m=\Value{t'}{M}[s]$ değerini bulup
+  !!{variable} atamasını $\Subst{s}{m}{x}$ olarak değiştirebilir ve
+  sonra $t$'nin $\Struct M$ ile $\Subst{s}{m}{x}$ içindeki değerine ya
+  da $\Sat{M}{!A}[\Subst{s}{m}{x}]$ olup olmadığına bakabiliriz.
+  \Cref{fol:syn:ext:prop:ext-terms,fol:syn:ext:prop:ext-formulas},
+  hangi yolu seçersek seçelim yanıtın aynı olacağını güvence altına alır.
+\end{explain}
+
+\end{document}

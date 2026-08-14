@@ -1,0 +1,31 @@
+% Part: lambda-calculus
+% Chapter: introduction
+% Section: basic-pr-lambda
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{lam}{int}{bas}
+\olsection{Temel İlkel Özyinelemeli Fonksiyonlar \usetoken{S}{lambda definable}}
+
+\begin{lem}
+$\Zero$, $\Succ$ ve $\Proj{n}{i}$ fonksiyonları !!{lambda definable}.
+\end{lem}
+
+\begin{proof}
+$\Zero$, yalnızca $\lambd[x][\lambd[y][y]]$'dir.
+
+Ardıl fonksiyonu $\Succ$, $\fn{Succ}(u)=\lambd[x][\lambd[y][x(uxy)]]$
+ile tanımlanır. Bunun neden çalıştığını düşünmelisiniz: bir yineleyici olarak
+ele alınan her $\num{n}$ sayısı ve her $f$ fonksiyonu için
+$\fn{Succ}(\num{n},f)$, $y$ girdisinde $y$'den başlayarak $f$'yi $n$ kez,
+ardından bir kez daha uygulayan bir fonksiyondur.
+
+İzdüşümler hakkında söylenecek bir şey yoktur:
+$\fn{Proj}^n_i(x_0,\dots,x_{n-1})=x_i$. Başka bir deyişle uzlaşımlarımıza
+göre $\fn{Proj}^n_i$, $\lambd[x_0][\dots\lambd[x_{n-1}][x_i]]$ lambda
+terimidir.
+\end{proof}
+
+\end{document}

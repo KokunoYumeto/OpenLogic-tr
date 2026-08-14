@@ -1,0 +1,319 @@
+% Part: turing-machines 
+% Chapter: undecidability 
+% Section: verification
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{tur}{und}{ver} 
+\olsection{Gösterimin Doğrulanması}
+
+\begin{explain}
+Gösterimimizin işlediğini doğrulamak için iki şey kanıtlamalıyız. Önce $M$,
+$w$ girdisinde duruyorsa $!T(M,w)\lif !E(M,w)$ tümcesinin geçerli olduğunu
+göstermeliyiz. Ardından tersini, yani $!T(M,w)\lif !E(M,w)$ geçerliyse
+$M$'nin $w$ girdisinde çalıştırıldığında gerçekten sonunda durduğunu
+göstermeliyiz.
+
+Bunları kanıtlama stratejileri birbirinden çok farklıdır. İlk sonuç için
+birinci dereceden mantığın !!a{sentence}, yani $!T(M,w)\lif !E(M,w)$'nin
+geçerli olduğunu göstermeliyiz. Bunu yapmanın en kolay yolu !!a{derivation}
+vermektir. Ne var ki kanıtımızın bütün $M$ ve $w$ için işlemesi gerekir;
+dolayısıyla tek bir !!{sentence} yoktur ki onun için !!a{derivation} verelim;
+aksine sonsuz sayıda tümce vardır. Bu nedenle yapabileceğimiz en iyi şey,
+$M$ ile
+$w$ nasıl olursa olsun ve $M$'nin $w$ girdisinde durması kaç adım sürerse
+sürsün, $!T(M,w)\lif !E(M,w)$ için !!a{derivation} bulunacağını tümevarımla
+kanıtlamaktır.
+
+Doğal olarak tümevarımımız, $M$'nin bir durma konfigürasyonuna ulaşmadan önce
+attığı adımların sayısı üzerine ilerleyecektir. Tümevarımlı kanıtımızda
+$M$'nin $w$ girdisindeki çalışmasının her $n$ adımı için
+$!T(M,w)\Entails !C(M,w,n)$ olduğunu ortaya koyacağız; burada $!C(M,w,n)$,
+$M$'nin $w$ üzerinde $n$ adım çalıştırıldıktan sonraki konfigürasyonunu doğru
+biçimde betimler. $M$, $w$ girdisinde örneğin $n$ adım sonra duruyorsa
+$!C(M,w,n)$ bir durma konfigürasyonunu betimler. $!C(M,w,n)$ bir durma
+konfigürasyonunu betimlediğinde $!C(M,w,n)\Entails !E(M,w)$ olduğunu da
+göstereceğiz. Dolayısıyla $M$, $w$ girdisinde durursa bir $n$ için $n$ adım
+sonra bir durma konfigürasyonunda olacaktır. Böylece $!C(M,w,n)$ bir durma
+konfigürasyonunu betimlerken $!T(M,w)\Entails !C(M,w,n)$ ve bu durumda
+$!C(M,w,n)\Entails !E(M,w)$ olduğundan $!T(M,w)\Entails !E(M,w)$, yani
+$\Entails !T(M,w)\lif !E(M,w)$ elde ederiz.
+
+Tersini kanıtlama stratejisi çok farklıdır. Burada
+$\Entails !T(M,w)\lif !E(M,w)$ varsayımından $M$'nin $w$ girdisinde durduğunu
+kanıtlamalıyız. Varsayımdan $!T(M,w)\Entails !E(M,w)$, yani $!T(M,w)$'nin
+doğru olduğu her !!{structure} içinde $!E(M,w)$'nin doğru olduğu çıkar.
+Bu yüzden $!T(M,w)$'nin doğru olduğu bir !!a{structure}~$\Struct{M}$ betimleriz:
+Evreni $\Nat$ olacak ve bütün $\Obj Q_q$ ile $\Obj S_\sigma$ yorumları,
+$M$'nin $w$ girdisindeki çalışmasının konfigürasyonlarıyla verilecektir.
+Örneğin $\Sat{M}{\Obj Q_q(\num{m},\num{n})}$ ancak ve ancak $M$, $w$
+girdisinde $n$ adım çalıştırıldıktan sonra $m$. kareyi tararken $q$
+durumundaysa geçerli olacaktır. Varsayım gereği
+$!T(M,w)\Entails !E(M,w)$ ve kuruluş gereği $\Sat{M}{!T(M,w)}$ olduğundan
+$\Sat{M}{!E(M,w)}$ olur. Ancak $\Sat{M}{!E(M,w)}$ ancak ve ancak öyle bir
+$n\in\Domain{M}=\Nat$ varsa ki $M$, $w$ girdisinde
+çalıştırıldığında $n$ adım sonra bir durma konfigürasyonundaysa geçerlidir.
+\end{explain}
+
+\begin{defn} 
+$!C(M,w,n)$ şu !!{sentence} olsun:
+\[ 
+\Obj Q_q(\num{m}, \num{n}) \land \Obj S_{\sigma_0}(\num{0}, \num{n})
+\land \dots \land \Obj S_{\sigma_k}(\num{k}, \num{n}) \land
+\lforall[x][(\num{k} < x \lif \Obj S_\TMblank(x, \num{n}))]
+\] 
+Burada $q$, $n$ anında $M$'nin durumu; $m$, $n$ anında $M$'nin taradığı
+kare; $\sigma_i$, $0\le i\le k$ için $n$ anında $i$. karenin içerdiği simge
+ve $k$ de $0$ anında şeridin en sağdaki boş olmayan karesiyle $n$ adım içinde
+şerit kafasının ziyaret ettiği en sağdaki kareden daha büyük olanıdır.
+\end{defn}
+
+\begin{lem}\ollabel{lem:halt-config-implies-halt}
+$M$, $w$ girdisinde çalıştırıldığında $n$ adım sonra bir durma
+konfigürasyonundaysa $!C(M,w,n)\Entails !E(M,w)$.
+\end{lem}
+
+\begin{proof}
+$M$'nin $w$ girdisinde $n$ adım sonra durduğunu varsayalım. Öyle bir $q$
+durumu, $m$ karesi ve $\sigma$ simgesi vardır ki:
+\begin{enumerate} 
+\item $n$ adım sonra $M$, üzerinde $\sigma$ bulunan $m$. kareyi tararken
+  $q$ durumundadır.
+\item Geçiş fonksiyonu $\delta(q,\sigma)$ tanımsızdır.
+\end{enumerate}
+$!C(M,w,n)$ bu konfigürasyonun betimidir ve
+$\Obj Q_q(\num{m},\num{n})$ ile
+$\Obj S_\sigma(\num{m},\num{n})$ bağlaçlarını içerir. Bu bağlaçlar birlikte
+$!E(M,w)$'yi gerektirir:
+\[
+\lexists[x][\lexists[y][(\bigvee_{\tuple{q, \sigma} \in
+      X}(\Obj Q_q(x, y) \land \Obj S_\sigma(x, y)))]]
+\]
+çünkü $\tuple{q,\sigma}\in X$ olduğundan
+$\Obj Q_q(\num{m},\num{n})\land\Obj S_\sigma(\num{m},\num{n})
+\Entails \bigvee_{\tuple{q',\sigma'}\in X}
+(\Obj Q_{q'}(\num{m},\num{n})\land
+\Obj S_{\sigma'}(\num{m},\num{n}))$.
+\end{proof}
+
+\begin{explain}
+Dolayısıyla $M$, $w$ girdisinde durursa öyle bir $n$ vardır ki
+$!C(M,w,n)\Entails !E(M,w)$. Şimdi her $n$ anı için
+$!T(M,w)\Entails !C(M,w,n)$ olduğunu göstereceğiz.
+\end{explain}
+
+\begin{lem}
+\ollabel{lem:config}
+Her $n$ için, $M$ $n$ adım sonunda henüz durmamışsa
+$!T(M,w)\Entails !C(M,w,n)$.
+\end{lem}
+
+\begin{proof}
+Tümevarım tabanı: $n=0$ ise $!C(M,w,0)$'ın bağlaçları aynı zamanda
+$!T(M,w)$'nin bağlaçlarıdır; dolayısıyla onun tarafından gerektirilirler.
+
+Tümevarım varsayımı: $M$, $n$. adımdan önce durmamışsa
+$!T(M,w)\Entails !C(M,w,n)$. $!C(M,w,n)$ bir durma konfigürasyonunu
+betimlemediği sürece $!T(M,w)\Entails !C(M,w,n+1)$ olduğunu göstermeliyiz.
+
+$n\ge 0$ olduğunu ve $w$ üzerinde başlatılan $M$'nin $n$ adım sonra $m$.
+kareyi tararken $q$ durumunda olduğunu varsayalım. $M$, $n$ adım sonra
+durmadığına göre $M$'nin programında şu üç biçimden birinde bir yönerge
+bulunmalıdır:
+
+\begin{enumerate} 
+\item \ollabel{right} $\delta(q, \sigma) = \tuple{q', \sigma', \TMright}$
+
+\item \ollabel{left} $\delta(q, \sigma) = \tuple{q', \sigma', \TMleft}$
+
+\item \ollabel{stay} $\delta(q, \sigma) = \tuple{q', \sigma', \TMstay}$
+\end{enumerate}
+
+Bu üç durumu sırayla ele alacağız.
+
+\begin{enumerate} 
+\item \olref{right} biçiminde bir yönerge bulunduğunu varsayalım.
+  \olref[rep]{defn:tm-descr}\olref[rep]{rep-right} gereği bu,
+\begin{align*} 
+& \lforall[x][\lforall[y][((\Obj Q_{q}(x,
+  y) \land \Obj S_\sigma(x, y)) \lif {}]]\\
+& \qquad (\Obj Q_{q'}(x',
+  y') \land \Obj S_{\sigma'}(x, y') \land !A(x, y)))  
+\intertext{tümcesinin $!T(M,w)$'nin bir bağlacı olduğu anlamına gelir. Bu,
+  şu !!{sentence} gerektirir (tümel örnekleme; $x$ yerine $\num{m}$ ve
+  $y$ yerine $\num{n}$):}
+& (\Obj Q_{q}(\num{m}, \num{n}) \land \Obj S_{\sigma}(\num{m},
+\num{n})) \lif {}\\
+& \qquad (\Obj Q_{q'}(\num{m}', \num{n}') \land
+\Obj S_{\sigma'}(\num{m}, \num{n}') \land !A(\num{m}, \num{n})).
+\intertext{Tümevarım varsayımına göre $!T(M,w)\Entails !C(M,w,n)$, yani}
+& \Obj Q_q(\num{m}, \num{n}) \land \Obj S_{\sigma_0}(\num{0}, \num{n})
+\land \dots \land \Obj S_{\sigma_k}(\num{k}, \num{n}) \land \\
+& \qquad\lforall[x][(\num{k} < x \lif \Obj S_\TMblank(x, \num{n}))]\\
+\intertext{$n$ adım sonra $m$. kare $\sigma$ içerdiği için karşılık gelen
+  bağlaç $\Obj S_\sigma(\num{m},\num{n})$'dir; dolayısıyla bu şunu gerektirir:}
+& \Obj Q_{q}(\num{m}, \num{n}) \land \Obj S_{\sigma}(\num{m},
+   \num{n})
+\intertext{Şimdi şunu elde ederiz:}
+& \Obj Q_{q'}(\num{m}', \num{n}') \land \Obj S_{\sigma'}(\num{m},
+  \num{n}') \land {}\\
+& \qquad\bigwedge_{\substack{0\le i\le k\\i\ne m}}
+  \Obj S_{\sigma_i}(\num{i},\num{n}') \land {}\\
+& \qquad \lforall[x][(\num{k} < x \lif \Obj S_\TMblank(x, \num{n}'))]
+\end{align*}
+Şöyle: İlk satır önceki koşulun art bileşeninden doğrudan modus ponens ile
+çıkar. Orta satırdaki her bağlaç, $\Obj
+S_{\sigma_m}(\num{m},\num{n}')$ dışında, $!C(M,w,n)$ içindeki karşılık gelen
+bağlaçla $!A(\num{m},\num{n})$'den çıkar.
+
+$m<k$ ise $!T(M,w)\Proves \num{m}<\num{k}$
+(\olref[rep]{prop:mlessk}) ve $<$ bağıntısının geçişliliğinden
+$\lforall[x][(\num{k}<x\lif\num{m}<x)]$ elde ederiz. $m=k$ ise
+$\lforall[x][(\num{k}<x\lif\num{m}<x)]$ yalnızca mantıktan çıkar. Son satır
+da $!C(M,w,n)$ içindeki karşılık gelen bağlaç,
+$\lforall[x][(\num{k}<x\lif\num{m}<x)]$ ve $!A(\num{m},\num{n})$'den çıkar.
+$m<k$ ise bu zaten $!C(M,w,n+1)$'dir.
+
+Şimdi $m=k$ olduğunu varsayalım. Bu durumda $n+1$ adım sonra şerit kafası,
+artık ziyaret edilmiş en sağdaki kare olan $k+1$. kareyi de ziyaret etmiştir.
+Dolayısıyla $!C(M,w,n+1)$ yeni bir
+$\Obj S_\TMblank(\num{k}',\num{n}')$ bağlacı içerir ve son bağlaç
+$\lforall[x][(\num{k}'<x\lif\Obj S_\TMblank(x,\num{n}'))]$ olur. Bu iki
+!!{sentence}s de gerektirildiğini doğrulamalıyız.
+
+$\lforall[x][(\num{k}<x\lif\Obj S_\TMblank(x,\num{n}'))]$ zaten elimizdedir.
+Özellikle bundan $\num{k}<\num{k}'\lif
+\Obj S_\TMblank(\num{k}',\num{n}')$ elde edilir.
+$\lforall[x][x<x']$ aksiyomundan $\num{k}<\num{k}'$ elde ederiz. Modus
+ponens ile $\Obj S_\TMblank(\num{k}',\num{n}')$ çıkar.
+
+Ayrıca $!T(M,w)\Proves \num{k}<\num{k}'$ olduğundan $<$ bağıntısının
+geçişlilik aksiyomu bize
+$\lforall[x][(\num{k}'<x\lif\Obj S_\TMblank(x,\num{n}'))]$ verir. (Bunun
+doğrulanmasını alıştırma olarak bırakıyoruz.)
+
+\item \olref{left} biçiminde bir yönerge bulunduğunu varsayalım.
+  \olref[rep]{defn:tm-descr}\olref[rep]{rep-left} gereği
+\begin{align*} 
+& \lforall[x][\lforall[y][((\Obj Q_{q}(x', y) \land \Obj
+    S_{\sigma}(x', y)) \lif {}]]\\
+& \qquad (\Obj Q_{q'}(x, y') \land \Obj
+  S_{\sigma'}(x', y') \land !A(x', y))) \land {}\\
+& \lforall[y][((\Obj Q_{q}(\num{0}, y) \land \Obj S_{\sigma}(\num{0},
+    y)) \lif {}]\\
+& \qquad (\Obj Q_{q'}(\num{0}, y') \land \Obj S_{\sigma'}(\num{0}, y')
+  \land !A(\num{0}, y)))
+\intertext{!!{sentence}, $!T(M,w)$'nin bir bağlacıdır. $m>0$ ise $l=m-1$ (yani
+  $m=l+1$) olsun. Yukarıdaki tümcenin ilk bağlacı şunu gerektirir:}
+& (\Obj Q_{q}(\num{l}', \num{n}) \land \Obj S_{\sigma}(\num{l}', \num{n}))
+\lif {} \\
+& \qquad (\Obj Q_{q'}(\num{l}, \num{n}') \land \Obj S_{\sigma'}(\num{l}',
+\num{n}') \land !A(\num{l}', \num{n}))
+\intertext{Aksi durumda $l=m=0$ olsun ve ikinci bağlacın gerektirdiği şu
+  !!{sentence} ele alınsın:}
+& ((\Obj Q_{q}(\num{0}, \num{n}) \land \Obj S_{\sigma}(\num{0}, \num{n})) \lif {}\\
+& \qquad   (\Obj Q_{q'}(\num{0}, \num{n}') \land \Obj S_{\sigma'}(\num{0}, \num{n}') \land
+!A(\num{0}, \num{n}))) 
+\intertext{Her iki tümce de şunu gerektirir:}
+&  \Obj Q_{q'}(\num{l}, \num{n}') \land \Obj S_{\sigma'}(\num{m},
+  \num{n}') \land {}\\
+&\qquad \bigwedge_{\substack{0\le i\le k\\i\ne m}}
+  \Obj S_{\sigma_i}(\num{i},\num{n}') \land {} \\
+& \qquad  \lforall[x][(\num{k} < x
+  \lif \Obj S_\TMblank(x, \num{n}'))]
+\end{align*}
+önceki durumdaki gibi çıkar. (İlk durumda
+$\num{l}'\ident\num{l+1}\ident\num{m}$, ikinci durumda ise
+$\num{l}\ident\num{0}$ olduğuna dikkat edin.) Bu tam olarak
+$!C(M,w,n+1)$'dir.
+
+\item \olref{stay} durumu alıştırma olarak bırakılmıştır.
+\end{enumerate}
+Her $n$ için $!T(M,w)\Entails !C(M,w,n)$ olduğunu gösterdik.
+\end{proof}
+
+\begin{prob}
+\olref[tur][und][ver]{stay} durumunu
+\olref[tur][und][ver]{lem:config} kanıtında tamamlayın.
+\end{prob}
+
+\begin{prob}
+$\Obj S_{\sigma_i}(\num{i},\num{n})$ ile $!A(m,n)$'den
+$\Obj S_{\sigma_i}(\num{i},\num{n}')$ için !!a{derivation} verin
+($i\neq m$, yani $i<m$ ya da $m<i$ olduğunu varsayın).
+\end{prob}
+
+\begin{prob}
+$\lforall[x][(\num{k}<x\lif\Obj S_\TMblank(x,\num{n}'))]$,
+$\lforall[x][x<x']$ ve
+$\lforall[x][\lforall[y][\lforall[z][ ((x < y \land y < z) \lif x <
+      z)]]]$ tümcelerinden
+$\lforall[x][(\num{k}'<x\lif\Obj S_\TMblank(x,\num{n}'))]$ için
+!!a{derivation} verin.)
+\end{prob}
+
+
+\begin{lem}
+\ollabel{lem:valid-if-halt}
+$M$, $w$ girdisinde durursa $!T(M,w)\lif !E(M,w)$ geçerlidir.
+\end{lem}
+
+\begin{proof}
+\olref{lem:config} gereği her $n$ anında $M$'nin konfigürasyonunun
+$!C(M,w,n)$ betiminin $!T(M,w)$ tarafından gerektirildiğini biliyoruz.
+$M$'nin $k$ adım sonra durduğunu varsayalım. O anda bir $m\in\Nat$ için $m$.
+kareyi tarıyor olacaktır. O zaman $!C(M,w,k)$, $M$'nin bir durma
+konfigürasyonunu betimler; yani $\delta(q,\sigma)$ tanımsızken hem
+$\Obj Q_q(\num{m},\num{k})$ hem de
+$\Obj S_\sigma(\num{m},\num{k})$ ifadelerini bağlaç olarak içerir.
+Dolayısıyla \olref{lem:halt-config-implies-halt} gereği
+$!C(M,w,k)\Entails !E(M,w)$. Ancak
+$!T(M,w)\Entails !C(M,w,k)$ olduğundan $!T(M,w)\Entails !E(M,w)$ ve böylece
+$!T(M,w)\lif !E(M,w)$ geçerlidir.
+\end{proof}
+
+
+\begin{explain} 
+İddiamızın doğrulanmasını tamamlamak için ters yönü de ortaya koymalıyız:
+$!T(M,w)\lif !E(M,w)$ geçerliyse $M$, $w$ girdisinde başlatıldığında
+gerçekten durur.
+\end{explain}
+
+\begin{lem}
+\ollabel{lem:halt-if-valid}
+$\Entails !T(M,w)\lif !E(M,w)$ ise $M$, $w$ girdisinde durur.
+\end{lem}
+
+\begin{proof}
+Evreni $\Nat$ olan; $\Obj 0$'ı $0$, $\prime$ simgesini ardıl fonksiyonu,
+$<$ simgesini küçüktür bağıntısı olarak ve $\Obj Q_q$ ile $\Obj S_\sigma$
+yüklemlerini şöyle yorumlayan $\Lang L_M$-!!{structure}~$\Struct M$'yi ele
+alın:
+\begin{align*}
+  \Assign{\Obj Q_q}{M} & =
+\Setabs{\tuple{m, n}}{\begin{array}{ll}\text{$w$ üzerinde başlatılan $M$, $n$ adım sonra}\ \text{$m$. kareyi tararken $q$ durumundadır}
+  \end{array}} \\
+\Assign{\Obj S_\sigma}{M} & = \Setabs{\tuple{m, n}}{\begin{array}{ll}
+\text{$w$ üzerinde başlatılan $M$'nin $n$ adım sonra}\ \text{$m$. karesi $\sigma$ simgesini içerir}
+  \end{array}}
+\end{align*}
+Başka bir deyişle !!{structure}~$\Struct{M}$'yi, $w$ girdisinde başlatılan
+$M$'nin gerçekten yaptıklarını adım adım betimleyecek biçimde kurarız.
+Açıkça $\Sat{M}{!T(M,w)}$. $\Entails !T(M,w)\lif !E(M,w)$ ise
+$\Sat{M}{!E(M,w)}$ de olur; yani
+\[
+\Sat{M}{\lexists[x][\lexists[y][(\bigvee_{\tuple{q, \sigma} \in
+      X}(\Obj Q_q(x, y) \land \Obj S_\sigma(x, y)))]]}.
+\]
+$\Domain{M}=\Nat$ olduğundan $\delta(q,\sigma)$ tanımsız olan bazı $q$ ve
+$\sigma$ için öyle bir $m$ ve $n\in\Nat$ bulunmalıdır ki
+$\Sat{M}{\Obj Q_{q}(\num{m},\num{n})\land
+\Obj S_{\sigma}(\num{m},\num{n})}$. $\Struct M$ tanımına göre bu, $w$
+girdisinde başlatılan $M$'nin $n$ adım sonra $\sigma$ simgesini okurken $q$
+durumunda ve geçiş fonksiyonunun tanımsız olduğu, yani $M$'nin durmuş olduğu
+anlamına gelir.
+\end{proof}
+
+\end{document}

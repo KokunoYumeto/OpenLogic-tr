@@ -1,0 +1,80 @@
+% Part: lambda-calculus
+% Chapter: syntax
+% Section: de-bruijn
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{lam}{syn}{deb}
+
+\olsection{De Bruijn İndisi}
+
+$\alpha$-denkliği son derece doğaldır; çünkü $\alpha$-denk terimler ``aynı
+anlama gelir.'' Aslında birbirine $\alpha$-dönüşebilen terimleri ayırt etmeyen
+bir lambda terimleri sözdizimi vermek mümkündür. Bunların en iyi bilineni,
+değişkenlerin yerine \emph{De Bruijn indislerini} kullanır.
+
+$\lambd[x][M]$ yazdığımızda $x$'in fonksiyonun parametresi olduğunu açıkça
+belirtir ve $M$ içinde bu parametreye $x$ ile gönderme yaparız. De Bruijn
+gösteriminde ise parametrelerin adı yoktur; fonksiyon gövdesinde bir
+parametreye yapılan gönderme, gönderme ile onu bağlayan soyutlama arasındaki
+soyutlama katmanlarının sayısıyla gösterilir. Örneğin
+$\lambd[x][\lambd[y][y x]]$ terimini ele alalım: dıştaki soyutlama $x$
+değişkenini, içteki soyutlama $y$ değişkenini bağlar. $y x$ alt terimi
+içteki soyutlamanın kapsamındadır. $y$ ile onu bağlayan $\lambd[y]$ arasında
+başka soyutlama yoktur; $x$ ile onu bağlayan $\lambd[x]$ arasında ise bir
+soyutlama vardır. Bu nedenle $y x$ için $0\,1$, bütün terim için de
+$\lambd[][\lambd[][01]]$ yazarız.
+
+\begin{defn}
+  De Bruijn terimleri tümevarımlı olarak şöyle tanımlanır:
+  \begin{enumerate}
+  \item Herhangi bir doğal sayı $n$;
+  \item $P$ ve $Q$ birer De Bruijn terimi olmak üzere $PQ$;
+  \item $N$ bir De Bruijn terimi olmak üzere $\lambd[][N]$.
+  \end{enumerate}
+\end{defn}
+
+Alışılmış lambda terimlerinden De Bruijn indisli terimlere biçimselleştirilmiş
+çeviri şöyledir:
+\begin{defn}
+  \begin{align*}
+    F_\Gamma(x) &= \Gamma(x) \\
+    F_\Gamma(PQ) &= F_\Gamma(P)F_\Gamma(Q) \\
+    F_\Gamma(\lambd[x][N]) &= \lambd[][F_{x,\Gamma}(N)]
+  \end{align*}
+  Burada $\Gamma$, sıfırdan başlayarak indislenmiş bir değişkenler listesidir;
+  $\Gamma(x)$, $x$ değişkeninin $\Gamma$ içindeki konumunu gösterir. Örneğin
+  $\Gamma$ listesi $x,y,z$ ise $\Gamma(x)=0$ ve $\Gamma(z)=2$ olur.
+
+  $x,\Gamma$, $x$'in $\Gamma$ listesinin başına eklenmesiyle elde edilen
+  listeyi gösterir. Örneğin yukarıdaki $\Gamma$ için $w,\Gamma$ listesi
+  $w,x,y,z$'dir.
+\end{defn}
+
+Bir De Bruijn teriminden standart lambda terimini geri elde etme işlemi
+şöyledir:
+
+\begin{defn}
+  \begin{align*}
+    G_\Gamma(n) &= \Gamma[n] \\
+    G_\Gamma(PQ) &= G_\Gamma(P) G_\Gamma(Q) \\
+    G_\Gamma(\lambd[][N]) &= \lambd[x][G_{x,\Gamma}(N)]
+  \end{align*}
+  Burada $\Gamma$ yine sıfırdan başlayarak indislenmiş bir değişkenler
+  listesidir; $\Gamma[n]$, $n$ konumundaki değişkeni gösterir. Örneğin
+  $\Gamma$ listesi $x,y,z$ ise $\Gamma[1]=y$ olur.
+
+  Son eşitlikteki $x$, $\Gamma$ içinde bulunmayan herhangi bir değişken olarak
+  seçilir.
+\end{defn}
+
+Şimdi bazı sonuçları ispatsız veriyoruz:
+
+\begin{prop}
+  $M \aconvone M'$ ve $\Gamma$, $\FV{M}$ kümesini içeren herhangi bir
+  listeyse $F_\Gamma(M) \eqs F_\Gamma(M')$ olur.
+\end{prop}
+
+\end{document}

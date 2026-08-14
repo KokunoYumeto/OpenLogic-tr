@@ -1,0 +1,208 @@
+% Part: first-order-logic
+% Chapter: completeness
+% Section: identity
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{fol}{com}{ide}
+\olsection{Özdeşlik}
+
+\begin{explain}
+Önceki kısımda verilen terim modeli kuruluşu,~$\eq$ içermeyen
+$\Gamma$ kümeleri için birinci dereceden mantığın tamlığını ortaya
+koymaya yeter. Terim modeli,~$\eq$ içermeyen her $!A\in\Gamma^*$
+ifadesini (dolayısıyla her $!A\in\Gamma$ ifadesini) sağlar. Fakat
+$\eq$ varsa bu kuruluş çalışmaz. Bunun nedeni,~$\Gamma^*$ kümesinin
+!!a{sentence}~$\eq[t][t']$ içerebilmesine karşılık terim modelinde her
+terimin değerinin kendisi olmasıdır. Bu yüzden $t$ ile $t'$ farklı
+terimlerse terim modelindeki değerleri---sırasıyla $t$ ve $t'$---de
+farklıdır; dolayısıyla $\eq[t][t']$ yanlıştır. Ancak bunu
+``bölümleme'' olarak bilinen bir kuruluşla düzeltebiliriz.
+\end{explain}
+
+\begin{defn}
+  $\Gamma^*$,~$\Lang L$ içindeki tutarlı ve !!{complete} bir tümceler
+  kümesi olsun. $\Lang L$ dilinin kapalı terimleri kümesi üzerinde
+  $\approx$ bağıntısını şöyle tanımlarız:
+  \[
+  t \approx t' \text{\quad ancak ve ancak \quad} \eq[t][t'] \in \Gamma^*.
+  \]
+\end{defn}
+
+\begin{prop}
+\ollabel{prop:approx-equiv}
+$\approx$ bağıntısı aşağıdaki özelliklere sahiptir:
+\begin{enumerate}
+\item $\approx$ yansımalıdır.
+\item $\approx$ simetriktir.
+\item $\approx$ geçişlidir.
+\item $t\approx t'$, $f$ !!a{function} ve $t_1$, \dots,
+  $t_{i-1}$, $t_{i+1}$, \dots, $t_n$ kapalı terimlerse
+\[
+\Atom{f}{t_1,\dots, t_{i-1}, t, t_{i+1}, \dots, t_n} \approx
+\Atom{f}{t_1,\dots, t_{i-1}, t', t_{i+1}, \dots, t_n}.
+\]
+\item $t\approx t'$, $R$ !!a{predicate} ve $t_1$, \dots,
+  $t_{i-1}$, $t_{i+1}$, \dots, $t_n$ kapalı terimlerse
+\begin{multline*}
+\Atom{R}{t_1,\dots, t_{i-1}, t, t_{i+1}, \dots, t_n} \in \Gamma^*
+\text{ ancak ve ancak } \\
+\Atom{R}{t_1,\dots, t_{i-1}, t', t_{i+1}, \dots, t_n} \in \Gamma^*.
+\end{multline*}
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+$\Gamma^*$ tutarlı ve !!{complete} olduğundan $\eq[t][t']\in\Gamma^*$
+ancak ve ancak $\Gamma^*\Proves\eq[t][t']$ ise. Dolayısıyla
+aşağıdakileri göstermek yeterlidir:
+\begin{enumerate}
+\item Her kapalı~$t$ terimi için $\Gamma^*\Proves\eq[t][t]$.
+\item $\Gamma^*\Proves\eq[t][t']$ ise $\Gamma^*\Proves\eq[t'][t]$.
+\item $\Gamma^*\Proves\eq[t][t']$ ve $\Gamma^*\Proves\eq[t'][t'']$
+  ise $\Gamma^*\Proves\eq[t][t'']$.
+\item $\Gamma^*\Proves\eq[t][t']$ ise
+\[
+\Gamma^* \Proves
+\eq[\Atom{f}{t_1,\dots,t_{i-1},t,t_{i+1},\dots,t_n}][\Atom{f}{t_1,\dots,t_{i-1},t',t_{i+1},\dots,t_n}]
+\]
+her $n$-li !!{function}~$f$ ve kapalı $t_1$, \dots, $t_{i-1}$,
+$t_{i+1}$, \dots,~$t_n$ terimleri için geçerlidir.
+\item $\Gamma^*\Proves\eq[t][t']$ ve
+$\Gamma^*\Proves\Atom{R}{t_1,\dots,t_{i-1},t,t_{i+1},\dots,t_n}$ ise
+$\Gamma^*\Proves\Atom{R}{t_1,\dots,t_{i-1},t',t_{i+1},\dots,t_n}$
+her $n$-li !!{predicate}~$R$ ve kapalı $t_1$, \dots, $t_{i-1}$,
+$t_{i+1}$, \dots,~$t_n$ terimleri için geçerlidir.
+\end{enumerate}
+\end{proof}
+
+\begin{prob}
+\olref[fol][com][ide]{prop:approx-equiv} önermesinin ispatını tamamlayın.
+\end{prob}
+
+\begin{defn}
+$\Gamma^*$, bir~$\Lang L$ dilindeki tutarlı ve !!{complete} bir küme;
+$t$ kapalı bir terim ve $\approx$ önceki tanımdaki gibi olsun. O zaman:
+\[
+\equivrep{t}{\approx} = \Setabs{t'}{t'\in \Trm[L], t \approx t'}
+\]
+ve
+$\equivclass{\Trm[L]}{\approx}=\Setabs{\equivrep{t}{\approx}}{t\in\Trm[L]}$.
+\end{defn}
+
+\begin{defn}
+\ollabel{defn:term-model-factor}
+$\Struct M=\Struct M(\Gamma^*)$,~\olref[mod]{defn:termmodel}
+tanımındaki~$\Gamma^*$ için terim modeli olsun. O zaman
+$\Struct{\equivclass{M}{\approx}}$ aşağıdaki !!{structure} ifadesidir:
+\begin{enumerate}
+\item $\Domain{\equivclass{M}{\approx}}=\equivclass{\Trm[L]}{\approx}$.
+\item $\Assign{c}{\equivclass{M}{\approx}}=\equivrep{c}{\approx}$.
+\item $\Assign{f}{\equivclass{M}{\approx}}(\equivrep{t_1}{\approx},\dots,
+  \equivrep{t_n}{\approx})=\equivrep{\Atom{f}{t_1,\dots,t_n}}{\approx}$.
+\item $\tuple{\equivrep{t_1}{\approx},\dots,\equivrep{t_n}{\approx}}
+  \in\Assign{R}{\equivclass{M}{\approx}}$ ancak ve ancak
+  $\Sat{M}{\Atom{R}{t_1,\dots,t_n}}$, yani ancak ve ancak
+  $\Atom{R}{t_1,\dots,t_n}\in\Gamma^*$.
+\end{enumerate}
+\end{defn}
+
+\begin{explain}
+$\equivclass{\Trm[L]}{\approx}$ kümesinin elemanları için
+$\Assign{f}{\equivclass{M}{\approx}}$ ve
+$\Assign{R}{\equivclass{M}{\approx}}$ ifadelerini, bu elemanlardan
+$\equivrep{t}{\approx}$ diye söz ederek; yani
+$t\in\equivrep{t}{\approx}$ \emph{temsilcileri} aracılığıyla
+tanımladığımıza dikkat edin. Tanımların bu temsilcilerin seçimine bağlı
+olmadığından emin olmalıyız: Aynı denklik sınıflarını belirleyen başka
+$t'$ seçimleri ($\equivrep{t}{\approx}=\equivrep{t'}{\approx}$) için
+tanımlar aynı sonucu vermelidir. Örneğin $R$ birli !!{predicate} ise
+tanımın son maddesi $\equivrep{t}{\approx}\in
+\Assign{R}{\equivclass{M}{\approx}}$ ancak ve ancak
+$\Sat{M}{\Atom{R}{t}}$ ise der. $t\approx t'$ olan başka bir~$t'$
+terimi için $\Sat/{M}{\Atom{R}{t'}}$ olsaydı tanım
+$\equivrep{t'}{\approx}\notin\Assign{R}{\equivclass{M}{\approx}}$
+olmasını gerektirirdi. $t\approx t'$ ise
+$\equivrep{t}{\approx}=\equivrep{t'}{\approx}$; fakat
+$\equivrep{t}{\approx}\in\Assign{R}{\equivclass{M}{\approx}}$ ile
+$\equivrep{t}{\approx}\notin\Assign{R}{\equivclass{M}{\approx}}$ birlikte
+geçerli olamaz. \olref{prop:approx-equiv} bunun
+gerçekleşemeyeceğini güvence altına alır.
+\end{explain}
+
+\begin{prop}
+$\Struct{\equivclass{M}{\approx}}$ iyi tanımlıdır; yani $t_1$, \dots,
+$t_n$, $t_1'$, \dots, $t_n'$ kapalı terimler ve her~$i$ için
+$t_i\approx t_i'$ ise
+\begin{enumerate}
+\item $\equivrep{\Atom{f}{t_1,\dots,t_n}}{\approx}=
+    \equivrep{\Atom{f}{t_1',\dots,t_n'}}{\approx}$, yani
+  \[
+  \Atom{f}{t_1,\dots,t_n}\approx\Atom{f}{t_1',\dots,t_n'};
+  \]
+  ve
+\item $\Sat{M}{\Atom{R}{t_1,\dots,t_n}}$ ancak ve ancak
+  $\Sat{M}{\Atom{R}{t_1',\dots,t_n'}}$ ise, yani
+  \[
+    \Atom{R}{t_1,\dots,t_n}\in\Gamma^* \text{ ancak ve ancak }
+    \Atom{R}{t_1',\dots,t_n'}\in\Gamma^*.
+  \]
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+\olref{prop:approx-equiv} önermesinden~$n$ üzerinde tümevarımla çıkar.
+\end{proof}
+
+Terim modelinde olduğu gibi doğruluk lemmasını ispatlamadan önce
+aşağıdaki lemma gerekir.
+
+\begin{lem}
+\ollabel{lem:val-in-termmodel-factored} $\Struct M=\Struct M(\Gamma^*)$
+olsun. O zaman
+$\Value{t}{\equivclass{M}{\approx}}=\equivrep{t}{\approx}$.
+\end{lem}
+\begin{proof}
+İspat \olref[mod]{lem:val-in-termmodel} lemmasının ispatına benzer.
+\end{proof}
+
+\begin{prob}
+\olref[fol][com][ide]{lem:val-in-termmodel-factored} lemmasının
+ispatını tamamlayın.
+\end{prob}
+
+\begin{lem}
+\ollabel{lem:truth}
+Bütün $!A$ tümceleri için $\Sat{\equivclass{M}{\approx}}{!A}$ ancak ve
+ancak $!A\in\Gamma^*$ ise.
+\end{lem}
+
+\begin{proof}
+\olref[mod]{lem:truth} lemmasının ispatındaki gibi~$!A$ üzerinde
+tümevarımla. Ek dikkat gerektiren tek durum $!A\ident\eq[t][t']$
+olduğundadır.
+\begin{align*}
+\Sat{\equivclass{M}{\approx}}{\eq[t][t']} & \text{ ancak ve ancak }
+\equivrep{t}{\approx}=\equivrep{t'}{\approx}
+\text{ ise ($\Struct{\equivclass{M}{\approx}}$ tanımı gereği)}\\
+& \text{ ancak ve ancak } t\approx t'
+\text{ ise ($\equivrep{t}{\approx}$ tanımı gereği)}\\
+& \text{ ancak ve ancak } \eq[t][t']\in\Gamma^*
+\text{ ise ($\approx$ tanımı gereği).}
+\end{align*}
+\end{proof}
+
+\begin{digress}
+$\Struct{M(\Gamma^*)}$ her zaman !!{enumerable} ve sonsuz olduğu halde,
+yalnızca sonlu sayıda $\equivrep{t}{\approx}$ sınıfı bulunabilir ve bu
+nedenle $\Struct{\equivclass{M}{\approx}}$ sonlu olabilir. Bu beklenen
+bir durumdur; çünkü $\Gamma$, !!{sentence}s içerebilir ve bunlar,
+doğru oldukları her !!{structure} ifadesinin sonlu olmasını gerektirebilir.
+Örneğin $\lforall[x][\lforall[y][x=y]]$ tutarlı bir !!{sentence}
+ifadesidir, fakat yalnızca !!{structure}s içinde sağlanır; bu yapıların
+!!a{domain} tam olarak bir !!{element} içerir.
+\end{digress}
+
+\end{document}

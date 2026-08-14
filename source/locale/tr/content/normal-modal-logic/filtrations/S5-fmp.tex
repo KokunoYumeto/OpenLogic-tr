@@ -1,0 +1,88 @@
+% Part: normal-modal-logic
+% Chapter: filtrations
+% Section: S5-fmp
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{nml}{fil}{fmp}
+
+\olsection{\Log{K} ve \Log{S5} Sonlu Model Özelliğine Sahiptir}
+
+\begin{defn}
+  Bir $\Sigma$ modal mantık sistemi, bir $\Sigma$ modelinin bir dünyasında
+  doğru olan her !!a{formula} $!A$, bir \emph{sonlu} $\Sigma$ modelinin bir
+  dünyasında $!A$ da doğruysa \emph{sonlu model özelliğine} sahiptir.
+\end{defn}
+
+\begin{prop}\ollabel{prop:K-fmp}
+  \Log{K} sonlu model özelliğine sahiptir.
+\end{prop}
+
+\begin{proof}
+  \Log{K} geçerli !!{formula}s{}in kümesidir; yani her model bir
+  \Log{K} modelidir. \olref[fil]{thm:filtrations} gereğince
+  $\mSat{M}{!A}[w]$ ise, $\mModel{M}$ modelinin $!A$'nın alt
+  !!{formula}s{}i kümesi $\Gamma$ üzerinden her süzmesi için
+  $\mSat{M^*}{!A}[{[w]}]$. Her !!{formula}{}ün yalnızca sonlu sayıda alt
+  !!{formula}s{}i olduğundan $\Gamma$ sonludur.
+  \olref[fin]{prop:filt-are-finite} gereğince
+  $\card{W^*}\leq2^n$; burada $n$, $\Gamma$ içindeki !!{formula}s{}in
+  sayısıdır. \Log{K} modellere hiçbir kısıtlama koymadığından
+  $\mModel{M^*}$ bir \Log{K} modelidir.
+\end{proof}
+
+Bir \Log{L} mantığının süzmeler aracılığıyla sonlu model özelliğine sahip
+olduğunu göstermek için, bir \Log{L} modelinin süzmesinin kendisinin de
+bir \Log{L} modeli olması zorunludur. Bu çoğu zaman epey çalışma
+gerektirir ve her süzme bir \Log{L} modeli vermez. Buna karşılık evrensel
+modeller için bu özellik korunur.
+
+\begin{prop}\ollabel{prop:univ-fin}
+  $\mClass{U}$ evrensel modeller sınıfı
+  (bkz. \olref[frd][es5]{prop:S5=univ}),
+  $\mClass{U}_\mathrm{Fin}$ de bütün sonlu evrensel modeller sınıfı olsun.
+  Her !!{formula} $!A$ için, $\mClass{U}$ içinde geçerlilik ile
+  $\mClass{U}_\mathrm{Fin}$ içinde geçerlilik birbirine denktir.
+\end{prop}
+
+\begin{proof}
+  Sonlu evrensel modeller evrensel olduğundan soldan sağa yön önemsizdir.
+  Sağdan sola yön için $!A$'nın bir evrensel $\mModel{M}$ modelindeki bazı
+  $w$ dünyasında yanlış olduğunu varsayalım. $\Gamma$, $!A$ ile onun bütün
+  alt formüllerini içersin; açıkça $\Gamma$ sonludur. $\mModel{M}$'nin bir
+  $\mModel{M^*}$ süzmesini alın. \olref[fin]{prop:filt-are-finite}
+  gereğince $\mModel{M^*}$ sonludur; \olref[fil]{thm:filtrations}
+  gereğince $!A$, $\mModel{M^*}$ içindeki $[w]$'de yanlıştır. Geriye
+  $\mModel{M^*}$'nin de evrensel olduğunu gözlemlemek kalır: herhangi $u$ ve $v$
+  verildiğinde varsayım gereğince $Ruv$ ve
+  \olref[fil]{defn:filtration}\olref[fil]{defn:filtration-R} gereğince
+  $R^*[u][v]$.
+\end{proof}
+
+\begin{cor}\ollabel{cor:S5fmp}
+  \Log{S5} sonlu model özelliğine sahiptir.
+\end{cor}
+
+\begin{proof}
+  \olref[frd][es5]{prop:S5=univ} gereğince $!A$ bazı yansımalı ve Öklidyen
+  modelin bir dünyasında doğruysa bir evrensel modelin bir dünyasında da
+  doğrudur. \olref{prop:univ-fin} gereğince sonlu bir evrensel modelin bir
+  dünyasında doğrudur (özellikle, modelin $!A$'nın alt !!{formula}s{}i kümesi
+  üzerinden süzmesinde). Her evrensel model yansımalı ve Öklidyen de
+  olduğundan $!A$ sonlu bir yansımalı Öklidyen modelin bir dünyasında
+  doğrudur.
+\end{proof}
+
+\begin{prob}
+  Seri ya da yansımalı bir modelin her süzmesinin de sırasıyla seri ya da
+  yansımalı olduğunu gösterin.
+\end{prob}
+
+\begin{prob}
+  Simetrik (geçişli, Öklidyen) bir modelin simetrik olmayan (geçişli olmayan,
+  Öklidyen olmayan) bir süzmesini bulun.
+\end{prob}
+
+\end{document}

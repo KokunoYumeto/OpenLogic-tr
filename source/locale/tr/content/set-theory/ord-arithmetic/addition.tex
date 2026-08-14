@@ -1,0 +1,226 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sth}{ord-arithmetic}{add}
+\olsection{Sıra Sayısı Toplamı}
+
+$\alpha$ ile $\beta$'yı toplamak istediğimizi varsayalım. $\alpha$'nın bir
+kopyasının hemen arkasına $\beta$'nın bir {kopyasını} koyabiliriz.
+(\olref[ordinals][basic]{ordinalsaresubsets} sonucundan ya
+$\alpha\subseteq\beta$ ya da $\beta\subseteq\alpha$ olduğunu bildiğimiz
+için 
+\emph{kopyalar} almamız gerekir.) Bunun sezgisel etkisi, önce
+$\alpha$ uzunluğunda bir adımlar dizisini, 
+\emph{ardından} $\beta$
+uzunluğunda bir adımlar dizisini katetmektir. Ortaya çıkan dizi iyi
+sıralanmış olacaktır; dolayısıyla
+\olref[ordinals][ordtype]{thmOrdinalRepresentation} gereği (biricik) bir
+sıra sayısıyla izomorftur. Bu sıra sayısı, $\alpha$ ile $\beta$'nın
+\emph{toplamı} sayılabilir.
+
+Sıra sayısı toplamının ardındaki sezgisel fikir budur. Onu kesin biçimde
+tanımlamak için kümelerin \emph{kopyalarını} alma düşüncesiyle başlarız.
+Buradaki fikir, hangi nesnenin nereden geldiğini izlemek için gelişigüzel
+$0$ ve $1$ etiketlerini kullanmaktır:
+
+\begin{defn}\ollabel{defdissum}
+$A$ ile $B$'nin 
+\emph{ayrık toplamı}
+$A\disjointsum B=(A\times\{0\})\cup(B\times\{1\})$'dir.
+\end{defn}
+
+Şimdi sıra sayısı çiftleri üzerinde bir sıralama tanımlayalım:
+
+\begin{defn}
+Her $\alpha_1,\alpha_2,\beta_1,\beta_2$ sıra sayısı için:
+\begin{align*}
+	\tuple{\alpha_1, \alpha_2} \rlexless \tuple{\beta_1, \beta_2}
+	\text{ ancak ve ancak }& 
+	\text{ya $\alpha_2 \in \beta_2$}\\
+	& \text{ya da hem $\alpha_2 = \beta_2$ hem $\alpha_1 \in \beta_1$}
+\end{align*}
+olsun.
+\end{defn}
+
+Bu bir 
+\emph{ters sözlük} sıralamasıdır; çünkü önce ikinci elemana, sonra
+birinci elemana göre sıralarsınız. $\alpha\ordplus\beta$'yı,
+$\alpha$'nın bir kopyasının ardından $\beta$'nın bir kopyasının geldiği
+sıralamanın sıra tipi olarak tanımlamak istediğimizi hatırlayın. Bunu elde
+etmek için şöyle deriz:
+
+\begin{defn}\ollabel{defordplus}
+Her $\alpha,\beta$ sıra sayısı için bunların toplamı
+$\alpha\ordplus\beta=\ordtype{\alpha\disjointsum\beta,\rlexless}$'dır.
+\end{defn}
+\noindent
+Burada gösterimi biraz kötüye kullandığımıza dikkat edin. Kesin konuşursak
+``$\rlexless$'' yerine
+``$\Setabs{\tuple{x,y}\in\alpha\disjointsum\beta}{x\rlexless y}$''
+yazmalıydık. Yine de kısa tutmak için bundan sonra gösterimi bu biçimde
+kötüye kullanmayı sürdüreceğiz.
+
+Aşağıdaki sonuç,
+\olref[ordinals][ordtype]{thmOrdinalRepresentation} ile birlikte,
+tanımımızın iyi kurulmuş olduğunu doğrular:
+
+\begin{lem}\ollabel{ordsumlessiswo}
+Her $\alpha$ ve $\beta$ sıra sayısı için
+$\tuple{\alpha\disjointsum\beta,\rlexless}$ bir iyi sıralamadır.
+\end{lem}
+
+\begin{proof}
+$\rlexless$ bağıntısı $\alpha\disjointsum\beta$ üzerinde açıkça
+bağlantılıdır. İyi temelliliği göstermek için boş olmayan bir
+$X\subseteq\alpha\disjointsum\beta$ sabitleyin. $Y$, $X$'in ikinci
+bileşeni olabilecek en küçük olan elemanlarının alt kümesi, yani
+$Y=\Setabs{\tuple{\gamma,i}\in X}{(\forall\tuple{\delta,j}\in X)i\leq j}$
+olsun. Şimdi $Y$'nin birinci bileşeni en küçük olan elemanını seçin.
+\end{proof}
+\noindent
+Böylece sıra sayısı toplamı için güzel ve açık bir tanımımız var. Aşağıdaki
+şaşırtıcı olmayan bir olgudur
+(\olref[z][infinity-again]{defnomega} gereği $1=\{0\}$ olduğunu hatırlayın):
+\begin{prop}
+Her $\alpha$ sıra sayısı için $\alpha\ordplus 1=\ordsucc{\alpha}$.
+\end{prop}
+
+\begin{proof}
+$\ordsucc{\alpha}=\alpha\cup\{\alpha\}$'dan
+$\alpha\disjointsum1=(\alpha\times\{0\})\cup(\{0\}\times\{1\})$'e,
+$\gamma\in\alpha$ için $f(\gamma)=\tuple{\gamma,0}$ ve
+$f(\alpha)=\tuple{0,1}$ ile verilen $f$ izomorfizmasını ele alın.
+\end{proof}
+\noindent
+Ayrıca toplamanın belirli özyineleme koşullarına uyduğunu göstermek kolaydır:
+
+\begin{lem}\ollabel{ordadditionrecursion}
+Her $\alpha,\beta$ sıra sayısı için:
+\begin{align*}
+	\alpha\ordplus 0 &= \alpha\\
+	\alpha \ordplus (\beta\ordplus 1) &= (\alpha\ordplus\beta)\ordplus 1\\
+	\alpha\ordplus\beta &= \supstrict_{\delta < \beta}(\alpha\ordplus\delta) && \text{$\beta$ bir limit sıra sayısıysa}
+\end{align*}
+\end{lem}
+
+\begin{proof}
+Durumları tek tek denetleyelim; önce:
+\begin{align*}
+	\alpha \ordplus 0
+	&= \ordtype{(\alpha\times\{0\})\cup(0\times\{1\}),\rlexless}\\
+	&= \ordtype{\alpha\times\{0\},\rlexless}\\
+	&= \alpha\\
+	\alpha \ordplus (\beta\ordplus 1)
+	%&= \ordtype{(\alpha\times \{0\}) \cup (\ordtype{\beta \ordplus  1}\times \{1\}), \rlexless} \\
+	&= \ordtype{(\alpha\times\{0\})\cup(\ordsucc{\beta}\times\{1\}),\rlexless}\\
+	&= \ordtype{(\alpha\times\{0\})\cup(\beta\times\{1\}),\rlexless}\ordplus 1\\
+	&= (\alpha\ordplus\beta)\ordplus 1
+\end{align*}
+Şimdi $\beta\neq\emptyset$ bir limit sıra sayısı olsun. $\delta<\beta$ ise
+$\delta\ordplus 1<\beta$ da olur; dolayısıyla
+$\alpha\ordplus\delta$, $\alpha\ordplus\beta$'nın öz başlangıç kesitidir.
+Bu nedenle $\alpha\ordplus\beta$,
+$X=\Setabs{\alpha\ordplus\delta}{\delta<\beta}$ için sıkı bir üst
+sınırdır. Ayrıca $\alpha\leq\gamma<\alpha\ordplus\beta$ ise açıkça bazı
+$\delta<\beta$ için $\gamma=\alpha\ordplus\delta$ olur. Dolayısıyla
+$\alpha\ordplus\beta=\supstrict_{\delta<\beta}(\alpha\ordplus\delta)$.
+\end{proof}
+
+Fakat çarpıcı bir olgu şudur: Sıra sayısı toplamını tanımlamak için bunun
+\emph{yerine} yalnızca Sonlu Ötesi Özyineleme Teoremi'ni kullanabilir ve
+özyineleme denklemlerini \olref{ordadditionrecursion} içinde verildiği gibi
+(yalnız ``$\beta\ordplus 1$'' yerine ``$\ordsucc{\beta}$'' kullanarak)
+koyabilirdik.
+
+Öyleyse sıra sayıları üzerindeki işlemleri tanımlamanın iki farklı yolu
+vardır. Açıkça iyi sıralanmış bir küme kurup onun sıra tipini ele alarak
+\emph{sentetik} bir tanım verebiliriz. Ya da yalnızca özyineleme denklemlerini
+koyarak 
+\emph{özyinelemeli} bir tanım verebiliriz. Bunlar doğru yapıldığında
+sonuç aynıdır. Nitekim
+\olref[ordinals][ordtype]{thmOrdinalRepresentation}, bu özyineleme
+denklemlerinin 
+\emph{biricik} sıra sayılarını belirlemesini güvenceye alır.
+
+Sıra sayısı aritmetiği birçok bakımdan doğal sayıların toplamı gibi davranır.
+Örneğin aşağıdakini ispatlayabiliriz:
+
+\begin{lem}\ollabel{ordinaladditionisnice}
+$\alpha,\beta,\gamma$ sıra sayılarıysa:
+\begin{enumerate}
+	\item\ollabel{ordaddition1} $\beta<\gamma$ ise
+	$\alpha\ordplus\beta<\alpha\ordplus\gamma$
+	\item\ollabel{ordaddition2} $\alpha\ordplus\beta=
+	\alpha\ordplus\gamma$ ise $\beta=\gamma$
+	\item\ollabel{ordaddition3} $\alpha\ordplus(\beta\ordplus\gamma)
+	=(\alpha\ordplus\beta)\ordplus\gamma$, yani toplama birleşmelidir
+	\item\ollabel{ordaddition4} $\alpha\leq\beta$ ise
+	$\alpha\ordplus\gamma\leq\beta\ordplus\gamma$
+\end{enumerate}
+\end{lem}
+
+\begin{proof}
+Geri kalanını alıştırma olarak bırakıp \olref{ordaddition3}'ü ispatlayalım.
+İspat, \olref{ordadditionrecursion} kullanılarak $\gamma$ üzerinde Basit
+Sonlu Ötesi Tümevarım'ladır. $\gamma=0$ olduğunda:
+\[
+(\alpha\ordplus\beta)\ordplus0=\alpha\ordplus\beta
+=\alpha\ordplus(\beta\ordplus0)
+\]
+$\gamma=\delta\ordplus1$ olduğunda tümevarım varsayımı olarak
+$(\alpha\ordplus\beta)\ordplus\delta
+=\alpha\ordplus(\beta\ordplus\delta)$ alalım. Şimdi
+\olref{ordadditionrecursion} sonucunu üç kez kullanarak:
+\begin{align*}
+	(\alpha \ordplus  \beta) \ordplus  (\delta \ordplus  1) & = ((\alpha \ordplus  \beta) \ordplus  \delta)\ordplus 1\\
+	& = (\alpha \ordplus  (\beta \ordplus  \delta)) \ordplus  1\\
+	& = \alpha \ordplus  ((\beta \ordplus  \delta)\ordplus 1)\\
+	& = \alpha \ordplus  (\beta \ordplus  (\delta\ordplus 1))
+\end{align*}
+$\gamma$ bir limit sıra sayısı olduğunda, $\delta\in\gamma$ ise
+$(\alpha\ordplus\beta)\ordplus\delta
+=\alpha\ordplus(\beta\ordplus\delta)$ olduğunu tümevarım varsayımı olarak
+alalım. Şimdi:
+\begin{align*}
+	(\alpha \ordplus  \beta) \ordplus  \gamma & = \supstrict_{\delta < \gamma}((\alpha \ordplus  \beta) \ordplus  \delta) \\
+	&= \supstrict_{\delta < \gamma}(\alpha \ordplus  (\beta \ordplus  \delta))\\
+	&= \alpha \ordplus  \supstrict_{\delta < \gamma}(\beta \ordplus  \delta)\\
+	& = \alpha \ordplus  (\beta \ordplus  \gamma)
+\end{align*}
+\end{proof}
+
+\begin{prob}
+\olref[sth][ord-arithmetic][add]{ordinaladditionisnice} sonucunun geri
+kalanını ispatlayın.
+\end{prob}
+
+Bu bakımlardan sıra sayısı toplamı son derece tanıdık gelmelidir. Fakat sıra
+sayısı toplamının doğal sayılar üzerindeki toplamaya 
+\emph{benzemediği} çok
+önemli bir yön vardır.
+
+\begin{prop}\ollabel{ordsumnotcommute}
+Sıra sayısı toplamı {değişmeli} değildir;
+$1\ordplus\omega=\omega<\omega\ordplus1$.
+\end{prop}
+
+\begin{proof}
+$1\ordplus\omega=\supstrict_{n<\omega}(1\ordplus n)
+=\omega\in\omega\cup\{\omega\}=\ordsucc{\omega}=\omega\ordplus1$
+olduğuna dikkat edin.
+\end{proof}
+\noindent
+Bu ilk bakışta şaşırtıcı gelebilir, fakat 
+\emph{gelmemelidir}. Bir yandan
+$1\ordplus\omega$'yı ele aldığınızda bütün doğal sayıların
+\emph{önüne} fazladan bir eleman koyarak elde edilen sıra tipini
+düşünürsünüz. \olref[sfr][infinite][hilbert]{sec} içindeki Hilbert Oteli
+örneğinde yürüttüğümüz akıl yürütmeye göre bu fazladan ilk eleman, sezgisel
+olarak toplam sıra tipini değiştirmemelidir. Öte yandan
+$\omega\ordplus1$'i ele aldığınızda bütün doğal sayıların 
+\emph{arkasına}
+fazladan bir eleman koyarak elde edilen sıra tipini düşünürsünüz. Bu ise
+bütünüyle farklı bir varlıktır!
+
+\end{document}

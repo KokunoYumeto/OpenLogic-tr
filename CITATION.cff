@@ -1,22 +1,25 @@
 cff-version: 1.2.0
-message: "Please cite the exact Turkish cumulative release below."
-title: "Source and build repository for the Open Logic Project Turkish cumulative edition"
+message: "Please cite the exact release DOI for this complete Turkish edition."
+title: "Open Logic Project — Complete Turkish Edition: source, evidence, and build repository"
 type: software
 authors:
   - name: "Open Logic Project"
 repository-code: "https://github.com/KokunoYumeto/OpenLogic-tr"
-version: "OLP-0062-20260813"
-doi: "10.5281/zenodo.21921845"
+version: "OLP-0722-20260814"
+date-released: "2026-08-14"
+doi: "10.5281/zenodo.21927145"
+abstract: 'Complete Turkish edition of all 722/722 frozen content modules. Performed at Floris’s direction by “OpenAI 5.6 Sol, Ultra mode” (“OpenAI’s current flagship model for complex work”).'
 preferred-citation:
   type: book
-  title: "Open Logic Project — Türkçe Kümülatif Sürüm / Turkish Cumulative Edition (OLP-0062, 62/722)"
+  title: "Open Logic Project — Türkçe Tam Sürüm / Complete Turkish Edition (OLP-0722, 722/722)"
   authors:
     - name: "Open Logic Project"
   translators:
     - name: "OpenAI 5.6 Sol, Ultra mode"
   languages:
     - "tur"
-  doi: "10.5281/zenodo.21921845"
-  version: "OLP-0062-20260813"
+  version: "OLP-0722-20260814"
   year: 2026
-  url: "https://doi.org/10.5281/zenodo.21921845"
+  date-published: "2026-08-14"
+  doi: "10.5281/zenodo.21927145"
+  url: "https://doi.org/10.5281/zenodo.21927145"

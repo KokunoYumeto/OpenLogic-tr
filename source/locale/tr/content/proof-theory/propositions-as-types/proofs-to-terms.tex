@@ -1,0 +1,94 @@
+% part: intuitionistic-logic
+% chapter: propositions-as-types
+% section: proofs-to-terms
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{int}{pty}{pt}
+
+\olsection{\usetoken{P}{derivation}{}den İspat Terimlerine Geçiş}
+
+Doğal tümdengelim !!{proof}s{}ını ispat terimlerine dönüştürme, yani
+\Log{N2i}'deki !!{proof}s{}ı \Log{tN2i}'deki !!{proof}s{}a çevirme süreci son
+derece doğrudandır. Yalnızca !!{derivation} içindeki her sekantın sağındaki
+!!{formula}{}ün soluna bir ispat terimi yazılır; böylece $\Gamma \Sequent M
+: !A$ biçiminde sekantlar elde edilir. Bundan sonra $M$'nin $\Gamma$
+bağlamında~$!A$'ya \emph{tanıklık ettiğini} söyleyeceğiz. Hangi ispat
+teriminin yazılacağı bütünüyle \Log{tN2i}'nin kurallarıyla belirlenir.
+
+\begin{prop}
+\Log{N2i}'de $\Gamma \Sequent !A$'nın her !!{proof}~$\delta$'sına,
+\Log{tN2i}'de $\Gamma \Sequent N : !A$'nın bir !!a{proof}~$\delta'$ karşılık
+gelir. İspat terimi $N$,~$\delta$ tarafından biricik biçimde belirlenir.
+\end{prop}
+
+\begin{proof}
+$\delta$'nın yüksekliği üzerinde tümevarımla ilerleriz. $\delta$, $x:!A
+\Sequent !A$ aksiyomuysa $\delta'$,~$x:!A \Sequent x:!A$ aksiyomudur.
+$\delta$ bir çıkarım kuralıyla bitiyorsa tümevarım varsayımı her öncül için
+ispat terimleri ve her öncüle karşılık gelen bu ispat terimlerini içeren
+sekantların \Log{tN2i}-!!{proof}s{}ını verir. \Log{tN2i}'nin karşılık gelen
+kuralını uygularız; karşılık gelen ispat terimi \Log{tN2i} çıkarım kuralıyla
+belirlenir.
+\end{proof}
+
+\begin{ex}
+  \Log{N1i}'de $(!A \land !B) \lif (!B \land !A)$'nın şu çok basit
+  !!{proof}{}ını ele alalım:
+  \[
+  \AxiomC{$\Discharge{!A\land !B}{x}$}
+  \RightLabel{\Elim\land[2]}
+  \UnaryInfC{$!B$}
+  \AxiomC{$\Discharge{!A\land !B}{x}$}
+  \RightLabel{\Elim\land[1]}
+  \UnaryInfC{$!A$}
+  \RightLabel{\Intro\land}
+  \BinaryInfC{$!B \land !A$}
+  \DischargeRule{\Intro\lif}{x}
+  \UnaryInfC{$(!A \land !B) \lif (!B \land !A)$}
+  \DisplayProof
+  \]
+  \Log{N2i}'de şöyle görünür:
+  \[
+  \Axiom$x : !A\land !B \fCenter !A\land !B$
+  \RightLabel{\Elim\land[2]}
+  \UnaryInf$x : !A\land !B \fCenter !B$
+  \Axiom$x : !A\land !B \fCenter !A\land !B$
+  \RightLabel{\Elim\land[1]}
+  \UnaryInf$x : !A\land !B \fCenter !A$
+  \RightLabel{\Intro\land}
+  \BinaryInf$x : !A\land !B \fCenter !B \land !A$
+  \RightLabel{\Intro\lif}
+  \UnaryInf$\fCenter (!A \land !B) \lif (!B \land !A)$
+  \DisplayProof
+  \]
+  İspat terimlerini yukarıdan aşağıya atarız. Aksiyomların ispat terimleri,
+  bağlamdaki değişkenin kendisi olan~$x$'tir. $\Elim\land[i]$ ile ilişkili
+  ispat terimleri böylece $\proj{2}{x}$ ve~$\proj{1}{x}$ olarak belirlenir.
+  \Intro{\land} uygulandığında bu iki ispat terimini birleştiririz:
+  $\pair{\proj{2}{x}}{\proj{1}{x}}$. Son olarak \Intro{\lif} kuralı bir
+  $\lambd$-soyutlaması uygulayıp~$x$'i bağlar ve $x$'in $!A \land !B$
+  varsayımını etiketlediğini kaydeder:
+  $\lambd[\typeof{x}{!A \land !B}][\pair{\proj{2}{x}}{\proj{1}{x}}]$.
+  O zaman \Log{tN2i}'deki !!{proof} şöyledir:
+  \[
+  \Axiom$x : !A\land !B \fCenter x: !A\land !B$
+  \RightLabel{\Elim\land[2]}
+  \UnaryInf$x : !A\land !B \fCenter \proj{2}{x} : !B$
+  \Axiom$x : !A\land !B \fCenter x: !A\land !B$
+  \RightLabel{\Elim\land[1]}
+  \UnaryInf$x : !A\land !B \fCenter \proj{1}{x} : !A$
+  \RightLabel{\Intro\land}
+  \BinaryInf$x : !A\land !B \fCenter \pair{\proj{2}{x}}{\proj{1}{x}} : 
+    !B \land !A$
+  \RightLabel{\Intro\lif}
+  \UnaryInf$\fCenter \lambd[\typeof{x}{!A \land
+  !B}][\pair{\proj{2}{x}}{\proj{1}{x}}] : (!A \land !B) \lif (!B \land !A)$
+  \DisplayProof
+  \]
+\end{ex}
+
+
+\end{document}

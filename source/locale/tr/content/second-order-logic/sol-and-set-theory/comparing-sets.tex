@@ -1,0 +1,78 @@
+% Part: second-order-logic
+% Chapter: sol-and-sets
+% Section: comparing-sets
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sol}{set}{cmp}
+
+\olsection{Kümelerin Karşılaştırılması}
+
+\begin{prop}
+!!{formula} $\lforall[x][(X(x) \lif Y(x))]$ alt küme bağıntısını tanımlar;
+yani $\Sat{M}{\lforall[x][(X(x) \lif Y(x))]}[s]$ ancak ve ancak
+$s(X)\subseteq s(Y)$ ise.
+\end{prop}
+
+\begin{prop}
+!!{formula} $\lforall[x][(X(x) \liff Y(x))]$ kümeler üzerindeki özdeşlik
+bağıntısını tanımlar; yani
+$\Sat{M}{\lforall[x][(X(x) \liff Y(x))]}[s]$ ancak ve ancak $s(X)=s(Y)$ ise.
+\end{prop}
+
+\begin{prop}
+!!{formula} $\lexists[x][X(x)]$ boş olmama özelliğini tanımlar; yani
+$\Sat{M}{\lexists[x][X(x)]}[s]$ ancak ve ancak $s(X)\neq\emptyset$ ise.
+\end{prop}
+
+Bir $X$ kümesi, bir $Y$ kümesinden daha büyük değildir,
+$\cardle{X}{Y}$, ancak ve ancak !!a{injective} $f\colon X\to Y$ fonksiyonu
+varsa. Bir fonksiyonun bire bir olduğunu ve $X$ içindeki argümanlardaki
+değerlerinin $Y$ içinde bulunduğunu ifade edebildiğimizden, tanım kümesinin
+alt kümeleri üzerinde daha büyük olmama bağıntısını da tanımlayabiliriz.
+
+\begin{prop}
+\[
+\lexists[u][(\lforall[x][(X(x) \lif Y(u(x)))] \land \lforall[x][\lforall[y][(\eq[u(x)][u(y)] \lif
+      \eq[x][y])]])]
+\]
+formülü daha büyük olmama bağıntısını tanımlar.
+\end{prop}
+
+İki küme aynı büyüklüktedir ya da ``eş güçlüdür'', $\cardeq{X}{Y}$, ancak ve
+ancak !!a{bijective} $f\colon X\to Y$ fonksiyonu varsa.
+
+\begin{prop}
+\begin{multline*}
+  \lexists[u][(\lforall[x][(X(x) \lif Y(u(x)))] \land {}\\
+    \lforall[x][\lforall[y][(\eq[u(x)][u(y)] \lif \eq[x][y])]]
+  \land {} \\\\lforall[y][(Y(y) \lif \lexists[x][(X(x)
+      \land \eq[y][u(x)])])])]
+\end{multline*}
+formülü eş güçlü olma bağıntısını tanımlar.
+\end{prop}
+
+Bu !!{formula}s{}i sırasıyla $X\subseteq Y$, $X=Y$, $X\neq\emptyset$,
+$\cardle{X}{Y}$ ve $\cardeq{X}{Y}$ ile kısaltacağız. (Kümeler $X$ ve $Y$
+hakkında biçimsel olmayan biçimde konuşurken de aynı gösterimi kullandığımızdan
+bu biraz kafa karıştırabilir; fakat burada gösterim, $X$ ve $Y$ tek konumlu
+bağıntı değişkenlerini içeren ikinci dereceden mantık !!{formula}s{}inin
+kısaltmasıdır.)
+
+\begin{prop}
+!!{sentence} $\lforall[X][\lforall[Y][((\cardle{X}{Y} \land
+    \cardle{Y}{X}) \lif \cardeq{X}{Y})]]$ geçerlidir.
+\end{prop}
+
+\begin{proof}
+Bu !!{sentence}, her $X\subseteq\Domain{M}$ ve $Y\subseteq\Domain{M}$ alt
+kümeleri için $\cardle{X}{Y}$ ve $\cardle{Y}{X}$ olduğunda
+$\cardeq{X}{Y}$ oluyorsa !!a{structure} $\Struct{M}$ içinde sağlanır. Bu
+ise \emph{her} $X$ ve $Y$ kümesi için geçerlidir: Schröder--Bernstein
+Teoremidir.
+\end{proof}
+
+
+\end{document}

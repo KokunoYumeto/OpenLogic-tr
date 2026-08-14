@@ -1,0 +1,238 @@
+% Part: incompleteness
+% Chapter: representability-in-q
+% Section: basic-representable
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{inc}{req}{bre}
+\olsection{Temel Fonksiyonlar $\Th{Q}$ İçinde Temsil Edilebilir}
+
+Önce bütün temel fonksiyonların $\Th{Q}$ içinde temsil edilebilir olduğunu
+göstermeliyiz. Sonunda her $k$-yerli temel $f(x_0,\dots,x_{k-1})$
+fonksiyonuna, onu temsil eden !!a{formula}
+$!A_f(x_0,\dots,x_{k-1},y)$'nin nasıl atanacağını göstermemiz gerekir.
+
+Sıfırı, ardılı, toplamayı, çarpmayı, eşitliğin karakteristik fonksiyonunu ve
+izdüşümleri temsil edebileceğiz. Her durumda uygun temsil formülü son derece
+doğrudandır; örneğin sıfır $y=\Obj 0$ formülüyle, ardıl !!{formula}
+$x_0'=y$ ile ve toplama !!{formula} $(x_0+x_1)=y$ ile temsil edilir. Asıl
+iş, $\Th{Q}$'nun ilgili !!{sentence}s{}i ispatlayabildiğini göstermektir;
+örneğin toplamanın yukarıdaki !!{formula} ile temsil edildiğini söylemek,
+her $m$ ve $n$ doğal sayı çifti için $\Th{Q}$'nun aşağıdakileri ispatladığını
+göstermeyi içerir:
+\begin{align*}
+& \eq[\num n + \num m][\num {n+m}] \text{ ve}\\
+& \lforall[y][(\eq[(\num n + \num m)][y] \lif \eq[y][\num{n+m}])].
+\end{align*}
+
+\begin{prop}
+\ollabel{prop:rep-zero}
+Sıfır fonksiyonu $\Zero(x)=0$, $\Th{Q}$ içinde
+$!A_{\Zero}(x,y) \ident \eq[y][\Obj 0]$ ile temsil edilir.
+\end{prop}
+
+\begin{prop}
+\ollabel{prop:rep-succ}
+Ardıl fonksiyonu $\Succ(x)=x+1$, $\Th{Q}$ içinde
+$!A_{\Succ}(x,y) \ident \eq[y][x']$ ile temsil edilir.
+\end{prop}
+
+\begin{prop}
+\ollabel{prop:rep-proj}
+İzdüşüm fonksiyonu $\Proj{n}{i}(x_0, \dots, x_{n-1})=x_i$, $\Th{Q}$
+içinde
+\[!A_{\Proj{n}{i}}(x_0, \dots, x_{n-1}, y) \ident \eq[y][x_i].\]
+ile temsil edilir.
+\end{prop}
+
+\begin{prob}
+$\eq[y][\Obj 0]$, $\eq[y][x']$ ve $\eq[y][x_i]$ formüllerinin sırasıyla
+$\Zero$, $\Succ$ ve $\Proj{n}{i}$ fonksiyonlarını temsil ettiğini ispatlayın.
+\end{prob}
+
+\begin{prop}
+\ollabel{prop:rep-id}
+$=$ bağıntısının karakteristik fonksiyonu,
+\[
+\Char{=}(x_0, x_1) =
+\begin{cases}
+  1 & x_0 =x_1\\
+  0 & \text{aksi durumda}
+\end{cases}
+\]
+$\Th{Q}$ içinde
+\[
+  !A_{\Char{=}}(x_0, x_1, y) \ident (\eq[x_0][x_1] \land \eq[y][\num{1}]) \lor (\eq/[x_0][x_1] \land
+\eq[y][\num{0}]).
+\]
+ile temsil edilir.
+\end{prop}
+
+İspat aşağıdaki lemmayı gerektirir.
+
+\begin{lem}
+\ollabel{lem:q-proves-neq} $n$ ve $m$ doğal sayıları verildiğinde $n\neq m$
+ise $\Th{Q} \Proves \eq/[\num n][\num m]$ olur.
+\end{lem}
+
+\begin{proof}
+Her $m$ için $n\neq m$ ise $\Th{Q} \Proves \eq/[\num n][\num m]$ olduğunu
+$n$ üzerinde tümevarımla gösterin.
+% [tr source emendation] Upstream drops \Th{} and writes bare Q here.
+
+Başlangıç durumunda $n=0$'dır. $m$, $0$'a eşit değilse bir $k$ doğal sayısı
+için $m=k+1$ olur. $\lforall[x][\eq/[0][x']]$ diyen bir aksiyomumuz vardır.
+Bir niceleyici aksiyomuyla $x$ yerine $\num k$ koyarak
+$\eq/[0][\num k']$ sonucuna varabiliriz. Fakat $\num k'$, yalnızca
+$\num m$'dir.
+
+Tümevarım adımında iddianın $n$ için doğru olduğunu varsayıp $n+1$'i ele
+alabiliriz. $m$ herhangi bir doğal sayı olsun. İki olasılık vardır: ya $m=0$
+olur ya da bir $k$ için $m=k+1$ olur. İlk durum yukarıdaki gibi ele alınır.
+İkinci durumda $n+1\neq k+1$ olduğunu varsayın. O zaman $n\neq k$ olur.
+$n$ için tümevarım varsayımı uyarınca
+$\Th{Q} \Proves \eq/[\num n][\num k]$ elde ederiz.
+$\lforall[x][\lforall[y][\eq[x'][y'] \lif \eq[x][y]]]$ diyen bir
+aksiyomumuz vardır. Bir niceleyici aksiyomunu kullanarak
+$\eq[\num n'][\num k'] \lif \eq[\num n][\num k]$ elde ederiz. Önerme
+mantığını kullanarak $\Th{Q}$ içinde
+$\eq/[\num n][\num k] \lif \eq/[\num n'][\num k']$ sonucuna varabiliriz.
+Modus ponens ile $\eq/[\num n'][\num k']$ sonucunu elde ederiz; istediğimiz
+budur, çünkü $\num k'$, $\num m$'dir.
+\end{proof}
+
+\begin{explain}
+Lemmanın çok şey söylemediğine dikkat edin: özünde $\Th{Q}$'nun farklı
+sayısalların farklı nesneleri belirttiğini ispatlayabildiğini söyler.
+Örneğin $\Th{Q}$, $0''\neq0'''$ olduğunu ispatlar. Fakat bunun genel olarak
+geçerli olduğunu göstermek biraz özen gerektirir. Tümevarım kullanıyor olsak
+da bunun $\Th{Q}$'nun \emph{dışındaki} tümevarım olduğuna da dikkat edin.
+\end{explain}
+
+\begin{proof}[\olref{prop:rep-id} İspatı]
+$n=m$ ise $\num{n}$ ile $\num{m}$ aynı terimdir ve $\Char{=}(n,m)=1$ olur.
+Fakat $\Th{Q} \Proves (\eq[\num{n}][\num{m}] \land
+\eq[\num{1}][\num{1}])$ olduğundan $!A_=(\num{n},\num{m},\num{1})$'i
+ispatlar. $n\neq m$ ise $\Char{=}(n,m)=0$ olur.
+% [tr source emendation] Upstream omits braces in two \Char{=} calls.
+\olref{lem:q-proves-neq} uyarınca $\Th{Q} \Proves
+\eq/[\num{n}][\num{m}]$ olur; dolayısıyla
+$(\eq/[\num{n}][\num{m}] \land \Obj 0 = \Obj 0)$ da olur. Böylece
+$\Th{Q} \Proves !A_=(\num{n}, \num{m}, \num{0})$ elde edilir.
+
+İkinci bölüm için yine iki durum vardır. $n=m$ ise
+$\Th{Q} \Proves \lforall[y][(!A_=(\num{n}, \num{m}, y)
+  \lif \eq[y][\num{1}])]$ olduğunu göstermeliyiz. Biçimsel olmayan biçimde
+$!A_=(\num{n},\num{m},y)$, yani
+\[
+(\eq[\num{n}][\num{n}] \land \eq[y][\num{1}]) \lor
+(\eq/[\num{n}][\num{n}] \land \eq[y][\num{0}])
+\]
+olduğunu varsayın. Sol ayrılan mantık uyarınca $\eq[y][\num{1}]$'i
+gerektirir; sağ ayrılan ise mantıkça ispatlanabilir olan
+$\eq[\num{n}][\num{n}]$ ile çelişir.
+
+Öte yandan $n\neq m$ olduğunu varsayın. O zaman
+$!A_=(\num{n},\num{m},y)$ şudur:
+\[
+(\eq[\num{n}][\num{m}] \land \eq[y][\num{1}]) \lor
+(\eq/[\num{n}][\num{m}] \land \eq[y][\num{0}])
+\]
+Burada sol ayrılan, \olref{lem:q-proves-neq} uyarınca $\Th{Q}$ içinde
+ispatlanabilen $\eq/[\num{n}][\num{m}]$ ile çelişir; sağ ayrılan ise
+$\eq[y][\num{0}]$'ı gerektirir.
+\end{proof}
+
+\begin{prop}
+\ollabel{prop:rep-add}
+Toplama fonksiyonu $\Add(x_0,x_1)=x_0+x_1$, $\Th{Q}$ içinde
+\[
+  !A_{\Add}(x_0, x_1, y) \ident \eq[y][(x_0 + x_1)].
+\]
+ile temsil edilir.
+\end{prop}
+
+\begin{lem}
+\ollabel{lem:q-proves-add}
+$\Th{Q} \Proves \eq[(\num{n} + \num{m})][\num{n+m}]$,
+\end{lem}
+
+\begin{proof}
+Bunu $m$ üzerinde tümevarımla ispatlarız. $m=0$ ise iddia
+$\Th{Q} \Proves \eq[(\num{n} + \Obj 0)][\num{n}]$ biçimindedir. Bu,
+$!Q_4$ aksiyomundan çıkar. Şimdi iddiayı $m$ için varsayalım ve $m+1$ için,
+yani $\Th{Q} \Proves \eq[(\num{n} +
+  \num{m+1})][\num{n+m+1}]$ olduğunu ispatlayalım. $\num{m+1}$'in yalnızca
+$\num{m}'$ ve $\num{n+m+1}$'in yalnızca $\num{n+m}'$ olduğuna dikkat edin.
+$!Q_5$ aksiyomu uyarınca
+$\Th{Q} \Proves \eq[(\num{n} + \num{m}')][(\num{n}+\num{m})']$ olur.
+Tümevarım varsayımı uyarınca
+$\Th{Q} \Proves \eq[(\num{n} + \num{m})][\num{n+m}]$ olur. Böylece
+$\Th{Q} \Proves \eq[(\num{n} + \num{m}')][\num{n+m}']$ elde edilir.
+\end{proof}
+
+\begin{proof}[\olref{prop:rep-add} İspatı]
+$\Add$'ı temsil eden !!{formula}~$!A_\Add(x_0,x_1,y)$,
+$\eq[y][(x_0+x_1)]$'dir. Önce $\Add(n,m)=k$ ise
+$\Th{Q} \Proves !A_\Add(\num{n},\num{m},\num{k})$, yani
+$\Th{Q} \Proves \eq[\num{k}][(\num{n}+\num{m})]$ olduğunu gösteririz.
+Fakat $k=n+m$ olduğundan $\num{k}$ zaten $\num{n+m}$'dir ve
+\olref{lem:q-proves-add}'da
+$\Th{Q} \Proves \eq[(\num{n}+\num{m})][\num{n+m}]$ olduğunu gösterdik.
+
+$\Add(n,m)=k$ ise ayrıca şunu da göstermeliyiz:
+\[
+\Th{Q} \Proves \lforall[y][(!A_\Add(\num{n}, \num{m}, y) \lif
+  \eq[y][\num{k}])].
+\]
+$\eq[(\num{n}+\num{m})][y]$ elde ettiğimizi varsayın.
+\[
+\Th{Q} \Proves \eq[(\num{n}+\num{m})][\num{n+m}],
+\]
+olduğundan sol tarafı $\num{n+m}$ ile değiştirip keyfî $y$ için
+$\eq[\num{n+m}][y]$ elde edebiliriz.
+\end{proof}
+
+\begin{prop}
+\ollabel{prop:rep-mult}
+Çarpma fonksiyonu $\Mult(x_0,x_1)=x_0\cdot x_1$, $\Th{Q}$ içinde
+\[
+  !A_{\Mult}(x_0, x_1, y) \ident y = (x_0 \times x_1).
+\]
+ile temsil edilir.
+\end{prop}
+
+\begin{proof} Alıştırma. \end{proof}
+
+\begin{lem}
+\ollabel{lem:q-proves-mult}
+$\Th{Q} \Proves \eq[(\num{n} \times \num{m})][\num{n \cdot m}]$
+\end{lem}
+
+\begin{proof} Alıştırma. \end{proof}
+
+\begin{prob}
+\olref[inc][req][bre]{lem:q-proves-mult} lemmasını ispatlayın.
+\end{prob}
+
+\begin{prob}
+\olref[inc][req][bre]{lem:q-proves-mult} lemmasını kullanarak
+\olref[inc][req][bre]{prop:rep-mult} önermesini ispatlayın.
+\end{prob}
+
+\begin{explain}
+  Aritmetik dilinin fonksiyon simgesi için $\times$, sayılar üzerindeki
+  sıradan çarpma işlemi için $\cdot$ kullandığımızı anımsayın. Dolayısıyla
+  $\cdot$, sayı belirten ifadelerin arasında (örneğin $m\cdot n$ içinde),
+  $\times$ ise yalnızca aritmetik dilinin terimleri arasında (örneğin
+  $(\num{m}\times\num{n})$ içinde) bulunabilir. Daha da kafa karıştırıcı
+  biçimde $+$ hem !!{function} hem de toplama işlemi için kullanılır.
+  Terimler arasında---örneğin $(\num{n}+\num{m})$ içinde---bulunduğunda
+  aritmetik dilinin $2$-yerli !!{function}{}dur; sayılar arasında---örneğin
+  $n+m$ içinde---bulunduğunda toplama işlemidir. $\num{n+m}$ durumu da
+  buna girer: bu, $n+m$ sayısına karşılık gelen standart sayısaldır.
+\end{explain}
+
+\end{document}

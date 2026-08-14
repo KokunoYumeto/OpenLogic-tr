@@ -1,0 +1,96 @@
+% Part: incompleteness
+% Chapter: introduction
+% Section: overview
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{inc}{int}{ovr}
+
+\olsection{Eksiklik Sonuçlarına Genel Bakış}
+
+Hilbert, matematiğin !!{axiomatizable} bir kuramda biçimselleştirilebileceğini
+ve bu kuramın !!{complete} ve !!{decidable} olduğunun ispatlanabileceğini
+umuyordu. Üstelik sezgiciliğin meydan okumalarına karşı klasik matematiği
+savunacak biçimde, bu kuramın tutarlılığını çok zayıf ``sonlu'' araçlarla
+ispatlamayı amaçlıyordu. G\"odel'in eksiklik teoremleri bu hedeflere
+ulaşılamayacağını gösterdi.
+
+G\"odel'in birinci eksiklik teoremi, Russell ile Whitehead'in
+\emph{Principia Mathematica}'sının bir sürümünün !!{complete} olmadığını
+gösterdi. Ancak ispat gerçekte çok geneldi ve çok çeşitli kuramlara uygulanır.
+Bu, matematiği bütünüyle yakalamayı yalnızca \emph{Principia Mathematica}'nın
+başaramadığı değil, kabul edilebilir \emph{hiçbir} kuramın başaramayacağı
+anlamına gelir. Eksiklik teoremlerinin uygulanması için yeterli olan kuram
+özelliklerini ayırmak ve G\"odel'in ispatını yalnızca bu özelliklere bağlı
+olacak biçimde genelleştirmek zaman aldı. Fakat artık birinci eksiklik
+teoreminin, aritmetiğin $\Lang L_A$ dilindeki kuramlar için çok genel bir
+sürümünü ifade edebiliriz.
+
+\begin{thm}
+$\Gamma$, $\Lang L_A$ içinde tutarlı ve !!{axiomatizable} bir kuram olup
+bütün hesaplanabilir fonksiyonları !!{represents} ediyor ve bütün
+!!{decidable} bağıntıları da temsil ediyorsa $\Gamma$ !!{complete} değildir.
+\end{thm}
+
+$\Gamma$'nın !!{complete} olmadığını söylemek, en az bir !!{sentence}~$!A$
+için $\Gamma \Proves/ !A$ ve $\Gamma \Proves/ \lnot !A$ olduğunu söylemektir.
+Böyle !!a{sentence}{}ye ($\Gamma)$ bakımından \emph{bağımsız} denir. Gerçekte
+bağımsız tümceler bulunması gerektiğini oldukça çabuk ispatlayabiliriz.
+Ancak G\"odel'in teorem ispatının gücü, böyle bağımsız bir !!{sentence}{}nin
+\emph{belirli bir örneğini} ortaya koymasındadır. Bu ilgi çekici kuruluş,
+$\Gamma$ için \emph{G\"odel tümcesi} denen !!a{sentence} üretir; onu
+$!G_\Gamma$ ile gösteririz. Bu tümce ispatlanamaz, çünkü $\Gamma$ içinde $!G_\Gamma$, bizzat
+$!G_\Gamma$'nın $\Gamma$ içinde ispatlanamaz olduğu iddiasına denktir.
+Bunu \emph{yapıcı biçimde} yapar: $\Gamma$'nın bir aksiyomlaştırılması ve
+!!{derivation} sisteminin bir betimi verildiğinde ispat, $!G_\Gamma$'yı
+gerçekten yazmak için bir yöntem verir.
+
+G\"odel'in ispatındaki kuruluş, $\Lang L_A$'nın terim ve !!{formula}s{}inin
+özelliklerini ve bunlar üzerindeki işlemleri yine $\Lang L_A$ içinde dile
+getirmenin bir yolunu bulmamızı gerektirir. Bunlara ``$!A$ !!a{sentence}{}dir'',
+``$\delta$, $!A$'nın !!a{derivation}{}idir'' gibi özellikler ve
+$\Subst{!A}{t}{x}$ gibi işlemler girer. Bu yol (a) simgeleri ve bunların
+dizilerini (terimler, !!{formula}s, !!{derivation}s vb. bunlardır)
+doğal sayılar (çünkü $\Lang L_A$ bunlardan söz edebilir) olarak
+``kodlayarak'' söz konusu özellik ve bağıntıları dile getirmelidir. (b)
+Bunu $\Gamma$'nın ilgili olguları ispatlayacağı biçimde yapmalıdır;
+dolayısıyla bu özelliklerin doğal sayıların !!{decidable} özellikleriyle
+kodlandığını ve işlemlerin doğal sayılar üzerindeki hesaplanabilir
+fonksiyonlara karşılık geldiğini göstermeliyiz. Buna ``sözdizimin
+aritmetikleştirilmesi'' denir.
+
+Ancak sözdizimin nasıl aritmetikleştirilebileceğini araştırmadan önce,
+$\Gamma$'nın ``yeterince güçlü'', yani bütün hesaplanabilir fonksiyonları
+!!{represents} etmesi ve bütün !!{decidable} bağıntıları temsil etmesi
+koşulunu ele alacağız.
+Bu, ``hesaplanabilir''in kesin bir tanımını vermemizi gerektirir. Bu,
+örneğin Turing makineleri modeli aracılığıyla veya genel amaçlı bir
+programlama dilindeki programlarla hesaplanabilen fonksiyonlar olarak,
+birkaç yolla yapılabilir. Bununla birlikte amacımız bu fonksiyon ve
+bağıntıları $\Lang L_A$ dilindeki bir kuram içinde !!{represents} etmek
+olduğundan, yalnızca sayısal fonksiyonların hesaplanabilirliğine ilişkin
+yalın bir tanım seçmek en iyisidir. Bu, \emph{özyinelemeli fonksiyon}
+kavramıdır. Bu yüzden önce özyinelemeli fonksiyonları tartışacağız. Ardından
+$\Th{Q}$'nun bütün özyinelemeli fonksiyon ve bağıntıları zaten
+!!{represents} ettiğini göstereceğiz. Böylece $\Th{Q}$ ve $\Th{PA}$ gibi
+belirli kuramlara eksiklik teoremini uygulayabileceğiz; çünkü bunların
+``yeterince güçlü'' kuram örnekleri olduğunu kurmuş olacağız.
+
+Sözdizimin aritmetikleştirilmesinin son ürünü, !!a{formula}
+$\OProv[\Gamma](x)$'tir; bu, !!{formula}s{}in sayılar olarak kodlanması
+aracılığıyla $\Gamma$'nın aksiyomlarından ispatlanabilirliği dile getirir. Daha özel olarak $!A$,
+$n$ sayısıyla kodlanmışsa ve $\Gamma \Proves !A$ ise
+$\Gamma \Proves \Prov[\Gamma](\num{n})$ olur. $\Gamma$ için bu
+``ispatlanabilirlik yüklemi'', $\Gamma$'nın tutarlılığını da belli bir
+anlamda $\Lang L_A$ içinde !!a{sentence} olarak dile getirmemizi sağlar:
+$\Gamma$ için ``tutarlılık ifadesi'', $n$'yi bir çelişkinin, örneğin
+$\lfalse$'un kodu aldığımız $\lnot \Prov[\Gamma](\num{n})$ !!{sentence}{}si
+olsun. İkinci eksiklik teoremi, tutarlı !!{axiomatizable} kuramların kendi
+tutarlılık ifadelerini de ispatlamadığını söyler. Bu teoremin uygulanması
+için gereken koşullar, kuramın bütün hesaplanabilir fonksiyonları ve
+!!{decidable} bağıntıları temsil etmesinden biraz daha katıdır; fakat
+$\Th{PA}$'nın bunları sağladığını göstereceğiz.
+
+\end{document}

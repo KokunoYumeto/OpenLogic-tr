@@ -1,0 +1,53 @@
+% Part: second-order-logic
+% Chapter: metatheory
+% Section: undecidability-and-axiomatizability
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sol}{met}{nax}
+
+\olsection{İkinci Dereceden Mantık Aksiyomlaştırılamaz}
+
+
+\begin{thm}
+\ollabel{thm:sol-undecidable}
+İkinci dereceden mantık karar verilemez.
+\end{thm}
+
+\begin{proof}
+Birinci dereceden bir !!{sentence}, birinci dereceden mantıkta ancak ve ancak
+ikinci dereceden mantıkta geçerlidir; birinci dereceden mantık karar
+verilemez.
+\end{proof}
+
+\begin{thm}
+\ollabel{cor:sol-not-axiomatizable}
+İkinci dereceden mantık için sağlam ve tam bir !!{derivation} sistemi yoktur.
+\end{thm}
+
+\begin{proof}
+$!A$, aritmetik dilinde !!a{sentence} olsun. $\Sat{N}{!A}$ ancak ve ancak
+$\Th{PA^2}\Entails !A$. $!P$, $\Th{PA^2}$'nin dokuz aksiyomunun birleşimi
+olsun. $\Th{PA^2}\Entails !A$ ancak ve ancak $\Entails !P\lif !A$, yani
+her yapıda $\Sat{M}{!P\lif !A}$. Şimdi $\Obj{0}$ yerine $z$; $\prime$ yerine tek
+konumlu fonksiyon değişkeni $u$; $+$ ve $\times$ yerine sırasıyla iki
+konumlu fonksiyon değişkenleri $u'$ ile $u''$ ve $<$ yerine iki konumlu
+bağıntı değişkeni $L$ koyup evrensel niceleyerek elde edilen
+$\lforall[z][\lforall[u][\lforall[u'][\lforall[u''][\lforall[L][(!P' \lif !A')]]]]]$
+!!{sentence} ifadesini ele alalım. Bu, saf ikinci dereceden mantığın geçerli bir
+tümcesidir ancak ve ancak özgün tümce geçerliyse, ancak ve ancak
+$\Th{PA^2}\Entails !A$ ise, ancak ve ancak $\Sat{N}{!A}$ ise. Dolayısıyla
+ikinci dereceden mantık için sağlam ve tam bir ispat sistemi bulunsaydı,
+$\Struct{N}$ içinde doğru olan !!{sentence}s kümesini numaralandıran
+hesaplanabilir bir $f\colon\Nat\to\Sent[L_A]$ fonksiyonunu bu sistemden elde
+edebilirdik. Bu fonksiyon $\Th{Q}$ içinde bir $!B_f(x,y)$ birinci dereceden
+formülüyle temsil edilebilirdi. O zaman $\lexists[x][!B_f(x,y)]$
+!!{formula} ifadesi, $\Struct{N}$ içinde doğru olan birinci dereceden
+!!{sentence}s kümesini tanımlardı; bu da Tarski Teoremiyle çelişir.
+\end{proof}
+
+
+
+\end{document}

@@ -1,0 +1,208 @@
+% Part: first-order-logic
+% Chapter: beyond
+% Section: intuitionistic-logic
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{fol}{byd}{il}
+
+\olsection{Sezgici Mantık}
+
+İkinci dereceden ve yüksek dereceden mantığın tersine, sezgici birinci
+dereceden mantık klasik sürümün bir kısıtlamasıdır ve daha ``yapıcı'' bir akıl
+yürütme türünü modellemeyi amaçlar. Aşağıdaki örnekler, bunun altında yatan
+bazı güdüleri açıklamaya yarayabilir.
+
+Birinin bir gün yanınıza gelip şu özelliğe sahip bir $x$ doğal sayısı
+belirlediğini açıkladığını varsayın: $x$ asal ise Riemann hipotezi doğru, $x$
+bileşik ise Riemann hipotezi yanlıştır. Müthiş haber!{} Riemann hipotezinin
+doğru olup olmadığı matematiğin büyük açık sorularından biridir; oysa bu kişi
+sorunu bir hesaplama problemine, yani belirli bir sayının asal olup olmadığını
+belirlemeye indirgemiş görünmektedir.
+
+$x$'in sihirli değeri nedir? Şöyle betimliyor: $x$, Riemann hipotezi doğruysa
+$7$'ye, değilse $9$'a eşit olan doğal sayıdır.
+
+Öfkelenip paranızı geri istersiniz. Klasik bakımdan yukarıdaki betimleme
+gerçekten de $x$'in tek bir değerini belirler; ama sizin asıl istediğiniz,
+\emph{açıkça} verilen bir $x$ değeridir.
+
+Başka, belki daha az yapay bir örnek olarak şu soruyu ele alın. İrrasyonel bir
+sayının rasyonel bir kuvvetini alıp rasyonel bir sonuç elde etmenin mümkün
+olduğunu biliyoruz. Örneğin $\sqrt{2}^2 = 2$. Daha az açık olan, irrasyonel bir
+sayının \emph{irrasyonel} bir kuvvetini alıp rasyonel bir sonuç elde etmenin
+mümkün olup olmadığıdır. Aşağıdaki teorem buna olumlu yanıt verir:
+
+\begin{thm}
+İrrasyonel $a$ ve $b$ sayıları vardır ve $a^b$ rasyoneldir.
+\end{thm}
+
+\begin{proof}
+$\sqrt{2}^{\sqrt{2}}$ sayısını ele alın. Bu sayı rasyonelse işimiz bitmiştir:
+$a = b = \sqrt{2}$ alabiliriz. Değilse irrasyoneldir. O zaman
+\[
+(\sqrt{2}^{\sqrt{2}})^{\sqrt{2}} = \sqrt{2}^{\sqrt{2} \cdot
+  \sqrt{2}} = \sqrt{2}^2 = 2,
+\]
+olur ve bu kesinlikle rasyoneldir. Dolayısıyla bu durumda $a$'yı
+$\sqrt{2}^{\sqrt{2}}$, $b$'yi de~$\sqrt 2$ alın.
+\end{proof}
+
+Bu, geçerli bir kanıt sayılır mı? Çoğu matematikçi öyle olduğunu düşünür.
+Ancak burada da biraz doyurucu olmayan bir şey vardır: belirli bir özelliğe
+sahip bir gerçek sayı çiftinin varlığını, bunun \emph{hangi} sayı çifti
+olduğunu söyleyemeden kanıtladık. Aynı sonuç, $a$, $b$ çifti kanıtta
+\emph{verilecek} biçimde de kanıtlanabilir: $a = \sqrt{3}$ ve $b = \log_3 4$
+alın. O zaman
+\[
+a^b = \sqrt{3}^{\log_3 4} = 3^{1/2 \cdot \log_3 4} = (3^{\log_3
+  4})^{1/2} = 4^{1/2}= 2,
+\]
+elde edilir; çünkü $3^{\log_3 x} = x$.
+
+Sezgici mantık, ilk kanıttaki gibi hamlelere izin verilmeyen bir akıl yürütme
+türünü modellemek üzere tasarlanmıştır. Bir $x$ bulup onun $!A(x)$ koşulunu
+sağladığını göstererek bir varlık savını kanıtlamak, ikinci kanıttaki gibi
+belirli bir~$x$ ile onun $!A$
+koşulunu sağladığının bir kanıtını vermeniz gerektiği anlamına gelir. $!A$ ya
+da $!B$'nin geçerli olduğunu kanıtlamak da bunlardan hangisi olduğunu
+kanıtlayabilmenizi gerektirir.
+
+Biçimsel olarak sezgici birinci dereceden mantık, birinci dereceden mantık için
+!!a{derivation} sistemini belirli bir biçimde kısıtlayınca elde edilen şeydir.
+Benzer biçimde ikinci dereceden ya da yüksek dereceden mantığın sezgici
+sürümleri de vardır. Matematiksel bakımdan bunlar yalnızca biçimsel tümdengelim
+sistemleridir; ama daha önce belirtildiği gibi belirli bir matematiksel akıl
+yürütme türünü modellemeleri amaçlanır. Bu, matematik hakkındaki belirli bir
+felsefi görüşün (Brouwer'ın sezgiciliği gibi) gerekçelendirdiği akıl yürütme
+türü olarak görülebilir; daha ``somut'' ve doyurucu bir matematiksel akıl
+yürütme türü (Bishop'ın yapıcılığı doğrultusunda) sayılabilir; biçimsel
+betimlemenin biçimsel olmayan güdüyü yakalayıp yakalamadığı tartışılabilir.
+Fakat hangi felsefi görüşü benimsersek benimseyelim, sezgici mantığı biçimsel
+olarak sunulmuş bir mantık diye inceleyebiliriz; her ne sebeple olursa olsun,
+birçok matematiksel mantıkçı bunu yapmayı ilginç bulur.
+
+Sezgici bağlaçların genellikle BHK yorumu (Brouwer, Heyting ve Kolmogorov'un
+adlarından) diye bilinen, biçimsel olmayan yapıcı bir yorumu vardır. Yorum
+şöyledir: $!A \land !B$'nin bir kanıtı, $!A$'nın bir kanıtıyla eşleştirilmiş
+$!B$'nin bir kanıtından oluşur; $!A \lor !B$'nin bir kanıtı, hangisinin söz
+konusu olduğuna ilişkin açık bilgiyle birlikte ya $!A$'nın ya da $!B$'nin bir
+kanıtından oluşur; $!A \lif !B$'nin bir kanıtı, $!A$'nın bir kanıtını
+$!B$'nin bir kanıtına dönüştüren bir yordamdan oluşur; $\lforall[x][!A(x)]$'in
+bir kanıtı, bir $!A(x)$ kanıtını $x$'in her değeri için döndüren bir yordamdan
+oluşur; $\lexists[x][!A(x)]$'in bir kanıtıysa, $x$'in bir değeri ile bu değerin
+$!A$ koşulunu sağladığının bir kanıtından oluşur. Yorum, ``Curry--Howard
+eşbiçimliliği'' ya da ``tipler-olarak-!!{formula}s paradigması'' adıyla bilinen
+hesaplamalı terimlerle de betimlenebilir: !!a{formula}{}ün belirli bir veri
+tipini belirttiğini ve kanıtların, karşılık gelen !!{formula}{}ün doğru olduğunu
+görmemizi sağlayan bu veri tiplerinin hesaplamalı nesneleri olduğunu düşünün.
+
+Sezgici mantık çoğu kez ``üçüncü hâlin olanaksızlığı yasası çıkarılmış'' klasik
+mantık olarak düşünülür. Aşağıdaki teorem bunu daha kesin kılar.
+\begin{thm}
+Sezgici bakımdan aşağıdaki aksiyom şemaları eşdeğerdir:
+\begin{enumerate}
+\item $(\lnot !A \lif \lfalse) \lif !A$.
+\item $!A \lor \lnot !A$
+\item $\lnot \lnot !A \lif !A$
+\end{enumerate}
+\end{thm}
+Şemalardan birinin örneklerini diğer ikisinden herhangi birinden elde etmek,
+sezgici mantıkta iyi bir alıştırmadır.
+
+Brouwer'ın sezgiciliğinin biçimselleştirmeleri olarak ortaya konan ilk sezgici
+önermeler mantığı tümdengelim sistemleri, birbirinden bağımsız olarak
+Kolmogorov, Glivenko ve Heyting'e aittir. Sezgici birinci dereceden mantığın
+(ve sezgici matematiğin bazı bölümlerinin) ilk biçimselleştirmesi Heyting'e
+aittir. Klasik bakımdan geçerli birçok şema sezgici bakımdan geçerli olmasa da
+birçoğu geçerlidir.
+
+\emph{Çifte değilleme çevirisi}, klasik mantıkla sezgici mantık arasındaki
+önemli bir ilişkiyi betimler. Tümevarımlı olarak şöyle tanımlanır ($!A^N$'yi,
+klasik $!A$ !!{formula}{}ünün ``sezgici'' çevirisi olarak düşünün):
+\begin{align*}
+!A^N & \ident \lnot\lnot !A \quad \text{atomik $!A$ !!{formula}{}ü için} \\
+(!A \land !B)^N & \ident (!A^N \land !B^N) \\
+(!A \lor !B)^N & \ident  \lnot\lnot (!A^N \lor !B^N) \\
+(!A \lif !B)^N & \ident (!A^N \lif !B^N) \\
+(\lforall[x][!A])^N & \ident \lforall[x][!A^N] \\
+(\lexists[x][!A])^N & \ident \lnot\lnot\lexists[x][!A^N]
+\end{align*}
+Kolmogorov ile Glivenko'nun bu çevirinin önermeler mantığı için sürümleri
+vardı; yüklem mantığı içinse çeviri birbirinden bağımsız olarak G\"odel ile
+Gentzen'e aittir. Şunlar geçerlidir:
+
+\begin{thm}
+\begin{enumerate}
+\item $!A \liff !A^N$ klasik olarak kanıtlanabilir.
+\item $!A$ klasik olarak kanıtlanabiliyorsa, $!A^N$ sezgici olarak
+  kanıtlanabilir.
+\end{enumerate}
+\end{thm}
+
+Şimdi şu diyaloğu gözümüzde canlandırabiliriz. Klasik matematikçi: ``$!A$'yı
+kanıtladım!'' Sezgici matematikçi: ``Kanıtın geçerli değil. Aslında kanıtladığın
+$!A^N$.'' Klasik matematikçi: ``Benim için fark etmez!'' Klasik matematikçiye
+göre sezgici matematikçi, ikisi eşdeğer olduğundan kılı kırk yarmaktadır. Ama
+sezgici matematikçi arada bir fark bulunduğunu ısrarla savunur.
+
+Yukarıdaki çevirinin yalnızca saf mantıkla ilgili olduğuna dikkat edin; klasik
+ve sezgici matematik için uygun \emph{mantıksal olmayan} aksiyomların neler
+olduğu ya da bunlar arasında nasıl bir ilişki bulunduğu sorusunu ele almaz.
+Ancak yukarıdaki teoremin şu küçük genişletmesi bazı yararlı bilgiler sağlar:
+
+\begin{thm}
+$\Gamma$, $!A$'yı klasik olarak kanıtlıyorsa, $\Gamma^N$, $!A^N$'yi sezgici
+olarak kanıtlar.
+\end{thm}
+
+Başka bir deyişle, $!A$ bazı varsayımlardan klasik olarak kanıtlanabiliyorsa,
+$!A^N$ bu varsayımların çifte değilleme çevirilerinden kanıtlanabilir.
+
+Bir tümcenin ya da önermesel !!{formula}{}ün sezgici bakımdan geçerli olduğunu
+göstermek için yalnızca bir kanıt vermeniz yeterlidir. Peki geçerli
+olmadığını nasıl gösterebilirsiniz? Bunun için sağlam ve tercihen tam
+bir semantiğe gereksinim vardır. Kripke'ye ait bir semantik tam bu işe uyar.
+
+Klasik mantıkta oynadığımız oyunun aynısını oynayabiliriz: semantiği tanımlar,
+sağlamlık ile tamlığı kanıtlarız. Yine de şu ayrımı belirtmek yararlı olur.
+Klasik mantıkta semantik, bir bakıma bağlaçların anlamında örtük bulunan
+``apaçık'' semantikti. Kripke semantiği için bazı sezgisel gerekçeler
+sunulabilse de bu semantik aynı kaçınılmazlık duygusunu vermez. Ayrıca klasik
+!!{structure} kavramı doğal bir matematiksel kavramdır; dolayısıyla
+!!a{structure} kavramını klasik birinci dereceden mantığı incelemekte bir araç,
+ya da klasik birinci dereceden mantığı matematiksel !!{structure}{}sı incelemekte
+bir araç sayabiliriz. Buna karşılık Kripke !!{structure}{}sı yalnızca mantıksal
+bir kurgu olarak görülebilir; bağımsız bir matematiksel ilgi taşıyor
+görünmezler.
+
+Bir önermeler dili için bir Kripke !!{structure}{}sı
+$\mModel M = \tuple{W, R, V}$, bir $W$ kümesinden, bir $R$ kısmi
+sıralamasından (bu sıralamanın $W$ üzerinde en küçük bir !!{element}{}ı vardır) ve
+önermesel değişkenleri $W$'nin !!{element}s{}ına atayan ``monoton'' bir atamadan
+oluşur. Buradaki sezgi
+şudur: $W$'nin !!{element}s{}ı ``dünyaları'' ya da ``bilgi durumlarını'' temsil
+eder; $v \geq u$ elemanı $u$'nun ``olası bir gelecek durumunu'' temsil eder;
+$u$'ya atanan önermesel değişkenler ise $u$ durumunda doğru olduğu bilinen
+önermelerdir. Zorlama bağıntısı $\mSat{M}{!A}[w]$, daha sonra bu ilişkiyi
+dildeki keyfî !!{formula}s için genişletir; $\mSat{M}{!A}[w]$ ifadesini
+``$!A$, $w$ durumunda doğrudur'' diye okuyun. İlişki tümevarımlı olarak şöyle
+tanımlanır:
+\begin{enumerate}
+\item $\mSat{M}{\Obj p_i}[w]$ ancak ve ancak $\Obj p_i$, $w$'ye atanan
+  önermesel değişkenlerden biriyse geçerlidir.
+\item $\mSat/{M}{\lfalse}[w]$.
+\item $\mSat{M}{(!A \land !B)}[w]$ ancak ve ancak $\mSat{M}{!A}[w]$ ve
+  $\mSat{M}{!B}[w]$ ise geçerlidir.
+\item $\mSat{M}{(!A \lor !B)}[w]$ ancak ve ancak $\mSat{M}{!A}[w]$ ya da
+  $\mSat{M}{!B}[w]$ ise geçerlidir.
+\item $\mSat{M}{(!A \lif !B)}[w]$ ancak ve ancak $w' \geq w$ ve
+  $\mSat{M}{!A}[w']$ olduğunda her zaman $\mSat{M}{!B}[w']$ ise geçerlidir.
+\end{enumerate}
+Bir karşı örnek sağlayan Kripke !!{structure}{}sı kurarak $\lnot (p \land q) \lif
+(\lnot p \lor \lnot q)$ ifadesinin sezgici bakımdan geçerli olmadığını
+göstermeye çalışmak iyi bir alıştırmadır.
+
+\end{document}

@@ -1,0 +1,103 @@
+% Part: methods
+% Chapter: proofs
+% Section: example-2
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{mth}{prf}{ex2}
+
+\olsection{Başka Bir Örnek}
+
+\begin{prop}
+$A \subseteq C$ ise $A \cup (C \setminus A) = C$.
+\end{prop}
+
+\begin{proof}
+  $A \subseteq C$ olduğunu varsayalım. $A \cup (C \setminus A) = C$
+  olduğunu göstermek istiyoruz.
+  \begin{quote}
+    Bunun koşullu bir ifade olduğunu gözlemleyerek başlıyoruz. Örtük
+    biçimde tümel olarak nicelenmiştir: önerme bütün $A$ ve $C$ kümeleri
+    için geçerlidir. Dolayısıyla $A$ ve $C$, keyfî kümelerin
+    değişkenleridir. Böyle bir ifadeyi kanıtlamak için önbileşeni
+    varsayıp artbileşeni kanıtlarız.
+
+    $A \subseteq C$ varsayımını kullanarak devam ediyoruz. $\subseteq$
+    tanımını açalım: varsayım, $A$ içindeki bütün !!{element}s aynı zamanda
+    $C$ içinde de !!{element}s olarak bulunduğu anlamına gelir. Bunu yazalım---kanıt
+    boyunca kullanacağımız önemli bir olgudur.
+  \end{quote}
+  $\subseteq$ tanımı gereği $A \subseteq C$ olduğundan, bütün $z$'ler
+  için $z \in A$ ise $z \in C$.
+  \begin{quote}
+    Varsayımda bize verilen bütün tanımları açtık. Artık sonuca
+    geçebiliriz. $A \cup (C \setminus A) = C$ olduğunu göstermek
+    istiyoruz; bu nedenle kanıtı bir önceki örnekteki gibi kurarız: $A
+    \cup (C \setminus A)$'deki her !!{element} için aynı zamanda $C$'de
+    bir !!a{element} bulunduğunu ve tersine, $C$'deki her !!{element} için
+    $A \cup (C \setminus A)$'de bir !!a{element} bulunduğunu gösteririz.
+    Bunu şöyle kısaltabiliriz: $A \cup (C \setminus A) \subseteq C$ ve
+    $C \subseteq A \cup (C \setminus A)$. (Burada bir tanımı açmanın
+    tersini yapıyoruz ama bu, kanıtı biraz daha kolay okunur kılıyor.)
+    Bu bir bağlaşım olduğundan iki kısmı da kanıtlamalıyız. İlk kısmı,
+    yani $A \cup (C \setminus A)$'deki her !!{element} için aynı zamanda
+    $C$'de bir !!a{element} bulunduğunu göstermek için $z \in A \cup (C
+    \setminus A)$ olduğunu varsayarız; burada~$z$ keyfîdir. Sonra $z \in C$ olduğunu
+    gösteririz. $\cup$ tanımı gereği $z \in A$ ya da $z \in C \setminus A$
+    sonucunu $z \in A \cup (C \setminus A)$'dan çıkarabiliriz. Artık
+    bu işleyişe alışmaya başlamış olmalısınız.
+    \end{quote}
+  $A \cup (C \setminus A) = C$, ancak ve ancak $A \cup (C \setminus A)
+  \subseteq C$ ve $C \subseteq A \cup (C \setminus A)$ ise geçerlidir.
+  Önce $A \cup (C \setminus A) \subseteq C$ olduğunu kanıtlayalım. $z
+  \in A \cup (C \setminus A)$ olsun. Öyleyse ya $z \in A$ ya da $z \in
+  (C \setminus A)$.
+  \begin{quote}
+    Bir ayrışıma ulaştık ve buradan $z \in C$ olduğunu kanıtlamak
+    istiyoruz. Bunu durumlara göre kanıt yöntemiyle yaparız.
+  \end{quote}
+  Durum 1: $z \in A$. Bütün $z$'ler için $z \in A$ ise $z \in C$
+  olduğundan, $z \in C$ elde ederiz.
+  \begin{quote}
+    Burada önermenin $A \subseteq C$ hipotezinden çıkan ve daha önce
+    kaydettiğimiz olguyu kullandık. İlk durum tamamlandı; şimdi ikinci
+    duruma, $z \in (C \setminus A)$'ya geçiyoruz. $C \setminus A$'nın
+    iki kümenin \emph{farkını}, yani $C$ içinde !!{element}s olarak bulunup
+    $A$ içinde !!{element}s olarak bulunmayan bütün şeylerin kümesini
+    gösterdiğini hatırlayın. Ancak $C$'de bulunup $A$'da bulunmayan her
+    !!{element}, özellikle $C$'de bulunan bir !!a{element} olur.
+  \end{quote}
+  Durum 2: $z \in (C \setminus A)$. Bu, $z \in C$ ve $z \notin A$
+  demektir. Öyleyse özellikle $z \in C$.
+  \begin{quote}
+    Güzel, ilk yönü kanıtladık. Şimdi ikinci yöne geçelim. Burada $C
+    \subseteq A \cup (C \setminus A)$ olduğunu kanıtlarız. Dolayısıyla
+    $z \in C$ olduğunu varsayıp $z \in A \cup (C \setminus A)$ olduğunu
+    kanıtlarız.
+  \end{quote}
+  Şimdi $z \in C$ olsun. $z \in A$ ya da $z \in C \setminus A$
+  olduğunu göstermek istiyoruz.
+  \begin{quote}
+    $A$ içindeki bütün !!{element}s aynı zamanda $C$ içinde !!{element}s
+    olarak bulunur ve $C \setminus A$, $C$ içinde !!{element}s olarak bulunup $A$'da bulunmayan
+    bütün şeylerin kümesi olduğundan, $z$'nin ya $A$'da ya da $C
+    \setminus A$'da olduğu çıkar. Sonucun neden doğru olduğunu henüz
+    bilmiyorsanız bu biraz belirsiz gelebilir. Onu adım adım kanıtlamak
+    daha iyi olacaktır. Kanıtsız ifade edebileceğimiz basit bir olguyu
+    kullanmak yararlı olur: $z \in A$ ya da $z \notin A$. Buna
+    ``üçüncü hâlin olanaksızlığı ilkesi'' denir: herhangi bir $p$
+    ifadesi için ya $p$ ya da olumsuzlaması doğrudur. (Burada $p$, $z
+    \in A$ ifadesidir.) Bu bir ayrışım olduğundan yine durumlara göre
+    kanıt kullanabiliriz.
+  \end{quote}
+  Ya $z \in A$ ya da $z \notin A$. İlk durumda $z \in A \cup (C
+  \setminus A)$. İkinci durumda $z \in C$ ve $z \notin A$ olduğundan
+  $z \in C \setminus A$. Fakat o zaman $z \in A \cup (C \setminus A)$.
+  \begin{quote}
+    Kanıtımız tamamlandı: $A \cup (C \setminus A) = C$ olduğunu gösterdik.
+  \end{quote}
+\end{proof}
+
+\end{document}

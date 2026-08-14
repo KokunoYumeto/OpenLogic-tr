@@ -1,0 +1,41 @@
+% Part: normal-modal-logic
+% Chapter: axioms-systems
+% Section: duals
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{nml}{prf}{dua}
+
+\olsection{Düal \usetoken{P}{formula}}
+
+\begin{defn}\ollabel{def:duals}
+  Şu !!{formula}s arasında \Ax{T}, \Ax{B}, \Ax{4} ve \Ax{5} yer alır;
+  bunların her birinin aşağıdaki gibi alt indisli bir elmasla gösterilen
+  bir \emph{düali} vardır:
+  \begin{align}
+    \tag{\Ax{T_\Diamond}} p & \lif \Diamond p\\
+    \tag{\Ax{B_\Diamond}} \Diamond\Box p & \lif p\\
+    \tag{\Ax{4_\Diamond}} \Diamond\Diamond p & \lif \Diamond p\\
+    \tag{\Ax{5_\Diamond}} \Diamond\Box p & \lif \Box p
+    \end{align}
+\end{defn}
+
+Yukarıdaki düal !!{formula}s tek tek, karşılık gelen !!{formula} içinde $p$
+yerine $\lnot p$ koyup karşıt-tersini alarak, $\lnot\Box\lnot$ yerine
+$\Diamond$ ve $\lnot\Diamond\lnot$ yerine $\Box$ yazarak elde edilir.
+\Ax{D}, yani $\Box!A\lif\Diamond!A$, bu anlamda kendi düalidir.
+
+\begin{prop}\ollabel{prop:dualsys}
+  \olref[nml][prf][dua]{def:duals} içindeki her !!{formula}~$!A$ için
+  $\Log{K}!A=\Log{K}!A_{\Diamond}$.
+\end{prop}
+\begin{proof}
+  Alıştırma.
+\end{proof}
+\begin{prob}
+  \olref[nml][prf][dua]{prop:dualsys} önermesini ispatlayın.
+\end{prob}
+
+\end{document}

@@ -1,0 +1,93 @@
+% Part: computability
+% Chapter: computability-theory
+% Section: halting-problem
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{cmp}{thy}{hlt}
+\olsection{Durma Problemi}
+
+Kuruluşu gereği evrensel kısmi hesaplanabilir $\fn{Un}(e,x)$ fonksiyonu,
+ancak ve ancak $e$ ile kodlanan fonksiyonun hesabı $x$ girdisinde bir değer
+üretirse tanımlıdır. Bunun böyle olup olmadığına karar verip veremeyeceğimizi
+sormak doğaldır. Gerçekte veremeyiz. Turing makinesi hesaplama modelinde bu,
+belirli bir Turing makinesinin belirli bir girdide durup durmadığının
+hesaplama yoluyla kararlaştırılamadığı anlamına gelir. Bu nedenle aşağıdaki
+teorem ``durma probleminin karar verilemezliği'' diye bilinir. Aşağıda iki
+ispat vereceğiz. İlki önceki tartışmamızın çizgisini sürdürür, ikincisi daha
+doğrudandır.
+
+\begin{thm}
+\ollabel{thm:halting-problem}
+\[
+  h(e,x)=\begin{cases}
+    1 & \text{$\fn{Un}(e,x)$ tanımlıysa}\\
+    0 & \text{aksi durumda}
+  \end{cases}
+\]
+olsun. O zaman $h$ hesaplanabilir değildir.
+\end{thm}
+
+\begin{proof}
+$h$ hesaplanabilir olsun. Bunun evrensel bir hesaplanabilir fonksiyon
+tanımlamamızı sağlayacağını göstereceğiz. Şöyle tanımlayalım:
+\[
+  \fn{Un'}(e,x)=\begin{cases}
+    \fn{Un}(e,x) & \text{$h(e,x)=1$ ise}\\
+    0 & \text{aksi durumda.}
+  \end{cases}
+\]
+Artık $\fn{Un'}(e,x)$ tümel bir fonksiyondur ve $h$ hesaplanabilirse o da
+hesaplanabilirdir. Örneğin $g$ fonksiyonunu ilkel özyinelemeyle
+\begin{align*}
+  g(0,e,x) & \simeq 0\\
+  g(y+1,e,x) & \simeq \fn{Un}(e,x)
+\end{align*}
+olarak, ardından
+\[
+  \fn{Un'}(e,x)\simeq g(h(e,x),e,x)
+\]
+biçiminde tanımlayabiliriz. $\fn{Un'}(e,x)$, $\fn{Un}(e,x)$ tanımlı olduğu
+her yerde onunla aynı olduğundan $\fn{Un'}$, tümel olan kısmi hesaplanabilir
+fonksiyonlar için evrenseldir. Bu, \olref[nou]{thm:no-univ} ile çelişir.
+\end{proof}
+
+\begin{proof}
+$h(e,x)$ hesaplanabilir olsun. $g$ fonksiyonunu
+\[
+  g(x)=\begin{cases}
+    0 & \text{$h(x,x)=0$ ise}\\
+    \fundefined & \text{aksi durumda}
+  \end{cases}
+\]
+olarak tanımlayalım. $g$ kısmi hesaplanabilirdir; örneğin
+$\umin{y}{h(x,x)=0}$ olarak tanımlanabilir. Dolayısıyla bazı $e$ için her
+$x$'te $g(x)\simeq\fn{Un}(e,x)$ olur. $g$, $e$'de tanımlı mıdır? Tanımlıysa
+$g$ tanımı gereği $h(e,e)=0$ olur. $h$ tanımı gereği bu,
+$\fn{Un}(e,e)$ ifadesinin tanımsız olduğu anlamına gelir. Her $x$ için
+$g(x)\simeq\fn{Un}(e,x)$ varsayımımızdan $g(e)$'nin tanımsız olduğu çıkar;
+bu bir çelişkidir. Öte yandan $g(e)$ tanımsızsa $h(e,e)\neq0$, dolayısıyla
+$h(e,e)=1$ olur. Buradan $\fn{Un}(e,e)$ tanımlıdır. Fakat
+$g(x)\simeq\fn{Un}(e,x)$ olduğundan $g(e)$ de tanımlı olurdu. Yine çelişki.
+\end{proof}
+
+\begin{tagblock}{TMs}
+\begin{explain}
+Bu savı Turing makineleri cinsinden anlatabiliriz. Bir Turing makinesi $E$'nin
+betimi ile bir $x$ girdisini alıp $E$'nin $x$ girdisinde durup durmadığına
+karar veren bir $H$ Turing makinesi bulunduğunu varsayalım. O zaman tek bir
+$x$ girdisi alan, indisi $x$ olan $M_x$ makinesinin $x$ girdisinde durup
+durmadığına karar vermek için $H$'yi çalıştıran ve tersini yapan başka bir
+$G$ Turing makinesi kurabilirdik. Başka bir deyişle $H$, $M_x$ makinesinin
+$x$ girdisinde durduğunu bildirirse $G$ sonsuz bir döngüye girer; $H$,
+$M_x$ makinesinin $x$ girdisinde durmadığını bildirirse $G$ durur. $G$ kendi
+indisini girdi olarak aldığında durur mu? Yukarıdaki sav, ancak ve ancak
+durmazsa duracağını gösterir; bu bir çelişkidir. Dolayısıyla böyle bir
+$H$ Turing makinesinin bulunduğu varsayımı yanlıştır.
+\end{explain}
+\end{tagblock}
+
+\end{document}
+

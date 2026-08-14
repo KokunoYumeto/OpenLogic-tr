@@ -1,0 +1,44 @@
+% Part: computability
+% Chapter: computability-theory
+% Section: s-m-n
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{cmp}{thy}{smn}
+\olsection{$s$-$m$-$n$ Teoremi}
+
+\begin{explain}
+Sıradaki teorem, nedeni birazdan açıklığa kavuşacak biçimde
+``$s$-$m$-$n$ teoremi'' diye bilinir. Zor olan, teoremin tam olarak ne
+söylediğini anlamaktır; ifadeyi anladıktan sonra sonuç oldukça açık görünür.
+\end{explain}
+
+\begin{thm}
+\ollabel{thm:s-m-n}
+  Her $n$ ve $m$ doğal sayı çifti için öyle bir ilkel özyinelemeli
+  $s^m_n$ fonksiyonu vardır ki bütün
+  $e,a_0,\dots,a_{m-1},y_0,\dots,y_{n-1}$ dizileri için
+  \[
+    \cfind{s^m_n(e,a_0,\dots,a_{m-1})}[n](y_0,\dots,y_{n-1})\simeq
+    \cfind{e}[m+n](a_0,\dots,a_{m-1},y_0,\dots,y_{n-1})
+  \]
+  olur.
+\end{thm}
+
+\begin{explain}
+$s^m_n$ fonksiyonunu \emph{programlar} üzerinde çalışan bir fonksiyon olarak
+düşünmek yararlıdır. $s^m_n$, $(m+n)$-yerli bir fonksiyon için $e$ programı
+ile sabitlenmiş $a_0,\dots,a_{m-1}$ girdilerini alır ve geriye kalan
+argümanların $n$-yerli fonksiyonu için
+$s^m_n(e,a_0,\dots,a_{m-1})$ programını döndürür.
+\iftag{TMs}{$e$'yi bir Turing makinesinin betimi olarak düşünürseniz
+$s^m_n(e,a_0,\dots,a_{m-1})$, $y_0,\dots,y_{n-1}$ girdisinde
+$a_0,\dots,a_{m-1}$ öğelerini girdi dizisinin önüne ekleyen ve $e$'yi
+çalıştıran Turing makinesidir. Her $s^m_n$ yalnızca uygun Turing makinesinin
+kodunu bulan ilkel özyinelemeli bir fonksiyondur.}{}
+\end{explain}
+
+\end{document}
+

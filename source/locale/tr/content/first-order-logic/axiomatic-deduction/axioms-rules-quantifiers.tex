@@ -1,0 +1,33 @@
+% Part: first-order-logic
+% Chapter: axiomatic-deduction
+% Section: axioms-rules-quantifiers
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{fol}{axd}{qua}
+
+\olsection{Niceleyiciler için Aksiyomlar ve Kurallar}
+
+\begin{defn}[Niceleyici aksiyomları]
+Niceleyicileri yöneten \emph{aksiyomlar}, her kapalı terim~$t$ için
+aşağıdakilerin bütün örnekleridir:
+\begin{align}
+\ollabel{ax:q1} & \lforall[x][!B] \lif !B(t), \\
+\ollabel{ax:q2} & !B(t) \lif \lexists[x][!B].
+\end{align}
+\end{defn}
+
+\begin{defn}[Niceleyici kuralları]
+\item $!B \lif !A(a)$, !!{derivation} içinde daha önce geçiyorsa ve $a$,
+  $\Gamma$, $!B$ ya da~$!A(x)$ içinde geçmiyorsa $!B \lif
+  \lforall[x][!A(x)]$ doğru bir çıkarım adımıdır.
+\item $!A(a) \lif !B$, !!{derivation} içinde daha önce geçiyorsa ve $a$,
+  $\Gamma$, $!B$ ya da~$!A(x)$ içinde geçmiyorsa $\lexists[x][!A(x)] \lif
+  !B$ doğru bir çıkarım adımıdır.
+\end{defn}
+
+Bu iki kuraldan herhangi birini ``\QR'' ile kısaltacağız.
+
+\end{document}

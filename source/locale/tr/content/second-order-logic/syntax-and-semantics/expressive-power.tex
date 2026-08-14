@@ -1,0 +1,96 @@
+% Part: second-order-logic
+% Chapter: syntax-and-semantics
+% Section: expressive-power
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sol}{syn}{exp}
+\olsection{İfade Gücü}
+
+\begin{explain}
+İkinci dereceden değişkenler üzerindeki niceleme, dilin ifade gücünü birinci
+dereceden mantığın diline göre son derece artırır. İkinci dereceden varlık
+nicelemesi, belirli özellikleri taşıyan fonksiyon ya da bağıntıların var
+olduğunu söylememizi sağlar. Birinci dereceden mantıkta bunu yapmanın tek
+yolu, bu amaç için mantıksal olmayan bir simge (yani !!a{function} ya da
+bir !!{predicate}) belirlemektir. İkinci dereceden tümel niceleme, evrenin
+bütün alt kümelerinin, onun üzerindeki bütün bağıntıların ya da !!{domain}
+üzerinden yine !!{domain} üzerine bütün fonksiyonların bir
+özelliği taşıdığını söylememizi sağlar. Birinci dereceden mantıkta yalnızca
+dilin mantıksal olmayan simgelerinden birine atanan alt kümelerin,
+bağıntıların ya da fonksiyonların bir özelliği taşıdığını söyleyebiliriz.
+Üstelik bir özelliği taşıyan alt kümelerin, bağıntıların veya fonksiyonların
+var olduğunu ya da bunların hepsinin o özelliği taşıdığını söylerken,
+özelliğin kendisini belirlemek için de ikinci dereceden niceleme
+kullanabiliriz. Böylece birinci dereceden mantıkta tanımlanamayan bağıntıları
+tanımlayabilir ve evrenin birinci dereceden mantıkta ifade edilemeyen
+özelliklerini ifade edebiliriz.
+\end{explain}
+
+\begin{defn}
+$\Struct{M}$, bir~$\Lang{L}$ dili için !!a{structure} olsun.
+$R \subseteq \Domain{M}^2$ bağıntısı, yalnızca $x$ ve~$y$ değişkenleri
+serbest olan öyle bir !!{formula}~$!A_R(x,y)$ varsa~$\Lang{L}$ içinde
+\emph{tanımlanabilir}dir ki $R(a,b)$'nin geçerli olması (yani
+$\tuple{a,b} \in R$), $s(x)=a$ ve $s(y)=b$ koşulları altında ancak ve ancak
+$\Sat{M}{!A_R(x,y)}[s]$ olduğunda gerçekleşsin.
+\end{defn}
+
+\begin{ex}
+Birinci dereceden mantıkta özdeşlik bağıntısı~$\Id{\Domain{M}}$'yi
+(yani $\Setabs{\tuple{a,a}}{a \in \Domain{M}}$ bağıntısını)
+$\eq[x][y]$ formülüyle tanımlayabiliriz. İkinci dereceden mantıkta bu
+bağıntıyı \emph{$\eq$ olmadan} tanımlayabiliriz. Çünkü $a$ ile $b$,
+~$\Domain{M}$'nin aynı !!{element} öğesiyse~$\Domain{M}$'nin aynı alt
+kümelerinin !!{element}s öğeleridir (zira kümeler !!{element}s öğeleriyle
+belirlenir). Tersine, $a$ ile $b$ farklıysa aynı alt kümelerin !!{element}s
+öğeleri değildir: örneğin $a \neq b$ ise $a \in \{a\}$, fakat
+$b \notin \{a\}$ olur. Dolayısıyla ``~$\Domain{M}$'nin aynı alt
+kümelerinin !!{element}s öğeleri olma'', $a$ ile $b$ için ancak ve ancak
+$a=b$ olduğunda geçerli olan bir bağıntıdır. Bütün~$\Domain{M}$ alt kümeleri
+üzerinde niceleme yapabildiğimiz için bu bağıntı ikinci dereceden mantıkta
+ifade edilebilir. Öyleyse aşağıdaki !!{formula}, $\Id{\Domain{M}}$'yi
+tanımlar:
+\[
+\lforall[X][(X(x) \liff X(y))]
+\]
+\end{ex}
+
+\begin{prob}
+$\lforall[X][(X(x) \lif X(y))]$ ifadesinin (dikkat: $\liff$ değil,
+~$\lif$!) $\Id{\Domain{M}}$'yi tanımladığını gösterin.
+\end{prob}
+
+\begin{ex}
+$R$, ikili bir !!{predicate} ise $\Assign{R}{M}$,~$\Domain{M}$ üzerinde
+ikili bir bağıntıdır. Biraz kafa karıştırıcı olsa da hem !!{predicate}
+olarak~$R$ için hem de bizzat $\Assign{R}{M}$ bağıntısı için $R$ harfini
+kullanacağız. $R$'nin \emph{geçişli kapanışı}~$R^*$, bazı
+$c_1$, \dots, $c_k$ için $R(a,c_1)$, $R(c_1,c_2)$, \dots, $R(c_k,b)$
+olduğunda ve yalnızca o zaman $a$ ile $b$ arasında geçerli olan bağıntıdır.
+Bu, $k=0$ durumunu da içerir; yani $R(a,b)$ ise $R^*(a,b)$ de olur.
+Dolayısıyla $R \subseteq R^*$'dır. Aslında $R^*$,~$R$'yi içeren ve geçişli
+olan en küçük bağıntıdır. İkinci dereceden mantıkta $X$'in~$R$'yi içeren
+geçişli bir bağıntı olduğunu şöyle söyleyebiliriz:
+\begin{multline*}
+  !B_R(X) \ident \lforall[x][\lforall[y][(R(x,y) \lif X(x, y))]] \land {}\\
+\lforall[x][\lforall[y][\lforall[z][((X(x,y) \land X(y,z)) \lif X(x,
+      z))]]].
+\end{multline*}
+İlk bileşen $R \subseteq X$ olduğunu, ikincisi de $X$'in geçişli olduğunu
+söyler.
+
+$X$'in bu türden en küçük bağıntı olduğunu söylemek, kendisinin~$R$'yi
+içeren ve geçişli olan her bağıntıda içerildiğini söylemektir. Böylece
+~$R$'nin geçişli kapanışını şu !!{formula} ile tanımlayabiliriz:
+\[
+R^*(X) \ident !B_R(X) \land \lforall[Y][(!B_R(Y) \lif
+  \lforall[x][\lforall[y][(X(x, y) \lif Y(x,y))]])].
+\]
+$\Sat{M}{R^*(X)}[s]$ ancak ve ancak $s(X)=R^*$ ise geçerlidir.
+~$R$'nin geçişli kapanışı birinci dereceden mantıkta ifade edilemez.
+\end{ex}
+
+\end{document}

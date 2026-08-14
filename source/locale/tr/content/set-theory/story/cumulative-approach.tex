@@ -1,0 +1,86 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sth}{story}{approach}
+\olsection{Birikimli-Yinelemeli Yaklaşım}
+
+Kümeleri evrelere nasıl ayıracağımızı biraz daha ayrıntılı şöyle ifade
+edebiliriz:
+\begin{quote}
+  Kümeler \emph{evreler} hâlinde oluşturulur. Her $S$ evresi için $S$'den
+  \emph{önce} gelen belirli evreler vardır. $S$ evresinde, $S$'den önceki
+  evrelerde oluşturulmuş kümelerden meydana gelen her koleksiyon bir küme
+  hâline getirilir. Evrelerde oluşturulan kümeler dışında hiçbir küme yoktur.
+  \citep[p.~323]{Shoenfield:AST}
+\end{quote}
+Bu, \emph{birikimli-yinelemeli küme anlayışının} bir taslağıdır.
+\olref[sth][][]{part} içinde sunduğumuz biçimsel küme teorisinin temelini
+oluşturacaktır.
+
+Bunu biraz daha ayrıntılı inceleyelim. Shoenfield'ın süreci betimleyişine
+göre her evrede, önceki evrelerden elimizde bulunan kümelerden yeni kümeler
+oluştururuz. Dolayısıyla başlangıç evresinde, yani $0$ evresinde daha
+\emph{önceki} hiçbir evre ve bu yüzden önceki evrelerden elimizde bulunan
+hiçbir küme yoktur.\footnote{Neden bir ilk evrenin \emph{var olduğunu}
+varsayalım? \olref[z][story]{sec} içindeki $\stagesord{}$ dipnotuna bakın.}
+Bu nedenle yalnızca bir küme oluştururuz: hiç !!{element}s{}ı olmayan
+$\emptyset$. $1$ evresinde önceki evrelerden yalnızca bir küme elimizdedir;
+bu nedenle tek yeni küme $\{\emptyset\}$'tir. $2$ evresinde önceki evrelerden
+iki küme elimizdedir ve iki yeni küme, $\{\{\emptyset\}\}$ ile
+$\{\emptyset,\{\emptyset\}\}$'i oluştururuz. $3$ evresinde önceki
+evrelerden dört küme vardır; dolayısıyla on iki yeni küme oluştururuz
+\ldots{} Böylece kümelerin birikimli-yinelemeli resmi, sayılar evreleri
+göstermek üzere, biraz şöyle görünür:
+\begin{center}
+  \begin{tikzpicture}[scale=0.6]
+  \tikzset{cut_here/.style={densely dotted}}
+  \draw (-4,6) -- (-1, 0)-- (2,6);
+  \draw[cut_here] (-5,8)--(-4,6);
+  \draw[cut_here] (2,6)--(3,8);
+  \draw(-1.5, 1)--(-0.5, 1);
+  \draw(-2, 2)--(0, 2);
+  \draw(-2.5, 3)--(0.5,3);
+  \draw(-3, 4)--(1, 4);
+  \draw(-3.5, 5)--(1.5, 5);
+  \draw(-4, 6)--(2, 6);
+  \node[label] at (0, 0) {\small 0};
+  \node[label] at (0.5, 1) {\small 1};
+  \node[label] at (1, 2) {\small 2};
+  \node[label] at (1.5, 3) {\small 3};
+  \node[label] at (2, 4) {\small 4};
+  \node[label] at (2.5, 5) {\small 5};
+  \node[label] at (3, 6) {\small 6};
+  \end{tikzpicture}
+\end{center}
+Peki bu anlatıyı neden benimsemeliyiz?
+
+Bir neden, bunun hoş ve ele alınabilir bir anlatı olmasıdır. En açık
+anlatının, yani Naif Küme Oluşturma'nın çöküşünden sonra hoş bir şeye
+ihtiyacımız vardır.
+
+Fakat anlatı \emph{yalnızca} hoş değildir. Buna dayalı her küme teorisinin
+\emph{tutarlı} olacağına inanmak için iyi bir nedenimiz vardır. Şöyle:
+
+Birikimli-yinelemeli küme anlayışında kümeleri evrelerde oluştururuz ve
+!!{element}s{}ı daha \emph{önceden} mevcut nesneler olmalıdır. Dolayısıyla her
+$S$ evresi için şu kümeyi oluşturabiliriz:
+\[
+  R_S=\Setabs{x}{x\notin x\text{ ve $x$, $S$'den önce mevcuttu}}
+\]
+Russell Paradoksu'nun ispatındaki akıl yürütme şimdi $R_S$'nin kendisinin
+$S$ evresinden önce mevcut olmadığını gösterir. Bu bir çelişki değildir.
+Üstelik birikimli-yinelemeli küme anlayışını benimsiyorsak Russell kümesinin
+kendisini oluşturabilmeyi zaten \emph{beklememeliyiz}. Çünkü bu, ``ileride
+herhangi bir zamanda mevcut olacak'' ve kendisinin elemanı olmayan bütün
+kümelerin kümesi olurdu. Kısacası Russell kümesini (kanıtlanabilir biçimde)
+oluşturamamamız birikimli-yinelemeli anlatı açısından \emph{şaşırtıcı}
+değildir; tam da \emph{öngöreceğimiz} şeydir.
+
+%In one sense, then, the cumulative-iterative conception of set yields a response to Russell's Paradox which is rather like the \emph{predicativist}'s response. After all, the predicativist said that the collection of all non-self-membered sets$_n$ is a set$_{n+1}$, and this set$_n$ will not be self-membered. (Indeed, most predicativists will treat it as \emph{ungrammatical} to try to ask whether a set is self-membered.)
+%
+%But there is an important difference between the cumulative-iterative approach and the predicativist approach: the cumulative-iterative approach treats all of our entities as being \emph{of the same kind}. The predicativist will presumably have an empty set$_0$ (i.e., a set$_0$ with no !!{element}s), and an empty set$_1$ (i.e., a set$_1$ with no !!{element}s), and these will be \emph{different entities}. But on the cumulative-iterative approach, there is just one empty set, $\emptyset$, and it will be available at every stage of the hierarchy.
+
+%Indeed, the Axiom of Extensionality, stated at the start of this chapter, will hold true of the elements in this hierarchy (so that there can be \emph{only one} ``empty'' set). But I do not intend to use the cumulative-iterative conception to justify Extensionality (see \cite{Boolos1971}). Again: I suggest that we should accept Extensionality, just because we are interested in extensional collections.
+
+\end{document}

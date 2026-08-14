@@ -1,0 +1,59 @@
+% Part: incompleteness
+% Chapter: representability-in-q
+% Section: prim-rec
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{inc}{req}{pri}
+\olsection{İlkel Özyinelemenin Benzetilmesi}
+
+Artık beta fonksiyonunu kullanarak ilkel özyinelemeyle tanımın düzenli
+minimizasyonla ``benzetilebildiğini'' gösterebiliriz. $f(\vec x)$ ve
+$g(\vec x,y,z)$ fonksiyonlarımız olduğunu varsayın. O zaman $f$ ile $g$'den
+ilkel özyinelemeyle tanımlanan $h(x,\vec z)$ fonksiyonu şöyledir:
+\begin{align*}
+h(\vec x, 0) & =  f(\vec x) \\
+h(\vec x, y+1) & =  g(\vec x, y, h(\vec x, y)).
+\end{align*}
+$h$'nin yalnızca bileşke ve düzenli minimizasyon kullanılarak $f$ ile
+$g$'den, temel fonksiyonlardan ve bunlardan bileşke ile düzenli minimizasyon
+kullanılarak tanımlanan fonksiyonlardan ($\beta$ gibi) tanımlanabildiğini
+göstermeliyiz.
+
+\begin{lem}
+\ollabel{lem:prim-rec}
+$h$, $f$ ile $g$'den ilkel özyineleme kullanılarak tanımlanabiliyorsa;
+$f$, $g$, $\Zero$, $\Succ$, $\Proj{n}{i}$, $\Add$, $\Mult$ ve $\Char{=}$
+fonksiyonlarından bileşke ve düzenli minimizasyon kullanılarak da
+tanımlanabilir.
+\end{lem}
+
+\begin{proof}
+Önce en küçük $d$ sayısını döndüren yardımcı bir $\hat h(\vec x,y)$
+fonksiyonu tanımlayın; bu $d$, aşağıdakileri sağlayan bir diziyi kodlasın:
+\begin{enumerate}
+\item $(d)_0 = f(\vec x)$ ve
+\item her $i<y$ için $(d)_{i+1}=g(\vec x,i,(d)_i)$.
+\end{enumerate}
+Burada artık $(d)_i$, $\beta(d,i)$'nin kısaltmasıdır. Başka bir deyişle
+$\hat h$, $\tuple{h(\vec x,0),h(\vec x,1),\dots,h(\vec x,y)}$ dizisini
+döndürür. $\hat h$'yi şöyle yazabiliriz:
+\[
+\hat h(\vec x, y) = \umin{d}{(\beta(d,0) = f(\vec x) \land \bforall{i <
+  y}{\beta(d,i+1) = g(\vec x, i,\beta(d,i)})}.
+\]
+Dikkat: burada ilkel özyineleme gerekmez; yalnızca minimizasyon kullanılır.
+Minimize ettiğimiz fonksiyon, \olref[bet]{lem:beta} beta fonksiyonu lemması
+uyarınca düzenlidir.
+
+Fakat artık
+\[
+h(\vec x, y) = \beta(\hat h(\vec x, y), y),
+\]
+olur; dolayısıyla $h$ yalnızca bileşke ve düzenli minimizasyon kullanılarak
+temel fonksiyonlardan tanımlanabilir.
+\end{proof}
+
+\end{document}

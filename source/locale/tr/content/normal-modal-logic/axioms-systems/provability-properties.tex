@@ -1,0 +1,53 @@
+% Part: normal-modal-logic
+% Chapter: axioms-systems
+% Section: provability-properties
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{nml}{prf}{prp}
+
+\olsection{\usetoken{S}{derivability} Özellikleri}
+
+\begin{prop}\ollabel{prop:derivabilityfacts}
+  $\Sigma$ bir modal sistem, $\Gamma$ da bir modal !!{formula}s kümesi olsun.
+  Aşağıdaki özellikler geçerlidir:
+  \begin{enumerate}
+  \item\ollabel{prop:derivabilityfacts-monotonicity} \emph{Monotonluk}:
+    $\Gamma\Proves[\Sigma]!A$ ve $\Gamma\subseteq\Delta$ ise
+    $\Delta\Proves[\Sigma]!A$;
+  \item\ollabel{prop:derivabilityfacts-reflexivity}
+    \emph{Yansıma}: $!A\in\Gamma$ ise
+    $\Gamma\Proves[\Sigma]!A$;
+  \item\ollabel{prop:derivabilityfacts-cut} \emph{Kesme}:
+    $\Gamma\Proves[\Sigma]!A$ ve
+    $\Delta\cup\{!A\}\Proves[\Sigma]!B$ ise
+    $\Gamma\cup\Delta\Proves[\Sigma]!B$;
+  \item\ollabel{prop:derivabilityfacts-deduction} \emph{Tümdengelim teoremi}:
+    $\Gamma\cup\{!B\}\Proves[\Sigma]!A$ ancak ve ancak
+    $\Gamma\Proves[\Sigma]!B\lif !A$;
+  \item \ollabel{prop:derivabilityfacts-ruleT} \emph{T Kuralı}:
+    % [tr source emendation] Upstream accidentally comments out the visible
+    % “Rule T: If” lead-in after the label; Turkish restores the rule heading.
+    $\Gamma\Proves[\Sigma]!A_1$, \dots, $\Gamma\Proves[\Sigma]!A_n$ ve
+    $!A_1\to(!A_2\lif\cdots(!A_n\lif !B)\cdots)$ bir totoloji örneğiyse
+    $\Gamma\Proves[\Sigma]!B$.
+  \end{enumerate}
+\end{prop}
+
+İspat kolay bir alıştırmadır.
+\olref{prop:derivabilityfacts-ruleT},
+\olref{prop:derivabilityfacts} önermesinin ilgili kısmıdır ve örneğin
+$\Gamma\Proves[\Sigma]!A\lor !B$ ile $\Gamma\Proves[\Sigma]\lnot !A$
+olmasından $\Gamma\Proves[\Sigma]!B$ sonucunu verir. Ayrıca bundan sonra
+$\Gamma\cup\{!A\}\Proves[\Sigma]!B$ yerine
+$\Gamma,!A\Proves[\Sigma]!B$ yazacağız.
+
+\begin{defn}
+  Bir $\Gamma$ kümesi, $\Gamma\Proves[\Sigma]!A$ olmasından
+  $!A\in\Gamma$ çıkıyorsa bir $\Sigma$ sistemine göre
+  \emph{türetim altında kapalıdır}.
+\end{defn}
+
+\end{document}

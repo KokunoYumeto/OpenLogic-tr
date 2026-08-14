@@ -1,0 +1,76 @@
+% Part: computability
+% Chapter: recursive-functions
+% Section: trees
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{cmp}{rec}{tre}
+\olsection{Ağaçlar}
+
+Dizileri sayılarla, diziler üzerindeki özellik ve işlemleri de kodlar
+üzerindeki ilkel özyinelemeli bağıntı ve fonksiyonlarla temsil edebildiğimiz
+gibi, bazen ağaçları da doğal sayılar olarak temsil etmek yararlıdır. Bunun
+için dizileri ve kodlarını kullanacağız. Bir ağaç, tek bir düğümden (belki
+etiketli) ya da belirli sayıda alt ağaca bağlı bir düğümden (yine belki
+etiketli) oluşabilir. Bu düğüme ağacın \emph{kökü}, bağlı olduğu alt ağaçlara
+ise ağacın \emph{dolaysız alt ağaçları} denir.
+
+Ağaçları özyinelemeli olarak $\tuple{k,d_1,\dots,d_k}$ dizisiyle kodlarız;
+burada $k$ dolaysız alt ağaçların sayısı, $d_1,\dots,d_k$ ise bu alt ağaçların
+kodlarıdır. Düğümlerin etiketleri varsa dolaysız alt ağaçlardan sonra
+eklenebilir. Böylece yalnızca $l$ etiketli tek düğümden oluşan ağaç
+$\tuple{0,l}$ ile; $l_1$ etiketli bir kökün $l_2$ ve $l_3$ etiketli iki tek
+düğüme bağlandığı ağaç ise
+$\tuple{2,\tuple{0,l_2},\tuple{0,l_3},l_1}$ ile kodlanır.
+
+\begin{prop}
+  \ollabel{prop:subtreeseq}
+  Kodu $t$ olan ağacın bütün alt ağaçlarının kodlarını eleman olarak içeren
+  dizinin kodunu döndüren $\fn{SubtreeSeq}(t)$ fonksiyonu ilkel
+  özyinelemelidir.
+\end{prop}
+
+\begin{proof}
+  Önce $\fn{ISubtrees}(t)=\fn{subseq}(t,1,(t)_0)$ fonksiyonunun ilkel
+  özyinelemeli olduğuna ve $t$ ağacının dolaysız alt ağaçlarının kodlarını
+  döndürdüğüne dikkat edin. Şimdi kökten $n$ düğüm uzakta bulunan bütün alt
+  ağaçların dizisini hesaplayan yardımcı bir $\fn{hSubtreeSeq}(t,n)$
+  fonksiyonu tanımlayabiliriz. Kökten $0$ düğüm uzakta bulunan, başka bir
+  deyişle $t$'nin kökünde başlayan alt ağaçlar dizisi yalnızca $t$'den
+  oluşur. $t$'nin $(n+1)$. düzeydeki bütün alt ağaçlarının dizisini elde
+  etmek için $n$. düzeydeki alt ağaçların dizisini, bunların bütün dolaysız
+  alt ağaçlarından oluşan diziyle art arda birleştiririz. Bunların tümünün
+  listesini elde etmek için şu gözlemi kullanın: $f(x)$ dizi kodları döndüren
+  ilkel özyinelemeli bir fonksiyonsa
+  $g_f(s,k)=f((s)_0)\concat\dots\concat f((s)_k)$ de ilkel
+  özyinelemelidir:
+  \begin{align*}
+    g(s,0) & = f((s)_0)\\
+    g(s,k+1) & = g(s,k)\concat f((s)_{k+1}).
+  \end{align*}
+  Örneğin $s$ bir ağaç dizisiyse
+  $h(s)=g_{\fn{ISubtrees}}(s,\len{s})$, $s$ elemanlarının dolaysız alt
+  ağaçları dizisini verir. Bunu kullanarak $\fn{hSubtreeSeq}$ fonksiyonunu
+  şöyle tanımlarız:
+  \begin{align*}
+    \fn{hSubtreeSeq}(t,0) & = \tuple{t}\\
+    \fn{hSubtreeSeq}(t,n+1) & =
+      \fn{hSubtreeSeq}(t,n)\concat h(\fn{hSubtreeSeq}(t,n)).
+  \end{align*}
+  Kodu $t$ olan bir ağaçtaki en büyük alt ağaç düzeyi, yani kökle bir yaprak
+  düğüm arasındaki en büyük uzaklık $t$ koduyla sınırlıdır. Dolayısıyla kodu
+  $t$ olan ağacın bütün alt ağaçlarının kodları dizisi
+  $\fn{hSubtreeSeq}(t,t)$ ile verilir.
+\end{proof}
+
+\begin{prob}
+  \olref[cmp][rec][tre]{prop:subtreeseq} ispatındaki
+  $\fn{hSubtreeSeq}$ tanımı genel olarak tekrarlar içerir. Bir alt ağacın
+  kodunun sonuç listesindeki yalnızca bir kez geçmesini güvenceye alan
+  alternatif bir tanım verin.
+\end{prob}
+
+\end{document}
+

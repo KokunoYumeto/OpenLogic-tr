@@ -1,0 +1,321 @@
+% Part: first-order-logic
+% Chapter: axiomatic-deduction
+% Section: provability
+
+% Tamlık bölümündeki maksimal tutarlı kümeler için gereken
+% ispatlanabilirlik özellikleri.
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[tr]{fol}{axd}{prv}}
+      {\olfileid[tr]{pl}{axd}{prv}}
+
+\olsection{\usetoken{S}{derivability} Özellikleri}
+
+\begin{prop}[Tekdüzelik] $\Gamma \subseteq \Delta$ ve
+$\Gamma \Proves !A$ ise $\Delta \Proves !A$ da olur. \end{prop}
+
+\begin{proof} Her sonlu $\Gamma_0 \subseteq \Gamma$, $\Delta$'nın da sonlu
+bir altkümesidir; dolayısıyla $\Gamma_0 \Proves !A$ için !!a{derivation},
+$\Delta \Proves !A$ olduğunu da gösterir. \end{proof}
+
+\begin{prop}\ollabel{prop:provability} $\Gamma \Proves !A$ ancak ve ancak
+$\Gamma\cup \{\lnot!A \}$ tutarsızdır. \end{prop}
+
+\begin{prop} \begin{enumerate}
+\item \ollabel{prop:provability-contr} $\Gamma \Proves !A$ ve
+$\Gamma \cup \{ !A\} \Proves \lfalse$ ise $\Gamma$ tutarsızdır.
+
+\item \ollabel{prop:provability-lnot} $\Gamma \cup \{!A\}
+\Proves \lfalse$ ise $\Gamma \Proves \lnot !A$.
+
+\item \ollabel{prop:provability-exhaustive} $\Gamma \cup \{!A\}
+\Proves \lfalse$ ve $\Gamma \cup \{\lnot !A\} \Proves
+\lfalse$ ise $\Gamma \Proves \lfalse$.
+
+\tagitem{prvOr}{\ollabel{prop:provability-lor-left}
+$\Gamma \cup \{!A\} \Proves \lfalse$ ve $\Gamma \cup \{!B\}
+\Proves \lfalse$ ise $\Gamma \cup \{!A \lor !B\} \Proves \lfalse$.}{}
+
+\tagitem{prvOr}{\ollabel{prop:provability-lor-right}
+$\Gamma \Proves !A$ ya da $\Gamma \Proves !B$ ise
+$\Gamma \Proves !A \lor !B$.}{}
+
+\tagitem{prvAnd}{\ollabel{prop:provability-land-left}
+$\Gamma \Proves !A \land !B$ ise $\Gamma \Proves !A$ ve
+$\Gamma \Proves !B$.}{}
+
+\tagitem{prvAnd}{\ollabel{prop:provability-land-right}
+$\Gamma \Proves !A$ ve $\Gamma \Proves !B$ ise
+$\Gamma \Proves !A \land !B$.}{}
+
+\tagitem{prvIf}{\ollabel{prop:provability-mp}
+$\Gamma \Proves !A$ ve $\Gamma \Proves !A \lif !B$ ise
+$\Gamma \Proves !B$.}{}
+
+\tagitem{prvIf}{\ollabel{prop:provability-lif}
+$\Gamma \Proves \lnot !A$ ya da $\Gamma \Proves !B$ ise
+$\Gamma \Proves !A \lif !B$.}{} \end{enumerate} \end{prop}
+
+\begin{proof}
+\begin{enumerate}
+\item Sonlu $\Gamma_0,\Gamma_1\subseteq\Gamma$ için
+$\Gamma_0 \cup \{!A\} \Proves \lfalse$ ile
+$\Gamma_1 \Proves !A$ olduğunu varsayın.
+
+\begin{derivation}
+1. & $\Gamma_0 \cup \{!A\} \Proves \lfalse$ & varsayım \\
+2. & $\Gamma_1 \Proves !A$ & varsayım\\
+3. & $\Gamma_0 \cup \Gamma_1 \Proves \lfalse$ & kesme \\
+\end{derivation}
+
+$\Gamma_0 \subseteq \Gamma$ ve $\Gamma_1 \subseteq \Gamma$ olduğundan
+$\Gamma_0 \cup \Gamma_1 \subseteq \Gamma$; dolayısıyla
+$\Gamma \Proves \lfalse$.
+
+\item Sonlu bir $\Gamma_0\subseteq\Gamma$ için
+$\Gamma_0 \cup\{!A\} \Proves \lfalse$ olduğunu varsayın.
+
+\begin{derivation}
+1. & $\Gamma_0 \cup\{!A\} \Proves \lfalse$ & varsayım \\
+2. & $\Gamma_0 \Proves !A \lif \lfalse$ & Tümdengelim Teoremi\\
+3. & $\Gamma_0 \Proves \lnot !A$ & $\lnot !A$ tanımı \\
+\end{derivation}
+
+Tekdüzelik uyarınca $\Gamma \Proves \lnot !A$.
+
+\item Sonlu $\Gamma_0,\Gamma_1\subseteq\Gamma$ için
+$\Gamma_0 \cup \{ !A \} \Proves \lfalse$ ve
+$\Gamma_1 \cup \{\lnot !A \} \Proves \lfalse$ olduğunu varsayın.
+
+\begin{derivation}
+1. & $\Gamma_0 \cup\{!A\} \Proves \lfalse$ & varsayım \\
+2. & $\Gamma_0 \Proves !A \lif \lfalse$ & Tümdengelim Teoremi \\
+3. & $\Gamma_1 \cup \{\lnot !A \} \Proves \lfalse$ & varsayım\\
+4. & $\Gamma_0 \Proves ( !A \lif \lfalse) \lif \lnot !A$ & Ax0\\
+5. & $\Gamma_0 \Proves \lnot !A$ & MP 2, 4\\
+6. & $\Gamma_0 \cup \Gamma_1 \Proves \lfalse$ & Kesme 3, 5 \\
+\end{derivation}
+
+$\Gamma_0 \cup \Gamma_1 \subseteq \Gamma$ olduğundan
+$\Gamma \Proves \lfalse$.
+
+% prop:provability-lor-left
+\tagitem{defOr}{}{
+\iftag{probOr}{Alıştırma.}{Alıştırma.}}
+
+% prop:provability-lor-right
+\tagitem{defOr}{}{ \iftag{probOr}{Alıştırma.}{
+$\Gamma_0 \Proves !A$ olduğunu varsayın.
+
+\begin{derivation}
+1. & $\Gamma_0 \Proves !A$ & varsayım \\
+2. & $\Gamma_0 \Proves !A \lif (!A \lor !B)$ & Ax0\\
+3. & $\Gamma_0 \Proves !A \lor !B$ & MP 1, 2 \\
+\end{derivation}
+
+Dolayısıyla $\Gamma \Proves !A \lor !B$. $\Gamma \Proves !B$ durumu da
+benzerdir.}}
+
+% prop:provability-land-left
+\tagitem{defAnd}{}{ \iftag{probAnd}{Alıştırma}{
+$\Gamma_0 \Proves !A \land !B$ olduğunu varsayın.
+
+\begin{derivation}
+1. & $\Gamma_0 \Proves !A \land !B$ & varsayım \\
+2. & $\Gamma_0 \Proves (!A\land !B) \lif !A $ & Ax0\\
+3. & $\Gamma_0 \Proves !A$ & MP 1, 2 \\
+\end{derivation}
+
+O halde $\Gamma \Proves !A$. Benzer bir !!{derivation},
+$\Gamma \Proves !B$ olduğunu gösterir.}}
+
+% prop:provability-land-right
+\tagitem{defAnd}{}{\iftag{probAnd}{Alıştırma.}{Alıştırma.}}
+
+% prop:provability-mp
+\tagitem{defIf}{}{ \iftag{probIf}{Alıştırma.}{
+$\Gamma_0 \Proves !A$ ve $\Gamma_1 \Proves !A \lif !B$ olsun.
+
+\begin{derivation}
+1. & $\Gamma_0 \Proves !A$ & varsayım \\
+2. & $\Gamma_1 \Proves !A \lif !B $ & varsayım\\
+3. & $\Gamma_0\cup\Gamma_1 \Proves !B$ & MP 1, 2\\
+\end{derivation}
+
+$\Gamma_0 \cup \Gamma_1 \subseteq \Gamma$ olduğundan
+$\Gamma \Proves !B$.}}
+
+% prop:provability-lif
+\tagitem{defIf}{}{\iftag{probIf}{Alıştırma.}{Önce
+$\Gamma \Proves \lnot !A$ olsun.
+
+\begin{derivation}
+1. & $\Gamma_0 \Proves \lnot !A$ & varsayım \\
+2. & $\Gamma_0 \Proves \lnot !A \lif (!A \lif !B) $ & Ax0\\
+3. & $\Gamma_0 \Proves !A \lif !B$ & MP 1, 2\\
+\end{derivation}
+
+$\Gamma \Proves !B$ durumunun ispatı benzerdir:
+
+\begin{derivation}
+1. & $\Gamma_0 \Proves !B$ & varsayım \\
+2. & $\Gamma_0 \Proves !B \lif (!A \lif !B) $ & Ax0\\
+3. & $\Gamma_0 \Proves !A \lif !B$ & MP 1, 2\\
+\end{derivation}}}
+
+\end{enumerate}
+\end{proof}
+
+\begin{probtag}{probOr,probAnd,probIf}
+\olref[fol][axd][prv]{prop:provability} önermesinin ispatını tamamlayın.
+\end{probtag}
+
+\begin{thm}[Genelleme] \ollabel{thm:Generalization}
+$\Gamma \Proves !A$ ve $x$, $\Gamma$ içindeki hiçbir !!{formula}{}de serbest
+değilse $\Gamma \Proves \lforall[x][!A]$.
+\end{thm}
+
+\begin{proof} $\mathsf{Thm}_\Gamma$ üzerinde tümevarımla: $!A$ bir aksiyomsa
+$\lforall[x][!A]$ da aksiyomdur. $!A\in\Gamma$ ise $x$, $!A$ içinde serbest
+değildir; dolayısıyla $!A \lif \lforall[x][!A]$ bir aksiyomdur
+(\textbf{Ax3}) ve MP ile $\Gamma \Proves \lforall[x][!A]$. Şimdi $!A$'nın,
+$\Gamma \Proves !B$ ve $\Gamma \Proves !B \lif !A$ olduğu için MP ile
+çıktığını varsayın. Tümevarım varsayımına göre
+$\Gamma \Proves \lforall[x][!B]$ ve
+$\Gamma \Proves \lforall[x][(!B \lif !A)]$. \textbf{Ax2} uyarınca ayrıca
+\[
+\Gamma \Proves \lforall[x][(!B \lif !A)] \lif
+(\lforall[x][!B] \lif \lforall[x][!A]);
+\]
+MP'nin iki uygulaması istendiği gibi
+$\Gamma \Proves \lforall[x][!A]$ verir. \end{proof}
+
+\begin{thm}\ollabel{thm:WeakGen} (\emph{Sabitler Üzerinde Zayıf Genelleme})
+$\Gamma \Proves !A$ ve $c$, $\Gamma$ içinde bulunmayan !!a{constant} ise
+$!A$ içinde bulunmayan bir $x$ değişkeni için
+$\Gamma \Proves \lforall[x][\Subst{!A}{x}{c}]$ ve ispat $c$ içermez.
+\end{thm}
+
+\begin{proof} $!A_1,\ldots,!A_n$, $\Gamma$'dan $!A$'nın bir ispatı ve
+$!A=!A_n$ olsun. $!A_1,\ldots,!A_n$ içinde bulunmayan bir $x$ değişkeni seçip
+şu yeni diziyi ele alın:
+$\Subst{!A_1}{x}{c},\ldots,\Subst{!A_n}{x}{c}$. Bu, $\Gamma$'dan
+$\Subst{!A}{x}{c}$'nin bir ispatıdır. Gerçekten her $i=1,\ldots,n$ için:
+\begin{itemize}
+\item $!A_i$ bir aksiyomsa $\Subst{!A_i}{x}{c}$ de aksiyomdur;
+\item $!A_i \in \Gamma$ ise $c$, $\Gamma$ içinde bulunmadığından
+$\Subst{!A_i}{x}{c} = !A_i \in \Gamma$;
+\item $!A_i$, $!A_j$ ile $!A_j \lif !A_i$'dan elde edilmişse
+$\Subst{!A_i}{x}{c}$, $\Subst{!A_j}{x}{c}$ ile
+$\Subst{(!A_j \lif !A_i)}{x}{c} = \Subst{!A_j}{x}{c} \lif
+\Subst{!A_i}{x}{c}$'dan MP ile çıkar.
+\end{itemize}
+Yeni dizide !!{constant} $c$'nin artık bulunmadığı açıktır. $\Gamma'$,
+$\Subst{!A}{x}{c}$'nin !!{derivation}{}inde görünen, $\Gamma$ içindeki
+!!{formula}s{}den oluşsun. O zaman $x$, $\Gamma'$ içindeki hiçbir !!{formula}{}de
+serbest değildir ve $\Gamma' \Proves \Subst{!A}{x}{c}$. Genelleme
+(\olref{thm:Generalization}) uyarınca
+$\Gamma' \Proves \lforall[x][\Subst{!A}{x}{c}]$; tekdüzelik uyarınca
+istendiği gibi $\Gamma \Proves \lforall[x][\Subst{!A}{x}{c}]$.
+\end{proof}
+
+\begin{explain}
+Amacımız \olref{thm:WeakGen} içindeki $x$'in $!A$ içinde hiç bulunmaması
+koşulunu, $x$'in $!A$ içinde serbest olmaması ve $!A$ içinde $c$ için
+!!{free for} olması biçimindeki daha zayıf koşullarla değiştirmektir. Bunun
+bağlı !!{variable} değiştirilerek yapılabileceği açıktır; önce bunu
+ispatlayacağız.
+\end{explain}
+
+\begin{lem}
+\ollabel{lem:free-for}
+$x$, $!A$ içinde $c$ için serbest ve $y$, $!A$ içinde serbest değilse $x$,
+$\Subst{!A}{y}{c}$ içinde $y$ için !!{free for}{}dir.
+\end{lem}
+
+\begin{proof} $x$, $\Subst{!A}{y}{c}$ içinde $y$ için !!{free for} değilse
+$\Subst{!A}{y}{c}$ içindeki serbest bir $y$ oluşumu bir $\lforall[x]$
+niceleyicisinin kapsamında kalır. Varsayım gereği $y$, $!A$ içinde serbest
+olmadığından bütün bu oluşumlar $\Subst{}{y}{c}$ yerine koymasından gelir.
+O halde $c$'nin bir oluşumu $\lforall[x]$ kapsamında kalır ve $x$, $!A$
+içinde $c$ için !!{free for} değildir; bu bir çelişkidir.
+\end{proof}
+
+\begin{lem}[Bağlı Değişken Değiştirme]
+\ollabel{lem:ChangeBdVar}
+$x$ ile $y$, $!A$ içinde serbest değil ve ikisi de $!A$ içinde $c$ için
+!!{free for} ise
+$\Proves \lforall[x][\Subst{!A}{x}{c}] \equiv
+\lforall[y][\Subst{!A}{y}{c}]$ (ve ispat $c$ içermez).
+\end{lem}
+
+\begin{proof}
+Varsayımlara göre $y$, $!A$ içinde $c$ için !!{free for} ve $x$, $!A$
+içinde serbest değildir. Önceki \olref{lem:free-for} uyarınca $y$,
+$\Subst{!A}{x}{c}$ içinde $x$ için !!{free for}{}dir. Dolayısıyla
+$\lforall[x][\Subst{!A}{x}{c} \lif \Subst{!A}{x}{c} \Subst{}{y}{x}]$
+bir aksiyomdur (\textbf{Ax1}). $x$, $!A$ içinde serbest olmadığından
+$\Subst{!A}{x}{c} \Subst{}{y}{x} = \Subst{!A}{y}{c}$ ve dolayısıyla
+\[
+\Proves \lforall[x][\Subst{!A}{x}{c}] \lif \Subst{!A}{y}{c}.
+\]
+Tümdengelim Teoremiyle
+$\lforall[x][\Subst{!A}{x}{c}] \Proves \Subst{!A}{y}{c}$. $y$, $!A$
+içinde serbest olmadığından $\lforall[x][\Subst{!A}{x}{c}]$ içinde de
+serbest değildir. Genelleme uyarınca
+$\lforall[x][\Subst{!A}{x}{c}] \Proves
+\lforall[y][\Subst{!A}{y}{c}]$; Tümdengelim Teoremi bir kez daha
+$\Proves \lforall[x][\Subst{!A}{x}{c}] \lif
+\lforall[y][\Subst{!A}{y}{c}]$ verir. Ters yönün ispatı bütünüyle
+simetriktir; sonuç Taut ile çıkar.
+\end{proof}
+
+\begin{thm}[Sabitler Üzerinde Güçlü Genelleme]
+\ollabel{thm:StrongGen}
+$\Gamma \Proves !A$, !!{constant} $c$, $\Gamma$ içinde bulunmuyor, $x$ ise
+$!A$ içinde serbest olmayıp $c$ için !!{free for} ise
+$\Gamma \Proves \lforall[x][\Subst{!A}{x}{c}]$.
+\end{thm}
+
+\begin{proof}
+$\Gamma \Proves !A$ ve $c$, $\Gamma$ içinde bulunmadığından Zayıf Genelleme
+uyarınca $!A$ içinde bulunmayan !!a{variable} $y$ için
+$\Gamma \Proves \lforall[y][\Subst{!A}{y}{c}]$. $y$, $!A$ içinde hiç
+bulunmadığından serbest değildir ve $c$ için !!{free for}{}dir. Varsayım gereği
+$x$ de $!A$ içinde serbest değil ve $c$ için !!{free for} olduğundan bağlı
+!!{variable} değiştirme koşulları sağlanır. Dolayısıyla
+$\Proves \lforall[x][\Subst{!A}{x}{c}] \equiv
+\lforall[y][\Subst{!A}{y}{c}]$ ve buradan
+$\Gamma \Proves \lforall[x][\Subst{!A}{x}{c}]$ çıkar.
+\end{proof}
+
+\begin{thm}
+\ollabel{thm:provability-quantifiers}
+\begin{tagenumerate}{prvEx,prvAll}
+\tagitem{prvEx}{$\Gamma \Proves !A(t)$ ise
+$\Gamma \Proves \lexists[x][!A(x)]$.}{}
+\tagitem{prvAll}{$\Gamma \Proves \lforall[x][!A(x)]$ ise
+$\Gamma \Proves !A(t)$.}{}
+\end{tagenumerate}
+\end{thm}
+
+\begin{proof}
+\begin{tagenumerate}{prvEx,prvAll}
+%% Varoluş için aksiyomlar gerekiyor
+\tagitem{prvEx}{Alıştırma.}{}
+\tagitem{prvAll}{$\Gamma_0 \Proves \lforall[x][!A(x)]$ olduğunu varsayın.
+
+\begin{derivation}
+1. & $\Gamma_0 \Proves \lforall[x][!A(x)]$ & varsayım \\
+2. & $\Gamma_0 \Proves \lforall[x][!A(x)] \lif \Subst{!A}{t}{x}$ & Ax1 \\
+3. & $\Gamma_0 \Proves \Subst{!A}{t}{x}$ & MP 1, 2 \\
+\end{derivation}}{}
+
+\end{tagenumerate}
+\end{proof}
+
+\end{document}

@@ -1,0 +1,128 @@
+% Part: first-order-logic
+% Chapter: completeness
+% Section: completeness-theorem
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[tr]{fol}{com}{cth}}
+      {\olfileid[tr]{pl}{com}{cth}}
+
+\olsection{Tamlık Teoremi}
+
+\begin{explain}
+Sonuçlarımızı bir araya getirdiğimizde tamlık teoremine ulaşırız.
+\end{explain}
+
+\begin{thm}[Tamlık Teoremi]
+\ollabel{thm:completeness}
+$\Gamma$ bir !!{sentence}s kümesi olsun. $\Gamma$ tutarlıysa
+sağlanabilirdir.
+\end{thm}
+
+\begin{proof}
+$\Gamma$'nın tutarlı olduğunu varsayalım.\iftag{FOL}{
+  \olref[hen]{lem:henkin} uyarınca $\Gamma'\supseteq\Gamma$ olacak
+  biçimde doygun ve tutarlı bir~$\Gamma'$ kümesi vardır.}{}
+\olref[lin]{lem:lindenbaum} uyarınca
+$\Gamma^*\supseteq\iftag{FOL}{\Gamma'}{\Gamma}$ olacak biçimde tutarlı
+ve !!{complete} bir~$\Gamma^*$ kümesi vardır.
+\iftag{FOL}{
+  $\Gamma'\subseteq\Gamma^*$ olduğundan her $!A(x)$ !!{formula}
+  ifadesi için $\Gamma^*$,
+  \iftag{prvEx}
+        {$\lexists[x][!A(x)]\lif !A(c)$}
+        {$\lnot\lforall[x][!A(x)]\lif\lnot !A(c)$}
+  biçiminde !!a{sentence} içerir ve dolayısıyla $\Gamma^*$ doygundur.
+  $\Gamma$,~$\eq$ içermiyorsa}{ }
+\olref[mod]{lem:truth} uyarınca
+$\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{!A}$ ancak ve ancak
+$!A\in\Gamma^*$ ise. Özellikle her $!A\in\Gamma$ için
+$\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{!A}$ olur;
+dolayısıyla $\Gamma$ sağlanabilirdir.\iftag{FOL}{
+  $\Gamma$,~$\eq$ içeriyorsa \olref[ide]{lem:truth} uyarınca bütün
+  !!{sentence}s~$!A$ için $\Sat{\equivclass{M}{\approx}}{!A}$ ancak ve
+  ancak $!A\in\Gamma^*$ ise. Özellikle her $!A\in\Gamma$ için
+  $\Sat{\equivclass{M}{\approx}}{!A}$ olur; dolayısıyla $\Gamma$
+  sağlanabilirdir.}{}
+\end{proof}
+
+\begin{cor}[Tamlık Teoremi, İkinci Biçim]
+\ollabel{cor:completeness}
+Her $\Gamma$ ve her !!{sentence}s~$!A$ için: $\Gamma\Entails !A$ ise
+$\Gamma\Proves !A$.
+\end{cor}
+
+\begin{proof}
+\olref{cor:completeness} ile \olref{thm:completeness} içindeki
+$\Gamma$ değişkenlerinin evrensel niceleyicili olduğuna dikkat edin.
+Karışıklığı önlemek için \olref{thm:completeness} sonucunu farklı bir
+değişkenle yeniden ifade edelim: herhangi bir !!{sentence}s
+kümesi~$\Delta$ için, $\Delta$ tutarlıysa sağlanabilirdir. Karşıt-tersi
+gereği $\Delta$ sağlanamazsa tutarsızdır. Sonucu ispatlamak için
+bunu kullanacağız.
+
+$\Gamma\Entails !A$ olduğunu varsayalım.
+\olref[syn][sem]{prop:entails-unsat} uyarınca
+$\Gamma\cup\{\lnot !A\}$ sağlanamaz. $\Gamma\cup\{\lnot !A\}$
+kümesini~$\Delta$ olarak alırsak \olref{thm:completeness} teoreminin
+önceki biçimi $\Gamma\cup\{\lnot !A\}$ kümesinin tutarsız olduğunu verir.
+\iftag{FOL}{%
+  \tagrefs{prfAX/{fol:axd:prv:prop:prov-incons},
+    prfSC/{fol:seq:prv:prop:prov-incons},
+    prfND/{fol:ntd:prv:prop:prov-incons},
+    prfTab/{fol:tab:prv:prop:prov-incons}}}{%
+  \tagrefs{prfAX/{pl:axd:prv:prop:prov-incons},
+    prfSC/{pl:seq:prv:prop:prov-incons},
+    prfND/{pl:ntd:prv:prop:prov-incons},
+    prfTab/{pl:tab:prv:prop:prov-incons}}}
+uyarınca $\Gamma\Proves !A$.
+\end{proof}
+
+\tagprob{FOL}
+\begin{prob}
+\olref[fol][com][cth]{cor:completeness} sonucunu kullanarak
+\olref[fol][com][cth]{thm:completeness} teoremini ispatlayın ve böylece
+tamlık teoreminin iki biçiminin denk olduğunu gösterin.
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+\olref[pl][com][cth]{cor:completeness} sonucunu kullanarak
+\olref[pl][com][cth]{thm:completeness} teoremini ispatlayın ve böylece
+tamlık teoreminin iki biçiminin denk olduğunu gösterin.
+\end{prob}
+\tagendprob
+
+\tagprob{FOL}
+\begin{prob}
+!!a{derivation} sisteminin tam olabilmesi için kuralları, sağlanamaz
+her kümenin tutarsız olduğunu ispatlayacak kadar güçlü olmalıdır.
+Tamlığı ispatlamak için !!{derivation} kurallarından hangileri
+gereklidir? Bu kurallardan herhangi biri ispatın hiçbir yerinde
+kullanılmamış mıdır? Soruları yanıtlamak için
+\olref[fol][com][cth]{thm:completeness} teoreminin ispatına götüren
+sonuçların hangisinde hangi !!{derivation} kurallarının kullanıldığını
+gösteren bir liste ya da şema hazırlayın. Bu ispatlarda kuralların
+örtük kullanımlarını da belirtin.
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+!!a{derivation} sisteminin tam olabilmesi için kuralları, sağlanamaz
+her kümenin tutarsız olduğunu ispatlayacak kadar güçlü olmalıdır.
+Tamlığı ispatlamak için !!{derivation} kurallarından hangileri
+gereklidir? Bu kurallardan herhangi biri ispatın hiçbir yerinde
+kullanılmamış mıdır? Soruları yanıtlamak için
+\olref[pl][com][cth]{thm:completeness} teoreminin ispatına götüren
+sonuçların hangisinde hangi !!{derivation} kurallarının kullanıldığını
+gösteren bir liste ya da şema hazırlayın. Bu ispatlarda kuralların
+örtük kullanımlarını da belirtin.
+\end{prob}
+\tagendprob
+
+\end{document}

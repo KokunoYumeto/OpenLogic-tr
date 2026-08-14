@@ -1,0 +1,156 @@
+% Part: normal-modal-logic
+% Chapter: axioms-systems
+% Section: systems-distinct
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{nml}{prf}{dis}
+
+\olsection{Sistemlerin Farklı Olduğunu Gösterme}
+
+\olref[prs]{sec}'te iki modal mantık sisteminin aslında aynı sistem
+olduğunu nasıl ispatlayacağımızı gördük. \olref[snd]{thm:soundness},
+$\Sigma' \Proves !A$ olduğu hâlde $\Sigma$'nın bir modelinde yanlış olan
+öyle bir !!a{formula}~$!A$ bularak iki $\Sigma$ ve $\Sigma'$ modal
+sisteminin farklı olduğunu göstermemizi sağlar.
+
+\begin{prop}
+  $\Log{KD} \subsetneq \Log{KT}$
+\end{prop}
+
+\begin{proof} Bu, bütün yansımalı bağıntıların seri olduğu semantik
+  olgusunun sözdizimsel karşılığıdır. $\Log{KD} \subseteq \Log{KT}$
+  olduğunu göstermek için $\Log{KD} \Proves !B$ olmasının
+  $\Log{KT} \Proves !B$ olmasını gerektirdiğini görmeliyiz; bu da
+  \olref[prs]{prop:S5facts}\olref[prs]{prop:S5facts-KT-D}'de gösterildiği
+  üzere $\Log{KT} \Proves \Ax{D}$ olmasından çıkar. İçermenin öz olduğunu
+  % [tr source emendation] Upstream prints the logic name \Log{D} where the
+  % cited result and the typing of \Proves require the axiom schema \Ax{D}.
+  göstermek için Sağlamlık gereğince (\olref[snd]{thm:soundness}),
+  \Ax{T}'nin, yani $\Box p \lif p$'nin, yanlış olduğu bir \Log{KD} modeli
+  sergilemek yeterlidir (alıştırma olarak bırakılan kolay bir görev);
+  çünkü o zaman Sağlamlık gereğince $\Log{KD} \Proves/ \Box p \lif p$.
+\end{proof}
+
+\begin{prop}
+  $\Log{KB} \neq \Log{K4}$. 
+\end{prop}
+
+\begin{proof}
+  \Ax{4}'ün bir örneğinin yanlış olduğu simetrik bir model kuruyoruz;
+  örnek açıkça \Log{K4} için !!{derivable}, fakat \Log{KB} içinde
+  olmadığı için $\Log{K4} \nsubseteq \Log{KB}$ sonucu çıkacaktır.
+  \olref{fig:Bnot4}'teki simetrik $\mModel{M}$ modelini ele alın. Model
+  simetrik olduğundan \Ax{K} ve~\Ax{B}, sırasıyla \olref[syn][sch]{prop:Kvalid}
+  ve \olref[frd][acc]{thm:soundschemas} gereğince $\mModel{M}$ modelinde
+  doğrudur. Bununla birlikte,
+  $\mSat/{M}{\Box p \lif \Box\Box p}[w_1]$.
+\end{proof}
+
+\begin{figure}[htpb]
+  \centering
+  \begin{tikzpicture}[modal]
+    \node[world] (w1) [label=above:\mFalse{p},
+    label={below:$\mSat{{}}{\Box p}$\\ $\mSat/{{}}{\Box\Box p}$}] {$w_1$}; 
+    \node[world] (w2) [label=above:\mTrue{p},
+      label=below:$\mSat/{{}}{\Box p}$, right=of w1]{$w_2$}; 
+    \draw[->, bend left] (w1) to (w2); 
+    \draw[->, bend left] (w2) to (w1); 
+  \end{tikzpicture}
+  \caption{Bir \Ax{4} örneğini yanlışlayan simetrik bir model.}
+  \ollabel{fig:Bnot4}
+\end{figure}
+ 
+\begin{thm}\ollabel{thm:KTBnot45}
+  $\Log{KTB} \Proves/ \Ax{4}$ ve $\Log{KTB} \Proves/ \Ax{5}$.
+  % [tr source emendation] Upstream uses \Log{4} and \Log{5}; the theorem,
+  % its proof, and parallel source passages concern axiom schemas \Ax{4}, \Ax{5}.
+\end{thm}
+
+\begin{proof}
+  \olref[frd][acc]{thm:soundschemas} gereğince \Ax{T} ve \Ax{B}'nin bütün
+  örneklerinin (sırasıyla) her yansımalı ve her simetrik modelde doğru
+  olduğunu biliyoruz. Dolayısıyla sağlamlık gereğince, \Ax{4}'ün bir
+  örneğinin yanlış olduğu bir dünya içeren yansımalı ve simetrik bir model
+  bulmak, \Ax{5} için de benzerini yapmak yeterlidir. İki iddia için aynı
+  modeli kullanıyoruz. \olref{fig:KTBnot45}'teki simetrik, yansımalı modeli
+  ele alın. O zaman $\mSat/{M}{\Box p \to \Box \Box p}[w_1]$; dolayısıyla
+  \Ax{4}, $w_1$'de yanlıştır. Benzer biçimde,
+  $\mSat/{M}{\Diamond \lnot p \lif \Box \Diamond \lnot p}[w_2]$;
+  dolayısıyla $!A = \lnot p$ olan \Ax{5} örneği $w_2$'de yanlıştır.
+\end{proof}
+
+\begin{figure}[htpb]
+  \centering
+  \begin{tikzpicture}[modal]
+    \node[world] (w1) [label={right:\mTrue{p}},
+      label={below: $\mSat{{}}{\Box p}$\\
+        $\mSat/{{}}{\Box\Box p}$\\
+        $\mSat/{{}}{\Diamond\lnot p}$}] {$w_1$};
+    \draw[reflexive above] (w1) to (w1);
+    \node[world] (w2) [label={right:\mTrue{p}}, label={below:
+        $\mSat{{}}{\Diamond\lnot p}$\\
+        $\mSat/{{}}{\Box\Diamond\lnot p}$}, right=of w1] {$w_2$} ;
+    \draw[reflexive above] (w2) to (w2);
+    \node[world] (w3) [label={right:\mFalse{p}},right=of w2] {$w_3$};
+    \draw[reflexive above] (w3) to (w3);
+    \draw[->, bend left] (w1) to (w2);  
+    \draw[->, bend left] (w2) to (w3);  
+    \draw[->, bend left] (w3) to (w2);  
+    \draw[->, bend left] (w2) to (w1);  
+  \end{tikzpicture}
+  \caption{\olref{thm:KTBnot45} için model.}
+  \ollabel{fig:KTBnot45}
+\end{figure}
+
+\begin{thm}\ollabel{thm:KD5not4}
+  $\Log{KD5} \neq \Log{KT4} = \Log{S4}$.
+\end{thm}
+
+\begin{proof}
+  \olref[frd][acc]{thm:soundschemas} gereğince \Ax{D} ve~\Ax{5}'in bütün
+  örneklerinin tüm seri Öklidyen modellerde doğru olduğunu biliyoruz.
+  Dolayısıyla \Ax{4}'ün bir örneğinin yanlış olduğu bir dünya içeren seri
+  Öklidyen bir model bulmak yeterlidir. \olref{fig:KD5not4}'teki modeli ele
+  alın ve $\mSat/{M}{\Box p \lif \Box\Box p}[w_1]$ olduğuna dikkat edin. 
+\end{proof}
+
+\begin{figure}[t]
+  \centering
+  \begin{tikzpicture}[modal]
+    \node[world] (w2) [label=north west:\mTrue{p}]{$w_2$} ;
+    \draw[reflexive left] (w2) to (w2);
+    \node[world] (w1) [label=right:\mFalse{p},
+      label=below:{$\mSat{{}}{\Box p}, \mSat/{{}}{\Box\Box p}$},
+      below right=of w2]{$w_1$};
+    \node[world] (w3) [label=north east:\mTrue{p}, above right=of w1]{$w_3$} ;
+    \draw[reflexive right] (w3) to (w3);
+    \node[world] (w4) [label=right:\mFalse{p},above right=of w2]{$w_4$};
+    \draw[reflexive above] (w4) to (w4);
+    \draw[->] (w1) to (w2);  
+    \draw[->] (w1) to (w3);  
+    \draw[->, bend left=15] (w2) to (w3);
+    \draw[->, bend left=15] (w3) to (w2);  
+    \draw[->, bend left=15] (w2) to (w4);
+    \draw[->, bend left=15] (w4) to (w2);  
+    \draw[->, bend left=15] (w3) to (w4);
+    \draw[->, bend left=15] (w4) to (w3);  
+  \end{tikzpicture}
+  \caption{\olref{thm:KD5not4} için model.}
+  \ollabel{fig:KD5not4}
+\end{figure}
+
+\begin{prob}
+  Üç dünyalı bir model kullanarak
+  \olref[nml][prf][dis]{thm:KD5not4} için alternatif bir ispat verin.
+\end{prob}
+
+\begin{prob}
+  Hem $\Log{KT4} \Proves/ \Ax{B}$ hem de
+  $\Log{KT4} \Proves/ \Ax{5}$ olduğunu gösteren tek bir yansımalı geçişli
+  model verin.
+\end{prob}
+
+\end{document}

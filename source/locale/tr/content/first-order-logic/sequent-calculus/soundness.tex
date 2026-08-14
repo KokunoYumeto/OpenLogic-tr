@@ -1,0 +1,377 @@
+% Part: first-order-logic
+% Chapter: sequent-calculus
+% Section: soundness.tex
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[tr]{fol}{seq}{sou}}
+      {\olfileid[tr]{pl}{seq}{sou}}
+
+\olsection{Sağlamlık}
+
+\begin{explain}
+!!^a{derivation} sistemi olarak sekant hesabı, gerçekte doğru olmayan
+şeyleri !!{derive} mümkün değilse \emph{sağlamdır}. Buna göre sağlamlık,
+!!{derivation} sistemleri için güvence altına alınmış bir tür emniyet
+özelliğidir. Söz konusu ispat kuramsal özelliğe bağlı olarak, örneğin şunları
+bilmek isteriz:
+\begin{enumerate}
+\item !!{derivable} her $!A$, \iftag{FOL}{geçerlidir}{bir totolojidir};
+\item bir !!a{sentence} başka tümcelerden !!{derivable} ise onların mantıksal
+  sonucudur;
+\item öğeleri !!{sentence}s olan bir küme tutarsızsa sağlanamazdır.
+\end{enumerate}
+Bunlar bir !!a{derivation} sisteminin önemli özellikleridir. Bunlardan biri
+geçerli değilse !!{derivation} sistemi kusurludur: gereğinden fazlasını
+!!{derive} mümkün hâle getirir. Dolayısıyla bir !!{derivation} sisteminin sağlamlığını ortaya
+koymak son derece önemlidir.
+
+Bu ispat kuramsal özelliklerin tümü belirli sekantların sekant hesabındaki
+!!{derivability} kavramı aracılığıyla tanımlandığı için yukarıdaki (1)--(3)'ü
+ispatlamak, !!{derivable} sekantların semantik özellikleri hakkında bir şey
+ispatlamayı gerektirir. Önce bir sekantın \emph{geçerli} olmasının ne anlama
+geldiğini tanımlayacak, sonra her !!{derivable} sekantın geçerli olduğunu
+göstereceğiz. (1)--(3) de bu sonucun doğal sonuçları olacaktır.
+\end{explain}
+
+\begin{defn}
+\iftag{FOL}{!!^a{structure}~$\Struct M$}{!!^a{valuation}~$\pAssign{v}$},
+  $\Gamma\Sequent\Delta$ sekantını ancak ve ancak $!A\in\Gamma$ olan bir
+  $!A$ için $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A}$ veya $!A\in\Delta$ olan
+  bir $!A$ için $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$ ise \emph{sağlar}.
+
+Bir sekant, ancak ve ancak her \iftag{FOL}{!!{structure}~$\Struct
+  M$}{!!{valuation}~$\pAssign{v}$} onu sağlıyorsa \emph{geçerlidir}.
+\end{defn}
+
+\begin{thm}[Sağlamlık]
+\ollabel{thm:sequent-soundness} $\Log{LK}$ içinde $\Theta\Sequent\Xi$ sekantını
+!!{derive}s mümkünse $\Theta\Sequent\Xi$ geçerlidir.
+\end{thm}
+
+\begin{proof}
+$\pi$, $\Theta\Sequent\Xi$ sekantının bir !!a{derivation}{}i olsun. $\pi$'deki
+çıkarım sayısı $n$ üzerinde tümevarımla ilerliyoruz.
+
+Çıkarım sayısı $0$ ise $\pi$ yalnızca bir başlangıç sekantından oluşur. Her
+başlangıç sekantı $!A\Sequent !A$ açıkça geçerlidir; çünkü her
+\iftag{FOL}{$\Struct M$}{$\pAssign{v}$} için ya
+$\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A}$ ya da
+$\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$.
+\iftag{prvTrue}{$\quad\Sequent\ltrue$ başlangıç sekantı da geçerlidir;
+çünkü $\ltrue$ her \iftag{FOL}{$\Struct M$}{$\pAssign{v}$} için doğrudur.}{}
+\iftag{prvFalse}{$\lfalse\Sequent\quad$ başlangıç sekantı da geçerlidir;
+çünkü $\lfalse$ her \iftag{FOL}{$\Struct M$}{$\pAssign{v}$} için yanlıştır.}{}
+
+Çıkarım sayısı 0'dan büyükse en alttaki çıkarımın türüne göre durumlara
+ayırırız. Tümevarım hipotezine göre bu çıkarımın öncüllerinin geçerli olduğunu
+varsayabiliriz; çünkü herhangi bir öncülün !!{derivation}{}indeki çıkarım sayısı
+$n$'den küçüktür.
+
+Önce tek öncüllü olası çıkarımları ele alalım.
+\begin{enumerate}
+\item Son çıkarım bir zayıflatmadır. O zaman $\Theta\Sequent\Xi$, son çıkarım
+  \LeftR{\Weakening} ise $!A,\Gamma\Sequent\Delta$, son çıkarım
+  \RightR{\Weakening} ise $\Gamma\Sequent\Delta,!A$ biçimindedir ve
+  !!{derivation} aşağıdakilerden biriyle biter:
+  \begin{prooftree}
+    \AxiomC{}
+    \Deduce$\Gamma \fCenter \Delta$
+    \RightLabel{\LeftR{\Weakening}}
+    \UnaryInf$!A, \Gamma \fCenter \Delta$
+    \DisplayProof\qquad\bottomAlignProof
+    \AxiomC{}
+    \Deduce$\Gamma \fCenter \Delta$
+    \RightLabel{\RightR{\Weakening}}
+    \UnaryInf$\Gamma \fCenter \Delta, !A$
+  \end{prooftree}
+  Tümevarım hipotezine göre $\Gamma\Sequent\Delta$ geçerlidir; yani her
+  \iftag{FOL}{!!{structure}~$\Struct{M}$}{!!{valuation}~$\pAssign{v}$}
+  için ya bir $!C\in\Gamma$ için
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$ ya da bir $!C\in\Delta$
+  için $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$.
+
+  Bir $!C\in\Gamma$ için $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$ ise
+  $\Theta=!A,\Gamma$ olduğundan $!C\in\Theta$ da olur; dolayısıyla bir
+  $!C\in\Theta$ için $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$. Benzer
+  biçimde bir $!C\in\Delta$ için
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$ ise $!C\in\Xi$ olduğundan bir
+  $!C\in\Xi$ için $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$. Sonuç olarak
+  $\Theta\Sequent\Xi$ geçerlidir.
+\item Son çıkarım \LeftR{\lnot} olsun. Son çıkarımın öncülü
+  $\Gamma\Sequent\Delta,!A$, sonucu ise $\lnot !A,\Gamma\Sequent\Delta$
+  olur; yani !!{derivation} şöyle biter:
+  \begin{prooftree}
+    \AxiomC{}
+    \Deduce$\Gamma \fCenter \Delta, !A$
+    \RightLabel{\LeftR{\lnot}}
+    \UnaryInf$\lnot !A, \Gamma \fCenter \Delta$
+  \end{prooftree}
+  Burada $\Theta=\lnot !A,\Gamma$ ve $\Xi=\Delta$.
+
+  Tümevarım hipotezi $\Gamma\Sequent\Delta,!A$ sekantının geçerli olduğunu
+  söyler; yani her \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} için ya (a) bir
+  $!C\in\Gamma$ için $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$ ya (b)
+  bir $!C\in\Delta$ için $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$ ya da
+  (c) $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$. $\Theta\Sequent\Xi$'nin de
+  geçerli olduğunu göstermek istiyoruz. \iftag{FOL}{Bir
+  !!a{structure}~$\Struct M$}{Bir !!a{valuation}~$\pAssign{v}$} alalım.
+  (a) geçerliyse bir $!C\in\Gamma$ için
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$ ve ayrıca $!C\in\Theta$ olur.
+  (b) geçerliyse bir $!C\in\Delta$ için
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$ ve ayrıca $!C\in\Xi$ olur. Son
+  olarak $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$ ise
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{\lnot !A}$. $\lnot !A\in\Theta$
+  olduğundan bir $!C\in\Theta$ için
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$. Sonuç olarak
+  $\Theta\Sequent\Xi$ geçerlidir.
+\item Son çıkarım \RightR{\lnot} olsun: Alıştırma.
+\item Son çıkarım \LeftR{\land} olsun. İki biçim vardır: soldaki
+  $!A\land !B$, öncülün sol tarafındaki $!A$'dan veya $!B$'den çıkarılmış
+  olabilir. İlk durumda $\pi$ şöyle biter:
+  \begin{prooftree}
+    \AxiomC{}
+    \Deduce$!A, \Gamma \fCenter \Delta$
+    \RightLabel{\LeftR{\land}}
+    \UnaryInf$!A \land !B, \Gamma \fCenter \Delta$
+  \end{prooftree}
+  Burada $\Theta=!A\land !B,\Gamma$ ve $\Xi=\Delta$. Bir
+  \iftag{FOL}{!!a{structure}~$\Struct M$}{!!a{valuation}~$\pAssign{v}$}
+  ele alalım. Tümevarım hipotezine göre $!A,\Gamma\Sequent\Delta$ geçerli
+  olduğundan ya (a) $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A}$ ya (b) bir
+  $!C\in\Gamma$ için $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$ ya da (c) bir
+  $!C\in\Delta$ için $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$. (a) durumunda
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A\land !B}$; dolayısıyla
+  $!C=!A\land !B$ seçimi için $!C\in\Theta$ ve
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$. (b)
+  durumunda bir $!C\in\Gamma$ için
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$ ve ayrıca $!C\in\Theta$ olur.
+  (c) durumunda bir $!C\in\Delta$ için
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$ ve $\Xi=\Delta$ olduğundan ayrıca
+  $!C\in\Xi$ olur. Böylece her durumda
+  \iftag{FOL}{$\Struct M$}{$\pAssign{v}$}, $!A\land !B,\Gamma\Sequent
+  \Delta$ sekantını sağlar. \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$}
+  keyfî olduğundan $!A\land !B,\Gamma\Sequent\Delta$ geçerlidir. $!A\land
+  !B$'nin $!B$'den çıkarıldığı durum da $!A$ yerine $!B$ konularak aynı
+  biçimde ele alınır.
+\item Son çıkarım \RightR{\lor} olsun. İki biçim vardır: sağdaki
+  $!A\lor !B$, öncülün sağ tarafındaki $!A$'dan veya $!B$'den çıkarılmış
+  olabilir. İlk durumda $\pi$ şöyle biter:
+  \begin{prooftree}
+    \AxiomC{}
+    \Deduce$\Gamma \fCenter \Delta, !A$
+    \RightLabel{\RightR{\lor}}
+    \UnaryInf$\Gamma \fCenter \Delta, !A \lor !B$
+  \end{prooftree}
+  Şimdi $\Theta=\Gamma$ ve $\Xi=\Delta,!A\lor !B$. Bir
+  \iftag{FOL}{!!a{structure}~$\Struct{M}$}{!!a{valuation}~$\pAssign{v}$}
+  ele alalım. $\Gamma\Sequent\Delta,!A$ geçerli olduğundan ya (a)
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$ ya (b) bir $!C\in\Gamma$ için
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$ ya da (c) bir $!C\in\Delta$ için
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$. (a) durumunda
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A\lor !B}$. (b) durumunda bir
+  $!C\in\Gamma$ için $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$. (c)
+  durumunda bir $!C\in\Delta$ için
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$. Böylece her durumda
+  \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$}, $\Gamma\Sequent\Delta,!A\lor
+  !B$, yani $\Theta\Sequent\Xi$ sekantını sağlar.
+  \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} keyfî olduğundan
+  $\Theta\Sequent\Xi$ geçerlidir. $!A\lor !B$'nin $!B$'den çıkarıldığı durum
+  da $!A$ yerine $!B$ konularak aynı biçimde ele alınır.
+\item Son çıkarım \RightR{\lif} olsun. O zaman $\pi$ şöyle biter:
+  \begin{prooftree}
+    \AxiomC{}
+    \Deduce$!A, \Gamma \fCenter \Delta, !B$
+    \RightLabel{\RightR{\lif}}
+    \UnaryInf$\Gamma \fCenter \Delta, !A \lif !B$
+  \end{prooftree}
+  Tümevarım hipotezi yine öncülün geçerli olduğunu söyler; sonucun da geçerli
+  olduğunu göstermek istiyoruz. \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$}
+  keyfî olsun. $!A,\Gamma\Sequent\Delta,!B$ geçerli olduğundan şu durumlardan
+  en az biri gerçekleşir: (a) $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A}$,
+  (b) $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$, (c) bir $!C\in\Gamma$ için
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$ veya (d) bir $!C\in\Delta$ için
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$. (a) ve (b) durumlarında
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A\lif !B}$; dolayısıyla
+  bir $!C\in\Delta,!A\lif !B$ için
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$. (c) durumunda bir
+  $!C\in\Gamma$ için $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$. (d)
+  durumunda bir $!C\in\Delta$ için $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$.
+  Her durumda \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$},
+  $\Gamma\Sequent\Delta,!A\lif !B$ sekantını sağlar.
+  \iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$} keyfî olduğundan
+  $\Gamma\Sequent\Delta,!A\lif !B$ geçerlidir. \iftag{FOL}{%
+\item Son çıkarım \LeftR{\lforall} olsun. O zaman bir !!a{formula}~$!A(x)$
+  ve kapalı bir $t$ terimi vardır ve $\pi$ şöyle biter:
+  \begin{prooftree}
+    \AxiomC{}
+    \Deduce$!A(t), \Gamma \fCenter \Delta$
+    \RightLabel{\LeftR{\lforall}}
+    \UnaryInf$\lforall[x][!A(x)], \Gamma \fCenter \Delta$
+  \end{prooftree}
+  $\lforall[x][!A(x)],\Gamma\Sequent\Delta$ sonucunun geçerli olduğunu
+  göstermek istiyoruz. Bir !!a{structure}~$\Struct M$ ele alalım. Öncül
+  $!A(t),\Gamma\Sequent\Delta$ geçerli olduğundan ya (a)
+  $\Sat/{M}{!A(t)}$ ya (b) bir $!C\in\Gamma$ için $\Sat/{M}{!C}$ ya da
+  (c) bir $!C\in\Delta$ için $\Sat{M}{!C}$. (a) durumunda
+  \olref[syn][sem]{prop:quant-terms} uyarınca
+  $\Sat{M}{\lforall[x][!A(x)]}$ ise $\Sat{M}{!A(t)}$. $\Sat/{M}{!A(t)}$
+  olduğundan $\Sat/{M}{\lforall[x][!A(x)]}$. (b) ve (c) durumlarında da
+  $\Struct M$, $\lforall[x][!A(x)],\Gamma\Sequent\Delta$ sekantını sağlar.
+  $\Struct M$ keyfî olduğundan $\lforall[x][!A(x)],\Gamma\Sequent\Delta$
+  geçerlidir.
+\item Son çıkarım \RightR{\lexists} olsun: Alıştırma.
+\item Son çıkarım \RightR{\lforall} olsun. O zaman bir !!a{formula}~$!A(x)$
+  ve bir !!a{constant}~$a$ vardır ve $\pi$ şöyle biter:
+  \begin{prooftree}
+    \AxiomC{}
+    \Deduce$\Gamma \fCenter \Delta, !A(a)$
+    \RightLabel{\RightR{\lforall}}
+    \UnaryInf$\Gamma \fCenter \Delta, \lforall[x][!A(x)]$
+  \end{prooftree}
+  Özdeğişken koşulu sağlanır; yani $a$, $!A(x)$, $\Gamma$ veya $\Delta$
+  içinde bulunmaz. Tümevarım hipotezine göre son çıkarımın öncülü geçerlidir.
+  Sonucun da geçerli olduğunu göstermeliyiz; yani herhangi bir
+  !!{structure}~$\Struct M$ için ya (a) $\Sat{M}{\lforall[x][!A(x)]}$ ya
+  (b) bir $!C\in\Gamma$ için $\Sat/{M}{!C}$ ya da (c) bir $!C\in\Delta$
+  için $\Sat{M}{!C}$ olmalıdır.
+
+  $\Struct M$ keyfî bir !!{structure} olsun. (b) veya (c) geçerliyse işimiz
+  bitmiştir; dolayısıyla hiçbirinin geçerli olmadığını varsayalım: her
+  $!C\in\Gamma$ için $\Sat{M}{!C}$ ve her $!C\in\Delta$ için
+  $\Sat/{M}{!C}$. (a)'nın, yani $\Sat{M}{\lforall[x][!A(x)]}$ ifadesinin
+  geçerli olduğunu göstermeliyiz. \olref[syn][ass]{prop:sat-quant} uyarınca
+  her değişken ataması $s$ için $\Sat{M}{!A(x)}[s]$ olduğunu göstermek
+  yeterlidir. O hâlde $s$ keyfî bir değişken ataması olsun. $\Struct{M'}$,
+  $\Assign{a}{M'}=s(x)$ olması dışında $\Struct M$ ile aynı yapı olsun.
+  \olref[syn][ext]{cor:extensionality-sent} uyarınca, $a$ $\Gamma$ içinde
+  bulunmadığından her $!C\in\Gamma$ için $\Sat{M'}{!C}$ ve her
+  $!C\in\Delta$ için $\Sat/{M'}{!C}$. Ancak öncül geçerli olduğundan
+  $\Sat{M'}{!A(a)}$. $!A(a)$ bir tümce olduğu için
+  \olref[syn][ass]{prop:sentence-sat-true} uyarınca
+  $\Sat{M'}{!A(a)}[s]$. $\Struct{M'}$'yi bu biçimde tanımladığımızdan
+  $s(x)=\Value{a}{M'}[s]$ olmak üzere $\varAssign{s}{s}{x}$. Böylece
+  \olref[syn][ext]{prop:ext-formulas} uygulanır ve
+  $\Sat{M'}{!A(x)}[s]$ elde edilir. $a$, $!A(x)$ içinde bulunmadığından
+  \olref[syn][ext]{prop:extensionality} uyarınca $\Sat{M}{!A(x)}[s]$.
+  $s$ keyfî olduğundan bütün değişken atamaları için $\Sat{M}{!A(x)}[s]$
+  olduğunu ispatladık.
+\item Son çıkarım \LeftR{\lexists} olsun: Alıştırma.
+}{}
+\end{enumerate}
+Şimdi iki öncüllü olası çıkarımları ele alalım.
+\begin{enumerate}
+\item Son çıkarım bir kesme olsun. O zaman $\pi$ şöyle biter:
+  \begin{prooftree}
+    \AxiomC{}
+    \Deduce$\Gamma \fCenter \Delta, !A$
+    \AxiomC{}
+    \Deduce$!A, \Pi \fCenter \Lambda$
+    \RightLabel{\Cut}
+    \BinaryInf$\Gamma, \Pi \fCenter \Delta, \Lambda$
+  \end{prooftree}
+  \iftag{FOL}{Bir !!a{structure}~$\Struct M$}{Bir !!a{valuation}~$\pAssign{v}$}
+  alalım. Tümevarım hipotezine göre öncüller geçerlidir;
+  dolayısıyla \iftag{FOL}{$\Struct M$}{$\pAssign{v}$} iki öncülü de sağlar.
+  İki duruma ayıralım: (a) $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A}$ ve (b)
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$. (a) durumunda
+  \iftag{FOL}{$\Struct M$}{$\pAssign{v}$}'nin sol öncülü sağlaması için
+  $\Gamma\Sequent\Delta$ sekantını sağlaması gerekir. O zaman sonucu da
+  sağlar. (b) durumunda \iftag{FOL}{$\Struct M$}{$\pAssign{v}$}'nin sağ
+  öncülü sağlaması için $\Pi\Sequent\Lambda$ sekantını sağlaması gerekir.
+  Yine \iftag{FOL}{$\Struct M$}{$\pAssign{v}$} sonucu sağlar.
+\item Son çıkarım \RightR{\land} olsun. O zaman $\pi$ şöyle biter:
+  \begin{prooftree}
+    \AxiomC{}
+    \Deduce$\Gamma \fCenter \Delta, !A$
+    \AxiomC{}
+    \Deduce$\Gamma \fCenter \Delta, !B$
+    \RightLabel{\RightR{\land}}
+    \BinaryInf$\Gamma \fCenter \Delta, !A \land !B$
+  \end{prooftree}
+  Bir \iftag{FOL}{!!a{structure}~$\Struct M$}{!!a{valuation}~$\pAssign{v}$}
+  ele alalım. \iftag{FOL}{$\Struct M$}{$\pAssign{v}$},
+  $\Gamma\Sequent\Delta$ sekantını sağlıyorsa işimiz bitmiştir. Sağlamadığını
+  varsayalım. Tümevarım hipotezine göre $\Gamma\fCenter\Delta,!A$ geçerli
+  olduğundan $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$. Benzer biçimde
+  $\Gamma\Sequent\Delta,!B$ geçerli olduğundan
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$. O zaman
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A\land !B}$.
+\item Son çıkarım \LeftR{\lor} olsun: Alıştırma.
+\item Son çıkarım \LeftR{\lif} olsun. O zaman $\pi$ şöyle biter:
+  \begin{prooftree}
+    \AxiomC{}
+    \Deduce$\Gamma \fCenter \Delta, !A$
+    \AxiomC{}
+    \Deduce$!B, \Pi \fCenter \Lambda$
+    \RightLabel{\LeftR{\lif}}
+    \BinaryInf$!A \lif !B, \Gamma, \Pi \fCenter \Delta, \Lambda$
+  \end{prooftree}
+  Yine bir \iftag{FOL}{!!a{structure}~$\Struct M$}{!!a{valuation}~$\pAssign{v}$}
+  ele alalım ve \iftag{FOL}{$\Struct M$}{$\pAssign{v}$}'nin
+  $\Gamma,\Pi\Sequent\Delta,\Lambda$ sekantını sağlamadığını varsayalım.
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A\lif !B}$ olduğunu göstermeliyiz.
+  \iftag{FOL}{$\Struct M$}{$\pAssign{v}$}, $\Gamma,\Pi\Sequent
+  \Delta,\Lambda$ sekantını sağlamıyorsa ne $\Gamma\Sequent\Delta$ ne de
+  $\Pi\Sequent\Lambda$ sekantını sağlar. $\Gamma\Sequent\Delta,!A$ geçerli
+  olduğundan $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$. $!B,\Pi\Sequent\Lambda$
+  geçerli olduğundan $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!B}$. O zaman
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A\lif !B}$; göstermek istediğimiz de
+  buydu.
+\end{enumerate}
+\end{proof}
+
+\tagprob{FOL}
+\begin{prob}
+\olref[fol][seq][sou]{thm:sequent-soundness} teoreminin ispatını tamamlayın.
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+\olref[pl][seq][sou]{thm:sequent-soundness} teoreminin ispatını tamamlayın.
+\end{prob}
+\tagendprob
+
+\begin{cor}
+\ollabel{cor:weak-soundness}
+$\Proves !A$ ise $!A$ \iftag{FOL}{geçerlidir}{bir totolojidir}.
+\end{cor}
+
+\begin{cor}
+\ollabel{cor:entailment-soundness}
+$\Gamma\Proves !A$ ise $\Gamma\Entails !A$.
+\end{cor}
+
+\begin{proof}
+$\Gamma\Proves !A$ ise sonlu bir $\Gamma_0\subseteq\Gamma$ için
+$\Gamma_0\Sequent !A$ sekantının bir !!a{derivation}{}i vardır.
+\olref{thm:sequent-soundness} uyarınca her
+\iftag{FOL}{!!{structure}~$\Struct M$}{!!{valuation}~$\pAssign{v}$} ya
+  $!B\in\Gamma_0$ olan bir $!B$'yi yanlış yapar ya da $!A$'yı doğru yapar.
+Dolayısıyla $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$ ise
+$\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$.
+\end{proof}
+
+\begin{cor}
+\ollabel{cor:consistency-soundness}
+$\Gamma$ sağlanabilirse tutarlıdır.
+\end{cor}
+
+\begin{proof}
+Karşıt tersini ispatlayalım. $\Gamma$'nın tutarlı olmadığını varsayalım. O
+zaman sonlu bir $\Gamma_0\subseteq\Gamma$ ve $\Gamma_0\Sequent\quad$
+sekantının bir !!a{derivation}{}i vardır. \olref{thm:sequent-soundness}
+uyarınca $\Gamma_0\Sequent\quad$ geçerlidir. Başka bir deyişle her
+\iftag{FOL}{!!{structure}~$\Struct M$}{!!{valuation}~$\pAssign{v}$} için
+  $!C\in\Gamma_0$ olan ve $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$ koşulunu
+  sağlayan bir $!C$
+vardır; $\Gamma_0\subseteq\Gamma$ olduğundan bu $!C$, $\Gamma$ içinde de
+bulunur. Dolayısıyla hiçbir \iftag{FOL}{$\Struct M$}{$\pAssign{v}$},
+$\Gamma$'yı sağlamaz ve $\Gamma$ sağlanabilir değildir.
+\end{proof}
+
+\end{document}

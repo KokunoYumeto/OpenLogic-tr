@@ -1,0 +1,68 @@
+% part: intuitionistic-logic
+% chapter: introduction
+% section: axiomatic-derivations
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{int}{int}{axd}
+
+\olsection{Aksiyomatik \usetoken{P}{derivation}}
+
+Sezgici önerme mantığı için aksiyomatik !!{derivation}, kavramsal bakımdan en
+basit ve tarihsel olarak ilk !!{derivation} sistemleridir. Klasik önerme
+mantığındakiyle aynı biçimde işlerler.
+
+\begin{defn}[!!^{derivability}]
+$\Gamma$, $\Lang L$ dilinin !!{formula}s{}den oluşan bir kümeyse bir
+\emph{!!{derivation}}, $\Gamma$'dan elde edilen sonlu bir $!A_1$, \dots,~$!A_n$ !!{formula}
+dizisidir ve her $i \le n$ için aşağıdakilerden biri geçerlidir:
+\begin{enumerate}
+\item $!A_i \in \Gamma$; ya da
+\item $!A_i$ bir aksiyomdur; ya da
+\item $!A_i$, bazı $!A_j$ ve $!A_k$'dan modus ponens yoluyla çıkar; burada
+  $j < i$ ve $k < i$'dir, yani $!A_k \ident !A_j \lif !A_i$.
+\end{enumerate}
+\end{defn}
+
+\begin{defn}[Aksiyomlar]
+Sezgici önerme mantığının $\PAx$ \emph{aksiyomlar} kümesi, aşağıdaki
+biçimlerdeki bütün !!{formula}s{}i içerir:
+\begin{align}
+  & (!A \land !B) \lif !A \ollabel{ax:land1}\\
+  & (!A \land !B) \lif !B \ollabel{ax:land2}\\
+  & !A \lif (!B \lif (!A \land !B)) \ollabel{ax:land3}\\
+  & !A \lif (!A \lor !B) \ollabel{ax:lor1}\\
+  & !A \lif (!B \lor !A) \ollabel{ax:lor2}\\
+  & (!A \lif !C) \lif ((!B \lif !C) \lif ((!A \lor !B) \lif !C)) \ollabel{ax:lor3}\\
+  & !A \lif (!B \lif !A) \ollabel{ax:lif1}\\
+  & (!A \lif (!B \lif !C)) \lif ((!A \lif !B) \lif (!A \lif !C)) \ollabel{ax:lif2}\\
+  & \lfalse \lif !A \ollabel{ax:lfalse1}
+\end{align}
+\end{defn}
+
+\begin{defn}[!!^{derivability}]
+!!^a{formula}~$!A$'nın \emph{!!{derivable}} olması $\Gamma$'ya göre
+tanımlanır. Bu bağıntıyı $\Gamma \Proves !A$ diye yazarız; bağıntı,
+$\Gamma$'dan $!A$ ile biten !!a{derivation} varsa geçerlidir.
+\end{defn}
+
+\begin{defn}[Teoremler]
+!!^a{formula}~$!A$, boş kümeden~$!A$'nın !!a{derivation}{}i varsa bir
+\emph{teorem}dir. $\Proves !A$ yazımı, $!A$ bir teoremse kullanılır; değilse
+$\Proves/ !A$ yazarız.
+\end{defn}
+
+\begin{prop}
+  Sezgici mantığın aksiyomatik !!{derivation} sisteminde $\Gamma \Proves !A$
+  ise klasik mantıkta da $\Gamma \Proves !A$ olur. Özellikle $!A$ sezgici bir
+  teoremse klasik bir teoremdir.
+\end{prop}
+
+\begin{proof}
+  Her sezgici aksiyom aynı zamanda klasik bir aksiyomdur; dolayısıyla sezgici
+  mantıktaki her !!{derivation}, klasik mantıkta da !!a{derivation}{}dir.
+\end{proof}
+
+\end{document}

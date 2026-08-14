@@ -1,0 +1,99 @@
+% Part: first-order-logic
+% Chapter: proof-systems
+% Section: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[tr]{fol}{prf}{int}}
+      {\olfileid[tr]{pl}{prf}{int}}
+
+\olsection{Giriş}
+
+Mantıkların genellikle hem bir semantiği hem de !!a{derivation} sistemi
+vardır. Semantik; doğruluk, sağlanabilirlik, geçerlilik ve mantıksal gerektirme
+gibi kavramlarla ilgilenir. !!{derivation} sistemlerinin amacı, mantıksal
+gerektirmeyi ve geçerliliği belirlemenin salt sözdizimsel bir yöntemini
+sağlamaktır. Bu sistemler salt sözdizimseldir; çünkü böyle bir sistemdeki
+!!{derivation}, genellikle !!{sentence}s ya da !!{formula}s içeren bir dizi
+(veya başka bir sonlu düzenleme) biçiminde, sonlu bir sözdizimsel nesnedir.
+İyi !!{derivation} sistemlerinde, !!{sentence}s ya da !!{formula}s içeren
+verilmiş herhangi bir dizi veya düzenlemenin “doğru” olup olmadığı mekanik
+olarak denetlenebilir.
+
+\iftag{FOL}{Birinci dereceden mantığın}{Önerme mantığının} en basit
+(ve tarihsel olarak ilk) !!{derivation}
+sistemleri \emph{aksiyomatik}ti. Böyle bir sistemde !!{formula}s içeren bir
+dizi şu koşullarda !!a{derivation} sayılır: dizideki her !!{formula} ya sabit
+bir “aksiyom” kümesinde yer alır ya da daha önce gelen !!{formula}s içinden
+sabit sayıdaki “çıkarım kurallarından” biriyle elde edilir. Ayrıca !!a{formula} aksiyom
+mudur ve diğer !!{formula}s üzerinden bir çıkarım kuralıyla doğru biçimde
+elde edilmiş midir, bunlar mekanik olarak denetlenebilir. Aksiyomatik
+!!{derivation} sistemlerini betimlemek ve metakuramsal olarak ele almak
+kolaydır; ancak bu sistemlerde !!{derivation}s üretmek de, onları okuyup
+anlamak da zordur.
+
+Başka !!{derivation} sistemleri, çeşitli !!{derivation}s kurmayı ya da
+!!{derivation}s tamamlandıktan sonra onları anlamayı kolaylaştırmak amacıyla
+geliştirilmiştir. Doğal tümdengelim, tableau ispatları olarak da bilinen
+doğruluk ağaçları ve sekant hesabı bunlara örnektir. Bazı !!{derivation}
+sistemleri özellikle mekanikleştirme gözetilerek tasarlanır; örneğin
+çözümleme yöntemini yazılımda uygulamak kolaydır (ama ortaya çıkan
+!!{derivation}s neredeyse anlaşılamaz). Bu diğer !!{derivation}
+sistemlerinin çoğu, !!{derivation}s için diziler yerine !!{formula}s içeren
+ağaçlar kullanır. Böylece !!a{derivation} içindeki hangi parçaların hangi
+başka parçalara dayandığını görmek kolaylaşır.
+
+Dolayısıyla \iftag{FOL}{birinci dereceden mantık}{önerme mantığı} gibi
+belirli bir mantık için farklı
+!!{derivation} sistemleri, !!a{sentence} ne zaman \emph{teorem} sayılacağına
+ve !!a{sentence} başka tümcelerden ne zaman !!{derivable} olduğuna farklı
+açıklamalar getirir. Bu nasıl yapılırsa yapılsın (aksiyomatik !!{derivation}s,
+doğal tümdengelimler, sekant !!{derivation}s, doğruluk ağaçları ya da
+çözümlemeyle çürütmeler aracılığıyla), bu bağıntıların semantik geçerlilik ve
+mantıksal gerektirme kavramlarıyla örtüşmesini isteriz. “$!A$ bir teoremdir”
+için $\Proves !A$, “$!A$'nın $\Gamma$'dan !!{derivable} olduğu” içinse
+“$\Gamma \Proves !A$” yazalım. $\Proves$ nasıl tanımlanırsa tanımlansın,
+$\Entails$ ile örtüşmesini, yani şunların geçerli olmasını isteriz:
+\begin{enumerate}
+\item $\Proves !A$ ancak ve ancak $\Entails !A$
+\item $\Gamma \Proves !A$ ancak ve ancak $\Gamma \Entails !A$
+\end{enumerate}
+Yukarıdaki ifadelerin “yalnızca eğer” yönüne \emph{sağlamlık} denir.
+Bir !!^a{derivation} sistemi, !!{derivability} mantıksal gerektirmeyi (veya
+geçerliliği) güvence altına alıyorsa sağlamdır. Her makul !!{derivation}
+sistemi sağlam olmalıdır; sağlam olmayan !!{derivation} sistemleri hiçbir işe
+yaramaz. Sonuçta !!a{derivation} vermenin bütün amacı, geçerlilik veya
+mantıksal gerektirme için sözdizimsel bir güvence sağlamaktır. Sunduğumuz
+!!{derivation} sistemlerinin sağlamlığını ispatlayacağız.
+
+Bunun tersi olan “eğer” yönü de önemlidir; buna \emph{tamlık} denir. Tam bir
+!!{derivation} sistemi, $!A$ geçerli olduğunda $!A$'nın teorem olduğunu ve
+$\Gamma \Entails !A$ olduğunda $\Gamma \Proves !A$ olduğunu gösterecek kadar
+güçlüdür. Tamlığı ortaya koymak daha zordur ve bazı mantıklarda tam bir
+!!{derivation} sistemi yoktur.
+\iftag{FOL}{Birinci dereceden mantıkta vardır. Kurt G\"odel, 1929 tarihli
+doktora tezinde birinci dereceden mantığın !!a{derivation} sistemi için
+tamlığı ispatlayan ilk kişiydi.}{Önerme mantığında tam türetim sistemleri
+vardır.}
+
+!!{derivation} sistemleriyle bağlantılı başka bir kavram da
+\emph{tutarlılık}tır. !!{sentence}s içeren bir kümeden her şeyi
+!!{derive} mümkünse bu kümeye tutarsız, aksi halde tutarlı denir. Tutarsızlık,
+sağlanamazlığın sözdizimsel karşılığıdır: sağlanamaz kümeler gibi,
+!!{sentence}s içeren tutarsız kümeler de iyi kuramlar oluşturmaz; temel bir
+kusurları vardır. !!{sentence}s içeren tutarlı kümeler doğru veya yararlı
+olmayabilir, ama en azından mantıksal yararlılığın bu asgari eşiğini aşarlar.
+Farklı !!{derivation} sistemlerinde, !!{sentence}s içeren kümelerin özel
+tutarlılık tanımı değişebilir; yine de $\Proves$ için olduğu gibi,
+tutarlılığın semantik karşılığı olan sağlanabilirlikle örtüşmesini isteriz.
+$\Gamma$'nın ancak ve ancak sağlanabilir olduğunda tutarlı olmasını isteriz.
+Burada “yalnızca eğer” yönü tamlığa (tutarlılık sağlanabilirliği güvence altına
+alır), “eğer” yönü ise sağlamlığa (sağlanabilirlik tutarlılığı güvence altına
+alır) karşılık gelir. Nitekim klasik
+\iftag{FOL}{birinci dereceden mantıkta}{önerme mantığında} sağlamlık ve
+tamlığın bu iki biçimi birbirine denktir.
+
+\end{document}

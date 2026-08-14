@@ -1,0 +1,51 @@
+% part: intuitionistic-logic
+% chapter: semantics
+% section: propositions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{int}{sem}{pro}
+
+\olsection{Önermeler}
+
+Bazen !!a{relational model}~$\mModel{M}$ içinde !!a{formula}~$!A$'nın
+doğru olduğu dünyalar kümesine bir ad vermek yararlıdır. Buna $!A$'nın
+tanımladığı \emph{önerme} der ve $\Prop{M}{!A}$ yazarız.
+
+\begin{defn}
+  $V$ fonksiyonunu tümevarımla aşağıdaki biçimde $\Prop{M}{!A} \colon \Frm
+  \to \Pow{W}$ fonksiyonuna genişletiriz:
+  \begin{enumerate}
+  \item $\Prop{M}{\lfalse} = \emptyset$
+  \item $\Prop{M}{p} = V(p)$
+  \item $\Prop{M}{\lnot !B} = {}$
+    \[
+      \Setabs{w \in W}{\text{$Rww'$ olan her $w'$ için $w'
+          \notin \Prop{M}{!B}$}}.
+    \]
+  \item $\Prop{M}{!B \land !C} = \Prop{M}{!B} \cap \Prop{M}{!C}$.
+  \item $\Prop{M}{!B \lor !C} = \Prop{M}{!B} \cup \Prop{M}{!C}$.
+  \item $\Prop{M}{!B \lif !C} = {}$
+    \[
+      \Setabs{w \in W}{\text{$Rww'$ olan her $w'$ için, $w'
+          \in \Prop{M}{!B}$ ise $w' \in \Prop{M}{!C}$}}.
+    \]
+  \end{enumerate}
+\end{defn}
+
+\begin{prop}
+  \ollabel{prop:propositions-true}
+  $\mModel{M}{!A}[w]$ ancak ve ancak $w \in \Prop{M}{!A}$.
+\end{prop}
+
+\begin{proof}
+  Alıştırma.
+\end{proof}
+
+\begin{prob}
+  \olref[int][sem][pro]{prop:propositions-true} önermesini ispatlayın.
+\end{prob}
+
+\end{document}

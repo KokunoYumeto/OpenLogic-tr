@@ -1,0 +1,126 @@
+% Part: turing-machines
+% Chapter: undecidability
+% Section: universal-tm
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{tur}{und}{uni}
+\olsection{Evrensel Turing Makineleri}
+
+\olref[enu]{sec} içinde her Turing makinesinin sonlu bir tam sayı dizisiyle
+nasıl betimlenebildiğini tartıştık. Bu dizi Turing makinesinin durumlarını,
+alfabesini, başlangıç durumunu ve yönergelerini kodlar. Ayrıca bütün bu
+betimler kümesinin !!{enumerable} olduğuna dikkat çektik. Böyle betimler
+kümesi !!{denumerable} olduğuna göre $\Nat$'ten bu betimlere giden
+!!a{surjective} fonksiyon vardır. Böyle !!a{surjective} fonksiyon, örneğin
+Cantor'un zikzak yöntemiyle elde edilebilir. Bu bize Turing makinelerinin
+(betimlerinin) tümünü numaralandırmanın bir yolunu verir. Böyle bir
+numaralandırmayı sabitlersek artık $1$., $2$., \dots, $e$. Turing
+makinesinden söz etmek anlamlı olur. Bu sayılara \emph{indis} denir.
+
+\begin{defn}
+$M$ (sabit numaralandırmamızdaki) $e$. Turing makinesiyse $e$'nin $M$'nin bir
+\emph{indisi} olduğunu söyleriz. $e$. Turing makinesini $M_e$ ile gösteririz.
+\end{defn}
+
+Bir makinenin birden fazla indisi olabilir; örneğin $M$'nin iki betimi,
+yönergelerini listelediğimiz sıra bakımından farklı olabilir ve bu farklı
+betimlerin indisleri de farklı olur.
+
+Önemli olarak, Turing makinesi betimlerinin numaralandırmasını, indisinden
+$M$'nin betimini ve $M$ makinesinin betiminden onun bir indisini etkili
+biçimde hesaplayabileceğimiz bir biçimde vermek mümkündür. Church--Turing
+tezine göre, indisi $e$ olan Turing makinesinin betimini geri elde edip karşılık
+gelen betimi çıktı olarak şeridine yazan bir Turing makinesi bulmak da
+mümkündür. Betim, $\TMstroke$ bloklarından oluşan bir dizi olurdu (bu bloklar
+$M_e$'yi betimleyen dizideki pozitif tam sayıları gösterir).
+
+Bunu bildiğimize göre şu soruları sormak doğaldır: Turing makinesi
+indislerinin hangi fonksiyonları Turing makinelerince hesaplanabilir? Turing
+makinesi indislerinin hangi özelliklerine Turing makinelerince karar
+verilebilir? Bir örnek verelim: $e$ indisini, indisi $e$ olan Turing
+makinesinin durum sayısına götüren fonksiyon bir Turing makinesince
+hesaplanabilir. Böyle bir Turing makinesi şunu yapardı: Şeritte $e$ tane
+$\TMstroke$ simgesinden oluşan tek bir blokla başlatıldığında önce $e$'yi
+betimine çözerdi. Betim artık şeritte bir $\TMstroke$ blokları dizisiyle
+gösterilir. Bu dizinin ilk !!{element}, durumların sayısıdır. Dolayısıyla
+artık yapılması gereken tek şey ilk $\TMstroke$ bloğu dışındaki her şeyi
+silmek ve ardından durmaktır.
+
+Dikkate değer bir sonuç şudur:
+
+\begin{thm}\ollabel{thm:universal-tm} $\tuple{e,n}$ girdisinde
+  başlatıldığında
+  \begin{enumerate}
+    \item ancak ve ancak $M_e$, $n$ girdisinde durursa duran ve
+    \item $M_e$, $m$ çıktısıyla duruyorsa $U$ da aynı çıktıyla duran
+  \end{enumerate}
+  bir \emph{evrensel Turing makinesi}~$U$ vardır. Böylece $U$, $M_e$ makinesi
+  $n$ girdisinde $m$ çıktısıyla duruyorsa $f(e,n)=m$, aksi durumda tanımsız
+  olan $f\colon\Nat\times\Nat\pto\Nat$ fonksiyonunu hesaplar.
+\end{thm}
+
+\begin{proof}
+  Son derece karmaşık bir makine olduğundan $U$'yu gerçekten üretmek
+  neredeyse olanaksızdır. Fakat nasıl çalıştığını ana çizgileriyle betimleyip
+  Church--Turing tezine başvurabiliriz. Başlangıçta $U$'nun şeridinde $e$
+  tane $\TMstroke$ simgesinden oluşan bir bloğu, $n$ tane $\TMstroke$
+  simgesinden oluşan bir blok izler. Önce $e$
+  indisini $n$ girdisinin sağında ``çözer''. Böylece $M_e$ makinesinin
+  yönergelerini betimleyen bir sayılar listesi (yani araları $\TMblank$
+  simgeleriyle ayrılmış $\TMstroke$ blokları) elde edilir. Ardından $U$,
+  $M_e$'nin başlangıç durumunun sayısını ve $1$ sayısını $M_e$ betiminin
+  sağındaki şeride yazar. (Bunlar da tekli gösterimde $\TMstroke$ blokları
+  olarak gösterilir.) Sonra girdiyi ($n$ tane $\TMstroke$ bloğunu) sağa
+  kopyalar; ancak her $\TMstroke$ simgesini üç $\TMstroke$ simgesinden oluşan
+  bir blokla değiştirir (anımsayın, $\TMstroke$ simgesinin numarası $3$,
+  $\TMendtape$ simgesinin numarası $1$ ve $\TMblank$ simgesinin numarası
+  $2$'dir). $U$'nun şeridinde $\TMblank$ simgeleriyle ayrılmış bu bloklar
+  dizisinin sol ucuna, $\TMendtape$ kodu olan tek bir $\TMstroke$ yazar.
+
+  Artık $U$'nun şeridinde şunlar bulunur: $e$ indisi, $n$ sayısı, başlangıç
+  durumunun kod numarası (``mevcut durum''), ilk kafa konumu~$1$'in sayısı
+  (``mevcut kafa konumu'') ve ``şeridin'' ilk içeriği ($M_e$ simgelerinin kod
+  numaralarını gösteren ve araları $\TMblank$ simgeleriyle ayrılmış bir
+  $\TMstroke$ blokları dizisi, yani ``simgeler'').
+
+  Şimdi şu işlemleri yaparak $M_e$'nin $n$ girdisinde başlatıldığında
+  yapacaklarını benzetir:
+  \begin{enumerate}
+    \item ``Mevcut kafa konumunun'' sayısı~$k$'yi bulun (başlangıçta bu
+    sayı~$1$'dir),
+    \item Oradaki ``simgenin'' ne olduğunu görmek için ``şeritteki'' $k$.
+    bloğa gidin,
+    \item\ollabel{find-inst}%
+    mevcut ``durum'' ve ``simgeyle'' eşleşen yönergeyi bulun,
+    \item ``Şeritteki'' $k$. bloğa geri dönüp oradaki ``simgeyi'', $M_e$'nin
+    yazacağı simgenin kod numarasıyla değiştirin,
+    \item Kafayı mevcut ``durumu'' kaydettiği yere götürüp oradaki sayıyı
+    yeni durumun numarasıyla değiştirin,
+    \item ``Şerit konumunu'' kaydettiği yere gidip yönerge sırasıyla sola ya
+    da sağa gitmeyi söylüyorsa bir~$\TMstroke$ silin ya da
+    bir~$\TMstroke$ ekleyin.
+    \item Yineleyin.\footnote{Burada bazı ince güçlükleri atlıyoruz. Örneğin
+    $U$, ``mevcut kafa konumunu'' izlediği sayacı artırırken ek yere gereksinim
+    duyabilir; bu durumda bütün ``şeridi'' sağa kaydırması gerekir.}
+  \end{enumerate}
+  $M_e$, $n$ girdisinde başlatıldığında hiç durmazsa $U$ da hiç durmaz;
+  dolayısıyla çıktısı tanımsızdır.
+
+  \olref{find-inst} adımında $M_e$ betiminin mevcut ``durum''/``simge'' çifti
+  için bir yönerge içermediği ortaya çıkarsa $M_e$ dururdu. Bu olduğunda $U$,
+  şeridinin ``şeridin'' solunda kalan bölümünü siler. $M_e$'nin şeridindeki
+  bir~$\TMstroke$ simgesini gösteren üçlü $\TMstroke$ bloklarının her biri
+  için kendi şeridinin sol ucuna bir $\TMstroke$ yazar ve ``şeridi'' art arda
+  siler. İşlem bittiğinde $U$'nun şeridinde uzunluğu $m$ olan tek bir
+  $\TMstroke$ bloğu bulunur.
+  
+  $U$, ``şeritte'' üç $\TMstroke$ simgesinden oluşan bir blok dışında bir
+  şeyle karşılaşırsa hemen durur. Bu durumda $U$'nun şeridi tek bir
+  $\TMstroke$ bloğu içermediğinden çıktısı doğal bir sayı değildir; yani bu
+  durumda $f(e,n)$ tanımsızdır.
+\end{proof}
+
+\end{document}

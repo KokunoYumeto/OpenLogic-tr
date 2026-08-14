@@ -1,0 +1,74 @@
+% Part: normal-modal-logic
+% Chapter: filtrations
+% Section: preliminaries
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{nml}{fil}{pre}
+
+\olsection{Ön Bilgiler}
+
+Süzmeler, modal mantık sistemlerimizin \emph{sonlu model özelliğine} sahip
+olduğunu, yani bir modelde doğru (yanlış) olan her !!{formula}{}ün bir
+\emph{sonlu} modelde de doğru (yanlış) olduğunu göstererek bu sistemlerin
+karar verilebilirliğini kurmamızı sağlar. Süzmeler, alt formüller altında
+kapalı !!{formula}s kümelerine göre tanımlanır.
+
+\begin{defn}\ollabel{defn:modallyclosed}
+  Bir $\Gamma$ !!{formula}s kümesi, $\Gamma$ içindeki !!a{formula}{}ün her
+  alt formülünü içeriyorsa \emph{alt formüller altında kapalıdır}. Ayrıca
+  $\Gamma$ alt formüller altında kapalıysa ve $!A\in\Gamma$ olması
+  $\Box!A,\Diamond!A\in\Gamma$ olmasını da gerektiriyorsa $\Gamma$
+  \emph{modal olarak kapalıdır}.
+\end{defn}
+
+Örneğin !!a{formula} $!A$ verildiğinde, onun bütün alt !!{formula}s{}inin
+kümesi alt !!{formula}s altında kapalıdır. Bir modelin $!A$'nın alt
+!!{formula}s{}i kümesinden süzülmesini tanımladığımızda istediğimiz özelliğe
+sahip olur: $!A$'yı ancak ve ancak özgün model doğru (yanlış) yapıyorsa doğru
+(yanlış) yapar.
+
+$\mModel{M}$ modelinin $\Gamma$ üzerinden bir süzmesinin dünyalar kümesi,
+aşağıdaki denklik bağıntısının bütün denklik sınıfları kümesi olarak
+tanımlanır.
+
+\begin{defn}
+$\mModel{M}=\tuple{W,R,V}$ olsun ve $\Gamma$ alt !!{formula}s altında
+kapalı olsun. $W$ üzerinde, $\Gamma$'dan tam olarak aynı !!{formula}s{}i doğru
+yapan herhangi iki dünya arasında geçerli bir $\equiv$ bağıntısı tanımlayın:
+\[
+u \equiv v \quad \text{ancak ve ancak} \quad
+\forall !A \in \Gamma : \mSat{M}{!A}[u] \Leftrightarrow \mSat{M}{!A}[v].
+\]
+Bir $w$ dünyasının $[w]_\equiv$ denklik sınıfı, kısaca $[w]$, $w$'ye
+$\equiv$-denk bütün dünyaların kümesidir:
+\[
+[w] = \Setabs{v}{v \equiv w}.
+\]
+\end{defn}
+
+\begin{prop}
+  $\mModel{M}$ ve $\Gamma$ verildiğinde, yukarıda tanımlanan $\equiv$ bir
+  denklik bağıntısıdır; yani yansımalı, simetrik ve geçişlidir.
+\end{prop}
+
+\begin{proof}
+  $w$, $\Gamma$ içindeki tam olarak kendisiyle aynı !!{formula}s{}i doğru
+  yaptığından $\equiv$ yansımalıdır. $u$, $\Gamma$ içindeki $v$ ile aynı
+  !!{formula}s{}i doğru yapıyorsa bunun $v$ ile $u$ için de geçerli olması
+  nedeniyle simetriktir. $u$, $\Gamma$ içindeki $v$ ile aynı; $v$ de $w$
+  ile aynı !!{formula}s{}i doğru yapıyorsa $u$ ile $w$'nin de aynı
+  !!{formula}s{}i doğru yapması nedeniyle geçişlidir.
+\end{proof}
+
+Her denklik bağıntısı gibi $\equiv$ de $W$'yi \emph{bölümlere}, yani
+$W$'nin ikişer ikişer ayrık ve birlikte $W$'nin tamamını kapsayan alt
+kümelerine ayırır. Her $w\in W$, $w\equiv w$ olduğundan bölümlerden birinin,
+yani $[w]$'nin !!a{element}{}dır. Dolayısıyla $[w]$ bölümleri $W$'nin
+tamamını kapsar. İkişer ikişer ayrıklardır; çünkü $u\in[w]$ ve $u\in[v]$
+ise $u\equiv w$ ve $u\equiv v$; simetriklik ve geçişlilikten $w\equiv v$,
+dolayısıyla $[w]=[v]$ çıkar.
+
+\end{document}

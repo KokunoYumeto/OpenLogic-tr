@@ -1,0 +1,43 @@
+% Part: computability
+% Chapter: tm-computations
+% Section: church-turing-thesis
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{tur}{mac}{ctt}
+\olsection{Church--Turing Tezi}
+
+Turing makinelerinin, etkili yöntem kavramının kesin bir karşılığı olması
+amaçlanır. Turing, hem etkili yöntem kavramını hem de Turing makinesi kavramını
+kavrayan herkesin, etkili bir yöntemle yapılabilen her şeyin bir Turing
+makinesiyle de yapılabileceği sezgisine sahip olacağını düşünüyordu. Etkili
+yöntem kavramı için önerilen bütün öteki kesin karşılıkların Turing makinesi
+kavramına kaplamsal olarak eşdeğer çıkması, yani tam olarak aynı fonksiyonlar
+kümesini hesaplayabilmeleri bu iddiayı destekler. Bu iddiaya
+\emph{Church--Turing tezi} denir.
+
+\begin{defn}[Church--Turing tezi]
+\emph{Church--Turing Tezi}, etkili bir yöntemle hesaplanabilen her şeyin
+Turing hesaplanabilir olduğunu söyler.
+\end{defn}
+
+Church--Turing tezine iki biçimde başvurulur. İlk kullanım biçimi tembellik
+için bir mazerettir. Bir şeyi hesaplayan etkili bir yöntemin, diyelim ki
+``sözde kod'' ile verilmiş bir betimine sahip olduğumuzu varsayalım. O zaman
+onu gerçekten kurmamış olsak bile aynı fonksiyonun bir Turing makinesi
+tarafından hesaplandığı iddiasını gerekçelendirmek için Church--Turing tezine
+başvurabiliriz.
+
+Church--Turing tezinin öteki kullanımı felsefi bakımdan daha ilginçtir.
+Turing makinelerince hesaplanamayan fonksiyonların bulunduğu gösterilebilir.
+Buradan Church--Turing tezi kullanılarak bu fonksiyonların hiçbir yöntemle
+etkili biçimde hesaplanamayacağı sonucuna varılabilir. Çünkü böyle bir yöntem
+olsaydı Church--Turing tezine göre onun için bir Turing makinesi de bulunurdu.
+Dolayısıyla bir fonksiyonu hesaplayan hiçbir Turing makinesinin bulunmadığını
+kanıtlayabilirsek etkili bir yöntem de bulunamaz. Özellikle Church--Turing
+tezine, durma problemi denen problemin yalnızca Turing makinelerince değil,
+hiçbir biçimde etkili olarak çözülemeyeceğini ileri sürmek için başvurulur.
+
+\end{document}

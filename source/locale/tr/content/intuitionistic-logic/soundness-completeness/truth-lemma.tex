@@ -1,0 +1,72 @@
+% part: intuitionistic-logic
+% chapter: soundness-completeness
+% section: truth-lemma
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{int}{sc}{tru}
+
+\olsection{Doğruluk Lemması}
+
+Aşağıdaki lemma, kanonik modeldeki sağlanmayı !!{formula}s{}in hangilerinin
+asal $\Delta$ kümesinin !!{element}s{}ı olduğuna bağlar.
+
+\begin{lem}\ollabel{lem:truth}
+  $\Delta$ asalsa $\mSat{M(\Delta)}{!A}[\sigma]$ ancak ve ancak
+  $\Delta(\sigma)\Proves !A$.
+\end{lem}
+
+\begin{proof}
+  $!A$ üzerinde tümevarımla.
+  \begin{enumerate}
+    \item \indcase{!A}{\lfalse}{$\Delta(\sigma)$ asal olduğundan
+      tutarlıdır; dolayısıyla $\Delta(\sigma)\Proves/\indfrm$.
+      Tanım gereğince $\mSat/{M(\Delta)}{\indfrm}[\sigma]$.}
+    \item \indcase{!A}{p}{$\mSat{{}}{}$ tanımına göre
+      $\mSat{M(\Delta)}{\indfrm}[\sigma]$ ancak ve ancak
+      $\sigma\in V(p)$, yani $\Delta(\sigma)\Proves\indfrm$.}
+    \item \indcase!{!A}{\lnot !B}{}
+    \item \indcase{!A}{!B\land !C}{
+      $\mSat{M(\Delta)}{\indfrm}[\sigma]$ ancak ve ancak
+      $\mSat{M(\Delta)}{!B}[\sigma]$ ve
+      $\mSat{M(\Delta)}{!C}[\sigma]$. Tümevarım varsayımıyla
+      $\mSat{M(\Delta)}{!B}[\sigma]$ ancak ve ancak
+      $\Delta(\sigma)\Proves !B$; $!C$ için de benzer biçimde.
+      Fakat $\Delta(\sigma)\Proves !B$ ve
+      $\Delta(\sigma)\Proves !C$ ancak ve ancak
+      $\Delta(\sigma)\Proves\indfrm$.}
+    \item \indcase{!A}{!B\lor !C}{
+      $\mSat{M(\Delta)}{\indfrm}[\sigma]$ ancak ve ancak
+      $\mSat{M(\Delta)}{!B}[\sigma]$ ya da
+      $\mSat{M(\Delta)}{!C}[\sigma]$. Tümevarım varsayımıyla bu, ancak ve
+      ancak $\Delta(\sigma)\Proves !B$ ya da
+      $\Delta(\sigma)\Proves !C$ ise geçerlidir. Bunun da ancak ve ancak
+      $\Delta(\sigma)\Proves\indfrm$ olduğunda geçerli olduğunu
+      göstermeliyiz. Soldan sağa yön açıktır. Sağdan sola yön ise
+      $\Delta(\sigma)$ asal olduğundan çıkar.}
+    \item \indcase{!A}{!B\lif !C}{Önce soldan sağa yönün karşıt tersini
+      gösterelim. $\Delta(\sigma)\Proves/ !B\lif !C$ olsun. O zaman
+      $\Delta(\sigma)\cup\{!B\}\Proves/ !C$ de geçerlidir.
+      Bazı~$n$ için $\tuple{!B,!C}=\tuple{!B_n,!C_n}$ olduğundan
+      $\Delta(\sigma.n)=(\Delta(\sigma)\cup\{!B\})^*$,
+      $\Delta(\sigma.n)\Proves !B$, fakat
+      $\Delta(\sigma.n)\Proves/ !C$. Tümevarım varsayımıyla
+      $\mSat{M(\Delta)}{!B}[\sigma.n]$ ve
+      $\mSat/{M(\Delta)}{!C}[\sigma.n]$. $R\sigma(\sigma.n)$ olduğundan
+      $\mSat/{M(\Delta)}{\indfrm}[\sigma]$.
+
+      Şimdi $\Delta(\sigma)\Proves !B\lif !C$ ve $R\sigma\sigma'$ olsun.
+      $\Delta(\sigma)\subseteq\Delta(\sigma')$ olduğundan,
+      $\Delta(\sigma')\Proves !B$ ise $\Delta(\sigma')\Proves !C$.
+      Başka bir deyişle, $R\sigma\sigma'$ olan her $\sigma'$ için ya
+      $\Delta(\sigma')\Proves/ !B$ ya da $\Delta(\sigma')\Proves !C$.
+      Tümevarım varsayımına göre bu, $R\sigma\sigma'$ olduğunda ya
+      $\mSat/{M(\Delta)}{!B}[\sigma']$ ya da
+      $\mSat{M(\Delta)}{!C}[\sigma']$ demektir; yani
+      $\mSat{M(\Delta)}{\indfrm}[\sigma]$.}
+  \end{enumerate}
+\end{proof}
+
+\end{document}

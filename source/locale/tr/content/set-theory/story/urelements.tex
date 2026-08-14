@@ -1,0 +1,77 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sth}{story}{urelements}
+\olsection{Urelementler Olsun mu?}
+
+Sonraki birkaç bölümde birikimli-yinelemeli küme anlayışından aksiyomlar
+çıkarmaya çalışacağız. Fakat ilerlemeden önce \emph{urelementler} hakkında
+biraz daha konuşmalıyız.
+
+\olref[approach]{sec}'deki resim, yalnızca eski \emph{kümelerden} yeni
+kümeler oluşturmamıza izin verdi. Oysa belirli \emph{küme olmayanların}---
+inekler, domuzlar, kum taneleri ya da başka şeylerin---kümelerin !!{element}s{}ı
+olmasına izin vermek isteyebiliriz. Bu durumda belirli temel elemanlarla,
+\emph{urelementlerle} başlar; her $S$ evresinde urelementlerden ya da
+$S$'den önceki evrelerde oluşturulmuş kümelerden (istenen birleşimle) meydana
+gelen ``bütün olası'' kümeleri oluşturduğumuzu söyleriz. Ortaya çıkan resim
+daha çok şöyle görünür:
+\begin{center}
+  \begin{tikzpicture}[scale=0.6]
+  \tikzset{cut_here/.style={densely dotted}}
+  \draw (-4,6) -- (-1, 0) -- (1,0) -- (4,6);
+  \draw[cut_here] (-5,8)--(-4,6);
+  \draw[cut_here] (5,8)--(4,6);
+  \draw(-1.5, 1)--(1.5, 1);
+  \draw(-2, 2)--(2, 2);
+  \draw(-2.5, 3)--(2.5,3);
+  \draw(-3, 4)--(3, 4);
+  \draw(-3.5, 5)--(3.5, 5);
+  \draw(-4, 6)--(4, 6);
+  \node[label] at (2, 0) {\small 0};
+  \node[label] at (2.5, 1) {\small 1};
+  \node[label] at (3, 2) {\small 2};
+  \node[label] at (3.5, 3) {\small 3};
+  \node[label] at (4, 4) {\small 4};
+  \node[label] at (4.5, 5) {\small 5};
+  \node[label] at (5, 6) {\small 6};
+  \end{tikzpicture}
+\end{center}
+Şimdi bir karar vermeliyiz: \emph{Urelementlere izin verelim mi?}
+
+Felsefi açıdan urelementleri kuramımıza katmak anlamlıdır. Başlıca neden,
+küme teorimizi \emph{uygulanabilir} kılmaktır. Bunu açıklamak için
+\olref[sfr][siz][]{chap}'de iki $A$ ve~$B$ kümesinin, ancak ve ancak
+aralarında bir bire bir örten fonksiyon varsa aynı büyüklükte olduğunu,
+yani $\cardeq{A}{B}$ olduğunu söylediğimizi hatırlayın. Tarladaki ineklerle
+ağıldaki domuzlar birer küme oluşturuyorsa ``inek sayısı domuz sayısına
+eşittir'' savını küme teorisiyle ele alabiliriz. Fakat urelementleri
+yasaklarsak ineklerle domuzlar küme \emph{oluşturmaz} ve bu küme-kuramsal
+çözümleme kullanılamaz. Hatta küme teorisini kümelerin kendisi dışındaki
+herhangi bir şeye doğrudan uygulama olanağımız kalmaz. (Urelementleri dâhil
+etmenin başka nedenleri için bkz. \citealt[pp.~vi, 24, 50--1]{Potter2004}.)
+
+Matematikte ise urelementlere izin vermek oldukça enderdir. Bunun bir nedeni,
+küme teorisini urelementler olmadan ifade etmenin \emph{çok az} daha kolay
+olmasıdır. Fakat bazen urelementleri küme teorisinden dışlamak için daha ilginç
+gerekçeler bulunur:
+\begin{quote}
+  Küme teorisinin matematiğin temeli olduğu inancıyla uyumlu olarak, yalnızca
+  kümelerden söz ederek bütün matematiği yakalayabilmeliyiz; dolayısıyla
+  değişkenimiz inekler ve domuzlar gibi nesneler üzerinde dolaşmamalıdır.
+  %But if $C$ is a cow, $\{C\}$ is a set, but not a legitimate mathematical object.
+  \citep[p.~8]{Kunen1980}
+\end{quote}
+Öyleyse uygulanabilirliğe odaklanmak urelementleri \emph{dâhil etmeyi};
+indirgemeci bir temel amaca (matematiği saf küme teorisine indirgemeye)
+odaklanmak ise onları \emph{dışlamayı} düşündürebilir. Biraz tembellik de
+urelementleri dışlama yönündedir.
+
+En tembel yolu izleyeceğiz. Yine de bunun kısmen pedagojik bir gerekçesi
+vardır. Amacımız sizi küme teorisi felsefesine başlamanız için gereken küme
+teorisi öğeleriyle tanıştırmaktır. Bu felsefi yazının büyük bölümü ise
+urelementler \emph{olmadan} formüle edilmiş küme teorilerini tartışır. Bu
+kitap o yazına oldukça yakın durursa belki daha yararlı olur.
+
+\end{document}

@@ -1,27 +1,69 @@
 {
   "schema_version": 1,
-  "version": "OLP-0062-20260813",
-  "source_replay": "PASS: 62/62 cumulative targets bind to exact sources at commit 9620cc73f9c8e0ad003c514a5d3748f29611c4c0",
-  "model_or_agent_checks": "CLEAN: independent exact-source, mathematical/logic, terminology, structural, and Turkish-language reviews; blocker 0, major 0, minor 0",
-  "deterministic_build": "PASS: latexmk 4.88 / MiKTeX pdfTeX 1.40.29, exit 0; 103 US-Letter pages",
-  "rendered_inspection": "PASS: 103/103 pages rendered at 120 dpi; full contact sheets and enlarged pages 88-103 inspected",
-  "text_layer": "PASS: 226535 UTF-8 bytes, 4123 lines, zero unresolved-reference, citation, token, placeholder, or replacement-glyph markers",
-  "diagnostics": {
-    "fatal_errors": 0,
+  "version": "OLP-0722-20260814",
+  "coverage": "Complete Turkish edition: OLP-0001 through OLP-0722, 722/722 frozen content modules",
+  "source_authority": {
+    "commit": "9620cc73f9c8e0ad003c514a5d3748f29611c4c0",
+    "tree": "f67757bb9305b173634082ab4cefd5601a707a34"
+  },
+  "source_replay": {
+    "status": "PASS",
+    "rows": 722,
+    "closure_bytes": 829550,
+    "closure_sha256": "2B424C62612499B15AF475E77367A06FF68E71FCA620A289BA1B37D5B8BC5AEC"
+  },
+  "structural_qa": {
+    "status": "PASS",
+    "targets_passed": 722,
+    "targets_total": 722,
+    "receipt_bytes": 2443209,
+    "receipt_sha256": "46F5FE080693D3A99DE234A9588C28D5A683D0FDACFA62AD2323AC3B8EB01499"
+  },
+  "deterministic_build": {
+    "status": "PASS",
+    "exit_code": 0,
+    "missing_character_diagnostics": 0,
+    "fatal_or_error_diagnostics": 0,
     "unresolved_references": 0,
     "unresolved_citations": 0,
-    "missing_characters": 0,
-    "overfull_boxes": 0,
-    "underfull_hboxes": 12,
-    "underfull_vboxes": 2,
-    "font_warnings": 4
+    "log_sha256": "3C93282140F5593B2C9C2C64CEDE86E128F5B91EC201B5DE050EAAADE000FCA4",
+    "fls_sha256": "D9095CEA4E2CAEC0F1AD5481E6B6BB2A8B86603E48195A16017659DF6F8F2574"
   },
-  "reader_pages": 103,
-  "reader_bytes": 711458,
-  "reader_sha256": "3598C3CB1ACC9DBEC0B1A92B98BED9E9615030D00CC866133CC738A1DB073CAF",
+  "reader_filename": "00_OPENLOGIC_tr_COMPLETE_LINKED_READER_OLP-0722.pdf",
+  "reader_pages": 1037,
+  "reader_bytes": 5470171,
+  "reader_sha256": "2D9939692A971EDF468D3B41F38C57283C046BE9D110783CF50D10CDB3152900",
+  "text_layer": {
+    "status": "PASS",
+    "bytes": 2593270,
+    "lines": 46990,
+    "sha256": "26D2CAE84B478ADD70D9EDBC8088F6BD2C761FD47EF01F5DED5E008F6EBFC286",
+    "question_mark_pairs": 0,
+    "raw_localization_tokens": 0,
+    "unicode_replacement_characters": 0,
+    "undefined_markers": 0,
+    "todo_markers": 0,
+    "tbd_markers": 0,
+    "placeholder_markers": 0,
+    "tex_command_residue": 0
+  },
+  "rendered_inspection": {
+    "status": "CLEAN",
+    "pages_rendered": 1037,
+    "pages_inspected": 1037,
+    "prior_inspected_pages_byte_identical": 1020,
+    "changed_pages_reinspected_original_detail": [868, 869, 871, 873, 875, 876, 877, 878, 879, 880, 881, 882, 883, 885, 896, 897, 898],
+    "changed_pages_result": "CLEAN",
+    "contact_sheets": 65,
+    "page_metrics_sha256": "FEBE3788B88808B70BF16D6208B56415DD02D938D4C0C7ABE56D1CDC63D9A8C9"
+  },
   "artifact_manifest": "evidence/ARTIFACT_SHA256.tsv",
   "unresolved_items": "evidence/UNRESOLVED_ITEMS.tsv",
   "human_review_required": false,
+  "native_review_required": false,
   "release_closed": true,
-  "closure_reason": "Exact source replay, independent model/agent review, deterministic build, text QA, all-page render inspection, immutable hashes, and honest scope disclosure all pass."
+  "release_gate_definition": "Translation, exact-source replay, structural QA, deterministic build, text-layer scans, and all-page visual QA are closed. External publication operations are tracked separately.",
+  "external_publication_complete": false,
+  "publication_action": "Exact DOI 10.5281/zenodo.21927145 reserved; local package, planned Git tag/release, Zenodo publication, and public readback pending",
+  "closure_reason": "All 722/722 modules and every defined deterministic reader gate passed"
 }

@@ -1,0 +1,37 @@
+% Part: many-valued-logic
+% Chapter: infinite-valued-logics
+% Section: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{mvl}{inf}{int}
+
+\olsection{Giriş}
+
+Bir matrisin doğruluk değerlerinin sayısının sonlu olması gerekmez. Sonsuz
+sayıda doğruluk değeri kümesi için doğal bir seçim, $0$ ile $1$ arasındaki
+rasyonel sayılar kümesidir: $V_\infty = [0,1] \cap \Rat$, yani
+\begin{align*}
+    V_\infty & = \Setabs{\frac{n}{m}}{n,m \in \Nat \text{ ve } 0<m
+    \text{ ve } n\le m}.
+\intertext{Bu sonsuz doğruluk değerleri kümesini incelerken aşağıdaki alt
+kümeleri de ele almak çoğu kez yararlıdır:}
+V_m & = \Setabs{\frac{n}{m-1}}{n \in \Nat \text{ ve } n<m}
+\intertext{Örneğin $V_5$, eşit aralıklarla dağılmış $5$ doğruluk değerinden
+oluşan kümedir:}
+V_5 & = \{0, \frac{1}{4}, \frac{1}{2}, \frac{3}{4}, 1\}.
+\end{align*}
+Bu doğruluk değeri kümelerine dayalı mantıklarda genellikle yalnızca $1$
+belirlenmiştir; yani $V^+ = \{1\}$. Başka bir deyişle $1$'e (mutlak)
+doğruluk, $0$'a mutlak yanlışlık rolünü veririz; fakat !!{formula}s
+$V$ içindeki herhangi bir ara değeri alabilir.
+
+Bununla birlikte $0$ ile $1$ arasındaki bütün \emph{gerçel} sayılardan
+oluşan $V_{[0,1]} = [0,1]$ kümesi ya da $[0,1]$'in başka sonsuz alt
+kümeleri de ele alınabilir. Bu doğruluk değerleri kümesini kullanan
+mantıklara çoğu kez \emph{bulanık} denir.
+
+
+\end{document}

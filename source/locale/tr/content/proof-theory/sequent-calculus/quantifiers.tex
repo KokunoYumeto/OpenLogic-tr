@@ -1,0 +1,154 @@
+% Part: proof-theory
+% Chapter: sequent-calculus
+% Section: quantifiers
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{pt}{seq}{qua}
+
+\olsection{Düzenli İspatlar ve Yerine Koyma}
+
+Niceleyici kuralları, \LeftR{\lexists} ve~\RightR{\lforall} kurallarına
+uygulanan ``özdeğişken koşulları'' nedeniyle bazı güçlükler doğurur. Bu
+güçlüklerin çoğu, bu çıkarımlardaki !!{constant}~$a$'nın hiçbir zaman
+yeniden kullanılmaması sağlanarak giderilebilir. Şu tanımı verelim.
+
+\begin{defn}
+\Log{G1c} ya da \Log{G3c}'deki !!^a{proof}~$\pi$, aşağıdaki koşulları
+sağlıyorsa \emph{düzenlidir}:
+\begin{enumerate}
+  \item hiçbir özdeğişken~$a$, birden fazla \LeftR{\lexists} ya da
+  \RightR{\lforall} çıkarımının özdeğişkeni olarak kullanılmaz ve
+  \item $a$, bir \LeftR{\lexists} ya da \RightR{\lforall} çıkarımının
+  özdeğişkeniyse $\pi$ içinde yalnızca bu çıkarımın üstünde geçer.
+\end{enumerate}
+\end{defn}
+
+\begin{lem}\ollabel{lem:subst-regular} $\pi$ düzenliyse ve $\Gamma \Sequent
+\Delta$ ile bitiyorsa, $c$ $\pi$ içinde özdeğişken olarak kullanılmayan
+bir !!a{constant} ve $t$, $\pi$'nin hiçbir özdeğişkenini içermeyen bir
+terimse, $\pi$ içindeki her $c$ geçişinin $t$ ile değiştirilmesiyle elde
+edilen $\Subst{\pi}{t}{c}$ düzenli bir !!{proof}{}tır. $\Subst{\pi}{t}{c}$'nin
+son sekantı $\Subst{\Gamma}{t}{c} \Sequent \Subst{\Delta}{t}{c}$'dir;
+burada $\Subst{\Gamma}{t}{c} = \Setabs{!A(t)}{!A(c) \in \Gamma}$.
+\end{lem}
+
+\begin{proof}
+  $\pheight{\pi}$ üzerinde tümevarımla. $\pheight{\pi} = 0$ ise $\pi$
+  yalnızca bir aksiyomdan oluşur. Bu durumda $\Subst{\pi}{t}{c}$ de bir
+  aksiyomdur; çünkü içindeki her !!{formula}~$!A(c)$, $!A(t)$'ye dönüşür.
+
+  $\pheight{\pi} > 0$ ise $\pi$'deki son çıkarıma göre durumları ayırırız.
+  Yapısal kurallar (\Log{G1c}'de) ile önerme bağlaçlarının mantıksal
+  kurallarına ilişkin durumlar kolaydır ve alıştırma olarak bırakılmıştır.
+  $\pi$'nin bir niceleyici çıkarımıyla bittiği durumları ele alalım.
+  \begin{enumerate}
+    \item Son çıkarım $\RightR{\lforall}$ ise $\pi$ şu biçimdedir:
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi'$}
+    \Deduce$\Gamma(c) \fCenter \Delta'(c), !A(a,c)$
+    \RightLabel{\RightR{\lforall}}
+    \UnaryInf$\Gamma(c) \fCenter \Delta'(c), \lforall[x][!A(x,c)]$
+    \DisplayProof
+    \]
+    Tümevarım varsayımına göre $\Subst{\pi'}{t}{c}$, $\Gamma(t) \fCenter
+    \Delta'(t), !A(a,t)$ sekantının düzenli bir !!{proof}{}ıdır. $a$, $\pi$'nin
+    bir özdeğişkeni olduğundan $t$ içinde geçmez. Bu nedenle
+    $\Subst{\pi}{t}{c}$'deki son çıkarım
+    \[
+    \AxiomC{}
+    \RightLabel{$\Subst{\pi'}{t}{c}$}
+    \Deduce$\Gamma(t) \fCenter \Delta'(t), !A(a,t)$
+    \RightLabel{\RightR{\lforall}}
+    \UnaryInf$\Gamma(t) \fCenter \Delta'(t), \lforall[x][!A(x,t)]$
+    \DisplayProof
+    \]
+    doğrudur: sonuç $a$'yı içermez.
+    \item Son çıkarım \Log{G3c}'de $\LeftR{\lforall}$ ise $\pi$ şu
+    biçimdedir:
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi'$}
+    \Deduce$!A(s(c),c), \lforall[x][!A(x,c)], \Gamma(c) \fCenter \Delta'(c)$
+    \RightLabel{\LeftR{\lforall}}
+    \UnaryInf$\lforall[x][!A(x,c)], \Gamma(c) \fCenter \Delta'(c)$
+    \DisplayProof
+    \]
+    Tümevarım varsayımına göre $\Subst{\pi'}{t}{c}$, $!A(s(t),t),
+    \lforall[x][!A(x,t)], \Gamma(t) \fCenter \Delta'(t)$ sekantının düzenli bir
+    !!{proof}{}ıdır. $\Subst{\pi}{t}{c}$'deki son çıkarım
+    \[
+    \AxiomC{}
+    \RightLabel{$\Subst{\pi'}{t}{c}$}
+    \Deduce$!A(s(t),t), \lforall[x][!A(x,t)], \Gamma(t) \fCenter \Delta'(t)$
+    \RightLabel{\LeftR{\lforall}}
+    \UnaryInf$\lforall[x][!A(x,t)], \Gamma(t) \fCenter \Delta'(t)$
+    \DisplayProof
+    \]
+    doğrudur. \Log{G1c}'deki \LeftR{\lforall} durumu benzerdir, ancak biraz
+    daha basittir.
+    \item Son çıkarım \RightR{\lexists} ya da \LeftR{\lexists} ise:
+    alıştırma.
+  \end{enumerate}
+  Her durumda düzenli bir !!a{proof}{}ın (iki öncüllü kurallarda iki düzenli
+  !!{proof}{}ın) sonuna bir sekant ekledik. Yeni sekant, $\pi$'nin son
+  sekantından yalnızca $c$'nin $t$ terimiyle değiştirilmesi bakımından
+  ayrılır. Üstelik $t$'nin $\pi$'nin hiçbir özdeğişkenini içermediği
+  varsayıldığından, $\pi$ ile $\Subst{\pi}{t}{c}$ aynı özdeğişkenlere
+  sahiptir ve yeni son sekant $\Subst{\pi}{t}{c}$'nin hiçbir özdeğişkenini
+  içermez. Dolayısıyla $\Subst{\pi}{t}{c}$ düzenlidir.
+\end{proof}
+
+\begin{prop}
+$\pi$, \Log{G1c} ya da \Log{G3c}'de bir !!a{proof} ise $\pi$ ile aynı
+yapıya (özellikle aynı !!{height} değerine) sahip ve ondan yalnızca özdeğişkenlerin
+değiştirilmesi bakımından ayrılan düzenli bir !!a{proof}~$\pi'$ vardır.
+\end{prop}
+
+\begin{proof}
+Yalnızca bu ispat için, $\pi$'nin bir özdeğişken çıkarımına; özdeğişkeni
+başka bir çıkarımın özdeğişkeni değilse ve $\pi$ içinde çıkarımın doğrudan
+alt-!!{proof}{}ı dışında hiçbir yerde geçmiyorsa \emph{temiz}, aksi hâlde
+\emph{kirli} diyelim. $n$, $\pi$ içindeki kirli özdeğişken çıkarımlarının
+sayısı olsun. $n$ üzerinde tümevarımla $\pi$'nin istenen düzenli
+!!{proof}~$\pi'$ye dönüştürülebileceğini gösteriyoruz. $n=0$ ise $\pi$
+içindeki bütün özdeğişken çıkarımları temizdir; dolayısıyla $\pi$ düzenlidir
+ve ispatlanacak bir şey yoktur. Aksi hâlde en üstteki bir özdeğişken
+çıkarımını, örneğin \RightR{\lforall}'ı seçelim. $\pi$'nin bu çıkarımla
+biten alt-!!{proof}{}ı~$\pi_1$ şu biçimdedir:
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi_2$}
+    \Deduce$\Gamma \fCenter \Delta, !A(c)$
+    \RightLabel{\RightR{\lforall}}
+    \UnaryInf$\Gamma \fCenter \Delta, \lforall[x][!A(x)]$
+    \DisplayProof
+    \]
+$c$ bir özdeğişken olduğundan $\Gamma$, $\Delta$ ya da
+$\lforall[x][!A(x)]$ içinde geçmez. $\pi_2$ hiçbir özdeğişken çıkarımı
+içermediği için düzenlidir. $a$, $\pi$ içinde geçmeyen bir !!a{constant}
+olsun. \olref{lem:subst-regular} gereğince $\Subst{\pi_2}{a}{c}$,
+$\Gamma \fCenter \Delta, !A(a)$'nın düzenli bir ispatıdır ve buna
+$\RightR{\lforall}$ uygulayabiliriz. $\pi$ içindeki $\pi_1$'i şu
+$\pi_1'$ ispatıyla değiştirirsek
+    \[
+    \AxiomC{}
+    \RightLabel{$\Subst{\pi_2}{a}{c}$}
+    \Deduce$\Gamma \fCenter \Delta, !A(a)$
+    \RightLabel{\RightR{\lforall}}
+    \UnaryInf$\Gamma \fCenter \Delta, \lforall[x][!A(x)]$
+    \DisplayProof
+    \]
+kirli bir özdeğişken çıkarımını temiz bir çıkarımla değiştirmiş oluruz;
+tek fark, $c$ özdeğişkeninin~$a$ ile değiştirilmesidir. Ortaya çıkan ispatta
+$n-1$ kirli özdeğişken çıkarımı vardır; sonuç tümevarım varsayımından çıkar.
+\end{proof}
+
+Az önce ispatlanan önermeye açıkça başvurmayacağız; ancak ele alınan bütün
+!!{proof}s{}ın düzenli olduğunu varsayacağız---düzenli değillerse
+özdeğişkenlerini değiştirerek her zaman düzenli hâle getirebiliriz.
+
+\end{document}

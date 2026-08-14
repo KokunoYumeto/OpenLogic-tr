@@ -1,0 +1,65 @@
+% Part: first-order-logic
+% Chapter: syntax-and-semantics
+% Section: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{fol}{syn}{int}
+
+\olsection{Giriş}
+
+Birinci dereceden mantığın kuramını ve metakuramını geliştirmek için önce
+ifadelerinin sözdizimini ve semantiğini tanımlamamız gerekir. Birinci dereceden
+mantığın ifadeleri terimler ve !!{formula}s{}dir. Terimler !!{variable}s,
+!!{constant}s ve !!{function}s kullanılarak oluşturulur. !!^{formula}s ise
+!!{predicate}s ile terimlerden (bunlar en küçük, ``atomik'' !!{formula}s{}i
+oluşturur), ardından da atomik !!{formula}s{}den mantıksal bağlaçlar ve
+niceleyiciler kullanılarak oluşturulur. Kuruluş kurallarını belirlemenin pek
+çok yolu vardır; burada yalnızca bunlardan birini veriyoruz. Başka sistemler
+başka simgeler seçer, başka bağlaç kümelerini ilkel kabul eder ve parantezleri
+başka biçimde kullanır (hatta Leh gösterimi denen gösterimde olduğu gibi hiç
+kullanmaz). Bununla birlikte bütün yaklaşımların ortak yanı, kuruluş
+kurallarının terimler ve !!{formula}s kümesini \emph{tümevarımsal olarak}
+tanımlamasıdır. Kurallar doğru kurulmuşsa her ifade, kuruluş kurallarına göre
+özünde yalnızca tek bir biçimde elde edilebilir. \emph{Biricik okunabilir}
+ifadeler üreten tümevarımsal tanım, aynı yöntemle---tümevarımsal tanımla---bu
+ifadelere anlam verebilmemizi sağlar.
+
+İfadelere anlam vermek semantiğin alanıdır. Semantiğin merkezî kavramı,
+!!a{structure} içinde sağlanmadır. !!^a{structure}, dilin yapı taşlarına anlam
+verir: !!a{domain}, boş olmayan bir nesneler kümesidir. Niceleyiciler bu
+!!{domain} üzerinde değişecek biçimde yorumlanır; !!{constant}s bu kümenin
+elemanlarına, !!{function}s !!{domain}{}den yine kendisine giden fonksiyonlara ve
+!!{predicate}s !!{domain} üzerindeki bağıntılara atanır. !!{domain} ile temel
+söz dağarcığına yapılan atamalar birlikte !!a{structure} oluşturur.
+!!^{variable}s, !!{formula}s içinde bulunabilir; bunlara da semantik vermek
+için !!{domain}{}in !!{element}s{}ını atamamız gerekir---bu bir değişken
+atamasıdır. Son olarak sağlanma bağıntısı bütün bunları bir araya getirir.
+!!^a{formula}, bir $s$ değişken atamasına göre !!a{structure}~$\Struct{M}$
+içinde sağlanabilir; bunu $\Sat{M}{!A}[s]$ biçiminde yazarız. Bu bağıntı da
+$!A$'nın yapısı üzerinde tümevarımla tanımlanır: Örneğin $!A \land !B$'nin
+sağlanması, mantıksal bağlaçların doğruluk tabloları kullanılarak $!A$ ile
+~$!B$'nin sağlanması (ya da sağlanmaması) cinsinden tanımlanır. Sonra,
+!!{formula}~$!A$ serbest değişken içermeyen !!a{sentence} olduğunda değişken
+atamasının önemsiz olduğu ortaya çıkar; böylece !!{sentence}s{}in
+!!{structure}s içinde doğrudan sağlanmasından (ya da sağlanmamasından) söz
+edebiliriz.
+
+Tümceler için $\Sat{M}{!A}$ sağlanma bağıntısına dayanarak geçerlilik,
+mantıksal gerektirme ve sağlanabilirliğin temel semantik kavramlarını
+tanımlayabiliriz. Bir tümce, her yapı onu sağlıyorsa geçerlidir,
+$\Entails !A$. Bir !!{sentence}s kümesi tarafından mantıksal olarak
+gerektirilmesi, $\Gamma \Entails !A$, $\Gamma$'daki bütün !!{sentence}s{}i
+sağlayan her !!{structure}{}nın $!A$'yı da sağlaması demektir. Bir tümceler
+kümesi de, bir !!{structure} içindeki bütün !!{sentence}s{}i aynı anda
+sağlıyorsa sağlanabilirdir. !!{formula}s tümevarımsal olarak, sağlanma da
+!!{formula}s{}in yapısı üzerinde tümevarımla tanımlandığı için semantiğimizin
+özelliklerini ispatlamak ve tanımlanan semantik kavramları ilişkilendirmek
+üzere tümevarımı kullanabiliriz.
+
+
+
+
+\end{document}

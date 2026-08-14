@@ -1,0 +1,62 @@
+% Part: computability
+% Chapter: computability-theory
+% Section: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{cmp}{thy}{int}
+\olsection{Giriş}
+
+Mantığın \emph{hesaplanabilirlik kuramı} diye bilinen dalı, fonksiyonlar ile
+kümelerin hesaplanabilirliği ya da göreli hesaplanabilirliğiyle ilgili
+sorunları inceler. Alanın eskiden \emph{özyineleme kuramı} diye bilinmesi
+Kleene'nin etkisinin bir göstergesidir; günümüzde iki ad da yaygın biçimde
+kullanılır.
+
+Bir $f\colon\Nat\pto\Nat$ fonksiyonuna, belirli bir hesaplama modelinde
+hesaplanabiliyorsa \emph{kısmi hesaplanabilir} diyelim. $f$ tümelse kısaca
+$f$ \emph{hesaplanabilir} diyeceğiz. Karakteristik fonksiyonu $\Char{R}$
+hesaplanabilir olan bir $R$ bağıntısına da hesaplanabilir denir. $f$ ile $g$
+kısmi fonksiyonlarsa $f$'nin $x$'te tanımlı, yani $x$'in $f$'nin tanım
+kümesinde olduğunu $f(x)\fdefined$ ile; $f$'nin $x$'te tanımlı olmadığını ise
+$f(x)\fundefined$ ile göstereceğiz. $f(x)\simeq g(x)$, ya iki değerin de
+tanımsız ya da ikisinin de tanımlı ve eşit olduğu anlamına gelecektir.
+
+Belirli bir hesaplama modeline başvurmadan da hesaplanabilirlik kuramı
+incelenebilir. Bunun için evrensel bir kısmi hesaplanabilir
+$\fn{Un}(k,x)$ fonksiyonunun bulunduğu gösterilir. Bu, kısmi hesaplanabilir
+fonksiyonları numaralandırmamızı sağlar. $k$. tek yerli kısmi hesaplanabilir
+fonksiyonu göstermek üzere $\cfind{k}$ yazacak ve onu
+$\cfind{k}(x)\simeq\fn{Un}(k,x)$ ile tanımlayacağız. Kleene bu amaçla
+$\{k\}$ gösterimini kullanmıştı, fakat son zamanlarda bu gösterim daha az
+kullanılmaktadır. Biraz daha genel olarak keyfî aritideki kısmi hesaplanabilir
+fonksiyonları birbiçimli olarak numaralandırabiliriz; $k$. $n$-yerli kısmi
+özyinelemeli fonksiyonu göstermek üzere $\cfind{k}[n]$ yazacağız.
+
+$f(\vec x,y)$ tümel ya da kısmi bir fonksiyonsa
+$\umin{y}{f(\vec x,y)}$, $f(\vec x,0),\dots,f(\vec x,y-1)$ değerlerinin
+tümünün tanımlı olması koşuluyla $f(\vec x,y)=0$ olacak en küçük $y$'yi
+döndüren $\vec x$ fonksiyonudur; böyle bir $y$ yoksa
+$\umin{y}{f(\vec x,y)}$ tanımsızdır. $R(\vec x,y)$ bir bağıntıysa
+$\umin{y}{R(\vec x,y)}$, $R(\vec x,y)$ doğru olacak en küçük $y$, başka bir
+deyişle $1\tsub\Char{R}(\vec x,y)=0$ olacak en küçük $y$ olarak tanımlanır.
+
+Bir fonksiyonun hesaplanabilir olduğunu göstermek için iki yoldan biri
+izlenebilir:
+\begin{enumerate}
+\item Titiz yol: Bir Turing makinesini ya da kısmi özyinelemeli fonksiyonu
+  açıkça betimleyip amaçlanan fonksiyonu hesapladığını göstermek.
+\item Biçimsel olmayan yol: Fonksiyonu hesaplayan bir algoritmayı betimleyip
+  Church tezine başvurmak.
+\end{enumerate}
+İkisi arasında keskin bir sınır yoktur. Bir algoritmanın ayrıntılı betimi,
+uygun Turing makinesinin ya da kısmi özyinelemeli tanımlar dizisinin ilkece
+nasıl tasarlanabileceğini yeterince açık kılmalıdır. Bütünüyle biçimsel
+tanımların aydınlatıcı olması beklenmez. Bu iki yaklaşım arasında uygun bir
+denge bulmaya, kısacası kesin tanımların elde edilebileceğini gösteren hem
+sezgisel hem titiz ispatlar vermeye çalışacağız.
+
+\end{document}
+

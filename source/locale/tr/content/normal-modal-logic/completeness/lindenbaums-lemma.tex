@@ -1,0 +1,104 @@
+% Part: normal-modal-logic
+% Chapter: completeness
+% Section: lindenbaums-lemma
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{nml}{com}{lin}
+
+\olsection{Lindenbaum Lemması}
+
+Lindenbaum Lemması, her $\Sigma$-tutarlı !!{formula}s kümesinin en az bir
+\emph{tam} $\Sigma$-tutarlı kümenin içinde bulunduğunu kurar. Kanonik modeli
+kurarken her tam $\Sigma$-tutarlı $\Delta$ kümesi için, tam olarak
+$\Delta$ içindeki !!{formula}s{}in doğru olduğu bir dünya bulunduğunu
+göstereceğiz. Böylece Lindenbaum Lemması her $\Sigma$-tutarlı kümenin
+kanonik modeldeki bir dünyada doğru olmasını güvence altına alır.
+
+\begin{thm}[Lindenbaum Lemması]\ollabel{thm:lindenbaum}
+  $\Gamma$ $\Sigma$-tutarlıysa, $\Gamma$'yı genişleten tam
+  $\Sigma$-tutarlı bir $\Delta$ kümesi vardır.
+\end{thm}
+
+\begin{proof}
+Dilin bütün formüllerinin eksiksiz bir listesi $!A_0,!A_1,\dots$ olsun
+(tekrarlara izin verilir). Örneğin listeye $\Obj p_0$ ile başlayıp her
+$n\ge 1$ aşamasında yalnızca $\Obj p_0,\dots,\Obj p_n$ değişkenlerini
+kullanan ve uzunluğu $n$ olan sonlu sayıdaki formülü listeleyin. !!{formula}s
+kümeleri $\Delta_n$'yi $n$ üzerinde tümevarımla tanımlayıp
+$\Delta=\bigcup_n\Delta_n$ koyacağız. Önce $\Delta_0=\Gamma$ koyalım.
+$\Delta_n$ tanımlanmışsa $\Delta_{n+1}$'i şöyle tanımlayalım:
+\[
+\Delta_{n+1} =
+\begin{cases}
+  \Delta_n \cup \{!A_n\}, & \text{$\Delta_n \cup \{ !A_n\}$
+    $\Sigma$-tutarlıysa;} \\
+  \Delta_n \cup \{ \lnot !A_n\}, & \text{aksi durumda.}
+\end{cases}
+\]
+Şimdi $\Delta=\bigcup_{n=0}^\infty\Delta_n$ olsun.
+
+Bu tanımın istenen özelliklere sahip bir $\Delta$ kümesi verdiğini, yani
+$\Gamma\subseteq\Delta$ ve $\Delta$'nın tam $\Sigma$-tutarlı olduğunu
+göstermeliyiz.
+
+Yapı gereği $\Delta_0\subseteq\Delta$ ve $\Delta_0=\Gamma$ olduğundan
+$\Gamma\subseteq\Delta$ olduğu açıktır. Aslında her $n$ için
+$\Delta_n\subseteq\Delta$; çünkü $\Delta$ bütün $\Delta_n$'lerin
+birleşimidir. (Yapının her adımında önceden kurulmuş kümeye !!a{formula}
+eklediğimizden $\Delta_n\subseteq\Delta_{n+1}$; $\subseteq$ geçişli
+olduğundan $n\le m$ iken $\Delta_n\subseteq\Delta_m$.) Yapının her
+aşamasında ya $!A_n$'yi ya $\lnot !A_n$'yi ekleriz ve her !!{formula}, bütün
+$!A_n$'lerin listesinde en az bir kez görünür. Dolayısıyla her $!A$ için ya
+$!A\in\Delta$ ya da $\lnot !A\in\Delta$; böylece $\Delta$ tanım gereği
+tamdır.
+
+Son olarak $\Delta$'nın $\Sigma$-tutarlı olduğunu göstermeliyiz. Bunun için
+(a) $\Delta$ $\Sigma$-tutarsız olsaydı bazı $\Delta_n$'lerin
+$\Sigma$-tutarsız olacağını ve (b) bütün $\Delta_n$'lerin
+$\Sigma$-tutarlı olduğunu göstereceğiz.
+
+$\Delta$'nın $\Sigma$-tutarsız olduğunu varsayalım. O zaman
+$\Delta\Proves[\Sigma]\lfalse$; yani $!A_1,\dots,!A_k\in\Delta$ bulunur ve
+$\Sigma\Proves !A_1\lif(!A_2\lif\cdots(!A_k\lif\lfalse)\dots)$ olur.
+$\Delta=\bigcup_{n=0}^\infty\Delta_n$ olduğundan her
+$!A_i\in\Delta_{n_i}$ olacak bir $n_i$ vardır. Bunların en büyüğü $n$ olsun.
+$n_i\le n$ olduğundan $\Delta_{n_i}\subseteq\Delta_n$. Dolayısıyla bütün
+$!A_i$'ler bir $\Delta_n$ içindedir. Bu, $\Delta_n\Proves[\Sigma]\lfalse$,
+yani $\Delta_n$'nin $\Sigma$-tutarsız olduğu anlamına gelirdi.
+
+Her $\Delta_n$'nin $\Sigma$-tutarlı olduğunu $n$ üzerinde basit
+tümevarımla gösterelim. $\Delta_0=\Gamma$ ve $\Gamma$'nın
+$\Sigma$-tutarlı olduğunu varsaydık; dolayısıyla iddia $n=0$ için geçerlidir.
+$\Delta_n$'nin $\Sigma$-tutarlı olduğunu varsayalım. $\Delta_{n+1}$,
+$\Delta_n\cup\{!A_n\}$ $\Sigma$-tutarlıysa bu küme, aksi durumda
+$\Delta_n\cup\{\lnot!A_n\}$'dir. İlk durumda $\Delta_{n+1}$ açıkça
+$\Sigma$-tutarlıdır. Öte yandan
+\olref[prf][con]{prop:consistencyfacts}\olref[prf][con]{prop:consistencyfacts-c}
+gereğince $\Delta_n\cup\{!A_n\}$ ya da
+$\Delta_n\cup\{\lnot!A_n\}$ kümelerinden biri tutarlıdır; dolayısıyla öteki
+durumda da $\Delta_{n+1}$ tutarlıdır.
+\end{proof}
+
+\begin{cor}\ollabel{cor:provability-characterization}
+  $\Gamma\Proves[\Sigma]!A$ olması, $\Gamma$'yı genişleten her tam
+  $\Sigma$-tutarlı $\Delta$ kümesi için $!A\in\Delta$ olmasına denktir.
+  (Buna $\Gamma=\emptyset$ durumu da dahildir; bu durumda modal sistem
+  $\Sigma$'nın başka bir nitelemesini elde ederiz.)
+\end{cor}
+
+\begin{proof}
+  $\Gamma\Proves[\Sigma]!A$ olsun ve $\Delta$, $\Gamma$'yı genişleten
+  gelişigüzel bir tam $\Sigma$-tutarlı küme olsun. $!A\notin\Delta$ ise
+  tamlık gereğince $\lnot!A\in\Delta$; tekdüzelik gereğince
+  $\Delta\Proves[\Sigma]!A$, yansımalılık gereğince de
+  $\Delta\Proves[\Sigma]\lnot!A$ olur ve $\Delta$ tutarsız çıkar. Tersine
+  $\Gamma\Proves/[\Sigma]!A$ ise $\Gamma\cup\{\lnot!A\}$
+  $\Sigma$-tutarlıdır. Lindenbaum Lemması gereğince
+  $\Gamma\cup\{\lnot!A\}$'yı genişleten tam $\Sigma$-tutarlı bir $\Delta$ kümesi
+  vardır. Tutarlılık gereğince $!A\notin\Delta$.
+\end{proof}
+
+\end{document}

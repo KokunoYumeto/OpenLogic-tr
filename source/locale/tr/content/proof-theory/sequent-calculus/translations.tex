@@ -1,0 +1,99 @@
+% Part: proof-theory
+% Chapter: sequent-calculus
+% Section: translations
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{pt}{seq}{tr}
+
+\olsection{\Log{G1c} ile \Log{G3c} Arasında Çeviri}
+
+Hem \Log{G1c}'nin hem de \Log{G3c}'nin klasik mantık için sağlam ve tam
+olduğunu, yani her birinin bütün !!{structure}s{}da doğru olan sekantları ve
+yalnızca onları ispatladığını belirtmiştik. Özellikle aynı sekantları
+ispatlarlar. Artık bu olguyu sağlamlık ve tamlık teoremleri üzerinden
+dolanmadan, salt ispat kuramsal yöntemlerle gösterebiliriz. Böyle bir ispat,
+\Log{G1c}'deki !!{proof}s{}ı \Log{G3c}'deki !!{proof}s{}a ve ters yönde
+dönüştürme yolları sağlar.
+
+\begin{prop}
+$\Log{G1c} \Proves S$ ise $\Log{G3c} \Proves S$.
+\end{prop}
+
+\begin{proof}
+  $\pi$, \Log{G1c}'de !!a{proof} ise \Log{G3c}'de $S$'nin bir
+  !!a{proof}{}ı~$\pi'$ bulunduğunu gösteriyoruz. Bunu $n = \pheight{\pi}$
+  üzerinde tümevarımla yaparız.
+
+  $n = 0$ ise $\pi$ bir aksiyomdur. $\lfalse \Sequent \quad$ aksiyomu
+  \Log{G3c}'de de bir aksiyomdur (bağlamlar $\Gamma, \Delta$ boş alınır).
+  \Log{G3c}'de gelişigüzel $!A$ için $!A \Sequent !A$ aksiyomlarına izin
+  verilmez; aksiyomlarda $!A$ atomik olmalıdır. Ancak \olref[ex]{prop:G3c-axioms}
+  içinde bütün bu sekantların \Log{G3c}'de !!{provable} olduğunu
+  göstermiştik.
+  
+  $n>0$ ise $\pi$ bir~$R$ kuralıyla biter. Tümevarım varsayımı, bu kuralın
+  öncüllerinin \Log{G3c}'de !!{proof}s{}ı bulunduğunu, yani doğrudan
+  alt-!!{proof}s{}ın \Log{G3c}'ye çevirileri olduğunu güvence altına alır.
+  $R$ kuralı \Log{G3c}'nin de bir kuralıysa onu öncüllerin çevrilmiş
+  !!{proof}s{}ına uygularız. \Log{G3c}'nin kuralı olmayan kuralların en azından
+  kabul edilebilir olduğunu daha önce göstermiştik. Dolayısıyla $R$ kuralı
+  $\LeftR{\land}$ ya da $\RightR{\lor}$ ise
+  \olref[adm]{prop:lor-G3-adm}; zayıflatma kuralıysa
+  \olref[adm]{prop:weak-G3c-adm}; büzülme kuralıysa
+  \olref[inv]{prop:G3c-cont-adm} uygulanır.
+\end{proof}
+
+\begin{prop}
+$\Log{G3c} \Proves S$ ise $\Log{G1c} \Proves S$.
+\end{prop}
+
+\begin{proof}
+  Yine $S$'nin bir !!a{proof}{}ı olan~$\pi$'nin !!{height} değeri üzerinde tümevarımla
+  ilerleriz. \Log{G3c}'nin her aksiyomu, \Log{G1c}'de bir aksiyomdan
+  başlayıp \LeftR{\Weakening} ve \RightR{\Weakening} kurallarını birkaç kez
+  uygulayarak !!{prove}{}nabilir:
+  \[
+  \Axiom$!C \fCenter !C$
+  \RightLabel{\LeftR{\Weakening}}
+  \Deduce$!C, \Gamma \fCenter !C$
+  \RightLabel{\RightR{\Weakening}}
+  \Deduce$!C, \Gamma \fCenter \Delta, !C$
+  \DisplayProof
+\qquad
+  \Axiom$\lfalse \fCenter$
+  \RightLabel{\LeftR{\Weakening}}
+  \Deduce$\lfalse, \Gamma \fCenter$
+  \RightLabel{\RightR{\Weakening}}
+  \Deduce$\lfalse, \Gamma \fCenter \Delta$
+  \DisplayProof
+  \]
+  $\pi$ bir~$R$ kuralıyla bitiyorsa tümevarım varsayımı öncüllerin
+  \Log{G1c}'de !!{proof}s{}ını verir ve aynı~$R$ kuralını bu !!{proof}s{}a
+  uygulayabiliriz. İstisnalar, \Log{G1c} ile \Log{G3c}'de farklı olan
+  \LeftR{\land} ve \RightR{\lor} kurallarıdır. \Log{G3c} sürümleri
+  \Log{G1c}'de şöyle türetilebilir:
+  \[
+  \Axiom$!A, !B, \Gamma \fCenter \Delta$
+  \RightLabel{\LeftR{\land}}
+  \UnaryInf$!A \land !B, !B, \Gamma \fCenter \Delta$
+  \RightLabel{\LeftR{\land}}
+  \UnaryInf$!A \land !B, !A \land !B, \Gamma \fCenter \Delta$
+  \RightLabel{\LeftR{\Contraction}}
+  \UnaryInf$!A \land !B, \Gamma \fCenter \Delta$
+    \DisplayProof
+\qquad
+  \Axiom$\Gamma \fCenter \Delta, !A, !B$
+  \RightLabel{\RightR{\lor}}
+  \UnaryInf$\Gamma \fCenter \Delta, !A \lor !B, !B$
+  \RightLabel{\RightR{\lor}}
+  \UnaryInf$\Gamma \fCenter \Delta, !A \lor !B, !A \lor !B$
+  \RightLabel{\RightR{\Contraction}}
+  \UnaryInf$\Gamma \fCenter \Delta, !A \lor !B$
+    \DisplayProof
+  \]
+\end{proof}
+
+\end{document}

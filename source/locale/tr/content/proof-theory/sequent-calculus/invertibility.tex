@@ -1,0 +1,386 @@
+% Part: proof-theory
+% Chapter: sequent-calculus
+% Section: invertibility
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{pt}{seq}{inv}
+
+\olsection{Kuralların Tersinirliği}
+
+\begin{defn}
+Bir~$R$ kuralı
+\[
+\AxiomC{$S_1$}
+\AxiomC{$\dots$}
+\AxiomC{$S_n$}
+\RightLabel{$R$}
+\TrinaryInfC{$S$}
+\DisplayProof
+\]
+bir sistemde, $\Proves S$ olduğunda $i = 1$, \dots,~$n$ için
+$\Proves S_i$ de oluyorsa \emph{tersinirdir}. $\Proves[n] S$ olduğunda
+$i = 1$, \dots,~$n$ için $\Proves[n] S_i$ de oluyorsa o sistemde
+\emph{!!{height}-koruyarak tersinir} (ya da \emph{!!{hp}-tersinir}) denir.
+\end{defn}
+
+\begin{lem}\ollabel{lem:G3c-invert}
+\Log{G3c}'nin $\lnot$, $\land$, $\lor$ ve $\lif$ kuralları
+!!{height}-koruyarak tersinirdir; başka bir deyişle:
+\begin{enumerate}
+  \item \RightR{\lnot}: $\Log{G3c} \Proves[n] \Gamma \Sequent
+  \Delta, \lnot !A$ ise $\Log{G3c} \Proves[n] !A, \Gamma \Sequent
+  \Delta$.
+  \item \LeftR{\lnot}: $\Log{G3c} \Proves[n] \Gamma, \lnot !A
+  \Sequent \Delta$ ise $\Log{G3c} \Proves[n] \Gamma \Sequent \Delta,
+  !A$.
+  \item \RightR{\land}: $\Log{G3c} \Proves[n] \Gamma \Sequent
+  \Delta, !A \land !B$ ise hem $\Log{G3c} \Proves[n] \Gamma \Sequent
+  \Delta, !A$ hem de $\Log{G3c} \Proves[n] \Gamma \Sequent
+  \Delta, !B$.
+  \item \LeftR{\land}: $\Log{G3c} \Proves[n] \Gamma, !A \land !B
+  \Sequent \Delta$ ise $\Log{G3c} \Proves[n] !A, !B, \Gamma \Sequent
+  \Delta$.
+  \item \RightR{\lor}: $\Log{G3c} \Proves[n] \Gamma \Sequent
+  \Delta, !A \lor !B$ ise $\Log{G3c} \Proves[n] \Gamma \Sequent
+  \Delta, !A, !B$.
+  \item \LeftR{\lor}: $\Log{G3c} \Proves[n] !A \lor !B, \Gamma
+  \Sequent \Delta$ ise hem $\Log{G3c} \Proves[n] !A, \Gamma \Sequent
+  \Delta$ hem de $\Log{G3c} \Proves[n] !B, \Gamma \Sequent \Delta$.
+  \item \RightR{\lif}: $\Log{G3c} \Proves[n] \Gamma \Sequent
+  \Delta, !A \lif !B$ ise $\Log{G3c} \Proves[n] !A, \Gamma \Sequent
+  \Delta, !B$.
+  \item \LeftR{\lif}: $\Log{G3c} \Proves[n] !A \lif !B, \Gamma
+  \Sequent \Delta$ ise hem $\Log{G3c} \Proves[n] \Gamma \Sequent
+  \Delta, !A$ hem de $\Log{G3c} \Proves[n] !B, \Gamma \Sequent \Delta$.
+\end{enumerate}
+\end{lem}
+
+\begin{proof}
+\Log{G3c}'nin her~$R$ kuralı için, $R$'nin sonucu~$S$'nin bir
+!!a{proof}{}ı~$\pi$ varsa $R$'nin öncülleri~$S_i$'nin de
+$\pheight{\pi_i} \le \pheight{\pi}$ olan !!{proof}s{}ı~$\pi_i$ bulunduğunu
+göstermeliyiz. \LeftR{\land} kuralını ele alalım: son sekantı $!A \land
+!B, \Gamma \Sequent \Delta$ biçiminde olan bir !!a{proof}~$\pi$
+bulunduğunu varsayın. $!A, !B, \Gamma \Sequent \Delta$'nın
+$\pheight{\pi'} \le \pheight{\pi}$ olan bir !!a{proof}{}ı~$\pi'$ bulunduğunu
+göstermeliyiz. Bunu $n = \pheight{\pi}$ üzerinde tümevarımla yaparız.
+
+$n = 0$ ise $\pi$ yalnız $!A \land !B, \Gamma \Sequent \Delta$
+aksiyomundan oluşur. \Log{G3c}'de aksiyomlar, $!C$ atomik olmak üzere
+$!C, \Gamma \Sequent \Delta, !C$ biçimindedir. Başka bir deyişle $!C$,
+$!A \land !B$ olamaz. $!A \land !B, \Gamma \Sequent \Delta$ aksiyomsa
+atomik bir $!C$, hem $\Gamma$ hem de~$\Delta$ içinde !!a{element} olmalıdır.
+O zaman $!A, !B, \Gamma \Sequent \Delta$ da aksiyomdur ve yine
+!!{height} değeri~$0$ olan !!{proof}~$\pi'$yi bulmuş oluruz.
+
+$n>0$ ise $\pi$ bir çıkarımla biter. Savı $n$ için ispatlamalıyız; ancak
+bağlam farklı olsa bile yüksekliği~$<n$ olan her !!a{proof} için doğru
+olduğunu varsayabiliriz. Başka bir deyişle her $k<n$ ve her $\Pi$ ile
+$\Lambda$ için $!A \land !B, \Pi \Sequent \Lambda$'nın !!{height} değeri~$k$
+olan bir !!a{proof}{}ı varsa $!A, !B, \Pi \Sequent \Lambda$'nın
+!!{height} değeri~$\le k$ olan bir !!a{proof}{}ı vardır.
+
+İki durum vardır: soldaki $!A \land !B$ ya başlıcadır ya da değildir.
+Başlıcaysa son çıkarım \LeftR{\land}'dır ve doğrudan
+alt-!!{proof}~$\pi_1$, $!A, !B, \Gamma \Sequent \Delta$ ile biter.
+$\pheight{\pi_1} < \pheight{\pi}$ olduğundan sonuç bu durumda geçerlidir.
+
+$!A \land !B$ başlıca değilse başka bir !!{formula} başlıcadır ve $!A
+\land !B$ son çıkarımın bağlamına aittir. Bu durumda tümevarım varsayımı,
+son~$R$ kuralının doğrudan alt-!!{proof}s{}ına uygulanır. Böylece !!{height} değeri
+$\pi$'nin doğrudan alt-!!{proof}s{}ının yüksekliğinden büyük olmayan bir
+!!a{proof}~$\pi_1'$ ya da iki !!{proof}s~$\pi_1'$ ve~$\pi_2'$ elde edilir.
+$\pi_1'$ ile $\pi_2'$nin son sekantlarında sol bağlamda $!A \land !B$
+yerine $!A, !B$ bulunur. !!{proof}~$\pi'$yi elde etmek için~$R$ kuralını
+uygulayın. Örneğin $\pi$'nin~\LeftR{\lif} ile bittiğini varsayalım:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$!A \land !B, \Gamma' \fCenter \Delta, !C$
+\AxiomC{}
+\RightLabel{$\pi_2$}
+\Deduce$!A \land !B, \Gamma', !D \fCenter \Delta$
+\RightLabel{\LeftR{\lif}}
+\BinaryInf$!A \land !B, \Gamma', !C \lif !D \fCenter \Delta$
+\DisplayProof
+\]
+Burada soldaki $!C \lif !D$ başlıcadır ve sol bağlam $!A \land !B,
+\Gamma'$'dir (yani $\Gamma = \Gamma', !C \lif !D$). Tümevarım varsayımı,
+sırasıyla $!A, !B, \Gamma' \Sequent \Delta, !C$ ve $!A, !B, \Gamma', !D
+\Sequent \Delta$'nın !!{proof}s{}ı $\pi_1'$ ile $\pi_2'$yi verir. Bu iki
+sekant yine \LeftR{\lif} kuralının öncülleri olarak kullanılıp $\pi'$
+elde edilebilir:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$!A, !B, \Gamma' \fCenter \Delta, !C$
+\AxiomC{}
+\RightLabel{$\pi_2'$}
+\Deduce$!A, !B, \Gamma', !D \fCenter \Delta$
+\RightLabel{\LeftR{\lif}}
+\BinaryInf$!A, !B, \Gamma', !C \lif !D \fCenter \Delta$
+\DisplayProof
+\]
+Tanım gereği
+\begin{align*}
+\pheight{\pi} & = \max(\pheight{\pi_1}, \pheight{\pi_2}) + 1\\
+\pheight{\pi'} & = \max(\pheight{\pi_1'}, \pheight{\pi_2'}) + 1
+\intertext{ve tümevarım varsayımına göre}
+\pheight{\pi_1'} & \le \pheight{\pi_1}\\
+\pheight{\pi_2'} & \le \pheight{\pi_2}
+\intertext{olduğundan}
+\pheight{\pi'} & \le \pheight{\pi}.
+\end{align*}
+\end{proof}
+
+\begin{prob}
+\RightR{\lif} için \olref{lem:G3c-invert} ispatını verin.
+\end{prob}
+
+\begin{lem}\ollabel{lem:invert-quant}
+\RightR{\lforall} ve \LeftR{\lexists} kuralları aşağıdaki anlamda
+!!{height}-koruyarak tersinirdir:
+\begin{enumerate}
+  \item $\Log{G3c} \Proves[n] \Gamma \Sequent \Delta,
+  \lforall[x][!A(x)]$ ise $\Log{G3c} \Proves[n] \Gamma \Sequent
+  \Delta, !A(c)$ ve
+  \item $\Log{G3c} \Proves[n] \lexists[x][!A(x)], \Gamma \Sequent
+  \Delta$ ise $\Log{G3c} \Proves[n] !A(c), \Gamma \Sequent \Delta$;
+\end{enumerate}
+burada $c$, sırasıyla $\Gamma$, $\Delta$ ve $\lforall[x][!A(x)]$ ya da
+$\lexists[x][!A(x)]$ içinde geçmeyen herhangi bir sabittir.
+\end{lem}
+
+\begin{proof}
+  (1)'i gösterip (2)'yi alıştırma olarak bırakıyoruz. Sav,
+  \olref{lem:G3c-invert} ispatına benzer. Tümevarım adımında yine iki durum
+  vardır. $\lforall[x][!A(x)]$'nin başlıca olduğu durum yine kısadır: son
+  $\RightR{\lforall}$ çıkarımının öncülü, gereken $\Gamma \Sequent \Delta,
+  !A(a)$ biçimindedir ve onunla biten doğrudan alt-!!{proof}~$\pi_1$ için
+  $\pheight{\pi_1} < \pheight{\pi}$ olur. Üstelik özdeğişken koşulu $a$'nın
+  $\Gamma$, $\Delta$ ya da $\lforall[x][!A(x)]$ içinde geçmediğini verir.
+  $\pi_1$'in düzenli olduğunu varsayabileceğimizden
+  \olref[qua]{lem:subst-regular} gereğince $\Subst{\pi_1}{c}{a}$,
+  $\Gamma \Sequent \Delta, !A(c)$'nin aynı !!{height} değerine sahip bir
+  !!a{proof}{}tır.
+
+  İkinci durumda $\lforall[x][!A(x)]$ son çıkarımda başlıca değildir;
+  başka bir formül başlıcadır. Yine örnek olarak bir durumu ele alalım.
+  Son çıkarımın~\RightR{\land} olduğunu varsayın. $\Delta$ içindeki bir
+  !!{formula} $!B \land !C$ biçimindedir ve başlıcadır. !!{proof}~$\pi$
+  şöyle biter:
+  \[
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$\Gamma \fCenter \Delta', \lforall[x][!A(x)], !B$
+\AxiomC{}
+\RightLabel{$\pi_2$}
+\Deduce$\Gamma \fCenter \Delta', \lforall[x][!A(x)], !C$
+\RightLabel{\RightR{\land}}
+\BinaryInf$\Gamma \fCenter \Delta', \lforall[x][!A(x)], !B \land !C$
+\DisplayProof
+\]
+burada $\Delta = \Delta', !B \land !C$'dir. $c$, $\Gamma$, $\Delta$ ve
+$\lforall[x][!A(x)]$ içinde geçmeyen bir !!a{constant} olsun; bu durumda
+$\Delta', !B$ ya da $\Delta', !C$ içinde de geçmez. Öyleyse tümevarım
+varsayımı $\pi_1$ ile~$\pi_2$'ye uygulanır; $\pheight{\pi_1'} \le
+\pheight{\pi_1}$ ve $\pheight{\pi_2'} \le \pheight{\pi_2}$ olan
+!!{proof}s~$\pi_1'$ ile $\pi_2'$ elde edilir. $\Gamma \Sequent \Delta,
+!A(c)$'nin gereken !!{proof}{}ı~$\pi'$ şöyledir:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$\Gamma \fCenter \Delta', !A(c), !B$
+\AxiomC{}
+\RightLabel{$\pi_2'$}
+\Deduce$\Gamma \fCenter \Delta', !A(c), !C$
+\RightLabel{\RightR{\land}}
+\BinaryInf$\Gamma \fCenter \Delta', !A(c), !B \land !C$
+\DisplayProof
+\]
+ve $\pheight{\pi'} = \max(\pheight{\pi_1'}, \pheight{\pi_2'})+1
+\le \pheight{\pi}$ olur.
+\end{proof}
+
+\Olref{lem:G3c-invert}, kesme giderme teoreminin ispatında önemli bir rol
+oynar. Ancak şu sonucu göstermek için de kullanılabilir:
+
+\begin{prop}\ollabel{prop:G3c-cont-adm}
+\Log{G1c}'nin büzülme kuralları \LeftR{\Contraction} ve
+\RightR{\Contraction}, \Log{G3c}'de !!{height}-koruyarak kabul edilebilirdir.
+\end{prop}
+
+\begin{proof}
+\RightR{\Contraction} ve \LeftR{\Contraction} için savı aynı anda
+veriyoruz. $\pi$'nin \Log{G3c}'de $\Gamma \Sequent \Delta, !A, !A$ ya da
+$!A, !A, \Gamma \Sequent \Delta$'nın bir !!a{proof}{}ı olduğunu varsayın.
+Sırasıyla $\Gamma \Sequent \Delta, !A$ ya da $!A, \Gamma \Sequent
+\Delta$'nın $\pheight{\pi'} \le \pheight{\pi}$ olan bir
+\Log{G3c}-!!{proof}{}ı~$\pi'$ bulunduğunu göstermeliyiz. Bunu
+$n = \pheight{\pi}$ üzerinde tümevarımla yaparız.
+
+$n=0$ ise $\pi$ yalnız bir aksiyomdur. Ancak $\Gamma \Sequent \Delta,
+!A, !A$ bir \Log{G3c} aksiyomuysa $\Gamma \Sequent \Delta, !A$ da
+aksiyomdur: ya atomik bir~$!C$ hem $\Gamma$ hem de~$\Delta$ içinde
+!!a{element}{}dır ya da $!A$ atomiktir ve $\Gamma$ içinde !!a{element}{}dır.
+Son sekant $!A, !A, \Gamma \Sequent \Delta$ ise aynı akıl yürütme geçer.
+
+$n>0$ ise $\pi$ bir~$R$ kuralıyla biter. Bu son çıkarımda $!A$ başlıca
+değilse \olref{lem:G3c-invert} ispatındaki gibi, tümevarım varsayımını
+$\pi$'nin doğrudan alt-!!{proof}s{}ına uygulayıp elde edilen !!{proof}s{}a
+aynı~$R$ kuralını uygulayarak !!{proof}~$\pi'$yi elde edebiliriz. Tümevarım
+varsayımı şudur: $\Pi \Sequent \Lambda, !D, !D$ ya da $!D, !D, \Pi
+\Sequent \Lambda$'nın !!{height} değeri~$k<n$ olan bir !!a{proof}{}ı varsa,
+sırasıyla $\Pi \Sequent \Lambda, !D$ ya da $!D, \Pi \Sequent \Lambda$'nın
+!!{height} değeri~$\le k$ olan bir !!a{proof}{}ı vardır. (Bağlamlar ya da büzülen
+!!{formula}; $\Gamma$, $\Delta$ ya da~$!A$'dan farklıysa da tümevarım
+varsayımının uygulandığına dikkat edin!)
+
+Örneğin $R$'nin $\RightR{\land}$ olduğunu ve $\pi$'nin şöyle bittiğini
+varsayın:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$\Gamma \fCenter \Delta', !B, !A, !A$
+\AxiomC{}
+\RightLabel{$\pi_2$}
+\Deduce$\Gamma \fCenter \Delta', !C, !A, !A$
+\RightLabel{\RightR{\land}}
+\BinaryInf$\Gamma \fCenter \Delta', !B \land !C, !A, !A$
+\DisplayProof
+\]
+burada $\Delta = \Delta', !B \land !C$'dir. Tümevarım varsayımı,
+sırasıyla $\Gamma \fCenter \Delta', !B, !A$ ile $\Gamma \fCenter \Delta',
+!C, !A$'nın $\pheight{\pi_1'} \le \pheight{\pi_1}$ ve
+$\pheight{\pi_2'} \le \pheight{\pi_2}$ olan !!{proof}s{}ı $\pi_1'$ ile
+$\pi_2'$yi verir. !!{proof}~$\pi'$ şöyledir:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$\Gamma \fCenter \Delta', !B, !A$
+\AxiomC{}
+\RightLabel{$\pi_2'$}
+\Deduce$\Gamma \fCenter \Delta', !C, !A$
+\RightLabel{\RightR{\land}}
+\BinaryInf$\Gamma \fCenter \Delta', !B \land !C, !A$
+\DisplayProof
+\]
+
+$!A$ son çıkarımda başlıcaysa tersine çevirme önsavını
+(\olref{lem:G3c-invert}) $\pi$'nin doğrudan alt-!!{proof}s{}ına, ardından
+tümevarım varsayımını ve son olarak yeniden~$R$ kuralını uygularız. Örneğin
+$\pi$'nin $\Gamma \Sequent \Delta, !A, !A$'yı ispatladığını,
+$!A \ident (!B \land !C)$ olduğunu ve son çıkarımda başlıca olduğunu
+varsayın. O zaman $\pi$ şöyle görünür:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$\Gamma \fCenter \Delta, !B \land !C, !B$
+\AxiomC{}
+\RightLabel{$\pi_2$}
+\Deduce$\Gamma \fCenter \Delta, !B \land !C, !C$
+\RightLabel{\RightR{\land}}
+\BinaryInf$\Gamma \fCenter \Delta, !B \land !C, !B \land !C$
+\DisplayProof
+\]
+$\pi_1$'e \olref{lem:G3c-invert} uygulanınca $\Gamma \Sequent \Delta,
+!B, !B$'nin bir !!a{proof}{}ı~$\pi_1'$ elde edilir. (Ayrıca $\Gamma
+\Sequent \Delta, !C, !B$'nin bir !!a{proof}{}ı da elde edilir ama buna
+gerek yoktur.) Benzer biçimde $\pi_2$'ye \olref{lem:G3c-invert}
+uygulanınca $\Gamma \Sequent \Delta, !C, !C$'nin bir !!a{proof}{}ı~$\pi_2'$
+elde edilir. $\RightR{\land}$'ın tersine çevrilmesi !!{height}-koruyucu
+olduğundan $\pheight{\pi_1'} \le \pheight{\pi_1} < \pheight{\pi}$ ve
+$\pheight{\pi_2'} \le \pheight{\pi_2} < \pheight{\pi}$'dir. Böylece
+tümevarım varsayımı $\pi_1'$ ile $\pi_2'$ye uygulanır: sırasıyla $\Gamma
+\Sequent \Delta, !B$ ve $\Gamma \Sequent \Delta, !C$'nin
+$\pheight{\pi_1''} \le \pheight{\pi_1'} \le \pheight{\pi_1}$ ve
+$\pheight{\pi_2''} \le \pheight{\pi_2'} \le \pheight{\pi_2}$ olan
+!!{proof}s{}ı~$\pi_1''$ ile $\pi_2''$ vardır. O zaman !!{proof}~$\pi'$ şudur:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1''$}
+\Deduce$\Gamma \fCenter \Delta, !B$
+\AxiomC{}
+\RightLabel{$\pi_2''$}
+\Deduce$\Gamma \fCenter \Delta, !C$
+\RightLabel{\RightR{\land}}
+\BinaryInf$\Gamma \fCenter \Delta, !B \land !C$
+\DisplayProof
+\]
+ve $\pheight{\pi'} \le \pheight{\pi}$ olur.
+
+!!{formula}{}ün başlıca olduğu niceleyici kuralı durumlarında özel dikkat
+göstermeliyiz.
+
+$!A \ident \lforall[x][!B(x)]$'nin sağda başlıca olduğunu varsayın. O
+zaman $\pi$ şöyle biter:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$\Gamma \fCenter \Delta, \lforall[x][!B(x)], !B(a)$
+\RightLabel{\RightR{\lforall}}
+\UnaryInf$\Gamma \fCenter \Delta, \lforall[x][!B(x)], \lforall[x][!B(x)]$
+\DisplayProof
+\]
+\olref{lem:invert-quant} gereğince $\Gamma \fCenter \Delta,
+\lforall[x][!B(x)], !B(a)$ içinde geçmeyen herhangi bir~$c$ için $\Gamma
+\fCenter \Delta, !B(c), !B(a)$'nın !!{height} değeri $\le \pheight{\pi_1}$ olan
+bir !!a{proof}{}ı~$\pi_1'$ vardır. $\pi_1'$in düzenli olduğunu varsayabiliriz;
+öyleyse \olref[qua]{lem:subst-regular} gereğince
+$\Subst{\pi_1'}{a}{c}$ de $\Gamma \fCenter \Delta, !B(a), !B(a)$'nın
+!!{height} değeri $\le \pheight{\pi_1}$ olan bir !!a{proof}{}tır. Şimdi tümevarım
+varsayımı uygulanır ve $\Gamma \fCenter \Delta, !B(a)$'nın bir
+!!a{proof}{}ı~$\pi_1''$ elde edilir. $\pi'$yi elde etmek için
+$\RightR{\lforall}$ kuralını uygulayın:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1''$}
+\Deduce$\Gamma \fCenter \Delta, !B(a)$
+\RightLabel{\RightR{\lforall}}
+\UnaryInf$\Gamma \fCenter \Delta, \lforall[x][!B(x)]$
+\DisplayProof
+\]
+ve $\pheight{\pi'} \le \pheight{\pi}$ olur.
+
+Şimdi $!A \ident \lexists[x][!B(x)]$'nin sağda başlıca olduğunu varsayın.
+O zaman $\pi$ şöyle görünür:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$\Gamma \fCenter \Delta, \lexists[x][!B(x)], \lexists[x][!B(x)], !B(t)$
+\RightLabel{\RightR{\lexists}}
+\UnaryInf$\Gamma \fCenter \Delta, \lexists[x][!B(x)], \lexists[x][!B(x)]$
+\DisplayProof
+\]
+Tümevarım varsayımı $\pi_1$'e uygulanır ve $\Gamma \Sequent \Delta,
+\lexists[x][!B(x)], !B(t)$'nin bir !!a{proof}{}ı~$\pi_1'$ elde edilir.
+(Burada hiçbir tersine çevirme önsavına gerek olmadığına dikkat edin!)
+O zaman !!{proof}~$\pi'$ şöyledir:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$\Gamma \fCenter \Delta, \lexists[x][!B(x)], !B(t)$
+\RightLabel{\RightR{\lexists}}
+\UnaryInf$\Gamma \fCenter \Delta, \lexists[x][!B(x)]$
+\DisplayProof
+\]
+ve $\pheight{\pi'} \le \pheight{\pi}$ olur.
+\end{proof}
+
+\begin{prob}
+\LeftR{\Contraction} için \olref{prop:G3c-cont-adm} ispatının ana
+hatlarını verin. $!A \ident (!B \land !C)$ ve $!A \ident (!B \lif !C)$
+durumlarını betimleyin.
+\end{prob}
+
+\begin{prob}
+Geri kalan niceleyici durumlarında, yani $!A \ident \lforall[x][!B(x)]$
+ve $!A \ident \lexists[x][!B(x)]$ olduğunda \LeftR{\Contraction} için
+\olref{prop:G3c-cont-adm} ispatının ana hatlarını verin.
+\end{prob}
+
+
+\end{document}

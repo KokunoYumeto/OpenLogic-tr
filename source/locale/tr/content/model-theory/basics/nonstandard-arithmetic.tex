@@ -1,0 +1,220 @@
+% Part: first-order-logic
+% Chapter: model-theory
+% Section: nonstandard-arithmetic
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{mod}{bas}{nsa}
+\section{Aritmetiğin Standart Olmayan Modelleri}
+
+\begin{defn}
+$\Lang{L_N}$, aritmetiğin !!{language}{}i olsun; bu dil bir !!{constant}
+$\Obj{0}$, iki yerli bir !!{predicate} $<$, bir yerli bir !!{function}
+$\prime$ ve iki yerli !!{function}s $+$ ile $\times$'dan oluşsun.
+\begin{enumerate}
+\item Aritmetiğin \emph{standart modeli}, $\Nat = \{ 0, 1, 2, \dots\}$
+  evrenine sahip olan; $\Obj{0}$'ı $0$, $<$'ı $\Nat$ üzerindeki küçüktür
+  bağıntısı ve $\prime$, $+$, $\times$'ı sırasıyla $\Nat$ üzerindeki ardıl,
+  toplama ve çarpma olarak yorumlayan $\Lang{L_N}$-!!{structure}{}sı
+  $\Struct{N}$'dir.
+\item \emph{Doğru aritmetik}, $\Theory{N}$ kuramıdır.
+\end{enumerate}
+\end{defn}
+
+$\Lang{L_N}$ içinde çalışırken $\Obj{0}$'a ardıl fonksiyonunun $n$ kez
+uygulanmasıyla oluşan $\Obj{0}^{\prime\dots\prime}$ biçimindeki her terimi
+~$\num{n}$ ile kısaltırız.
+
+\begin{defn}
+$\Lang{L_N}$ için bir !!{structure}~$\Struct{M}$ ancak ve ancak
+$\Struct{N} \iso \Struct{M}$ ise \emph{standart}tır.
+\end{defn}
+
+\begin{thm}\ollabel{thm:non-std}
+Doğru aritmetiğin standart olmayan !!{enumerable} modelleri vardır.
+\end{thm}
+
+\begin{proof}
+$\Lang{L_N}$ dilini yeni bir !!{constant}~$c$ ekleyerek genişletin ve
+\[
+\Theory{N} \cup \Setabs{\num{n} < c}{n \in \Nat}
+\]
+kuramını ele alın. Kuram sonlu olarak sağlanabilirdir; dolayısıyla tıkızlık
+uyarınca bir $\Struct{M}$ modeli vardır ve Aşağı Löwenheim--Skolem teoremi
+uyarınca bu model !!{enumerable} seçilebilir. $\Domain{M}$, $\Struct{M}$'nin
+evreni olsun. $\Struct{M}$, $\Lang{L}$'nin mantıksal olmayan sabitlerini
+şöyle yorumlasın: $\mathbf{z} = \Assign{\Obj{0}}{M} \in \Domain{M}$,
+${\prec} = \Assign{<}{M} \subseteq M^2$, $* = \Assign{\prime}{M} \colon
+\Domain{M} \to \Domain{M}$ ve $\oplus = \Assign{+}{M}$,
+$\otimes = \Assign{\times}{M} \colon \Domain{M}^2 \to \Domain{M}$. Her
+$x \in \Domain{M}$ için $*$'ın $x$'e uygulanmasıyla elde edilen
+$\Domain{M}$ elemanını $x^*$ ile gösteririz.
+
+Şimdi $h$, $\Struct{N}$ ile $\Struct{M}$ arasında bir izomorfizm olsaydı
+$h(n) = \Assign{c}{M}$ olan bir $n \in \Nat$ bulunurdu. $\Struct{N}$ içinde
+$s(x)=n$ olan herhangi bir $s$ ataması seçin. O zaman
+$\Sat{N}{\eq[\num{n}][x]}[s]$; \olref[iso]{thm:isom} ispatına göre
+$\Sat{M}{\eq[\num{n}][x]}[h \circ s]$ de geçerlidir. Dolayısıyla
+$\Assign{c}{M} = \mathbf{z}^{*\cdots *}$ ($*$, $n$ kez yinelenmiştir).
+Fakat varsayım gereği $\Sat{M}{\num{n} < c}$ olduğundan bu olanaksızdır:
+$\prec$ bağıntısının yansımasızlığı ihlal edilirdi. O halde $\Struct{M}$
+standart değildir.
+\end{proof}
+
+\begin{prob}
+Bir $X$ kümesi üzerindeki $R$ bağıntısı, ancak ve ancak $R$ içinde sonsuz
+azalan zincir yoksa \emph{iyi temellidir}; yani $X$ içinde
+$\dots x_2Rx_1Rx_0$ olacak biçimde $x_0,x_1,x_2,\dots$ yoktur.
+Zermelo--Fraenkel küme kuramı~$ZF$'nin tutarlı olduğunu varsayarak $ZF$'nin
+iyi temelli olmayan, yani $\dots x_2 \in x_1 \in x_0$ olan
+$\mathfrak{M}$ modelleri bulunduğunu gösterin.
+\end{prob}
+
+\olref{thm:non-std} içindeki standart olmayan $\Struct{M}$ modeli standart
+modelle temel denk olduğundan $\Struct{M}$'nin birtakım özellikleri
+çıkarılabilir. Bölümün geri kalanında bu işi yaparak $\Theory{N}$'nin
+!!{enumerable} standart olmayan modellerinin kesin bir nitelemesini elde
+edeceğiz.
+
+\begin{enumerate}
+\item $\Domain{M}$'nin hiçbir elemanı kendisinden $\prec$-küçük değildir:
+  $\lforall[x][\lnot x < x]$ tümcesi $\Struct{N}$ içinde ve dolayısıyla
+  $\Struct{M}$ içinde doğrudur.
+\item Benzer bir akıl yürütmeyle $\prec$'nin $\Domain{M}$ üzerinde bir
+  \emph{doğrusal sıralama}, yani tam, yansımasız ve geçişli bir bağıntı
+  olduğu sonucuna varırız.
+\item $\mathbf{z}$ elemanı $\Domain{M}$'nin $\prec$-en küçük elemanıdır.
+\item $\Domain{M}$'nin her elemanı $*$-ardılından $\prec$-küçüktür ve $x^*$,
+  $\Domain{M}$'nin $x$'ten büyük olan $\prec$-en küçük elemanıdır.
+\item $\Struct{M}$, $\Nat$ ile izomorf bir $\prec$ başlangıç kesiti içerir:
+  $\mathbf{z}, \mathbf{z}^*, \mathbf{z}^{**}, \dots$. Buna
+  $\Domain{M}$'nin \emph{standart kısmı} deriz. $\Domain{M}$'nin diğer her
+  elemanı \emph{standart olmayandır}. $\Domain{M}$ içinde standart olmayan
+  elemanlar bulunmak zorundadır; yoksa \olref{thm:non-std} ispatındaki $h$
+  fonksiyonu bir izomorfizm olurdu. $n,m,\dots$ simgelerini, $\Struct{M}$'nin
+  bu standart kısmı üzerinde değişen !!{variable}s olarak kullanırız.
+\item Her standart olmayan eleman her standart elemandan büyüktür; çünkü her
+  $n \in \Nat$ için
+  \[
+  \Sat{N}{\lforall[z][(\lnot(\eq[z][\Obj{0}] \lor
+  \dots \lor \eq[z][\num{n}]) \lif \num{n} < z)]}.
+  \]
+  Dolayısıyla $z \in \Domain{M}$ bütün standart elemanlardan farklıysa
+  hepsinden \emph{büyük} olmak zorundadır.
+\item $\Domain{M}$'nin $\mathbf{z}$ dışındaki her elemanı, $\Domain{M}$
+  içindeki biricik bir elemanın $*$-ardılıdır; bu elemanı $^*x$ ile
+  gösteririz. $x=y^*$ ise $x$ ile $y$'den biri standart olduğunda ikisi de
+  standarttır (ve biri standart olmayan olduğunda ikisi de standart
+  olmayandır).
+\item $\Domain{M}$ üzerinde $\approx$ denklik bağıntısını şöyle tanımlayın:
+  $x \approx y$ ancak ve ancak \emph{standart} bir $n$ için
+  $x \oplus n = y$ ya da $y \oplus n =x$. Başka bir deyişle $x \approx y$
+  ancak ve ancak $x$ ile $y$ arasında sonlu bir uzaklık vardır. $n$ ile $m$
+  standartsa $n \approx m$. $x$'in \emph{bloğu}, $[x] = \Setabs{y}{x
+  \approx y}$ denklik sınıfı olarak tanımlansın.
+\item $x \prec y$ ve $x \not\approx y$ olsun.
+  $\Sat{N}{\lforall[x][\lforall[y][(x < y \lif (x' < y \lor x' =
+      y))]]}$ olduğundan ya $x^* \prec y$ ya da $x^* = y$. İkincisi
+  $x \approx y$ sonucunu vereceğinden olanaksızdır; dolayısıyla
+  $x^* \prec y$. Benzer biçimde $x \prec y$ ve $x \not\approx y$ ise
+  $x \prec {^*y}$. O halde $x \prec y$ ve $x \not\approx y$ ise
+  $w \approx x$ olan her $w$, $v \approx y$ olan her $v$'den
+  $\prec$-küçüktür. Buna göre her $[x]$ bloğu
+  \[
+  \cdots \prec  {^{**}x} \prec {^*}x \prec x \prec x^* \prec x^{**}
+  \prec \cdots
+  \]
+  biçiminde iki yönde sonsuz bir zincir oluşturur. Tam sayıların sıra tipine
+  sahip olduğu için buna bir $Z$-zinciri denir.
+\item $\prec$ sıralaması bloklara kaldırılabilir: $x \prec y$ ise $x$'in
+  bloğu $y$'nin bloğundan küçüktür. Bir blok, standart olmayan bir eleman
+  içeriyorsa \emph{standart olmayan}dır. Standart blok en küçük bloktur.
+\item En küçük standart olmayan blok yoktur: $y$ standart olmayan bir elemansa
+  $x$ de standart olmayan ve $x \not\approx y$ olmak üzere $x \prec y$ olan
+  bir $x$ vardır. İspat: Standart model $\Struct{N}$ içinde her sayı, kalanı
+  sıfır ya da bir olacak biçimde ikiye bölünebilir; yani
+  $\Sat{N}{\lforall[y][\lexists[x][(y = x + x \lor y = x + x +
+        \Obj{0}')]]}$. Temel denklik uyarınca her $y \in \Domain{M}$ için
+  ya $x \oplus x = y$ ya da $x \oplus x \oplus \mathbf{z}^*= y$ olacak
+  biçimde bir $x \in \Domain{M}$ vardır. $x$ standart olsaydı $y$ de
+  standart olurdu; dolayısıyla $x$ standart değildir. Ayrıca $x$ ile $y$
+  farklı bloklara aittir, yani $x \not\approx y$. Bunu görmek için aynı
+  blokta olduklarını, yani standart bir $n$ için $x \oplus n = y$ olduğunu
+  varsayın. $y = x \oplus x$ ise $x \oplus n = x \oplus x$ ve toplamanın
+  sadeleştirme yasasına göre $x=n$ olur (bu yasa $\Struct{N}$ içinde ve
+  dolayısıyla $\Struct{M}$ içinde geçerlidir). Böylece $x$ sonuçta standart
+  olurdu. $y = x \oplus x \oplus \mathbf{z}^*$ durumu da benzerdir.
+\item Benzer bir gerekçeyle en büyük blok da yoktur.
+\item Blokların sıralaması yoğundur: $[x]$, $[y]$'den küçükse
+  ($x \not\approx y$), ikisinden de farklı ve aralarında bulunan bir $[z]$
+  bloğu vardır. $x \prec y$ olsun. Daha önce olduğu gibi $x \oplus y$, kalan
+  olasılığıyla, ikiye bölünebilir. Dolayısıyla ya
+  $x \oplus y = u \oplus u$ ya da
+  $x \oplus y = u \oplus u \oplus \mathbf{z}^*$ olan bir
+  $u \in \Domain{M}$ vardır. $u$, $x$ ile $y$'nin ortalamasıdır ve bu nedenle
+  aralarında bulunur. $x \oplus y = u \oplus u$ olduğunu varsayın (öteki
+  durum benzerdir). $u \approx x$ ise standart bir $n$ için
+  \[
+  x \oplus y = x \oplus n \oplus x \oplus n,
+  \]
+  dolayısıyla $y = x \oplus n \oplus n$ ve varsayımın tersine
+  $x \approx y$ olurdu. $u \not\approx x$ sonucuna varırız. Benzer bir
+  gerekçe $u \not\approx y$ verir.
+\end{enumerate}
+Böylece standart olmayan bloklar rasyonel sayılar gibi sıralanır: Uç noktası
+olmayan !!a{enumerable} doğrusal sıralama oluştururlar. Bundan, doğru
+aritmetiğin herhangi iki !!{enumerable} standart olmayan modeli
+$\Struct{M}_1$ ile $\Struct{M}_2$'nin, yalnızca $<$ ve $=$ içeren dile
+indirgenmiş hallerinin izomorf olduğu çıkar. Gerçekten bir $h$ izomorfizmi
+şöyle tanımlanabilir: $\Struct{M}_1$ ile $\Struct{M}_2$'nin standart kısımları
+standart model $\Struct{N}$ ile ve dolayısıyla birbirleriyle izomorftur.
+Standart olmayan kısmı oluşturan bloklar da rasyonel sayılar gibi sıralanır;
+bu nedenle \olref[dlo]{thm:cantorQ} uyarınca izomorftur. Blokların bir
+izomorfizmi, her blokta gelişigüzel elemanları eşleyip $\Struct{M}_1$ içinde
+$x$'in ardılının görüntüsünü $\Struct{M}_2$ içinde $x$'in görüntüsünün ardılı
+olarak alarak blokların \emph{içinde} de bir izomorfizme genişletilebilir.
+$\mathfrak{M}_1$ ile $\mathfrak{M}_2$'nin aritmetiğin tam dilinde izomorf
+olduğu \emph{sonucunun çıkmadığına} dikkat edin (izomorfizm her zaman bir
+imzaya göredir); çünkü $\Domain{M_1}$ ve $\Domain{M_2}$ üzerinde toplama ile
+çarpmayı tanımlamanın izomorf olmayan yolları vardır. (Bu ayrıca Vaught'ın,
+tam bir kuramın sayılabilir modellerinin sayısının~$2$ olamayacağını söyleyen
+ünlü teoreminden de çıkar.)
+
+\begin{prob}
+Aritmetiğin standart olmayan bir modelinde en büyük blok bulunamayacağını
+gösterin.
+\end{prob}
+
+\begin{prob}
+$\Lang{L}$, $\eq$ dışında tek !!{predicate}{}i $<$ olan birinci dereceden
+!!{language}; $\Struct{N} = (\Nat,<)$ olsun. $\Struct{N}$'nin bütün sonlu ya
+da tümleyeni sonlu altkümeleri tanımlanabilirdir. Bunların $\Struct{N}$'nin
+\emph{tek} tanımlanabilir altkümeleri olduğunu gösterin.
+
+(İpucu: Önce $\Obj{prc}(x,y)$, ``$x$, $y$'nin dolaysız öncülüdür'' ifadesini
+kısaltan $\Lang{L}$-formülü olsun:
+\[
+x<y \land \lnot \lexists[z][(x<z \land z < y)].
+\]
+$\Struct{N}$'nin her tanımlanabilir altkümesine $\Lang{L}$ içinde bir
+$!A(x)$ formülü karşılık gelir. Böyle bir $!A$ için şu $!D$ tümcesini ele alın:
+\[
+\lexists[x][\lforall[y][\lforall[z][((x<y \land x<z \land \Obj{prc}(y,z)
+  \land !A(y)) \lif !A(z))]]].
+\]
+$\Sat{N}{!D}$ ancak ve ancak $!A$'nın tanımladığı $\Struct{N}$ altkümesi
+sonlu ya da tümleyeni sonluysa geçerli olduğunu gösterin.
+
+Şimdi $\Struct{M}$, $\Struct{N}$'ye temel denk olan standart olmayan bir
+model olsun. $a \in \Domain{M}$ standart olmayan ise $b,c \in \Domain{M}$,
+$a$'dan büyük ve $b$, $c$'nin dolaysız öncülü olsun. O zaman
+$\Domain{M}$'nin $h(b)=c$ olan bir $h$ otomorfizmi vardır (neden?). Bu nedenle
+$b$, $!A$'yı sağlıyorsa $c$ de sağlar (neden?). Buradan $!D$'nin
+$\Struct{M}$ içinde ve dolayısıyla $\Struct{N}$ içinde doğru olduğu çıkar.
+Fakat bu, $!A$'nın tanımladığı $\Struct{N}$ altkümesinin sonlu ya da tümleyeni
+sonlu olduğunu gösterir.
+\end{prob}
+
+\end{document}

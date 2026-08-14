@@ -1,0 +1,216 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sth}{ordinals}{basic}
+\olsection{Sıra Sayılarının Temel Özellikleri}
+
+İlk birkaç sıra sayısının doğal sayılar olduğunu gözlemledik. Sıra sayıları
+teorisi geliştirmenin başlıca nedeni, doğal sayılarda geçerli tümevarım
+ilkesini genişletmektir. Buna bir dizi temel sonuçla adım adım ulaşacağız.
+
+\begin{lem}\ollabel{ordmemberord}
+Bir sıra sayısında bulunan her !!{element}, bir sıra sayısıdır.
+\end{lem}
+
+\begin{proof}
+$\alpha$ bir sıra sayısı ve $b\in\alpha$ olsun. $\alpha$ geçişli olduğundan
+$b\subseteq\alpha$ olur. Dolayısıyla $\in$, $\alpha$'yı iyi sıraladığı gibi
+$b$'yi de iyi sıralar.
+
+$b$'nin geçişli olduğunu görmek için $x\in c\in b$ varsayın.
+$b\subseteq\alpha$ olduğundan $c\in\alpha$'dır. Yine $\alpha$ geçişli
+olduğundan $c\subseteq\alpha$ ve dolayısıyla $x\in\alpha$ olur. Böylece
+$x,c,b\in\alpha$'dır. Fakat $\in$, $\alpha$'yı iyi sıralar; bu yüzden
+\olref[sth][ordinals][wo]{wo:strictorder} gereği $\in$, $\alpha$ üzerinde
+geçişli bir bağıntıdır. $x\in c\in b$ olduğundan $x\in b$ elde edilir.
+Genelleyerek $c\subseteq b$ sonucuna ulaşırız.
+\end{proof}
+
+\begin{cor}\ollabel{ordissetofsmallerord}
+Her sıra sayısı $\alpha$ için
+$\alpha=\Setabs{\beta\in\alpha}{\beta\text{ bir sıra sayısıdır}}$.
+\end{cor}
+
+\begin{proof}
+\olref{ordmemberord} sonucundan doğrudan çıkar.
+\end{proof}
+
+Sonraki iki ana sonucun, \olref{ordinductionschema} ile
+\olref{ordtrichotomy}'nin, kabaca söylediği şey sıra sayılarının
+kendilerinin üyelikle iyi sıralandığıdır:
+
+\begin{thm}[Sonlu Ötesi Tümevarım]\ollabel{ordinductionschema}
+Her $\phi(x)$ formülü için:
+\[
+	\text{eğer }\exists \alpha \phi(\alpha)\text{ ise }\exists \alpha(\phi(\alpha)
+	\land  (\forall \beta \in \alpha) \lnot \phi(\beta))
+\]
+olur; gösterilen niceleyiciler örtük olarak sıra sayılarıyla sınırlıdır.
+\end{thm}
+
+\begin{proof}
+%\olref{ordinductionschema1}. 
+Bir sıra sayısı $\alpha$ için $\phi(\alpha)$ olduğunu varsayın. Eğer
+$(\forall\beta\in\alpha)\lnot\phi(\beta)$ ise işimiz biter. Değilse,
+$\alpha$ bir sıra sayısı olduğundan $\phi$'yi sağlayan bir $\in$-en küçük
+!!{element} içerir; bu eleman da \olref{ordmemberord} gereği bir sıra
+sayısıdır.
+%	\olref{ordinductionschema2}. Suppose there is some ordinal
+%	$\gamma$ such that $\lnot\phi(\gamma)$. Then by
+%	\olref{ordinductionschema1}, there is an $\in$-minimal ordinal
+%	$\alpha$ for which $\lnot\phi(\alpha)$. So $(\forall \beta <
+%	\alpha) \phi(\beta)$, rendering the antecedent of the conditional
+%	false.
+\end{proof}
+\noindent
+\olref{ordinductionschema} sonucunu, \olref{ordinductionschema} içinde
+$\lnot\phi(\alpha)$ alıp temel mantıksal dönüşümleri yaparak, eşdeğer biçimde
+şu şema olarak ifade edebiliriz:
+\[
+\text{eğer }\forall \alpha((\forall \beta \in \alpha)\phi(\beta) \lif
+\phi(\alpha))\text{ ise }\forall \alpha\phi(\alpha).
+\]
+
+\begin{thm}[Üçlü Karşılaştırma]\ollabel{ordtrichotomy}
+Her $\alpha$ ve $\beta$ sıra sayısı için
+$\alpha\in\beta\lor\alpha=\beta\lor\beta\in\alpha$.
+\end{thm}
+
+\begin{proof}
+İspat çift tümevarımla, yani \olref{ordinductionschema} iki kez kullanılarak
+yapılır. $x\in y\lor x=y\lor y\in x$ ise $x$'in $y$ ile
+\emph{karşılaştırılabilir} olduğunu söyleyelim.
+
+Tümevarım için $\alpha$ içindeki her sıra sayısının \emph{her} sıra
+sayısıyla karşılaştırılabilir olduğunu varsayın. İkinci tümevarım için
+$\alpha$'nın $\beta$ içindeki her sıra sayısıyla karşılaştırılabilir
+olduğunu varsayın. $\alpha$'nın $\beta$ ile karşılaştırılabilir olduğunu
+göstereceğiz. $\beta$ üzerinde tümevarımla $\alpha$'nın her sıra sayısıyla;
+ardından $\alpha$ üzerinde tümevarımla \emph{her} sıra sayısının \emph{her}
+sıra sayısıyla karşılaştırılabilir olduğu çıkar. Gereken budur.
+$\alpha\notin\beta$ ve $\beta\notin\alpha$ varsayıp $\alpha=\beta$
+olduğunu göstermek yeterlidir.
+
+$\alpha\subseteq\beta$ olduğunu göstermek için $\gamma\in\alpha$
+sabitleyin; \olref{ordmemberord} gereği bu bir sıra sayısıdır. İlk tümevarım
+varsayımına göre $\gamma$, $\beta$ ile karşılaştırılabilir. Fakat
+$\gamma=\beta$ ya da $\beta\in\gamma$ olsaydı (gerektiğinde $\alpha$'nın
+geçişli olduğunu kullanarak) $\beta\in\alpha$ çıkardı; bu varsayımımıza
+aykırıdır. Öyleyse $\gamma\in\beta$ olur. Genelleyerek
+$\alpha\subseteq\beta$ elde ederiz.
+
+İkinci tümevarım varsayımını kullanan bütünüyle benzer bir gerekçe
+$\beta\subseteq\alpha$ olduğunu gösterir. Böylece $\alpha=\beta$ olur.
+\end{proof}\noindent
+Bu nedenle $\in$ bir sıralama bağıntısı gibi davrandığından bazen
+$\alpha\in\beta$ yerine $\alpha<\beta$ yazacağız. Bunun alışkanlık dışında
+derin bir nedeni yoktur; ayrıca $\alpha\in\beta\lor\alpha=\beta$ yerine
+$\alpha\leq\beta$ yazmak daha kolaydır.\footnote{$\alpha
+\mathrel{\underline{\in}}\beta$ yazabilirdik; fakat bu bütünüyle standart
+dışı olurdu.}
+
+Son sonuçlarımızın iki hızlı sonucu şöyledir; bunların ilki yeni gösterimimizi
+kullanır:
+
+\begin{cor}\ollabel{ordordered}
+$\exists\alpha\phi(\alpha)$ ise
+$\exists\alpha(\phi(\alpha)\land\forall\beta(\phi(\beta)\lif
+\alpha\leq\beta))$ olur. Ayrıca her $\alpha,\beta,\gamma$ sıra sayısı için
+hem $\alpha\notin\alpha$ hem de
+$\alpha\in\beta\in\gamma\lif\alpha\in\gamma$ olur.
+\end{cor}
+
+\begin{proof}
+Tıpkı \olref[wo]{wo:strictorder} gibidir.
+\end{proof}
+
+\begin{prob}
+\olref[sth][ordinals][basic]{ordtrichotomy} ispatındaki ``bütünüyle benzer
+gerekçeyi'' tamamlayın.
+\end{prob}
+
+\begin{cor}\ollabel{corordtransitiveord}
+$A$, ancak ve ancak geçişli bir sıra sayıları kümesiyse bir sıra sayısıdır.
+\end{cor}
+
+\begin{proof}
+\emph{Soldan sağa.} \olref{ordmemberord} gereği. \emph{Sağdan sola.}
+$A$ geçişli bir sıra sayıları kümesiyse \olref{ordinductionschema} ile
+\olref{ordtrichotomy} gereği $\in$, $A$'yı iyi sıralar.
+\end{proof}
+
+\olref{ordinductionschema} ile \olref{ordtrichotomy}'yi, sıra sayılarının
+$\in$ ile iyi sıralandığını söyleyen sonuçlar olarak açıkladık. Ne var ki
+aşağıdaki sonuç nedeniyle bu tür bir iddia karşısında \emph{çok dikkatli}
+olmalıyız:
+
+\begin{thm}[Burali--Forti Paradoksu]\ollabel{buraliforti}
+Bütün sıra sayılarının bir kümesi yoktur.
+\end{thm}
+
+\begin{proof}
+Olmayana ergiyle $O$'nun bütün sıra sayılarının kümesi olduğunu varsayın.
+$\alpha\in\beta\in O$ ise \olref{ordmemberord} gereği $\alpha$ bir sıra
+sayısıdır; dolayısıyla $\alpha\in O$ olur. Öyleyse $O$ geçişlidir ve
+\olref{corordtransitiveord} gereği bir sıra sayısıdır. Böylece $O\in O$
+olur; bu da \olref{ordordered} ile çelişir.
+\end{proof}
+\noindent
+Bu sonuç adını \citeauthor{Burali-Forti1897}'den alır. Ancak bütün sıra
+sayılarının bir kümesi bulunduğunu varsaymaktaki \emph{çelişkiyi} ilk kez
+1899'da, Dedekind'e yazdığı bir mektupta Cantor açıkça görmüştür. van
+Heijenoort şöyle açıklar:
+\begin{quote}
+  Burali--Forti, çelişkinin kendisini, olmayana ergi yoluyla, sıra
+  sayılarının doğal sıralamasının yalnızca kısmi bir sıralama olduğu
+  sonucunu kuruyor saydı.
+  \citep[s.~105]{Heijenoort1967}
+\end{quote}
+Burali--Forti'nin hatasını bir yana bırakırsak yukarıdakileri şöyle
+özetleyebiliriz: sıra sayıları üyelikle tek tek iyi sıralanmış ve üyelikle
+topluca iyi sıralanmış kümelerdir (ama birlikte bir küme oluşturmazlar).
+
+Son olarak, sıra sayıları hakkında \olref{ordinductionschema} ile
+\olref{ordtrichotomy}'den çıkan birkaç temel özellik daha verelim.
+
+\begin{prop}
+Sıra sayılarından oluşan her kesin azalan dizi sonludur.
+\end{prop}
+
+\begin{proof}
+Sıra sayılarından oluşan sonsuz bir kesin azalan
+$\alpha_0>\alpha_1>\alpha_2>\ldots$ dizisinin $<$-minimal elemanı yoktur;
+bu da \olref{ordinductionschema} ile çelişir.
+\end{proof}
+
+\begin{prop}\ollabel{ordinalsaresubsets}
+Her $\alpha,\beta$ sıra sayısı için
+$\alpha\subseteq\beta\lor\beta\subseteq\alpha$.
+\end{prop}
+
+\begin{proof}
+$\alpha\in\beta$ ise $\beta$ geçişli olduğundan
+$\alpha\subseteq\beta$ olur. Benzer biçimde $\beta\in\alpha$ ise
+$\beta\subseteq\alpha$ olur. $\alpha=\beta$ ise hem
+$\alpha\subseteq\beta$ hem $\beta\subseteq\alpha$ olur. Dolayısıyla
+\olref{ordtrichotomy} gereği işimiz biter.
+\end{proof}
+
+\begin{prop}\ollabel{ordisoidentity}
+Her $\alpha,\beta$ sıra sayısı için $\alpha=\beta$ ancak ve ancak
+$\ordeq{\alpha}{\beta}$.
+\end{prop}
+
+\begin{proof}
+Sıra sayıları iyi sıralamalardır; dolayısıyla sonuç Üçlü Karşılaştırma
+(\olref[basic]{ordtrichotomy}) ile
+\olref[iso]{wellordnotinitial} sonucundan doğrudan çıkar.
+\end{proof}
+
+\begin{prob}\ollabel{probunionordinalsordinal}
+$X$'in her elemanı bir sıra sayısıysa $\bigcup X$'in bir sıra sayısı
+olduğunu ispatlayın.
+\end{prob}
+
+\end{document}

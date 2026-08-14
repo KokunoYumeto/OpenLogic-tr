@@ -1,0 +1,138 @@
+% Part: normal-modal-logic
+% Chapter: syntax-and-semantics
+% Section: truth-at-w
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{nml}{syn}{trw}
+
+\olsection{Bir Dünyada Doğruluk}
+
+Her kiplik modeli, hangi kiplik !!{formula}s{}in modeldeki hangi dünyalarda
+doğru sayılacağını belirler. ``$\mModel{M}$ modeli, $!A$ adlı !!{formula}{}ü
+$w$ dünyasında doğru kılar'' bağıntısı, bağıntısal semantiğin temel
+kavramıdır. Bu bağıntı tümevarımlı olarak tanımlanır ve kipliksiz işleçler
+için doğruluk tablolarını kullanan olağan nitelemeyle örtüşür.
+
+\begin{defn}\ollabel{defn:mmodels}
+  Bir $\mModel M$ içinde \emph{!!a{formula}~$!A$'nın $w$'deki doğruluğu},
+  simgesel olarak $\mSat{M}{!A}[w]$, tümevarımlı biçimde şöyle tanımlanır:
+  \begin{enumerate}
+  \tagitem{prvFalse}{\indcase{!A}{\lfalse}{$\mSat{M}{\lfalse}[w]$ hiçbir
+    zaman geçerli değildir.}}{}
+  \tagitem{prvTrue}{\indcase{!A}{\ltrue}{$\mSat{M}{\ltrue}[w]$ her zaman
+    geçerlidir.}}{}
+  \item $\mSat{M}{p}[w]$ ancak ve ancak $w \in V(p)$ ise geçerlidir.
+  \tagitem{prvNot}{\indcase{!A}{\lnot !B}{$\mSat{M}{\indfrm}[w]$ ancak ve
+    ancak $\mSat/{M}{!B}[w]$ ise geçerlidir.}}{}
+  \tagitem{prvAnd}{\indcase{!A}{(!B \land !C)}{$\mSat{M}{\indfrm}[w]$
+    ancak ve ancak $\mSat{M}{!B}[w]$ ve $\mSat{M}{!C}[w]$ ise geçerlidir.}}{}
+  \tagitem{prvOr}{\indcase{!A}{(!B \lor !C)}{$\mSat{M}{\indfrm}[w]$
+    ancak ve ancak $\mSat{M}{!B}[w]$ ya da $\mSat{M}{!C}[w]$ ise (veya
+    ikisi de geçerliyse) geçerlidir.}}{}
+  \tagitem{prvIf}{\indcase{!A}{(!B \lif !C)}{$\mSat{M}{\indfrm}[w]$
+    ancak ve ancak $\mSat/{M}{!B}[w]$ ya da $\mSat{M}{!C}[w]$ ise
+    geçerlidir.}}{}
+  \tagitem{prvIff}{\indcase{!A}{(!B \liff !C)}{$\mSat{M}{\indfrm}[w]$
+    ancak ve ancak hem $\mSat{M}{!B}[w]$ hem de $\mSat{M}{!C}[w]$ ise veya
+    ne $\mSat{M}{!B}[w]$ ne de $\mSat{M}{!C}[w]$ ise geçerlidir.}}{}
+  \item\ollabel{defn:sub:mmodels-box}
+    \indcase{!A}{\Box !B}{$\mSat{M}{\indfrm}[w]$ ancak ve ancak $Rww'$ olan
+    bütün $w' \in W$ için $\mSat{M}{!B}[w']$ ise geçerlidir.}
+  \item\ollabel{defn:sub:mmodels-diamond}
+    \indcase{!A}{\Diamond !B}{$\mSat{M}{\indfrm}[w]$ ancak ve ancak
+    $Rww'$ olan en az bir $w' \in W$ için $\mSat{M}{!B}[w']$ ise geçerlidir.}
+  \end{enumerate}
+\end{defn}
+
+\olref{defn:sub:mmodels-box} maddesine göre $Rww'$ olan hiçbir $w'$ yoksa
+!!a{formula}~$\Box !B$, $w$'de doğrudur. Böyle bir durumda $\Box !B$,
+$w$'de \emph{boş olarak} doğrudur. Ayrıca $!B$ doğru olmasa bile
+$\Box !B$, $w$'de sağlanabilir. $!B$'nin $w$'de doğru olması,
+$\Diamond !B$'nin $w$'de doğru olmasını güvence altına almaz. Bununla
+birlikte $Rww$ ise, örneğin $R$ yansımalıysa bu geçerlidir. $Rww'$ olacak
+hiçbir $w'$ yoksa her $!A$ için $\mSat/{M}{\Diamond !A}[w]$ olur.
+
+\begin{prob}
+  \olref[nml][syn][rel]{fig:simple}'deki modeli ele alın. Aşağıdakilerden
+  hangileri geçerlidir?
+    \begin{enumerate}
+    \item $\mSat{M}{q}[w_1]$;
+    \item $\mSat{M}{\lnot q}[w_3]$;
+    \item $\mSat{M}{p \lor q}[w_1]$;
+    \item $\mSat{M}{\Box (p \lor q)}[w_1]$;
+    \item $\mSat{M}{\Box q}[w_3]$;
+    \item $\mSat{M}{\Box \bot}[w_3]$;
+    \item $\mSat{M}{\Diamond q}[w_1]$;
+    \item $\mSat{M}{\Box q}[w_1]$;
+    \item $\mSat{M}{\lnot \Box\Box \lnot q}[w_1]$.
+    \end{enumerate}
+\end{prob}
+
+% Prove duality of \Box and \Diamond
+\begin{tagblock}{prvDiamond}
+\begin{prop}\ollabel{prop:dual}
+  \begin{enumerate}
+  \item $\mSat{M}{\Box !A}[w]$ ancak ve ancak
+    $\mSat{M}{\lnot\Diamond\lnot !A}[w]$.
+  \item $\mSat{M}{\Diamond !A}[w]$ ancak ve ancak
+    $\mSat{M}{\lnot\Box\lnot !A}[w]$.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+    \item $\mSat{M}{\lnot\Diamond\lnot !A}[w]$, $\mSat{M}{}[w]$ tanımı
+      gereği ancak ve ancak $\mSat/{M}{\Diamond\lnot !A}[w]$ ise geçerlidir.
+      $\mSat{M}{\Diamond\lnot !A}[w]$, ancak ve ancak $Rww'$ olan bazı
+      $w'$ için $\mSat{M}{\lnot !A}[w']$ ise geçerlidir. Dolayısıyla
+      $\mSat/{M}{\Diamond\lnot !A}[w]$, ancak ve ancak $Rww'$ olan bütün
+      $w'$ için $\mSat/{M}{\lnot !A}[w']$ ise geçerlidir. Ayrıca
+      $\mSat/{M}{\lnot !A}[w']$ ancak ve ancak $\mSat{M}{!A}[w']$ ise
+      geçerlidir. Bunları birleştirirsek
+      $\mSat{M}{\lnot\Diamond\lnot !A}[w]$ ancak ve ancak $Rww'$ olan bütün
+      $w'$ için $\mSat{M}{!A}[w']$ ise geçerlidir. $\mSat{M}{}[w]$ tanımına
+      bir kez daha başvurduğumuzda bunun ancak ve ancak
+      $\mSat{M}{\Box !A}[w]$ ise geçerli olduğunu görürüz.
+    \item \iftag{probDiamond}{Alıştırma.}{$\mSat{M}{\lnot\Box\lnot !A}[w]$
+      ancak ve ancak $\mSat/{M}{\Box\lnot !A}[w]$ ise geçerlidir.
+      $\mSat{M}{\Box\lnot !A}[w]$, ancak ve ancak $Rww'$ olan bütün $w'$ için
+      $\mSat{M}{\lnot !A}[w']$ ise geçerlidir. Dolayısıyla
+      $\mSat/{M}{\Box\lnot !A}[w]$, ancak ve ancak $Rww'$ olan bazı $w'$ için
+      $\mSat/{M}{\lnot !A}[w']$ ise geçerlidir. Ayrıca
+      $\mSat/{M}{\lnot !A}[w']$ ancak ve ancak $\mSat{M}{!A}[w']$ ise
+      geçerlidir. Bunları birleştirirsek
+      $\mSat{M}{\lnot\Box\lnot !A}[w]$ ancak ve ancak $Rww'$ olan bazı~$w'$
+      için $\mSat{M}{!A}[w']$ ise geçerlidir. $\mSat{M}{}[w]$ tanımına bir
+      kez daha başvurduğumuzda bunun ancak ve ancak
+      $\mSat{M}{\Diamond !A}[w]$ ise geçerli olduğunu görürüz.}
+  \end{enumerate}
+\end{proof}
+
+\begin{probtag}{probDiamond}
+  \olref[nml][syn][trw]{prop:dual} önermesinin ispatını tamamlayın.
+\end{probtag}
+\end{tagblock}
+
+\begin{prob}
+  $\mModel{M} = \tuple{W, R, V}$ bir model ve $w_1, w_2 \in W$ aşağıdaki
+  koşulları sağlayan dünyalar olsun:
+  \begin{enumerate}
+  \item Her !!{propositional variable} $p$ için $w_1 \in V(p)$ ancak ve
+    ancak $w_2 \in V(p)$ ise geçerlidir ve
+  \item her $w \in W$ için $Rw_1w$ ancak ve ancak $Rw_2w$ ise geçerlidir.
+  \end{enumerate}
+  !!{formula}s üzerinde tümevarım kullanarak her $!A$ !!{formula}{}ü için
+  $\mSat{M}{!A}[w_1]$ bağıntısının ancak ve ancak $\mSat{M}{!A}[w_2]$
+  bağıntısı geçerliyse geçerli olduğunu gösterin.
+\end{prob}
+
+\begin{probtag}{prvDiamond}
+  $\mModel{M} = \tuple{W, R, V}$ olsun. $\mSat{M}{\lnot\Diamond !A}[w]$
+  bağıntısının ancak ve ancak $\mSat{M}{\Box\lnot!A}[w]$ bağıntısı geçerliyse
+  geçerli olduğunu gösterin.
+\end{probtag}
+
+\end{document}

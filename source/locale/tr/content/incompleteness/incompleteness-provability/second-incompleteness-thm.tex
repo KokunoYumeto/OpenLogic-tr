@@ -1,0 +1,134 @@
+% Part: incompleteness
+% Chapter: incompleteness-provability
+% Section: second-incompleteness-thm
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{inc}{inp}{2in}
+
+\olsection{İkinci Eksiklik Teoremi}
+
+$\Th{PA}$'nın kendi tutarlılığını ispatlamadığı önermesini nasıl ifade
+edebiliriz? $\Th{PA}$'nın tutarsız olduğunu söylemek,
+$\Th{PA} \Proves \eq[0][1]$ demektir. Bu nedenle tutarlılık önermesi
+$\OCon[\Th{PA}]$'yı $\lnot \OProv[\Th{PA}](\gn{\eq[0][1]})$ !!{sentence}
+olarak alabiliriz; aşağıdaki teorem de istediğimiz sonucu verir:
+
+\begin{thm}
+\ollabel{thm:second-incompleteness} 
+$\Th{PA}$ tutarlıysa $\Th{PA}$, $\OCon[\Th{PA}]$'yı !!{derive} etmez.
+\end{thm}
+
+Teoremin $\OCon[\Th{PA}]$'nın seçilen özel temsiline (yani
+$\OProv[\Th{PA}](y)$'nin seçilen özel temsiline) bağlı olduğuna dikkat etmek
+önemlidir. Yalnızca $\OProv[\Th{PA}](y)$ temsilinin üç !!{derivability}
+koşulunu sağladığını kullanacağız; dolayısıyla teorem bu özelliklere sahip
+!!a{derivability} yüklemi bulunan her kurama genellenir.
+
+Teorem güzel bir can alıcı söz gibi ortaya çıktığından G\"odel'in argüman
+taslağını okumak öğreticidir. Argüman şöyledir.
+\olref[1in]{thm:first-incompleteness} ispatında kurduğumuz G\"odel tümcesi
+$!G_\Th{PA}$ olsun. ``$\Th{PA}$ tutarlıysa $\Th{PA}$, $!G_\Th{PA}$'yı
+!!{derive} etmez'' sonucunu göstermiştik. Bunu $\Th{PA}$ \emph{içinde}
+biçimselleştirirsek
+\[
+\OCon[\Th{PA}] \lif \lnot \OProv[\Th{PA}](\gn{!G_\Th{PA}}).
+\]
+formülünün bir ispatını elde ederiz. Şimdi $\Th{PA}$'nın
+$\OCon[\Th{PA}]$'yı !!{derive} ettiğini varsayın. O zaman
+% [tr source emendation] Upstream switches here from the object-language
+% provability formula \OProv to \Prov; the argument requires \OProv.
+$\lnot \OProv[\Th{PA}](\gn{!G_\Th{PA}})$ formülünü de !!{derive} eder. Fakat
+$!G_\Th{PA}$ bir G\"odel tümcesi olduğundan bu formül $!G_\Th{PA}$'ya
+denktir. Öyleyse $\Th{PA}$, $!G_\Th{PA}$'yı !!{derive} eder.
+
+Ama $\Th{PA}$ tutarlıysa $!G_\Th{PA}$'yı !!{derive} etmediğini biliyoruz!{}
+Dolayısıyla $\Th{PA}$ tutarlıysa $\OCon[\Th{PA}]$'yı !!{derive} edemez.
+
+Argümanı daha kesin kılmak için $!G_\Th{PA}$, $\Th{PA}$'nın G\"odel tümcesi
+olsun. (P1)--(P3) !!{derivability} koşullarını kullanarak $\Th{PA}$'nın
+$\OCon[\Th{PA}] \lif !G_\Th{PA}$ formülünü !!{derive} ettiğini göstereceğiz.
+Bu, $\Th{PA}$'nın $\OCon[\Th{PA}]$'yı !!{derive} etmediğini gösterecektir.
+Aşağıda ispatın $\Th{PA}$ içindeki bir taslağı verilmiştir. (Sadelik için
+$\Th{PA}$ alt indislerini kaldırıyoruz.)
+\begin{align}
+& !G \liff \lnot \OProv(\gn{!G}) \ollabel{G2-1}\\
+& \qquad\text{$!G$ bir G\"odel tümcesidir}\notag \\
+& !G \lif \lnot \OProv(\gn{!G}) \ollabel{G2-2}\\
+  & \qquad\text{\olref{G2-1}'den} \notag\\
+& !G \lif
+  (\OProv(\gn{!G}) \lif \lfalse) \ollabel{G2-3}\\
+  & \qquad\text{\olref{G2-2}'den mantık aracılığıyla}\notag\\
+& \OProv(\gn{
+    !G \lif
+    (\OProv(\gn{!G}) \lif \lfalse)
+  }) \ollabel{G2-4}\\
+  & \qquad\text{\olref{G2-3}'ten P1 koşulu aracılığıyla} \notag\\
+& \OProv(\gn{!G}) \lif
+  \OProv(\gn{
+    (\OProv(\gn{!G}) \lif \lfalse)
+    }) \ollabel{G2-5}\\
+  & \qquad\text{\olref{G2-4}'ten P2 koşulu aracılığıyla} \notag\\
+& \OProv(\gn{!G}) \lif (\OProv(\gn{\OProv(\gn{!G})}) \lif \OProv(\gn{\lfalse})) \ollabel{G2-6}\\
+  & \qquad\text{\olref{G2-5}'ten P2 koşulu ve mantık aracılığıyla} \notag\\
+& \OProv(\gn{!G}) \lif 
+  \OProv(\gn{\OProv(\gn{!G})}) \ollabel{G2-7}\\
+   & \qquad\text{P3 aracılığıyla} \notag\\
+& \OProv(\gn{!G}) \lif \OProv(\gn{\lfalse}) \ollabel{G2-8}\\
+  & \qquad \text{\olref{G2-6} ve \olref{G2-7}'den mantık aracılığıyla}\notag\\
+& \OCon \lif \lnot \OProv(\gn{!G}) \ollabel{G2-9}\\
+  & \qquad\text{\olref{G2-8}'in karşıt tersi ve $\OCon \ident \lnot \OProv(\gn{\lfalse})$}\notag \\
+& \OCon \lif !G \notag\\
+  & \qquad\text{\olref{G2-1} ve \olref{G2-9}'dan mantık aracılığıyla}\notag
+\end{align}
+Yukarıda mantığın kullanıldığı yerlerde yalnızca önerme mantığının temel
+olguları kullanılmıştır. Örneğin \olref{G2-3}'te
+$\Proves \lnot!A \liff (!A\lif \lfalse)$, \olref{G2-8}'de ise
+$!A \lif (!B \lif !C), !A \lif !B \Proves !A \lif !C$ kullanılır.
+\olref{G2-5} ve \olref{G2-6}'da P2 koşulu,
+$\OProv(\gn{!A \lif !B}) \lif
+(\OProv(\gn{!A}) \lif \OProv(\gn{!B}))$ biçimindeki P2 örneklerine dayanır.
+Birincisinde $!A \ident !G$ ve
+$!B \ident \OProv(\gn{!G}) \lif \lfalse$; ikincisinde ise
+% [tr source emendation] Upstream drops the formula marker in \gn{G}; the
+% second P2 instance requires the same \gn{!G} used throughout the proof.
+$!A \ident \OProv(\gn{!G})$ ve $!B \ident \lfalse$ olur.
+
+İkinci eksiklik teoreminin daha soyut biçimi şöyledir:
+
+\begin{thm}
+% [tr source emendation] Mere “axiomatized” is insufficient here; the proof
+% relation must be computable.  The established token is axiomatizable.
+\ollabel{thm:second-incompleteness-gen} $\Th{T}$, $\Th{Q}$'yu genişleten
+herhangi bir tutarlı, !!{axiomatizable} kuram ve $\OProv[\Th{T}](y)$,
+$\Th{T}$ için P1--P3 !!{derivability} koşullarını sağlayan herhangi bir formül
+olsun. O zaman $\Th{T}$, $\OCon[\Th{T}]$'yi !!{derive} etmez.
+% [tr source emendation] Upstream writes \OCon[T], dropping the theory macro.
+\end{thm}
+
+\begin{prob}
+$\Th{PA}$'nın $!G_{\Th{PA}} \lif \OCon[\Th{PA}]$ formülünü !!{derive}
+ettiğini gösterin.
+\end{prob}
+
+\begin{digress}
+Çıkarılacak ders şudur: matematik için ``makul'' hiçbir tutarlı kuram kendi
+tutarlılık önermesini !!{derive} edemez. $\Th{T}$, $\Th{Q}$'yu ve Hilbert'in
+``sonlu yöntemlere dayanan'' akıl yürütmesini (bu her neyse) içeren bir
+matematik kuramı olsun. O zaman $\Th{T}$'nin bütünü, $\Th{T}$'nin tutarlılık
+önermesini !!{derive} edemez; dolayısıyla öncelikle onun sonlucu parçası da
+$\Th{T}$'nin tutarlılık önermesini !!{derive} edemez. Bu anlamda ``bütün
+matematik'' için sonlu yöntemlere dayanan bir tutarlılık ispatı bulunamaz.
+
+``Sonlu yöntemlere dayanan'' teriminin yorumunda bir miktar esneklik vardır.
+G\"odel, 1931 tarihli makalesinde, bizim böyle sayabileceğimiz bir şeyin
+Hilbert'in biçimselleştirmek istediği matematik türlerinin dışında kalabileceği
+olasılığını kabul eder. Fakat G\"odel cömert davranıyordu: bugün, makul biçimde
+sonlu yöntemlere dayanan denebilecek fakat örneğin seçme aksiyomlu
+Zermelo--Fraenkel küme kuramı $\Th{ZFC}$ içinde biçimselleştirilemeyecek bir
+şeyi nasıl bulabileceğimizi görmek zordur.
+\end{digress}
+
+\end{document}

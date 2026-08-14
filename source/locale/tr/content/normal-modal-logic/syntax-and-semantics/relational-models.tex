@@ -1,0 +1,57 @@
+% Part: normal-modal-logic
+% Chapter: syntax-and-semantics
+% Section: relational-models
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{nml}{syn}{rel}
+
+\olsection{Bağıntısal Modeller}
+
+Normal kiplik mantıklarının semantiğindeki temel kavram \emph{bağıntısal
+model}dir. Böyle bir model, ikili bir ``erişilebilirlik bağıntısı'' ile
+birbirine bağlanan dünyalar kümesinden ve hangi !!{propositional variable}s{}nin
+hangi dünyalarda ``doğru'' sayılacağını belirleyen bir atamadan oluşur.
+
+\begin{defn}
+  Temel kiplik dili için bir \emph{model}, $\mModel{M} = \tuple{W, R, V}$
+  üçlüsüdür; burada
+  \begin{enumerate}
+  \item $W$, boş olmayan bir ``dünyalar'' kümesidir,
+  \item $R$, $W$ üzerinde ikili bir erişilebilirlik bağıntısıdır ve
+  \item $V$, her !!{propositional variable}~$p$'ye $V(p)$ olanaklı
+    dünyalar kümesini atayan bir fonksiyondur.
+  \end{enumerate}
+  $Rww'$ geçerliyse $w'$ dünyasının $w$'den \emph{erişilebilir} olduğunu
+  söyleriz. $w \in V(p)$ olduğunda ise $p$'nin $w$'de \emph{doğru}
+  olduğunu söyleriz.
+\end{defn}
+
+Bağıntısal semantiğin büyük üstünlüğü, modellerin \olref{fig:simple}'deki
+gibi basit çizimler aracılığıyla temsil edilebilmesidir. Dünyalar düğümlerle
+temsil edilir; $w'$ dünyası $w$'den, ancak ve ancak $w$'den $w'$'ye bir ok
+varsa erişilebilirdir. Ayrıca $w \in V(p)$ olduğunda bir düğümü (dünyayı)
+$\mTrue{p}$, aksi durumda~\mFalse{p} ile etiketleriz.
+\olref{fig:simple}, $W = \{w_1, w_2, w_3\}$,
+$R = \{\tuple{w_1, w_2},\tuple{w_1, w_3}\}$,
+$V(p) = \{w_1, w_2\}$ ve $V(q) = \{w_2\}$ olan modeli temsil eder.
+
+\begin{figure}
+  \begin{center}
+    \begin{tikzpicture}[modal]
+      \node[world] (w1) [label={[align=right]right:\mTrue{p}\\ \mFalse{q}}]{$w_1$};
+      \node[world] (w2) [label={[align=right]right:\mTrue{p}\\ \mTrue{q}},
+        above right=of w1]{$w_2$};
+      \node[world] (w3) [label={[align=right]right:\mFalse{p}\\ \mFalse{q}},
+        below right=of w1] {$w_3$};
+      \draw[->] (w1) to (w2);
+      \draw[->] (w1) to (w3);
+    \end{tikzpicture}
+  \end{center}
+  \caption{Basit bir model.}
+  \ollabel{fig:simple}
+\end{figure}
+
+\end{document}

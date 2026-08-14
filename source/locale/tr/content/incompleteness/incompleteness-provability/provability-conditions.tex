@@ -1,0 +1,78 @@
+% Part: incompleteness
+% Chapter: incompleteness-provability
+% Section: provability-conditions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{inc}{inp}{prc}
+
+\olsection{$\Th{PA}$ için \usetoken{S}{derivability} Koşulları}
+
+Peano aritmetiği, yani $\Th{PA}$, $\Th{Q}$'yu bütün !!{formula}s için
+tümevarım aksiyomlarıyla genişleten kuramdır. Başka deyişle her
+!!{formula}~$!A$ için $\Th{Q}$'ya
+\[
+(!A(0) \land \lforall[x][(!A(x) \lif !A(x'))]) \lif \lforall[x][!A(x)]
+\]
+biçimindeki aksiyomlar eklenir. Bunun aslında bir \emph{şema}, yani sonsuz
+sayıda aksiyom olduğuna dikkat edin (nitekim $\Th{PA}$ {\em sonlu}
+aksiyomlaştırılabilir değildir). Fakat bir simgeler dizisinin tümevarım
+aksiyomunun bir örneği olup olmadığı etkin biçimde belirlenebildiğinden,
+$\Th{PA}$'nın aksiyomlar kümesi hesaplanabilirdir. $\Th{PA}$, $\Th{Q}$'dan
+çok daha güçlü bir kuramdır. Örneğin tümevarımı olağan biçimde kullanarak
+toplamanın ve çarpmanın değişmeli olduğu kolayca ispatlanabilir. Hatta sonlu
+yöntemlere dayanan sayı kuramsal ve kombinatorik argümanların çoğu $\Th{PA}$
+içinde yürütülebilir.
+
+$\Th{PA}$ hesaplanabilir biçimde aksiyomlaştırılmış olduğundan
+$\Prf[\Th{PA}](x,y)$ !!{derivability} yüklemi hesaplanabilirdir ve dolayısıyla
+$\Th{Q}$ içinde (öyleyse $\Th{PA}$ içinde de) temsil edilir. Daha önce olduğu
+gibi bağıntıyı temsil eden formülü $\OPrf[\Th{PA}](x,y)$ ile göstereceğiz.
+% [tr source emendation] Upstream uses the metalinguistic relation \Prf in
+% this object-language definition; the representing formula is \OPrf.
+$\OProv[\Th{PA}](y)$, sezgisel olarak ``$y$, $\Th{PA}$'nın aksiyomlarından
+!!{derivable}{}dir'' diyen $\lexists[x][\OPrf[\Th{PA}](x,y)]$ formülü olsun.
+$\Th{Q}$'nun aksiyomlarından biraz daha fazlasına gereksinmemizin nedeni,
+kullandığımız kuramın birkaç temel olguyu !!{derive} edecek kadar güçlü
+olduğunu bilmek zorunda olmamızdır. Bu olgular ilgili !!{derivability}
+yüklemi hakkındadır.
+Gereksindiğimiz olgular şunlardır:
+\begin{enumerate}
+\item[P1.] $\Th{PA} \Proves !A$ ise $\Th{PA} \Proves
+  \OProv[\Th{PA}](\gn{!A})$ olur.
+\item[P2.] Bütün $!A$ ve $!B$ !!{formula}s için
+  \[
+  \Th{PA} \Proves \OProv[\Th{PA}](\gn{!A \lif !B}) \lif
+  (\OProv[\Th{PA}](\gn{!A}) \lif \OProv[\Th{PA}](\gn{!B})).
+  \]
+\item[P3.] Her $!A$ !!{formula} için
+  \[
+  \Th{PA} \Proves \OProv[\Th{PA}](\gn{!A})
+  \lif \OProv[\Th{PA}](\gn{\OProv[\Th{PA}](\gn{!A})}).
+  \]
+\end{enumerate}
+Bu üç özelliğin geçerli olduğunu doğrulamanın tek yolu
+$\OProv[\Th{PA}](y)$ !!{formula}'nı dikkatle betimlemek ve ilgili biçimsel
+!!{derivation}s{}i betimlemek için $\Th{PA}$'nın aksiyomlarını kullanmaktır.
+(1) ve (2) koşulları kolaydır; asıl emek isteyen (3) koşuludur. (Bunun nasıl
+bir emek gerektirdiğini düşünün \dots) Ayrıntıları tamamlamak zahmetli ve
+ilgisiz olacağından burada $\Th{PA}$'nın yukarıda sıralanan üç özelliğe sahip
+olduğunu kabul etmenizi isteyeceğiz. Makul bir $\OProv[\Th{PA}](y)$ seçimi
+şunu da sağlar:
+\begin{enumerate}
+\item[P4.] $\Th{PA} \Proves \OProv[\Th{PA}](\gn{!A})$ ise
+  $\Th{PA} \Proves !A$ olur.
+\end{enumerate}
+Fakat bu olguya gereksinmeyeceğiz.
+
+\begin{digress}
+Bu arada G\"odel de burada bizim olduğumuz kadar tembeldi. 1931 tarihli
+makalesinin sonunda ikinci eksiklik teoreminin ispatını ana hatlarıyla verir
+ve ayrıntıları sonraki bir makalede sunacağına söz verir. Buna hiçbir zaman
+fırsat bulamadı; argümanı anlayan herkes ispatın tamamlanabileceğine inandığı
+için ayrıntıları doldurması gerekmedi.
+\end{digress}
+
+\end{document}

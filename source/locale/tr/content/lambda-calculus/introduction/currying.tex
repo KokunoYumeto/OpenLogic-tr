@@ -1,0 +1,66 @@
+% Part: lambda-calculus
+% Chapter: representability
+% Section: currying
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{lam}{rep}{cur} 
+\olsection{Currying}
+
+Bir $\lambd$-soyutlaması $\lambd[x][M]$ tek argümanlı bir fonksiyon temsil
+eder; birden çok argüman kabul eden fonksiyonlar tanımlamak istediğimizde bu
+oldukça sınırlayıcıdır. Bunu yapmanın bir yolu, $\lambd$-kalkülüsünü
+ikililerin, üçlülerin vb. kurulmasına izin verecek biçimde genişletmektir;
+bu durumda örneğin üç konumlu bir $\lambd[x][M]$ fonksiyonu argümanının üçlü
+olmasını beklerdi. Ancak bunu \emph{Currying} yoluyla yapmak daha elverişlidir.
+
+Bir örnek düşünelim. Bir an için $\lambd$-kalkülüsünde $+$ işlemi varmış gibi
+davranalım. Toplama fonksiyonu iki konumludur, yani iki argüman alır. Fakat
+bir $\lambd$-soyutlaması yalnızca tek argümanlı fonksiyon verir: sözdizim
+$\lambd[(x,y)][(x+y)]$ gibi ifadelere izin vermez. Bununla birlikte
+$\lambd[y][(x+y)]$ ile verilen, tek argümanı $y$'ye $x$ ekleyen tek konumlu
+$f_x(y)$ fonksiyonunu ele alabiliriz. Aslında bu tek bir fonksiyon değil,
+her $x$ sayısı için bir tane olmak üzere farklı ``$x$ ekle'' fonksiyonlarından
+oluşan bir ailedir. Şimdi başka bir tek konumlu $g$ fonksiyonunu
+$\lambd[x][f_x]$ olarak tanımlayabiliriz. $x$ argümanına uygulandığında
+$g(x)$, $f_x$ fonksiyonunu döndürür; dolayısıyla değerleri başka
+fonksiyonlardır. Şimdi $g$'yi $x$'e, ardından sonucu $y$'ye uygularsak
+$(g(x))y=f_x(y)=x+y$ elde ederiz. Böylece tek konumlu $g$, iki konumlu
+toplama fonksiyonuyla aynı işi yapabilir. ``Currying'', iki konumlu
+fonksiyonları değerleri tek konumlu fonksiyonlar olan tek konumlu
+fonksiyonlara dönüştürme yönteminin adıdır.
+
+İşte $\lambd$-kalkülüsünün kendi sözdiziminde bir örnek. $f(x,y)=x$
+fonksiyonunu nasıl temsil ederiz? İki argüman kabul edip birincisini döndüren
+bir fonksiyon tanımlamak için $\lambd[x][\lambd[y][x]]$ yazabiliriz. Bu,
+kelimesi kelimesine bir $x$ argümanı kabul edip $\lambd[y][x]$ fonksiyonunu
+döndüren bir fonksiyondur. $\lambd[y][x]$ başka bir $y$ argümanı kabul eder,
+fakat onu atıp her zaman $x$'i döndürür. Şimdi
+$\lambd[x][\lambd[y][x]]$'i iki argümana uygulayınca ne olduğuna bakalım:
+\begin{align*}
+  (\lambd[x][\lambd[y][x]])MN 
+  \bredone & (\lambd[y][M])N \\
+  \bredone & M
+\end{align*}
+
+Genel olarak $x_1$, \dots, $x_n$ parametreli ve bir $N$ terimiyle tanımlanan
+bir fonksiyon yazmak için
+$\lambd[x_1][\lambd[x_2][\ldots\lambd[x_n][N]]]$ kullanabiliriz. Buna $n$
+argüman uygularsak şunu elde ederiz:
+\begin{multline*}
+  (\lambd[x_1][\lambd[x_2][\ldots\lambd[x_n][N]]]) M_1 \dots M_n \bredone\\
+  \begin{aligned}
+  \bredone {} & (\Subst{(\lambd[x_2][\ldots\lambd[x_n][N]])}{M_1}{x_1}) M_2
+  \dots M_n\\
+   \eqs {} & (\lambd[x_2][\ldots\lambd[x_n][\Subst{N}{M_1}{x_1}]]) M_2
+            \dots M_n \\
+  \vdots & \\
+  \bredone {} &\Subst{\Subst{N}{M_1}{x_1}\ldots}{M_n}{x_n}
+  \end{aligned}
+\end{multline*}
+Son satır, kelimesi kelimesine fonksiyon tanımının gövdesinde $x_i$ yerine
+$M_i$ koymak demektir; bir fonksiyona birden çok argüman uygularken tam da
+istediğimiz budur.
+\end{document}

@@ -1,0 +1,41 @@
+% Part: incompleteness
+% Chapter: theories-computability
+% Section: complete-decidable
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{inc}{tcp}{cdc}
+
+\olsection{\printtoken{S}{axiomatizable} Tam Kuramlar Karar Verilebilirdir}
+
+Bir kurama, her $!A$ tümcesi için ya $!A$ ya da $\lnot !A$
+ispatlanabiliyorsa {\em tam} denir.
+
+\begin{lem}
+Bir $\Th{T}$ kuramının tam ve !!{axiomatizable} olduğunu varsayın. O zaman
+$\Th{T}$ karar verilebilirdir.
+\end{lem}
+
+\begin{proof}
+$\Th{T}$ tam ve $A$ hesaplanabilir bir aksiyomlar kümesi olsun. $\Th{T}$
+tutarsızsa açıkça hesaplanabilirdir. (Algoritma: “yalnızca ‘evet’ yanıtını
+ver”.)
+Dolayısıyla $\Th{T}$'nin ayrıca tutarlı olduğunu varsayabiliriz.
+
+Bir $!A$ tümcesinin $\Th{T}$ içinde olup olmadığına karar vermek için
+$\Th{T}$'den $!A$ için !!a{derivation} ile $\lnot !A$ için
+!!a{derivation} aynı anda arayın. $\Th{T}$ tam olduğundan birini ya da
+ötekini mutlaka bulursunuz; $\Th{T}$ tutarlı olduğundan da $\lnot !A$ için
+!!a{derivation} bulursanız $!A$ için hiçbir !!{derivation} yoktur.
+
+Başka terimlerle söylersek $\Th{T}$'nin !!{c.e.} olduğunu zaten biliyoruz;
+dolayısıyla daha önce ispatladığımız bir teorem uyarınca
+$\Th{T}$'nin tümleyeninin de !!{c.e.} olduğunu göstermek yeterlidir. Oysa
+!!a{formula}~$!A$, $\Th{\bar T}$ içindedir ancak ve ancak $\lnot !A$,
+$\Th{T}$ içindedir; öyleyse
+$\Th{\bar T} \leq_m \Th{T}$.
+\end{proof}
+
+\end{document}

@@ -1,0 +1,187 @@
+% Part: proof-theory
+% Chapter: sequent-calculus
+% Section: rules-proofs
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{pt}{seq}{rp}
+
+\olsection{Kurallar ve \usetoken{P}{proof}}
+
+Bazı tanımlar verip terminolojiyi sabitleyerek başlayalım.
+
+Örneğin \Log{G3c}'de, $!A$ ve~$!B$ içeren sekantlardan $!A \land !B$
+içeren sekantları !!{proving}{}ya olanak veren şu iki kuralı ele alalım:
+\[
+\Axiom$ !A, !B, \Gamma \fCenter \Delta$
+\RightLabel{\LeftR{\land}}
+\UnaryInf$ !A \land !B, \Gamma \fCenter \Delta$
+\DisplayProof
+\qquad
+\Axiom$\Gamma \fCenter \Delta, !A$
+\Axiom$ \Gamma \fCenter \Delta, !B$
+\RightLabel{\RightR{\land}}
+\BinaryInf$ \Gamma \fCenter \Delta, !A \land !B $
+\DisplayProof
+\]
+Çizginin üstündeki sekantlara \emph{öncüller}, altındaki sekanta
+\emph{sonuç} denir. Her kuraldaki $\Gamma$ ve $\Delta$ içinde bulunan
+!!{formula}s \emph{bağlam} ya da \emph{yan !!{formula}s} diye adlandırılır.
+Sonuçta yer alıp bağlamın parçası olmayan !!{formula}, \emph{başlıca}
+!!{formula}; öncüllerde yer alıp bağlamda bulunmayan !!{formula}s ise
+\emph{etkin} (ya da \emph{yardımcı}) !!{formula}s diye adlandırılır.
+
+Niceleyici kuralları biraz daha karmaşıktır. Örneğin \Log{G1c}'de
+$\lforall$ kuralları şöyledir:
+\[\Axiom$ !A(t), \Gamma \fCenter \Delta$
+\RightLabel{\LeftR{\lforall}}
+\UnaryInf$ \lforall[x][!A(x)],\Gamma \fCenter \Delta$
+\DisplayProof
+\qquad
+\Axiom$ \Gamma \fCenter \Delta, !A(a) $
+\RightLabel{\RightR{\lforall}}
+\UnaryInf$ \Gamma \fCenter \Delta, \lforall[x][!A(x)]$
+\DisplayProof
+\]
+\LeftR{\lforall} kuralında etkin !!{formula}, $t$ kapalı bir terim, yani
+değişkensiz bir terim olmak üzere~$!A(t)$'dir. Böyle bir çıkarımın doğru,
+yani şematik \LeftR{\lforall} kuralına uygun olması için; sonuçtaki
+başlıca !!{formula} $\lforall[x][!A]$ ve öncüldeki etkin !!{formula}
+$\Subst{!A}{t}{x}$ olacak biçimde bir !!{formula}~$!A$, bir değişken~$x$
+ve bir kapalı terim~$t$ bulunmalıdır. \RightR{\lforall} kuralı da aynı
+biçimde işler; ancak gelişigüzel bir $t$ terimi yerine öncüldeki etkin
+!!{formula}, $a$ bir !!a{constant} olmak üzere $\Subst{!A}{a}{x}$
+olmalıdır. Bu sabite \RightR{\lforall} çıkarımının \emph{özdeğişkeni}
+denir. Çıkarım ancak alt sekant $a$'yı içermiyorsa, yani $a$; $\Gamma$,
+$\Delta$ ya da $!A$ içinde geçmiyorsa doğrudur. Buna
+\emph{özdeğişken koşulu} denir.
+
+\Log{G1c} ve \Log{G3c} gibi sekant sistemleri, şematik olarak belirtilmiş
+bu tür kuralların bir derlemiyle, aksiyom sayılan (yine şematik olarak
+belirtilmiş) bazı sekantlardan oluşur. Böyle bir sistemdeki !!^{proof}s,
+aksiyomlardan çıkarım kuralları kullanılarak tümevarımsal biçimde üretilen
+sonlu sekant ağaçlarıdır. Her yaprak bir aksiyomdur; diğer her sekant ise
+hemen üstündeki sekantlardan sistemin çıkarım kurallarından biriyle çıkar.
+
+\begin{defn}\ollabel{defn:proof}
+Bir sekant sistemindeki \emph{!!^{proof}s}, tümevarımsal olarak aşağıdaki
+gibi tanımlanan sonlu sekant ağaçlarıdır:
+\begin{enumerate}
+  \item\ollabel{defn:prf:axiom} Her aksiyom bir !!a{proof}{}tır.
+  \item\ollabel{defn:prf:one-prem} $\pi_1$, $S_1$ sekantıyla biten bir
+  !!a{proof} ve $S$, tek öncüllü bir~$R$ kuralıyla $S_1$'den çıkan bir
+  sekantsa
+  \[
+  \AxiomC{}
+  \RightLabel{$\pi_1$}
+  \DeduceC{$S_1$}
+  \RightLabel{$R$}
+  \UnaryInfC{$S$}
+  \DisplayProof
+  \]
+  bir !!a{proof}{}tır.
+  \item\ollabel{defn:prf:two-prem} $\pi_1$ ile $\pi_2$, sırasıyla $S_1$
+  ve~$S_2$ sekantlarıyla biten !!{proof}s ve $S$, iki öncüllü bir~$R$
+  kuralıyla $S_1$ ile $S_2$'den çıkan bir sekantsa
+  \[
+  \AxiomC{}
+  \RightLabel{$\pi_1$}
+  \DeduceC{$S_1$}
+  \AxiomC{}
+  \RightLabel{$\pi_2$}
+  \DeduceC{$S_2$}
+  \RightLabel{$R$}
+  \BinaryInfC{$S$}
+  \DisplayProof
+  \]
+  bir !!a{proof}{}tır.
+\end{enumerate}
+\end{defn}
+
+\Olref{defn:proof}, !!{proof}s{}ı sekant ağaçları olarak tanımlar. Bu
+ağaçların ``yukarı doğru'' büyüdüğünü düşünürüz. Ağacın en üstteki (yaprak)
+düğümleri aksiyomlardır ve \emph{başlangıç sekantları} diye adlandırılır.
+En alttaki sekanta \emph{son sekant} denir. $\pi$, son sekantı~$S$ olan bir
+!!a{proof} ise $\pi \Proves S$ de yazarız. Bir $S$ sekantının bir
+!!a{proof}{}ı varsa $\Proves S$ yazarız; istenirse ispatın bulunduğu
+sistem $\Proves$ simgesinin solunda belirtilir, örneğin $\Log{G1c} \Proves
+!A, !B \Sequent !A \land !B$. Başlangıç sekantları dışında bir !!a{proof}
+içindeki her sekant, bir~$R$ kuralıyla yapılan çıkarımın \emph{sonucudur}.
+Bir !!a{proof} içinde bir sekantın hemen üstünde duran bir ya da iki sekanta
+(yani düğümün ebeveynlerine) çıkarımın \emph{öncülleri} denir.
+
+Bir !!a{proof}{}ın tümevarımsal kuruluşunda kullanılan !!{proof}s, onun
+\emph{alt-!!{proof}s{}ı} diye adlandırılır. Bir çıkarımın öncülleriyle biten
+alt-!!{proof}s, çıkarımın \emph{doğrudan alt-!!{proof}s{}ı} diye adlandırılır.
+
+!!{proof}s{}ın karmaşıklığını çoğu kez bir doğal sayıyla ölçmek gerekir.
+Bir !!a{proof} içindeki sekantların sayısını doğrudan sayabilirdik; ancak
+çoğu zaman daha yararlı ölçü, bir !!a{proof}{}ın !!{height} değeridir: son sekant
+ile bir başlangıç sekantı arasındaki en büyük sekant sayısıdır. Bunun da
+tümevarımsal tanımını verebiliriz.
+
+\begin{defn}
+Bir !!a{proof}~$\pi$'nin \emph{!!{height} değeri}~$\pheight{\pi}$ tümevarımsal
+olarak şöyle tanımlanır:
+\begin{enumerate}
+  \item $\pi$ tek bir aksiyomdan oluşuyorsa $\pheight{\pi} = 0$.
+  \item $\pi$, doğrudan alt-!!{proof}{}ı~$\pi_1$ olan tek öncüllü bir
+  çıkarımla bitiyorsa $\pheight{\pi} = \pheight{\pi_1} + 1$.
+  \item $\pi$, doğrudan alt-!!{proof}s{}ı~$\pi_1$ ve~$\pi_2$ olan iki
+  öncüllü bir çıkarımla bitiyorsa $\pheight{\pi} =
+  \max(\pheight{\pi_1}, \pheight{\pi_2}) + 1$.
+\end{enumerate}
+Bir $S$ sekantının yüksekliği $\le n$ olan bir !!a{proof}{}ı varsa
+$\Proves[n] S$ yazarız.
+\end{defn}
+
+\begin{ex}
+\Log{G3c}'de $!C$ atomik olmak üzere $!C, \Gamma \Sequent \Delta, !C$
+biçimindeki her sekant bir aksiyomdur. $!D$ ile $!E$'nin atomik tümceler
+olduğunu varsayalım. O zaman $!D, !E \Sequent !D$ ve $!D, !E \Sequent !E$,
+$!C, \Gamma \Sequent \Delta, !C$ aksiyomunun örnekleridir. Örneğin $!C,
+\Gamma \Sequent \Delta, !C$ içinde $!C \ident !E$, $\Gamma = \{!D\}$ ve
+$\Delta = \emptyset$ alırsak tam olarak $!D, !E \Sequent !E$ sekantını
+elde ederiz. (Çoklu\emph{kümeler}le çalıştığımızı; dolayısıyla $!D, !E
+\Sequent !E$ ile $!E, !D \Sequent !D$'nin aynı sekant olduğunu anımsayın.)
+
+$!D, !E \Sequent !D$, \Log{G3c}'nin bir aksiyomunun örneği olduğundan tek
+başına \Log{G3c}'de bir !!a{proof} sayılır; $!D, !E \Sequent !E$ de
+\olref{defn:proof}\olref{defn:prf:axiom} gereğince öyledir. Bunlara
+$\pi_1$ ve~$\pi_2$ diyelim. \olref{defn:prf:two-prem} gereğince bu iki
+!!{proof}s{}ı alıp iki öncüllü~$\RightR{\land}$ kuralını kullanarak
+yeni bir ispat ($\pi_3$) üretebiliriz:
+\[
+\Axiom$!D, !E \fCenter !D$
+\Axiom$!D, !E \fCenter !E$
+\RightLabel{\RightR{\land}}
+\BinaryInf$!D, !E  \fCenter !D \land !E $
+\DisplayProof
+\]
+Ardından $\pi_3$'ten, tek öncüllü~$\LeftR{\land}$ kuralını kullanarak
+(\olref{defn:proof}\olref{defn:prf:one-prem}) şu !!{proof}~$\pi_4$'ü elde
+ederiz:
+\[
+\Axiom$!D, !E \fCenter !D$
+\Axiom$!D, !E \fCenter !E$
+\RightLabel{\RightR{\land}}
+\insertBetweenHyps{\hspace{5ex}}
+\BinaryInf$!D, !E  \fCenter !D \land !E $
+\LeftSubproofLabel{$\pi_3$}
+\RightLabel{\LeftR{\land}}
+\UnaryInf$!D \land !E  \fCenter !D \land !E$
+\RightSubproofLabel{$\pi_4$}
+\DisplayProof
+\]
+$\pi_4$'teki son çıkarımın doğrudan alt-!!{proof}{}ı~$\pi_3$'tür.
+$\RightR{\land}$ çıkarımının doğrudan alt-!!{proof}s{}ı $\pi_1$ ve~$\pi_2$'dir.
+$\pi_4$'ün alt-!!{proof}s{}ı $\pi_1$, $\pi_2$, $\pi_3$ ve $\pi_4$'ün
+kendisidir. $\pheight{\pi_1} = \pheight{\pi_2} = 0$,
+$\pheight{\pi_3} = 1$ ve $\pheight{\pi_4} = 2$ olur. Her atomik $!D$ ve
+$!E$ için $\Log{G3c} \Proves[4] !D \land !E \fCenter !D \land !E$
+olduğunu göstermiş bulunuyoruz.
+\end{ex}
+
+\end{document}

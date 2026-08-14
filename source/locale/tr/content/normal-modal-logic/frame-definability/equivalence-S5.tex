@@ -1,0 +1,142 @@
+% Part: normal-modal-logic
+% Chapter: frame-definability
+% Section: equivalence-S5
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{nml}{frd}{es5}
+
+\olsection{Denklik Bağıntıları ve \Log{S5}}
+
+Modal mantık $\Log{S5}$, bütün evrensel çerçevelerde geçerli !!{formula}s
+kümesi olarak nitelenir; yani her dünyaya, kendisi de içinde olmak üzere her
+dünyadan erişilebilir. Böyle bir durumda $\Box$ zorunluluğa, $\Diamond$ ise
+olanağa karşılık gelir: $!A$ \emph{her} dünyada doğruysa $\Box !A$;
+\emph{bazı} dünyalarda doğruysa $\Diamond !A$ doğrudur. $\Log{S5}$'in
+aynı zamanda bütün yansımalı, simetrik ve geçişli çerçevelerde, yani bütün
+\emph{denklik bağıntıları} üzerinde geçerli !!{formula}s olarak da
+nitelenebildiği ortaya çıkar.
+
+\begin{defn}
+  $W$ üzerinde ikili bir $R$ bağıntısı, ancak ve ancak yansımalı, simetrik ve
+  geçişliyse bir \emph{denklik bağıntısıdır}. $W$ üzerindeki bir $R$
+  bağıntısı, bütün $u,v\in W$ için $Ruv$ ise \emph{evrenseldir}.
+\end{defn}
+
+\Ax{T}, \Ax{B} ve \Ax{4} sırasıyla yansımalı, simetrik ve geçişli
+çerçeveleri nitelediğinden, erişilebilirlik bağıntısının bir denklik
+bağıntısı olduğu çerçeveler tam olarak bu üç !!{formula}{}ün de geçerli
+olduğu çerçevelerdir. Denklik bağıntılarını tanımlarken kullandığımız
+koşullar $R$ üzerindeki başka tanıdık koşul birleşimlerine denk olduğundan,
+denklik bağıntılarının başka !!{formula} birleşimleriyle de nitelenebildiği
+ortaya çıkar.
+
+\begin{prop}\ollabel{prop:equivalences}
+  Aşağıdakiler denktir:
+  \begin{enumerate}
+  \item $R$ bir denklik bağıntısıdır;
+  \item $R$ yansımalı ve Öklidyendir;
+  \item $R$ seri, simetrik ve Öklidyendir;
+  \item $R$ seri, simetrik ve geçişlidir.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  Alıştırma.
+\end{proof}
+
+\begin{prob}
+  Aşağıdakileri göstererek \olref[nml][frd][es5]{prop:equivalences}
+  önermesini ispatlayın:
+  \begin{enumerate}
+  \item $R$ simetrik ve geçişliyse Öklidyendir.
+  \item $R$ yansımalıysa seridir.
+  \item $R$ yansımalı ve Öklidyense simetriktir.
+  \item $R$ simetrik ve Öklidyense geçişlidir.
+  \item $R$ seri, simetrik ve geçişliyse yansımalıdır.
+  \end{enumerate}
+  Bunun, koşulların denk olduğunu ispatlamak için neden yeterli olduğunu
+  açıklayın.
+\end{prob}
+
+\olref{prop:equivalences}, $R$'nin bir denklik bağıntısı olduğu
+çerçevelerin modal mantığına (geleneksel olarak $\Log{S5}$ denilen mantığa)
+denk bir niteleme verdiği için \olref[prf][prs]{prop:S5} önermesinin
+semantik karşılığıdır.
+
+Evrensel bağıntılar ile denklik bağıntıları arasındaki ilişki nedir? Her
+evrensel bağıntı bir denklik bağıntısı olsa da her denklik bağıntısının
+evrensel olmadığı açıktır. Bununla birlikte bütün evrensel bağıntılarda
+geçerli !!{formula}s{}in kümesi, bütün denklik bağıntılarında geçerli
+olanların kümesiyle tam olarak aynıdır.
+
+\begin{prop}
+  $R$, $W$ üzerinde bir denklik bağıntısı olsun ve her $w\in W$ için $w$'nin
+  \emph{denklik sınıfını} $[w]=\{w'\in W:Rww'\}$ olarak tanımlayalım. O
+  zaman:
+  \begin{enumerate}
+  \item $w\in[w]$;
+  \item $R$, her $[w]$ denklik sınıfı üzerinde evrenseldir;
+  \item Denklik sınıfları topluluğu $W$'yi birbirini dışlayan ve birlikte
+    $W$'nin tamamını kapsayan alt kümelere böler.
+  \end{enumerate}
+\end{prop}
+
+\begin{prop}\ollabel{prop:S5=univ}
+  !!^a{formula} $!A$, $R$'nin bir denklik bağıntısı olduğu bütün
+  $\mModel{F}=\tuple{W,R}$ çerçevelerinde geçerlidir ancak ve ancak $R$'nin
+  evrensel olduğu bütün $\mModel{F}=\tuple{W,R}$ çerçevelerinde geçerlidir.
+  Dolayısıyla evrensel çerçevelerin mantığı $\Log{S5}$'tir.
+\end{prop}
+
+\begin{proof}
+  $W$ üzerindeki evrensel bir $R$ bağıntısının bir denklik bağıntısı olduğu
+  hemen doğrulanır. Dolayısıyla $!A$, $R$'nin bir denklik bağıntısı olduğu
+  bütün çerçevelerde geçerliyse bütün evrensel çerçevelerde de geçerlidir.
+  Öteki yön için karşıt-ters yönde akıl yürütelim: $!B$, $R$'nin $W$
+  üzerinde bir denklik bağıntısı olduğu $\tuple{W,R}$ çerçevesine dayanan
+  $\mModel{M}=\tuple{W,R,V}$ modelinin bir $w$ dünyasında yanlış olan
+  !!a{formula} olsun. Yani $\mSat/{M}{!B}[w]$. Şu şekilde bir
+  $\mModel{M}'=\tuple{W',R',V'}$ modeli tanımlayalım:
+  \begin{enumerate}
+  \item $W'=[w]$;
+  \item $R'$, $W'$ üzerinde evrenseldir;
+  \item $V'(p)=V(p)\cap W'$.
+  \end{enumerate}
+  (Dolayısıyla $\mModel{M}'$ modelindeki $W'$ dünyalar kümesi
+  \olref{fig:partition} içindeki taralı alanla gösterilir.) $R$ ile $R'$nin
+  $W'$ üzerinde aynı olduğu kolayca görülür. Sonra !!{formula}s üzerinde
+  tümevarımla, her $!A$ ve her $w'\in W'$ için
+  $\mSat{M'}{!A}[w']$ ancak ve ancak $\mSat{M}{!A}[w']$ olduğunu gösterebiliriz
+  (bu ifade $W'\subseteq W$ olduğundan anlamlıdır). Özellikle
+  $\mSat/{M'}{!B}[w]$ olur ve $!B$, evrensel bir çerçeveye dayanan bir
+  modelde yanlışlanır.
+\end{proof}
+
+\begin{figure}[t]
+  \centering
+  \begin{tikzpicture}[node distance=2cm, auto, thick]
+    \clip [rounded corners] (0,0) -- (6,0) -- (6,4) -- (0,4) --  cycle;
+    \begin{scope}
+      \clip (0,0) -- (2,0)  .. controls (1.5,1.5) and (4.5,1.5)
+      .. (4,4) -- (0,4) -- (0,0) -- cycle;
+      \filldraw[fill=gray!40] (0,4) -- (0,2) .. controls (1.5,1.5)
+      and (4.5,1.5) .. (4.5,0) -- (6,0) -- (6,4) -- (0,4) --  cycle;
+    \end{scope}
+    \draw [name path=line1] (2,0) .. controls (1.5,1.5) and (4.5,1.5) .. (4,4);
+    \draw [name path=line2] (0,2)  .. controls (1.5,1.5) and (4.5,1.5) .. (4.5,0);
+    \path [name intersections={of=line1 and line2}];
+    \draw [rounded corners, use as bounding box, very thick] (0,0)
+    -- (6,0) -- (6,4) -- (0,4) --  cycle; 
+    \node at (2,3) {$[w]$} ;
+    \node at (1,1) {$[u]$} ;
+    \node at (3,0.75) {$[v]$} ;
+    \node at (4.75,2) {$[z]$} ;
+  \end{tikzpicture}
+  \caption{$W$'nin denklik sınıflarına bir bölümlemesi.}
+  \ollabel{fig:partition}
+\end{figure}
+
+\end{document}

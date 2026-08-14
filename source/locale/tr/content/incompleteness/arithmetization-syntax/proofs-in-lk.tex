@@ -1,0 +1,285 @@
+% Part: incompleteness
+% Chapter: arithmetization-syntax
+% Section: proofs-in-lk
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{inc}{art}{plk}
+\olsection{$\Log{LK}$ Sisteminde \usetoken{P}{derivation}}
+
+\begin{explain}
+!!{derivation}s{}i aritmetikleştirmek için !!{derivation}s{}i sayılarla temsil
+etmemiz gerekir. Her çıkarımın ayrıca bir etiket taşıdığı sekant ağaçları olan
+!!{derivation}s için en açık yaklaşım özyinelemeli bir temsildir: Bir
+!!{derivation}{}i, bileşenleri son sekant, etiket ve son çıkarımın öncüllerine
+götüren alt-!!{derivation}s{}in temsilleri olan bir demetle temsil ederiz.
+\end{explain}
+
+\begin{defn}
+$\Gamma$ sonlu bir !!{sentence}s dizisi ve $\Gamma =
+\tuple{!A_1, \dots, !A_n}$ ise $\Gn{\Gamma} = \tuple{\Gn{!A_1},
+  \dots, \Gn{!A_n}}$ olur.
+
+$\Gamma \Sequent \Delta$ bir sekant ise $\Gamma \Sequent \Delta$'nın Gödel numarası
+\[
+\Gn{\Gamma \Sequent \Delta} = \tuple{\Gn{\Gamma}, \Gn{\Delta}}
+\]
+olarak tanımlanır.
+
+$\pi$, $\Log{LK}$ sisteminde !!a{derivation} ise $\Gn{\pi}$ aşağıdaki gibi
+tanımlanır:
+\begin{enumerate}
+\item $\pi$ yalnızca $\Gamma \Sequent \Delta$ başlangıç sekantından
+  oluşuyorsa $\Gn{\pi}$
+  \[
+    \tuple{0, \Gn{\Gamma \Sequent \Delta}}
+  \]
+  olur.
+\item $\pi$, bir ya da iki öncüllü bir çıkarımla bitiyorsa, sonucu
+  $\Gamma \Sequent \Delta$ ise ve $\pi_1$ ile $\pi_2$ son çıkarımın
+  öncülleriyle biten dolaysız alt ispatlar ise $\Gn{\pi}$ sırasıyla
+  \begin{align*}
+    & \tuple{1, \Gn{\pi_1}, \Gn{\Gamma \Sequent \Delta}, k} \text{ ya da}\\
+    & \tuple{2, \Gn{\pi_1}, \Gn{\pi_2}, \Gn{\Gamma \Sequent \Delta}, k}
+  \end{align*}
+  olur. Burada $k$, son çıkarımda kullanılan kurala göre aşağıdaki tabloyla
+  verilir:
+
+  \begin{tabular}{lccccccc}
+    \text{Kural:} & \LeftR{\Weakening} & \RightR{\Weakening} &
+    \LeftR{\Contraction} & \RightR{\Contraction} &
+    \LeftR{\Exchange} & \RightR{\Exchange} \\
+    $k$: & 1 & 2 & 3 & 4 & 5 & 6 \\[2ex]
+    \text{Kural:} & \LeftR{\lnot} & \RightR{\lnot} &
+    \LeftR{\land} & \RightR{\land} &
+    \LeftR{\lor} & \RightR{\lor} \\
+    $k$: & 7 & 8 & 9 & 10 & 11 & 12 \\[2ex]
+    \text{Kural:} & \LeftR{\lif} & \RightR{\lif} &
+    \LeftR{\lforall} & \RightR{\lforall} &
+    \LeftR{\lexists} & \RightR{\lexists} \\
+    $k$: & 13 & 14 & 15 & 16 & 17 & 18 \\[2ex]
+    \text{Kural:} & \Cut & = \\
+    $k$: & 19 & 20
+  \end{tabular}
+\end{enumerate}
+\end{defn}
+
+\begin{ex}
+  Şu çok basit !!{derivation}{}i ele alın:
+  \begin{prooftree}
+    \Axiom$!A \fCenter !A$
+    \RightLabel{\LeftR{\land}}
+    \UnaryInf$!A \land !B \fCenter !A$
+    \RightLabel{\RightR{\lif}}
+    \UnaryInf$\fCenter (!A \land !B) \lif !A$
+  \end{prooftree}
+  Başlangıç sekantının Gödel numarası $p_0 = \tuple{0,
+    \Gn{!A \Sequent !A}}$ olurdu. $\LeftR{\land}$ sonucuyla biten
+  !!{derivation}{}in Gödel numarası $p_1 =
+    \tuple{1, p_0, \Gn{!A \land !B \Sequent !A}, 9}$ olurdu
+  ($\LeftR{\land}$ bir öncüllü olduğu için $1$, sonucun yani
+  $!A \land !B \Sequent !A$'nın Gödel numarası ve $\LeftR{\land}$'ı
+  kodlayan sayı olduğu için $9$). Böylece bütün !!{derivation}{}in Gödel
+  numarası $\tuple{1, p_1, \Gn{\Sequent (!A \land !B) \lif !A)}, 14}$,
+  yani
+  \[
+  \tuple{1, \tuple{1, \tuple{0, \Gn{!A \Sequent !A}}, \Gn{!A \land !B \Sequent !A}, 9},
+    \Gn{\Sequent (!A \land !B) \lif !A}, 14}
+  \]
+  olur.
+\end{ex}
+
+\begin{explain}
+!!{derivation}s için bir temsil belirlediğimize göre bu !!{derivation}s{}i
+ilkel özyinelemeli biçimde işleyebildiğimizi ve temel özellikleriyle
+bağıntılarını da bu biçimde ifade edebildiğimizi göstermeliyiz. Bazı işlemler
+basittir: Örneğin !!a{derivation}{}in $p$ Gödel numarası verildiğinde
+$\fn{EndSequent}(p) = (p)_{(p)_0+1}$ bize son sekantının Gödel numarasını,
+$\fn{LastRule}(p) = (p)_{(p)_0+2}$ ise son kuralının kodunu verir.
+\[
+  \len{s} = 2 \land \bforall{i<\len{(s)_0} + \len{(s)_1}}{\fn{Sent}(((s)_0 \concat (s)_1)_i)}
+\]
+ile tanımlanan $\fn{Sequent}(s)$ özelliği, ancak ve ancak $s$ !!{sentence}s{}den
+oluşan bir sekantın Gödel numarasıysa geçerlidir. Bazı işlemler ise çok daha
+zordur. En azından bunların nasıl yapılacağını ana hatlarıyla göstereceğiz.
+Amaç, ``$\pi$, $\Gamma$'dan $!A$'nın !!a{derivation}{}idir'' bağıntısının
+$\pi$ ile $!A$'nın Gödel numaraları üzerinde ilkel özyinelemeli bir bağıntı
+olduğunu göstermektir.
+\end{explain}
+
+\begin{prop}\ollabel{prop:followsby}
+  Gödel numarası $p$ olan $\pi$ !!{derivation}{}indeki son çıkarımın doğru
+  olması durumunda geçerli olan $\fn{Correct}(p)$ özelliği ilkel
+  özyinelemelidir.
+\end{prop}
+
+\begin{proof}
+  $\Gamma \Sequent \Delta$, ya $\Gamma \Sequent \Delta$ sekantı
+  $!A \Sequent !A$ olacak biçimde !!a{sentence}~$!A$ varsa ya da
+  $\Gamma \Sequent \Delta$ sekantı $\emptyset \Sequent \eq[t][t]$ olacak
+  biçimde bir $t$ terimi varsa bir başlangıç sekantıdır. Gödel numaralarıyla
+  $\fn{InitSeq}(s)$ ancak ve ancak
+  \begin{align*}
+  \bexists{x < s}{} (\fn{Sent}(x) & \land
+  s = \tuple{\tuple{x},\tuple{x}})
+  \lor {}\\
+  \bexists{t<s}{} (\fn{Term}(t) & \land
+  s = \tuple{0, \tuple{\Gn{{\eq}(} \concat t \concat \Gn{,} \concat t \concat \Gn{)}}})
+  \end{align*}
+  geçerliyse geçerlidir.
+
+  Ayrıca her $R$ çıkarım kuralı için $\fn{FollowsBy}_R(p)$ bağıntısının
+  ilkel özyinelemeli olduğunu göstermeliyiz. Burada
+  $\fn{FollowsBy}_R(p)$, ancak ve ancak $p$, bir $\pi$ !!{derivation}{}inin
+  Gödel numarasıysa ve $\pi$'nin son sekantı, $\pi$'nin dolaysız
+  alt-!!{derivation}s{}inden $R$'nin doğru uygulanmasıyla çıkıyorsa geçerlidir.
+
+  Basit bir durum $\RightR{\land}$ kuralıdır. $\pi$ doğru bir
+  $\RightR{\land}$ çıkarımıyla bitiyorsa şu biçimdedir:
+  \begin{prooftree}
+    \AxiomC{}
+    \RightLabel{$\pi_1$}
+    \Deduce$\Gamma \fCenter \Delta, !A$
+
+    \AxiomC{}
+    \RightLabel{$\pi_2$}
+    \Deduce$\Gamma \fCenter \Delta, !B$
+
+    \RightLabel{\RightR\land}
+    \BinaryInf$\Gamma \fCenter \Delta, !A \land !B$
+  \end{prooftree}
+  Dolayısıyla $\pi$ !!{derivation}{}indeki son çıkarımın
+  $\RightR{\land}$ kuralının doğru bir uygulaması olması, ancak ve ancak
+  $\pi_1$'in son sekantı $\Gamma \Sequent \Delta, !A$, $\pi_2$'nin son
+  sekantı $\Gamma \Sequent \Delta, !B$ ve $\pi$'nin son sekantı
+  $\Gamma \Sequent \Delta, !A \land !B$ olacak biçimde $\Gamma$ ve
+  $\Delta$ !!{sentence}s dizileri ile iki $!A$ ve $!B$ !!{sentence}{}si varsa
+  geçerlidir. Bunu yalnızca Gödel numaralarına çevirmemiz gerekir.
+  $s = \Gn{\Gamma \Sequent \Delta}$ ise $(s)_0 = \Gn{\Gamma}$ ve
+  $(s)_1 = \Gn{\Delta}$ olur. Öyleyse
+  $\fn{FollowsBy}_{\RightR{\land}}(p)$ ancak ve ancak
+\begin{align*}
+& \bexists{g < p}{\bexists{d < p}{\bexists{a < p}{\bexists{b < p}{\quad}}}} \\
+& \qquad \fn{EndSequent}(p) =
+  \tuple{g, d \concat
+    \tuple{\Gn{(} \concat a \concat \Gn{\land} \concat b \concat \Gn{)}}} \land {} \\
+& \qquad \fn{EndSequent}((p)_1) = \tuple{g, d \concat \tuple{a}} \land {}\\
+& \qquad \fn{EndSequent}((p)_2) = \tuple{g, d \concat \tuple{b}} \land {}\\
+& \qquad (p)_0 = 2 \land \fn{LastRule}(p) = 10
+\end{align*}
+geçerliyse geçerlidir. Satırlar sırasıyla şunları ifade eder: Gödel numarası
+$g$ olan bir $\Gamma$ dizisi, Gödel numarası $d$ olan bir $\Delta$ dizisi,
+Gödel numarası $a$ olan !!a{formula}~$!A$ ve Gödel numarası $b$ olan
+!!a{formula}~$!B$ vardır; ``$\pi$'nin son sekantı
+$\Gamma \Sequent \Delta, !A \land !B$'dir'', ``$\pi_1$'in son sekantı
+$\Gamma \Sequent \Delta, !A$'dır'', ``$\pi_2$'nin son sekantı
+$\Gamma \Sequent \Delta, !B$'dir'' ve ``$\pi$'nin iki dolaysız alt
+alt türetimi vardır ve son çıkarım kuralı (numarası~$10$ olan)
+$\RightR\land$ kuralıdır.''
+
+$\pi$'deki son çıkarımın $\RightR\lexists$ kuralının doğru bir uygulaması
+olması, ancak ve ancak $\pi$'nin son sekantı
+$\Gamma \Sequent \Delta, \lexists[x][!A]$ ve $\pi_1$'in son sekantı
+$\Gamma \Sequent \Delta, \Subst{!A}{t}{x}$ olacak biçimde $\Gamma$ ile
+$\Delta$ dizileri, !!a{formula}~$!A$, bir $x$ değişkeni ve bir $t$ terimi
+varsa geçerlidir. Dolayısıyla Gödel numaralarıyla
+$\fn{FollowsBy}_{\RightR\lexists}(p)$ ancak ve ancak
+\begin{align*}
+  & \bexists{g<p}{\bexists{d<p}{\bexists{a<p}{\bexists{x<p}{\bexists{t<p}{\quad}}}}}\\
+  & \qquad \fn{EndSequent}(p) =
+  \tuple{
+    g,
+    d \concat \tuple{\Gn{\lexists} \concat x \concat a}
+  } \land {}\\
+  & \qquad \fn{EndSequent}((p)_1) =
+  \tuple{
+    g,
+    d \concat \tuple{\fn{Subst}(a, t, x)}
+  } \land {}\\
+  & \qquad (p)_0 = 1 \land \fn{LastRule}(p) = 18
+\end{align*}
+geçerliyse geçerlidir. Ardından $\fn{Correct}(p)$'yi şöyle tanımlarız:
+\begin{multline*}
+  \fn{Sequent}(\fn{EndSequent}(p)) \land {}\\
+  [(\fn{LastRule}(p) = 1 \land
+  \fn{FollowsBy}_{\LeftR\Weakening}(p)) \lor \dots \lor {}\\
+  (\fn{LastRule}(p) = 20 \land \fn{FollowsBy}_{\eq}(p)) \lor {}\\
+  (p)_0 = 0 \land \fn{InitSeq}(\fn{EndSequent}(p))]
+\end{multline*}
+İlk satır $p$'nin son sekantının gerçekten !!{sentence}s{}den oluşan bir
+sekant olmasını sağlar. Son satır ise $p$'nin yalnızca bir başlangıç sekantı
+olduğu durumu kapsar.
+\end{proof}
+
+\begin{prob}
+  Aşağıdaki özellikleri \olref[inc][art][plk]{prop:followsby}'deki gibi
+  tanımlayın:
+  \begin{enumerate}
+  \item $\fn{FollowsBy}_{\Cut}(p)$,
+  \item $\fn{FollowsBy}_{\LeftR\lif}(p)$,
+  \item $\fn{FollowsBy}_{\eq}(p)$,
+  \item $\fn{FollowsBy}_{\RightR{\lforall}}(p)$.
+  \end{enumerate}
+  Sonuncusu için Gödel numarası $p$ olan !!{derivation}{}in son çıkarımının
+  özdeğişken koşulunu sağlayıp sağlamadığını, yani
+  $\RightR{\lforall}$ kuralının $a$ özdeğişkeninin son sekantta geçmediğini
+  ilkel özyinelemeli biçimde sınayabildiğinizi de göstermelisiniz.
+\end{prob}
+
+\begin{prop}
+  \ollabel{prop:deriv}
+  $p$'nin doğru bir $\pi$ !!{derivation}{}inin Gödel numarası olması durumunda
+  geçerli olan $\fn{Deriv}(p)$ bağıntısı ilkel özyinelemelidir.
+\end{prop}
+
+\begin{proof}
+  !!^a{derivation}~$\pi$, ancak ve ancak çıkarımlarının her biri bir kuralın
+  doğru uygulamasıysa, başka bir deyişle alt-!!{derivation}s{}inin her biri
+  doğru bir çıkarımla bitiyorsa doğrudur. Dolayısıyla $\fn{Deriv}(p)$ ancak
+  ve ancak
+  \[
+  \bforall{i<\len{\fn{SubtreeSeq}(p)}}{\fn{Correct}((\fn{SubtreeSeq}(p))_i)}
+  \]
+  geçerliyse geçerlidir.
+\end{proof}
+
+
+\begin{prop}
+$\Gamma$'nın ilkel özyinelemeli bir !!{sentence}s kümesi olduğunu varsayın.
+O zaman ``$x$, sonlu bir $\Gamma_0 \subseteq \Gamma$ için
+$\Gamma_0 \Sequent !A$'nın !!a{derivation}{}i olan $\pi$'nin kodudur ve $y$,
+$!A$'nın Gödel numarasıdır'' ifadesini veren $\Prf[\Gamma](x, y)$ bağıntısı
+ilkel özyinelemelidir.
+\end{prop}
+
+\begin{proof}
+``$y \in \Gamma$'' ifadesinin ilkel özyinelemeli $R_\Gamma(y)$ yüklemiyle
+verildiğini varsayın. Ancak ve ancak $y$, bir $!A$ tümcesinin Gödel
+numarasıysa ve $x$, son sekantı $\Gamma_0 \Sequent !A$ olan bir
+$\Log{LK}$-!!{derivation}{}inin koduysa geçerli olan $\Prf[\Gamma](x, y)$
+bağıntısının ilkel özyinelemeli olduğunu göstermeliyiz.
+
+Önceki önermeye göre $x$'in $\Log{LK}$ sisteminde doğru bir $\pi$
+!!{derivation}{}inin kodu olması durumunda geçerli olan $\fn{Deriv}(x)$
+özelliği ilkel özyinelemelidir. $x$ böyle bir kodsa
+$\fn{EndSequent}(x)$, $\pi$'nin son sekantının kodudur; dolayısıyla
+$(\fn{EndSequent}(x))_0$ son sekantın sol tarafının, 
+$(\fn{EndSequent}(x))_1$ ise sağ tarafının kodudur. Öyleyse
+``$\pi$'nin son sekantının sağ tarafı $!A$'dır'' ifadesini
+$\len{(\fn{EndSequent}(x))_1} = 1 \land ((\fn{EndSequent}(x))_1)_0 = y$
+olarak yazabiliriz. $\pi$'nin son sekantının sol tarafı zaten sonludur;
+yalnızca içindeki her tümcenin $\Gamma$'da olduğunu ifade etmemiz gerekir.
+Böylece $\Prf[\Gamma](x, y)$'yi
+\begin{align*}
+\Prf[\Gamma](x, y) \defiff {}&
+\fn{Deriv}(x) \land {} \\
+& \bforall{i <
+  \len{(\fn{EndSequent}(x))_0}}{R_\Gamma(((\fn{EndSequent}(x))_0)_i)} \land {}\\
+& \len{(\fn{EndSequent}(x))_1} = 1 \land ((\fn{EndSequent}(x))_1)_0 = y
+\end{align*}
+olarak tanımlayabiliriz.
+\end{proof}
+
+\end{document}

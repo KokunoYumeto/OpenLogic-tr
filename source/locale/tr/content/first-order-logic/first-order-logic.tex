@@ -1,0 +1,57 @@
+% Part: first-order logic
+
+\documentclass[../../include/open-logic-part]{subfiles}
+
+\begin{document}
+
+\olpart[tr]{fol}{Birinci Dereceden Mantık}
+
+\begin{editorial}
+  Bu kısım, birinci dereceden mantığın metakuramını tamlığa kadar ele
+  alır. Şu anda önerme mantığının ayrı bir işlenişine dayanmaz; her şey
+  ispatlanır. ``FOL'' etiketi yanlışsa kaynak dosyaları niceleyicilerle
+  ilgili malzemeyi dışarıda bırakır (ve ``!!{structure}'' yerine
+  ``!!{valuation}'', $\Struct M$ yerine $\pAssign v$ vb. koyar).
+  Aslında önerme mantığı kısmındaki malzemenin büyük bölümü, ``FOL''
+  etiketi kapatılmış birinci dereceden mantık malzemesidir.
+
+  Önerme mantığı kısmı da dahil edildiğinde bu, çok sayıda tekrara yol
+  açar. Ancak bu kısmın önerme mantığı malzemesini dikkate alabilmesi
+  (önceden ele alınmış malzemeyi dışarıda bırakması ve ispatları önerme
+  mantığı kısmındaki ilgili yerlere göndermelerle kısaltması)
+  planlanmaktadır.
+\end{editorial}
+
+\olimport[introduction]{introduction}
+
+\olimport[syntax-and-semantics]{syntax}
+
+\olimport[syntax-and-semantics]{semantics}
+
+\olimport[models-theories]{models-theories}
+
+\olimport[proof-systems]{proof-systems}
+
+\iftag{prfSC}{%
+  \olimport[sequent-calculus]{sequent-calculus}
+}{}
+
+\iftag{prfND}{%
+  \olimport[natural-deduction]{natural-deduction}
+}{}
+
+\iftag{prfTab}{%
+  \olimport[tableaux]{tableaux}
+}{}
+
+\iftag{prfAX}{%
+  \olimport[axiomatic-deduction]{axiomatic-deduction}
+}{}
+
+\olimport[completeness]{completeness}
+
+\olimport[beyond]{beyond}
+
+\OLEndPartHook
+
+\end{document}

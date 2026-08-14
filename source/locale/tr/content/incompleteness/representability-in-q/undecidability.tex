@@ -1,0 +1,77 @@
+% Part: incompleteness
+% Chapter: representability-in-q
+% Section: undecidability
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{inc}{req}{und}
+\olsection{Karar Verilemezlik}
+
+Bir $\Th{T}$ kuramına, $\Th{T}$'nin dilindeki herhangi bir $!A$ tümcesi
+için ``$\Th{T}$, $!A$'yı ispatlıyor mu?'' sorusuna sonlu sayıda adımdan
+sonra şaşmadan doğru yanıt veren hiçbir hesaplamalı yordam yoksa
+\emph{karar verilemez} deriz. Dolayısıyla aritmetik dilinde bir $!A$ tümcesi
+verildiğinde $\Th{Q} \Proves !A$ olup olmadığına karar veren hesaplamalı
+bir yordam varsa ancak ve ancak $\Th{Q}$ karar verilebilir olurdu. Şunu
+sorarak bunu daha kesin kılabiliriz: Bir $y$ sayısı için, $y$ ancak ve ancak $\Th{Q}$ içinde
+ispatlanabilir bir tümcenin Gödel sayısı olduğunda geçerli olan
+$\Prov[\Th{Q}](y)$ bağıntısı özyinelemeli midir? Yanıt hayırdır.
+
+\begin{thm}
+$\Th{Q}$ karar verilemezdir; yani
+\[
+\Prov[\Th{Q}](y) \defiff \fn{Sent}(y) \land
+\lexists[x][\Prf[\Th{Q}](x, y)]
+\]
+bağıntısı özyinelemeli değildir.
+\end{thm}
+
+\begin{proof}
+Özyinelemeli olduğunu varsayın. O zaman durma problemini şöyle çözebilirdik:
+$e$ ile $n$ verildiğinde, \olref[cmp][rec][nft]{thm:kleene-nf}'deki Kleene
+yüklemi $T$ olmak üzere, $\cfind{e}(n)\fdefined$ ancak ve ancak
+$T(e,n,s)$ olacak bir $s$ varsa gerçekleşir. $T$ ilkel özyinelemeli
+olduğundan bir $!B_T$ formülüyle $\Th{Q}$ içinde temsil edilir; yani
+$\Th{Q} \Proves !B_T(\num{e},\num{n},\num{s})$ ancak ve ancak $T(e,n,s)$
+olur. $\Th{Q} \Proves !B_T(\num{e},\num{n},\num{s})$ ise
+$\Th{Q} \Proves \lexists[y][!B_T(\num{e},\num{n},y)]$ da olur. Böyle bir
+$s$ yoksa her $s$ için
+$\Th{Q} \Proves \lnot !B_T(\num{e},\num{n},\num{s})$ olur. Fakat $\Th{Q}$
+$\omega$-tutarlıdır; yani her $n\in\Nat$ için
+$\Th{Q} \Proves \lnot !A(\num{n})$ olursa
+$\Th{Q} \Proves/ \lexists[y][!A(y)]$ olur. Bunu biliyoruz; çünkü
+$\Th{Q}$'nun aksiyomları standart model~$\Struct{N}$ içinde doğrudur.
+Dolayısıyla $\Th{Q} \Proves/
+\lexists[y][!B_T(\num{e},\num{n},y)]$ olur. Başka bir deyişle,
+$\Th{Q} \Proves \lexists[y][!B_T(\num{e},\num{n},y)]$ ancak ve ancak
+$T(e,n,s)$ olacak bir $s$ varsa, yani ancak ve ancak
+$\cfind{e}(n)\fdefined$ ise gerçekleşir. $e$ ile $n$'den
+$\Gn{\lexists[y][!B_T(\num{e},
+    \num{n}, y)]}$ hesaplanabilir; bunu yapan ilkel özyinelemeli fonksiyon
+$g(e,n)$ olsun. Böylece
+\[
+h(e, n) =
+\begin{cases}
+1 & \text{$\Prov[\Th{Q}](g(e, n))$ ise}\\
+0 & \text{aksi durumda}.
+\end{cases}
+\]
+Bu, $\Prov[\Th{Q}]$ özyinelemeliyse $h$'nin de özyinelemeli olduğunu
+gösterirdi. Fakat \olref[cmp][rec][hlt]{thm:halting-problem} uyarınca $h$
+özyinelemeli değildir; dolayısıyla $\Prov[\Th{Q}]$ da olamaz.
+\end{proof}
+
+\begin{cor}
+Birinci derece mantık karar verilemezdir.
+\end{cor}
+
+\begin{proof}
+Birinci derece mantık karar verilebilir olsaydı $\Th{Q}$ içinde
+ispatlanabilirlik de karar verilebilir olurdu; çünkü $!T$, $\Th{Q}$
+aksiyomlarının birleşimi olmak üzere $\Th{Q} \Proves !A$ ancak ve ancak
+$\Proves !T \lif !A$ olur.
+\end{proof}
+
+\end{document}

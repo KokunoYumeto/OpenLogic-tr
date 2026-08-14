@@ -1,0 +1,138 @@
+% part: intuitionistic-logic
+% chapter: propositions-as-types
+% section: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{int}{pty}{int}
+
+\olsection{Giriş}
+
+Lambda kalkülüsü basit bir hesaplama modelidir. Değişkenlerden kurulan
+terimler üzerinde işler. $N$ ile $M$ terimse $(NM)$ de bir terimdir
+(``$N$'nin~$M$'ye uygulanması''). $N$ bir terimse $\lambd[x][N]$ de bir
+terimdir. $N$,~$x$ değişkenini içeriyorsa $\lambd[x][N]$ içindeki karşılık
+gelen $x$ geçişleri $\lambd[x]$ işleci tarafından bağlanır ve artık serbest
+değildir. $(\lambd[x][N]M)$ biçimindeki bir terimin $\Subst{N}{M}{x}$'e,
+yani $N$ içindeki her serbest $x$ geçişinin $M$ ile değiştirilmesi sonucuna
+$\beta$-büzüldüğü söylenir. $N'$; $N$'nin bir alt teriminin
+$\beta$-büzülmesiyle elde ediliyorsa $N$ terimi~$N'$'ye $\beta$-dönüşür ve
+$N \redone N'$ yazarız. Lambda kalkülüsündeki bir hesaplama $N \redone
+N_1 \redone N_2 \redone \dots$ dizisidir. Bu dizi, hiçbir alt terimi
+$\beta$-büzülemeyen bir $N_k$ teriminde bitiyorsa bu terime
+\emph{normal} ya da $N$'nin normal biçimi denir. Lambda kalkülüsündeki
+hesaplamaları böyle diziler olarak düşünün. Normal biçime ulaşılırsa
+hesaplama durur ve normal biçim hesaplamanın sonucudur. Bu basit hesaplama
+modeli Turing-tamdır: her kısmi özyineli fonksiyon, lambda kalkülüsündeki
+bir terimle hesaplanabilir.
+
+Haskell Curry ile William Howard, doğal tümdengelim ve lambda kalkülüsü
+arasında yakın bir benzerliği birbirlerinden bağımsız olarak keşfettiler.
+Sezgisel olarak $\lambd[x][N]$ terimi bir fonksiyondur: $x$ argümandır;
+$N$,~$x$ verildiğinde değerin nasıl hesaplanacağını söyler.
+$(\lambd[x][N]M)$ terimi, $\lambd[x][N]$ fonksiyonunu $M$ argümanına
+uygular ve $\beta$-büzülmesi bunun nasıl değerlendirileceğini söyler:
+$N$ içindeki $x$'i~$M$ ile değiştirin (ve ortaya çıkan terimi
+değerlendirmeyi sürdürün). Şimdi bunları sabit bir tanım ve değer kümesine
+sahip fonksiyonlar olarak düşünün. $\lambd[x][N]$'nin tanım kümesi $A$,
+değer kümesi~$B$ ise $x$ değişkeninin yalnız~$A$'dan argümanlar aldığını,
+$N$'nin de~$B$'den değerler ürettiğini düşünmeliyiz. Dolayısıyla
+$(\lambd[x][N]M)$ ancak $\lambd[x][N]$, $A \to B$ fonksiyonu ve $M \in A$
+ise anlamlı olmalıdır. Bu bilgiyi lambda kalkülüsüne eklersek \emph{tipli}
+lambda kalkülüsünü elde ederiz. Tipli lambda kalkülüsünde her
+$(\lambd[x][N]M)$ ifadesi değil, yalnız $\lambd[x][N]$ ile $M$'nin
+``tipleri'' birbirine uyan ifadeler yasaldır; yani $\lambd[x][N]$'nin tipi
+$A \lif B$, $M$'nin tipi~$A$ olmalıdır. $\lambd[x][N]$'nin tipi ancak
+$x$'in tipi $A$ ve $N$'nin tipi~$B$ ise $A \to B$'dir. Genel olarak her
+$(M_1M_2)$ ifadesi yasal değildir. Yalnız $M_1$'in tipi $A \to B$ ve
+$M_2$'nin tipi~$A$ olan $(M_1M_2)$ terimleri yasaldır; bu durumda
+$(M_1M_2)$'nin tipi~$B$'dir.
+
+Bu tipleme kuralları artık doğal tümdengelimdeki !!{derivation}s{}e açıkça
+karşılık gelir: tipler !!{formula}s ile, !!{derivation}s ise lambda
+terimleriyle temsil edilir. Örneğin $!A \lif !B$'nin bir !!a{derivation}{}i,
+fonksiyon tipi $!A \lif !B$ olan $\lambd[\typeof{x}{!A}][N]$ terimine
+karşılık gelir. Doğal tümdengelimin çıkarım kuralları tipli lambda
+kalkülüsündeki tipleme kurallarına karşılık gelir; örneğin:
+\begin{prooftree}
+  \AxiomC{$\Discharge{!A}{x}$}
+  \DeduceC{$!B$}
+  \DischargeRule{\Intro\lif}{x}
+  \UnaryInfC{$!A \lif !B$}
+  \DisplayProof\bottomAlignProof
+  \quad\text{şuna karşılık gelir}\quad
+  \Axiom$x: !A \fCenter N: !B$
+  \UnaryInf$ \fCenter \lambd[\typeof{x}{!A}][N] : !A \lif !B$
+\end{prooftree}
+Sağdaki kural, $x$'in tipi~$!A$ ve $N$'nin tipi~$!B$ ise
+$\lambd[\typeof{x}{!A}][N]$'nin tipinin~$!A \lif !B$ olduğu anlamına gelir.
+
+$\Elim\lif$ kuralı uygulama terimleri için tipleme kuralına karşılık gelir:
+\[
+  \AxiomC{$!A \lif !B$}
+  \AxiomC{$!A$}
+  \RightLabel{\Elim\lif}
+  \BinaryInfC{$!B$}
+  \DisplayProof
+  \quad\text{şuna karşılık gelir}\quad
+  \Axiom$\fCenter M_1: !A \lif !B$
+  \Axiom$\fCenter M_2: !A$
+  \BinaryInf$ \fCenter (M_1M_2) : !B$
+  \DisplayProof
+\]
+Bir \Intro\lif{} kuralını hemen bir \Elim\lif{} kuralı izliyorsa
+!!{derivation} sadeleştirilebilir:
+\begin{gather*}
+  \AxiomC{$\Discharge{!A}{x}$}
+  \DeduceC{$!B$}
+  \DischargeRule{\Intro\lif}{x}
+  \UnaryInfC{$!A \lif !B$}
+  \AxiomC{}
+  \DeduceC{$!A$}
+  \RightLabel{\Elim\lif}
+  \BinaryInfC{$!B$}
+  \DisplayProof
+  \quad\redone\quad
+  \AxiomC{}
+  \DeduceC{$!A$}
+  \DeduceC{$!B$}
+  \DisplayProof
+\end{gather*}
+Bu, lambda terimlerinin $\beta$-büzülmesine karşılık gelir:
+\[
+(\lambd[\typeof{x}{!A}][N]M) \quad\redone\quad
+\Subst{N}{M}{x}.
+\]
+
+$\land$ kurallarıyla ``çarpım'' tipleri ve $\lor$ kurallarıyla ``toplam''
+tipleri arasında da benzer karşılıklar vardır.
+
+Basit tipli lambda kalkülüsündeki terimlerle doğal tümdengelim
+!!{derivation}s{}i arasındaki bu karşılığa ``Curry--Howard'', ``program olarak
+ispat'' ya da ``tip olarak önerme'' karşılığı denir. !!{formula}s{}in
+(önermelerin) tiplere ve ispatların terimlere karşılık gelmesine ek olarak,
+karşılıkları şöyle özetleyebiliriz:
+\begin{center}
+  \begin{tabular}{c c c}
+    mantık & program \\
+    \hline
+    önerme/!!{formula} & tip \\
+    ispat & terim \\
+    varsayım & değişken \\
+    kapatılmış varsayım & bağlı değişken \\
+    kapatılmamış varsayım & serbest değişken \\
+    $!A \lif !B$ & fonksiyon tipi \\
+    $!A \land !B$ & çarpım tipi \\
+    $!A \lor !B$ & toplam tipi \\
+    $\lfalse$ & boş tip \\
+    \hline
+  \end{tabular}
+\end{center}
+
+Curry--Howard karşılığı, otomatik ispat yardımcıları ile program tip
+denetleyicilerinin temel taşlarından biridir; çünkü bir önermeye tanıklık
+eden ispatı denetlemek (yukarıda yaptığımız gibi), bir programın (terimin)
+bildirilen tipe sahip olup olmadığını denetlemeye denktir.
+\end{document}

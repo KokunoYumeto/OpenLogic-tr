@@ -1,0 +1,66 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sth}{story}{rus}
+\olsection{Russell Paradoksu (yeniden)}
+
+\olref[sfr][][]{part} içinde naif bir küme teorisiyle çalıştık. Fakat
+\emph{çok} naif bir anlayışa göre kümeler yalnızca yüklemlerin kaplamlarıdır.
+Bu naif düşünce şu ilkeyi gerektirirdi:
+
+\begin{defish}
+  \emph{Naif Küme Oluşturma.} Her $\phi$ formülü için
+  $\Setabs{x}{\phi(x)}$ vardır.
+\end{defish}
+
+Bu ilke ne kadar çekici olsa da tutarsız olduğu kanıtlanabilir. Bunu
+\olref[sfr][set][rus]{sec} içinde gördük; fakat sonuç öylesine önemli ve
+yalındır ki aynen yinelemeye değer.
+
+\begin{thm}[Russell Paradoksu]
+$R=\Setabs{x}{x\notin x}$ olan bir küme yoktur.
+\end{thm}
+
+\begin{proof}
+$R=\Setabs{x}{x\notin x}$ varsa $R\in R$ ancak ve ancak $R\notin R$ olur;
+bu bir çelişkidir.
+\end{proof}
+
+Russell bu sonucu Haziran 1901'de keşfetti. (Ancak Frege'nin
+\emph{Grundgesetze}'de ana çizgileri verilen küme teorisini ele aldığından,
+paradoksu tam burada sunduğumuz biçimde ifade etmedi. Buna
+\olref[blv]{sec} içinde döneceğiz.) Russell 16 Haziran 1902'de Frege'ye
+yazarak onun sistemindeki tutarsızlığı açıkladı. Yazışma ve arka plan için
+bkz. \citet[pp.~124--8]{Heijenoort1967}.
+
+Bu iki satırlık ispatın \emph{saf mantığın} bir sonucu olduğunu vurgulamak
+gerekir. $\Setabs{x}{x\notin x}$ gösterimimizde örtük olarak (mantık dışı?)
+Kaplamsallık aksiyomunu kullandığımız kabul edilebilir; çünkü
+$\Setabs{x}{\phi(x)}$, varsa, $\phi$ olan nesnelerin (Kaplamsallık gereğince)
+\emph{tek} kümesi demektir. Fakat sonucu şöyle ifade ederek Kaplamsallık
+izleniminden bile kaçınabiliriz: \emph{elemanları tam olarak kendisinin
+elemanı olmayan kümeler olan hiçbir küme yoktur}. Bunun kümelerle de pek
+ilgisi yoktur. Russell'ın kendisinin gözlemlediği gibi, aynı akıl yürütme şu
+sonuca götürür: \emph{Hiçbir erkek tam olarak kendini tıraş etmeyen erkekleri
+tıraş etmez}. Ya da: \emph{Hiçbir pug tam olarak kendini koklamayan pugları
+koklamaz}. Ve benzeri. Şematik olarak sonucun biçimi yalnızca şudur:
+\[
+\lnot \exists x \forall z(Rzx \liff \lnot R zz).
+\]
+Bu ise birinci dereceden mantığın bir teoremi (şeması)dır. Dolayısıyla küme
+teorimizde ufak değişiklikler yaparak Russell Paradoksu'ndan kaçınamayız;
+paradoks daha küme teorisine \emph{gelmeden önce} ortaya çıkar. (Klasik)
+birinci dereceden mantığı kullanacaksak $R=\Setabs{x}{x\notin x}$ olan bir
+kümenin bulunmadığını doğrudan \emph{kabul etmemiz} gerekir.
+
+Sonuç şudur: Naif Küme Oluşturma'yı kabul edip tutarsızlıktan
+\emph{kaçınmak} istiyorsanız yalnızca \emph{küme teorisini} değiştiremezsiniz.
+Bunun yerine \emph{mantığınızı} baştan kurmanız gerekir.
+
+Elbette klasik olmayan mantıklara sahip küme teorileri sunulmuştur. Fakat
+bunlar en hafif deyişle standart dışıdır. Russell Paradoksu'na standart
+yaklaşım, onu doğrudan bir yokluk ispatı olarak görmek ve sonra bununla nasıl
+yaşanacağını öğrenmeye çalışmaktır. Biz de bu yaklaşımı izleyeceğiz.
+
+\end{document}

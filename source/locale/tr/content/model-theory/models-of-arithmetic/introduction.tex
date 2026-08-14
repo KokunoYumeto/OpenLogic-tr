@@ -1,0 +1,70 @@
+% Part: model-theory
+% Chapter: models-of-arithmetic
+% Section: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{mod}{mar}{int}
+\section{Giriş}
+
+Aritmetiğin \emph{standart modeli}, $\Domain N=\Nat$ olan ve
+$\Obj0$, $\prime$, $+$, $\times$ ile $<$ simgelerinin beklendiği gibi
+yorumlandığı !!{structure}~$\Struct N$ ifadesidir. Yani $\Obj0$, $0$;
+$\prime$, ardıl fonksiyonu; $+$, toplama; $\times$ ise $\Nat$
+üzerindeki çarpma olarak yorumlanır. Daha açık olarak:
+\begin{align*}
+  \Assign{\Obj{0}}{N} & = 0\\
+  \Assign{\prime}{N}(n) & = n + 1\\
+  \Assign{+}{N}(n, m) & = n + m\\
+  \Assign{\times}{N}(n, m) & = nm.
+\end{align*}
+Elbette $\Lang{L_A}$ için evreni $\Nat$ dışında olan yapılar da
+vardır. Örneğin evreni $\Domain M=\{a\}^*$ (tek $a$ simgesinden oluşan
+sonlu diziler, yani $\emptyset,a,aa,aaa,\dots$) olan $\Struct M$
+yapısını ve şu yorumları alabiliriz:
+\begin{align*}
+  \Assign{\Obj{0}}{M} & = \emptyset\\
+  \Assign{\prime}{M}(s) & = s \concat a\\
+  \Assign{+}{M}(n, m) & = a^{n + m}\\
+  \Assign{\times}{M}(n, m) & = a^{nm}.
+\end{align*}
+Bu iki yapı ``özünde aynıdır'': Tek fark !!{domain}s içindeki
+!!{element}s ifadeleridir; yorum fonksiyonlarının !!{domain}s
+içindeki !!{element}s arasında kurduğu ilişkiler farklı değildir.
+İki !!{structure}s ifadesinin \emph{izomorf} olduğunu söyleriz.
+
+Tıkızlık teoreminin kolay bir sonucu olarak, $\Struct N$ içinde doğru
+olan her kuramın $\Struct N$ ile izomorf olmayan modelleri de vardır.
+Böyle yapılara \emph{standart olmayan} denir. İlginç olan şudur:
+Standart bir modelin (yani $\Struct N$ ve onunla izomorf bütün
+!!{structure}s ifadelerinin) !!{element}s, standart sayı terimlerinin
+$\num n$ değerleriyle tükenir; yani
+\[
+\Domain N=\Setabs{\Value{\num n}{N}}{n\in\Nat}.
+\]
+Fakat standart olmayan modellerde durum böyle değildir: $\Struct M$
+standart değilse bütün $n$ değerleri için
+$x\neq\Value{\num n}{M}$ olan en az bir $x\in\Domain M$ vardır.
+
+Bu standart olmayan elemanlar oldukça ilginçtir: ``sonsuz doğal
+sayılardır.'' Varlıkları bir anlamda eksiklik olgularını da açıklar.
+Örneğin Peano aritmetiğinin tutarlılık önermesini,
+$\OCon[\Th{PA}]$, yani
+$\lnot\lexists[x][\OPrf[\Th{PA}](x,\gn{\lfalse})]$ ifadesini ele
+alalım. $\Th{PA}$ ne $\OCon[\Th{PA}]$ ne de
+$\lnot\OCon[\Th{PA}]$ önermesini ispatladığından ikisi de $\Th{PA}$
+kuramına tutarlı biçimde eklenebilir. $\Th{PA}$ tutarlı olduğundan
+$\Sat{N}{\OCon[\Th{PA}]}$ ve dolayısıyla
+$\Sat/{N}{\lnot\OCon[\Th{PA}]}$. Böylece $\Struct N$,
+$\Th{PA}\cup\{\lnot\OCon[\Th{PA}]\}$ kuramının bir modeli değildir
+ve bu kuramın bütün modelleri standart olmayan modeller olmak
+zorundadır. $\Th{PA}\cup\{\lnot\OCon[\Th{PA}]\}$ modelleri,
+$\lexists[x][\OPrf[\Th{PA}](x,\gn{\lfalse})]$ ifadesini doğru kılan
+tanık görevindeki bazı !!{element} ifadelerini; yani $\Th{PA}$
+kuramından bir çelişkinin !!a{derivation} ifadesinin bir Gödel sayısını
+içermelidir. Böyle !!a{element} standart olamaz; çünkü her $n$ için
+$\Th{PA}\Proves\lnot\OPrf[\Th{PA}](\num n,\gn{\lfalse})$.
+
+\end{document}

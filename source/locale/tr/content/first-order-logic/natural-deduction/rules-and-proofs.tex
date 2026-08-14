@@ -1,0 +1,51 @@
+% Part: first-order-logic
+% Chapter: natural-deduction
+% Section: rules-and-proofs
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[tr]{fol}{ntd}{rul}}
+      {\olfileid[tr]{pl}{ntd}{rul}}
+
+\olsection{Kurallar ve \usetoken{P}{derivation}}
+
+\begin{explain}
+Doğal tümdengelim sistemleri, matematiksel ispatlarda kullanılan biçimsel
+olmayan akıl yürütmeye yakından koşut olacak şekilde tasarlanmıştır (bu
+nedenle bir ölçüde ``doğal''dır). Doğal tümdengelim ispatları varsayımlarla
+başlar. Ardından çıkarım kuralları uygulanır. Varsayımlar, \Intro{\lnot},
+\Intro{\lif}, \iftag{FOL}{\Elim{\lor} ve \Elim{\lexists}}{ ve
+\Elim{\lor}} çıkarım kurallarıyla ``!!{discharged}'' sayılır; açıklık sağlamak için
+!!{discharged} varsayımın etiketi çıkarımın yanına yazılır.
+\end{explain}
+
+\begin{defn}[Varsayım]
+Bir \emph{varsayım}, herhangi bir dalın en üst konumundaki herhangi bir
+!!{sentence} olarak alınır.
+\end{defn}
+
+Doğal tümdengelimde !!^{derivation}s, !!{sentence}s içeren belirli ağaçlardır;
+en üstteki !!{sentence}s varsayımlardır ve !!a{sentence}, bir, iki veya üç
+başka tümcenin altında duruyorsa bir çıkarım kuralına doğru biçimde dayanmalıdır.
+Çıkarımın üstündeki !!{sentence}s \emph{öncüller}, altındaki !!{sentence} ise
+çıkarımın \emph{sonucu} diye adlandırılır. Kurallar çiftler hâlinde gelir: her
+!!{operator} için bir giriş ve bir giderme kuralı vardır. Bunlar sonuçta
+!!a{operator} ortaya çıkarır veya kuralın bir öncülünden !!a{operator}
+kaldırır. Bazı kurallar, belirli türden bir varsayımın
+\emph{!!{discharged}} olmasına izin verir. Hangi varsayımın hangi çıkarımla
+!!{discharged} olduğunu belirtmek için hem varsayıma hem de çıkarıma etiket
+veririz. Bu, varsayımın ``$\Discharge{!A}{n}$'' biçiminde yazılmasıyla
+gösterilir.
+
+% Only include this sentence is on of \land, lor, lif or lnot is defined.
+
+\iftag{notprvNot,notprvAnd,notprvOr,notprvIf}{}%
+	{Bazıları tanımlı olsa bile bütün !!{operator}s, yani $\land$, $\lor$,
+  $\lif$, $\lnot$ ve $\lfalse$ için kuralların ele alınması gelenekseldir.}
+
+
+
+\end{document}

@@ -1,0 +1,131 @@
+% Part: first-order-logic
+% Chapter: lindstrom
+% Section: lindstrom-proof
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{mod}{lin}{prf}
+
+\olsection{Lindstr\"om Teoremi}
+
+\begin{lem}
+\ollabel{lem:lindstrom}
+$\Lang{L}$ sonlu olmak üzere $!E\in L(\Lang{L})$ olsun. Ayrıca öyle bir
+$n\in\Nat$ bulunduğunu varsayalım ki !!{structure}s sınıfından herhangi
+$\Struct{M}$ ve $\Struct{N}$ için, $\Struct{M}\equiv_n\Struct{N}$ ve
+$\Struct{M}\models_L !E$ ise $\Struct{N}\models_L !E$ de olsun. O zaman
+$!E$ bir birinci dereceden !!{sentence} ile eşdeğerdir; yani
+$\Mod(L){!E}=\Mod(L){!D}$ olacak bir birinci dereceden $!D$ vardır.
+\end{lem}
+
+\begin{proof}
+$n$, !!{structure}s sınıfından $n$-eşdeğer herhangi $\Struct{M}$ ile
+$\Struct{N}$ yapısının $!E$'ye aynı doğruluk değerini verdiği bir sayı olsun.
+\olref[bas][pis]{prop:qr-finite} sonucunu anımsayalım: Niceleyici derecesi
+$n$'den büyük olmayan birinci dereceden !!{sentence}s, sonlu bir
+!!{language} içinde mantıksal eşdeğerlik dışında yalnızca sonlu
+sayıdadır. Şimdi sabit bir !!{structure}~$\Struct{M}$ için
+$!D_{\Struct{M}}$, $\Struct{M}$ içinde doğru olan ve
+$\QuantRank{!E}\leq n$ koşulunu sağlayan bütün birinci dereceden
+!!{sentence}s~$!E$ öğelerinin birleşimi olsun. Bu birleşim sonludur ve
+$\Struct{N}\models !D_{\Struct{M}}$ ancak ve ancak
+$\Struct{N}\equiv_n\Struct{M}$ olduğunda geçerlidir. Ardından
+\[
+  !D=\textstyle\bigvee
+  \Setabs{!D_{\Struct{M}}}{\Struct{M}\models_L !E}
+\]
+olsun. Bu ayrışım da mantıksal eşdeğerlik dışında sonludur.
+
+$\Mod(L){!E}=\Mod(L){!D}$ olduğu artık görülür. Gerçekten,
+$\Struct{N}\models !D$ ise bazı $\Struct{M}\models_L !E$ için
+$\Struct{N}\models !D_{\Struct{M}}$ olur; dolayısıyla lemmanın varsayımı
+uyarınca $\Struct{N}\models_L !E$ olur. Tersine,
+$\Struct{N}\models_L !E$ ise $!D_{\Struct{N}}$, $!D$ ayrışımının bir
+bileşenidir ve $\Struct{N}\models !D_{\Struct{N}}$ olduğundan
+$\Struct{N}\models !D$ de olur.
+\end{proof}
+
+\begin{thm}[Lindstr\"om Teoremi]
+  \ollabel{thm:lindstrom}
+  $\tuple{L,\models_L}$ Tıkızlık ve L\"owenheim--Skolem Özelliklerine
+  sahip olsun. O zaman
+  $\tuple{L,\models_L}\leq\tuple{F,\models}$ olur; dolayısıyla
+  $\tuple{L,\models_L}$ birinci dereceden mantığa eşdeğerdir.
+\end{thm}
+
+\begin{proof}
+\olref{lem:lindstrom} uyarınca, sonlu $\Lang{L}$ için her
+$!E\in L(\Lang{L})$ verildiğinde öyle bir $n\in\Nat$ bulunduğunu göstermek
+yeterlidir ki !!{structure}s sınıfından herhangi $\Struct{M}$ ile
+$\Struct{N}$ için
+$\Struct{M}\equiv_n\Struct{N}$ olması, bu iki yapının $!E$ üzerinde
+uzlaşmasını gerektirsin. O zaman $!E$ bir birinci dereceden !!{sentence}
+ile eşdeğer olur ve buradan
+$\tuple{L,\models_L}\leq\tuple{F,\models}$ sonucu çıkar. Sonlu ve bütünüyle
+bağıntısal bir !!{language} içinde çalıştığımızdan,
+\olref[bas][pis]{thm:b-n-f} uyarınca
+$\Struct{M}\equiv_n\Struct{N}$ ifadesini buna karşılık gelen cebirsel
+$I_n(\emptyset,\emptyset)$ ifadesiyle değiştirebiliriz.
+
+Bir $!E$ verilsin. Çelişkiye ulaşmak üzere, her $n$ için
+$I_n(\emptyset,\emptyset)$ koşulunu sağlayan, fakat örneğin
+$\Struct{M}_n\models_L !E$ ve $\Struct{N}_n\not\models_L !E$ olan
+!!{structure}s $\Struct{M}_n$ ile $\Struct{N}_n$ bulunduğunu varsayalım.
+İzomorfizm Özelliği sayesinde bütün $\Struct{M}_n$ yapılarının dildeki
+sabitleri aynı nesneler olarak yorumladığını varsayabiliriz. Üstelik dilde
+yalnızca sonlu sayıda atomik !!{sentence}s bulunduğundan, bütün bu yapıların
+aynı atomik !!{sentence}s öğelerini sağladığını da varsayabiliriz; gerekirse
+$\Struct{M}_n$ dizisinin bir alt dizisini alırız. $\Struct{M}$, bütün
+$\Struct{M}_n$ yapılarının birleşimi, yani her $\Struct{M}_n$ yapısını alt
+yapı olarak içeren tek en küçük !!{structure} olsun. Şimdi
+\olref[lsp]{thm:abstract-p-isom} ispatındaki gibi, $\Struct{M}$ yapısını
+!!{domain} $\Domain{M}\cup\Domain{M}^{<\omega}$ olacak ve genişletilmiş
+!!{language} içinde birleştirme yüklemleri $P$ ile $Q$'yu içerecek biçimde
+$\Struct{M}^*$ yapısına genişletelim.
+
+$\Struct{N}_n$, $\Struct{N}$ ve $\Struct{N}^*$ benzer biçimde tanımlansın.
+Şimdi bir $\Struct{K}$ !!{structure} kuralım. Bu yapının !!{domain},
+$\Struct{M}^*$ ile $\Struct{N}^*$ yapılarının !!{domain}s öğelerinin yanı
+sıra doğal sıralamaları $\leq$ ile birlikte doğal sayıları $\Nat$ içersin.
+!!{language} dili, $\Domain{M}$, $\Domain{N}$,
+$\Domain{M}^{<\omega}$ ve $\Domain{N}^{<\omega}$ !!{domain}s öğelerini
+temsil eden ek yüklemler ile $\Struct{M}_n$ ve $\Struct{N}_n$ evrenlerini
+aşağıdaki anlamda kodlayan yüklemler içersin:
+\begin{align*}
+  \Domain{M_n} & = \Setabs{a\in\Domain{M}}{R(a,n)}; &
+  \Domain{N_n} & = \Setabs{a\in\Domain{N}}{S(a,n)}; \\
+  \Domain{M}^{<\omega}_n & =
+    \Setabs{a\in\Domain{M}^{<\omega}}{R(a,n)}; &
+  \Domain{N}^{<\omega}_n & =
+    \Setabs{a\in\Domain{N}^{<\omega}}{S(a,n)}.
+\end{align*}
+!!{structure}~$\Struct{K}$ ayrıca, $J(n,\mathbf a,\mathbf b)$ ancak ve
+ancak $I_n(\mathbf a,\mathbf b)$ olduğunda geçerli olacak bir üçlü $J$
+bağıntısına sahip olsun.
+
+Şimdi öyle !!a{sentence}~$!D$ vardır ki $R$, $S$, $J$ vb. simgelerle
+genişletilmiş !!{language} içinde $\leq$ bağıntısının ilk elemanı bulunan fakat
+son elemanı bulunmayan ayrık bir tam sıralama olduğunu;
+$\Struct{M}_n\models_L !E$ ve $\Struct{N}_n\not\models_L !E$ olduğunu; ayrıca
+sıralamadaki her $n$ için $J(n,\mathbf a,\mathbf b)$ ancak ve ancak
+$I_n(\mathbf a,\mathbf b)$ olduğunu söyler.
+
+Tıkızlık Özelliğini kullanarak $!D$'nin, sıralamasında standart olmayan bir
+$n^*$ elemanı bulunan bir $\Struct{K}^*$ modelini elde edebiliriz. Özellikle
+$\Struct{K}^*$, $\Struct{M}_{n^*}\models_L !E$ ve
+$\Struct{N}_{n^*}\not\models_L !E$ olacak biçimde alt!!{structure}s
+$\Struct{M}_{n^*}$ ile $\Struct{N}_{n^*}$ yapısını içerir. Şimdi
+$\Domain{M_{n^*}}$ ile $\Domain{N_{n^*}}$ evrenlerinden gelen $k$-lilerin
+çiftlerinden oluşan bir $\mathcal I$ kümesini şöyle tanımlayabiliriz:
+$\tuple{\mathbf a,\mathbf b}\in\mathcal I$ ancak ve ancak
+$J(n^*-k,\mathbf a,\mathbf b)$ olsun; burada $k$, $\mathbf a$ ile
+$\mathbf b$ dizilerinin uzunluğudur. $n^*$ standart olmadığından, her
+standart $k$ için $n^*-k>0$ olur ve $\mathcal I$ kümesi
+$\Struct{M}_{n^*}\simeq_p\Struct{N}_{n^*}$ olduğunu gösterir. Oysa
+\olref[lsp]{thm:abstract-p-isom} uyarınca $\Struct{M}_{n^*}$ ile
+$\Struct{N}_{n^*}$ yapıları $L$-eşdeğerdir. Bu bir çelişkidir.
+\end{proof}
+
+\end{document}

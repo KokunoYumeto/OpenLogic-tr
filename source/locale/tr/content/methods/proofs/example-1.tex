@@ -1,0 +1,175 @@
+% Part: methods
+% Chapter: proofs
+% Section: example-1
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{mth}{prf}{ex1}
+
+\olsection{Bir Örnek}
+
+İlk örneğimiz, kümelerin birleşimleri ve kesişimleri hakkındaki şu
+basit olgudur. Bu örnek; tanımların açılmasını, bağlaşımların ve tümel
+iddiaların kanıtlanmasını ve durumlara göre kanıtı gösterecektir.
+
+\begin{prop}
+Herhangi $A$, $B$ ve $C$ kümeleri için $A \cup (B \cap C) = (A \cup B)
+\cap (A \cup C)$
+\end{prop}
+
+Haydi kanıtlayalım!{}
+
+\begin{proof}
+Herhangi $A$, $B$ ve $C$ kümeleri için $A \cup (B \cap C) = (A \cup
+B) \cap (A \cup C)$ olduğunu göstermek istiyoruz.
+\begin{quote}
+Önce önermenin ifadesindeki ``$=$'' tanımını açarız. Kümelerin özdeş
+olduğunu kanıtlamanın, onların !!{element}s bakımından aynı olduğunu
+göstermek anlamına geldiğini hatırlayın. Yani $A \cup (B \cap C)$'nin
+bütün !!{element}s aynı zamanda $(A \cup B) \cap (A \cup C)$'nin
+!!{element}s olmalı ve bunun tersi de geçerli olmalıdır. ``Bunun
+tersi'', $(A \cup B) \cap (A \cup C)$'deki her !!{element} için $A
+\cup (B \cap C)$'de de bir !!a{element} bulunması gerektiği anlamına
+gelir. Böylece tanımı açınca bir bağlaşımı kanıtlamak zorunda olduğumuzu
+görürüz. Bunu kaydedelim:
+\end{quote}
+Tanım gereği $A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$, ancak
+ve ancak $A \cup (B \cap C)$'deki her !!{element}, $(A \cup B) \cap (A
+\cup C)$'de bir !!a{element} olarak ve $(A \cup B) \cap (A \cup C)$'deki
+her !!{element}, $A \cup (B \cap C)$'de bir !!a{element} olarak bulunursa geçerlidir.
+\begin{quote}
+Bu bir bağlaşım olduğundan her bileşeni ayrı ayrı kanıtlamalıyız.
+İlkiyle başlayalım: $A \cup (B \cap C)$'deki her !!{element} için aynı
+zamanda $(A \cup B) \cap (A \cup C)$'de bir !!a{element} bulunduğunu
+kanıtlayalım.
+
+Bu tümel bir iddiadır; dolayısıyla $A \cup (B \cap C)$'den keyfî bir
+!!{element} ele alıp onun aynı zamanda $(A \cup B) \cap (A \cup
+C)$'de bir !!a{element} olarak bulunması gerektiğini gösteririz. Bu keyfî
+!!{element} için ad olarak, örneğin~$z$ değişkenini seçelim.
+Kanıtımız şöyle devam eder:
+\end{quote}
+Önce $A \cup (B \cap C)$'deki her !!{element} için aynı zamanda $(A \cup
+B) \cap (A \cup C)$'de bir !!a{element} bulunduğunu kanıtlayalım. $z
+\in A \cup (B \cap C)$ olsun. $z \in (A \cup B) \cap (A \cup C)$
+olduğunu göstermeliyiz.
+\begin{quote}
+Şimdi $\cup$ ve~$\cap$ tanımlarını açmanın zamanı. Örneğin $\cup$'ın
+tanımı şudur: $A \cup B = \Setabs{z}{z \in A \text{ ya da } z \in B}$.
+Tanımı ``$A \cup (B \cap C)$''ye uyguladığımızda, tanımdaki ``$B$''nin
+rolünü artık ``$B \cap C$'' oynar; dolayısıyla $A \cup (B \cap C) =
+\Setabs{z}{z \in A \text{ ya da } z \in B \cap C}$. Böylece $z \in A
+\cup (B \cap C)$ varsayımımız şu demektir: $z \in \Setabs{z}{z \in A
+\text{ ya da } z \in B \cap C}$. Ayrıca $z \in
+\Setabs{z}{\dots z\dots}$ ancak ve ancak \dots $z$ \dots{} ise
+geçerlidir; yani burada $z \in A$ ya da $z \in B \cap C$.
+\end{quote}
+$\cup$ tanımı gereği ya $z \in A$ ya da $z \in B \cap C$.
+\begin{quote}
+Bu bir ayrışım olduğundan durumlara göre kanıt kullanmak yararlı
+olacaktır. İki durumu ele alıp her birinde hedeflediğimiz sonucun (yani
+``$z \in (A \cup B) \cap (A \cup C)$'') geçerli olduğunu gösteririz.
+\end{quote}
+Durum 1: $z \in A$ olduğunu varsayalım.
+\begin{quote}
+Varsayımlarımıza dayanarak yararlanabileceğimiz pek bir şey yoktur.
+Öyleyse sonuçta yararlanabileceğimiz şeye bakalım. $z \in (A \cup B)
+\cap (A \cup C)$ olduğunu göstermek istiyoruz. $\cap$ tanımına göre $z
+\in (A \cup B) \cap (A \cup C)$ olduğunu göstermek istiyorsak hem $(A
+\cup B)$'de hem de $(A \cup C)$'de olduğunu göstermeliyiz. Oysa $z \in
+A \cup B$, ancak ve ancak $z \in A$ ya da $z \in B$ ise geçerlidir ve
+  (1. durumun varsayımı olarak) $z \in A$ zaten elimizdedir. Aynı akıl
+  yürütmeyle---$C$'yi $B$'nin yerine koyarak---$z \in A \cup C$ sonucuna varırız.
+Bu argüman ters yönde ilerledi; öyleyse akıl yürütmemizi kanıtımızın
+gerektirdiği yönde kaydedelim.
+\end{quote}
+$z \in A$ olduğundan $z \in A$ ya da $z \in B$; dolayısıyla $\cup$
+tanımı gereği $z \in A \cup B$. Benzer biçimde $z \in A \cup C$. Ancak
+bu, $z \in (A \cup B) \cap (A \cup C)$ demektir; bu da $\cap$ tanımı gereğidir.
+\begin{quote}
+Bu, durumlara göre kanıtın ilk durumunu tamamlar. Şimdi $z \in B \cap
+C$ olduğu ikinci durumda sonucu türetmek istiyoruz.
+\end{quote}
+Durum 2: $z \in B \cap C$ olduğunu varsayalım.
+\begin{quote}
+Yine iki kümenin kesişimiyle çalışıyoruz. $\cap$ tanımını uygulayalım:
+\end{quote}
+$z \in B \cap C$ olduğundan $z$, hem $B$'de hem de $C$'de bulunan bir
+!!a{element} olmalıdır; bu, $\cap$ tanımı gereğidir.
+\begin{quote}
+Sonucumuza yeniden bakma zamanı. $z$'nin hem $(A \cup B)$'de hem de $(A
+\cup C)$'de olduğunu göstermeliyiz. Çözüm yine doğrudan çıkar.
+\end{quote}
+$z \in B$ olduğundan $z \in (A \cup B)$. $z \in C$ olduğundan $z \in
+(A \cup C)$ de geçerlidir. Öyleyse $z \in (A \cup B) \cap (A \cup C)$.
+\begin{quote}
+Burada $\cup$ ve $\cap$ tanımlarını yeniden uyguladık; ama bu tanımları
+zaten hatırlattığımız ve $z$ iki kümeden birindeyse onların birleşiminde
+de olduğunu zaten gösterdiğimiz için ne yaptığımızı bu kadar açık
+yazmamız gerekmez.
+
+Durumlara göre kanıtın ikinci durumunu tamamladık; artık ilk sonucumuzu
+ileri sürebiliriz.
+\end{quote}
+Öyleyse $z \in A \cup (B \cap C)$ ise $z \in (A \cup B) \cap (A \cup C)$.
+\begin{quote}
+Şimdi yalnızca öteki yönü, yani $(A \cup B) \cap (A \cup C)$'deki her
+!!{element} için $A \cup (B \cap C)$'de bir !!a{element} bulunduğunu
+göstermek istiyoruz. Daha önce olduğu gibi, ilk kümede keyfî bir
+!!{element} bulunduğunu varsayıp onun ikinci kümede olması
+gerektiğini göstererek bu tümel iddiayı kanıtlarız. Ne yapmak üzere
+olduğumuzu belirtelim.
+\end{quote}
+Şimdi $z \in (A \cup B) \cap (A \cup C)$ olduğunu varsayalım. $z \in A
+\cup (B \cap C)$ olduğunu göstermek istiyoruz.
+\begin{quote}
+Artık $z \in (A \cup B) \cap (A \cup C)$ hipotezinden hareket ediyoruz.
+Burada ilk kanıt parçasındakiyle aynı~$z$'yi kullanmamız umarız fazla
+kafa karıştırıcı değildir. O parçayı bitirdiğimizde orada yaptığımız
+bütün varsayımlar artık yürürlükte değildir; şimdi $z$'nin ne olduğuna
+ilişkin yeni varsayımlar yapabiliriz. Bu size kafa karıştırıcı
+geliyorsa, aşağıda $z$ yerine başka bir değişken koymanız yeterlidir.
+
+$z$'nin hem $A \cup B$'de hem de $A \cup C$'de olduğunu biliyoruz; bu,
+$\cap$ tanımı gereğidir. $\cup$ tanımıyla bunu daha da açabiliriz: ya $z \in
+A$ ya da $z \in B$ ve ayrıca ya $z \in A$ ya da $z \in C$. Bu yine
+durumlara göre bir kanıta benziyor---ancak ``ve'' durumu kafa karıştırıcı
+hâle getiriyor. Bunun üç olasılık bulunduğu anlamına geldiğini
+düşünebilirsiniz: $z$ ya $A$'da ya $B$'de ya da $C$'dedir. Fakat bu bir
+hata olur. Dikkatli olmalıyız; öyleyse her ayrışımı sırayla ele alalım.
+\end{quote}
+$\cap$ tanımı gereği $z \in A \cup B$ ve $z \in A \cup C$. $\cup$
+tanımı gereği $z \in A$ ya da $z \in B$. Durumları ayıralım.
+\begin{quote}
+İlk ayrışıma odaklandığımız için, $A \cup C$'yi açarak elde ettiğimiz
+ikinci ayrışımı henüz kullanmadık. Aslında ona henüz ihtiyacımız yok.
+İlk durum $z \in A$'dır ve bir kümede bulunan bir !!a{element}, o kümenin
+herhangi başka bir kümeyle birleşiminde de bir !!a{element} olarak bulunur. Dolayısıyla 1.
+durum kolaydır:
+\end{quote}
+Durum 1: $z \in A$ olduğunu varsayalım. Buradan $z \in A \cup (B \cap
+C)$ çıkar.
+\begin{quote}
+Şimdi ikinci duruma, $z \in B$'ye geçelim. Burada ikinci $\cup$'ı açıp
+bir kez daha durumlara göre kanıt yapacağız:
+\end{quote}
+Durum 2: $z \in B$ olduğunu varsayalım. $z \in A \cup C$ olduğundan ya
+$z \in A$ ya da $z \in C$. Durumları daha da ayıralım:
+
+Durum 2a: $z \in A$. O zaman yine $z \in A \cup (B \cap C)$.
+\begin{quote}
+Pekâlâ, bu biraz tuhaftı. Bu durum için~$z \in B$ varsayımına gerçekte
+ihtiyacımız olmadı; ama bunda bir sakınca yoktur.
+\end{quote}
+Durum 2b: $z \in C$. O zaman $z \in B$ ve $z \in C$; dolayısıyla $z
+\in B \cap C$ ve sonuç olarak $z \in A \cup (B \cap C)$.
+\begin{quote}
+Bu, durumlara göre iki kanıtı da sonuçlandırır; böylece ikinci yarıyı
+bitirdik.
+\end{quote}
+Öyleyse $z \in (A \cup B) \cap (A \cup C)$ ise $z \in A \cup (B \cap C)$.
+\end{proof}
+
+\end{document}

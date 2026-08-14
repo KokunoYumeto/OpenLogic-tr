@@ -1,0 +1,54 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+	
+\olfileid[tr]{sth}{z}{nat}
+\olsection{Doğal Sayılarımızı Seçmek}
+
+%Let us take it for granted that the informal principle \stagesinf{}
+%can be justified. It is also, though, worth commenting on the
+%particular axiom we extracted from that informal principle. 
+
+\olref[infinity-again]{defnomega} içinde ``doğal sayılar'' ifadesini
+açıkça tanımladık. Bu koşul koymayı nasıl anlamalısınız? Bu metafizik bir
+iddia değil, yalnızca belirli kümeleri doğal sayılar \emph{olarak ele alma}
+kararıdır. Böyle düşünmenin nedenlerine
+\olref[sfr][rel][ref]{sec}, \olref[sfr][arith][ref]{sec} ve
+\olref[sfr][infinite][dedekindsproof]{sec} içinde değindik. Ancak bu
+nedenleri daha da belirginleştirebiliriz.
+
+Sonsuzluk Aksiyomumuz \citet{VonNeumann1925} yaklaşımını izler. Bunun
+yerine kabul edebileceğimiz başka bir aksiyom şudur:
+
+\begin{defish}
+\emph{Zermelo'nun \citeyear{Zermelo1908Untersuchungen} tarihli Sonsuzluk
+Aksiyomu.} $\emptyset \in A$ olan ve
+$(\forall x \in A)\{x\} \in A$ koşulunu sağlayan bir $A$ kümesi vardır.
+\end{defish}
+
+Bizim von Neumann esinli Sonsuzluk Aksiyomumuz yerine Zermelo'nun
+aksiyomunu kullansaydık yine bir Dedekind-sonsuz küme, dolayısıyla bir
+Dedekind cebiri elde ederdik. Zermelo'nun yaklaşımında cebirimizin ayırt
+edilmiş elemanı yine $\emptyset$ ($0$ yerine kullandığımız nesne) olurdu;
+fakat bire bir fonksiyon $x\mapsto x\cup\{x\}$ yerine
+$x\mapsto\{x\}$ eşlemesiyle verilirdi. Bunun en basit sonucu, Zermelo'nun
+$2$'yi $\{\{\emptyset\}\}$ olarak; bizimse (von Neumann ile birlikte)
+$\{\emptyset,\{\emptyset\}\}$ olarak ele almamızdır.
+
+Neden bir Sonsuzluk Aksiyomu'nu ötekine tercih edelim? Başlıca pratik
+neden, von Neumann yaklaşımının sonlu ötesi sayıları ele alacak biçimde iyi
+``ölçeklenmesidir''. Bunu \olref[ordinals][]{chap} bölümünden başlayarak
+inceleyeceğiz. Bununla birlikte, yalnızca \emph{aritmetik yapma} açısından
+iki yaklaşım da eşit ölçüde işe yarar. Öyleyse biri size doğal sayıların
+küme \emph{olduğunu} söylerse açık soru şudur: \emph{Hangi kümeler?}
+
+Bu kesin soruyu \citet{Benacerraf1965} ünlü hâle getirmiştir. Ancak bunun,
+daha önce birçok kez karşılaştığımız bir olgunun yalnızca en tanınmış örneği
+olduğunu vurgulamak gerekir. Temel nokta şudur: küme teorisi bize bir dizi
+``sezgisel'' varlık türünü \emph{simüle etmenin} yolunu verir; evet,
+gerçelleri, rasyonelleri, tam sayıları ve doğal sayıları, ama aynı zamanda
+sıralı ikilileri, fonksiyonları ve bağıntıları da. Ne var ki küme teorisi
+bize hiçbir zaman \emph{biricik} bir simülasyon seçeneği sunmaz. Bize aynı
+ölçüde iyi hizmet edecek alternatifler \emph{her zaman} vardır.
+
+\end{document}

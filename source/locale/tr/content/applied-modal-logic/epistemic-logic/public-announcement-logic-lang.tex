@@ -1,0 +1,88 @@
+% Part: applied-modal-logics
+% Chapter: epistemic-logic
+% Section: public-announcement-logic
+% [tr source emendation] Upstream repeats `language-epistemic-logic` here;
+% this file and its content form the public-announcement-logic section.
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{aml}{el}{pal}
+
+\olsection{Kamusal Duyuru Mantığı}
+
+Dinamik epistemik mantıklar, öznelerin bilgisinin zaman içinde ya da yeni
+bilgi edindikçe nasıl değiştiğini temsil etmemize olanak verir. Bunların
+çoğu, bilgideki değişiklikleri bilgisel \emph{olaylar} ya da
+\emph{güncellemeler} kullanarak temsil eder. En temel güncelleme türü, bir
+formülün doğru bir biçimde kamuya duyurulduğu ve bütün öznelerin buna birlikte
+tanık olduğu kamusal duyurudur. Bunu yapmak için dili şöyle genişletiriz:
+% [tr source emendation] Upstream misspells `knowledge` as `knowlege` in this
+% paragraph; Turkish renders the intended term.
+
+\begin{defn}
+$G$ bir özne simgeleri kümesi olsun. Kamusal duyurular içeren çok özneli
+epistemik mantığın temel dili şunları içerir:
+\begin{enumerate}
+  \tagitem{prvFalse}{!!{falsity} için önerme sabiti~$\lfalse$.}{}
+  \tagitem{prvTrue}{!!{truth} için önerme sabiti~$\ltrue$.}{}
+  \item !!{denumerable}s bir !!{propositional variable}s kümesi: $\Obj
+    p_0$, $\Obj p_1$, $\Obj p_2$, \dots
+  \item Önerme bağlaçları: \startycommalist
+  \iftag{prvNot}{\ycomma $\lnot$ (değilleme)}{}%
+  \iftag{prvAnd}{\ycomma $\land$ (tümel evetleme)}{}%
+  \iftag{prvOr}{\ycomma $\lor$ (tikel evetleme)}{}%
+  \iftag{prvIf}{\ycomma $\lif$ (!!{conditional})}{}%
+  \iftag{prvIff}{\ycomma $\liff$ (!!{biconditional})}{}.
+  % [tr source emendation] Upstream omits the biconditional from this initial
+  % connective inventory but admits it in the inductive grammar below and in
+  % the unextended epistemic language. Restore the tagged connective here.
+  \item Bilgi işleci $\Knows_a$; burada $a \in G$.
+  \item Kamusal duyuru işleci $[!B]$; burada $!B$ !!a{formula}{}dür.
+\end{enumerate}
+\end{defn}
+
+Kamusal duyuru işleci bir kutu işleci gibi çalışır; bu nedenle dilin
+tümevarımlı tanımı şöyle verilir:
+
+\begin{defn}
+  Epistemik dilin \emph{!!^{formula}s{}i} tümevarımlı olarak şöyle tanımlanır:
+  \begin{enumerate}
+  \tagitem{prvFalse}{$\lfalse$ atomik bir !!{formula}{}dür.}{}
+
+  \tagitem{prvTrue}{$\ltrue$ atomik bir !!{formula}{}dür.}{}
+
+  \item Her önerme değişkeni $\Obj p_i$, (atomik) bir
+  !!{formula}{}dür.
+
+  \tagitem{prvNot}{$!A$ !!a{formula} ise $\lnot !A$ da
+  !!a{formula}{}dür.}{}
+
+  \tagitem{prvAnd}{$!A$ ve $!B$ !!{formula}s ise $(!A \land
+  !B)$ de !!a{formula}{}dür.}{}
+
+  \tagitem{prvOr}{$!A$ ve $!B$ !!{formula}s ise $(!A \lor !B)$
+  de !!a{formula}{}dür.}{}
+
+  \tagitem{prvIf}{$!A$ ve $!B$ !!{formula}s ise $(!A \lif !B)$
+  de !!a{formula}{}dür.}{}
+
+  \tagitem{prvIff}{$!A$ ve $!B$ !!{formula}s ise $(!A \liff !B)$
+  de !!a{formula}{}dür.}{}
+
+  \item $!A$ !!a{formula} ve $a \in G$ ise $\Knows_a !A$ da
+  !!a{formula}{}dür.
+  
+  \item $!A$ ile $!B$ !!{formula}s ise $[!A] !B$ de !!a{formula}{}dür.
+
+  \tagitem{limitClause}{Başka hiçbir şey !!a{formula} değildir.}{}
+\end{enumerate}
+\end{defn}
+
+!!{formula} $[!A] !B$ için amaçlanan okuma, ``$!A$ doğru bir biçimde kamuya
+duyurulduktan sonra $!B$ geçerlidir'' biçimindedir. Kamusal duyurular
+bağlamında ortak bilgiden söz etmek de zaman zaman yararlı olacağından dil,
+ortak bilgi işleci $\CKnows_G !A$'yı da içerebilir.
+
+\end{document}

@@ -1,0 +1,188 @@
+% Part: proof-theory
+% Chapter: natural-deduction
+% Section: quantifiers
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{pt}{nat}{qua}
+
+\olsection{Düzenli \usetoken{P}{proof} ve Yerine Koyma}
+
+Niceleyicilerin kuralları, \Elim{\lexists} ve~\Intro{\lforall} kuralları
+için geçerli olan ``özdeğişken koşulları'' nedeniyle bazı güçlükler doğurur.
+Bu güçlüklerin çoğu, bu çıkarımlardaki !!{constant}~$c$'nin hiçbir zaman
+yeniden kullanılmaması sağlanarak ele alınabilir. Şu tanımı verelim.
+
+\begin{defn}
+Bir doğal tümdengelim !!{proof}{}ı~$\delta$, aşağıdaki koşulları sağlıyorsa
+\emph{düzenlidir}:
+\begin{enumerate}
+  \item hiçbir özdeğişken~$a$, birden çok \Elim{\lexists} ya da
+  \Intro{\lforall} çıkarımının özdeğişkeni olarak kullanılmaz ve
+  \item $a$, bir \Elim{\lexists} ya da \Intro{\lforall} çıkarımının
+  özdeğişkeniyse yalnızca sırasıyla minör öncüle ya da öncüle götüren doğrudan
+  alt-!!{proof} içinde geçer.
+\end{enumerate}
+\end{defn}
+
+\begin{lem}\ollabel{lem:subst-regular} $\delta$ düzenliyse, $!C$ ile
+bitiyorsa, $c$ $\delta$ içinde özdeğişken olarak kullanılmayan bir
+!!a{constant}{}se ve $t$, $\delta$'nın hiçbir özdeğişkenini içermeyen bir
+terimse, $\delta$ içindeki her $c$ geçişinin $t$ ile değiştirilmesiyle ortaya
+çıkan $\Subst{\delta}{t}{c}$ düzenli bir !!{proof}{}tır.
+$\Subst{\delta}{t}{c}$'nin son-!!{formula}{}ü $\Subst{!C}{t}{c}$'dir.
+$!A^x$, $\delta$'nın açık bir varsayımıysa $\Subst{!A}{t}{c}^x$ de
+$\Subst{\delta}{t}{c}$'nin açık bir varsayımıdır.
+\end{lem}
+
+\begin{proof}
+  $\pheight{\delta}$ üzerinde tümevarımla. $\pheight{\delta} = 0$ ise
+  $\delta$ yalnızca bir $!A^x$ varsayımından oluşur. Bu durumda
+  $\Subst{\delta}{t}{c}$, $\Subst{!A}{t}{c}^x$'tir.
+
+  $\pheight{\delta} > 0$ ise $\delta$'daki son çıkarıma göre durumları ayırırız.
+  Önerme bağlaçlarının kurallarına ilişkin durumlar kolaydır ve alıştırma
+  olarak bırakılmıştır. $\delta$'nın bir niceleyici çıkarımıyla bittiği
+  durumları ele alıyoruz.
+  \begin{enumerate}
+    \item Son çıkarım $\Intro{\lforall}$ ise $\delta$ şu biçimdedir:
+    \[
+    \AxiomC{}
+    \RightLabel{$\delta'$}
+    \DeduceC{$!A(a,c)$}
+    \RightLabel{\Intro{\lforall}}
+    \UnaryInfC{$\lforall[x][!A(x,c)]$}
+    \DisplayProof
+    \]
+    Tümevarım varsayımı gereği $\Subst{\delta'}{t}{c}$, $!A(a,t)$'nin
+    düzenli bir !!{proof}{}ıdır. $a$, $\delta$'nın bir özdeğişkeni olduğundan
+    $t$ içinde geçmez. Dolayısıyla $\Subst{\delta}{t}{c}$'deki son çıkarım
+    \[
+    \AxiomC{}
+    \RightLabel{$\Subst{\delta'}{t}{c}$}
+    \DeduceC{$!A(a,t)$}
+    \RightLabel{\Intro{\lforall}}
+    \UnaryInfC{$\lforall[x][!A(x,t)]$}
+    \DisplayProof
+    \]
+    doğrudur: $t$, $a$'yı içermediğinden ne sonuç ne de herhangi bir açık
+    varsayım $a$'yı içerir.
+    \item Son çıkarım $\Elim{\lforall}$ ise $\delta$ şu biçimdedir:
+    \[
+    \AxiomC{}
+    \RightLabel{$\delta'$}
+    \DeduceC{$\lforall[x][!A(x,c)]$}
+    \RightLabel{\Elim{\lforall}}
+    \UnaryInfC{$!A(s(c),c)$}
+    \DisplayProof
+    \]
+    Tümevarım varsayımı gereği $\Subst{\delta'}{t}{c}$,
+    $\lforall[x][!A(x,t)]$'nin düzenli bir !!{proof}{}ıdır. (Sonuçtaki $s(c)$
+    terimi $c$'yi içerebilir de içermeyebilir de.) $\Subst{\delta}{t}{c}$'deki
+    son çıkarım
+    \[
+    \AxiomC{}
+    \RightLabel{$\Subst{\delta'}{t}{c}$}
+    \DeduceC{$\lforall[x][!A(x,t)]$}
+    \RightLabel{\Elim{\lforall}}
+    \UnaryInfC{$!A(s(t),t)$}
+    \DisplayProof
+    \]
+    doğrudur ve $!A(s(t),t) \ident \Subst{!A(s(c),c)}{t}{c}$ olur.
+    \Intro{\lexists} durumu benzerdir.
+  \item Son çıkarım $\Elim{\lexists}$ ise $\delta$ şu biçimdedir:
+    \[
+    \AxiomC{}
+    \RightLabel{$\delta_1'$}
+    \DeduceC{$\lexists[x][!A(x,c)]$}
+    \AxiomC{$\Discharge{!A(a,c)}{x}$}
+    \RightLabel{$\delta_2'$}
+    \DeduceC{$!C$}
+    \DischargeRule{\Elim{\lexists}}{x}
+    \BinaryInfC{$!C$}
+    \DisplayProof
+    \]
+    Tümevarım varsayımı gereği $\Subst{\delta_1'}{t}{c}$ ve
+    $\Subst{\delta_2'}{t}{c}$, sırasıyla $\lexists[x][!A(x,t)]$'nin ve açık
+    $!A(a,t)$ varsayımından $\Subst{!C}{t}{c}$'nin düzenli !!{proof}s{}ıdır.
+    $a$, $\delta$'nın bir özdeğişkeni olduğundan $t$ içinde geçmez.
+    Dolayısıyla $\Subst{\delta}{t}{c}$'deki son çıkarım
+    \[
+    \AxiomC{}
+    \RightLabel{$\Subst{\delta_1'}{t}{c}$}
+    \DeduceC{$\lexists[x][!A(x,t)]$}
+    \AxiomC{$\Discharge{!A(a,t)}{x}$}
+    \RightLabel{$\Subst{\delta_2'}{t}{c}$}
+    \DeduceC{$\Subst{!C}{t}{c}$}
+    \DischargeRule{\Elim{\lexists}}{x}
+    \BinaryInfC{$\Subst{!C}{t}{c}$}
+    \DisplayProof
+    \]
+    doğrudur: $\Subst{!A(x,t)}{a}{x} \ident
+    \Subst{!A(a,c)}{t}{c}$ olur ve ne sonuç~$\Subst{!C}{t}{c}$ ne de
+    herhangi bir açık varsayım~$a$'yı içerir.
+  \end{enumerate}
+\end{proof}
+
+\begin{prop}\ollabel{prop:regular}
+$\delta$, \Log{N1c} ya da \Log{N1i}'de bir !!a{proof} ise düzenli bir
+!!{proof}~$\delta'$ vardır; bu ispat $\delta$ ile aynı yapıya (özellikle aynı
+!!{height}~değerine) sahiptir ve ondan yalnızca özdeğişkenlerin değiştirilmesi
+bakımından ayrılır.
+\end{prop}
+
+\begin{proof}
+Yalnızca bu ispat için, $\delta$'nın bir özdeğişken çıkarımına, özdeğişkeni
+başka bir çıkarımın özdeğişkeni değilse ve $\delta$ içinde o çıkarımın
+doğrudan alt-!!{proof}{}ı dışında hiçbir yerde geçmiyorsa \emph{temiz}, aksi
+hâlde \emph{kirli} diyelim. $n$, $\delta$'daki kirli özdeğişken çıkarımlarının
+sayısı olsun. $n$ üzerinde tümevarımla $\delta$'nın gerekli düzenli
+$\delta'$ !!{proof}{}ına dönüştürülebileceğini gösteriyoruz. $n=0$ ise
+$\delta$'daki bütün özdeğişken çıkarımları temizdir; dolayısıyla $\delta$
+düzenlidir ve ispatlanacak bir şey yoktur. Aksi hâlde en üstteki özdeğişken
+çıkarımlarından birini, örneğin \Intro{\lforall}'ı seçin. $\delta$'nın bu
+çıkarımla biten alt-!!{proof}{}ı~$\delta_1$ şu biçimdedir:
+    \[
+    \AxiomC{}
+    \RightLabel{$\delta_2$}
+    \DeduceC{$!A(c)$}
+    \RightLabel{\Intro{\lforall}}
+    \UnaryInfC{$\lforall[x][!A(x)]$}
+    \DisplayProof
+    \]
+$c$ bir özdeğişken olduğundan $\lforall[x][!A(x)]$ içinde ya da açık bir
+varsayımda geçmez. $\delta_2$ ispatı düzenlidir; çünkü hiçbir özdeğişken
+çıkarımı içermez. $a$, $\delta$ içinde geçmeyen bir !!a{constant} olsun.
+\olref{lem:subst-regular} gereği $\Subst{\delta_2}{a}{c}$, $!A(a)$'nın
+düzenli bir ispatıdır. Özdeğişken koşulu gereği $\delta_2$'nin hiçbir açık
+varsayımı $c$'yi içermez; dolayısıyla $\Subst{\delta_2}{a}{c}$'nin hiçbir açık
+varsayımı da $a$'yı içermez. Böylece~\Intro{\lforall} uygulayabiliriz.
+$\delta$ içindeki $\delta_1$'i şu $\delta_1'$ ispatıyla değiştirirsek
+    \[
+    \AxiomC{}
+    \RightLabel{$\Subst{\delta_2}{a}{c}$}
+    \DeduceC{$!A(a)$}
+    \RightLabel{\Intro{\lforall}}
+    \UnaryInfC{$\lforall[x][!A(x)]$}
+    \DisplayProof
+    \]
+kirli bir özdeğişken çıkarımını temiz bir çıkarımla değiştirmiş oluruz ve tek
+fark, $c$ özdeğişkeninin~$a$ ile değiştirilmesidir. Ortaya çıkan ispatta
+$n-1$ kirli özdeğişken çıkarımı vardır; sonuç tümevarım varsayımından çıkar.
+\end{proof}
+
+\begin{prob}
+\olref{prop:regular} ispatında en üstteki özdeğişken çıkarımının
+\Elim{\lexists} olduğu durumu betimleyin.
+\end{prob}
+
+Az önce ispatlanan önermeye açıkça başvurmayacağız; ancak ele alınan bütün
+!!{proof}s{}ın düzenli olduğunu varsayacağız---düzenli değillerse
+özdeğişkenlerini değiştirerek onları her zaman düzenli kılabiliriz.
+
+\Olref{lem:subst-regular} ve \olref{prop:regular}, \Log{N2c} ve~\Log{N2i}
+için de geçerlidir. İspatları alıştırma olarak bırakıyoruz.
+
+\end{document}

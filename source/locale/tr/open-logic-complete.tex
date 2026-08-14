@@ -11,7 +11,6 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \setlength{\emergencystretch}{1em}
-\usepackage{gitinfo2}
 \input{\olpath/sty/open-logic.sty}
 \babelprovide[import]{turkish}
 \AtBeginDocument{\selectlanguage{turkish}}
@@ -29,13 +28,14 @@
 \vskip 4ex
 \textbf{\href{http://openlogicproject.org/}{\OLPname}}
 \vskip 4ex
-\Large Kaynak revizyonu \gitRel: \gitAbbrevHash{} (\gitBranch)\\
-\gitAuthorDate
+\Large Kaynak: Open Logic Project\\
+\texttt{9620cc73f9c8e0ad003c514a5d3748f29611c4c0}\\
+12 Temmuz 2026
 \end{raggedleft}
 \vfill
-\ollicense
+{\def\OLTlinkname{https://github.com/OpenLogicProject/OpenLogic}\ollicense}
 \end{titlingpage}
-\pagestyle{giheadings}
+\pagestyle{headings}
 \include{content/open-logic-about}
 \tableofcontents*
 \olimport[content]{content}

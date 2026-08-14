@@ -1,0 +1,63 @@
+% Part: incompleteness
+% Chapter: theories-computability
+% Section: consis-with-q
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{inc}{tcp}{con}
+
+\olsection{$\Th{Q}$ ile Tutarlı Kuramlar Karar Verilemezdir}
+
+Aşağıdaki teorem yalnızca $\Th{Q}$'nun değil, gerçekte $\Th{Q}$ ile
+çelişmeyen her kuramın karar verilemez olduğunu söyler.
+
+\begin{thm}
+$\Th{T}$, aritmetik dilinde $\Th{Q}$ ile tutarlı (yani
+$\Th{T} \cup \Th{Q}$ tutarlı) herhangi bir kuram olsun. O zaman $\Th{T}$
+karar verilebilir değildir.
+\end{thm}
+
+\begin{proof}
+$\Th{Q}$'nun $!Q_1$, \dots, $!Q_8$ biçiminde sonlu bir aksiyomlar kümesi
+olduğunu anımsayın. Bunları tek bir aksiyomla bile değiştirebiliriz:
+$!E = !Q_1 \land \dots \land !Q_8$.
+
+$\Th{T}$'nin $\Th{Q}$ ile tutarlı, karar verilebilir bir kuram olduğunu
+varsayın. Şöyle tanımlayalım:
+\[
+C = \Setabs{!A}{\Th{T} \Proves !E \lif !A}.
+\]
+$C$'nin $\Th{Q}$ ile $\Th{\bar Q}$'nun hesaplanabilir bir ayırıcısı olacağını
+göstererek çelişki elde edeceğiz. Önce $!A$, $\Th{Q}$ içindeyse $!A$,
+$\Th{Q}$'nun aksiyomlarından ispatlanabilir; türetim teoremi uyarınca,
+birinci derece mantıkta $!E \lif !A$ için !!a{derivation} vardır. Dolayısıyla
+$!A$, $C$ içindedir.
+
+Öte yandan $!A$, $\Th{\bar Q}$ içindeyse birinci derece mantıkta
+$!E \lif \lnot !A$'nın bir ispatı vardır. $\Th{T}$ ayrıca
+$!E \lif !A$'yı ispatlarsa $\Th{T}$, $\lnot !E$'yi de ispatlar; bu durumda
+$\Th{T} \cup \Th{Q}$ tutarsız olur. Fakat $\Th{T} \cup \Th{Q}$'nun tutarlı
+olduğunu varsayıyoruz; öyleyse $\Th{T}$, $!E \lif !A$'yı ispatlamaz ve
+$!A$, $C$ içinde değildir.
+
+$!A$, $\Th{Q}$ içindeyse $C$ içinde olduğunu; $!A$, $\Th{\bar Q}$ içindeyse
+$\Complement{C}$ içinde olduğunu gösterdik. Dolayısıyla $C$ hesaplanabilir
+bir ayırıcıdır; bu da aradığımız çelişkidir.
+\end{proof}
+
+Bu teorem çok güçlüdür. Örneğin şu sonucu verir:
+
+\begin{cor}
+  Aritmetik dili için birinci derece mantık (yani
+  $\Setabs{!A}{\text{$!A$ birinci derece mantıkta ispatlanabilir}}$ kümesi)
+  karar verilebilir değildir.
+\end{cor}
+
+\begin{proof}
+Birinci derece mantık, $\Th{Q}$ ile tutarlı olan $\emptyset$'in sonuçları
+kümesidir.
+\end{proof}
+
+\end{document}

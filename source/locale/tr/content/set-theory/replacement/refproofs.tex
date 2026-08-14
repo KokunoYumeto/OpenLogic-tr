@@ -1,0 +1,195 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sth}{replacement}{refproofs}
+\olsection{Ek: Yerine Koyma Çevresindeki Sonuçlar}
+
+Bu kesimde Yansıma'yı $\ZF$ içinde ispatlayacağız. Ayrıca Yansıma'nın Yerine
+Koyma'ya denk olduğu bir anlamı ispatlayacağız. Son olarak bütün bunların
+Yansıma/Yerine Koyma'nın gücüyle ilgili ilginç bir sonucunu ispatlayacağız.
+\emph{Uyarı: Bu, bu ders kitabındaki matematiğin açık ara en ileri
+kısmıdır.}
+
+Kısa olması için değişken ya da nesne dizilerini ele alırken \emph{üst çizgi}
+gösterimini kullanan bir lemayla başlayacağız. Buna göre
+``$\overline{a}_k$'', bağlamın belirlediği $n$ için ``$a_{k_1}$, \dots,
+$a_{k_n}$'' ifadesini kısaltır.
+
+\begin{lem}\ollabel{lemreflection}
+Her $1 \leq i \leq k$ için $\phi_i(\overline{v}_i, x)$ bir formül olsun. O
+zaman her $\alpha$ için, bütün $\overline{a}_1, \ldots,
+\overline{a}_k \in V_\beta$ ve her $1 \leq i \leq k$ bakımından aşağıdaki
+koşulu sağlayan bazı $\beta > \alpha$ vardır:
+\[
+	\exists x\phi_i(\overline{a}_i, x) \rightarrow (\exists x \in V_\beta) \phi_i(\overline{a}_i, x)
+\]
+\end{lem}
+
+\begin{proof}
+Bir $\mu$ terimini şöyle tanımlarız: $\mu(\overline{a}_1, \ldots,
+\overline{a}_k)$, $1 \leq i \leq k$ için aşağıdaki koşulların tümünü
+sağlayan en küçük $V$ aşamasıdır:
+\[
+\exists x\phi_i(\overline{a}_i, x) \rightarrow (\exists x \in V) \phi_i(\overline{a}_i, x)
+\]
+% [tr source emendation] Upstream has an unmatched final `)` in this display;
+% Turkish removes it, matching the lemma statement and intended conditional.
+$\mu(\overline{a}_1, \ldots, \overline{a}_k)$ ifadesinin bütün
+$\overline{a}_1, \ldots, \overline{a}_k$ için var olduğunu doğrulamak
+kolaydır. Şimdi Yerine Koyma ile özyineleme teoremimizi kullanarak şunları
+tanımlayın:
+\begin{align*}
+	S_0 & = V_{\alpha+1}\\
+	S_{n+1} & = S_n \cup \bigcup
+	\Setabs{\mu(\overline{a}_1, \ldots, \overline{a}_k)}
+	{\overline{a}_1, \ldots, \overline{a}_k \in S_n} \\
+	S &= \bigcup_{m < \omega} S_m.
+\end{align*}
+% [tr source emendation] The indexed union upstream ends in `S_n` although
+% its bound variable is `m`; Turkish repairs the evident dummy-index error.
+Her $S_n$ ve dolayısıyla $S$'nin kendisi $V_\alpha$'dan sonraki bir aşamadır.
+Şimdi $\overline{a}_1$, \dots,~$\overline{a}_k \in S$ sabit olsun; öyleyse
+$\overline{a}_1$, \dots, $\overline{a}_k \in S_n$ olacak biçimde bazı
+$n < \omega$ vardır. Bazı $1 \leq i \leq k$ sabit olsun ve
+$\exists x \phi_i(\overline{a}_i,x)$ olduğunu varsayın. Kuruluş gereği
+$(\exists x \in \mu(\overline{a}_1, \ldots,
+\overline{a}_k))\phi_i(\overline{a}_i, x)$, dolayısıyla
+$(\exists x \in S_{n+1})\phi_i(\overline{a}_i, x)$ ve bundan da
+$(\exists x \in S)\phi_i(\overline{a}_i, x)$ elde edilir. Demek ki $S$,
+aradığımız $V_\beta$'dır.
+\end{proof}
+\noindent 
+Artık \olref[sth][replacement][ref]{reflectionschema} sonucunu oldukça
+doğrudan ispatlayabiliriz:
+
+\begin{proof}[İspat] 
+$\alpha$ sabit olsun. Genelliği yitirmeden $\phi$'nin yalnızca $\exists$,
+$\lnot$ ve $\land$ bağlaçlarını içerdiğini varsayabiliriz (çünkü bunlar ifade
+bakımından yeterlidir). $\psi_1, \ldots, \psi_k$, $\phi$'nin alt formüllerini
+karmaşıklıklarına göre saysın; böylece $\psi_k = \phi$ olsun.
+\olref{lemreflection} gereği, herhangi bir $\overline{a}_i \in V_\beta$ ve
+her $1 \leq i \leq k$ için aşağıdaki koşulu sağlayan bir
+$\beta > \alpha$ vardır:
+\begin{align}\label{reflectionnicelybehaved}
+	\exists x\psi_i(\overline{a}_i, x) \rightarrow 
+	(\exists x \in V_\beta) \psi_i(\overline{a}_i, x)\tag{*}
+\end{align}
+$\psi_i$'nin karmaşıklığı üzerinde tümevarımla, herhangi bir
+$\overline{a}_i \in V_\beta$ için
+$\psi_i(\overline{a}_i) \leftrightarrow
+\psi_i^{V_\beta}(\overline{a}_i)$ olduğunu göstereceğiz. $\psi_i$ atomikse
+bu önemsizdir. İki koşullu ayrıca, $\psi_i$ bu özelliği sağlayan alt
+formüllerin bir değillemesi ya da evetlemesi olduğunda, $\psi_i$'nin
+kendisinin de bu özelliği sağladığını kurar. Dolayısıyla tek ilginç durum
+nicelemeyle ilgilidir.
+$\overline{a}_i \in V_\beta$ sabit olsun; o zaman:
+\begin{align*}
+	(\exists x \psi_i(\overline{a}_i, x))^{V_\beta}
+	&\text{ ancak ve ancak }
+	(\exists x \in V_\beta)\psi_i^{V_\beta}(\overline{a}_i, x)
+	&&\text{tanım gereği}\\
+	&\text{ ancak ve ancak }
+	(\exists x \in V_\beta)\psi_i(\overline{a}_i,  x)
+	&&\text{varsayım gereği}\\
+	&\text{ ancak ve ancak }
+	\exists x \psi_i(\overline{a}_i, x)
+	&&\text{\eqref{reflectionnicelybehaved} gereği}
+\end{align*}
+Bu, tümevarımı tamamlar; $\psi_k = \phi$ olduğundan sonuç çıkar.
+\end{proof}
+
+Yansıma'yı $\ZF$ içinde ispatladık. İspatımız özünde
+\citet{Montague1961}'i izledi. Şimdi $\Z$ içinde Yansıma'nın Yerine Koyma'yı
+gerektirdiğini ispatlamak istiyoruz. İspat, bir sadeleştirmeyle birlikte
+\citet{Levy1960}'i izler.
+
+$\Z$ içinde çalıştığımızdan Yansıma'yı yukarıda verilen biçimde sunamayız.
+Sonuçta Yansıma'yı ``$V_\alpha$'' gösterimini kullanarak formüle ettik; bu
+gösterim $\Z$ içinde tanımlanamaz (bkz. \olref[sth][spine][zf]{sec}). Bunun
+yerine Yansıma'nın görünüşte daha zayıf bir formülasyonunu şöyle sunacağız:
+% [tr source emendation] Upstream says `weaker formulation of Replacement`;
+% the immediately defined principle is Weak-Reflection, so Turkish restores
+% `weaker formulation of Reflection`.
+
+\begin{defish}
+\emph{Zayıf Yansıma.} Her $\phi$ formülü için $0$, $1$ ve $\phi$'nin bütün
+parametrelerinin $S$'nin !!{element}s{}ı olduğu, ayrıca $(\forall \overline{x}
+\in S)(\phi \liff \phi^S)$ koşulunu sağlayan geçişli bir $S$ kümesi vardır.
+\end{defish}
+
+Bunu Yerine Koyma'yı ispatlamakta kullanmak üzere önce \citet[Theorem 2'nin
+ilk kısmı]{Levy1960} kaynağını izleyip iki formülü aynı anda
+``yansıtabildiğimizi'' göstereceğiz:
+
+\begin{lem}[$\Z + \text{Zayıf Yansıma}$ içinde.]\ollabel{lem:reflect}
+Her $\psi, \chi$ formül çifti için $0$ ile $1$'in (ve formüllerin bütün
+parametrelerinin) $S$'nin !!{element}s{}ı olduğu, ayrıca $(\forall \overline{x}
+\in S)((\psi \liff \psi^S) \land (\chi \liff \chi^S))$ koşulunu sağlayan
+geçişli bir $S$ kümesi vardır.
+\end{lem}
+
+\begin{proof}
+$\phi$, $(z = 0 \land \psi) \lor (z = 1 \land \chi)$ formülü olsun.
+
+Burada bir kısaltma kullanıyoruz; ``$z = 0$'' ifadesini ``$\forall t\, t
+\notin z$'', ``$z =1$'' ifadesini de ``$\forall s(s \in z \liff \forall
+t\, t \notin s)$'' olarak açıkça yazmalıyız. Fakat $0, 1 \in S$ ve $S$
+geçişli olduğundan bu formüller $S$ için \emph{mutlaktır}; yani
+niceleyicilerini $S$ ile sınırlasak da aynı nesneye uygulanırlar.\footnote{Daha
+biçimsel olarak, $\xi$ bu formüllerden biri olmak üzere $\xi(z) \liff
+\xi^S(z)$ olur.}
+
+Zayıf Yansıma gereği aşağıdaki koşulu sağlayan uygun bir $S$ vardır:
+\begin{align*}
+	(\forall z, \overline{x} \in S)(&\phi \liff \phi^S)\\
+	\text{yani }(\forall z, \overline{x} \in S)(&((z = 0 \land \psi) \lor (z = 1 \land \chi)) \liff {}\\
+	&\phantom{(}((z = 0 \land \psi) \lor (z = 1 \land \chi))^S)\\
+	\text{yani }(\forall z, \overline{x} \in S)(&((z = 0 \land \psi) \lor (z = 1 \land \chi))\liff {}\\
+	&\phantom{(}((z = 0 \land \psi^S) \lor (z = 1 \land \chi^S)))\\
+	\text{yani }(\forall \overline{x} \in S)(&(\psi \liff \psi^S) \land (\chi \liff \chi^S))
+\end{align*}
+``$z = 0$'' ile ``$z=1$'' ifadeleri $S$ için mutlak olduğundan ikinci iddia
+üçüncüyü; $0 \neq 1$ olduğundan da dördüncü iddia çıkar.
+\end{proof}\noindent
+Şimdi \citet[Theorem 6]{Levy1960} kaynağını izleyip sadeleştirerek Yerine
+Koyma'yı elde edebiliriz:
+
+\begin{thm}[$\Z$ + Zayıf Yansıma içinde]\label{thm:replacement} 
+Her $\phi(v,w)$ formülü ve her $A$ için, $(\forall x \in
+A)\lexists![y][\phi(x,y)]$ ise $\Setabs{y}{(\exists x \in A)\phi(x,y)}$
+vardır.
+\end{thm}
+% [tr source emendation] Upstream omits the closing parenthesis in the
+% displayed set-builder condition; Turkish restores the well-formed formula.
+
+\begin{proof}
+$(\forall x \in A)\lexists![y][\phi(x,y)]$ koşulunu sağlayan $A$ sabit olsun
+ve şu formülleri tanımlayın:
+\begin{align*}
+	\psi &\text{ şudur: } (\phi(x, z) \land A = A)\\
+	\chi &\text{ şudur: } \lexists[y][\phi(x, y)]
+\end{align*}
+\olref{lem:reflect} kullanıldığında, $A$, $\psi$'nin bir parametresi
+olduğundan $0, 1, A \in S$ (diğer bütün parametrelerle birlikte) olacak ve
+şu koşulu sağlayacak biçimde geçişli bir $S$ vardır:
+\[
+	(\forall x,z \in S)((\psi \liff \psi^S) \land (\chi \liff \chi^S))
+\]
+Özellikle:
+\begin{align*}
+	(\forall  x, z \in S)(&\phi(x, z) \liff \phi^S(x, z))\\
+	(\forall x \in S)(&\exists y\phi(x, y) \liff (\exists y \in S)\phi^S(x, y)) 
+\end{align*}
+Bunları birleştirip $A \in S$ ve $S$ geçişli olduğu için $A \subseteq S$
+olduğunu gözlemleyince:
+\begin{align*}
+	(\forall x \in A)(&\exists y\phi(x, y) \liff (\exists y \in S)\phi(x, y))
+\end{align*}
+elde edilir. $(\forall x \in A)\lexists![y][\phi(x, y)]$ olduğundan şimdi
+$(\forall x \in A)(\lexists![y \in S])\phi(x, y)$ olur. Ayırma da
+$\Setabs{y \in S}{(\exists x \in A) \phi(x, y)} =
+\Setabs{y}{(\exists x \in A) \phi(x, y)}$ sonucunu verir.
+\end{proof}
+
+\end{document}

@@ -1,0 +1,104 @@
+% Part: first-order-logic
+% Chapter: sequent-calculus
+% Section: quantifier-rules
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{fol}{seq}{qrl}
+
+\olsection{Niceleyici Kuralları}
+
+\subsection{$\lforall$ için Kurallar}
+
+\begin{defish}
+\Axiom$ !A(t), \Gamma \fCenter \Delta$
+\RightLabel{\LeftR{\lforall}}
+\UnaryInf$ \lforall[x][!A(x)],\Gamma \fCenter \Delta$
+\DisplayProof
+\hfill
+\Axiom$ \Gamma \fCenter \Delta, !A(a) $
+\RightLabel{\RightR{\lforall}}
+\UnaryInf$ \Gamma \fCenter \Delta, \lforall[x][!A(x)]$
+\DisplayProof
+\end{defish}
+
+\LeftR{\lforall} kuralında $t$ kapalı bir terimdir (yani değişken içermez).
+\RightR{\lforall} kuralında $a$, \RightR{\lforall} kuralının alt sekantında
+hiçbir yerde bulunmaması gereken !!a{constant}{}tir. $a$'ya
+\RightR{\lforall} çıkarımının \emph{özdeğişkeni} deriz.\footnote{Yukarıdaki
+kuralda $a$ aslında !!a{constant} olmasına rağmen ``özdeğişken'' terimini
+kullanıyoruz. Bunun tarihsel nedenleri vardır.}
+
+\subsection{$\lexists$ için Kurallar}
+
+\begin{defish}
+\Axiom$ !A(a), \Gamma \fCenter \Delta $
+\RightLabel{\LeftR{\lexists}}
+\UnaryInf$ \lexists[x][!A(x)], \Gamma \fCenter \Delta$
+\DisplayProof
+\hfill
+\Axiom$ \Gamma \fCenter \Delta, !A(t) $
+\RightLabel{\RightR{\lexists}}
+\UnaryInf$ \Gamma \fCenter \Delta, \lexists[x][!A(x)]$
+\DisplayProof
+\end{defish}
+
+Burada da $t$ kapalı bir terim, $a$ ise \LeftR{\lexists} kuralının alt
+sekantında bulunmayan !!a{constant}{}tir. $a$'ya \LeftR{\lexists} çıkarımının
+\emph{özdeğişkeni} deriz.
+
+Bir özdeğişkenin \RightR{\lforall} veya \LeftR{\lexists} çıkarımının alt
+sekantında bulunmaması koşuluna \emph{özdeğişken koşulu} denir.
+
+\begin{explain}
+$!A$ bir !!a{formula}, $x$ de bu formülde serbest bir !!{variable} olsun. Bu
+durumu $!A(x)$ yazarak belirttiğimiz uzlaşımı hatırlayın. Aynı bağlamda $!A(t)$,
+$\Subst{!A}{t}{x}$ ifadesinin kısaltmasıdır. Dolayısıyla
+\RightR{\lexists} kuralını şöyle de yazabiliriz:
+\begin{prooftree}
+  \Axiom$\Gamma \fCenter \Delta, \Subst{!A}{t}{x}$
+  \RightLabel{\RightR{\lexists}}
+  \UnaryInf$\Gamma \fCenter \Delta, \lexists[x][!A]$
+\end{prooftree}
+$t$'nin $!A$ içinde zaten bulunabileceğine dikkat edin; örneğin $!A$,
+$\Atom{\Obj P}{t,x}$ olabilir. Bu nedenle $\Gamma \Sequent \Delta,
+\Atom{\Obj P}{t,t}$ sekantından $\Gamma \Sequent \Delta,
+\lexists[x][\Atom{\Obj P}{t,x}]$ sekantını çıkarmak
+\RightR{\lexists} kuralının doğru bir uygulamasıdır: öncüldeki $t$
+oluşumlarından birini veya birkaçını, hepsini değiştirmek zorunda olmadan,
+bağlı !!{variable}~$x$ ile ``değiştirebilirsiniz.'' Ancak
+\RightR{\lforall} ile \LeftR{\lexists} kurallarındaki özdeğişken koşulları,
+!!{constant}~$a$'nın $!A$ içinde bulunmamasını gerektirir. Dolayısıyla
+$\Gamma \Sequent \Delta, \Atom{\Obj P}{a,a}$ sekantından
+$\Gamma \Sequent \Delta, \lforall[x][\Atom{\Obj P}{a,x}]$ sekantını
+$\RightR{\lforall}$ kullanarak doğru biçimde çıkaramazsınız.
+\end{explain}
+
+\begin{explain}
+\RightR{\lexists} ile \LeftR{\lforall} kurallarında $t$ terimine herhangi bir
+kısıtlama getirilmez. Buna karşılık \LeftR{\lexists} ile
+\RightR{\lforall} kurallarında özdeğişken koşulu, !!{constant}~$a$'nın üst
+sekantta $!A(a)$ içindeki $x$ yerine geçen oluşumları dışında hiçbir yerde
+bulunmamasını gerektirir. Bu koşul sistemin sağlamlığı için gereklidir: bu
+sayede yalnızca geçerli sekantları !!{derive}s mümkündür. Bu
+koşul olmasaydı aşağıdaki çıkarımlara izin verilirdi:
+\begin{prooftree}
+  \Axiom$!A(a) \fCenter !A(a)$
+  \RightLabel{*\LeftR{\lexists}}
+  \UnaryInf$\lexists[x][!A(x)] \fCenter !A(a)$
+  \RightLabel{\RightR{\lforall}}
+  \UnaryInf$\lexists[x][!A(x)] \fCenter \lforall[x][!A(x)]$
+  \DisplayProof\bottomAlignProof
+  \qquad
+  \Axiom$!A(a) \fCenter !A(a)$
+  \RightLabel{*\RightR{\lforall}}
+  \UnaryInf$!A(a) \fCenter \lforall[x][!A(x)]$
+  \RightLabel{\LeftR{\lexists}}
+  \UnaryInf$\lexists[x][!A(x)] \fCenter \lforall[x][!A(x)]$
+\end{prooftree}
+Oysa $\lexists[x][!A(x)] \Sequent \lforall[x][!A(x)]$ geçerli değildir.
+\end{explain}
+
+\end{document}

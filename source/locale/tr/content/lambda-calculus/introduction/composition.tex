@@ -1,0 +1,30 @@
+% Part: lambda-calculus
+% Chapter: introduction
+% Section: composition
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{lam}{int}{com}
+\olsection{\usetoken{S}{lambda definable} Fonksiyonlar Bileşim Altında Kapalıdır}
+
+\begin{lem}
+!!{lambda definable} fonksiyonlar bileşim altında kapalıdır.
+\end{lem}
+
+\begin{proof}
+$f$'nin $h$, $g_0$, \dots, $g_{k-1}$'den bileşimle tanımlandığını
+varsayalım. $h$, $g_0$, \dots, $g_{k-1}$'in sırasıyla $H$, $G_0$, \dots,
+$G_{k-1}$ tarafından !!{lambda defined} olduğu varsayımı altında $f$'yi
+!!{lambda define}s bir $F$ terimi bulmalıyız. Fakat $F$'yi doğrudan şöyle
+tanımlayabiliriz:
+\[
+F(x_0, \dots, x_{l-1}) = H(G_0(x_0, \dots, x_{l-1}),
+\dots, G_{k-1}(x_0, \dots, x_{l-1})).
+\]
+Başka bir deyişle lambda kalkülüsünün dili bileşimi temsil etmeye çok
+uygundur.
+\end{proof}
+
+\end{document}

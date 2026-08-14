@@ -1,0 +1,332 @@
+% Part: first-order-logic
+% Chapter: sequent-calculus
+% Section: proving-things
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[tr]{fol}{seq}{pro}}
+      {\olfileid[tr]{pl}{seq}{pro}}
+
+\olsection{\usetoken{P}{derivation} Örnekleri}
+
+\begin{ex}
+$!A \land !B \Sequent !A$ sekantı için bir $\Log{LK}$-!!{derivation} verin.
+
+İstenen son sekantı !!{derivation}{}in en altına yazarak başlarız.
+\begin{prooftree}
+\AxiomC{}
+\UnaryInf$!A\land !B \fCenter !A$
+\end{prooftree}
+Sonra, alt sekantı bu biçimde olan çıkarımın hangi türden olabileceğini
+belirlememiz gerekir. Bu bir yapısal kural olabilir; ancak işe mantıksal bir
+kural arayarak başlamak yerinde olur. Alt sekantta görünen tek mantıksal
+bağlaç $\land$ olduğundan bir $\land$ kuralı ararız. $\land$ simgesi öncülde
+bulunduğuna göre \LeftR{\land} kuralına bakarız.
+\begin{prooftree}
+\AxiomC{}
+\RightLabel{\LeftR{\land}}
+\UnaryInf$!A\land !B \fCenter !A$
+\end{prooftree}
+\LeftR{\land} çıkarımının üst sekantı için iki seçenek vardır: $!A
+\Sequent !A$ ya da $!B \Sequent !A$. $!A \Sequent !A$ açıkça bir başlangıç
+sekantıdır (bu iyi bir şeydir); buna karşılık $!B \Sequent !A$ genel olarak
+türetilemez. Üst sekantı dolduralım:
+\begin{prooftree}
+\Axiom$!A \fCenter !A$
+\RightLabel{\LeftR{\land}}
+\UnaryInf$!A\land !B \fCenter !A$
+\end{prooftree}
+Artık $!A \land !B \Sequent !A$ sekantının doğru bir
+$\Log{LK}$-!!{derivation}{}ini elde ettik.
+\end{ex}
+
+\begin{ex}
+$\lnot !A \lor !B \Sequent !A \lif !B$ sekantı için bir
+$\Log{LK}$-!!{derivation} verin.
+
+İstenen son sekantı !!{derivation}{}in en altına yazarak başlayın.
+\begin{prooftree}
+\AxiomC{}
+\UnaryInf$\lnot !A \lor !B \fCenter !A \lif !B$
+\end{prooftree}
+Bu son sekantı verebilecek bir mantıksal kural bulmak için son sekanttaki
+mantıksal bağlaçlara bakarız: $\lnot$, $\lor$ ve $\lif$. Şimdilik yalnızca
+$\lor$ ile $\lif$ bizi ilgilendirir; çünkü bunlar son sekanttaki
+!!{main operator}s olup !!{sentence}s içinde yer alır; $\lnot$ ise başka bir bağlacın
+kapsamındadır ve onu sonra ele alacağız. Buna göre son çıkarım için mantıksal
+kural seçeneklerimiz \LeftR{\lor} ile \RightR{\lif} kurallarıdır.
+Aslında ikisinden birini seçebiliriz; fakat iki dala ayrılmayı ertelememizi
+sağladığı için \RightR{\lif} kuralını seçelim. Bu alt sekantı verebilecek
+\RightR{\lif} çıkarımlarının biçimine göre şunu elde etmeliyiz:
+\begin{prooftree}
+\AxiomC{}
+\UnaryInf$ !A, \lnot !A \lor !B \fCenter !B $
+\RightLabel{\RightR{\lif}} \UnaryInf$ \lnot !A \lor !B \fCenter !A \lif !B $
+\end{prooftree}
+
+$\lnot !A \lor !B$ ifadesini öncülün dışına taşırsak \LeftR{\lor} kuralını
+uygulayabiliriz. Şemaya göre bunun aşağıdaki iki üst sekanta ayrılması gerekir:
+\begin{prooftree}
+\AxiomC{}
+\UnaryInf$\lnot !A, !A \fCenter !B$
+\AxiomC{}
+\UnaryInf$!B, !A \fCenter !B$
+\RightLabel{\LeftR{\lor}}
+\BinaryInf$ \lnot !A \lor !B, !A \fCenter !B $
+\RightLabel{\LeftR{\Exchange}}
+\UnaryInf$ !A, \lnot !A \lor !B \fCenter !B $
+\RightLabel{\RightR{\lif}}
+\UnaryInf$ \lnot !A \lor !B \fCenter !A \lif !B $
+\end{prooftree}
+Başlangıç sekantlarına doğru yukarı ilerlemeye çalıştığımızı hatırlayın;
+neredeyse ulaştık!{} Sağ dal, bir başlangıç sekantından yalnızca bir
+zayıflatma ve bir yer değiştirme uzaktadır; bunları uyguladığımızda bu dal
+tamamlanır:
+\begin{prooftree}
+\AxiomC{}
+\UnaryInf$\lnot !A, !A \fCenter !B$
+\Axiom$!B \fCenter !B$
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$!A, !B \fCenter !B$
+\RightLabel{\LeftR{\Exchange}}
+\UnaryInf$!B, !A \fCenter !B$
+\RightLabel{\LeftR{\lor}}
+\BinaryInf$\lnot !A \lor !B, !A \fCenter !B $
+\RightLabel{\LeftR{\Exchange}}
+\UnaryInf$ !A, \lnot !A \lor !B \fCenter !B $
+\RightLabel{\RightR{\lif}}
+\UnaryInf$ \lnot !A \lor !B \fCenter !A \lif !B $
+\end{prooftree}
+
+Şimdi sol dala baktığımızda herhangi bir !!{sentence} içinde kalan tek mantıksal
+bağlacın, öncülü oluşturan !!{sentence}s arasındaki $\lnot$ simgesi olduğunu görürüz;
+dolayısıyla \LeftR{\lnot} kuralının bir örneğini arıyoruz.
+\begin{prooftree}
+\AxiomC{}
+\UnaryInf$ !A \fCenter !B, !A$
+\RightLabel{\LeftR{\lnot}}
+\UnaryInf$\lnot !A, !A \fCenter !B$
+\Axiom$!B \fCenter !B$
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$!A, !B \fCenter !B$
+\RightLabel{\LeftR{\Exchange}}
+\UnaryInf$!B, !A \fCenter !B$
+\RightLabel{\LeftR{\lor}}
+\BinaryInf$\lnot !A \lor !B, !A \fCenter !B $
+\RightLabel{\LeftR{\Exchange}}
+\UnaryInf$ !A, \lnot !A \lor !B \fCenter !B $
+\RightLabel{\RightR{\lif}}
+\UnaryInf$ \lnot !A \lor !B \fCenter !A \lif !B $
+\end{prooftree}
+Sağ dalı tamamladığımız gibi bu sol dalı da tamamlamak için yalnızca bir
+zayıflatma ve bir yer değiştirme gerekir.
+\begin{prooftree}
+\Axiom$!A \fCenter !A$
+\RightLabel{\RightR{\Weakening}}
+\UnaryInf$ !A \fCenter !A, !B$
+\RightLabel{\RightR{\Exchange}}
+\UnaryInf$ !A \fCenter !B, !A$
+\RightLabel{\LeftR{\lnot}}
+\UnaryInf$\lnot !A, !A \fCenter !B$
+\Axiom$!B \fCenter !B$
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$!A, !B \fCenter !B$
+\RightLabel{\LeftR{\Exchange}}
+\UnaryInf$!B, !A \fCenter !B$
+\RightLabel{\LeftR{\lor}}
+\BinaryInf$\lnot !A \lor !B, !A \fCenter !B $
+\RightLabel{\LeftR{\Exchange}}
+\UnaryInf$ !A, \lnot !A \lor !B \fCenter !B $
+\RightLabel{\RightR{\lif}}
+\UnaryInf$ \lnot !A \lor !B \fCenter !A \lif !B $
+\end{prooftree}
+\end{ex}
+
+\begin{ex}
+$\lnot !A \lor \lnot !B \Sequent \lnot (!A \land !B)$ sekantının bir
+$\Log{LK}$-!!{derivation}{}ini verin.
+
+Yukarıdaki teknikleri kullanarak istenen son sekantı en alta yazmakla
+başlarız.
+\begin{prooftree}
+\AxiomC{}
+\UnaryInf$ \lnot !A \lor \lnot !B \fCenter \lnot (!A \land !B) $
+\end{prooftree}
+Son sekanttaki !!{sentence}s bakımından ana bağlaçlar $\lor$ ile $\lnot$ simgeleridir.
+Burada \LeftR{\lor} ya da \RightR{\lnot} kuralını uygulamak işe yarayabilir;
+ancak bir süre daha iki dala ayrılmaktan kaçındığı için \RightR{\lnot}
+kuralıyla başlarız:
+\begin{prooftree}
+\AxiomC{}
+\UnaryInf$!A \land !B, \lnot !A \lor \lnot !B \fCenter $
+\RightLabel{\RightR{\lnot}}
+\UnaryInf$\lnot !A \lor \lnot !B \fCenter \lnot (!A \land !B)$
+\end{prooftree}
+Şimdi \LeftR{\land} ya da \LeftR{\lor} kuralına bakabiliriz.
+\LeftR{\land} kuralını uygularsak ne olacağını görelim: $!A,
+\lnot !A \lor \lnot !B \Sequent \quad$ veya $!B,\lnot !A \lor \lnot !B
+\Sequent \quad$ üst sekantlarından birini seçebiliriz. Bu !!{derivation}, $!A$
+ile $!B$ bakımından simetrik olduğundan ilkini seçelim:
+\begin{prooftree}
+\AxiomC{}
+\UnaryInf$!A, \lnot !A \lor \lnot !B \fCenter $
+\RightLabel{\LeftR{\land}}
+\UnaryInf$!A \land !B, \lnot !A \lor \lnot !B \fCenter $
+\RightLabel{\RightR{\lnot}}
+\UnaryInf$\lnot !A \lor \lnot !B \fCenter \lnot (!A \land !B)$
+\end{prooftree}
+Bu !!{derivation}{}i doldurmaya devam edince bir sorunla karşılaşırız:
+\begin{prooftree}
+\Axiom$!A \fCenter !A$
+\RightLabel{\LeftR{\lnot}}
+\UnaryInf$ \lnot !A, !A \fCenter$
+\AxiomC{}
+\RightLabel{?}
+\UnaryInf$!A \fCenter !B$
+\RightLabel{\LeftR{\lnot}}
+\UnaryInf$ \lnot !B, !A \fCenter$
+\RightLabel{\LeftR{\lor}}
+\BinaryInf$\lnot !A \lor \lnot !B, !A \fCenter $
+\RightLabel{\LeftR{\Exchange}}
+\UnaryInf$!A, \lnot !A \lor \lnot !B \fCenter $
+\RightLabel{\LeftR{\land}}
+\UnaryInf$!A \land !B, \lnot !A \lor \lnot !B \fCenter $
+\RightLabel{\RightR{\lnot}}
+\UnaryInf$\lnot !A \lor \lnot !B \fCenter \lnot (!A \land !B)$
+\end{prooftree}
+Sağ dalın tepesi daha fazla indirgenemez ve yapısal çıkarımlarla bir başlangıç
+sekantına dönüştürülemez; dolayısıyla izlenecek doğru yol bu değildir. Öyleyse
+yukarıda \LeftR{\land} kuralını uygulamak hataydı. Bir önceki aşamaya dönüp
+onun yerine \LeftR{\lor} kuralını uygularsak şunu elde ederiz:
+\begin{prooftree}
+\AxiomC{}
+\UnaryInf$\lnot !A, !A \land !B \fCenter $
+
+\AxiomC{}
+\UnaryInf$\lnot !B, !A \land !B \fCenter $
+
+\RightLabel{\LeftR{\lor}}
+\BinaryInf$\lnot !A \lor \lnot !B, !A \land !B \fCenter $
+\RightLabel{\LeftR{\Exchange}}
+\UnaryInf$!A \land !B, \lnot !A \lor \lnot !B \fCenter $
+\RightLabel{\RightR{\lnot}}
+\UnaryInf$\lnot !A \lor \lnot !B \fCenter \lnot (!A \land !B)$
+\end{prooftree}
+Her dalı daha önce yaptığımız biçimde tamamlayınca şu sonucu elde ederiz:
+\begin{prooftree}
+\Axiom$ !A \fCenter!A$
+\RightLabel{\LeftR{\land}}
+\UnaryInf$!A \land !B \fCenter !A$
+\RightLabel{\LeftR{\lnot}}
+\UnaryInf$\lnot !A, !A \land !B \fCenter $
+
+\Axiom$ !B \fCenter !B$
+\RightLabel{\LeftR{\land}}
+\UnaryInf$!A \land !B \fCenter !B$
+\RightLabel{\LeftR{\lnot}}
+\UnaryInf$\lnot !B, !A \land !B \fCenter $
+
+\RightLabel{\LeftR{\lor}}
+\BinaryInf$\lnot !A \lor \lnot !B, !A \land !B \fCenter $
+\RightLabel{\LeftR{\Exchange}}
+\UnaryInf$!A \land !B, \lnot !A \lor \lnot !B \fCenter $
+\RightLabel{\RightR{\lnot}}
+\UnaryInf$\lnot !A \lor \lnot !B \fCenter \lnot (!A \land !B)$
+\end{prooftree}
+(Bu adımlarda $\land$ kurallarını $\lnot$ kurallarından daha aşağıda uygulayıp
+yine doğru bir !!{derivation} elde edebilirdik.)
+\end{ex}
+
+\begin{ex}
+Şimdiye kadar daraltma kuralını kullanmadık; ancak bu kural bazen gereklidir.
+Bunun gerçekleştiği bir örneğe bakalım. $\quad \Sequent !A \lor \lnot !A$
+sekantını ispatlamak istediğimizi varsayalım. $\RightR{\lor}$ kuralını geriye
+doğru uygulamak bize şu !!{derivation}s arasından birini verir:
+\begin{prooftree}
+\AxiomC{}
+\UnaryInf$ \fCenter !A$
+\RightLabel{\RightR{\lor}}
+\UnaryInf$ \fCenter !A \lor \lnot !A$
+\DisplayProof\qquad\bottomAlignProof
+\AxiomC{}
+\UnaryInf$!A \fCenter $
+\RightLabel{\RightR{\lnot}}
+\UnaryInf$ \fCenter \lnot !A$
+\RightLabel{\RightR{\lor}}
+\UnaryInf$ \fCenter !A \lor \lnot !A$
+\end{prooftree}
+Elbette bunların hiçbiri bir başlangıç sekantında son bulmaz. İşin püf noktası,
+daraltma kuralının, bir !!a{sentence} söz konusu olduğunda onun iki kopyasını tek kopyada birleştirmemizi
+sağladığını fark etmektir. Bir ispat ararken, yani aşağıdan yukarıya giderken,
+öncülde $!A \lor \lnot !A$ ifadesinin bir kopyasını tutabiliriz; örneğin:
+\begin{prooftree}
+\AxiomC{}
+\UnaryInf$ \fCenter !A \lor \lnot !A, !A$
+\RightLabel{\RightR{\lor}}
+\UnaryInf$ \fCenter !A \lor \lnot !A, !A \lor \lnot !A$
+\RightLabel{\RightR{\Contraction}}
+\UnaryInf$ \fCenter !A \lor \lnot !A$
+\end{prooftree}
+Artık $\RightR{\lor}$ kuralını ikinci kez uygulayıp $\lnot !A$'yı da elde
+edebiliriz; böylece eksiksiz bir !!{derivation}{}e ulaşırız.
+\begin{prooftree}
+\Axiom$!A \fCenter !A$
+\RightLabel{\RightR{\lnot}}
+\UnaryInf$\fCenter !A, \lnot !A$
+\RightLabel{\RightR{\lor}}
+\UnaryInf$\fCenter !A, !A \lor \lnot !A$
+\RightLabel{\RightR{\Exchange}}
+\UnaryInf$ \fCenter !A \lor \lnot !A, !A$
+\RightLabel{\RightR{\lor}}
+\UnaryInf$ \fCenter !A \lor \lnot !A, !A \lor \lnot !A$
+\RightLabel{\RightR{\Contraction}}
+\UnaryInf$ \fCenter !A \lor \lnot !A$
+\end{prooftree}
+\end{ex}
+
+\begin{prob}
+Aşağıdaki sekantlar için !!{derivation}s verin:
+\begin{enumerate}
+\item $!A \land (!B \land !C) \Sequent (!A \land !B) \land !C$.
+\item $!A \lor (!B \lor !C) \Sequent (!A \lor !B) \lor !C$.
+\item $!A \lif (!B \lif !C) \Sequent !B \lif (!A \lif !C)$.
+\item $!A \Sequent \lnot\lnot !A$.
+\end{enumerate}
+\end{prob}
+
+\begin{prob}
+Aşağıdaki sekantlar için !!{derivation}s verin:
+\begin{enumerate}
+\item $(!A \lor !B) \lif !C \Sequent !A \lif !C$.
+\item $(!A \lif !C) \land (!B \lif !C) \Sequent (!A \lor !B) \lif !C$.
+\item $\Sequent \lnot(!A \land \lnot !A)$.
+\item $!B \lif !A \Sequent \lnot !A \lif \lnot !B$.
+\item $\Sequent (!A \lif \lnot !A) \lif \lnot !A$.
+\item $\Sequent \lnot(!A \lif !B) \lif \lnot !B$.
+\item $!A \lif !C \Sequent \lnot (!A \land \lnot !C)$.
+\item $!A \land \lnot !C \Sequent \lnot (!A \lif !C)$.
+\item $!A \lor !B, \lnot !B \Sequent !A$.
+\item $\lnot !A \lor \lnot !B \Sequent \lnot(!A \land !B)$.
+\item $\Sequent (\lnot !A \land \lnot !B) \lif\lnot(!A \lor !B)$.
+\item $\Sequent \lnot(!A \lor !B) \lif (\lnot !A \land \lnot !B)$.
+\end{enumerate}
+\end{prob}
+
+\begin{prob}
+Aşağıdaki sekantlar için !!{derivation}s verin:
+\begin{enumerate}
+\item $\lnot(!A \lif !B) \Sequent !A$.
+\item $\lnot(!A \land !B) \Sequent \lnot !A \lor \lnot !B$.
+\item $!A \lif !B \Sequent \lnot !A \lor !B$.
+\item $\Sequent \lnot \lnot !A \lif !A$.
+\item $!A \lif !B, \lnot !A \lif !B \Sequent !B$.
+\item $(!A \land !B) \lif !C \Sequent (!A \lif !C) \lor (!B \lif !C)$.
+\item $(!A \lif !B) \lif !A \Sequent !A$.
+\item $\Sequent (!A \lif !B) \lor (!B \lif !C)$.
+\end{enumerate}
+(Bunların tümü $\RightR{\Contraction}$ kuralını gerektirir.)
+\end{prob}
+\end{document}

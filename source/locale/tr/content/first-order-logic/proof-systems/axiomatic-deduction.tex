@@ -1,0 +1,84 @@
+% Part: first-order-logic
+% Chapter: proof-systems
+% Section: axiomatic-deduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[tr]{fol}{prf}{axd}}
+      {\olfileid[tr]{pl}{prf}{axd}}
+
+\olsection{Aksiyomatik \usetoken{P}{derivation}}
+
+Aksiyomatik !!{derivation}s kullanan en eski ve en basit mantıksal sistemler,
+aksiyomatik !!{derivation} sistemleridir. Bu sistemlerde !!{derivation}s
+yalnızca !!{sentence}s dizileridir. Bir !!{sentence}s dizisi, doğru bir
+!!{derivation} sayılmak için dizideki her !!{sentence}~$!A$ bakımından
+aşağıdaki koşullardan birini sağlamalıdır:
+\begin{enumerate}
+\item $!A$ bir aksiyomdur veya
+\item $!A$, verilmiş bir kümede !!a{element} olarak yer alır; bu küme $\Gamma$ ile
+  gösterilen !!{sentence}s kümesidir ya da
+\item $!A$ bir çıkarım kuralıyla gerekçelendirilmiştir.
+\end{enumerate}
+$!A$'nın aksiyom olması için, sabit sayıdaki !!{sentence} şemalarından birinin
+biçiminde olması gerekir. \iftag{FOL}{Birinci dereceden mantık}{Önerme mantığı}
+için yeterli (sağlam ve
+tam) bir !!{derivation} sistemi sağlayan birçok aksiyom şeması kümesi vardır.
+Bunların bazıları yönettikleri bağlaçlara göre düzenlenmiştir; örneğin
+\[
+!A \lif (!B \lif !A) \qquad !B \lif (!B \lor !C) \qquad (!B \land !C) \lif !B
+\]
+şemaları $\lif$, $\lor$ ve~$\land$ bağlaçlarını yöneten yaygın aksiyomlardır.
+Bazı aksiyom sistemleri asgari sayıda aksiyom kullanmayı amaçlar. İlkel kabul
+edilen bağlaçlara bağlı olarak, tek bir aksiyomdan oluşan aksiyom sistemleri
+bulmak bile mümkündür.
+
+Çıkarım kuralı, !!a{sentence} için, !!a{derivation} içinde
+gerekçelendirilmesini sağlayan yeterli koşulu veren koşullu bir ifadedir.
+Modus ponens bu tür çok yaygın
+bir kuraldır: $!A$ ile $!A \lif !B$ zaten gerekçelendirilmişse $!B$'nin de
+gerekçelendirilmiş olduğunu söyler. Bu, !!a{derivation} içinde
+!!{sentence}~$!B$'yi içeren satırın, hem $!A$ hem de $!A \lif !B$ (bir
+!!{sentence}~$!A$ için) !!{derivation} içinde $!B$'den önce yer alıyorsa
+gerekçelendirilmiş olduğu anlamına gelir.
+
+Aksiyomatik !!{derivation}s esas alınarak $\Proves$ bağıntısı şöyle
+tanımlanır: !!a{derivation} varsa, son satırında !!{sentence}~$!A$ yer alıyorsa
+ve (2) ile gerekçelendirilen !!{sentence}s bu !!{derivation} içinde
+$\Gamma$'dan seçilmişse $\Gamma \Proves !A$ olur. Eşdeğer olarak, kullanılan
+varsayımların kümesi $\Gamma$'nın sonlu bir alt kümesidir. $\Gamma$ boşken
+$!A$ için !!a{derivation} varsa, yani her !!{sentence} bu !!{derivation}
+içinde (1) veya (3) ile gerekçelendiriliyorsa $!A$ bir teoremdir. Örneğin
+aşağıdaki !!a{derivation}, $\Proves !A \lif (!B \lif (!B \lor !A))$ olduğunu gösterir:
+\begin{derivation}
+  1. & $!B \lif (!B \lor !A)$ \\
+  2. & $(!B \lif (!B \lor !A)) \lif (!A \lif (!B \lif (!B \lor !A)))$\\
+  3. & $!A \lif (!B \lif (!B \lor !A))$
+\end{derivation}
+1. satırdaki !!{sentence}, $!A \lif (!A \lor !B)$ aksiyomu biçimindedir
+($!A$ ile $!B$'nin rolleri ters çevrilmiştir). 2. satırdaki tümce ise $!A
+\lif (!B \lif !A)$ aksiyomu biçimindedir. Dolayısıyla iki satır da
+gerekçelendirilmiştir. 3. satır modus ponens ile gerekçelendirilir: bu satırı
+$!D$ ile kısaltırsak 2. satır $!C \lif !D$ biçimindedir; burada $!C$, $!B
+\lif (!B \lor !A)$, yani 1. satırdır.
+
+$\Gamma \Proves \lfalse$ ise $\Gamma$ kümesi tutarsızdır. Tam bir aksiyom
+sistemi her $!A$ için $\lfalse \lif !A$ ifadesini de ispatlar; dolayısıyla
+$\Gamma$ tutarsızsa her $!A$ için $\Gamma \Proves !A$ olur.
+
+Mantık için aksiyomatik !!{derivation}s veren ilk kişi Gottlob Frege'ydi; bu
+nedenle çoğu zaman modern mantığın ilk eseri sayılan 1879 tarihli
+\emph{Begriffsschrift}'inde verdi. Bu sistemler Alfred North Whitehead ile
+Bertrand Russell'ın \emph{Principia Mathematica}'sında ve 1920'lerde David
+Hilbert ile öğrencilerinin çalışmalarında yetkinleştirildi. Bu yüzden çoğu
+zaman “Frege sistemleri” veya “Hilbert sistemleri” diye adlandırılırlar. Bir
+mantık için aksiyomatik sistem bulmak çoğu zaman kolay olduğundan son derece
+çok yönlüdürler. !!{derivation}s çok basit bir yapıya ve yalnızca bir veya iki
+çıkarım kuralına sahip olduğundan, onlar \emph{hakkında} sonuçlar ispatlamak
+da görece kolaydır. Ancak uygulamada kullanımları çok zordur; yani ispatları
+bulmak ve yazmak güçtür.
+
+\end{document}

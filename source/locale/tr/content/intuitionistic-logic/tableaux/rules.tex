@@ -1,0 +1,145 @@
+% Part: intuitionistic-logic
+% Chapter: tableaux
+% Section: rules
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{int}{tab}{rul}
+
+\olsection{Sezgisel Mantık için Kurallar}
+
+$\land$ ve $\lor$ bağlaçlarının kuralları, yalnızca önekler eklenmiş olmak
+üzere, olağan önermesel işaretli !!{tableau}s kurallarıyla aynıdır. Her
+durumda, işaretli !!{formula}~$\sFmla{S}{!A}[\sigma]$'ya uygulanan kural,
+yine $\sigma$ ile öneklenmiş yeni !!{formula}s üretir. Bu sezgisel olarak
+açıktır: örneğin $!A \land !B$, $\sigma$'nın adlandırdığı dünyada doğruysa
+$!A$ ile $!B$ de $\sigma$'da (başka bir dünyada değil) doğrudur. $\land$ ve
+$\lor$ kurallarını \olref{tab:prop-rules}'te bir araya getiriyoruz.
+
+\begin{table}
+  \[\def\arraystretch{3}\begin{array}{|c|c|}
+    \hline
+    \AxiomC{\sFmla{\True}{!A \land !B}[\sigma]}
+    \RightLabel{\TRule{\True}{\land}}
+    \UnaryInfC{\sFmla{\True}{!A}[\sigma]}
+    \noLine
+    \UnaryInfC{\sFmla{\True}{!B}[\sigma]}
+    \DisplayProof
+    &
+    \AxiomC{\sFmla{\False}{!A \land !B}[\sigma]}
+    \RightLabel{\TRule{\False}{\land}}
+    \UnaryInfC{$\sFmla{\False}{!A}[\sigma] \quad \mid \quad
+      \sFmla{\False}{!B}[\sigma]$}
+    \DisplayProof
+    \\[2ex]
+    \hline
+    \AxiomC{\sFmla{\True}{!A \lor !B}[\sigma]}
+    \RightLabel{\TRule{\True}{\lor}}
+    \UnaryInfC{$\sFmla{\True}{!A}[\sigma] \quad \mid \quad
+      \sFmla{\True}{!B}[\sigma]$}
+    \DisplayProof
+    &
+    \AxiomC{\sFmla{\False}{!A \lor !B}[\sigma]}
+    \RightLabel{\TRule{\False}{\lor}}
+    \UnaryInfC{\sFmla{\False}{!A}[\sigma]}
+    \noLine
+    \UnaryInfC{\sFmla{\False}{!B}[\sigma]}
+    \DisplayProof
+    \\[2ex]
+    \hline
+  \end{array}\]
+  \caption{$\land$ ve $\lor$ için önekli !!{tableau} kuralları}
+  \ollabel{tab:prop-rules}
+\end{table}
+
+Kapanma koşulu olağan !!{tableau}s için olana benzer; ancak yalnızca
+!!{formula}s{}in değil, öneklerin de eşleşmesini isteriz. Aslında biraz daha
+esnek olabiliriz: Sezgisel modellerde !!{formula}s bir kez doğru olduktan
+sonra doğru kalır; dolayısıyla $!A$'nın $\sigma$'da doğru, fakat erişilebilir
+bir $\sigma.{*}$ önekinde yanlış olması olanaksızdır. Bu nedenle bir dal,
+bazı $\sigma$ öneki ve !!{formula}~$!A$ için hem
+\[
+\sFmla{\True}{!A}[\sigma] \quad\text{hem de}\quad
+\sFmla{\False}{!A}[\sigma.{*}]
+\]
+içeriyorsa kapalıdır. İşaretler ters çevrilmişse, yani dal
+\[
+\sFmla{\False}{!A}[\sigma] \quad\text{ve}\quad
+\sFmla{\True}{!A}[\sigma.{*}]
+\]
+içeriyorsa yalnızca $*$ boş dizi olduğunda kapalıdır.
+
+Ayrıca bir dal $\sFmla{\True}{\bot}[\sigma]$ içeriyorsa kapalıdır.
+
+Varsayımları yerleştirme kuralı da olağan !!{tableau}s için olanla aynıdır;
+tek fark, varsayımlar için her zaman $1$ önekini kullanmamızdır. (Bütün
+varsayımlarda aynı öneki kullandığımız sürece hangisini seçtiğimiz önemli
+değildir.) Örneğin
+\[
+!B_1, \dots, !B_n \Proves !A
+\]
+ancak ve ancak şu varsayımlar için kapalı bir tablo varsa geçerlidir:
+\[
+\sFmla{\True}{!B_1}[1], \dots, \sFmla{\True}{!B_n}[1],
+\sFmla{\False}{!A}[1].
+\]
+
+Koşullu $\lif$ için kurallar klasik ve modal durumlardakinden farklıdır.
+$\TRule{\True}{\lif}$ kuralı,
+$\sFmla{\True}{!A \lif !B}[\sigma]$ içeren bir dalı farklı iki dal üzerinde
+$\sFmla{\False}{!A}[\sigma.{*}]$ ve
+$\sFmla{\True}{!B}[\sigma.{*}]$ ile genişletir. Bu kural yalnızca uygulandığı
+dalda \emph{zaten} bulunan bir $\sigma.{*}$ öneki için uygulanabilir. Böyle
+bir öneke dalda ``kullanılmış'' diyelim. ($\sigma.{*}$, $\sigma$'nın kendisini
+de içerdiğinden, kural her zaman $\sFmla{\False}{!A}[\sigma]$ ve
+$\sFmla{\True}{!B}[\sigma]$ önekli işaretli formüllerini ayrı dallara
+ekleyerek uygulanabilir.)
+
+$\TRule{\False}{\lif}$ kuralı,
+$\sFmla{\False}{!A \lif !B}[\sigma]$ içeren bir dalı aynı dal üzerinde hem
+$\sFmla{\True}{!A}[\sigma.n]$ hem de $\sFmla{\False}{!B}[\sigma.n]$ ile
+genişletir; burada $\sigma.n$ dalda yeni bir önektir.
+
+$\lnot$ kuralları da benzer biçimde ($\lnot !A$'nın
+$!A \lif \lfalse$ tanımı kullanılarak) tanımlanır.
+
+Kurallar \olref{tab:rules-lif-lnot}'ta verilmiştir.
+
+\begin{table}
+  \[\def\arraystretch{3}\begin{array}{|c|c|}
+    \hline
+    \AxiomC{\sFmla{\True}{\lnot !A}[\sigma]}
+    \RightLabel{\TRule{\True}{\lnot}}
+    \UnaryInfC{$\sFmla{\False}{!A}[\sigma.{*}]$}
+    \DisplayProof
+    &
+    \AxiomC{\sFmla{\False}{\lnot !A}[\sigma]}
+    \RightLabel{\TRule{\False}{\lnot}}
+    \UnaryInfC{\sFmla{\True}{!A}[\sigma.n]}
+    \DisplayProof
+    \\[1ex]
+    \text{$\sigma.{*}$ kullanılmıştır} & \text{$\sigma.n$ yenidir}\\
+    \hline
+    \AxiomC{\sFmla{\True}{!A \lif !B}[\sigma]}
+    \RightLabel{\TRule{\True}{\lif}}
+    \UnaryInfC{$\sFmla{\False}{!A}[\sigma.{*}] \quad \mid \quad
+      \sFmla{\True}{!B}[\sigma.{*}]$}
+    \DisplayProof
+    &
+    \AxiomC{\sFmla{\False}{!A \lif !B}[\sigma]}
+    \RightLabel{\TRule{\False}{\lif}}
+    \UnaryInfC{\sFmla{\True}{!A}[\sigma.n]}
+    \noLine
+    \UnaryInfC{\sFmla{\False}{!B}[\sigma.n]}
+    \DisplayProof
+    \\[1ex]
+    \text{$\sigma.{*}$ kullanılmıştır} & \text{$\sigma.n$ yenidir}\\
+    \hline
+  \end{array}\]
+  \caption{$\lnot$ ve $\lif$ için önekli !!{tableau} kuralları}
+  \ollabel{tab:rules-lif-lnot}
+\end{table}
+
+\end{document}

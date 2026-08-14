@@ -1,0 +1,74 @@
+% Part: applied-modal-logics
+% Chapter: epistemic-logic
+% Section: properties-accessibility
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{aml}{el}{acc}
+
+\olsection{Erişilebilirlik Bağıntıları ve Epistemik İlkeler}
+
+Normal modal mantıklardaki çerçeve karşılıklılığı hakkında zaten bildiklerimiz
+ışığında, karakteristik !!{formula}s{}in epistemik yorumlar altında nasıl
+göründüğünü incelemek isteyebiliriz. Epistemik mantıkların tipik olarak S5
+içinde yorumlandığını belirtmiştik. Şimdi çeşitli epistemik ilkelerin nasıl
+temsil edildiğine bakalım ve bunların çeşitli çerçeve koşullarına nasıl
+karşılık geldiğini düşünelim.
+
+Normal modal mantıktan, farklı modal !!{formula}s{}in erişilebilirlik
+bağıntılarının farklı özelliklerini nitelediğini hatırlayın. Bu tablo, belirli
+epistemik ilkelere karşılık gelen birkaçını seçmektedir.
+
+\begin{table}[t]
+    \begin{tabular}{| p{.48\textwidth} || p{.48\textwidth} |}
+      \hline
+      {\emph{$R$ \dots ise}} & {\emph{\dots, $\mModel{M}$ içinde doğrudur:}} \\
+      \hline \hline
+        
+      & $\Knows (p \lif q) \lif (\Knows p \lif \Knows q)$ 
+      \hfill \newline{(Kapanış)} \\
+      \hline
+      \emph{yansımalı}: $\forall w Rww$  
+      & $\Knows p \lif p$ \hfill \newline{(Doğruluk)} \\
+      \hline
+      \emph{geçişli}: \newline
+      $\forall u \forall v \forall w ((Ruv \land Rvw) \lif Ruw)$ & 
+      $\Knows p \lif \Knows \Knows p$ \hfill 
+           \newline{(Olumlu İçebakış)} \\
+      \hline 
+      \emph{Öklidyen}: \newline
+      $\forall w \forall u \forall v ((Rwu \land Rwv) \lif Ruv)$ &  
+      $\lnot \Knows p \lif \Knows \neg \Knows p$ \hfill 
+        \newline{(Olumsuz İçebakış)} \\
+      \hline
+    \end{tabular}
+    \caption{Dört epistemik ilke.}
+    \ollabel{tab:four}
+  \end{table} 
+
+$T$ aksiyomuna karşılık gelen doğruluk, bu ilkeler arasında çoğu kez en az
+tartışmalı olanı sayılır; çünkü !!a{formula} biliniyorsa onun doğru olması
+gerektiği iddiasını temsil eder. Kapanış ile Olumlu ve Olumsuz İçebakış ise
+çok daha tartışmalıdır.
+
+$K$ aksiyomuna karşılık gelen kapanış, bir öznenin bilgisinin içerme altında
+kapalı olduğu düşüncesini temsil eder. Bu, bazı durumlarda akla yatkın
+görünebilir. Örneğin Victoria'daysam Vancouver Adası'nda olduğumu biliyor
+olabilirim. Tuhaf kuşkucu senaryoları bir yana bırakırsak Victoria'da
+olduğumu da bilirim; bu durum, Vancouver Adası'nda olduğumu bildiğimi de
+düşündürmelidir. Dolayısıyla burada bilgimin mantıksal kapanışı görece
+sezgisel görünebilir. Öte yandan bilgimizin bütün sonuçlarını her zaman
+düşünmeyiz; bu nedenle kapanış başka durumlarda daha az sezgisel sonuçlara
+yol açabilir.
+
+Bazen KK ilkesi diye bilinen Olumlu İçebakış, kimi zaman bir şeyi biliyorsam
+onu bildiğimi de bilirim önermesi olarak ifade edilir. Bu, 4 aksiyomunun
+epistemik karşılığıdır. Benzer biçimde olumsuz içebakış, bir şeyi
+\emph{bilmiyorsam} onu bilmediğimi bildiğim önermesi olarak ifade edilir ve 5
+aksiyomuna karşılık gelir. Gerçekte bildiğim bir şeyi bilip bilmediğimden emin
+olmadığım görece sıradan örnekler, bu iki ilkeye de karşıörnek gibi görünür.
+
+
+\end{document}

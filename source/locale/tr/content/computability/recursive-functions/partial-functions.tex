@@ -1,0 +1,109 @@
+% Part: computability
+% Chapter: recursive-functions
+% Section: partial-functions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{cmp}{rec}{par}
+\olsection{Kısmi Özyinelemeli Fonksiyonlar}
+
+Özyinelemeli fonksiyonların tanımını gerekçelendirmek için, ilkel
+özyinelemeli olmayan hesaplanabilir fonksiyonların bulunduğuna ilişkin
+ispatımızın aslında çok daha fazlasını gösterdiğine dikkat edin. Sav basitti:
+Kullandığımız tek şey, $f_x(y)$ ifadesi $x$ ile $y$'nin bir fonksiyonu olarak
+hesaplanabilir olacak biçimde $f_0,f_1,\dots$ fonksiyonlarını
+numaralandırabilmekti. Dolayısıyla sav, \emph{bu biçimde numaralandırılabilen
+her fonksiyon sınıfına} uygulanır. Bu bizi açmaza sokar: Hesaplanabilir
+fonksiyonları açıkça betimlemek istiyoruz, fakat hesaplanabilir
+fonksiyonlardan oluşan bir topluluğun hiçbir açık betimi tüketici olamaz.
+
+Çıkış yolu \emph{kısmi} fonksiyonları hesaba katmaktır. Kısmi hesaplanabilir
+fonksiyonların numaralandırılmasının \emph{mümkün} olduğunu göreceğiz.
+\iftag{TMs}{ Aslında Turing makinelerini sistematik biçimde
+numaralandırabildiğimizden bunun böyle olduğunu neredeyse şimdiden
+biliyoruz.}{} Daha sonra köşegen savımıza dönecek ve kısmi fonksiyonlar
+katıldığında neden işlemediğini inceleyeceğiz.
+
+Şimdi soru şudur: Bütün kısmi özyinelemeli fonksiyonları elde etmek için
+ilkel özyinelemeli fonksiyonlara ne eklemeliyiz? İki şey yapmamız gerekir:
+\begin{enumerate}
+\item İlkel özyinelemeli fonksiyonlar tanımımızı kısmi fonksiyonlara da izin
+  verecek biçimde değiştirmek.
+\item Tanıma, bazı yeni kısmi fonksiyonları kapsayacak bir şey
+  \emph{eklemek}.
+\end{enumerate}
+
+İlki kolaydır. Önceki gibi sıfır, ardıl ve izdüşümlerle başlayacak; bileşke
+ile ilkel özyineleme altında kapanışı alacağız. Tek fark, tanımdaki bazı
+terimlerin tanımsız olabilmesine izin verecek biçimde bileşke ve ilkel
+özyineleme tanımlarını değiştirmemizdir. $f$ ile $g$ kısmi fonksiyonlarsa,
+$f$'nin $x$'te tanımlı, yani $x$'in $f$'nin tanım kümesinde olduğunu
+$f(x)\fdefined$ ile; tersini, yani $f$'nin $x$'te tanımsız olduğunu
+$f(x)\fundefined$ ile göstereceğiz. $f(x)\simeq g(x)$ gösterimi, ya iki
+ifadenin de tanımsız ya da ikisinin de tanımlı ve eşit olduğunu söyler. Bu
+gösterimleri daha karmaşık terimler için de kullanacağız. $h$ ile
+$g_0,\dots,g_k$ kısmi fonksiyonlarsa
+\[
+  h(g_0(\vec x),\dots,g_k(\vec x))
+\]
+ifadesinin ancak ve ancak her $g_i$, $\vec x$ noktasında ve $h$ de
+$g_0(\vec x),\dots,g_k(\vec x)$ değerlerinde tanımlıysa tanımlı olduğu
+uzlaşımını benimseyeceğiz. Bu anlayışla kısmi fonksiyonlar için bileşke ve
+ilkel özyineleme tanımları yukarıdakilerle aynıdır; yalnızca ``$=$'' yerine
+``$\simeq$'' koymamız gerekir.
+
+Kısmi fonksiyonları elde etmek üzere ilkel özyinelemeli fonksiyonlar tanımına
+ekleyeceğimiz şey \emph{sınırsız arama işlecidir}. Doğal sayılar üzerinde
+herhangi bir kısmi $f(x,\vec z)$ fonksiyonu için $\mu x\;f(x,\vec z)$
+ifadesini, böyle bir $x$ varsa
+\begin{quote}
+  $f(0,\vec z),f(1,\vec z),\dots,f(x,\vec z)$ değerlerinin tümünün tanımlı
+  ve $f(x,\vec z)=0$ olduğu en küçük $x$
+\end{quote}
+olarak tanımlayalım; aksi durumda $\mu x\;f(x,\vec z)$ tanımsızdır. Bu,
+$\mu x\;f(x,\vec z)$ ifadesini tek türlü tanımlar.
+
+\begin{explain}
+Tanımımızın \iftag{TMs}{Turing makinelerine,}{} algoritmalara ya da belirli
+bir hesaplama modeline başvurmadığına dikkat edin. Yine de bileşke ve ilkel
+özyinelemede olduğu gibi sınırsız aramanın arkasında işlemsel, hesaplamalı bir
+sezgi vardır. Kısmi bir fonksiyonun hesaplanabilirliği söz konusu olduğunda,
+fonksiyonun tanımsız olduğu argümanlar hesabın durmadığı girdilere karşılık
+gelir. $\mu x\;f(x,\vec z)$ değerini hesaplama yordamı şöyledir:
+$0$ döndüren bir değer bulununcaya kadar
+$f(0,\vec z),f(1,\vec z),f(2,\vec z),\dots$ hesaplanır. Fakat aradaki
+hesaplardan herhangi biri durmazsa $\mu x\;f(x,\vec z)$ hesabı da durmaz.
+\end{explain}
+
+$R(x,\vec z)$ herhangi bir bağıntıysa $\mu x\;R(x,\vec z)$ ifadesini
+$\mu x\;(1\tsub\Char{R}(x,\vec z))$ olarak tanımlarız. Başka bir deyişle
+$\mu x\;R(x,\vec z)$, $R(x,\vec z)$ koşulunu sağlayan en küçük $x$ değerini
+döndürür. Dolayısıyla $f(x,\vec z)$ tümel bir fonksiyonsa
+$\mu x\;f(x,\vec z)$ ile $\mu x\;(f(x,\vec z)=0)$ aynıdır. Fakat asıl
+tanımımızın daha genel olduğuna dikkat edin; çünkü $f(x,\vec z)$ fonksiyonunun
+her yerde tanımlı olmamasına izin verir. Buna karşılık bir bağıntının
+karakteristik fonksiyonu her zaman tümeldir.
+
+\begin{defn}
+\emph{Kısmi özyinelemeli fonksiyonlar} kümesi, doğal sayıların çeşitli
+kuvvetlerinden doğal sayılara giden kısmi fonksiyonlar arasında sıfır, ardıl
+ve izdüşümleri içeren ve bileşke, ilkel özyineleme ile sınırsız arama altında
+kapalı olan en küçük kümedir.
+\end{defn}
+
+Elbette kısmi özyinelemeli fonksiyonların bazıları tümel, yani her argümanda
+tanımlı olacaktır.
+
+\begin{defn}
+\ollabel{defn:recursive-fn}
+\emph{Özyinelemeli fonksiyonlar} kümesi, tümel olan kısmi özyinelemeli
+fonksiyonlar kümesidir.
+\end{defn}
+
+Bir özyinelemeli fonksiyonun her yerde tanımlı olduğunu vurgulamak için ona
+bazen ``tümel özyinelemeli'' denir.
+
+\end{document}
+

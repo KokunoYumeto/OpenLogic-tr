@@ -1,0 +1,64 @@
+% Part: computability
+% Chapter: computability-theory
+% Section: complement-ce
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{cmp}{thy}{cmp}
+\olsection{Hesaplanabilir Biçimde Numaralandırılabilir Kümeler Tümleyen
+Altında Kapalı Değildir}
+
+$A$ hesaplanabilir biçimde numaralandırılabilir olsun. $A$'nın tümleyeni
+$\Complement{A}=\Nat\setminus A$ da her zaman hesaplanabilir biçimde
+numaralandırılabilir midir? Aşağıdaki teorem ve sonuç yanıtın ``hayır''
+olduğunu gösterir.
+
+\begin{thm}
+\ollabel{thm:ce-comp}
+$A$ herhangi bir doğal sayılar kümesi olsun. $A$ hesaplanabilirdir ancak ve
+ancak hem $A$ hem $\Complement{A}$ hesaplanabilir biçimde
+numaralandırılabilirse.
+\end{thm}
+
+\begin{proof}
+İleri yön kolaydır: $A$ hesaplanabilirse $\Complement{A}$ da
+hesaplanabilirdir ($\Char{A}=1\tsub\Char{\Complement{A}}$); dolayısıyla ikisi
+de hesaplanabilir biçimde numaralandırılabilir.
+
+Ters yönde hem $A$ hem $\Complement{A}$ hesaplanabilir biçimde
+numaralandırılabilir olsun. $A$, $\cfind{d}$ fonksiyonunun;
+$\Complement{A}$ ise $\cfind{e}$ fonksiyonunun tanım kümesi olsun. $h$'yi
+\[
+  h(x)=\umin{s}{(T(d,x,s)\lor T(e,x,s))}
+\]
+ile tanımlayalım. Başka bir deyişle $h$, $x$ girdisinde $\cfind{d}$ ya da
+$\cfind{e}$ için duran bir hesap arar. $x\in A$ ise ilk durumda,
+$x\in\Complement{A}$ ise ikinci durumda başarılı olur. Dolayısıyla $h$ tümel
+hesaplanabilir bir fonksiyondur. Artık her $x$ için $x\in A$ ancak ve ancak
+$T(d,x,h(x))$, yani tanımlı olan fonksiyon $\cfind{d}$ ise geçerlidir.
+$T(d,x,h(x))$ hesaplanabilir bir bağıntı olduğundan $A$ hesaplanabilirdir.
+\end{proof}
+
+\begin{explain}
+Olanı biçimsel olmayan hesaplama terimleriyle anlamak daha kolaydır: $A$'ya
+karar vermek için $x$ girdisinde $\cfind{d}$ ile $\cfind{e}$ fonksiyonlarının
+duran hesaplarını arayın. Bunlardan biri mutlaka durur. Duran $\cfind{d}$ ise
+$x\in A$; aksi durumda $x\in\Complement{A}$ olur.
+\end{explain}
+
+\begin{cor}
+\ollabel{cor:comp-k}
+$\Complement{K_0}$ hesaplanabilir biçimde numaralandırılabilir değildir.
+\end{cor}
+
+\begin{proof}
+$K_0$'ın hesaplanabilir biçimde numaralandırılabilir, fakat hesaplanabilir
+olmadığını biliyoruz. $\Complement{K_0}$ da hesaplanabilir biçimde
+numaralandırılabilir olsaydı \olref{thm:ce-comp} uyarınca $K_0$
+hesaplanabilir olurdu; bu \olref[ncp]{thm:K-0} ile çelişir.
+\end{proof}
+
+\end{document}
+

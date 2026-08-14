@@ -1,0 +1,270 @@
+% Part: normal-modal-logic
+% Chapter: tableaux
+% Section: rules-for-K
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{nml}{tab}{rul}
+
+\olsection{\Ax{K} için Kurallar}
+
+Olağan önerme bağlaçlarının kuralları, yalnızca önekler eklenmiş olmak
+üzere, olağan önermesel işaretli !!{tableau}s kurallarıyla aynıdır. Her
+durumda, $\sFmla{S}{!A}[\sigma]$ işaretli !!{formula}{}üne uygulanan kural,
+yine $\sigma$ ile öneklenmiş yeni !!{formula}s üretir. Bu sezgisel olarak
+açıktır: örneğin $!A \land !B$, $\sigma$'nın adlandırdığı dünyada doğruysa
+$!A$ ile $!B$ de $\sigma$'da (başka bir dünyada değil) doğrudur. Önermesel
+kuralları \olref{tab:prop-rules}'te bir araya getiriyoruz.
+
+\begin{table}
+  \[\def\arraystretch{3}\begin{array}{|c|c|}
+    \hline
+    \AxiomC{\sFmla{\True}{\lnot !A}[\sigma]}
+    \RightLabel{\TRule{\True}{\lnot}}
+    \UnaryInfC{\sFmla{\False}{!A}[\sigma]}
+    \DisplayProof
+    &
+    \AxiomC{\sFmla{\False}{\lnot !A}[\sigma]}
+    \RightLabel{\TRule{\False}{\lnot}}
+    \UnaryInfC{\sFmla{\True}{!A}[\sigma]}
+    \DisplayProof
+    \\[1ex]
+    \hline
+    \AxiomC{\sFmla{\True}{!A \land !B}[\sigma]}
+    \RightLabel{\TRule{\True}{\land}}
+    \UnaryInfC{\sFmla{\True}{!A}[\sigma]}
+    \noLine
+    \UnaryInfC{\sFmla{\True}{!B}[\sigma]}
+    \DisplayProof
+    &
+    \AxiomC{\sFmla{\False}{!A \land !B}[\sigma]}
+    \RightLabel{\TRule{\False}{\land}}
+    \UnaryInfC{$\sFmla{\False}{!A}[\sigma] \quad \mid \quad
+      \sFmla{\False}{!B}[\sigma]$}
+    \DisplayProof
+    \\[2ex]
+    \hline
+    \AxiomC{\sFmla{\True}{!A \lor !B}[\sigma]}
+    \RightLabel{\TRule{\True}{\lor}}
+    \UnaryInfC{$\sFmla{\True}{!A}[\sigma] \quad \mid \quad
+      \sFmla{\True}{!B}[\sigma]$}
+    \DisplayProof
+    &
+    \AxiomC{\sFmla{\False}{!A \lor !B}[\sigma]}
+    \RightLabel{\TRule{\False}{\lor}}
+    \UnaryInfC{\sFmla{\False}{!A}[\sigma]}
+    \noLine
+    \UnaryInfC{\sFmla{\False}{!B}[\sigma]}
+    \DisplayProof
+    \\[2ex]
+    \hline
+    \AxiomC{\sFmla{\True}{!A \lif !B}[\sigma]}
+    \RightLabel{\TRule{\True}{\lif}}
+    \UnaryInfC{$\sFmla{\False}{!A}[\sigma] \quad \mid
+      \quad \sFmla{\True}{!B}[\sigma]$}
+    \DisplayProof
+    &
+    \AxiomC{\sFmla{\False}{!A \lif !B}[\sigma]}
+    \RightLabel{\TRule{\False}{\lif}}
+    \UnaryInfC{\sFmla{\True}{!A}[\sigma]}
+    \noLine
+    \UnaryInfC{\sFmla{\False}{!B}[\sigma]}
+    \DisplayProof
+    \\[2ex]
+    \hline
+  \end{array}\]
+  \caption{Önerme bağlaçları için önekli !!{tableau} kuralları}
+  \ollabel{tab:prop-rules}
+\end{table}
+
+Kapanma koşulu olağan !!{tableau}s için olanla aynıdır; ancak yalnızca
+!!{formula}s{}in değil, öneklerin de eşleşmesini isteriz. Dolayısıyla bir dal,
+bir $\sigma$ öneki ve bir !!{formula} $!A$ için hem
+\[
+\sFmla{\True}{!A}[\sigma] \quad\text{hem}\quad \sFmla{\False}{!A}[\sigma]
+\]
+içeriyorsa kapalıdır.
+
+Varsayımları yerleştirme kuralları da olağan !!{tableau}s için olanla aynıdır;
+tek fark, varsayımlar için her zaman $1$ önekini kullanmamızdır. (Bütün
+varsayımlarda aynı öneki kullandığımız sürece hangisini seçtiğimiz önemli
+değildir.) Örneğin
+\[
+!B_1, \dots, !B_n \Proves !A
+\]
+ancak ve ancak şu varsayımlar için kapalı bir tablo varsa geçerlidir:
+\[
+\sFmla{\True}{!B_1}[1], \dots, \sFmla{\True}{!B_n}[1],
+\sFmla{\False}{!A}[1].
+\]
+
+\iftag{prvBox}{\iftag{prvDiamond}{$\Box$ ve
+    }{$\Box$}}{}\iftag{prvDiamond}{$\Diamond$}{} biçimindeki modal işleçler için,
+$\sigma$ önekli !!a{formula}{}e uygulanan kuralın sonucunun öneki $\sigma.n$
+olur. Ancak hangi $n$ değerine izin verildiği, işaretin $\True$ ya da
+$\False$ olmasına bağlıdır.
+
+\iftag{prvBox}{$\TRule{\True}{\Box}$ kuralı,
+  $\sFmla{\True}{\Box !A}[\sigma]$ içeren bir dalı
+  $\sFmla{\True}{!A}[\sigma.n]$ ile genişletir.\iftag{prvDiamond}{ Benzer
+    biçimde, }{}}{}\iftag{prvDiamond}{$\TRule{\False}{\Diamond}$ kuralı,
+  $\sFmla{\False}{\Diamond !A}[\sigma]$ içeren bir dalı
+  $\sFmla{\False}{!A}[\sigma.n]$ ile genişletir.}{}
+\iftag{notprvBox,notprvDiamond}{Bu kural}{Bu kurallar}, yalnızca uygulandığı
+dalda \emph{zaten} bulunan bir $\sigma.n$ öneki için uygulanabilir. Böyle bir
+öneke dalda ``kullanılmış'' diyelim.
+
+\iftag{prvBox}{$\TRule{\False}{\Box}$ kuralı,
+  $\sFmla{\False}{\Box !A}[\sigma]$ içeren bir dalı
+  $\sFmla{\False}{!A}[\sigma.n]$ ile genişletir.\iftag{prvDiamond}{ Benzer
+    biçimde, }{}}{}\iftag{prvDiamond}{$\TRule{\True}{\Diamond}$ kuralı,
+  $\sFmla{\True}{\Diamond !A}[\sigma]$ içeren bir dalı
+  $\sFmla{\True}{!A}[\sigma.n]$ ile genişletir.}{}
+Ne var ki \iftag{notprvBox,notprvDiamond}{bu kural}{bu kurallar}, yalnızca
+uygulandığı dalda \emph{henüz} bulunmayan bir $\sigma.n$ öneki için
+uygulanabilir. Böyle öneklere dala göre ``yeni'' deriz.
+
+Kurallar \olref{tab:rules-K}'de verilmiştir.
+
+\begin{table}
+  \begin{center}
+    \def\arraystretch{3}\def\fCenter{}
+    \begin{tabular}{|c|c|}
+    \hline
+    \iftag{prvBox}{
+      \AxiomC{\sFmla{\True}{\Box !A}[\sigma]}
+      \RightLabel{\TRule{\True}{\Box}}
+      \UnaryInfC{\sFmla{\True}{!A}[\sigma.n]}
+      \DisplayProof
+      &
+      \AxiomC{\sFmla{\False}{\Box !A}[\sigma]}
+      \RightLabel{\TRule{\False}{\Box}}
+      \UnaryInfC{\sFmla{\False}{!A}[\sigma.n]}
+      \DisplayProof\\
+      $\sigma.n$ kullanılmıştır & $\sigma.n$ yenidir
+      \\[1ex]
+      \hline}{}
+    \iftag{prvDiamond}{
+      \AxiomC{\sFmla{\True}{\Diamond !A}[\sigma]}
+      \RightLabel{\TRule{\True}{\Diamond}}
+      \UnaryInfC{\sFmla{\True}{!A}[\sigma.n]}
+      \DisplayProof
+      &
+      \AxiomC{\sFmla{\False}{\Diamond !A}[\sigma]}
+      \RightLabel{\TRule{\False}{\Diamond}}
+      \UnaryInfC{\sFmla{\False}{!A}[\sigma.n]}
+      \DisplayProof\\
+      $\sigma.n$ yenidir & $\sigma.n$ kullanılmıştır
+      \\[1ex]
+      \hline}{}
+    \end{tabular}
+  \end{center}
+  \caption{\Ax{K} için modal kurallar.}
+  \ollabel{tab:rules-K}
+\end{table}
+
+\iftag{prvBox}{\TRule{\True}{\Box}}{\TRule{\False}{\Diamond}} için
+önekin kullanılmış olmasını şart koşmak gerekir; aksi hâlde aşağıdakini kapalı
+bir !!{tableau} sayardık:
+\iftag{notprvBox,notprvDiamond}{%
+  \iftag{prvBox}{%
+  \begin{oltableau}
+    [\pFmla{\True}{\Box \formula{A}}{1}, just = \TAss
+      [\pFmla{\False}{\lnot\Box\lnot \formula{A}}{1}, just = \TAss
+        [\pFmla{\True}{\formula{A}}{1.1}, just = {\TRule{\True}{\Box}[1]}
+          [\pFmla{\True}{\Box\lnot\formula{A}}{1},
+            just ={\TRule{\False}{\lnot}[2]}
+            [\pFmla{\True}{\lnot\formula{A}}{1.1},
+              just = {\TRule{\True}{\Box}[4]}
+              [\pFmla{\False}{\formula{A}}{1.1},
+                  just ={\TRule{\True}{\lnot}[5]}, close]
+            ]
+          ]
+        ]
+      ]
+    ]
+  \end{oltableau}
+  }{
+  \begin{oltableau}
+    [\pFmla{\True}{\lnot\Diamond\lnot \formula{A}}{1}, just = \TAss
+      [\pFmla{\False}{\Diamond\formula{A}}{1}, just = \TAss
+        [\pFmla{\False}{\formula{A}}{1.1}, just = {\TRule{\False}{\Diamond}[2]}
+          [\pFmla{\False}{\Diamond\lnot\formula{A}}{1},
+            just ={\TRule{\True}{\lnot}[1]}
+            [\pFmla{\False}{\lnot\formula{A}}{1.1},
+              just = {\TRule{\False}{\Diamond}[4]}
+              [\pFmla{\True}{\formula{A}}{1.1},
+                  just ={\TRule{\True}{\lnot}[5]}, close]
+            ]
+          ]
+        ]
+      ]
+    ]
+  \end{oltableau}
+}}{
+  \begin{oltableau}
+    [\pFmla{\True}{\Box \formula{A}}{1}, just = \TAss
+      [\pFmla{\False}{\Diamond \formula{A}}{1}, just = \TAss
+        [\pFmla{\True}{\formula{A}}{1.1}, just = {\TRule{\True}{\Box}[1]}
+          [\pFmla{\False}{\formula{A}}{1.1},
+            just = {\TRule{\False}{\Diamond}[2]}, close]
+        ]
+      ]
+    ]
+\end{oltableau}}
+
+Fakat $\Box \formula{A} \Entails/ \Diamond \formula{A}$; dolayısıyla ispat
+sistemimiz sağlam olmazdı. Benzer biçimde,
+$\Diamond \formula{A} \Entails/ \Box \formula{A}$; ancak
+\iftag{prvBox}{\TRule{\False}{\Box}}{\TRule{\True}{\Diamond}} için
+önekin yeni olması kısıtı bulunmasaydı aşağıdaki tablo kapalı olurdu:
+\iftag{notprvBox,notprvDiamond}{%
+  \iftag{prvBox}{%
+  \begin{oltableau}
+    [\pFmla{\True}{\lnot\Box\lnot \formula{A}}{1}, just = \TAss
+      [\pFmla{\False}{\Box \formula{A}}{1}, just = \TAss
+        [\pFmla{\False}{\formula{A}}{1.1}, just = {\TRule{\True}{\Box}[2]}
+          [\pFmla{\False}{\Box\lnot\formula{A}}{1},
+            just ={\TRule{\True}{\lnot}[1]}
+            [\pFmla{\False}{\lnot\formula{A}}{1.1},
+              just = {\TRule{\False}{\Box}[4]}
+              [\pFmla{\True}{\formula{A}}{1.1},
+                  just ={\TRule{\False}{\lnot}[5]}, close]
+            ]
+          ]
+        ]
+      ]
+    ]
+  \end{oltableau}
+  }{
+  \begin{oltableau}
+    [\pFmla{\True}{\Diamond \formula{A}}{1}, just = \TAss
+      [\pFmla{\False}{\lnot\Diamond\lnot\formula{A}}{1}, just = \TAss
+        [\pFmla{\True}{\formula{A}}{1.1}, just = {\TRule{\True}{\Diamond}[1]}
+          [\pFmla{\True}{\Diamond\lnot\formula{A}}{1},
+            just ={\TRule{\False}{\lnot}[2]}
+            [\pFmla{\True}{\lnot\formula{A}}{1.1},
+              just = {\TRule{\True}{\Diamond}[4]}
+              [\pFmla{\False}{\formula{A}}{1.1},
+                  just ={\TRule{\True}{\lnot}[5]}, close]
+            ]
+          ]
+        ]
+      ]
+    ]
+  \end{oltableau}
+}}{
+  \begin{oltableau}
+    [\pFmla{\True}{\Diamond \formula{A}}{1}, just = \TAss,name=one
+      [\pFmla{\False}{\Box \formula{A}}{1}, just = \TAss, name=two
+        [\pFmla{\True}{\formula{A}}{1.1}, just = {\TRule{\True}{\Diamond}[1]}
+          [\pFmla{\False}{\formula{A}}{1.1},
+            just = {\TRule{\False}{\Box}[2]}, close]
+        ]
+      ]
+    ]
+  \end{oltableau}}
+
+\end{document}

@@ -1,0 +1,92 @@
+% Part: computability
+% Chapter: computability-theory
+% Section: normal-form
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{cmp}{thy}{nfm}
+\olsection{Normal Biçim Teoremi}
+
+Hesaplanabilir fonksiyonların tanımlarını betimleyebildiğimizi ve bu
+fonksiyonlardan birinin belirli bir girdideki hesabının tam kaydına ilişkin
+varsayılan bir betimin doğru olup olmadığını sınayabildiğimizi düşünelim.
+O zaman hesaplama modelinden bağımsız olarak, hesaplanabilir herhangi bir
+$f$ fonksiyonunun herhangi bir $x$ girdisindeki değerini şu yolla
+belirleyebilmemiz beklenir:
+\begin{enumerate}
+\item Hesap kayıtlarının bütün olası betimleri arasında arama yapmak.
+\item Belirli bir kaydın $f(x)$ hesabının kaydı olup olmadığını sınamak.
+\item Doğru kayıt bulunmuşsa $f(x)$ değerini bu kayıttan çıkarmak.
+\end{enumerate}
+Bunun gerçekten doğru olması Kleene normal biçim teoreminin içeriğidir.
+
+\begin{thm}[Kleene Normal Biçim Teoremi]
+\ollabel{thm:normal-form}
+Şu özelliği taşıyan ilkel özyinelemeli bir $T(e,x,s)$ bağıntısı ve ilkel
+özyinelemeli bir $U(s)$ fonksiyonu vardır: $f$ herhangi bir kısmi
+hesaplanabilir fonksiyonsa bazı $e$ için her $x$'te
+\[
+  f(x)\simeq U(\umin{s}{T(e,x,s)})
+\]
+olur.
+\end{thm}
+
+\begin{proof}[İspat Taslağı]
+Her hesaplama modeli için hesaplanabilir $f$ fonksiyonunun bir betimi titiz
+biçimde tanımlanıp böyle bir betim $e$ doğal sayısıyla kodlanabilir. Ayrıca
+indisi $e$ olan fonksiyonun $x$ girdisindeki hesap sürecini kaydeden bir
+``hesap dizisi'' kavramı da titiz biçimde tanımlanabilir. Böyle bir hesap
+dizisi de $s$ sayısıyla kodlanabilir. Kodlama şu iki nesne hesaplanabilir
+olacak biçimde yapılabilir:
+\begin{enumerate}
+\item Bir $s$ sayısı indisi $e$ olan fonksiyonun $x$ girdisindeki hesap
+  dizisini kodladığında ve ancak o zaman geçerli olan $T(e,x,s)$ bağıntısı.
+\item Kodu $s$ olan hesap dizisini bu hesabın son sonucuna götüren $U(s)$
+  fonksiyonu.
+\end{enumerate}
+Aslında $T$ bağıntısı ile $U$ fonksiyonu ilkel özyinelemelidir.
+\end{proof}
+
+\begin{explain}
+Normal Biçim Teoremi'nin titiz bir ispatını vermek için bir hesaplama modeli
+saptamamız; hesaplanabilir fonksiyon betimlerinin ve hesap dizilerinin
+kodlanmasını ayrıntılı biçimde gerçekleştirmemiz; ardından $T$ bağıntısı ile
+$U$ fonksiyonunun ilkel özyinelemeli olduğunu doğrulamamız gerekirdi. Çoğu
+uygulama için $T$ ile $U$'nun hesaplanabilir ve $U$'nun tümel olması yeter.
+
+Normal biçim teoreminin ispatı belki de en iyi şu sloganla anımsanır:
+$\umin{s}{T(e,x,s)}$, indisi $e$ olan fonksiyonun $x$ girdisindeki hesap
+dizisini arar; $U$ ise böyle bir dizi bulunursa çıktısını döndürür.
+\end{explain}
+
+Hesaplama modeli kısmi özyinelemeli fonksiyonlarsa, Kleene'nin başlangıçta
+kullandığı model de buydu, teorem herhangi bir fonksiyonun tanımı için
+sınırsız aramanın yalnızca bir kez, yani tek bir
+$\umin{y}{f(\vec x,y)}$ işleciyle kullanılmasının yeterli olduğunu gösterir.
+Bu anlamda her kısmi özyinelemeli fonksiyonun bir normal biçimi vardır.
+
+$T$ ile $U$, $\cfind{0},\cfind{1},\cfind{2},\dots$ numaralandırmasını
+tanımlamak için kullanılabilir. Bundan sonra uygun bir $T$ ve $U$ seçimini
+sabitlediğimizi varsayacak ve
+\[
+  \cfind{e}(x)\simeq U(\umin{s}{T(e,x,s)})
+\]
+denklemini $\cfind{e}$ fonksiyonunun \emph{tanımı} sayacağız.
+
+Bir başka yararlı olgu şudur:
+
+\begin{thm}
+Her kısmi hesaplanabilir fonksiyonun sonsuz sayıda indisi vardır.
+\end{thm}
+
+Bu da sezgisel olarak açıktır. Hesaplanabilir bir fonksiyonun herhangi bir
+betimi verildiğinde, aynı fonksiyonu, yani aynı girdi-çıktı çiftlerini
+hesaplayan fakat önce hesaba etkisi olmayan bir işlem yapan, örneğin
+$0=0$ mı diye sınayan ya da $5$'e kadar sayan farklı bir betim oluşturulur.
+Değiştirilmiş betimin indisi her zaman ilk indisten farklıdır. İkisi aynı
+fonksiyonun yalnızca biraz farklı hesaplanmış indisleridir.
+
+\end{document}
+

@@ -1,0 +1,126 @@
+% part: intuitionistic-logic
+% chapter: propositions-as-types
+% section: proof-terms
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{int}{pty}{ter}
+
+\olsection{İspat Terimleri}
+
+\Log{N1i}'de varsayımları kapatma etiketleri olarak değişkenlerle (örneğin
+$!A^x$) etiketleriz. \Log{N2i}'deki her $\Gamma \Sequent !A$ sekantının
+soldaki $\Gamma$ bağlamında değişken--!!{formula} çiftlerinden oluşan bir
+liste vardır. Böylece \Log{N2i}'de bir !!a{proof} içindeki her sekant,
+yalnız !!{proof}{}ın o ana kadar neyi !!{prove}{}dığı (yani $!A$) bilgisini
+değil, her noktada hangi varsayımların açık olduğu (yani $\Gamma$) bilgisini
+de taşır. Her sekanta $!A$'nın \emph{nasıl} !!{prove}{}dığı bilgisini de
+ekleseydik ne olurdu? Bu amaçla sekantları $\Gamma \Sequent N : !A$
+biçiminde olan \emph{terim etiketli} bir \Log{tN2i} sistemi tanımlayabiliriz.
+$\Gamma$ ile $!A$ daha önceki gibidir: $\Gamma$, $x: !B$ biçimindeki
+çiftlerin bir kümesidir; $!A$ ise bu sekantla biten alt-!!{proof}{}ın
+$\Gamma$'daki varsayımlardan çıktığını gösterdiği !!{formula}{}dür. $N$,
+sekantla biten !!{proof}{}ı kodlayan belirli bir terim olacaktır.
+
+Her sekanta atadığımız terimler $x$, $y$, \dots{} değişkenlerinden, o ana
+kadar yapılan çıkarımları kodlayan fonksiyon simgeleriyle kurulur. Her
+çıkarım kuralı için ayrı bir fonksiyon simgesine gereksinim vardır.
+!!{introduction} kurallarına karşılık gelen fonksiyon simgelerine
+``kurucular'', !!{elimination} kurallarına karşılık gelenlere
+``çözücüler'' denir. Her fonksiyon simgesi, karşılık gelen kuralın öncül
+sayısı kadar argüman alır. Örneğin \Intro{\land} ile \Elim{\land}[1] için
+fonksiyon simgeleri $c^\land$ (iki konumlu) ile $d^\land_1$ (tek konumlu)
+olabilir. O zaman \Log{tN2i}'de bu kurallar şöyle olur:
+\[
+\Axiom$\Gamma_1 \fCenter N: !A$
+\Axiom$\Gamma_2 \fCenter M: !B$
+\RightLabel{\Intro{\land}}
+\BinaryInf$\Gamma_1, \Gamma_2 \fCenter c^\land(N, M) : !A \land !B $
+\DisplayProof
+\quad
+\Axiom$\Gamma \fCenter N: !A \land !B$
+\RightLabel{\Elim{\land}[1]}
+\UnaryInf$\Gamma \fCenter d^\land_1(N) : !A$
+\DisplayProof
+\]
+Bir çıkarım kuralı bir varsayımı kapatıyorsa, yani kuralın bir öncülünde
+etiketli bir !!{formula}~$x:!A$ bulunuyor ama bu formül sonucun bağlamında
+bulunmuyorsa bunu ispat teriminde de belirtmeliyiz. Böyle kurallarla
+ilişkili fonksiyon simgeleri karşılık gelen değişkenleri \emph{bağlar}.
+Örneğin \Intro{\lif} kuralı $x:!A, \Gamma \Sequent !B$ öncülünden $\Gamma
+\Sequent !A \lif !B$'ye geçer. Kurucu $c^{\lif}$ tek argüman alır; ancak
+$x$ değişkeninin bağlandığını da göstermelidir. Bu, $x$ etiketli varsayımın
+kapatıldığını ispat teriminin ifade etme biçimidir. Örneğin öncülün ispat
+terimi~$N$ ise sonucun ispat terimini $c^{\lif}([x]N)$ ve kuralı şöyle
+yazabilirdik:
+\[
+\Axiom$x:!A, \Gamma \fCenter N: !B$
+\RightLabel{\Intro{\lif}}
+\UnaryInf$\Gamma \fCenter c^{\lif}([x]N) : !A \lif !B$
+\DisplayProof
+\]
+
+Bir !!a{proof}{}ı bütünüyle yeniden kurabilmek için bazı ek bilgilere
+gereksinim vardır. Bir kuralın öncül !!{formula}s{}i sonuç !!{formula}{}ünün ne
+olduğunu bütünüyle belirlemiyorsa bu bilgiyi terime eklemeliyiz.
+\Intro{\lif}'te durum böyledir; bu nedenle $c^{\lif}([x:!A]N)$ yazacağız.
+\Intro{\lor} ve~\FalseInt için de durum böyledir; bu yüzden söz konusu
+bilgiyi taşıyan fonksiyon simgeleri kullanırız, örneğin:
+\[
+\Axiom$\Gamma \fCenter N:!A$
+\RightLabel{\Intro{\lor}[1]}
+\UnaryInf$\Gamma \fCenter c^{\lor{!B}}_1(N):!A \lor !B$
+\DisplayProof
+\quad
+\Axiom$\Gamma \fCenter N:\lfalse$
+\RightLabel{\FalseInt}
+\UnaryInf$\Gamma \fCenter d^\lfalse_{!A}(N):!A$
+\DisplayProof
+\]
+
+Bu düşüncelerle her sekantı $\Gamma \Sequent N : !A$ biçiminde,~$N$'yi
+de bir \emph{ispat terimi} olarak içeren sekant biçimli bir doğal tümdengelim
+sistemi kurulabilir.
+
+Bu tür ispat terimleriyle \emph{tipli lambda kalkülüsü} denen sistemdeki
+terimler arasında yakın bir bağlantı olduğu ortaya çıkar. Bu bağlantıya
+saygı göstermek için yukarıdaki genel kurucu ve çözücü simgeleri yerine
+lambda kalkülüsü literatüründeki simgeleri kullanacağız. Örneğin
+$c^{\lif}([x:!A]N)$ yerine $\lambd[\typeof{x}{!A}][N]$,
+$d^{\lif}(N,M)$ yerine $(NM)$, $c^\land(N,M)$ yerine $\pair{N}{M}$ ve
+$d^\land_i(N)$ yerine~$\proj{i}{N}$ yazacağız.
+
+\begin{defn}
+  İspat terimleri aşağıdaki kurallarla tümevarımsal olarak üretilir:
+  \begin{enumerate}
+  \item Her $x$ değişkeni bir ispat terimidir (Aksiyomlar).
+  \item $x$ bir değişken, $!A$ bir !!a{formula} ve $N$ bir ispat terimiyse
+    $\lambd[\typeof{x}{!A}][N]$ de bir ispat terimidir~(\Intro\lif).
+  \item $N$ ile $M$ ispat terimleriyse $(NM)$ de bir ispat
+    terimidir~(\Elim\lif).
+  \item $N$ ile $M$ ispat terimleriyse $\pair{N}{M}$ bir ispat
+    terimidir~(\Intro\land).
+  \item $N$ bir ispat terimiyse $i$, $1$ ya da~$2$ olmak üzere
+    $\proj{i}{N}$ de bir ispat terimidir~(\Elim\land[i]).
+  \item $N$ bir ispat terimi ve $!A$ bir formülse $i$, $1$ ya da~$2$
+    olmak üzere $\inj[!A]{i}{N}$ bir ispat terimidir~(\Intro\lor[i]).
+  \item $M$, $N_1$, $N_2$ ispat terimleri ve $x_1$, $x_2$ değişkenlerse
+    $\dcase{M}{x_1}{N_1}{x_2}{N_2}$ bir ispat terimidir~(\Elim\lor).
+  \item $N$ bir ispat terimi ve $!A$ bir !!a{formula} ise
+    $\abort{!A}{N}$ bir ispat terimidir~(\FalseInt).
+  \end{enumerate}
+\end{defn}
+
+Her ispat terimi bir !!a{proof}{}ın ispat terimi değildir. Örneğin
+$\pair{N}{M}$ terimi, \Intro{\land} çıkarımıyla biten bir ispatı kodlar;
+bu yüzden son-!!{formula}{}ü, $!A \land !B$ biçimindedir. Bu,
+bir~\Elim{\lif} kuralının büyük öncülü olamaz; dolayısıyla
+$(\pair{N}{M}P)$ doğru bir ispatın ispat terimi olamaz. Yalnız
+\Log{tN2ip}'nin kurallarına uyan ispat terimleri \emph{doğru} ispat
+terimleridir. Bu kurallar \olref{tab:tN2ip} içinde verilmiştir.
+
+\subfile{rules-tN2}
+
+\end{document}

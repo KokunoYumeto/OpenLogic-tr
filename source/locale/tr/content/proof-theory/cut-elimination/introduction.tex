@@ -1,0 +1,104 @@
+% Part: proof-theory
+% Chapter: cut-elimination
+% Section: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{pt}{cut}{int}
+
+\olsection{Giriş}
+
+\Cut{} kuralı şu kuraldır:
+\[
+\Axiom$\Gamma \fCenter \Delta, !A$
+\Axiom$!A, \Pi \fCenter \Lambda$
+\RightLabel{\Cut}
+\BinaryInf$\Gamma, \Pi \fCenter \Delta, \Lambda$
+\DisplayProof
+\]
+(!!{formula}~$!A$'ya \emph{kesme formülü} denir.)
+
+\Cut{}, Gentzen'in özgün sekant hesabı~$\Log{LK}$'ye katılmıştı. Gentzen'in
+\emph{Hauptsatz}ı (``ana teorem''), $\Log{LK}$ içinde !!{provable} olan her
+sekantın \Cut{} kuralı kullanılmadan da !!{provable} olduğunu, yani
+\Cut{}'ın $\Log{LK}$ ispatlarından ``giderilebildiğini'' söyler. $\Log{G1c}$
+ile $\Log{G3c}$ sistemlerimiz \Cut{} içermez; fakat aynı soru onlar için de
+sorulabilir: \Cut{}, \Cut{} ile birlikte $\Log{G1c}$'nin (ya da
+$\Log{G3c}$'nin) öteki kurallarını kullanan !!{proof}s{}dan giderilebilir mi?
+Yerleşik terminolojimizde bu, denk biçimde şöyle sorulabilir: \Cut{},
+$\Log{G1c}$ (ya da $\Log{G3c}$) için kabul edilebilir bir kural mıdır?
+
+Kesme-giderimi teoremi belki de ispat kuramının en önemli ve en ünlü
+sonucudur. Öncelikle $\Log{G1c}$ ile $\Log{G3c}$'nin, ilk bakışta açıkça
+gerekli olduğunu düşünebileceğiniz bir kurala ihtiyaç duymadığını gösterir.
+Gerçek ispatları biçimselleştirmeye çalıştığınızda, önermelerin kullanımını
+ele almanın bir yoluna ihtiyaç duyduğunuzu fark edersiniz. Matematikçiler
+sonuçlar ispatlayıp başka sonuçların ispatlarında bunlara başvurmayı sever.
+Dolayısıyla önce $L$ sonucunun (önermenin) bir ispatını $\Sequent L$
+sekantının !!{proof}{}ı olarak biçimselleştirebilirsiniz. Ardından ispatında
+$L$'yi kullanan ikinci $R$ sonucunun ispatını, $L \Sequent R$ sekantının
+!!{proof}{}ı olarak biçimselleştirirsiniz. Yalnızca $\Sequent R$ sekantının
+!!a{proof}{}ının, yani $R$'nin bir ispatının bulunduğunu nasıl bilirsiniz? İki
+!!{proof}s{}ı birleştirmenin bir yoluna ihtiyaç vardır; \Cut{} kuralı bunu
+yapmanızı sağlar.
+
+$\Log{G1c}$ ile $\Log{G3c}$'nin tam olduğunu ve dolayısıyla ispatlanmasını
+bekleyebileceğiniz bütün sekantları---bütün geçerli sekantları---ispatladığını
+belirttik. Bu doğrudan ispatlanabilir. Fakat Gentzen yazarken yalnızca
+aksiyomatik türetim sistemlerinin tam olduğu biliniyordu. Gentzen,
+$\Log{LK}$'nin tam olduğunu göstermek için aksiyomatik sistemdeki
+!!{derivation}s{}i $\Log{LK}$-!!{proof}s{}ına çeviren bir aktarım verdi. Bu
+aktarım \Cut{}'ı esaslı biçimde kullanıyordu. Kesme-giderimi yalnızca klasik
+mantık için önemli bir sonuç değildir: Başka pek çok mantığın sekant hesabı
+vardır. Bazı mantıklarda sekant hesabının doğrudan tamlık ispatı zor ya da
+olanaksızdır; dolayısıyla başka sistemlerden yapılan (\Cut{} kullanan)
+aktarımlar tamlığı göstermenin tek yoludur. Bu durumda \Cut{}'ın gereksiz ve
+\Cut{} içermeyen sistemin tam olduğunu göstermek için kesme-giderimini ispat
+kuramsal yoldan ispatlamak gerekir.
+
+Kesme-giderimi, bağımsız olarak ilginç başka sonuçlar elde etmek için de
+uygulanabildiğinden önemlidir. Ele alacağımız iki örnek Craig aradeğerleme
+önermesi ile Herbrand teoremidir.
+
+Kesme-giderimini ispatlamak için kullanılan fikirler genellikle \Cut{}
+kullanan !!a{proof}{}ın, onu kullanmayan bir ispata nasıl dönüştürüleceğini
+göstermeyi içerir. Bu dönüştürmeler genellikle ``yereldir'': Bir !!a{proof}{}ın
+bir parçasını (çoğu kez \Cut{} çıkarımıyla biten bir alt-!!{proof}{}ı) alıp
+yerine aynı sekantın, \Cut{} çıkarımının çıkarıldığı ya da başka çıkarımlarla
+değiştirildiği bir alt-!!{proof}{}ını koyarız. Böyle gerekçeler \Cut{} içeren
+!!{proof}s{}ı, içermeyenlere dönüştüren adım adım algoritmalar verir. Bu,
+kesme-giderimi yordamları uygulamalarda kullanıldığında daha fazla bilgi
+sağlar. Örneğin aradeğerleme önermesinin ``$!A \lif !B$ geçerliyse bir
+aradeğerleme vardır'' biçiminde model kuramsal ispatları bulunur (şimdilik
+aradeğerlemenin ne olduğunu boş verin). Kesme-giderimini kullanan ispat
+kuramsal bir gerekçe, $!A \lif !B$'nin !!a{proof}{}ını girdi alıp bir
+aradeğerleme döndüren algoritma verir. Model kuramsal gerekçenin tersine,
+ispat kuramsal gerekçe \emph{kurucudur}.
+
+Kesme-giderimi teoremini ispatlamanın iki yaygın yolu vardır. Biri
+(Gentzen'e uzanır), bir ispattaki en üst kesmelerin çıkarılabildiğini gösterir
+ve hiç kesme kalmayana dek en üst kesmeleri çıkarır. Öteki (Schütte ve Tait'e
+uzanır), !!a{proof} içindeki en karmaşık kesmelere odaklanır ve başka hiçbir
+kesmenin daha yüksek derinlikte kesme !!{formula}{}ü bulunmaması anlamında
+maksimal olan kesmeleri art arda çıkarır. Her iki yöntemin de üstün ve zayıf
+yanları vardır. Bazı sistemlerde bir yaklaşım işlerken ötekini uygulamak zor,
+hatta olanaksızdır. Bu nedenle iki yaklaşımı da açıklıyoruz. Kesme-giderimini
+$\Log{G3c}$ için ispatlayacağız. Gerçekte \Cut{}'ın değil, \emph{bağlam
+paylaşan kesme}~\CutCS{} kuralının giderilebildiğini göstereceğiz:
+\[
+\Axiom$\Gamma \fCenter \Delta, !A$
+\Axiom$!A, \Gamma \fCenter \Delta$
+\RightLabel{\Cut}
+\BinaryInf$\Gamma \fCenter \Delta$
+\DisplayProof
+\]
+Bir sekant hesabı zayıflatma ve büzülmeye (ya $\Log{G1c}$'de olduğu gibi
+gerçek kurallar ya da $\Log{G3c}$'de olduğu gibi kabul edilebilir kurallar
+olarak) izin veriyorsa \Cut{}, \CutCS{}'yi; \CutCS{} de \Cut{}'ı
+taklit edebilir. İlk kesme-giderimi stratejisi \CutCS{} için daha kolay
+açıklandığından ve ikinci strateji yalnızca \CutCS{} için işlediğinden
+\Cut{} yerine \CutCS{}'yi seçiyoruz.
+
+\end{document}

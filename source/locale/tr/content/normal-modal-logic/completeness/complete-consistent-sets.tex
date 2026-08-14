@@ -1,0 +1,128 @@
+% Part: normal-modal-logic
+% Chapter: completeness
+% Section: complete-consistent-sets
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{nml}{com}{ccs}
+
+\olsection{Tam $\Sigma$-Tutarlı Kümeler}
+
+$\Sigma$ bir modal !!{formula}s kümesi olsun; bunları bir normal modal
+mantığın aksiyomları ya da tanımlayıcı ilkeleri olarak düşünün. Bir $\Gamma$
+kümesi, ancak ve ancak $\Gamma\Proves/[\Sigma]\lfalse$ ise
+$\Sigma$-tutarlıdır; yani her $!A_i\in\Gamma$ olmak üzere
+$!A_1\lif(!A_2\lif\cdots(!A_n\lif\lfalse)\dots)$ formülünün $\Sigma$'dan
+bir !!{derivation}{}i yoksa tutarlıdır. Her dünyanın özel türden bir
+$\Sigma$-tutarlı küme olarak alındığı bir ``kanonik'' model kuracağız. Bu
+kümeler yalnızca $\Sigma$-tutarlı değil, her modal !!{formula}{}ün doğruluk
+değerini belirleyecek anlamda azami tutarlıdır: her $!A$ için ya
+$!A\in\Gamma$ ya da $\lnot !A\in\Gamma$.
+
+\begin{defn}
+  Bir $\Gamma$ kümesi, ancak ve ancak $\Sigma$-tutarlıysa ve her $!A$ için
+  ya $!A\in\Gamma$ ya da $\lnot !A\in\Gamma$ ise \emph{tam
+  $\Sigma$-tutarlıdır}.
+\end{defn}
+
+Tam $\Sigma$-tutarlı $\Gamma$ kümelerinin bazı yararlı özellikleri vardır.
+Öncelikle türetim altında kapalıdırlar: $\Gamma\Proves[\Sigma]!A$ ise
+$!A\in\Gamma$. Özellikle bu, $!A\in\Sigma$ olan her !!a{formula}{}ün her
+örneğinin de $\Gamma$ içinde olması demektir. Ayrıca $\Gamma$'ya üyelik,
+önerme bağlaçlarının doğruluk koşullarını yansıtır. Bu, ``kanonik modeli''
+tanımladığımızda önemli olacaktır.
+
+\begin{prop}\ollabel{prop:ccs-properties}
+  $\Gamma$ tam $\Sigma$-tutarlı olsun. O zaman:
+  \begin{enumerate}
+  \item \ollabel{prop:ccs-closed}%
+    $\Gamma$, $\Sigma$ içinde türetim altında kapalıdır.
+  \item \ollabel{prop:ccs-sigma}%
+    $\Sigma\subseteq\Gamma$.
+  \tagitem{prvFalse}{\ollabel{prop:ccs-lfalse}%
+    $\lfalse\notin\Gamma$}{}
+  \tagitem{prvTrue}{\ollabel{prop:ccs-ltrue}%
+    $\ltrue\in\Gamma$}{}
+  \item \ollabel{prop:ccs-lnot}%
+    $\lnot!A\in\Gamma$ ancak ve ancak $!A\notin\Gamma$.
+  \tagitem{prvAnd}{\ollabel{prop:ccs-land}%
+    $!A\land !B\in\Gamma$ ancak ve ancak $!A\in\Gamma$ ve $!B\in\Gamma$}{}
+  \tagitem{prvOr}{\ollabel{prop:ccs-lor}%
+    $!A\lor !B\in\Gamma$ ancak ve ancak $!A\in\Gamma$ ya da $!B\in\Gamma$}{}
+  \tagitem{prvIf}{\ollabel{prop:ccs-lif}%
+    $!A\lif !B\in\Gamma$ ancak ve ancak $!A\notin\Gamma$ ya da $!B\in\Gamma$}{}
+  \tagitem{prvIff}{\ollabel{prop:ccs-liff}%
+    $!A\liff !B\in\Gamma$ ancak ve ancak ya $!A\in\Gamma$ ve
+    $!B\in\Gamma$ ya da $!A\notin\Gamma$ ve $!B\notin\Gamma$}{}
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+  \item $\Gamma\Proves[\Sigma]!A$ fakat $!A\notin\Gamma$ olsun. $\Gamma$
+    tam $\Sigma$-tutarlı olduğundan $\lnot!A\in\Gamma$ olur. Oysa
+    $!A,\lnot !A\Proves[\Sigma]\lfalse$ olduğundan bu $\Gamma$'yı tutarsız
+    yapardı.
+
+  \item $!A\in\Sigma$ ise $\Gamma\Proves[\Sigma]!A$ ve türetim altında
+    kapalılık, yani \olref{prop:ccs-closed} durumu gereğince $!A\in\Gamma$.
+
+  \tagitem{prvFalse}{$\lfalse\in\Gamma$ olsaydı
+    $\Gamma\Proves[\Sigma]\lfalse$ olur ve $\Gamma$
+    $\Sigma$-tutarsız olurdu.}{}
+
+  \tagitem{prvTrue}{$\Gamma\Proves[\Sigma]\ltrue$ olduğundan türetim
+    altında kapalılık, yani \olref{prop:ccs-closed} durumu gereğince
+    $\ltrue\in\Gamma$.}{}
+
+\item $\lnot!A\in\Gamma$ ise tutarlılık gereğince $!A\notin\Gamma$;
+    tersine $!A\notin\Gamma$ ise $\Gamma$ tam $\Sigma$-tutarlı olduğundan
+    $\lnot!A\in\Gamma$.
+
+  \tagitem{prvAnd}{\iftag{probAnd}{Alıştırma.}{$!A\land !B\in\Gamma$
+      olsun. $(!A\land !B)\lif !A$ bir totoloji örneği olduğundan türetim
+      altında kapalılık, yani \olref{prop:ccs-closed} durumu gereğince
+      $!A\in\Gamma$. $!B\in\Gamma$ için de benzer biçimde. Öte yandan hem
+      $!A\in\Gamma$ hem $!B\in\Gamma$ olsun. Bu durumda
+      $!A\lif(!B\lif(!A\land !B))$ bir totoloji örneği olduğundan türetim
+      altında kapalılık $(!A\land !B)\in\Gamma$ olmasını gerektirir.}}{}
+
+  \tagitem{prvOr}{\iftag{probOr}{Alıştırma.}{$!A\lor !B\in\Gamma$,
+      $!A\notin\Gamma$ ve $!B\notin\Gamma$ olsun. $\Gamma$ tam
+      $\Sigma$-tutarlı olduğundan $\lnot!A\in\Gamma$ ve
+      $\lnot!B\in\Gamma$. $\lnot!A\lif(\lnot!B\lif\lnot(!A\lor !B))$
+      bir totoloji örneği olduğundan $\lnot(!A\lor !B)\in\Gamma$ olurdu.
+      Bu, $\Gamma$'nın $\Sigma$-tutarsız olduğu anlamına gelir; çelişki.}}{}
+
+  \tagitem{prvIf}{\iftag{probIf}{Alıştırma.}{$!A\lif !B\in\Gamma$ ve
+      $!A\in\Gamma$ olsun; o zaman $\Gamma\Proves[\Sigma]!B$ ve türetim
+      altında kapalılık gereğince $!B\in\Gamma$. Tersine
+      $!A\lif !B\notin\Gamma$ ise $\Gamma$ tam $\Sigma$-tutarlı olduğundan
+      $\lnot(!A\lif !B)\in\Gamma$. $\lnot(!A\lif !B)\lif !A$ bir totoloji
+      örneği olduğundan $!A\in\Gamma$; $\lnot(!A\lif !B)\lif\lnot !B$ bir
+      totoloji örneği olduğundan $\lnot!B\in\Gamma$. Tutarlılık gereğince
+      $!B\notin\Gamma$.}}{}
+
+  \tagitem{prvIff}{\iftag{probIff}{Alıştırma.}{$!A\liff !B\in\Gamma$
+      olsun. $!A\in\Gamma$ ise $(!A\liff !B)\lif(!A\lif !B)$ bir totoloji
+      örneği olduğundan $!B\in\Gamma$. $!B\in\Gamma$ ise benzer biçimde
+      $!A\in\Gamma$. Böylece ya ikisi de $\Gamma$ içindedir ya da hiçbiri
+      değildir.
+
+      Tersine $!A\liff !B\notin\Gamma$ olsun. $\Gamma$ tam
+      $\Sigma$-tutarlı olduğundan $\lnot(!A\liff !B)\in\Gamma$.
+      $\lnot(!A\liff !B)\lif(!A\lif\lnot !B)$ bir totoloji örneği
+      olduğundan, $!A\in\Gamma$ ise $\lnot!B\in\Gamma$ ve tutarlılık
+      gereğince $!B\notin\Gamma$. Benzer biçimde $!B\in\Gamma$ ise
+      $!A\notin\Gamma$. Dolayısıyla ne $!A\in\Gamma$ ve $!B\in\Gamma$ ne
+      de $!A\notin\Gamma$ ve $!B\notin\Gamma$ olur.}}{}
+  \end{enumerate}
+\end{proof}
+
+\begin{probtag}{probAnd,probOr,probIf,probIff}
+  \olref[nml][com][ccs]{prop:ccs-properties} önermesinin ispatını tamamlayın.
+\end{probtag}
+
+\end{document}

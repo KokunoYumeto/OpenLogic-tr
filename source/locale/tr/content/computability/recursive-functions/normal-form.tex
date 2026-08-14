@@ -1,0 +1,45 @@
+% Part: computability
+% Chapter: recursive-functions
+% Section: normal-form
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{cmp}{rec}{nft}
+\olsection{Normal Biçim Teoremi}
+
+\begin{thm}[Kleene Normal Biçim Teoremi]
+\ollabel{thm:kleene-nf}
+Şu özelliğe sahip ilkel özyinelemeli bir $T(e,x,s)$ bağıntısı ve ilkel
+özyinelemeli bir $U(s)$ fonksiyonu vardır: $f$ herhangi bir kısmi
+özyinelemeli fonksiyonsa bazı $e$ için, her $x$'te
+\[
+  f(x)\simeq U(\umin{s}{T(e,x,s)})
+\]
+olur.
+\end{thm}
+
+\begin{explain}
+Normal biçim teoreminin ispatı ayrıntılıdır, fakat temel düşünce basittir.
+Her kısmi özyinelemeli fonksiyonun sezgisel olarak programını ya da tanımını
+kodlayan bir sayı olan \emph{indisi}~$e$ vardır. $f(x)\fdefined$ ise hesap
+sistematik olarak kaydedilip bazı $s$ sayısıyla kodlanabilir; $s$'nin
+$f$ fonksiyonunun $x$ girdisindeki hesabını kodladığı olgusu da yalnızca
+$x$ ile $e$ tanımı kullanılarak ilkel özyinelemeli biçimde denetlenebilir.
+Dolayısıyla ``indisi $e$ olan fonksiyonun $x$ girdisi için bir hesabı vardır
+ve $s$ bu hesabı kodlar'' anlamındaki $T$ bağıntısı ilkel özyinelemelidir.
+Hesabın tam kaydı $s$ verildiğinde $s$'nin ``sonucu'', $f(x)$ değeridir ve bu
+değer de $s$'den ilkel özyinelemeli biçimde elde edilebilir.
+
+Normal biçim teoremi, herhangi bir kısmi özyinelemeli fonksiyonun tanımı için
+tek bir sınırsız aramanın yeterli olduğunu gösterir. Özünde, $e$ indisli
+fonksiyonun $x$ girdisindeki hesabını kodlayan bir sayı buluncaya kadar bütün
+sayılar arasında arama yapabiliriz. $e$ sayılarını kısmi özyinelemeli
+fonksiyonların ``adları'' olarak kullanabilir ve teoremdeki denklemle
+tanımlanan $f$ fonksiyonuna $\cfind{e}$ diyebiliriz. Her kısmi özyinelemeli
+fonksiyonun birden fazla indisi olabileceğine, hatta her kısmi özyinelemeli
+fonksiyonun sonsuz sayıda indisi bulunduğuna dikkat edin.
+\end{explain}
+\end{document}
+

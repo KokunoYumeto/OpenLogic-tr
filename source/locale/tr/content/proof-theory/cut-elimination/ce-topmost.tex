@@ -1,0 +1,667 @@
+% Part: proof-theory
+% Chapter: cut-elimination
+% Section: ce-topmost
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{pt}{cut}{top}
+
+\olsection{En Üst Kesmelerin Kaldırılması}
+
+\begin{defn}
+Şu !!a{proof}~$\pi$'yi ele alın; bir \CutCS{} kuralıyla biter:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$\Gamma \fCenter \Delta, !A$
+\AxiomC{}
+\RightLabel{$\pi_2$}
+\Deduce$!A, \Gamma \fCenter \Delta$
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta$
+\DisplayProof
+\]
+ve bunun başka hiçbir \CutCS{} çıkarımı içermediğini varsayın.
+$\pi$'nin \emph{kesme yüksekliği}, $\cheight{\pi} =
+\pheight{\pi_1} + \pheight{\pi_2}$'dir. $\pi$'nin \emph{kesme
+derecesi}, $\cutrank{\pi} = \depth{!A}$'dır.
+\end{defn}
+
+\begin{lem}\ollabel{lem:cut-adm-G3c}
+\CutCS{} kuralı \Log{G3c}'de kabul edilebilirdir. Başka bir deyişle,
+$\pi$ tek bir~\CutCS{} ile biten ve bunun dışında yalnızca
+$\Log{G3c}$ kurallarını kullanan !!a{proof} ise aynı son-sekantın \Log{G3c}'de
+!!a{proof}{}ı~$\pi'$ vardır.
+\end{lem}
+
+\begin{proof}
+İspat, kesmenin !!{height}~değeri ile kesme derecesi üzerinde çift tümevarımladır.
+!!{proof}~$\pi$ şöyle biter:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$\Gamma \fCenter \Delta, !A$
+\AxiomC{}
+\RightLabel{$\pi_2$}
+\Deduce$!A, \Gamma \fCenter \Delta$
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta$
+\DisplayProof
+\]
+
+Tümevarım tabanı: $\cheight{\pi} = 0$ ve $\cutrank{\pi} = 0$.
+$\cheight{\pi} = \pheight{\pi_1} + \pheight{\pi_2} = 0$ olduğundan
+$\Gamma \Sequent \Delta, !A$ ile $!A, \Gamma \Sequent \Delta$'nın
+ikisi de aksiyomdur. İki durum vardır: (a)~$!A$ bunlardan birinde
+asıl değildir ya da (b)~$!A$ ikisinde de asıldır. Aşağıda her iki
+durumda da $\Gamma \Sequent \Delta$'nın bir aksiyom olmak zorunda
+olduğunu göstereceğiz (bunun için tümevarım varsayımına ihtiyacımız
+yoktur).
+
+Şimdi $\pi_1$ ile $\pi_2$'nin aksiyom olup olmamasına ya da bir
+çıkarımla bitip bitmemesine ve $!A$'nın bu çıkarımda asıl olup
+olmamasına göre bir dizi olası durumu ayırt edeceğiz. A ve~B
+durumları tümevarım tabanını kapsar. Tümevarım adımında
+$\cheight{\pi} > 0$ ya da $\cutrank{\pi} > 0$ (veya her ikisi)
+olduğunu varsayarız. Tümevarım varsayımını kullanabiliriz: Tek
+bir~\CutCS{} ile biten herhangi bir !!{proof} içindeki son~\CutCS{},
+ya kesme derecesi $= \cutrank{\pi}$ ve kesmenin !!{height}~değeri
+$< \cheight{\pi}$ ise ya da kesme derecesi~$< \cutrank{\pi}$ ise
+giderilebilir. $\cheight{\pi} = 0$ olduğu durum (iki öncülün de
+aksiyom olması) A ve~B durumlarınca kapsanır. $\cheight{\pi} > 0$
+olduğu durumlar C--D durumlarınca kapsanır.
+
+\paragraph{Durum A:}
+Bir $!B$, hem $\Gamma$'da hem de~$\Delta$'da geçer.
+Bu durumda $\Gamma \Sequent \Delta$ bir aksiyomdur ($!B$~atomsal ise)
+ya da \olref[seq][ex]{prop:G3c-axioms} uyarınca \CutCS{} içermeyen
+bir \Log{G3c}-!!a{proof}{}ı~$\pi'$ vardır. Bu, tümevarım tabanının
+(a)~durumunu kapsar: $!A$, $\Gamma \Sequent \Delta, !A$ içinde ya da
+$!A, \Gamma \Sequent \Delta$ içinde asıl değilse ve bunlar
+aksiyomsa başka bir atomsal~$!B$ hem $\Gamma$'da hem de~$\Delta$'da
+geçmek zorundadır. Öncüllerden biri $!A$'nın asıl olmadığı bir
+aksiyomsa (öteki öncül bir kuralın sonucu olsa bile) bu, tümevarım
+adımını da kapsar.
+
+\paragraph{Durum B:} İki öncül de aksiyomdur; $!A$ asıldır ve
+dolayısıyla atomsaldır. Sol öncül $\Gamma \Sequent \Delta, !A$'yı
+ele alın. $!A$ asıl olduğundan $\Gamma$'da geçmek zorundadır (aksi
+hâlde $\Gamma \Sequent \Delta, !A$ bir aksiyom olmazdı). Benzer
+biçimde $!A$, $\Delta$'da geçmek zorundadır; yoksa
+$!A, \Gamma \Sequent \Delta$ bir aksiyom olmazdı. Öyleyse $!A$
+atomsaldır ve hem $\Gamma$'da hem de $\Delta$'da geçer; yani
+$\Gamma \Sequent \Delta$ bir aksiyomdur. Bu, tümevarım tabanının
+(b)~durumunu kapsar.
+
+\begin{center}
+Alternatif A ve B durumları
+\end{center}
+
+\paragraph{Durum A:} Kesmenin öncüllerinden biri
+$!C, \Gamma' \Sequent \Delta', !C$ biçiminde bir aksiyomdur ve
+$!C$~atomsaldır.
+$!C$, kesme !!{formula}{}ü~$!A$ değilse $!C$ hem $\Gamma$'da hem
+de~$\Delta$'da geçmek zorundadır. Bu durumda
+$\Gamma \Sequent \Delta$ bir aksiyomdur ve bunu~$\pi'$ olarak
+alabiliriz. $!C \ident !A$ kesme !!{formula}{}üyse, ya (sol öncül
+aksiyomsa) $!A \in \Gamma$ ve $\Gamma = \Gamma', !A$ ya da (sağ
+öncül aksiyomsa) $!A \in \Delta$ ve $\Delta = \Delta', !A$ olur.
+İlk durumda $\pi_2$, $!A, !A, \Gamma' \Sequent \Delta$'nın
+!!a{proof}{}ıdır ve \LeftR{\Contraction}'ın kabul edilebilirliği
+(\olref[seq][inv]{prop:G3c-cont-adm}) sayesinde
+$\Gamma \Sequent \Delta$'nın !!a{proof}{}ı vardır. İkinci durumda
+$\pi_1$, $\Gamma \Sequent \Delta', !A, !A$'nın !!a{proof}{}ıdır ve
+\RightR{\Contraction}'ın kabul edilebilirliği sayesinde
+$\Gamma \Sequent \Delta$'nın !!a{proof}{}ını elde ederiz.
+
+\paragraph{Durum B:} Öncüllerden biri
+$\lfalse, \Gamma' \Sequent \Delta'$ biçiminde bir aksiyomdur.
+Sol öncül böyle bir aksiyomsa $\lfalse \in \Gamma$ olur ve
+$\Gamma \Sequent \Delta$ da bir aksiyomdur. Sağ öncül böyle bir
+aksiyomsa ya $\lfalse \in \Gamma$ olur (bu durumda
+$\Gamma \Sequent \Delta$ yine bir aksiyomdur) ya da
+$!A \ident \lfalse$ olur. İkinci durumda $\pi_1$,
+$\Gamma \Sequent \Delta, \lfalse$'ın !!a{proof}{}ıdır.
+Bunu~$\Gamma \Sequent \Delta$'nın !!a{proof}{}ına, bir $\lfalse$
+kopyasını $\pi_1$'deki her sekantın ardılından silerek dönüştürebiliriz.
+(Alıştırma: Bunu~$\pheight{\pi_1}$ üzerinde tümevarımla doğrulayın.)
+
+Şimdi ne A ne de B durumunun geçerli olduğunu varsayın. Geri kalan
+durumlarda $\cheight{\pi} > 0$'dır; yani öncüllerden en az biri bir
+çıkarımın sonucudur.
+
+\paragraph{C ve D Durumları: Kesmelerin yerini değiştirme.}
+C ve~D durumlarında ele alınan olasılıkların hepsinde ortak bir örüntü
+vardır. \CutCS{} ile biten bir !!a{proof}{}la başlarız; bunun bir öncülü
+bir~$R$ kuralıyla elde edilir ve bu kuralda kesme
+!!{formula}{}ü~$!A$ asıl değildir (başka bir !!{formula}~$!D$ asıldır). Bu
+!!{proof} içinde \CutCS{}, $R$ kuralını izler ve şematik olarak şöyle
+görünür:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$\Gamma \fCenter \Delta', !D, !A$
+\AxiomC{}
+\RightLabel{$\pi_3$}
+\Deduce$!A, \Gamma, \Pi \fCenter \Delta', \Lambda$
+\RightLabel{$R$}
+\UnaryInf$!A, \Gamma \fCenter \Delta', !D$
+\RightSubproofLabel{$\pi_2$}
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta', !D$
+\DisplayProof
+\]
+Bu yalnızca $R$'nin tek öncüllü bir sağ kural olduğu, $A$'nın
+$R$'nin asıl !!{formula}{}ü olmadığı ve \emph{asıl} olan
+!!{formula}~$!D$'nin \CutCS{}'nin sağ öncülünün ardılında geçtiği
+durumu kapsar. $!D$ öncülde geçseydi (yani $R$ bir sol kural olsaydı)
+ya da \CutCS{}'nin sol öncülünde geçseydi görünüş elbette farklı
+olurdu. $\Pi$ ile~$\Lambda$'daki !!{formula}s, $R$ kuralının etkin
+!!{formula}s{}ini temsil eder.
+
+Bu sırayı tersine çevirip $R$'nin \CutCS{}'yi izlediği bir
+!!a{proof}{}ı ele alırız:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$\Gamma, \Pi \fCenter \Delta', !D, \Lambda, !A$
+\AxiomC{}
+\RightLabel{$\pi_3'$}
+\Deduce$!A, \Gamma, \Pi \fCenter \Delta', !D, \Lambda$
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma, \Pi \fCenter \Delta', !D, \Lambda$
+\RightLabel{$R$}
+\UnaryInf$\Gamma \fCenter \Delta', !D, !D$
+\DisplayProof
+\]
+$\pi_1'$ ile $\pi_3'$yü sırasıyla $\pi_1$ ile $\pi_3$'ten elde etmek
+için !!{height}-koruyan zayıflatmayı kullanırız.
+
+\CutCS{} ile~$R$'nin sırasını değiştirdiğimiz için buna
+“bir kesmeyi $R$ üzerinden yukarı geçirmek” denir. Bunu yapmak,
+\CutCS{}'nin sağ öncülüyle biten !!{proof}{}ın yüksekliğini, dolayısıyla
+kesmenin !!{height}~değerini azaltır. Başka bir deyişle yeni \CutCS{} ile
+biten alt-!!{proof}s{}ın !!{height}s{}inin $\pi_1$ ile $\pi_3$'ün
+yüksekliklerinden büyük olmadığı varsayılabilir; böylece kesme
+!!{height} azalır (sağdan bir çıkarımı kaldırmış oluruz). Artık
+tümevarım varsayımı uygulanır ve \CutCS{} çıkarımının
+giderilebileceğini söyler. Son olarak fazla~$!D$ kopyasını
+$\RightR{\Contraction}$'ın kabul edilebilirliğiyle gideririz.
+
+\paragraph{Durum C:}
+$\pi_1$ ile $\pi_2$'den en az biri tek öncüllü bir~$R$ kuralıyla
+biter ve $!A$ bu kuralda asıl değildir. $!A$'nın \CutCS{}'nin sol mu sağ mı
+öncülünde asıl olmadığına ve dokuz tek öncüllü kuraldan
+(\LeftR{\lnot}, \RightR{\lnot}, \RightR{\lor}, \LeftR{\land},
+\RightR{\lif} ve dört niceleyici kuralı) hangisinin $R$ olduğuna göre
+toplam 18 durum vardır. Yalnızca iki örneği ele alacağız: $!A$'nın,
+$\pi_2$'nin $\RightR{\lif}$ ya da \LeftR{\lexists} ile biten son
+çıkarımında asıl olmadığı durumlar. Öteki durumlar benzerdir ve
+alıştırma olarak bırakılmıştır.
+
+$\pi$'nin şöyle bittiğini varsayın:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$\Gamma \fCenter \Delta', !B \lif !C, !A$
+\AxiomC{}
+\RightLabel{$\pi_3$}
+\Deduce$!A, !B, \Gamma \fCenter \Delta', !C$
+\RightLabel{$\RightR{\lif}$}
+\UnaryInf$!A, \Gamma \fCenter \Delta', !B \lif !C$
+\RightSubproofLabel{$\pi_2$}
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta', !B \lif !C$
+\DisplayProof
+\]
+burada $\Delta = \Delta', !B \lif !C$'dir. $\pi_1$'e
+!!{height}-koruyan zayıflatmayı (\olref[seq][adm]{prop:weak-G3c-adm})
+uygulayıp !!a{proof}~$\pi_1'$nü
+$!B, \Gamma \fCenter \Delta', !B \lif !C, !C, !A$'nın ispatı olarak
+elde ederiz (solda $!B$, sağda $!C$ ile zayıflatırız). Benzer biçimde
+\olref[seq][adm]{prop:weak-G3c-adm} önermesini~$\pi_3$'e uygulayıp
+!!a{proof}~$\pi_3'$nü $!A, !B, \Gamma \fCenter
+\Delta', !B \lif !C, !C$'nin ispatı olarak elde ederiz
+(sağda $!B \lif !C$ ile zayıflatırız). Tümevarım varsayımı,
+\[
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$!B, \Gamma \fCenter \Delta', !B \lif !C, !C, !A$
+\AxiomC{}
+\RightLabel{$\pi_3'$}
+\Deduce$!A, !B, \Gamma \fCenter \Delta', !B \lif !C, !C$
+\RightLabel{\CutCS}
+\BinaryInf$!B, \Gamma \fCenter \Delta', !B \lif !C, !C$
+\DisplayProof
+\]
+kesme !!{formula}{}ü~$!A$ olmak üzere uygulanır: Bu
+!!{proof}, $\pi$ ile aynı kesme derecesine ve daha düşük kesme
+!!{height}~değerine sahiptir. Böylece !!a{proof}~$\pi_4$, \Log{G3c} içinde
+\CutCS{} içermeksizin $!B, \Gamma \fCenter
+\Delta', !B \lif !C, !C$'yi ispatlar. $\RightR{\lif}$ uygulayıp
+$\Gamma \fCenter \Delta', !B \lif !C, !B \lif !C$'nin !!a{proof}{}ını
+elde ederiz:
+\[
+\AxiomC{}
+\RightLabel{$\pi_4$}
+\Deduce$!B, \Gamma \fCenter \Delta', !B \lif !C, !C$
+\RightLabel{$\RightR{\lif}$}
+\UnaryInf$\Gamma \fCenter \Delta', !B \lif !C, !B \lif !C$
+\DisplayProof
+\]
+!!a{proof}~$\pi'$nü $\Gamma \Sequent \Delta$'nın, yani
+$\Gamma \fCenter \Delta', !B \lif !C$'nin ispatı olarak elde etmek
+için \olref[seq][inv]{prop:G3c-cont-adm} önermesini
+(büzülmenin kabul edilebilirliğini) uygulayın.
+
+Şimdi $\pi$'nin şöyle bittiğini varsayın:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$\lexists[x][!B(x)], \Gamma' \fCenter \Delta, !A$
+\AxiomC{}
+\RightLabel{$\pi_3$}
+\Deduce$!A, !B(c), \Gamma' \fCenter \Delta$
+\RightLabel{$\LeftR{\lexists}$}
+\UnaryInf$!A, \lexists[x][!B(x)], \Gamma' \fCenter \Delta$
+\RightSubproofLabel{$\pi_2$}
+\RightLabel{\CutCS}
+\BinaryInf$\lexists[x][!B(x)], \Gamma' \fCenter \Delta$
+\DisplayProof
+\]
+Tümevarım varsayımını yine
+\[
+\AxiomC{}
+\RightLabel{$\pi_1[!B(c) \Sequent {}]$}
+\Deduce$\lexists[x][!B(x)], !B(c), \Gamma' \fCenter \Delta, !A$
+\AxiomC{}
+\LeftLabel{$\pi_3[\lexists[x][!B(x)] \Sequent {}]$}
+\Deduce$!A, \lexists[x][!B(x)], !B(c), \Gamma' \fCenter \Delta$
+\RightLabel{\CutCS}
+\BinaryInf$\lexists[x][!B(x)], !B(c), \Gamma' \fCenter \Delta$
+\RightLabel{\LeftR{\lexists}}
+\UnaryInf$\lexists[x][!B(x)], \lexists[x][!B(x)], \Gamma' \fCenter \Delta$
+\DisplayProof
+\]
+yukarıdaki türetime uygularız. Özdeğişken koşulunun sağlandığına dikkat edin:
+$\pi_2$ içindeki~\LeftR{\lexists}'in özdeğişken koşulu, $c$'nin
+$\lexists[x][!B(x)]$, $\Gamma'$ ya da~$\Delta$ içinde geçmediğini
+güvence altına alır. Son olarak
+\olref[seq][inv]{prop:G3c-cont-adm} önermesini uygulayın.
+
+
+\paragraph{Durum D:}
+$\pi_1$ ile $\pi_2$'den en az biri iki öncüllü bir~$R$ kuralıyla
+biter ve $!A$ bu kuralda asıl değildir. Altı durum vardır. $!A$'nın,
+$\pi_2$'nin $\RightR{\land}$ ile biten son çıkarımında asıl olmadığı
+durumu ele alırız; öteki durumlar benzerdir.
+
+$\pi$'nin şöyle bittiğini varsayın:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$\Gamma \fCenter \Delta', !B \land !C, !A$
+\AxiomC{}
+\RightLabel{$\pi_3$}
+\Deduce$!A, \Gamma \fCenter \Delta', !B$
+\AxiomC{}
+\RightLabel{$\pi_4$}
+\Deduce$!A, \Gamma \fCenter \Delta', !C$
+\RightLabel{$\RightR{\land}$}
+\BinaryInf$!A, \Gamma \fCenter \Delta', !B \land !C$
+\RightSubproofLabel{$\pi_2$}
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta$
+\DisplayProof
+\]
+Tümevarım varsayımı şu !!{proof}s için uygulanır:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$\Gamma \fCenter \Delta', !B \land !C, !B, !A$
+\AxiomC{}
+\RightLabel{$\pi_3'$}
+\Deduce$!A, \Gamma \fCenter \Delta', !B \land !C, !B$
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta', !B \land !C, !B$
+\DisplayProof
+\]
+ve
+\[
+\AxiomC{}
+\RightLabel{$\pi_1''$}
+\Deduce$\Gamma \fCenter \Delta', !B \land !C, !C, !A$
+\AxiomC{}
+\RightLabel{$\pi_4'$}
+\Deduce$!A, \Gamma \fCenter \Delta', !B \land !C, !C$
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta', !B \land !C, !C$
+\DisplayProof
+\]
+Buradaki \Log{G3c}-!!{proof}s~$\pi_1'$ ile $\pi_1''$, $\pi_1$'den
+!!{height}-koruyan zayıflatmayla
+(\olref[seq][adm]{prop:weak-G3c-adm}) elde edilir (bir kez sağda
+$!B$, bir kez de $!C$ ile zayıflatılır). !!{proof}s~$\pi_3'$ ile
+$\pi_4'$ de $\pi_3$ ile~$\pi_4$'ten, sırasıyla $\pi_3$ ile~$\pi_4$'e
+!!{height}-koruyan zayıflatma uygulanarak (sağda $!B \land !C$ ile
+zayıflatılarak) elde edilir.
+
+Tümevarım varsayımı bize \Log{G3c}-!!{proof}s{}ı~$\pi_5$ ve~$\pi_6$'yı,
+sırasıyla $\Gamma \fCenter \Delta', !B \land !C, !B$ ile
+$\Gamma \fCenter \Delta', !B \land !C, !C$'nin ispatları olarak
+verir. Bunları, $\Gamma \Sequent \Delta', !B \land !C, !B \land !C$'nin
+!!a{proof}{}ını elde etmek üzere $\RightR{\land}$ kuralıyla birleştiririz:
+\[
+\AxiomC{}
+\RightLabel{$\pi_5$}
+\Deduce$\Gamma \fCenter \Delta', !B \land !C, !B$
+\AxiomC{}
+\RightLabel{$\pi_6$}
+\Deduce$\Gamma \fCenter \Delta', !B \land !C, !C$
+\RightLabel{\RightR{\land}}
+\BinaryInf$\Gamma \fCenter \Delta', !B \land !C, !B \land !C$
+\DisplayProof
+\]
+$\Gamma \Sequent \Delta$'nın, yani
+$\Gamma \fCenter \Delta', !B \land !C$'nin !!a{proof}{}ını elde etmek
+için \olref[seq][inv]{prop:G3c-cont-adm} önermesini (büzülmenin kabul
+edilebilirliğini) uygulayın.
+
+\paragraph{Durum E: Kesmeleri indirgeme.}
+Son durum, hem $\pi_1$ hem de $\pi_2$'nin $!A$'nın asıl olduğu
+çıkarımlarla bittiği koşulla ilgilidir. $!A$'nın olası her
+Her !!{main operator} için bir tane olmak üzere altı durum vardır.
+
+Her durumda kesme !!{formula}{}ü~$!A$ olan bir \CutCS{}'yi,
+$!A$'nın alt-!!{formula}{}ü üzerinde, yani $!A$'nın asıl
+!!{formula} olduğu çıkarımların etkin !!{formula}{}ü üzerinde bir ya
+da daha çok kesmeye dönüştürürüz. Bu durumlara bu yüzden çoğu kez
+kesme çıkarımının “indirgenmesi” ya da “dönüştürülmesi” denir.
+
+\begin{enumerate}
+\item $!A \ident \lnot !B$ ise $\pi$ şöyle biter:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$!B, \Gamma \fCenter \Delta$
+\RightLabel{\RightR{\lnot}}
+\UnaryInf$\Gamma \fCenter \Delta, \lnot !B$
+\LeftSubproofLabel{$\pi_1$}
+\AxiomC{}
+\RightLabel{$\pi_2'$}
+\Deduce$\Gamma \fCenter \Delta, !B$
+\RightLabel{\LeftR{\lnot}}
+\UnaryInf$\lnot !B, \Gamma \fCenter \Delta$
+\RightSubproofLabel{$\pi_2$}
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta$
+\DisplayProof
+\]
+Tümevarım varsayımı uyarınca \CutCS{}, aşağıdaki türetimden giderilebilir:
+\[
+\AxiomC{}
+\RightLabel{$\pi_2'$}
+\Deduce$\Gamma \fCenter \Delta, !B$
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$!B, \Gamma \fCenter \Delta$
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta$
+\DisplayProof
+\]
+
+\item
+$!A \ident (!B \lor !C)$ ise $\pi$ şöyle biter:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$\Gamma \fCenter \Delta, !B, !C$
+\RightLabel{\RightR{\lor}}
+\UnaryInf$\Gamma \fCenter \Delta, !B \lor !C$
+\LeftSubproofLabel{$\pi_1$}
+\AxiomC{}
+\RightLabel{$\pi_2'$}
+\Deduce$!B, \Gamma \fCenter \Delta$
+\AxiomC{}
+\RightLabel{$\pi_2''$}
+\Deduce$!C, \Gamma \fCenter \Delta$
+\RightLabel{\LeftR{\lor}}
+\BinaryInf$!B \lor !C, \Gamma \fCenter \Delta$
+\RightSubproofLabel{$\pi_2$}
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta$
+\DisplayProof
+\]
+\CutCS{} ile biten şu !!{proof}{}ı ele alın:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$\Gamma \fCenter \Delta, !B, !C$
+\AxiomC{}
+\RightLabel{$\pi_2'''$}
+\Deduce$!C, \Gamma \fCenter \Delta, !B$
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta, !B$
+\DisplayProof
+\]
+burada $\pi_2'''$, $\pi_2''$den !!{height}-koruyan zayıflatmayla
+elde edilir. Bunun kesme derecesi $< \cutr{\pi}$'dir; çünkü
+$\depth{!C} < \depth{!B \lor !C}$ olur. Dolayısıyla tümevarım
+varsayımı \Log{G3c} içinde !!a{proof}~$\pi_1''$nü
+$\Gamma \fCenter \Delta, !B$'nin ispatı olarak verir.
+\CutCS{} ile biten şu !!{proof}{}ın
+\[
+\AxiomC{}
+\RightLabel{$\pi_1''$}
+\Deduce$\Gamma \fCenter \Delta, !B$
+\AxiomC{}
+\RightLabel{$\pi_2'$}
+\Deduce$!B, \Gamma \fCenter \Delta$
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta$
+\DisplayProof
+\]
+kesme derecesi $= \depth{!B} < \depth{!B \lor !C}$'dir; böylece
+tümevarım varsayımı bir kez daha uygulanır ve !!a{proof}~$\pi'$,
+$\Gamma \fCenter \Delta$'nın ispatı olarak elde edilir.
+
+\item $!A \ident (!B \land !C)$. Alıştırma.
+
+\item $!A \ident (!B \lif !C)$ ise $\pi$ şöyle biter:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$!B, \Gamma \fCenter \Delta, !C$
+\RightLabel{\RightR{\lif}}
+\UnaryInf$\Gamma \fCenter \Delta, !B \lif !C$
+\LeftSubproofLabel{$\pi_1$}
+\AxiomC{}
+\RightLabel{$\pi_2'$}
+\Deduce$\Gamma \fCenter \Delta, !B$
+\AxiomC{}
+\RightLabel{$\pi_2''$}
+\Deduce$!C, \Gamma \fCenter \Delta$
+\RightLabel{\LeftR{\lif}}
+\BinaryInf$!B \lif !C, \Gamma \fCenter \Delta$
+\RightSubproofLabel{$\pi_2$}
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta$
+\DisplayProof
+\]
+\CutCS{} ile biten şu !!{proof}{}ı ele alın:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$!B, \Gamma \fCenter \Delta, !C$
+\AxiomC{}
+\RightLabel{$\pi_2''$}
+\Deduce$!C, \Gamma \fCenter \Delta$
+\RightLabel{\CutCS}
+\BinaryInf$!B, \Gamma \fCenter \Delta$
+\DisplayProof
+\]
+Bunun kesme derecesi~$\pi$'ninkinden düşüktür. Tümevarım varsayımı
+!!a{proof}~$\pi_1''$nü $!B, \Gamma \fCenter \Delta$'nın ispatı olarak
+verir.
+Şimdi \CutCS{} ile biten şu !!{proof}{}ı ele alın:
+\[
+\AxiomC{}
+\RightLabel{$\pi_2'$}
+\Deduce$\Gamma \fCenter \Delta, !B$
+\AxiomC{}
+\RightLabel{$\pi_1''$}
+\Deduce$!B, \Gamma \fCenter \Delta$
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta$
+\DisplayProof
+\]
+Bunun kesme derecesi de~$\pi$'nin kesme derecesinden küçüktür;
+dolayısıyla tümevarım varsayımı \Log{G3c}-!!{proof}~$\pi'$nü
+$\Gamma \fCenter \Delta$'nın ispatı olarak verir.
+\item $!A \ident \lforall[x][!B(x)]$ ise $\pi$ şöyle biter:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$\Gamma \fCenter \Delta, !B(c)$
+\RightLabel{\RightR{\lforall}}
+\UnaryInf$\Gamma \fCenter \Delta, \lforall[x][!B(x)]$
+\LeftSubproofLabel{$\pi_1$}
+\AxiomC{}
+\RightLabel{$\pi_2'$}
+\Deduce$!B(t), \lforall[x][!B(x)], \Gamma \fCenter \Delta$
+\RightLabel{\LeftR{\lforall}}
+\UnaryInf$\lforall[x][!B(x)], \Gamma \fCenter \Delta$
+\RightSubproofLabel{$\pi_2$}
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta$
+\DisplayProof
+\]
+Tümevarım varsayımı uyarınca \CutCS{}, aşağıdaki türetimden giderilebilir:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1''$}
+\Deduce$!B(t), \Gamma \fCenter \Delta, \lforall[x][!B(x)]$
+\AxiomC{}
+\RightLabel{$\pi_2'$}
+\Deduce$!B(t), \lforall[x][!B(x)], \Gamma \fCenter \Delta$
+\RightLabel{\CutCS}
+\BinaryInf$!B(t), \Gamma \fCenter \Delta$
+\DisplayProof
+\]
+burada $\pi_1''$, $\pi_1$'den ($\pi_1'$den değil) !!{height}-koruyan
+zayıflatmayla elde edilir. (!!{proof}, aynı kesme derecesine ama daha
+düşük kesme !!{height}~değerine sahiptir.) Böylece
+!!a{proof}~$\pi_2''$, $!B(t), \Gamma \fCenter \Delta$'nın ispatı
+olarak elde edilir.
+
+!!{proof}~$\pi_1'$nün son-sekantı
+$\Gamma \Sequent \Delta, !B(c)$'dir; burada $c$, bir
+$\RightR{\lforall}$ çıkarımının özdeğişkenidir. Dolayısıyla $c$,
+$!B(x)$, $\Gamma$ ya da~$\Delta$ içinde geçmez. !!{proof}~$\pi$'nin
+düzenli olduğunu varsayarız; öyleyse $c$, yalnızca aşağıdaki
+$\RightR{\lforall}$ çıkarımının özdeğişkenidir ve yalnızca onun üstünde,
+yani yalnızca~$\pi_1'$ içinde geçer; ayrıca $\pi_1'$ içindeki bir
+çıkarımın özdeğişkeni değildir. $c$, $\pi_2$ içinde geçmediği için
+$t$ içinde de geçemez. \olref[seq][qua]{lem:subst-regular} uyarınca
+!!{proof}~$\Subst{\pi_1'}{t}{c}$,
+$\Gamma \Sequent \Delta, !B(t)$'nin !!a{proof}{}ıdır. Şimdi tümevarım
+varsayımını şu !!{proof}{}a uygularız:
+\[
+\AxiomC{}
+\RightLabel{$\Subst{\pi_1'}{t}{c}$}
+\Deduce$\Gamma \fCenter \Delta, !B(t)$
+\AxiomC{}
+\RightLabel{$\pi_2''$}
+\Deduce$!B(t), \Gamma \fCenter \Delta$
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta$
+\DisplayProof
+\]
+(Kesme !!{formula}{}ü~$!B(t)$ olduğu için tümevarım varsayımı uygulanır;
+yani !!{proof}{}ın kesme derecesi~$\pi$'ninkinden düşüktür.)
+\item $!A \ident \lexists[x][!B(x)]$ durumunu alıştırma olarak
+bırakıyoruz.
+\end{enumerate}
+\end{proof}
+
+\begin{prob}
+\olref{lem:cut-adm-G3c} ispatındaki D durumunun, $!A$'nın
+$\pi_1$'in $\LeftR{\lif}$ ile biten son çıkarımında asıl olmadığı alt
+durumunu doğrulayın. (Not: Bu alıştırmanın bir bölümü, neyi
+ispatlamanız gerektiğini, yani bu durumda $\pi$'nin hangi biçimde
+olduğunu açıkça belirtmektir.)
+\end{prob}
+
+\begin{prob}
+\olref{lem:cut-adm-G3c} ispatındaki D durumunun, $!A$'nın
+$\pi_1$'in $\LeftR{\lforall}$ ile biten son çıkarımında asıl olmadığı
+alt durumu doğrulayın.
+\end{prob}
+
+\begin{prob}
+\olref{lem:cut-adm-G3c} ispatındaki E durumunun, $!A$'nın hem
+$\pi_1$'in hem de $\pi_2$'nin son çıkarımlarında asıl olduğu ve
+$!A \ident (!B \land !C)$ olduğu alt durumu doğrulayın.
+\end{prob}
+
+\begin{prob}
+\olref{lem:cut-adm-G3c} ispatındaki E durumunun, $!A$'nın hem
+$\pi_1$'in hem de $\pi_2$'nin son çıkarımlarında asıl olduğu ve
+$!A \ident \lexists[x][!B(x)]$ olduğu alt durumu doğrulayın.
+\end{prob}
+
+E durumunda kesme !!{height}~değerinin, tümevarım varsayımını uyguladığımız
+ve \CutCS{} ile biten !!{proof} için özgün ispatın kesme
+!!{height}~değerinden daha büyük olabileceğine dikkat edin. Örneğin
+$!A \ident (!B \lif !C)$ durumunda $\pi$'yi iki \CutCS{} çıkarımı
+içeren bir !!a{proof}{}a dönüştürdük:
+\[
+\AxiomC{}
+\RightLabel{$\pi_2'$}
+\Deduce$\Gamma \fCenter \Delta, !B$
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$!B, \Gamma \fCenter \Delta, !C$
+\AxiomC{}
+\RightLabel{$\pi_2''$}
+\Deduce$!C, \Gamma \fCenter \Delta$
+\RightLabel{\CutCS}
+\BinaryInf$!B, \Gamma \fCenter \Delta$
+\RightSubproofLabel{$\pi_1''$}
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta$
+\DisplayProof
+\]
+$\pi_1'$ ile $\pi_2''$ arasındaki üst \CutCS{}'nin hem kesme derecesi
+hem de kesme !!{height}~değeri~$\pi$'ninkilerden düşüktür. Fakat tümevarım
+varsayımının uygulanmasıyla elde edilen~!!{proof}~$\pi_1''$ artık
+$\pi$'den daha düşük kesme !!{height}~değerine sahip değildir. Bununla
+birlikte alt \CutCS{}'nin kesme !!{formula}{}ü $!B$ olduğu için kesme
+\emph{derecesi}, $\pi$'nin kesme derecesinden düşüktür.
+
+\olref{lem:cut-adm-G3c}, tek bir en üst \CutCS{} çıkarımını bir
+!!a{proof}{}tan giderebileceğimizi gösterir. Herhangi bir sayıda
+\CutCS{} çıkarımını bir !!a{proof}{}tan gidermek için bunu \CutCS{} ile
+biten en üst alt-!!{proof}s{}a art arda uygulayabileceğimizi
+gösterebiliriz.
+
+\begin{thm}\ollabel{thm:cut-elim-G3c-topmost} Her !!{proof}~$\pi$,
+$\Log{G3c} + \CutCS$ içindeyse \Log{G3c} içindeki bir !!a{proof}{}a
+dönüştürülebilir.
+\end{thm}
+
+\begin{proof}
+  \CutCS{} çıkarımlarının sayısı~$n$ olmak üzere, $\pi$ için bu sayı
+  üzerinde tümevarımla. $n=0$ ise yapılacak bir şey yoktur: $\pi$ zaten
+  \Log{G3c} içinde !!a{proof}{}tır. Aksi hâlde en üstteki bir
+  \CutCS{} çıkarımıyla biten alt-!!{proof}~$\pi'$nü ele alın.
+  Bu alt-ispat, son çıkarımı olarak tek bir \CutCS{} kuralı içerir.
+  \olref{lem:cut-adm-G3c} önermesini uygulayarak bunu \CutCS{}
+  içermeyen bir ispat~$\pi''$ne dönüştürün ve alt-!!{proof}~$\pi'$nün
+  yerine~$\pi''$nü koyun. Sonuç, $n-1$ tane \CutCS{} çıkarımı içeren
+  bir !!a{proof}{}tır; dolayısıyla tümevarım varsayımı uygulanır.
+\end{proof}
+
+\end{document}

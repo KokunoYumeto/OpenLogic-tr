@@ -1,0 +1,90 @@
+% Part: normal-modal-logic
+% Chapter: axioms-systems
+% Section: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{nml}{axs}{int}
+
+\olsection{Giriş}
+
+Temel kiplik dili için kiplik modelleri cinsinden bir semantiğimiz vardır.
+Ayrıca !!a{formula} için geçerli olma---bütün modellerin bütün dünyalarında
+doğru olma---ya da belirli bir modeller veya çerçeveler sınıfına göre
+geçerli olma---sınıftaki veya çerçeveye dayanan bütün modellerin bütün
+dünyalarında doğru olma---kavramına sahibiz. Mantık genellikle bu semantik
+geçerlilik nitelemelerini ispat kuramsal bir !!{derivability} kavramıyla
+ilişkilendirir. Amaç, bir sistem içinde öyle bir !!{derivability} kavramı
+tanımlamaktır ki !!a{formula} ancak ve ancak geçerliyse !!{derivable} olsun.
+
+En basit ve tarihsel olarak en eski !!{derivation} sistemleri, Hilbert tipi
+ya da aksiyomatik !!{derivation} sistemleri denen sistemlerdir. Birçok modal
+mantık için Hilbert tipi !!{derivation} sistemleri kurmak görece kolaydır:
+metateorik incelemenin nesneleri olarak basittirler (örneğin sağlamlık ve
+tamlıklarını ispatlamak kolaydır). Buna karşılık bu sistemlerde !!{formula}s
+ispatlamak, örneğin doğal tümdengelim sistemlerinde ispatlamaktan çok daha
+zordur.
+
+Hilbert tipi !!{derivation} sistemlerinde !!a{derivation}, bir
+!!a{formula} için belirli aksiyomlardan başlayıp birkaç çıkarım kuralı
+aracılığıyla söz konusu !!{formula} ile biten bir !!{formula}s dizisidir.
+!!{derivation} sisteminin
+semantik ile uyuşmasını istediğimizden, !!{derivable} formüller kümesinin
+bütün modellerde (ya da bütün aksiyomların doğru olduğu bütün modellerde)
+doğru olduğunu güvence altına almalıyız. Önce bunun işlemesi için gerekli
+olan bazı modal mantık özelliklerini, yani ``normal'' modal mantıkları
+ayıracağız. Normal modal mantıklar için yalnızca iki çıkarım kuralını
+varsaymak gerekir: modus ponens ve zorunlulaştırma. Aksiyom olarak bütün
+totolojileri (onların yerine koyma örneklerini) ve ele aldığımız modal mantığa
+bağlı olarak bazı modal aksiyomları alırız. Yalnızca bütün modeller sınıfıyla
+ilgilensek bile $\Ax{K}$'nin\iftag{notprvDiamond}{}{ ve~$\Ax{Dual}$'ın}
+bütün yerine koyma örneklerini de aksiyom saymalıyız. Yalnızca bunlar,
+en küçük normal modal mantık $\Log K$'yi üretir.
+
+\begin{defn}
+\emph{Modus ponens} kuralı şu çıkarım şemasıdır:
+\begin{prooftree}
+\AxiomC{$!A$}
+\AxiomC{$!A \lif !B$}
+\RightLabel{\MP}
+\BinaryInfC{$!B$}
+\end{prooftree}
+$!C\ident !A\lif !B$ ise, !!a{formula}~$!B$'nin $!A$ ve $!C$
+!!{formula}s kullanılarak modus ponens ile \emph{çıktığını} söyleriz.
+\end{defn}
+
+\begin{defn}
+\emph{Zorunlulaştırma} kuralı şu çıkarım şemasıdır:
+\begin{prooftree}
+\AxiomC{$!A$}
+\RightLabel{\Nec}
+\UnaryInfC{$\Box !A$}
+\end{prooftree}
+$!B\ident\Box !A$ ise !!{formula}~$!B$'nin !!{formula}~$!A$'dan
+zorunlulaştırma ile çıktığını söyleriz.
+\end{defn}
+
+\begin{defn}
+Bir $\Sigma$ aksiyomlar kümesinden bir \emph{!!{derivation}}, her $!B_i$'nin
+aşağıdakilerden biri olduğu bir $!B_1,!B_2,\dots,!B_n$ !!{formula}s dizisidir:
+\begin{enumerate}
+\item bir totolojinin yerine koyma örneği;
+\item $\Sigma$ içinde bulunan !!a{formula} için bir yerine koyma örneği;
+\item $j,k<i$ olmak üzere önceki $!B_j$, $!B_k$ !!{formula}s kullanılarak modus
+  ponens ile çıkan bir formül;
+\item $j<i$ olmak üzere önceki !!a{formula} $!B_j$'den zorunlulaştırma ile
+  çıkan bir formül.
+\end{enumerate}
+$!B_n\ident !A$ olan böyle !!a{derivation} varsa, $!A$'nın
+\emph{$\Sigma$'dan !!{derivable}} olduğunu söyler ve $\Sigma\Proves !A$
+yazarız.
+\end{defn}
+
+Bu tanımla !!{derivable} formüller kümesinin normal bir modal mantık
+oluşturduğu ve her !!{derivable} !!{formula} için, her aksiyomun doğru olduğu
+her modelde doğruluk elde edildiği ortaya çıkacaktır. !!{derivation}s için bu özelliğe
+\emph{sağlamlık} denir. Tersi olan \emph{tamlığı} ispatlamak daha zordur.
+
+\end{document}

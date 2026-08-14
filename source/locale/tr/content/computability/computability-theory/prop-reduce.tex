@@ -1,0 +1,103 @@
+% Part: computability
+% Chapter: computability-theory
+% Section: prop-reduce
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{cmp}{thy}{ppr}
+\olsection{İndirgenebilirliğin Özellikleri}
+
+$A$, $B$'ye indirgeniyorsa $A\leq_m B$ yazarız. Bu gösterim,
+$A\leq_m B$ ise $A$'nın $B$'den ``daha zor olmadığını'', $B$'nin $A$ kadar
+ya da ondan ``daha zor'' olduğunu ve sayılardaki alışılmış $\leq$ gibi
+$\leq_m$ bağıntısının kümeleri ya da karar problemlerini karmaşıklıklarına
+göre sıraladığını düşündürür. Aşağıdaki iki önerme bu sezgiyi destekler.
+İlki $\leq_m$ bağıntısının geçişli olduğunu söyler.
+
+\begin{prop}
+\ollabel{prop:trans-red}
+$A\leq_m B$ ve $B\leq_m C$ ise $A\leq_m C$ olur.
+\end{prop}
+
+\begin{proof}
+$A$'nın $B$'ye indirgenmesiyle $B$'nin $C$'ye indirgenmesinin bileşkesi,
+$A$'nın $C$'ye indirgenmesini verir.
+\end{proof}
+
+\begin{prob}
+$f$ ile $g$ sırasıyla $A$'nın $B$'ye ve $B$'nin $C$'ye çok-bir
+indirgemeleriyse $\comp{f}{g}$ fonksiyonunun $A$'nın $C$'ye çok-bir
+indirgemesi olduğunu göstererek \olref{prop:trans-red} önermesini ispatlayın.
+\end{prob}
+
+\begin{prop}
+\ollabel{prop:reduce}
+$A$ ile $B$ herhangi iki küme ve $A\leq_m B$ olsun.
+\begin{enumerate}
+\item $B$ hesaplanabilir biçimde numaralandırılabilirse $A$ da öyledir.
+\item $B$ hesaplanabilirse $A$ da hesaplanabilirdir.
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+$f$, $A$'dan $B$'ye çok-bir indirgeme olsun. İlk sav için $B$, kısmi bir
+$g$ fonksiyonunun tanım kümesiyse $A$'nın $\comp{f}{g}$ fonksiyonunun tanım
+kümesi olduğunu denetlemek yeterlidir:
+\begin{align*}
+  x\in A & \text{ ancak ve ancak } f(x)\in B\\
+  & \text{ ancak ve ancak } g(f(x))\fdefined.
+\end{align*}
+
+İkinci sav için $B$ hesaplanabilirse hem $B$ hem $\Complement{B}$'nin
+hesaplanabilir biçimde numaralandırılabilir olduğunu anımsayın
+(\olref[cmp]{thm:ce-comp}). $f$'nin ayrıca $\Complement{A}$'nın
+$\Complement{B}$'ye çok-bir indirgemesi olduğunu denetlemek kolaydır.
+Dolayısıyla ispatın ilk kısmına göre $A$ ile $\Complement{A}$
+!!{computably enumerable}. Öyleyse \olref[cmp]{thm:ce-comp} uyarınca $A$ da
+hesaplanabilirdir. Alternatif olarak
+$\Char{A}=\comp{f}{\Char{B}}$ eşitliğini denetleyebilirsiniz; $\Char{B}$
+hesaplanabilirse $\Char{A}$ da hesaplanabilir.
+\end{proof}
+
+\begin{prob}
+$f$, $A$'nın $B$'ye çok-bir indirgemesi olsun. $f$'nin ayrıca
+$\Complement{A}$'nın $\Complement{B}$'ye çok-bir indirgemesi olduğunu
+gösterin.
+\end{prob}
+
+\begin{prob}
+$f\colon A\to B$ çok-bir indirgemeyse
+$\Char{A}=\comp{f}{\Char{B}}$ olduğunu gösterin.
+\end{prob}
+
+\begin{digress}
+\emph{Turing indirgenebilirliği} denen daha genel bir indirgenebilirlik
+kavramı, özellikle karar verilemezlik sonuçlarını ispatlamak gibi başka
+bağlamlarda yararlıdır. \olref[cmp]{cor:comp-k} uyarınca $K_0$'ın tümleyeninin
+$K_0$'a indirgenebilir olmadığına dikkat edin; çünkü bu tümleyen
+hesaplanabilir biçimde numaralandırılabilir değildir. Fakat sezgisel olarak
+$K_0$ hakkındaki soruların yanıtlarını bilseydiniz tümleyeni hakkındaki
+soruların yanıtlarını da bilirdiniz. $B$ hakkında soru sorabilen
+hesaplanabilir bir yordamla $A$ hakkındaki soruların yanıtları
+belirlenebiliyorsa $A$, $B$'ye Turing-indirgenebilirdir. Bu, çok-bir
+indirgenebilirlikten daha serbesttir; çünkü çok-bir indirgenebilirlikte
+(1)~$B$ hakkında yalnızca bir soru sorabilirsiniz ve (2)~``evet'' yanıtı
+$A$ hakkındaki soruya ``evet'', ``hayır'' yanıtı da ``hayır'' olarak
+çevrilmelidir. Yine de $A$, $B$'ye Turing-indirgenebilir ve $B$
+hesaplanabilirse $A$ da hesaplanabilirdir; fakat gördüğümüz gibi hesaplanabilir
+biçimde numaralandırılabilirlik için benzer sav doğru değildir.
+
+Tartıştığımız çeşitli indirgenebilirlik kavramlarını ve aralarındaki ayrımları
+düşünmelisiniz. Bununla birlikte bu bölümde yalnızca çok-bir
+indirgenebilirlikle ilgileneceğiz. Son paragraftaki iki indirgenebilirlik
+türünün de, Turing makinelerinin polinom zamanda çalışması ek koşuluyla,
+hesaplama karmaşıklığında benzerleri vardır: Çok-bir indirgenebilirliğin
+karmaşıklık sürümüne \emph{Karp indirgenebilirliği}, Turing
+indirgenebilirliğinin karmaşıklık sürümüne ise \emph{Cook indirgenebilirliği}
+denir.
+\end{digress}
+
+\end{document}
+

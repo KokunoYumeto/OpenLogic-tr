@@ -1,0 +1,108 @@
+% Part: normal-modal-logic
+% Chapter: syntax-and-semantics
+% Section: language-modal-logic
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{nml}{syn}{lan}
+
+\olsection{Temel Kiplik Mantığının Dili}
+
+\begin{defn}
+Kiplik mantığının temel dili şunları içerir:
+\begin{enumerate}
+  \tagitem{prvFalse}{!!{falsity}~$\lfalse$ için önerme sabiti.}{}
+  \tagitem{prvTrue}{!!{truth}~$\ltrue$ için önerme sabiti.}{}
+  \item !!{denumerable}s bir !!{propositional variable}s kümesi: $\Obj
+    p_0$, $\Obj p_1$, $\Obj p_2$, \dots
+  \item Önerme bağlaçları: \startycommalist
+  \iftag{prvNot}{\ycomma $\lnot$ (değilleme)}{}%
+  \iftag{prvAnd}{\ycomma $\land$ (tümel evetleme)}{}%
+  \iftag{prvOr}{\ycomma $\lor$ (tikel evetleme)}{}%
+  \iftag{prvIf}{\ycomma $\lif$ (!!{conditional})}{}%
+  \iftag{prvIff}{\ycomma $\liff$ (!!{biconditional})}{}.
+  \tagitem{prvBox}{$\Box$ kiplik işleci.}{}
+  \tagitem{prvDiamond}{$\Diamond$ kiplik işleci.}{}
+\end{enumerate}
+\end{defn}
+
+\begin{defn}
+Temel kiplik dilinin \emph{!!^{formula}s{}i} tümevarımlı olarak aşağıdaki gibi
+tanımlanır:
+\begin{enumerate}
+\tagitem{prvFalse}{$\lfalse$ atomik bir !!{formula}{}dür.}{}
+
+\tagitem{prvTrue}{$\ltrue$ atomik bir !!{formula}{}dür.}{}
+
+\item Her !!{propositional variable} $\Obj p_i$, (atomik) bir !!{formula}{}dür.
+
+\tagitem{prvNot}{$!A$ !!a{formula} ise $\lnot !A$ da
+  !!a{formula}{}dür.}{}
+
+\tagitem{prvAnd}{$!A$ ile $!B$ !!{formula}s ise $(!A \land
+  !B)$ de !!a{formula}{}dür.}{}
+
+\tagitem{prvOr}{$!A$ ile $!B$ !!{formula}s ise $(!A \lor !B)$
+  de !!a{formula}{}dür.}{}
+
+\tagitem{prvIf}{$!A$ ile $!B$ !!{formula}s ise $(!A \lif !B)$
+  de !!a{formula}{}dür.}{}
+
+\tagitem{prvIff}{$!A$ ile $!B$ !!{formula}s ise $(!A \liff !B)$
+  de !!a{formula}{}dür.}{}
+
+\tagitem{prvBox}{$!A$ !!a{formula} ise $\Box !A$ da
+  !!a{formula}{}dür.}{}
+
+\tagitem{prvDiamond}{$!A$ !!a{formula} ise $\Diamond !A$ da
+  !!a{formula}{}dür.}{}
+
+\tagitem{limitClause}{Başka hiçbir şey !!a{formula} değildir.}{}
+\end{enumerate}
+\end{defn}
+
+\begin{tagblock}{defNot,defOr,defAnd,defIf,defIff,defTrue,defFalse,defBox,defDiamond}
+\begin{defn}
+Tanımlanmış işleçler kullanılarak kurulan formüller aşağıdaki gibi
+anlaşılmalıdır:
+
+\begin{tagenumerate}{defTrue,defFalse,defNot,defOr,defAnd,defIf,defIff,defBox,defDiamond}
+
+\tagitem{defTrue}{$\ltrue$,
+  \iftag{prvFalse}{$\lnot\lfalse$}{sabitlenmiş atomik bir
+    !!{formula}~$!A$ için $(!A \lor \lnot !A)$} ifadesinin kısaltmasıdır.}{}
+
+\tagitem{defFalse}{$\lfalse$,
+  \iftag{prvTrue}{$\lnot\ltrue$}{sabitlenmiş atomik bir
+    !!{formula}~$!A$ için $(!A \land \lnot !A)$} ifadesinin kısaltmasıdır.}{}
+
+\tagitem{defNot}{$\lnot !A$, $!A \lif \lfalse$ ifadesinin kısaltmasıdır.}{}
+
+\tagitem{defOr}{$!A \lor !B$,
+  \iftag{prvAnd}{$\lnot(\lnot !A \land \lnot !B)$}{$\lnot !A \lif
+    !B$} ifadesinin kısaltmasıdır.}{}
+
+\tagitem{defAnd}{$!A \land !B$,
+  \iftag{prvOr}{$\lnot(\lnot !A \lor \lnot !B)$}{$\lnot (!A \lif
+    \lnot !B)$} ifadesinin kısaltmasıdır.}{}
+
+\tagitem{defIf}{$!A \lif !B$,
+  \iftag{prvOr}{$\lnot !A \lor !B$}{$\lnot (!A \land \lnot !B)$}
+  ifadesinin kısaltmasıdır.}{}
+
+\tagitem{defIff}{$!A \liff !B$, $(!A \lif !B) \land (!B
+  \lif !A)$ ifadesinin kısaltmasıdır.}{}
+
+\tagitem{defBox}{$\Box !A$, $\lnot\Diamond\lnot !A$ ifadesinin kısaltmasıdır. }{}
+
+\tagitem{defDiamond}{$\Diamond !A$, $\lnot\Box\lnot !A$ ifadesinin kısaltmasıdır.}{}
+\end{tagenumerate}
+\end{defn}
+\end{tagblock}
+
+!!a{formula}~$!A$, $\Box$ ya da $\Diamond$ içermiyorsa ona
+\emph{kipliksiz} deriz.
+
+\end{document}

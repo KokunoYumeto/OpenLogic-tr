@@ -1,0 +1,88 @@
+% Part: first-order-logic
+% Chapter: proof-systems
+% Section: tableaux
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[tr]{fol}{prf}{tab}}
+      {\olfileid[tr]{pl}{prf}{tab}}
+
+\olsection{\usetoken{P}{tableau}}
+
+Birçok !!{derivation} sistemi !!{sentence}s içeren düzenlemelerle çalışırken,
+!!{tableau}s !!{signed formula}s ile çalışır. Bir !!^a{signed formula}, bir
+doğruluk değeri işareti ($\True$ veya $\False$) ile !!a{sentence} içeren bir
+ikilidir:
+\[
+\sFmla{\True}{!A} \text{ veya } \sFmla{\False}{!A}.
+\]
+Bir !!^a{tableau}, aşağı doğru dallanan bir ağaçta düzenlenmiş !!{signed formula}s
+içerir. Birkaç \emph{varsayımla} başlar ve üstteki !!{signed formula}s
+içinden birine bir çıkarım kuralı uygulanmasıyla elde edilen !!{signed
+formula}s ile devam eder. Her kural, !!{signed formula}s arasından birini
+veya birkaçını bir dalın ucuna eklememize ya da !!{signed formula}s arasından
+ikisini yan yana yerleştirmemize izin verir. İkinci durumda dal ikiye ayrılır
+ve eklenen !!{signed formula}s iki yeni dalın ucunu oluşturur.
+
+Karmaşık bir !!{signed formula} için bağlaç kurallarından biri uygulandığında,
+!!{signed formula}s biçimindeki dolaysız alt-!!{formula}s eklenir
+\iftag{FOL}{; niceleyici kuralları ise uygun yerine koyma örnekleri ekler.}{.}
+Kurallar !!{signed formula}s
+için, iki işaretin her birine birer tane olmak üzere çiftler hâlinde gelir. Örneğin
+$\TRule{\True}{\land}$ kuralı $\sFmla{\True}{!A \land !B}$ ifadesine
+uygulanır ve $\sFmla{\True}{!A \land !B}$ ifadesini içeren herhangi bir dalın ucuna
+$\sFmla{\True}{!A}$ ile~$\sFmla{\True}{!B}$'yi eklememize izin
+verir.
+$\TRule{\False}{\land}$ kuralıysa $\sFmla{\False}{!A}$ ile
+$\sFmla{\False}{!B}$'yi yan yana ekleyerek bir dalı ikiye ayırmamıza izin
+verir. Bir !!^a{tableau}, her dalında !!{signed formula}s arasından eşleşen
+$\sFmla{\True}{!A}$ ve $\sFmla{\False}{!A}$ çifti bulunuyorsa kapalıdır.
+
+!!{tableau}s esas alınarak $\Proves$ bağıntısı şöyle tanımlanır:
+$\Gamma_0 \subseteq \Gamma$ olacak biçimde sonlu bir
+$\Gamma_0 = \{!B_1, \dots, !B_n\}$ kümesi ve şu varsayımlar için kapalı
+!!{tableau} varsa $\Gamma
+\Proves !A$ olur:
+\[
+\{\sFmla{\False}{!A}, \sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n}\}.
+\]
+Örneğin aşağıdaki kapalı !!{tableau}, $\Proves (!A \land !B) \lif !A$
+olduğunu gösterir:
+\begin{oltableau}
+  [\sFmla{\False}{(\formula{A} \land \formula{B}) \lif \formula{A}}, just = \TAss
+    [\sFmla{\True}{\formula{A} \land \formula{B}}, just = {\TRule{\False}{\lif}[1]}
+      [\sFmla{\False}{\formula{A}}, just = {\TRule{\False}{\lif}[1]}
+        [\sFmla{\True}{\formula{A}}, just = {\TRule{\True}{\land}[2]}
+          [\sFmla{\True}{\formula{B}}, just = {\TRule{\True}{\land}[2]}, close]
+        ]
+      ]
+    ]
+  ]
+\end{oltableau}
+
+$\Gamma$ kümesi !!{tableau} hesabında, her $!B_i\in\Gamma$ olacak biçimde
+şu varsayımlar için kapalı !!{tableau} varsa tutarsızdır:
+\[
+\{\sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n}\}.
+\]
+
+!!^{tableau}s 1950'lerde Evert Beth ve Jaakko Hintikka tarafından birbirinden
+bağımsız olarak geliştirildi; Raymond Smullyan tarafından sadeleştirilip
+yaygınlaştırıldı. Bir !!a{tableau} kurmak son derece sistematik bir işlem
+olduğundan !!{tableau}s kullanımı çok kolaydır. Sistematik yapıları sayesinde
+bilgisayarda uygulanmaya da elverişlidirler. Ne var ki !!a{tableau} çoğu
+zaman zor okunur ve ispatlarla bağlantısını görmek kolay olmayabilir. Bu
+yaklaşım oldukça geneldir ve birçok farklı mantık için !!{tableau} sistemi
+vardır. !!^{tableau}s \iftag{FOL}{!!{structure}s}{değerlemeler} bulmamıza da
+yardım eder; bunlar verilen kümelerdeki !!{sentence}s sağlar. Küme
+sağlanabilirse kapalı bir !!{tableau} bulunmaz; başka bir deyişle her
+!!{tableau} açık bir dal içerir. O dalda uygulanabilecek bütün kurallar
+uygulanmışsa \iftag{FOL}{sağlayan !!{structure} açık daldan
+“okunabilir”}{sağlayan değerleme açık daldan “okunabilir”}. Sekant hesabıyla
+da çok yakın bir bağlantı vardır: kapalı bir !!{tableau}, özünde sekant
+hesabında baş aşağı yazılmış ve sıkıştırılmış bir !!{derivation} biçimidir.
+
+\end{document}

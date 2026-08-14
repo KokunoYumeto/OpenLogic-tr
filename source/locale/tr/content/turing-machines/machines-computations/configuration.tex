@@ -1,0 +1,102 @@
+% Part: computability
+% Chapter: machines-computations
+% Section: configuration
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{cmp}{tur}{con}
+\olsection{Konfigürasyonlar ve Hesaplar}
+
+\begin{explain}
+Daha önce çift sayı makinesinin konfigürasyonlarını adım adım izlediğimizi
+anımsayın. Şerit, okuma-yazma kafası ve Turing makinesi programından oluşan
+hayalî düzenek, bir Turing makinesi hesabını görselleştirmenin sezgisel bir
+yoludur. Biçimsel olarak bir Turing makinesinin belirli bir girdideki hesabını
+\emph{konfigürasyonlar} dizisi olarak tanımlayabiliriz. Konfigürasyonun
+kendisi, hesapta belirli bir andaki şerit içeriğine karşılık gelen simgeler
+dizisi, okuma-yazma kafasının konumunu belirten bir sayı ve bir durumdur.
+Bunları kullanarak $M$ Turing makinesinin belirli bir girdide ne hesapladığını
+tanımlayabiliriz.
+\end{explain}
+
+\begin{defn}[Konfigürasyon]
+$M=\tuple{Q,\Sigma,q_0,\delta}$ Turing makinesinin bir
+\emph{konfigürasyonu}, aşağıdaki koşulları sağlayan
+$\tuple{C,m,q}$ üçlüsüdür:
+\begin{enumerate}
+\item $C\in\Sigma^*$, $\Sigma$ simgelerinden oluşan sonlu bir dizidir.
+\item $m\in\Nat$, $m<\len{C}$ olan bir sayıdır.
+\item $q\in Q$.
+\end{enumerate}
+Sezgisel olarak $C$ dizisi şeridin içeriğidir; en soldaki kareden son boş
+olmayan ya da daha önce ziyaret edilmiş kareye kadarki bütün karelerin
+simgelerini verir. $m$, okuma-yazma kafasının taradığı karenin numarasıdır;
+en soldaki kare $0$ ile başlar. $q$ ise makinenin o andaki durumudur.
+\end{defn}
+
+\begin{explain}
+Bir Turing makinesinin olası girdisi, genellikle bir sayıyı belirli biçimde
+kodlayan bir simgeler dizisidir. Turing makinesinin başlangıç konfigürasyonu,
+makineyi bu girdi üzerinde çalıştırmaya başladığımız konfigürasyondur: Şerit,
+hemen ardından sağdaki karelere yazılmış girdinin geldiği şerit sonu işaretini
+içerir; okuma-yazma kafası girdinin en soldaki karesini, yani sol uç
+işaretinin sağındaki kareyi tarar; düzenek belirtilmiş başlangıç durumu
+$q_0$'dadır.
+\end{explain}
+
+\begin{defn}[Başlangıç konfigürasyonu]
+$M$'nin $I\in\Sigma^*$ girdisi için \emph{başlangıç konfigürasyonu}
+\[
+  \tuple{\TMendtape\frown I,1,q_0}
+\]
+üçlüsüdür.
+\end{defn}
+
+\begin{explain}
+$\frown$ simgesi \emph{art arda birleştirme}yi gösterir; girdi dizgesi sol
+uç işaretinin hemen sağında başlar.
+\end{explain}
+
+\begin{defn}
+Bir $\tuple{C,m,q}$ konfigürasyonunun $M$'ye göre
+\emph{tek adımda $\tuple{C',m',q'}$ konfigürasyonunu verdiğini} ancak ve
+ancak aşağıdaki koşullarda söyleriz:
+\begin{enumerate}
+\item $C$'nin $m$. simgesi $\sigma$'dır.
+\item $M$'nin yönerge kümesi
+  $\delta(q,\sigma)=\tuple{q',\sigma',D}$ değerini belirtir.
+\item $C'$ dizisinin $m$. simgesi $\sigma'$'dür.
+\item
+  \begin{enumerate}
+  \item $D=L$ ve $m>0$ ise $m'=m-1$; aksi durumda $m'=0$, ya da
+  \item $D=R$ ve $m'=m+1$, ya da
+  \item $D=N$ ve $m'=m$.
+  \end{enumerate}
+\item $m'=\len{C}$ ise $\len{C'}=\len{C}+1$ ve $C'$ dizisinin $m'$.
+  simgesi $\TMblank$'dir. Aksi durumda $\len{C'}=\len{C}$.
+\item $i<\len{C}$ ve $i\neq m$ olan her $i$ için $C'(i)=C(i)$.
+\end{enumerate}
+\end{defn}
+
+\begin{defn}\ollabel{defn:run-output}
+$M$'nin $I$ girdisindeki bir \emph{çalışması}, $M$ konfigürasyonlarından
+oluşan öyle bir $C_i$ dizisidir ki $C_0$, $M$'nin $I$ için başlangıç
+konfigürasyonu ve her $C_i$, tek adımda $C_{i+1}$ konfigürasyonunu verir.
+
+$C_k=\tuple{C,m,q}$, $C$'nin $m$. simgesi $\sigma$ ve
+$\delta(q,\sigma)$ tanımsızsa $M$'nin \emph{$I$ girdisinde $k$ adım sonra
+durduğunu} söyleriz. Bu durumda $M$'nin $I$ girdisindeki \emph{çıktısı}
+$O$'dur; burada $O$, sonunda $\TMblank$ bulunmayan ve bazı $j\in\Nat$ için
+$C=\TMendtape\concat O\concat\TMblank^j$ olacak bir simgeler dizgesidir.
+($\TMblank^j$, $j$ tane $\TMblank$ simgesinden oluşan dizidir.)
+\end{defn}
+
+\begin{explain}
+Bu tanıma göre $M$'nin çıktısı $O$ her zaman $\TMblank$ dışında bir simgeyle
+biter. $k$ anında en soldaki $\TMendtape$ dışında bütün şerit $\TMblank$ ile
+doluysa $O$ boş dizgedir.
+\end{explain}
+
+\end{document}

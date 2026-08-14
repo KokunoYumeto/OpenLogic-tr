@@ -1,0 +1,81 @@
+% Part: computability
+% Chapter: computability-theory
+% Section: k-1
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{cmp}{thy}{k1}
+\olsection{Bir İndirgenebilirlik Örneği}
+
+\olref[ppr]{prop:reduce} önermesinin bir uygulamasını ele alalım.
+
+\begin{prop}
+\ollabel{prop:k1}
+\[
+  K_1=\Setabs{e}{\cfind{e}(0)\fdefined}
+\]
+olsun. O zaman $K_1$ hesaplanabilir biçimde numaralandırılabilir, fakat
+hesaplanabilir değildir.
+\end{prop}
+
+\begin{proof}
+$K_1=\Setabs{e}{\lexists[s][T(e,0,s)]}$ olduğundan
+\olref[eqc]{thm:exists-char} uyarınca $K_1$ hesaplanabilir biçimde
+numaralandırılabilir.
+
+$K_1$'in hesaplanabilir olmadığını göstermek için $K_0$'ın ona
+indirgenebilir olduğunu gösterelim.
+
+\begin{explain}
+Bu biraz güçtür; çünkü $K_1$ aracılığıyla yalnızca belirli bir $0$ girdisinde
+başlayan hesaplar hakkında soru sorabiliriz. Bu tür soruları yanıtlayabilen
+zeki bir arkadaşınız olduğunu varsayın; böyle arkadaşlara ``kâhin'' denir.
+Birisi gelip $\tuple{e,x}$ çiftinin $K_0$ içinde olup olmadığını, yani
+$e$ makinesinin $x$ girdisinde durup durmadığını sorsun. Yapabileceğiniz şey,
+\emph{herhangi bir} girdiyi yok sayıp onun yerine $e$'yi $x$ girdisinde
+çalıştıran başka bir $e_x$ makinesi kurmaktır. O zaman $e$ makinesinin $x$
+girdisinde durup durmadığı sorusu, $e_x$ makinesinin $0$ girdisinde ya da
+başka herhangi bir girdide durup durmadığı sorusuna eşdeğerdir. Arkadaşınıza
+bu yeni $e_x$ makinesinin $0$ girdisinde durup durmadığını sorarsınız;
+değiştirilmiş soruya verdiği yanıt ilk soruyu yanıtlar. Bu, $K_0$'ın $K_1$'e
+istenen indirgemesini sağlar.
+\end{explain}
+
+Evrensel kısmi hesaplanabilir fonksiyonu kullanarak $f$'yi
+\[
+  f(x,y,z)\simeq\cfind{x}(y)
+\]
+ile tanımlanan üç yerli fonksiyon yapalım. $f$'nin üçüncü girdisini bütünüyle
+yok saydığına dikkat edin. $f=\cfind{e}[3]$ olacak bir $e$ indisi seçelim:
+\[
+  \cfind{e}[3](x,y,z)\simeq\cfind{x}(y).
+\]
+$s$-$m$-$n$ teoremi uyarınca her $z$ için
+\begin{align*}
+  \cfind{s(e,x,y)}(z) & \simeq\cfind{e}[3](x,y,z)\\
+  & \simeq\cfind{x}(y)
+\end{align*}
+olacak bir $s(e,x,y)$ fonksiyonu vardır.
+
+\begin{explain}
+Yukarıdaki biçimsel olmayan savın terimleriyle $s(e,x,y)$, herhangi bir
+$z$ girdisini yok sayıp $\cfind{x}(y)$ değerini hesaplayan makinenin indisidir.
+\end{explain}
+
+Özellikle
+\[
+  \cfind{s(e,x,y)}(0)\fdefined\quad\text{ancak ve ancak}\quad
+  \cfind{x}(y)\fdefined
+\]
+olur. Başka bir deyişle $\tuple{x,y}\in K_0$ ancak ve ancak
+$s(e,x,y)\in K_1$ olur. Dolayısıyla
+\[
+  g(w)=s(e,(w)_0,(w)_1)
+\]
+ile tanımlanan $g$, $K_0$'ın $K_1$'e bir indirgemesidir.
+\end{proof}
+
+\end{document}
+

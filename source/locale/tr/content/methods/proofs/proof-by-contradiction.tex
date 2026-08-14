@@ -1,0 +1,225 @@
+% Part: methods
+% Chapter: proofs
+% Section: proof-by-contradiction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{mth}{prf}{con}
+
+\olsection{Çelişki Yoluyla Kanıt}
+
+İlk olarak çelişki yoluyla kanıt, olumsuz iddiaları kanıtlamak için
+kullanılan bir çıkarım kalıbıdır. Bir $p$ iddiasının \emph{yanlış}
+olduğunu, yani~$\lnot p$'yi göstermek istediğinizi düşünün. En umut
+verici strateji (a) $p$'nin doğru olduğunu varsaymak ve (b) bu
+varsayımın yanlış olduğunu bildiğiniz bir şeye götürdüğünü göstermektir.
+``Yanlış olduğu bilinen şey'', $p$'nin kendisiyle ya da ele aldığınız
+genel iddianın başka bir hipoteziyle çatışan---çelişen---bir sonuç
+  olabilir. Örneğin ``$q$ ise $\lnot p$''nin bir kanıtı, $q$'nun doğru
+  olduğunu varsayıp buradan~$\lnot p$'yi kanıtlamayı içerir. $\lnot p$'yi
+  çelişki yoluyla kanıtlarsanız, bu $p$'yi $q$'ya ek olarak varsaymak
+  demektir. $\lnot q$'yu $p$'den kanıtlayabilirseniz, $p$ varsayımının
+diğer varsayımınız~$q$ ile çelişen bir şeye götürdüğünü göstermiş
+olursunuz; çünkü $q$ ve $\lnot q$ birlikte doğru olamaz. Elbette
+çelişkiyi kanıtlarken tanımları açmanın yanı sıra başka çıkarım
+kalıplarını da kullanmanız gerekir. Bir örnek ele alalım.
+
+\begin{prop}
+  $A \subseteq B$ ve $B = \emptyset$ ise $A$ için !!{element}s
+  bulunmaz.
+\end{prop}
+
+\begin{proof}
+  $A \subseteq B$ ve $B = \emptyset$ olduğunu varsayalım. $A$ için
+  !!{element}s bulunmadığını göstermek istiyoruz.
+  \begin{quote}
+    Bu koşullu bir iddia olduğundan önbileşeni varsayar ve artbileşeni
+    kanıtlamak isteriz. Artbileşen şudur: $A$ için !!{element}s
+    bulunmaz. Bunu biraz daha açık hâle getirebiliriz: bir~$x \in A$
+    bulunması söz konusu değildir.
+  \end{quote}
+  $A$ için !!{element}s bulunmaması, ancak ve ancak bir~$x$ için $x \in A$
+  olması söz konusu değilse geçerlidir.
+  \begin{quote}
+    Böylece kanıtlamak istediğimiz şeyin aslında olumsuz bir iddia
+    $\lnot p$, yani bir $x \in A$ bulunmasının söz konusu olmadığı
+    olduğunu belirledik. Çelişki yoluyla kanıtı kullanmak için buna
+    karşılık gelen olumlu iddiayı~$p$'yi, yani bir $x \in A$ bulunduğunu
+    varsaymalı ve buradan bir çelişki kanıtlamalıyız. Çelişki yoluyla
+    kanıt yaptığımızı, ``tersini varsayalım'' ya da yalnızca ``öyle
+    olmadığını varsayalım'' yazıp ardından~$p$ varsayımını belirterek
+    gösteririz.
+  \end{quote}
+  Öyle olmadığını varsayalım: bir $x \in A$ vardır.
+  \begin{quote}
+    Artık bir çelişki elde etmek için kullanacağımız yeni varsayım
+    budur. İki varsayımımız daha var: $A \subseteq B$ ve $B =
+    \emptyset$. Birincisi bize $x \in B$ sonucunu verir:
+  \end{quote}
+  $A \subseteq B$ olduğundan $x \in B$.
+  \begin{quote}
+    Fakat $B = \emptyset$ olduğundan, $B$'deki her !!{element} (örneğin
+    $x$) aynı zamanda $\emptyset$ içinde bulunan bir !!a{element} olmalıdır.
+  \end{quote}
+  $B = \emptyset$ olduğundan $x \in \emptyset$. Bu bir çelişkidir;
+  çünkü tanım gereği $\emptyset$ için !!{element}s bulunmaz.
+  \begin{quote}
+    Bu, kanıtı zaten tamamlar: kurduğumuz varsayımlardan ihtiyacımız
+    olan şeye (bir çelişkiye) ulaştık; demek ki bu varsayımların hepsi
+    birden doğru olamaz. İlk iki varsayım ($A \subseteq B$ ve $B =
+    \emptyset$) tartışmalı olmadığına göre, yanlış olması gereken son
+    ortaya konan varsayımdır (bir $x \in A$ vardır). Ama eksiksiz olmak
+    istersek bunu açıkça yazabiliriz.
+  \end{quote}
+  Öyleyse bir $x \in A$ bulunduğu varsayımımız yanlış olmalıdır;
+  dolayısıyla çelişki yoluyla kanıt gereği $A$ için !!{element}s
+  bulunmaz.
+\end{proof}
+
+Her olumlu iddia önemsiz biçimde bir olumsuz iddiaya denktir: $p$, ancak
+ve ancak $\lnot\lnot p$ ise geçerlidir. Dolayısıyla çelişki yoluyla
+kanıtlar, olumlu iddiaları ``dolaylı olarak'' belirlemek için de şöyle
+kullanılabilir: $p$'yi kanıtlamak için onu $\lnot\lnot p$ olumsuz
+iddiası olarak okuyun. $\lnot p$'den bir çelişki kanıtlayabilirsek,
+çelişki yoluyla kanıtla $\lnot\lnot p$'yi, dolayısıyla~$p$'yi belirlemiş
+oluruz.
+
+Son örnekte olumsuz bir iddiayı, yani $A$ için !!{element}s
+bulunmadığını kanıtlamayı hedefledik. Bu nedenle çelişki yoluyla kanıt
+amacıyla yaptığımız varsayım (yani bir $x \in A$ bulunduğu), olumlu bir
+iddiaydı. Bize üzerinde çalışabileceğimiz bir şey, yani hakkında akıl
+yürütmeyi sürdürdüğümüz varsayımsal $x \in A$'yı verdi; sonunda $x \in
+\emptyset$ sonucuna ulaştık.
+
+Olumlu bir iddiayı dolaylı olarak kanıtlarken çelişki yoluyla kanıt
+amacıyla yapacağınız varsayım olumsuz olur. Fakat çoğu zaman olumlu bir
+  iddiayı olumsuz bir iddia, olumsuz bir iddiayı da olumlu bir iddia
+  olarak kolayca yeniden ifade edebilirsiniz. Bir önceki kanıtımız,
+  ``$A = \emptyset$''i ``$A$ için !!{element}s bulunmaz'' olumsuz
+  artbileşeni yerine kanıtlamış olsaydık özünde aynı olurdu. ($=$ tanımı gereği
+``$A = \emptyset$'' genel bir iddiadır; çünkü açıldığında ``$A$'da
+bulunan her !!{element}, aynı zamanda $\emptyset$'te bulunan bir
+!!{element} olur ve bunun tersi de geçerlidir'' olur.) Ama bunun,
+``değil: bir $x \in A$ vardır'' olumsuz
+iddiasına denk olduğu kolayca görülür.
+
+Dolayısıyla bazen $\lnot p$ ile varsayım olarak çalışmak, $p$'yi
+doğrudan kanıtlamaktan daha kolaydır. Doğrudan kanıt aynı derecede basit
+hatta daha basit olsa bile (sonraki örneklerde olduğu gibi), bazı
+insanlar dolaylı ilerlemeyi yeğler. Çifte olumsuzlama kafanızı
+karıştırıyorsa, bir iddianın çelişki yoluyla kanıtını, \emph{karşıt}
+iddiadan bir çelişkinin kanıtı olarak düşünün. Buna göre $\lnot p$'nin
+çelişki yoluyla kanıtı, $p$ varsayımından bir çelişkinin kanıtıdır;
+$p$'nin çelişki yoluyla kanıtı ise $\lnot p$'den bir çelişkinin
+kanıtıdır.
+
+\begin{prop}
+$A \subseteq A \cup B$.
+\end{prop}
+
+\begin{proof}
+  $A \subseteq A \cup B$ olduğunu göstermek istiyoruz.
+  \begin{quote}
+    Görünüşte bu olumlu bir iddiadır: her $x \in A$, aynı zamanda $A
+    \cup B$'dedir. Bunun olumsuzlaması şudur: bazı $x \in A$ öğeleri
+    $\notin A \cup B$'dir. Böylece bu olumsuzlanmış iddiayı varsayıp onun
+    bir çelişkiye götürdüğünü göstererek iddiayı dolaylı biçimde
+    kanıtlayabiliriz.
+    \end{quote}
+  Öyle olmadığını, yani $A \nsubseteq A \cup B$ olduğunu varsayalım.
+  \begin{quote}
+    $A \subseteq A \cup B$'nin bir tanımı vardır: her $x \in A$, aynı
+    zamanda $\in A \cup B$'dir. $A \nsubseteq A \cup B$'nin ne anlama
+    geldiğini anlamak için açılmış tanım üzerinde bazı temel mantıksal
+    işlemler yapmalıyız: her $x \in A$'nın aynı zamanda $\in A \cup B$
+    olması yanlışsa, ancak ve ancak \emph{bazı}~$x \in A$ öğeleri
+    $\notin A \cup B$ ise durum böyledir. (Bu, çok dikkatli olmanız gereken bir
+    yerdir: öğrencilerin birçok çelişki yoluyla kanıt girişimi, ``bütün
+    $A$'lar $B$'dir'' gibi bir iddianın olumsuzlamasını yanlış çözümlediği
+    için başarısız olur.) Başka bir deyişle $A \nsubseteq A \cup B$,
+    ancak ve ancak bir $x$ bulunup $x \in A$ ve $x \notin A \cup B$ ise
+    geçerlidir. Bundan sonrası kolaydır.
+  \end{quote}
+  Öyleyse bir $x \in A$ vardır ve $x \notin A \cup B$. $\cup$ tanımı
+  gereği $x \in A \cup B$, ancak ve ancak $x \in
+  A$ ya da $x \in B$ ise geçerlidir. $x \in A$ olduğundan $x \in A
+  \cup B$ elde ederiz. Bu, $x \notin A \cup B$ varsayımıyla çelişir.
+\end{proof}
+
+\begin{prob}
+\emph{Dolaylı olarak} $A \cap B \subseteq A$ olduğunu kanıtlayın.
+\end{prob}
+
+\begin{prop}
+$A \subseteq B$ ve $B \subseteq C$ ise $A \subseteq C$.
+\end{prop}
+
+\begin{proof}
+  $A \subseteq B$ ve $B \subseteq C$ olduğunu varsayalım. $A
+  \subseteq C$ olduğunu göstermek istiyoruz.
+  \begin{quote}
+    Dolaylı ilerleyelim: kanıtlamak istediğimiz şeyin olumsuzlamasını
+    varsayalım.
+  \end{quote}
+  Öyle olmadığını, yani $A \nsubseteq C$ olduğunu varsayalım.
+  \begin{quote}
+    Daha önce olduğu gibi $A \nsubseteq C$'nin, her $x \in A$'nın aynı
+    zamanda $\in C$ olmamasıyla, yani bazı $x \in A$ öğelerinin $\notin C$
+    olmasıyla denk olduğunu görürüz. Kaygılanmayın; biraz alıştırmayla
+    böyle olumsuzlamaları açmak için artık çok düşünmeniz gerekmeyecek.
+  \end{quote}
+  Başka bir deyişle bir~$x$ vardır; $x \in A$ ve $x \notin C$.
+  \begin{quote}
+    Artık çelişkimize ulaşmak için bunu kullanabiliriz. Elbette bunu
+    yapmak üzere öteki iki varsayımı da kullanmamız gerekecek.
+  \end{quote}
+  $A \subseteq B$ olduğundan $x \in B$. $B \subseteq C$ olduğundan $x
+  \in C$. Fakat bu $x \notin C$ ile çelişir.
+\end{proof}
+
+\begin{prop}
+$A \cup B = A \cap B$ ise $A = B$.
+\end{prop}
+
+\begin{proof}
+  $A \cup B = A \cap B$ olduğunu varsayalım. $A = B$ olduğunu göstermek
+  istiyoruz.
+  \begin{quote}
+    Başlangıç artık bildik bir yoldur:
+  \end{quote}
+  Çelişkiye ulaşmak üzere $A \neq B$ olduğunu varsayalım.
+  \begin{quote}
+    Çelişki yoluyla kanıt için varsayımımız $A \neq B$'dir. $A = B$,
+    ancak ve ancak $A \subseteq B$ ve $B \subseteq A$ ise geçerli
+    olduğundan, $A \neq B$'nin ancak ve ancak $A \nsubseteq B$ \emph{ya
+    da} $B \nsubseteq A$ ise geçerli olduğu sonucuna varırız.
+    (Olumsuzlamaları işlerken dikkatli olmanın ne kadar önemli olduğuna
+    bakın!{}) Bu ayrışımdan bir çelişki kanıtlamak için durumlara göre
+    kanıt kullanır ve her durumda bir çelişkinin çıktığını gösteririz.
+  \end{quote}
+  $A \neq B$, ancak ve ancak $A \nsubseteq B$ ya da $B \nsubseteq A$
+  ise geçerlidir. Durumları ayıralım.
+  \begin{quote}
+    İlk durumda $A \nsubseteq B$'yi, yani bazı $x$ için $x \in A$ fakat
+    $\notin B$ olduğunu varsayarız. $A \cap B$, $A$ ile $B$'nin ortak
+    !!{element}s kümesi olarak tanımlandığından bir şey bunlardan birinde
+    değilse kesişimde de değildir. $A \cup B$, $A$ ile birlikte $B$'dir;
+    dolayısıyla ikisinden herhangi birinde bulunan her şey birleşimde
+    de bulunur. Bu bize $x \in A \cup B$ fakat $x \notin A \cap B$
+    olduğunu ve dolayısıyla $A \cap B \neq A \cup B$ olduğunu söyler.
+  \end{quote}
+
+  Durum 1: $A \nsubseteq B$. O zaman bazı $x$ için $x \in A$ fakat $x
+  \notin B$. $x \notin B$ olduğundan $x \notin A \cap B$. $x \in A$
+  olduğundan $x \in A \cup B$. Öyleyse $A \cap B \neq A \cup B$;
+  bu, $A \cap B = A \cup B$ varsayımıyla çelişir.
+
+  Durum 2: $B \nsubseteq A$. O zaman bazı $y$ için $y \in B$ fakat $y
+  \notin A$. Daha önce olduğu gibi $y \in A \cup B$ fakat $y \notin A
+  \cap B$ elde ederiz; dolayısıyla $A \cap B \neq A \cup B$, bu da $A
+  \cap B = A \cup B$ ile çelişir.
+\end{proof}
+
+\end{document}

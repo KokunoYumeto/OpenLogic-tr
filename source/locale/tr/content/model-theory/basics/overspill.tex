@@ -1,0 +1,43 @@
+% Part: first-order-logic
+% Chapter: model-theory
+% Section: overspill
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{mod}{bas}{ove}
+\olsection{Taşma}
+
+\begin{thm}
+\ollabel{overspill} Bir tümceler kümesi~$\Gamma$ gelişigüzel büyük
+sonlu modellere sahipse sonsuz bir modele de sahiptir.
+\end{thm}
+
+\begin{proof}
+$\Gamma$ dilini sayılabilir sonsuz sayıda yeni $c_0,c_1,\dots$
+sabitini ekleyerek genişletin ve
+$\Gamma\cup\{c_i\neq c_j:i\neq j\}$ kümesini ele alın. $\Gamma$'nın
+gelişigüzel büyük sonlu modellere sahip olması, her $m>0$ için
+$n\geq m$ olacak biçimde $\Gamma$'nın $n$ kardinaliteli bir modelinin
+bulunması demektir. Bu, $\Gamma\cup\{c_i\neq c_j:i\neq j\}$ kümesinin
+sonlu sağlanabilir olduğunu gerektirir. Tıkızlık gereği bu kümenin bir
+$\Struct M$ modeli vardır. Bütün $c_i\neq c_j$ eşitsizliklerini
+sağladığı için bu modelin evreni sonsuz olmak zorundadır.
+\end{proof}
+
+\begin{prop}
+\ollabel{inf-not-fo}
+Herhangi bir birinci dereceden dilde, !!a{structure}~$\Struct M$
+içinde ancak ve ancak !!{structure} ifadesinin evreni~$\Domain M$
+sonsuz olduğunda doğru olan hiçbir $!A$ tümcesi yoktur.
+\end{prop}
+
+\begin{proof}
+Böyle bir $!A$ bulunsaydı $\lnot !A$ tam ve yalnızca sonlu
+!!{structure}s içinde doğru olurdu. Dolayısıyla gelişigüzel büyük sonlu
+modellere sahip olduğu halde sonsuz bir modeli bulunmazdı; bu da
+\olref{overspill} ile çelişir.
+\end{proof}
+
+\end{document}

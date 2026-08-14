@@ -1,0 +1,155 @@
+% Part: lambda-calculus
+% Chapter: church-rosser
+% Section: parallel-beta-reduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{lam}{cr}{pb}
+
+\olsection{Paralel $\beta$-indirgeme}
+
+\emph{Paralel $\beta$-indirgeme} kavramını tanıtıp Church--Rosser özelliğini
+sağladığını ispatlayacağız.
+
+\begin{defn}[Paralel $\beta$-indirgeme, $\bredpar$] \ollabel{defn:bredpar}
+  Terimlerin paralel indirgenmesi ($\bredpar$) tümevarımlı olarak şöyle
+  tanımlanır:
+  \begin{enumerate}
+    \item \ollabel{defn:bredpar1} $x \bredpar x$.
+    \item \ollabel{defn:bredpar2} $N \bredpar N'$ ise
+      $\lambd[x][N] \bredpar \lambd[x][N']$.
+    \item \ollabel{defn:bredpar3} $P \bredpar P'$ ve $Q \bredpar Q'$ ise
+      $PQ \bredpar P'Q'$.
+    \item \ollabel{defn:bredpar4} $N \bredpar N'$ ve $Q \bredpar Q'$ ise
+      $(\lambd[x][N])Q \bredpar \Subst{N'}{Q'}{x}$.
+  \end{enumerate}
+\end{defn}
+
+Paralel $\beta$-indirgeme, bir terimdeki istenen sayıda redexi tek adımda
+indirgememize izin verir. $\beta$-indirgemeden şu bakımdan ayrılır: yalnızca
+başlangıç teriminde bulunan redexler daraltılabilir; paralel indirgeme
+sonucunda ortaya çıkanlar aynı adımda daraltılamaz. Örneğin
+$(\lambd[f][fx])(\lambd[y][y])$ terimi paralel olarak yalnızca kendisine ya
+da $(\lambd[y][y])x$ terimine indirgenebilir; $\beta$-indirgemeyle $x$'e
+indirgenebilmesine rağmen tek paralel adımda $x$'e indirgenemez. Çünkü bu
+redex ancak ilk paralel $\beta$-indirgeme adımından sonra ortaya çıkar. İkinci
+bir paralel adım ise $x$'i verir.
+
+\begin{thm}\ollabel{thm:refl}
+  $M \bredpar M$.
+\end{thm}
+
+\begin{proof}
+  Alıştırma.
+\end{proof}
+
+\begin{prob}
+  \olref[lam][cr][pb]{thm:refl} teoremini ispatlayın.
+\end{prob}
+
+\begin{defn}[$\beta$-tam geliştirme]\ollabel{defn:bcd}
+  $M$ teriminin \emph{$\beta$-tam geliştirmesi} $\bcd{M}$ tümevarımlı olarak
+  şöyle tanımlanır:
+  \begin{align}
+    \bcd{x} &= x \ollabel{defn:bcd1} \\
+    \bcd{(\lambd[x][N])} &= \lambd[x][\bcd{N}] \ollabel{defn:bcd2}\\
+    \bcd{(PQ)} &= \bcd{P}\bcd{Q} && \text{$P$ bir $\lambd$-soyutlaması değilse}
+    \ollabel{defn:bcd3} \\
+    \bcd{((\lambd[x][N])Q)} &= \Subst{\bcd{N}}{\bcd{Q}}{x} \ollabel{defn:bcd4}
+  \end{align}
+\end{defn}
+
+Bir terimin $\beta$-tam geliştirmesi, adından da anlaşılacağı gibi ``tam bir
+paralel indirgeme''dir. Paralel $\beta$-indirgemede bir redexi daraltmamayı
+seçebiliriz; tam geliştirmede ise bütün redexleri daraltmak zorundayız.
+Dolayısıyla $(\lambd[f][fx])(\lambd[y][y])$ teriminin tam geliştirmesi
+kendisi değil, $(\lambd[y][y])x$'tir.
+
+\begin{editorial}
+  Bu tanımın bir sorunu vardır: ($\lambd$-)terimleri üzerinde fonksiyonların
+  özyinelemeli olarak nasıl tanımlanacağını henüz açıklamadık. Bu eksiklik
+  ileride giderilecektir.
+\end{editorial}
+
+\begin{lem}\ollabel{lem:comp}
+  $M \bredpar M'$ ve $R \bredpar R'$ ise $\Subst{M}{R}{y}
+  \bredpar \Subst{M'}{R'}{y}$.
+\end{lem}
+
+\begin{proof}
+  $M \bredpar M'$ !!{derivation} üzerinde tümevarımla.
+  \begin{enumerate}
+    \item Son adım \olref{defn:bredpar1}: alıştırma.
+    \item Son adım \olref{defn:bredpar2} olsun. $M=\lambd[x][N]$ ve
+      $M'=\lambd[x][N']$; burada $N\bredpar N'$. Göstermek istediğimiz
+      $\Subst{(\lambd[x][N])}{R}{y}\bredpar
+      \Subst{(\lambd[x][N'])}{R'}{y}$, yani
+      $\lambd[x][\Subst{N}{R}{y}]\bredpar
+      \lambd[x][\Subst{N'}{R'}{y}]$ bağıntısıdır. Bu,
+      \olref{defn:bredpar2} ile tümevarım varsayımından doğrudan çıkar.
+    \item Son adım \olref{defn:bredpar3}: alıştırma.
+    \item Son adım \olref{defn:bredpar4} olsun. Bu durumda
+      $M=(\lambd[x][N])Q$ ve $M'=\Subst{N'}{Q'}{x}$. Göstermek istediğimiz
+      $\Subst{((\lambd[x][N])Q)}{R}{y}\bredpar
+      \Subst{\Subst{N'}{Q'}{x}}{R'}{y}$, yani
+      $(\lambd[x][\Subst{N}{R}{y}])\Subst{Q}{R}{y}\bredpar
+      \Subst{\Subst{N'}{R'}{y}}{\Subst{Q'}{R'}{y}}{x}$ bağıntısıdır. Bu,
+      \olref{defn:bredpar4} ile tümevarım varsayımından çıkar.
+  \end{enumerate}
+\end{proof}
+
+\begin{prob}
+  \olref[lam][cr][pb]{lem:comp} lemasının ispatını tamamlayın.
+\end{prob}
+
+\begin{lem}\ollabel{lem:cont}
+  $M \bredpar M'$ ise $M' \bredpar \bcd{M}$.
+\end{lem}
+\begin{proof}
+  $M \bredpar M'$ !!{derivation} üzerinde tümevarımla.
+  \begin{enumerate}
+    \item Son kural \olref{defn:bredpar1}: alıştırma.
+    \item Son kural \olref{defn:bredpar2} olsun. $M=\lambd[x][N]$ ve
+      $M'=\lambd[x][N']$; burada $N\bredpar N'$. Göstermek istediğimiz
+      $\lambd[x][N']\bredpar\bcd{(\lambd[x][N])}$, yani
+      \olref{defn:bcd2} gereği
+      $\lambd[x][N']\bredpar\lambd[x][\bcd{N}]$ bağıntısıdır. Bu,
+      \olref{defn:bredpar2} ile tümevarım varsayımından çıkar.
+    \item Son kural \olref{defn:bredpar3} olsun. Bazı $P,Q,P',Q'$ için
+      $M=PQ$, $M'=P'Q'$, $P\bredpar P'$ ve $Q\bredpar Q'$ olur. Tümevarım
+      varsayımına göre $P'\bredpar\bcd{P}$ ve $Q'\bredpar\bcd{Q}$.
+      \begin{enumerate}
+        \item Bazı $x,N$ için $P=\lambd[x][N]$ ise bazı $N'$ için
+          $P'=\lambd[x][N']$ ve $N\bredpar N'$ olmak zorundadır. Tümevarım
+          varsayımına göre $N'\bredpar\bcd{N}$ ve $Q'\bredpar\bcd{Q}$.
+          Dolayısıyla \olref{defn:bredpar4} gereği
+          $(\lambd[x][N'])Q'\bredpar\Subst{\bcd{N}}{\bcd{Q}}{x}$.
+        \item $P$ bir $\lambd$-soyutlaması değilse
+          \olref{defn:bredpar3} gereği $P'Q'\bredpar\bcd{P}\bcd{Q}$;
+          sağ taraf da \olref{defn:bcd3} gereği $\bcd{PQ}$'dur.
+      \end{enumerate}
+    \item Son kural \olref{defn:bredpar4} olsun. Bazı $x,N,Q,N',Q'$ için
+      $M=(\lambd[x][N])Q$, $M'=\Subst{N'}{Q'}{x}$,
+      $N\bredpar N'$ ve $Q\bredpar Q'$ olur. Tümevarım varsayımına göre
+      $N'\bredpar\bcd{N}$ ve $Q'\bredpar\bcd{Q}$. \olref{lem:comp} gereği
+      $\Subst{N'}{Q'}{x}\bredpar\Subst{\bcd{N}}{\bcd{Q}}{x}$; sağ taraf
+      tam olarak $\bcd{((\lambd[x][N])Q)}$'dur.
+  \end{enumerate}
+\end{proof}
+
+\begin{prob}
+  \olref[lam][cr][pb]{lem:cont} lemasının ispatını tamamlayın.
+\end{prob}
+
+\begin{thm}\ollabel{thm:cr}
+  $\bredpar$ Church--Rosser özelliğini sağlar.
+\end{thm}
+
+\begin{proof}
+  Doğrudan \olref{lem:cont} lemasından çıkar.
+\end{proof}
+
+\end{document}
+

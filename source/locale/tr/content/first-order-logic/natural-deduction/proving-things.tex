@@ -1,0 +1,307 @@
+% Part: first-order-logic
+% Chapter: natural-deduction
+% Section: proving-things
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[tr]{fol}{ntd}{pro}}
+      {\olfileid[tr]{pl}{ntd}{pro}}
+
+\olsection{\usetoken{P}{derivation} Örnekleri}
+
+\begin{ex}
+!!a{derivation} verelim; bunun sonucu !!{sentence}
+$(!A \land !B) \lif !A$ olacaktır.
+
+Bu !!{derivation} için istenen sonucu alta yazarak başlarız.
+\begin{prooftree}
+\AxiomC{}
+\UnaryInfC{$(!A\land !B) \lif !A$}
+\end{prooftree}
+
+Ardından, bu biçimde !!a{sentence} ile sonuçlanabilecek çıkarım türünü
+belirlememiz gerekir. Sonuçta !!{main operator} olarak $\lif$ bulunduğundan
+\Intro{\lif} kuralını kullanarak ulaşmayı deneriz. İlerlerken kullanılan
+varsayımları ve çıkarım kurallarının etiketlerini yazmak en iyisidir; böylece
+ispatın sonunda bütün varsayımların !!{discharged} olup olmadığı kolayca
+görülebilir.
+\begin{prooftree}
+\AxiomC{$\Discharge{!A \land !B}{1}$}
+\DeduceC{$!A$}
+\DischargeRule{\Intro{\lif}}{1} 
+\UnaryInfC{$(!A\land !B) \lif !A$}
+\end{prooftree}
+
+Şimdi $!A \land !B$ varsayımından $!A$'ya giden adımları doldurmamız
+gerekir. Ele alınacak tek bağlaç $\land$ olduğundan $\land$ giderme kuralını
+kullanmalıyız. Böylece şu ispatı elde ederiz:
+\begin{prooftree}
+\AxiomC{$\Discharge{!A \land !B}{1}$}
+\RightLabel{\Elim{\land}}
+\UnaryInfC{$!A$}
+\DischargeRule{\Intro{\lif}}{1} 
+\UnaryInfC{$(!A\land !B) \lif !A$}
+\end{prooftree}
+Artık $(!A \land !B) \lif !A$ için doğru bir !!{derivation} elde ettik.
+\end{ex}
+
+\begin{ex}
+Şimdi $(\lnot !A \lor !B) \lif (!A \lif !B)$ için !!a{derivation}
+verelim.
+
+Bu !!{derivation} için istenen sonucu alta yazarak başlarız.
+\begin{prooftree}
+\AxiomC{}
+\UnaryInfC{$(\lnot !A \lor !B) \lif (!A \lif !B)$}
+\end{prooftree}
+Bu sonucu verebilecek bir mantıksal kural bulmak için sonuçtaki mantıksal
+bağlaçlara, yani $\lnot$, $\lor$ ve $\lif$ bağlaçlarına bakarız. Şimdilik
+yalnızca $\lif$'in ilk geçişiyle ilgileniriz; çünkü son sekantta
+!!{main operator} odur. Bu sekanttaki !!{sentence} içinde $\lnot$, $\lor$ ve
+$\lif$'in ikinci geçişi başka bir bağlacın kapsamındadır; onlarla daha sonra
+ilgileneceğiz.
+Dolayısıyla \Intro{\lif} kuralıyla başlarız. Doğru bir uygulama şöyle
+görünmelidir:
+\begin{prooftree}
+\AxiomC{$\Discharge{\lnot !A \lor !B}{1}$}
+\DeduceC{$!A \lif !B$}
+\DischargeRule{\Intro{\lif}}{1}
+\UnaryInfC{$(\lnot !A \lor !B) \lif (!A \lif !B)$}
+\end{prooftree}
+Buradan devam etmenin iki yolu vardır. Ya aşağıdan yukarı çalışmayı sürdürüp
+başka bir \Intro{\lif} uygulaması arayabiliriz ya da yukarıdan aşağı
+çalışıp bir \Elim{\lor} kuralı uygulayabiliriz. İkinci yolu seçelim.
+$\lnot !A \lor !B$ varsayımını \Elim{\lor} kuralının en soldaki öncülü
+olarak kullanacağız. Geçerli bir \Elim{\lor} uygulamasında diğer iki öncül
+sonuç $!A \lif !B$ ile özdeş olmalıdır; ancak bunların her biri sırasıyla
+başka bir varsayımdan, yani $\lnot !A \lor !B$ ifadesindeki iki
+bileşenden birinden türetilebilir. Böylece ortaya çıkan !!{derivation}
+şöyle görünür:
+\begin{prooftree}
+\AxiomC{$\Discharge{\lnot !A \lor !B}{1}$}
+\AxiomC{$\Discharge{\lnot !A}{2}$}
+\DeduceC{$!A \lif !B$}
+\AxiomC{$\Discharge{!B}{2}$}
+\DeduceC{$!A \lif !B$}
+\DischargeRule{\Elim{\lor}}{2}
+\TrinaryInfC{$!A \lif !B$}
+\DischargeRule{\Intro{\lif}}{1} 
+\UnaryInfC{$(\lnot !A \lor !B) \lif (!A \lif !B)$}
+\end{prooftree}
+
+Sağdaki iki dalın her birinde, en uygun biçimde \Intro{\lif} kullanarak
+$!A \lif !B$ ifadesini !!{derive} istiyoruz.
+\begin{prooftree}
+\AxiomC{$\Discharge{\lnot !A \lor !B}{1}$}
+\AxiomC{$\Discharge{\lnot !A}{2}, \Discharge{!A}{3}$}
+\DeduceC{$!B$}
+\DischargeRule{\Intro{\lif}}{3}
+\UnaryInfC{$!A \lif !B$}
+\AxiomC{$\Discharge{!B}{2}, \Discharge{!A}{4}$}
+\DeduceC{$!B$}
+\DischargeRule{\Intro{\lif}}{4}
+\UnaryInfC{$!A \lif !B$}
+\DischargeRule{\Elim{\lor}}{2}
+\TrinaryInfC{$!A \lif !B$}
+\DischargeRule{\Intro{\lif}}{1} 
+\UnaryInfC{$(\lnot !A \lor !B) \lif (!A \lif !B)$}
+\end{prooftree}
+
+Bu !!{derivation} içinde eksik kalan iki parça için, orta dalda $\lnot !A$
+ile $!A$'dan ve diğer dalda $!A$ ile $!B$'den $!B$ için
+!!{derivation}s gerekir. Önce ilkini ele alalım. $\lnot !A$ ve $!A$, \Elim{\lnot}
+kuralının iki öncülüdür:
+\begin{prooftree}
+\AxiomC{$\Discharge{\lnot !A}{2}$}
+\AxiomC{$\Discharge{!A}{3}$}
+\RightLabel{\Elim{\lnot}}
+\BinaryInfC{$\lfalse$}
+\DeduceC{$!B$}
+\end{prooftree}
+\FalseInt kullanarak sonuç olarak $!B$'yi elde edip dalı tamamlayabiliriz.
+\begin{prooftree}
+\AxiomC{$\Discharge{\lnot !A \lor !B}{1}$}
+\AxiomC{$\Discharge{\lnot !A}{2}$}
+\AxiomC{$\Discharge{!A}{3}$}
+\RightLabel{\Elim{\lnot}}
+\BinaryInfC{$\lfalse$}
+\RightLabel{\FalseInt}
+\UnaryInfC{$!B$}
+\DischargeRule{\Intro{\lif}}{3}
+\UnaryInfC{$!A \lif !B$}
+\AxiomC{$\Discharge{!B}{2}, \Discharge{!A}{4}$}
+\DeduceC{$!B$}
+\DischargeRule{\Intro{\lif}}{4}
+\UnaryInfC{$!A \lif !B$}
+\DischargeRule{\Elim{\lor}}{2}
+\TrinaryInfC{$!A \lif !B$}
+\DischargeRule{\Intro{\lif}}{1} 
+\UnaryInfC{$(\lnot !A \lor !B) \lif (!A \lif !B)$}
+\end{prooftree}
+
+Şimdi en sağdaki dala bakalım. Burada !!{derivation} tanımının
+\emph{varsayımların kapatılmasına izin verdiğini}, ama bunu
+\emph{zorunlu kılmadığını} kavramak önemlidir. Başka bir deyişle, $!A$ ve
+$!B$ varsayımlarından diğerini kullanmadan yalnızca birinden $!B$
+türetebiliyorsak bunda sorun yoktur. $!B$'den $!B$'yi !!{derive} ise
+çok kolaydır: $!B$ tek başına böyle !!a{derivation} olur ve hiçbir çıkarıma
+gerek yoktur. Dolayısıyla $!A$ varsayımını silebiliriz.
+\begin{prooftree}
+\AxiomC{$\Discharge{\lnot !A \lor !B}{1}$}
+\AxiomC{$\Discharge{\lnot !A}{2}$}
+\AxiomC{$\Discharge{!A}{3}$}
+\RightLabel{\Elim{\lnot}}
+\BinaryInfC{$\lfalse$}
+\RightLabel{\FalseInt}
+\UnaryInfC{$!B$}
+\DischargeRule{\Intro{\lif}}{3}
+\UnaryInfC{$!A \lif !B$}
+\AxiomC{$\Discharge{!B}{2}$}
+\RightLabel{\Intro{\lif}}
+\UnaryInfC{$!A \lif !B$}
+\DischargeRule{\Elim{\lor}}{2}
+\TrinaryInfC{$!A \lif !B$}
+\DischargeRule{\Intro{\lif}}{1} 
+\UnaryInfC{$(\lnot !A \lor !B) \lif (!A \lif !B)$}
+\end{prooftree}
+Tamamlanmış !!{derivation} içinde en sağdaki \Intro{\lif} çıkarımının
+aslında hiçbir varsayımı kapatmadığına dikkat edin.
+\end{ex}
+
+\begin{ex}
+Şimdiye dek \FalseCl{} kuralına ihtiyaç duymadık. Bu kural özeldir; çünkü
+kural sonucunda bir alt-!!{formula} olmayan varsayımı kapatmamıza izin
+verir. \FalseInt{} kuralıyla yakından ilişkilidir. Aslında \FalseInt{}
+kuralı \FalseCl{} kuralının özel bir durumudur: yalnızca \FalseInt{}'a
+izin veren ``sezgici mantık'' adlı bir mantık vardır. \FalseCl{} kuralı,
+başka hiçbir şey işe yaramadığında başvurulacak son çaredir. Örneğin
+$!A \lor \lnot !A$ ifadesini !!{derive} istediğimizi varsayalım.
+Alışılmış stratejimiz, $\Intro{\lor}$ kullanarak $!A \lor \lnot !A$
+ifadesini !!{derive} istemek olurdu. Ancak bunun için varsayım
+olmaksızın ya $!A$'yı ya da $\lnot !A$'yı !!{derive} gerekirdi; bu
+mümkün değildir. \FalseCl{} yardımımıza yetişir:
+\begin{prooftree}
+  \AxiomC{$\Discharge{\lnot(!A \lor \lnot !A)}{1}$}
+  \DeduceC{$\lfalse$}
+  \DischargeRule{\FalseCl}{1}
+  \UnaryInfC{$!A \lor \lnot !A$}
+\end{prooftree}
+Şimdi $\lnot(!A \lor \lnot !A)$'dan $\lfalse$ için !!a{derivation}
+arıyoruz. $\lfalse$, $\Elim{\lnot}$ kuralının sonucu olduğuna göre bunu
+deneyebiliriz:
+\begin{prooftree}
+  \AxiomC{$\Discharge{\lnot(!A \lor \lnot !A)}{1}$}
+  \DeduceC{$\lnot !A$}
+  \AxiomC{$\Discharge{\lnot(!A \lor \lnot !A)}{1}$}
+  \DeduceC{$!A$}
+  \RightLabel{\Elim{\lnot}}
+  \BinaryInfC{$\lfalse$}
+  \DischargeRule{\FalseCl}{1}
+  \UnaryInfC{$!A \lor \lnot !A$}
+\end{prooftree}
+$\lnot !A$ için !!a{derivation} bulma stratejimiz, $\Intro{\lnot}$
+uygulamasını gerektirir:
+\begin{prooftree}
+  \AxiomC{$\Discharge{\lnot(!A \lor \lnot !A)}{1}, \Discharge{!A}{2}$}
+  \DeduceC{$\lfalse$}
+  \DischargeRule{\Intro{\lnot}}{2}
+  \UnaryInfC{$\lnot !A$}
+  \AxiomC{$\Discharge{\lnot(!A \lor \lnot !A)}{1}$}
+  \DeduceC{$!A$}
+  \RightLabel{\Elim{\lnot}}
+  \BinaryInfC{$\lfalse$}
+  \DischargeRule{\FalseCl}{1}
+  \UnaryInfC{$!A \lor \lnot !A$}
+\end{prooftree}
+Burada $\lnot(!A \lor \lnot !A)$ varsayımına ve yeni varsayımımız $!A$'dan
+$\Intro{\lor}$ yoluyla çıkan $!A \lor \lnot !A$ ifadesine $\Elim{\lnot}$
+uygulayarak $\lfalse$'ı kolayca elde edebiliriz:
+\begin{prooftree}
+  \AxiomC{$\Discharge{\lnot(!A \lor \lnot !A)}{1}$}
+  \AxiomC{$\Discharge{!A}{2}$}
+  \RightLabel{\Intro{\lor}}
+  \UnaryInfC{$!A \lor \lnot !A$}
+  \RightLabel{\Elim{\lnot}}
+  \BinaryInfC{$\lfalse$}
+  \DischargeRule{\Intro{\lnot}}{2}
+  \UnaryInfC{$\lnot !A$}
+  \AxiomC{$\Discharge{\lnot(!A \lor \lnot !A)}{1}$}
+  \DeduceC{$!A$}
+  \RightLabel{\Elim{\lnot}}
+  \BinaryInfC{$\lfalse$}
+  \DischargeRule{\FalseCl}{1}
+  \UnaryInfC{$!A \lor \lnot !A$}
+\end{prooftree}
+Sağ tarafta aynı stratejiyi kullanırız; tek fark, $!A$'yı \FalseCl ile elde
+etmemizdir:
+\begin{prooftree}
+  \AxiomC{$\Discharge{\lnot(!A \lor \lnot !A)}{1}$}
+  \AxiomC{$\Discharge{!A}{2}$}
+  \RightLabel{\Intro{\lor}}
+  \UnaryInfC{$!A \lor \lnot !A$}
+  \RightLabel{\Elim{\lnot}}
+  \BinaryInfC{$\lfalse$}
+  \DischargeRule{\Intro{\lnot}}{2}
+  \UnaryInfC{$\lnot !A$}
+  \AxiomC{$\Discharge{\lnot(!A \lor \lnot !A)}{1}$}
+  \AxiomC{$\Discharge{\lnot !A}{3}$}
+  \RightLabel{\Intro{\lor}}
+  \UnaryInfC{$!A \lor \lnot !A$}
+  \RightLabel{\Elim{\lnot}}
+  \BinaryInfC{$\lfalse$}
+  \DischargeRule{\FalseCl}{3}
+  \UnaryInfC{$!A$}
+  \RightLabel{\Elim{\lnot}}
+  \BinaryInfC{$\lfalse$}
+  \DischargeRule{\FalseCl}{1}
+  \UnaryInfC{$!A \lor \lnot !A$}
+\end{prooftree}
+\end{ex}
+
+\begin{prob}
+Aşağıdakileri gösteren !!{derivation}s verin:
+\begin{enumerate}
+\item $!A \land (!B \land !C) \Proves (!A \land !B) \land !C$.
+\item $!A \lor (!B \lor !C) \Proves (!A \lor !B) \lor !C$.
+\item $!A \lif (!B \lif !C) \Proves !B \lif (!A \lif !C)$.
+\item $!A \Proves \lnot\lnot !A$.
+\end{enumerate}
+\end{prob}
+
+\begin{prob}
+Aşağıdakileri gösteren !!{derivation}s verin:
+\begin{enumerate}
+\item $(!A \lor !B) \lif !C \Proves !A \lif !C$.
+\item $(!A \lif !C) \land (!B \lif !C) \Proves (!A \lor !B) \lif !C$.
+\item $\Proves \lnot(!A \land \lnot !A)$.
+\item $!B \lif !A \Proves \lnot !A \lif \lnot !B$.
+\item $\Proves (!A \lif \lnot !A) \lif \lnot !A$.
+\item $\Proves \lnot(!A \lif !B) \lif \lnot !B$.
+\item $!A \lif !C \Proves \lnot (!A \land \lnot !C)$.
+\item $!A \land \lnot !C \Proves \lnot (!A \lif !C)$.
+\item $!A \lor !B, \lnot !B \Proves !A$.
+\item $\lnot !A \lor \lnot !B \Proves \lnot(!A \land !B)$.
+\item $\Proves (\lnot !A \land \lnot !B) \lif\lnot(!A \lor !B)$.
+\item $\Proves \lnot(!A \lor !B) \lif (\lnot !A \land \lnot !B)$.
+\end{enumerate}
+\end{prob}
+
+\begin{prob}
+Aşağıdakileri gösteren !!{derivation}s verin:
+\begin{enumerate}
+\item $\lnot(!A \lif !B) \Proves !A$.
+\item $\lnot(!A \land !B) \Proves \lnot !A \lor \lnot !B$.
+\item $!A \lif !B \Proves \lnot !A \lor !B$.
+\item $\Proves \lnot \lnot !A \lif !A$.
+\item $!A \lif !B, \lnot !A \lif !B \Proves !B$.
+\item $(!A \land !B) \lif !C \Proves (!A \lif !C) \lor (!B \lif !C)$.
+\item $(!A \lif !B) \lif !A \Proves !A$.
+\item $\Proves (!A \lif !B) \lor (!B \lif !C)$.
+\end{enumerate}
+(Bunların hepsi $\FalseCl$ kuralını gerektirir.)
+\end{prob}
+
+\end{document}

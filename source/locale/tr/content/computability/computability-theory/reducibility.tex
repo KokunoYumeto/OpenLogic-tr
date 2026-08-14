@@ -1,0 +1,72 @@
+% Part: computability
+% Chapter: computability-theory
+% Section: reducibility
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{cmp}{thy}{red}
+\olsection{İndirgenebilirlik}
+
+\begin{explain}
+Artık hesaplanabilir biçimde numaralandırılabilir, fakat hesaplanabilir
+olmayan en az bir $K_0$ kümesinin bulunduğunu biliyoruz. Başkalarının da
+bulunduğu açık olmalıdır. İndirgenebilirlik yöntemi, sürekli ilk ilkelere
+dönmeden başka kümelerin de bu özellikleri taşıdığını göstermenin güçlü bir
+yolunu sağlar.
+
+Genel olarak bir $A$ kümesinin $B$ kümesine ``indirgenmesi'', !!{element}s
+öğelerinin $B$'de bulunup bulunmadığına verilen yanıtları aynı !!{element}s
+öğelerinin $A$'da bulunup bulunmadığına ilişkin yanıtlara dönüştürme
+yöntemidir. ``Çok-bir indirgenebilirlik'' denen bir kavrama odaklanacağız;
+fakat farklı özelliklere sahip başka birçok indirgenebilirlik kavramı vardır.
+İndirgenebilirlik kavramları, verimlilik sorunlarının da hesaba katılması
+gereken hesaplama karmaşıklığı incelemelerinde merkezîdir. Örneğin bir küme,
+NP içindeyse ve her NP problemi aşağıda betimlenene benzer, fakat ek olarak
+polinom zamanda hesaplanabilen bir indirgeme kullanılarak ona
+indirgenebiliyorsa ``NP-tam''dır.
+
+İndirgeme kavramını örtük olarak zaten kullandık. $K$ kümesini
+\[
+  K=\Setabs{x}{\cfind{x}(x)\fdefined},
+\]
+yani $K=\Setabs{x}{x\in W_x}$ olarak tanımlayalım. Durma probleminin
+çözülemez olduğuna ilişkin ispatımız (\olref[hlt]{thm:halting-problem}) en
+doğrudan biçimde $K$'nin hesaplanabilir olmadığını gösterir. $K_0$'ın
+\[
+  K_0=\Setabs{\tuple{e,x}}{\cfind{e}(x)\fdefined},
+\]
+yani $K_0=\Setabs{\tuple{e,x}}{x\in W_e}$ olduğunu anımsayın. $K$'nin
+hesaplanamazlığına ilişkin her ispatı $K_0$'ın hesaplanamazlığına genişletmek
+kolaydır: $K_0$ hesaplanabilir olsaydı !!a{element}~$x$'in $K$ içinde bulunup
+bulunmadığına yalnızca $\tuple{x,x}$ çiftinin $K_0$ içinde bulunup
+bulunmadığını sorarak karar verebilirdik. $x$'i $\tuple{x,x}$ çiftine
+götüren $f$ fonksiyonu, $K$'nin $K_0$'a bir \emph{indirgenmesi} örneğidir.
+\end{explain}
+
+\begin{defn}
+$A$ ile $B$ doğal sayı kümeleri olsun. Hesaplanabilir
+$f\colon\Nat\to\Nat$ fonksiyonu, her doğal sayı $x$ için
+\[
+  x\in A \quad\text{ancak ve ancak}\quad f(x)\in B
+\]
+olduğunda $A$'nın $B$'ye \emph{çok-bir indirgenmesi}dir. Böyle bir $f$
+indirgemesi varsa $A$, $B$'ye \emph{çok-bir indirgenebilir}dir ve
+$A\leq_m B$ yazarız. $A$, $B$'ye ve $B$, $A$'ya çok-bir indirgenebilirse
+$A$ ile $B$ \emph{çok-bir eşdeğer}dir; bunu $A\equiv_m B$ ile gösteririz.
+\end{defn}
+
+Yukarıdaki tanımdaki $f$ fonksiyonu ayrıca bire birse $A$'ya $B$'ye
+\emph{bir-bir indirgenebilir} denir. Aşağıda betimlenen indirgemelerin çoğu
+bu daha güçlü koşulu karşılar; fakat bu olguyu kullanmayacağız.
+
+\begin{digress}
+Bir-bir indirgenebilirliğin gerçekten çok-bir indirgenebilirlikten daha güçlü
+bir koşul olması doğru, fakat hiç de açık değildir. Başka bir deyişle,
+$A$'nın $B$'ye çok-bir indirgenebilir fakat bir-bir indirgenemez olduğu sonsuz
+$A$ ve $B$ kümeleri vardır.
+\end{digress}
+
+\end{document}
+

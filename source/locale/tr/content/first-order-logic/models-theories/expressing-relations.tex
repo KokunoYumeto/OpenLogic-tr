@@ -1,0 +1,127 @@
+% Part: first-order-logic
+% Chapter: models-theories
+% Section: expressing-relations
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{fol}{mat}{exr}
+
+\olsection{\article{structure} \printtoken{S}{structure} İçindeki
+  Bağıntıları İfade Etmek}
+
+\begin{explain}
+!!{formula}s ifadelerinin başlıca kullanım alanlarından biri,
+!!a{structure}~$\Struct M$ içindeki özellik ve bağıntıları~$\Struct
+M$ yapısının dili~$\Lang L$ içindeki temel simgeler cinsinden ifade
+etmektir. Bununla şunu kastediyoruz: $\Struct M$ yapısının !!{domain}
+bir nesneler kümesidir. !!{constant}s, !!{function}s ve !!{predicate}s
+$\Struct M$ içinde sırasıyla $\Domain M$ içindeki bazı nesneler,
+$\Domain M$ üzerindeki fonksiyonlar ve $\Domain M$ üzerindeki
+bağıntılar olarak yorumlanır. Örneğin $\Obj A^2_0$, $\Lang L$ dilinde
+bulunuyorsa $\Struct M$ ona $R=\Assign{{\Obj A^2_0}}{M}$ bağıntısını
+atar. O zaman $\Atom{\Obj A^2_0}{\Obj v_1,\Obj v_2}$ formülü tam da
+bu bağıntıyı şu anlamda \emph{ifade eder}: Bir değişken ataması~$s$,
+$\Obj v_1$ değişkenini $a\in\Domain M$ nesnesine ve $\Obj v_2$
+değişkenini $b\in\Domain M$ nesnesine eşliyorsa
+\[
+Rab \text{\quad ancak ve ancak\quad}
+\Sat{M}{\Atom{\Obj A^2_0}{\Obj v_1, \Obj v_2}}[s].
+\]
+Burada değişken atamalarını kullanmak zorunda olduğumuza dikkat edin:
+``$Rab$ ancak ve ancak $\Sat{M}{\Atom{\Obj A^2_0}{a,b}}$''
+diyemeyiz; çünkü $a$ ve $b$ dilimizin simgeleri değil,
+$\Domain M$ kümesinin !!{element}s ifadeleridir.
+
+Yalnızca atomik !!{formula}s ile sınırlı olmadığımız; bunları mantıksal
+bağlaçlar ve niceleyicilerle birleştirebildiğimiz için, daha karmaşık
+!!{formula}s doğrudan $\Struct M$ yapısına yerleştirilmemiş başka
+bağıntıları tanımlayabilir. Bunun nasıl yapıldığıyla ve özellikle
+!!a{structure} içinde hangi bağıntıları tanımlayabileceğimizle
+ilgileniyoruz.
+\end{explain}
+
+\begin{defn}
+$!A(\Obj v_1,\dots,\Obj v_n)$, $\Lang L$ dilinde yalnızca
+$\Obj v_1,\dots,\Obj v_n$ değişkenlerinin serbest geçtiği !!a{formula}
+ve $\Struct M$,~$\Lang L$ için !!a{structure} olsun.
+$!A(\Obj v_1,\dots,\Obj v_n)$ formülü, herhangi bir $s(\Obj v_i)=a_i$
+($i=1,\dots,n$) değişken ataması için
+\[
+Ra_1\dots a_n \text{\quad ancak ve ancak\quad}
+\Sat{M}{\Atom{!A}{\Obj v_1,\dots, \Obj v_n}}[s]
+\]
+olduğunda ve ancak bu durumda $R\subseteq\Domain M^n$ bağıntısını
+\emph{ifade eder}.
+\end{defn}
+
+\begin{ex}
+Aritmetiğin standart modeli~$\Struct N$ içinde $\Obj v_1<\Obj v_2
+\lor\eq[\Obj v_1][\Obj v_2]$ !!{formula}, $\Nat$ üzerindeki $\le$
+bağıntısını ifade eder. $\eq[\Obj v_2][\Obj v_1']$ !!{formula}, ardıl
+bağıntısını; yani $m$, $n$'nin ardılı olduğunda $Rnm$ bağıntısının
+geçerli olduğu $R\subseteq\Nat^2$ bağıntısını ifade eder.
+$\eq[\Obj v_1][\Obj v_2']$ formülü öncül bağıntısını ifade eder.
+$\lexists[\Obj v_3][(\eq/[\Obj v_3][\Obj 0]\land
+\eq[\Obj v_2][(\Obj v_1+\Obj v_3)])]$ ve
+$\lexists[\Obj v_3][\eq[(\Obj v_1+{\Obj v_3}')][v_2]]$
+!!{formula}s ifadelerinin ikisi de $\Obj <$ bağıntısını ifade eder.
+Bu, $<$ yüklem simgesinin aritmetik dilinde aslında gereksiz olduğu;
+tanımlanabileceği anlamına gelir.
+\end{ex}
+
+\begin{explain}
+Bu düşünce yalnızca belirli !!{structure}s içinde değil, bir dili
+amaçlanan bir modeli ya da modelleri betimlemek için kullandığımız;
+yani kuramları ele aldığımız her durumda ilginçtir. Bu kuramlar temel
+simgeler olarak çoğu kez yalnızca birkaç !!{predicate}s içerir; fakat
+betimledikleri evrende başka birçok bağıntı önemli rol oynar. Bu başka
+bağıntılar, dilin temel !!{predicate}s ifadelerini yorumlayan bağıntılar
+aracılığıyla sistematik biçimde ifade edilebiliyorsa bunların dilde
+\emph{tanımlanabildiğini} söyleriz.
+\end{explain}
+
+\begin{prob}
+$\Lang L_A$ dilinde aşağıdaki bağıntıları tanımlayan !!{formula}s bulun:
+\begin{enumerate}
+\item $n$, $i$ ile $j$ arasındadır;
+\item $n$, $m$'yi tam böler (yani $m$, $n$'nin bir katıdır);
+\item $n$ bir asal sayıdır (yani $1$ ve $n$ dışında hiçbir sayı $n$'yi
+  tam bölmez).
+\end{enumerate}
+\end{prob}
+
+\begin{prob}
+$!A(\Obj v_1,\Obj v_2)$ formülünün !!a{structure}~$\Struct M$ içinde
+$R\subseteq\Domain M^2$ bağıntısını ifade ettiğini varsayın. Aşağıdaki
+bağıntıları ifade eden formüller bulun:
+\begin{enumerate}
+\item $R$ bağıntısının tersi~$R^{-1}$;
+\item bağıntı bileşkesi~$R\mid R$.
+\end{enumerate}
+$R$ bağıntısının geçişli kapanışı~$R^+$ ifadesini belirtmenin bir
+yolunu bulabilir misiniz?
+\end{prob}
+
+\begin{prob}
+$\Lang L$, yalnızca iki yerli $<$ yüklem simgesini içeren dil olsun
+(elbette~$\eq$ dışında başka !!{constant}s, !!{function}s ya da
+!!{predicate}s bulunmasın). $\Domain N=\Nat$ ve
+$\Assign{<}{N}=\Setabs{\tuple{n,m}}{n<m}$ olan yapıya $\Struct N$
+deyelim. Aşağıdakileri ispatlayın:
+\begin{enumerate}
+\item $\{0\}$, $\Struct N$ içinde tanımlanabilir;
+\item $\{1\}$, $\Struct N$ içinde tanımlanabilir;
+\item $\{2\}$, $\Struct N$ içinde tanımlanabilir;
+\item her $n\in\Nat$ için $\{n\}$ kümesi $\Struct N$ içinde
+  tanımlanabilir;
+\item $\Domain N$ kümesinin her sonlu alt kümesi $\Struct N$ içinde
+  tanımlanabilir;
+\item $\Domain N$ kümesinin tümleyeni sonlu olan her alt kümesi
+  $\Struct N$ içinde tanımlanabilir (burada $X\subseteq\Nat$ kümesinin
+  tümleyeni sonludur ancak ve ancak $\Nat\setminus X$ sonludur).
+\end{enumerate}
+\end{prob}
+
+\end{document}

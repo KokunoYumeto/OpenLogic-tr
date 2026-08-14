@@ -1,0 +1,112 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sth}{z}{sep}
+\olsection{Ayırma}
+
+Naif Küme Oluşturma'nın yerine geçecek bir ilkeyle başlıyoruz:
+
+\begin{axiom}[Ayırma Şeması] Her $\phi(x)$ formülü için şu bir
+aksiyomdur: Her $A$ için $\Setabs{x \in A}{\phi(x)}$ kümesi vardır.
+\end{axiom}
+
+Bunun tek bir aksiyom olmadığına dikkat edin. Bu bir aksiyom
+\emph{şemasıdır}. Her $\phi(x)$ formülü için bir tane olmak üzere
+\emph{sonsuz sayıda} Ayırma aksiyomu vardır. Şema eşdeğer biçimde
+(ve genellikle) şöyle yazılır:
+
+\begin{defish}
+``$S$'' içermeyen her $\phi(x)$ formülü için şu bir aksiyomdur:
+\[
+	\forall A \exists S \forall x(x \in S \liff (\phi(x) \land x \in A)).
+\]
+\end{defish}
+
+\olref[sth][][]{part} başında belirtilen uzlaşıya uygun olarak,
+Ayırma aksiyomlarındaki $\phi$ formülleri parametreler
+içerebilir.\footnote{Bunun ne anlama geldiğine ilişkin bir açıklama için
+\olref[sfr][infinite][induction]{natinductionschema} sonrasındaki
+tartışmaya bakın.}
+
+Ayırma, anlattığımız birikimli-yinelemeli küme anlayışıyla doğrudan
+gerekçelendirilir. Nedenini görmek için $A$'nın bir küme olduğunu varsayın.
+Öyleyse $A$, bir $S$ aşamasında oluşturulmuştur (\stageshier{} gereği).
+$A$, $S$ aşamasında oluşturulduğuna göre $A$'nın bütün elemanları $S$
+aşamasından önce oluşturulmuştur (\stagesacc{} gereği). Şimdi özellikle,
+$A$'nın elemanı olup ayrıca $\phi$'yi sağlayan bütün kümeleri ele alın;
+açıktır ki bu kümelerin tümü de $S$ aşamasından önce oluşturulmuştur.
+Dolayısıyla bunlar $S$ aşamasında $\Setabs{x \in A}{\phi(x)}$ kümesi
+olarak da oluşturulur (\stagesacc{} gereği).
+
+Ayırma, Naif Küme Oluşturma'nın aksine Russell paradoksundan kaçınır.
+Çünkü $\Setabs{x}{x \notin x}$ kümesinin varlığını doğrudan ileri
+süremeyiz. Bunun yerine, verili bir $A$ kümesi için
+$R_A = \Setabs{x \in A}{x \notin x}$ kümesinin varlığını ileri sürebiliriz.
+Fakat bundan çıkan yalnızca $R_A \notin R_A$ ve $R_A \notin A$ sonuçlarıdır;
+bunların hiçbiri kaygı verici değildir.
+
+Ne var ki Ayırma'nın çarpıcı ve dolaysız bir sonucu vardır:
+
+\begin{thm}\ollabel{thm:NoUniversalSet}
+\emph{Evrensel} bir küme yoktur; yani $\Setabs{x}{x = x}$ mevcut değildir.
+\end{thm}
+
+\begin{proof}
+Olmayana ergiyle, $V$'nin evrensel bir küme olduğunu varsayın. O zaman
+Ayırma gereği $R = \Setabs{x \in V}{x \notin x} =
+\Setabs{x}{x \notin x}$ vardır; bu da Russell paradoksuyla çelişir.
+\end{proof}
+
+Evrensel bir kümenin bulunmaması---aslında kümeler hiyerarşisinin açık
+uçluluğu---birikimli-yinelemeli anlayışın arkasındaki en temel fikirlerden
+biridir. Bu sonuca sezgisel olarak başka bir yoldan da ulaşabileceğimizi
+görmek yararlıdır. Evrensel bir küme, kendisinin içinde !!a{element}
+olmak zorundadır. Oysa birikimli-yinelemeli anlayışımıza göre her küme,
+bütün !!{element}s ilk kez ortaya çıktıktan hemen sonraki ilk aşamada
+hiyerarşide belirir. Bu da \emph{hiçbir} kümenin kendi kendisinin elemanı
+olamayacağını gerektirir. Çünkü kendi kendisinin elemanı olan herhangi bir
+kümenin, ilk ortaya çıktığı aşamadan hemen sonra ilk kez ortaya çıkması
+gerekirdi; bu saçmadır. (\olref[sth][spine][rank]{defnsetrank} içinde,
+bir kümenin ``rankı'' kavramını kullanarak bu açıklamayı nasıl daha kesin
+hâle getireceğimizi göreceğiz. Ancak bunun için birkaç aksiyoma daha
+ihtiyacımız olacak.)
+
+Ayırma ile Kaplamsallık'ın birkaç sonucu daha şöyledir.
+
+\begin{prop}\ollabel{prop:emptyexists}
+Herhangi bir küme varsa $\emptyset$ vardır.
+\end{prop}
+
+\begin{proof}
+$A$ bir kümeyse $\emptyset = \Setabs{x \in A}{x \neq x}$, Ayırma gereği
+vardır.
+\end{proof}
+
+\begin{prop}
+Her $A$ ve $B$ kümesi için $A \setminus B$ vardır.
+\end{prop}
+
+\begin{proof}
+$A \setminus B = \Setabs{x \in A}{x \notin B}$, Ayırma gereği vardır.
+\end{proof}
+
+Neredeyse gelişigüzel kesişimlerin de var olduğu ortaya çıkar:
+
+\begin{prop}\ollabel{prop:intersectionsexist}
+$A \neq \emptyset$ ise
+$\bigcap A = \Setabs{x}{(\forall y \in A)x \in y}$ vardır.
+\end{prop}
+
+\begin{proof}
+$A \neq \emptyset$ olsun; öyleyse bir $c \in A$ vardır. Bu durumda
+$\bigcap A = \Setabs{x}{(\forall y \in A)x \in y} =
+\Setabs{x \in c}{(\forall y \in A)x \in y}$ olur ve bu küme Ayırma
+gereği vardır.
+\end{proof}
+
+Ancak $A \neq \emptyset$ koşuluna dikkat edin: $\bigcap\emptyset$,
+boşuna doğru olma nedeniyle evrensel küme olurdu ve bu da
+\olref{thm:NoUniversalSet} ile çelişirdi.
+
+\end{document}

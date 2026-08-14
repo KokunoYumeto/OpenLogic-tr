@@ -1,0 +1,108 @@
+% Part: many-valued-logic
+% Chapter: infinite-valued-logics
+% Section: lukasiewicz
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{mvl}{inf}{luk}
+
+\olsection{\L ukasiewicz Mantığı}
+
+\begin{editorial}
+  Bu, sonsuz değerli \L ukasiewicz mantığına ilişkin kısa bir bölüm
+  taslağıdır.
+\end{editorial}
+
+\begin{defn}\ollabel{def:lukasiewicz} Sonsuz değerli \L ukasiewicz
+mantığı~$\LogLuk[\infty]$ şu matrisle tanımlanır:
+\begin{enumerate}
+  \item $\lnot$, $\land$, $\lor$, $\lif$ bağlaçlarını içeren standart
+  önerme dili $\Lang L_0$.
+  \item Doğruluk değerleri kümesi $V_\infty$.
+  \item Tek belirlenmiş değer $1$'dir; yani $V^+ = \{1\}$.
+  \item Doğruluk fonksiyonları aşağıdaki fonksiyonlarla verilir:
+  \begin{align*}
+    \tf{\lnot}[\LogLuk](x) & = 1 - x\\
+    \tf{\land}[\LogLuk](x,y) & = \min(x,y)\\
+    \tf{\lor}[\LogLuk](x,y) & = \max(x,y)\\
+    \tf{\lif}[\LogLuk](x,y) & = \min(1,1-(x-y)) = \begin{cases}
+      1 & \text{$x \le y$ ise}\\
+      1-(x-y) & \text{aksi durumda.}
+    \end{cases}
+    \end{align*}
+\end{enumerate}
+$m$-değerli \L ukasiewicz mantığı da aynı biçimde, ancak $V = V_m$
+alınarak tanımlanır.
+\end{defn}
+
+\begin{prop}
+  \olref[thr][luk]{def:lukasiewicz} ile tanımlanan $\LogLuk[3]$ mantığı,
+  \olref{def:lukasiewicz} ile tanımlanan $\LogLuk[3]$ ile aynıdır.
+\end{prop}
+
+\begin{proof}
+  Bu, \olref[thr][luk]{def:lukasiewicz} içindeki bağlaç doğruluk tabloları
+  ile \olref{def:lukasiewicz} içindeki denklemlerin belirlediği doğruluk
+  tabloları karşılaştırılarak görülebilir:
+  \begin{center}
+    \begin{tabular}{c|c} 
+      $\tf{\lnot}$ & \\ 
+      \hline  
+      $1$ & $0$ \\ 
+      $1/2$ & $1/2$ \\
+      $0$ & $1$ 
+    \end{tabular}
+    \quad
+    \begin{tabular}{c|ccc} 
+      $\tf{\land}[\LogLuk[3]]$ & $1$ & $1/2$ & $0$ \\ 
+      \hline 
+      $1$ & $1$ & $1/2$ & $0$ \\ 
+      $1/2$ & $1/2$ & $1/2$ & $0$\\ 
+      $0$ & $0$ & $0$ & $0$ 
+    \end{tabular}
+    \\[2ex]
+    \begin{tabular}{c|ccc} 
+      $\tf{\lor}[\LogLuk[3]]$ & $1$ & $1/2$ & $0$ \\ 
+      \hline 
+      $1$ & $1$ & $1$ & $1$ \\ 
+      $1/2$ & $1$ & $1/2$ & $1/2$ \\
+      $0$ & $1$ & $1/2$ & $0$ 
+    \end{tabular}
+    \quad
+    \begin{tabular}{c|ccc} 
+      $\tf{\lif}[\LogLuk[3]]$ & $1$ & $1/2$ & $0$ \\ 
+      \hline 
+      $1$ & $1$ & $1/2$ & $0$ \\ 
+      $1/2$ & $1$ & $1$ & $1/2$  \\ 
+      $0$ & $1$ & $1$ & $1$ 
+    \end{tabular}
+  \end{center} 
+\end{proof}
+
+\begin{prop}\ollabel{prop:luk-infty-m}
+  $\Gamma \Entails[\LogLuk[\infty]] !B$ ise bütün $m \ge 2$ değerleri için
+  $\Gamma \Entails[\LogLuk[m]] !B$.
+\end{prop}
+
+\begin{proof}
+  Alıştırma.
+\end{proof}
+
+\begin{prob}
+  \olref[mvl][inf][luk]{prop:luk-infty-m} önermesini ispatlayın.
+\end{prob}
+
+Aslında bunun tersi de geçerlidir.
+
+Sonsuz değerli \L ukasiewicz mantığı en yaygın bulanık mantıktır. Bulanık
+mantık literatüründe koşullu çoğu kez $\lnot !A \lor !B$ olarak tanımlanır.
+Bunun sonucunda sonsuz değerli güçlü Kleene mantığı elde edilirdi.
+
+\begin{prob}
+  $(p \lif q) \lor (q \lif p)$'nin $\LogLuk[\infty]$'ın bir totolojisi
+  olduğunu gösterin.
+\end{prob}
+
+\end{document}

@@ -1,0 +1,117 @@
+% Part: first-order-logic
+% Chapter: sequent-calculus
+% Section: derivations
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[tr]{fol}{seq}{der}}
+      {\olfileid[tr]{pl}{seq}{der}}
+
+\olsection{\usetoken{P}{derivation}}
+
+\begin{explain}
+Başlangıç sekantlarının biçimini belirttik ve çıkarım kurallarını verdik.
+Sekant hesabındaki !!^{derivation}s bunlardan tümevarımsal olarak üretilir:
+her !!{derivation} ya tek başına bir başlangıç sekantıdır ya da bir çıkarımın
+izlediği !!{derivation}s arasından bir veya ikisini içerir.
+\end{explain}
+
+\begin{defn}[$\Log{LK}$-!!{derivation}]
+Bir $S$ sekantının \emph{$\Log{LK}$-!!{derivation}{}i}, aşağıdaki koşulları
+sağlayan sonlu bir sekant ağacıdır:
+\begin{enumerate}
+\item Ağacın en üstteki sekantları başlangıç sekantlarıdır.
+\item Ağacın en alttaki sekantı $S$'dir.
+\item Ağaçta $S$ dışında kalan her sekant, sonucu o sekantın hemen altında
+  duran bir çıkarım kuralının doğru bir uygulamasının öncülüdür.
+\end{enumerate}
+Bu durumda $S$'ye !!{derivation}{}in \emph{son sekantı}, $S$'ye de
+\emph{$\Log{LK}$'de !!{derivable}} (veya $\Log{LK}$-!!{derivable}) deriz.
+\end{defn}
+
+\begin{ex}
+Her başlangıç sekantı, örneğin $!C \Sequent !C$, !!a{derivation}{}dir. Bu
+!!{derivation}{}den, örneğin $\LeftR{\Weakening}$ kuralını uygulayarak yeni bir türetim
+elde edebiliriz:
+\begin{prooftree}
+\Axiom$ \Gamma \fCenter \Delta $
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$ !A, \Gamma \fCenter \Delta$
+\end{prooftree}
+Ancak kural genel anlaşılmalıdır: kuraldaki $!A$ yerine herhangi bir
+!!{sentence}, örneğin $!D$ de koyabiliriz. Öncül, başlangıç sekantımız
+$!C \Sequent !C$ ile eşleşiyorsa hem $\Gamma$ hem de $\Delta$ yalnızca
+$!C$'dir ve sonuç $!D,!C \Sequent !C$ olur. Dolayısıyla aşağıdaki bir
+!!a{derivation}{}dir:
+\begin{prooftree}
+\Axiom$ !C \fCenter !C $
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$ !D, !C \fCenter !C$
+\end{prooftree}
+Şimdi solda duran !!{sentence}s arasından ikisinin yerini değiştirmemizi sağlayan başka bir
+kuralı, örneğin $\LeftR{\Exchange}$ kuralını uygulayabiliriz. Buna göre
+aşağıdaki de doğru bir !!{derivation}{}dir:
+\begin{prooftree}
+\Axiom$ !C \fCenter !C $
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$ !D, !C \fCenter !C$
+\RightLabel{\LeftR{\Exchange}}
+\UnaryInf$ !C, !D \fCenter !C$
+\end{prooftree}
+Şu biçimde verilen kuralın bu uygulamasında
+\begin{prooftree}
+\Axiom$ \Gamma, !A, !B, \Pi \fCenter \Delta $
+\RightLabel{\LeftR{\Exchange}}
+\UnaryInf$ \Gamma, !B, !A, \Pi \fCenter \Delta,$
+\end{prooftree}
+$\Gamma$ ile $\Pi$ boş, $\Delta$ ise $!C$'dir; $!A$ ile $!B$ rollerini de
+sırasıyla $!D$ ile $!C$ oynar. Hemen hemen aynı biçimde,
+\begin{prooftree}
+\Axiom$ !D \fCenter !D $
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$ !C, !D \fCenter !D$
+\end{prooftree}
+ifadesinin de !!a{derivation} olduğunu görürüz. Artık !!{derivation}s elimizde
+olduğuna göre bu ikisini alıp $\RightR{\land}$ ile birleştirebiliriz. Bu kural şuydu:
+\begin{prooftree}
+\Axiom$\Gamma \fCenter \Delta, !A$
+\Axiom$ \Gamma \fCenter \Delta, !B$
+\RightLabel{\RightR{\land}}
+\BinaryInf$ \Gamma \fCenter \Delta, !A \land !B $
+\end{prooftree}
+Bizim durumumuzda öncüller, söz konusu !!{derivation}s için son sekantlardır
+ve kuralın öncülleriyle eşleşmelidir. Bu, $\Gamma$'nın $!C,!D$, $\Delta$'nın boş,
+$!A$'nın $!C$ ve $!B$'nin $!D$ olduğu anlamına gelir. Dolayısıyla çıkarım
+doğru olacaksa sonuç $!C,!D \Sequent !C \land !D$ olur.
+\begin{prooftree}
+\Axiom$ !C \fCenter !C $
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$ !D, !C \fCenter !C$
+\RightLabel{\LeftR{\Exchange}}
+\UnaryInf$ !C, !D \fCenter !C$
+\Axiom$ !D \fCenter !D $
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$ !C, !D \fCenter !D$
+\RightLabel{\RightR{\land}}
+\BinaryInf$ !C, !D \fCenter !C \land !D $
+\end{prooftree}
+Elbette öncüllerin sırasını tersine de çevirebiliriz; o zaman $!A$, $!D$ ve
+$!B$, $!C$ olur.
+\begin{prooftree}
+\Axiom$ !D \fCenter !D $
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$ !C, !D \fCenter !D$
+\Axiom$ !C \fCenter !C $
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$ !D, !C \fCenter !C$
+\RightLabel{\LeftR{\Exchange}}
+\UnaryInf$ !C, !D \fCenter !C$
+\RightLabel{\RightR{\land}}
+\BinaryInf$ !C, !D \fCenter !D \land !C $
+\end{prooftree}
+\end{ex}
+
+\end{document}

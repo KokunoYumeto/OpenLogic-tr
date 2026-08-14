@@ -1,0 +1,80 @@
+% Part: many-valued-logic
+% Chapter: sequent-calculus
+% Section: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{mvl}{seq}{int}
+
+\olsection{Giriş}
+
+Klasik mantığın sekant hesabı etkili ve basit bir !!{derivation} sistemidir.
+Bir çok değerli mantık sonlu sayıda doğruluk değerine sahip bir matrisle, yani
+$V$ sonlu olacak biçimde tanımlanmışsa bu mantık için de bir sekant hesabı
+verilebilir. Bunun nasıl yapılacağına ilişkin düşünce, klasik durumdaki
+sekantların anlamları ile çıkarım kurallarının biçiminden gelir.
+
+Şu sekantı hatırlayın:
+\begin{align*}
+    !A_1, \dots, !A_m & \Sequent !B_1, \dots, !B_n.
+\intertext{Bu sekant şu !!{formula} olarak yorumlanabilir:}
+    (!A_1 \land \cdots \land !A_m) & \lif (!B_1 \lor \cdots \lor
+!B_n).
+\end{align*}
+Başka bir deyişle !!^a{valuation} $\pAssign{v}$, bir
+$\Gamma\Sequent\Delta$ sekantını ancak ve ancak bazı $!A\in\Gamma$ için
+$\pValue{v}(!A)=\False$ ya da bazı $!A\in\Delta$ için
+$\pValue{v}(!A)=\True$ ise \emph{sağlar}. Bu yorumda başlangıç sekantları
+$!A\Sequent !A$ her zaman sağlanır; çünkü ya $\pValue v(!A)=\True$ ya da
+$\pValue v(!A)=\False$ olur.
+
+Yan formüller $\Gamma,\Delta$ atıldığında $\Log{LK}$ içindeki koşul
+bağlacının çıkarım kuralları şöyledir:
+
+\begin{defish}
+    \Axiom$ \fCenter !A$
+    \Axiom$ !B \fCenter $
+    \RightLabel{\LeftR{\lif}}
+    \BinaryInf$ !A \lif !B \fCenter $
+    \DisplayProof
+    \hfill
+    \Axiom$ !A \fCenter !B$
+    \RightLabel{\RightR{\lif}}
+    \UnaryInf$ \fCenter !A \lif !B $
+    \DisplayProof
+\end{defish}
+
+Yukarıdaki semantik sekant yorumunu uygularsak $\LeftR{\lif}$ kuralı,
+$\pValue v(!A)=\True$ ve $\pValue v(!B)=\False$ ise
+$\pValue v(!A\lif !B)=\False$ olduğunu söyler. Benzer biçimde
+$\RightR{\lif}$ kuralı, $\pValue v(!A)=\False$ ya da
+$\pValue v(!B)=\True$ ise $\pValue v(!A\lif !B)=\True$ olduğunu söyler.
+Aslında bu koşullar iki yönlüdür. Standart biçimlerindeki $\LeftR{\land}$ ve
+$\RightR{\lor}$ kurallarına karşılık gelen koşullar iki yönlü olmazdı; ancak
+bu kuralların iki yönlülüğü veren alternatif biçimleri vardır:
+
+\begin{defish}
+    \Axiom$!A, !B, \Gamma \fCenter \Delta$
+    \RightLabel{\LeftR{\land}}
+    \UnaryInf$!A \land !B, \Gamma \fCenter \Delta$
+    \DisplayProof
+    \hfill
+    \Axiom$ \Gamma \fCenter \Delta, !A, !B$
+    \RightLabel{\RightR{\lor}}
+    \UnaryInf$ \Gamma \fCenter \Delta, !A \lor !B$
+    \DisplayProof
+\end{defish}
+
+Bu temel düşünce $n$ değerli bir mantığa uygulandığında, her doğruluk değeri
+için bir tane olmak üzere iki yerine $n$ konumlu bir sekant hesabı elde
+edilir. $V=\{\False,\Undef,\True\}$ olan üç değerli bir mantıkta sekant
+$\Gamma\mid\Pi\mid\Delta$ biçimindedir. Bu sekant !!a{valuation}
+$\pAssign v$ altında ancak ve ancak bazı $!A\in\Gamma$ için
+$\pValue{v}(!A)=\False$, bazı $!A\in\Delta$ için
+$\pValue{v}(!A)=\True$ ya da bazı $!A\in\Pi$ için
+$\pValue{v}(!A)=\Undef$ ise sağlanır. Dolayısıyla başlangıç sekantları
+$!A\mid !A\mid !A$ her zaman sağlanır.
+
+\end{document}

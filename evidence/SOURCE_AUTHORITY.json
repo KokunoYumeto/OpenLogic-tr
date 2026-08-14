@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "declared_object_scope": "Turkish cumulative edition of the Open Logic Project, OLP-0001 through OLP-0062 (62/722 frozen content modules)",
+  "declared_object_scope": "Complete Turkish edition of the Open Logic Project, OLP-0001 through OLP-0722, all 722/722 frozen content modules",
   "original_or_source_title": "Open Logic Project / Open Logic Text",
   "original_or_source_edition": "official Git commit 9620cc73f9c8e0ad003c514a5d3748f29611c4c0",
   "original_or_source_identifier": "https://github.com/OpenLogicProject/OpenLogic/commit/9620cc73f9c8e0ad003c514a5d3748f29611c4c0",
@@ -8,19 +8,21 @@
   "source_content_bytes": 3051826,
   "source_content_files": 722,
   "source_git_tree": "f67757bb9305b173634082ab4cefd5601a707a34",
-  "source_closure_manifest": "CLOSURE_0062.csv",
-  "source_closure_manifest_sha256": "EDCB7CBCD6141CA7CEB1F77B38E78AE2715A4DBE09274ABE76E6443E4F541497",
-  "coverage_and_topology": "722-file content closure; 642 complete-reader-reachable and 80 retained non-reader; contiguous Turkish cursor OLP-0062; 660 modules remain",
+  "source_closure_manifest": "control/CLOSURE.csv; packaged as source_authority/CLOSURE_0722.csv",
+  "source_closure_rows": 722,
+  "source_closure_manifest_bytes": 829550,
+  "source_closure_manifest_sha256": "2B424C62612499B15AF475E77367A06FF68E71FCA620A289BA1B37D5B8BC5AEC",
+  "coverage_and_topology": "722-file content closure; 642 complete-reader-reachable modules and 80 retained non-reader modules; Turkish targets complete 722/722",
   "authority_hierarchy": [
     "Official OpenLogicProject/OpenLogic Git commit and tree",
-    "Frozen 722-row closure with per-file SHA-256",
-    "Transparent source-adverse ledger for deterministic Turkish emendations"
+    "Frozen 722-row closure with per-source and per-target SHA-256",
+    "Transparent source-diff ledger for deterministic Turkish emendations"
   ],
   "excluded_scope": [
-    "OLP-0063 through OLP-0722",
-    "untranslated proof-system and completeness imports",
     "other language editions",
-    "claim of a complete 722-module Turkish corpus"
+    "a regional Turkic proxy surface",
+    "modification of the frozen upstream authority"
   ],
+  "publication_state": "complete local reader and QA evidence frozen; package, Git release, Zenodo publication, and public readback pending",
   "license": "CC BY 4.0"
 }

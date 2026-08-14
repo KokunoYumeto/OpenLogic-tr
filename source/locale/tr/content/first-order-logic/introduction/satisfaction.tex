@@ -1,0 +1,115 @@
+% Part: first-order-logic
+% Chapter: introduction
+% Section: satisfaction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{fol}{int}{sat}
+
+\olsection{Sağlama}
+
+!!{formula}s ifadelerinin ne olduğunu bildiğimizde birinci dereceden
+mantığın semantiğine hemen geçebiliriz: buradaki temel tanım
+!!a{structure} tanımıdır. Basit dilimiz için !!a{structure}~$\Struct M$
+yalnızca üç bileşene sahiptir: \emph{!!{domain}} denen boş olmayan
+$\Domain M$ kümesi,~$\Obj a$ simgesinin~$\Struct M$ içinde gösterdiği
+şey ve~$\Obj P$ ifadesinin~$\Struct M$ içinde doğru olduğu şeyler.
+$\Obj a$'nın gösterdiği nesne $\Assign{\Obj a}M$ ile,~$\Obj P$'nin
+doğru olduğu şeyler kümesi $\Assign{\Obj P}M$ ile gösterilir.
+!!^a{structure}~$\Struct M$ tam olarak bu üç şeyden oluşur:
+$\Domain M$, $\Assign{\Obj a}M\in\Domain M$ ve
+$\Assign{\Obj P}M\subseteq\Domain M$. Genel durum daha karmaşıktır;
+çünkü birçok !!{predicate}s ve !!{constant}s bulunacak, !!{predicate}s
+birden fazla yere sahip olabilecek ve ayrıca !!{function}s bulunacaktır.
+
+Bu, !!{variable}s içermeyen !!{formula}s için sağlama tanımı vermeye
+yeter. Fikir, !!{formula}s ifadelerini tanımlama biçimimizi yansıtan
+tümevarımlı bir tanım vermektir. Atomik bir formülün~$\Struct M$
+içinde ne zaman sağlandığını; ardından örneğin~$!A$'nın~$\Struct M$
+içinde sağlanıp sağlanmamasına dayanarak $\lnot !A$'nın ne zaman
+sağlandığını belirtiriz. Şöyle tanımlayabiliriz:
+\begin{enumerate}
+  \item $\Atom{\Obj P}{\Obj a}$,~$\Struct M$ içinde ancak ve ancak
+  $\Assign{\Obj a}M\in\Assign{\Obj P}M$ ise sağlanır.
+  \item $\lnot !A$,~$\Struct M$ içinde ancak ve ancak $!A$ bu yapı
+  içinde sağlanmıyorsa sağlanır.
+  \item $(!A\land !B)$,~$\Struct M$ içinde ancak ve ancak hem $!A$
+  hem de $!B$ bu yapı içinde sağlanıyorsa sağlanır.
+\end{enumerate}
+$\Domain M=\{0,1,2\}$, $\Assign{\Obj a}M=1$ ve
+$\Assign{\Obj P}M=\{1,2\}$ olsun. Bu tanım
+$\Atom{\Obj P}{\Obj a}$ ifadesinin~$\Struct M$ içinde sağlandığını
+söyler; çünkü $\Assign{\Obj a}M=1\in\{1,2\}=\Assign{\Obj P}M$.
+Ayrıca $\lnot\Atom{\Obj P}{\Obj a}$ ifadesinin~$\Struct M$ içinde
+sağlanmadığını; buna karşılık $\lnot\lnot\Atom{\Obj P}{\Obj a}$
+ifadesinin sağlandığını ve
+$(\lnot\Atom{\Obj P}{\Obj a}\land\Atom{\Obj P}{\Obj a})$ ifadesinin
+sağlanmadığını vb. söyler.
+
+Sorun niceleyiciler için tanım vermek istediğimizde ortaya çıkar:
+``$\lexists[\Obj v_0][\Atom{\Obj P}{\Obj v_0}]$ ancak ve ancak
+$\Atom{\Obj P}{\Obj v_0}$ sağlanıyorsa sağlanır'' gibi bir şey
+söylemek isteriz. Fakat !!{structure}~$\Struct M$, !!{variable}s
+hakkında ne yapacağımızı söylemez. Aslında söylemek istediğimiz,
+$\Atom{\Obj P}{\Obj v_0}$ ifadesinin \emph{$\Obj v_0$'ın bir değeri
+için} sağlandığıdır. Bunu kesinleştirmek için $\Domain M$ içindeki
+!!{element}s öğelerini yalnızca~$\Obj a$'ya değil,~$\Obj v_0$'a da
+atamanın bir yolu gerekir. Bunun için !!{variable} \emph{atamalarını}
+tanıtırız. !!^a{variable} ataması, !!{variable}s ifadelerini
+$\Domain M$ içindeki !!{element}s öğelerine (örneğimizde $0$, $1$ ya
+da~$2$'den birine) eşleyen bir~$s$ fonksiyonudur. Hangi
+!!{variable}s ifadelerinin !!a{formula} içinde geçebileceğini önceden
+bilmediğimizden,~$s$'nin hangi !!{variable}s ifadelerine değer
+atayacağını sınırlayamayız. Basit çözüm,~$s$'nin \emph{bütün}
+!!{variable}s~$\Obj v_0$, $\Obj v_1$, \dots\ ifadelerine değer
+atamasını istemektir. Yalnızca gerekenleri kullanacağız.
+
+!!{formula}s ifadelerinin sağlanmasını yalnızca !!a{structure}
+göreli tanımlamak yerine, !!a{structure}~$\Struct M$ \emph{ve}
+!!a{variable} ataması~$s$'ye göre tanımlayıp kısaca
+$\Sat M{!A}[s]$ yazacağız. Tanımımız artık !!{variable}s içeren atomik
+!!{formula}s için ek bir madde içerecektir:
+\begin{enumerate}
+  \item $\Sat M{\Atom{\Obj P}{\Obj a}}[s]$ ancak ve ancak
+  $\Assign{\Obj a}M\in\Assign{\Obj P}M$ ise.
+  \item $\Sat M{\Atom{\Obj P}{\Obj v_i}}[s]$ ancak ve ancak
+  $s(\Obj v_i)\in\Assign{\Obj P}M$ ise.
+  \item $\Sat M{\lnot !A}[s]$ ancak ve ancak $\Sat M{!A}[s]$ değilse.
+  \item $\Sat M{(!A\land !B)}[s]$ ancak ve ancak hem
+  $\Sat M{!A}[s]$ hem de $\Sat M{!B}[s]$ ise.
+\end{enumerate}
+Bu bir sorunu çözer: Artık $\Struct M$ yapısının
+$\Atom{\Obj P}{\Obj v_0}$ ifadesini $s(\Obj v_0)$ değeri için ne zaman
+sağladığını söyleyebiliriz. $\lexists[\Obj v_0][\Atom{\Obj P}{\Obj
+v_0}]$ tanımını doğru kurmak için bir şey daha yapmalıyız:
+$\Sat M{\lexists[\Obj v_0][\Atom{\Obj P}{\Obj v_0}]}[s]$ ancak ve
+ancak~$\Obj v_0$'a değer atamanın \emph{bir} yolu~$s'$ için
+$\Sat M{\Atom{\Obj P}{\Obj v_0}}[s']$ olmasını isteriz. Fakat
+$\Obj v_0$'a atanan değer, $s(\Obj v_0)$'ın gösterdiği değer olmak
+zorunda değildir. Bunun için bir gösterim tanıtalım: $m\in\Domain M$
+ise $\Subst{s}{m}{\Obj v_0}$,~$s$ ile ($\Obj v_0$ dışındaki bütün
+!!{variable}s için) aynı olan, fakat~$\Obj v_0$'a~$m$ atayan atama
+olsun. Artık tanımımız şöyle olabilir:
+\begin{enumerate}\setcounter{enumi}{4}
+  \item $\Sat M{\lexists[\Obj v_i][!A]}[s]$ ancak ve ancak bir
+  $m\in\Domain M$ için $\Sat M{!A}[\Subst{s}{m}{\Obj v_i}]$ ise.
+\end{enumerate}
+Bu işe yarıyor mu? Her $i\in\Nat$ için $s(\Obj v_i)=0$ diyelim.
+$\Sat M{\lexists[\Obj v_0][\Atom{\Obj P}{\Obj v_0}]}[s]$ ancak ve
+ancak öyle bir $m\in\Domain M$ vardır ki
+$\Sat M{\Atom{\Obj P}{\Obj v_0}}[\Subst{s}{m}{\Obj v_0}]$ olsun.
+Böyle bir~$m$ vardır: $m=1$ ya da $m=2$ seçilebilir. Bunun,~$s$'nin
+$\Obj v_0$'a atadığı $s(\Obj v_0)$ değeri---burada~$0$---işe yaramasa
+bile doğru olduğuna dikkat edin.
+$\Sat M{\Atom{\Obj P}{\Obj v_0}}[\Subst{s}{1}{\Obj v_0}]$ vardır,
+fakat $\Sat M{\Atom{\Obj P}{\Obj v_0}}[s]$ yoktur.
+
+Bu kafa karıştırıcı ve hantal görünüyorsa, gerçekten öyledir. Fakat ek
+karmaşıklık, bütün !!{formula}s için kesin ve tümevarımlı bir sağlama
+tanımı vermek için gereklidir; semantik kavramları kesin olarak
+tanımlamak için buna benzer bir şeye ihtiyacımız vardır. Başka yollar
+da vardır, fakat hepsi aynı ölçüde zarif(tir ya da değildir).
+
+\end{document}

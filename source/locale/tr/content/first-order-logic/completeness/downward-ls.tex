@@ -1,0 +1,62 @@
+% Part: first-order-logic
+% Chapter: completeness
+% Section: downward-ls
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{fol}{com}{dls}
+\olsection{Löwenheim--Skolem Teoremi}
+
+Löwenheim--Skolem Teoremi, bir kuramın sonsuz bir modeli varsa en fazla
+!!{denumerable} bir modelinin de bulunduğunu söyler. Bu olgunun hemen
+çıkan bir sonucu, birinci dereceden mantığın !!a{structure} boyutunun
+!!{nonenumerable} olduğunu ifade edememesidir: herhangi bir !!{sentence}
+ya da !!{sentence}s kümesi bütün !!{nonenumerable} !!{structure}s içinde
+sağlanıyorsa, !!{enumerable} bir yapı içinde de sağlanır.
+
+\begin{thm}
+\ollabel{thm:downward-ls} $\Gamma$ tutarlıysa !!a{enumerable} modeli
+vardır; yani !!a{structure} içinde sağlanabilirdir ve bu yapının evreni
+ya sonlu ya da !!{denumerable} olur.
+\end{thm}
+
+\begin{proof}
+$\Gamma$ tutarlıysa tamlık teoreminin ispatının verdiği
+!!{structure}~$\Struct M$ yapısının evreni~$\Domain{M}$,~$\Lang L$
+dilindeki terimler kümesinden daha büyük değildir. Dolayısıyla
+$\Struct M$ en fazla !!{denumerable}{}dur.
+\end{proof}
+
+\begin{thm}
+\ollabel{noidentity-ls} $\Gamma$, özdeşliksiz birinci dereceden mantık
+dilindeki tutarlı bir !!{sentence}s kümesiyse !!a{denumerable} modeli
+vardır; yani !!a{structure} içinde sağlanabilirdir ve bu yapının evreni
+sonsuz ve !!{enumerable} olur.
+\end{thm}
+
+\begin{proof}
+$\Gamma$ tutarlıysa ve özdeşliğin geçtiği hiçbir tümce içermiyorsa,
+tamlık teoreminin ispatının verdiği !!{structure}~$\Struct M$ yapısının
+evreni~$\Domain{M}$,~$\Lang L'$ dilindeki terimler kümesinin tam
+kendisidir. $\Struct{M}$, $\Trm[L']$ gibi !!{denumerable} niteliktedir.
+\end{proof}
+
+\begin{ex}[Skolem Paradoksu]
+Zermelo--Fraenkel küme kuramı~$\Log{ZFC}$, kümelerin büyüklükleri
+hakkındaki olgular da dahil olmak üzere hemen hemen bütün matematiksel
+ifadelerin dile getirilebildiği çok güçlü bir çerçevedir. Örneğin
+$\Log{ZFC}$, gerçel sayılar kümesi~$\Real$'in !!{nonenumerable}
+olduğunu; herhangi bir kümenin kuvvet kümesinin o kümenin kendisinden
+daha büyük olduğunu söyleyen Cantor Teoremini vb. ispatlayabilir.
+$\Log{ZFC}$ tutarlıysa bütün modelleri sonsuzdur; dahası hepsi
+!!{element}s içerir ve kuram bu öğelerin !!{nonenumerable} olduğunu söyler.
+Örneğin doğal sayıların kuvvet kümesinin var olduğuna ilişkin
+$\Log{ZFC}$ teoremini doğru kılan eleman böyledir. Löwenheim--Skolem
+Teoremi uyarınca $\Log{ZFC}$'nin ayrıca !!{enumerable} modelleri de
+vardır: ``!!{nonenumerable}'' kümeler içeren fakat kendileri
+!!{enumerable} olan modeller.
+\end{ex}
+
+\end{document}

@@ -1,0 +1,171 @@
+% Part: first-order-logic
+% Chapter: completeness
+% Section: compactness-direct
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[tr]{fol}{com}{cpd}}
+      {\olfileid[tr]{pl}{com}{cpd}}
+
+\olsection{Tıkızlık Teoreminin Doğrudan İspatı}
+
+Tamlık teoremine başvurmadan, onun ispatındaki fikirleri kullanarak
+Tıkızlık Teoremini doğrudan ispatlayabiliriz. Tamlık Teoreminin
+ispatında tutarlı bir !!{sentence}s kümesi~$\Gamma$ ile başladık; onu
+tutarlı\iftag{FOL}{, doygun}{} ve !!{complete} bir
+!!{sentence}s kümesi~$\Gamma^*$'a genişlettik. Ardından~$\Gamma^*$
+kümesinden kurulan \iftag{FOL}{terim modeli~$\Struct{M(\Gamma^*)}$}
+{!!{valuation}~$\pAssign{v(\Gamma^*)}$} içinde~$\Gamma$'nın bütün
+!!{sentence}s ifadelerinin doğru olduğunu ve böylece~$\Gamma$'nın
+sağlanabilir olduğunu gösterdik.
+
+Sonlu olarak sağlanabilir bir tümceler kümesinin sağlanabilir olduğunu
+göstermek için aynı yöntemi kullanabiliriz. Yalnızca, doğruluk lemmasına
+götüren sonuçlarda ``tutarlı'' yerine ``sonlu olarak sağlanabilir''
+koyduğumuz karşılık gelen biçimleri ispatlamamız gerekir.
+
+\begin{prop}
+\ollabel{prop:fsat-ccs}
+$\Gamma$'nın !!{complete} ve sonlu olarak sağlanabilir olduğunu
+varsayalım. O zaman:
+\begin{enumerate}
+\tagitem{prvAnd}{$(!A\land !B)\in\Gamma$ ancak ve ancak hem
+  $!A\in\Gamma$ hem de $!B\in\Gamma$ ise.}{}
+\tagitem{prvOr}{$(!A\lor !B)\in\Gamma$ ancak ve ancak
+  $!A\in\Gamma$ ya da $!B\in\Gamma$ ise.}{}
+\tagitem{prvIf}{$(!A\lif !B)\in\Gamma$ ancak ve ancak
+  $!A\notin\Gamma$ ya da $!B\in\Gamma$ ise.}{}
+\end{enumerate}
+\end{prop}
+
+\tagprob{FOL}
+\begin{prob}
+\olref[fol][com][cpd]{prop:fsat-ccs} önermesini $\Proves$ kullanmadan
+ispatlayın.
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+\olref[pl][com][cpd]{prop:fsat-ccs} önermesini $\Proves$ kullanmadan
+ispatlayın.
+\end{prob}
+\tagendprob
+
+\iftag{FOL}{%
+\begin{lem}
+\ollabel{lem:fsat-henkin} Sonlu olarak sağlanabilir her~$\Gamma$
+kümesi, doygun ve sonlu olarak sağlanabilir bir~$\Gamma'$ kümesine
+genişletilebilir.
+\end{lem}
+}{}
+
+\tagprob{FOL}
+\begin{prob}
+\olref[fol][com][cpd]{lem:fsat-henkin} lemmasını ispatlayın. (İpucu:
+Temel adım,~$\Gamma_n$ sonlu olarak sağlanabilir ise
+$\Gamma_n\cup\{!D_n\}$ kümesinin de sonlu olarak sağlanabilir olduğunu
+!!{derivation}s ya da tutarlılığa başvurmadan göstermektir.)
+\end{prob}
+\tagendprob
+
+\iftag{FOL}{
+\begin{prop}\ollabel{prop:fsat-instances}
+$\Gamma$'nın tam, sonlu olarak sağlanabilir ve doygun olduğunu
+varsayalım.
+\begin{tagenumerate}{prvEx,prvAll}
+\tagitem{prvEx}{$\lexists[x][!A(x)]\in\Gamma$ ancak ve ancak en az bir
+  kapalı~$t$ terimi için $!A(t)\in\Gamma$ ise.}{}
+\tagitem{prvAll}{$\lforall[x][!A(x)]\in\Gamma$ ancak ve ancak bütün
+  kapalı~$t$ terimleri için $!A(t)\in\Gamma$ ise.}{}
+\end{tagenumerate}
+\end{prop}
+}{}
+
+\tagprob{FOL}
+\begin{prob}
+\olref[fol][com][cpd]{prop:fsat-instances} önermesini ispatlayın.
+\end{prob}
+\tagendprob
+
+\begin{lem}
+\ollabel{lem:fsat-lindenbaum} Sonlu olarak sağlanabilir her~$\Gamma$
+kümesi, !!a{complete} ve sonlu olarak sağlanabilir bir~$\Gamma^*$
+kümesine genişletilebilir.
+\end{lem}
+
+\tagprob{FOL}
+\begin{prob}
+\olref[fol][com][cpd]{lem:fsat-lindenbaum} lemmasını ispatlayın.
+(İpucu: Temel adım,~$\Gamma_n$ sonlu olarak sağlanabilir ise
+$\Gamma_n\cup\{!A_n\}$ ya da $\Gamma_n\cup\{\lnot !A_n\}$
+kümelerinden birinin sonlu olarak sağlanabilir olduğunu göstermektir.)
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+\olref[pl][com][cpd]{lem:fsat-lindenbaum} lemmasını ispatlayın.
+(İpucu: Temel adım,~$\Gamma_n$ sonlu olarak sağlanabilir ise
+$\Gamma_n\cup\{!A_n\}$ ya da $\Gamma_n\cup\{\lnot !A_n\}$
+kümelerinden birinin sonlu olarak sağlanabilir olduğunu göstermektir.)
+\end{prob}
+\tagendprob
+
+\begin{thm}[Tıkızlık]
+\ollabel{thm:compactness-direct} $\Gamma$ sağlanabilirdir ancak ve
+ancak sonlu olarak sağlanabilir ise.
+\end{thm}
+
+\begin{proof}
+$\Gamma$ sağlanabilirse
+\iftag{FOL}{!!a{structure}~$\Struct{M}$}{!!a{valuation}~$\pAssign{v}$}
+vardır ve her $!A\in\Gamma$ için
+$\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$ olur. Bu
+\iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$},~$\Gamma$'nın her
+sonlu alt kümesini de sağlar; dolayısıyla $\Gamma$ sonlu olarak
+sağlanabilirdir.
+
+Şimdi $\Gamma$'nın sonlu olarak sağlanabilir olduğunu varsayalım.
+\iftag{FOL}{\olref{lem:fsat-henkin} uyarınca
+  $\Gamma'\supseteq\Gamma$ olacak biçimde doygun ve sonlu olarak
+  sağlanabilir bir~$\Gamma'$ kümesi vardır.}{}
+\olref{lem:fsat-lindenbaum} uyarınca
+$\iftag{FOL}{\Gamma'}{\Gamma}$, !!a{complete} ve sonlu olarak
+sağlanabilir bir~$\Gamma^*$ kümesine genişletilebilir
+\iftag{FOL}{ ve $\Gamma^*$ yine doygundur}{}.
+\olref[mod]{defn:termmodel} tanımındaki gibi
+\iftag{FOL}{terim modeli~$\Struct{M(\Gamma^*)}$}
+{!!{valuation}~$\pAssign{v(\Gamma^*)}$} kuralım.
+\iftag{FOL}{\olref[mod]{prop:quant-termmodel} önermesinin
+  $\Gamma^*$'ın tutarlı (hatta !!{complete} ya da doygun) olmasına
+  değil, yalnızca $\Struct{M(\Gamma^*)}$ yapısının örtülmüş olmasına
+  dayandığına dikkat edin.}{}
+Doğruluk Lemması'nın (\olref[mod]{lem:truth}) ispatı,
+\olref[ccs]{prop:ccs}\iftag{FOL}{ ve
+\olref[hen]{prop:saturated-instances} göndermelerini sırasıyla}{ göndermesini}
+\olref{prop:fsat-ccs}\iftag{FOL}{ ve
+\olref{prop:fsat-instances} göndermeleriyle}{ göndermesiyle}
+değiştirdiğimizde aynen geçerlidir.
+\end{proof}
+
+\tagprob{FOL}
+\begin{prob}
+Doğruluk Lemması'nın (\olref[fol][com][mod]{lem:truth}),
+\olref[fol][com][cpd]{thm:compactness-direct} teoreminin ispatında
+gereken biçiminin tam ispatını yazın.
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+Doğruluk Lemması'nın (\olref[pl][com][mod]{lem:truth}),
+\olref[pl][com][cpd]{thm:compactness-direct} teoreminin ispatında
+gereken biçiminin tam ispatını yazın.
+\end{prob}
+\tagendprob
+
+\end{document}

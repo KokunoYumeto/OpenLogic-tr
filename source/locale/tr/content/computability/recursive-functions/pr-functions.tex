@@ -1,0 +1,158 @@
+% Part: computability
+% Chapter: recursive-functions
+% Section: pr-functions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{cmp}{rec}{prf}
+\olsection{İlkel Özyinelemeli Fonksiyonlar}
+
+İlkel özyineleme ve bileşke kullanarak var olan fonksiyonlardan yeni
+fonksiyonları nasıl tanımlayabildiğimizi yeniden kaydedelim.
+
+\begin{defn}
+  \ollabel{defn:primitive-recursion}
+  $f$ bir $k$-yerli fonksiyon ($k\geq1$), $g$ ise $(k+2)$-yerli bir
+  fonksiyon olsun. $f$ ile $g$'den \emph{ilkel özyinelemeyle tanımlanan}
+  fonksiyon, aşağıdaki denklemlerle verilen $(k+1)$-yerli $h$ fonksiyonudur:
+  \begin{align*}
+    h(x_0,\dots,x_{k-1},0) & = f(x_0,\dots,x_{k-1}) \\
+    h(x_0,\dots,x_{k-1},y+1) & =
+      g(x_0,\dots,x_{k-1},y,h(x_0,\dots,x_{k-1},y)).
+  \end{align*}
+\end{defn}
+
+\begin{defn}
+  \ollabel{defn:composition}
+  $f$ bir $k$-yerli fonksiyon; $g_0,\dots,g_{k-1}$ ise her biri $n$-yerli
+  olan $k$ fonksiyon olsun. $f$ ile $g_0,\dots,g_{k-1}$ fonksiyonlarından
+  \emph{bileşkeyle tanımlanan} fonksiyon, aşağıdaki eşitlikle verilen
+  $n$-yerli $h$ fonksiyonudur:
+  \[
+    h(x_0,\dots,x_{n-1})=
+    f(g_0(x_0,\dots,x_{n-1}),\dots,g_{k-1}(x_0,\dots,x_{n-1})).
+  \]
+\end{defn}
+
+$\Succ$ ile izdüşüm fonksiyonlarının yanı sıra
+\[
+  \Proj{n}{i}(x_0,\dots,x_{n-1})=x_i,
+\]
+her doğal sayı $n$ ve $i<n$ için $\Zero(x)=0$ fonksiyonunu da ilkel
+özyinelemeli fonksiyonlar arasına katacağız.
+
+\begin{defn}
+  İlkel özyinelemeli fonksiyonlar kümesi, $\Nat^n$'den $\Nat$'ye giden ve
+  aşağıdaki maddelerle tümevarımsal olarak tanımlanan fonksiyonlar kümesidir:
+  \begin{enumerate}
+  \item $\Zero$ ilkel özyinelemelidir.
+  \item $\Succ$ ilkel özyinelemelidir.
+  \item Her izdüşüm fonksiyonu $\Proj{n}{i}$ ilkel özyinelemelidir.
+  \item $f$ ilkel özyinelemeli $k$-yerli bir fonksiyon ve
+    $g_0,\dots,g_{k-1}$ ilkel özyinelemeli $n$-yerli fonksiyonlarsa,
+    $f$'nin $g_0,\dots,g_{k-1}$ ile bileşkesi ilkel özyinelemelidir.
+  \item $f$ ilkel özyinelemeli $k$-yerli bir fonksiyon ve $g$ ilkel
+    özyinelemeli $(k+2)$-yerli bir fonksiyonsa, $f$ ile $g$'den ilkel
+    özyinelemeyle tanımlanan fonksiyon ilkel özyinelemelidir.
+  \end{enumerate}
+\end{defn}
+
+\begin{explain}
+Daha kısa söylersek ilkel özyinelemeli fonksiyonlar kümesi, $\Zero$,
+$\Succ$ ve izdüşüm fonksiyonları $\Proj{n}{j}$ öğelerini içeren ve bileşke
+ile ilkel özyineleme altında kapalı olan en küçük kümedir.
+
+İlkel özyinelemeli fonksiyonlar kümesi ``aşamalar'' aracılığıyla da
+anlatılabilir. $S_0$, başlangıç fonksiyonlarının, yani $\Zero$, $\Succ$ ve
+izdüşümlerin kümesi olsun. Bunlar $0$. aşamadaki ilkel özyinelemeli
+fonksiyonlardır. Bir $S_i$ aşaması tanımlandıktan sonra $S_{i+1}$, $S_i$
+içinde bulunan fonksiyonlara tek bir bileşke veya ilkel özyineleme işlemi
+uygulanarak elde edilen bütün fonksiyonların kümesi olsun. O zaman
+\[
+  S=\bigcup_{i\in\Nat}S_i
+\]
+bütün ilkel özyinelemeli fonksiyonların kümesidir.
+\end{explain}
+
+$\Add$ fonksiyonunun ilkel özyinelemeli olduğunu doğrulayalım.
+
+\begin{prop}
+  Toplama fonksiyonu $\Add(x,y)=x+y$ ilkel özyinelemelidir.
+\end{prop}
+
+\begin{proof}
+$\Add$ için, iki $f$ ve $g$ fonksiyonu cinsinden
+\olref{defn:primitive-recursion} biçimine uyan bir ilkel özyinelemeli tanımımız
+zaten vardır:
+\begin{align*}
+  \Add(x_0,0) & = f(x_0)=x_0 \\
+  \Add(x_0,y+1) & = g(x_0,y,\Add(x_0,y))=\Succ(\Add(x_0,y)).
+\end{align*}
+Dolayısıyla $f$ ile $g$ ilkel özyinelemeliyse $\Add$ de öyledir.
+$f(x_0)=x_0=\Proj{1}{0}(x_0)$ ve izdüşüm fonksiyonları ilkel özyinelemeli
+sayıldığından $f$ ilkel özyinelemelidir. $g$ ise
+\[
+  g(x_0,y,z)=\Succ(z)
+\]
+ile tanımlanan üç yerli fonksiyondur. Bu ifade henüz $g$'nin ilkel
+özyinelemeli olduğunu göstermez; çünkü $g$ ile $\Succ$ tam olarak aynı
+fonksiyon değildir: $\Succ$ bir yerli, $g$ ise üç yerlidir. Fakat $g$'yi
+``resmî olarak'' bileşkeyle şöyle tanımlayabiliriz:
+\[
+  g(x_0,y,z)=\Succ(\Proj{3}{2}(x_0,y,z)).
+\]
+$\Succ$ ile $\Proj{3}{2}$ ilkel özyinelemeli sayıldığından, ilkel
+özyinelemeli fonksiyonlardan bileşkeyle tanımlanan $g$ de ilkel
+özyinelemelidir.
+\end{proof}
+
+\begin{prop}
+  \ollabel{prop:mult-pr}
+  Çarpma fonksiyonu $\Mult(x,y)=x\cdot y$ ilkel özyinelemelidir.
+\end{prop}
+
+\begin{proof}
+  Alıştırma.
+\end{proof}
+
+\begin{prob}
+  \olref[cmp][rec][prf]{prop:mult-pr} önermesini, $\Mult$ fonksiyonunun
+  ilkel özyinelemeli tanımını
+  \olref[cmp][rec][prf]{defn:primitive-recursion} içinde gereken biçime
+  getirip karşılık gelen $f$ ile $g$ fonksiyonlarının ilkel özyinelemeli
+  olduğunu göstererek ispatlayın.
+\end{prob}
+
+\begin{ex}
+İşte ilkel özyinelemeli tanımın ilk örneği:
+\begin{align*}
+  h(0) & = 1 \\
+  h(y+1) & = 2\cdot h(y).
+\end{align*}
+$k=0$ olduğundan bu fonksiyon \olref{defn:primitive-recursion} içinde gereken
+biçime uymaz. Tanım ayrıca $1$ ve $2$ sabitlerini içerir. İlk sorunu aşmak
+için etkisiz bir argüman ekleyip $h'$ fonksiyonunu tanımlayalım:
+\begin{align*}
+  h'(x_0,0) & = f(x_0)=1 \\
+  h'(x_0,y+1) & = g(x_0,y,h'(x_0,y))=2\cdot h'(x_0,y).
+\end{align*}
+$f(x_0)=1$ fonksiyonu $\Succ$ ile $\Zero$'dan bileşkeyle tanımlanabilir:
+$f(x_0)=\Succ(\Zero(x_0))$. $g$ fonksiyonu, $g'(z)=2\cdot z$ ile
+izdüşümlerden bileşkeyle tanımlanabilir:
+\begin{align*}
+  g(x_0,y,z) & = g'(\Proj{3}{2}(x_0,y,z))
+  \intertext{$g'$ ise bileşkeyle şöyle tanımlanabilir:}
+  g'(z) & = \Mult(g''(z),\Proj{1}{0}(z))
+  \intertext{ve}
+  g''(z) & = \Succ(f(z)),
+\end{align*}
+burada $f$ yukarıdaki gibidir: $f(z)=\Succ(\Zero(z))$. Artık $h'$ elimizde
+olduğuna göre bileşkeyi bir kez daha kullanarak
+$h(y)=h'(\Proj{1}{0}(y),\Proj{1}{0}(y))$ diyebiliriz. Böylece $h$, temel
+fonksiyonlardan bir bileşke ve ilkel özyineleme dizisiyle tanımlanır;
+dolayısıyla ilkel özyinelemelidir.
+\end{ex}
+
+\end{document}

@@ -1,0 +1,78 @@
+% Part: lambda-calculus
+% Chapter: lambda-definability
+% Section: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{lam}{ldf}{int}
+\olsection{Giriş}
+
+İlk bakışta lambda hesabı, fonksiyonları ve bunların birbirine uygulanmasını
+gösteren ifadelerin son derece soyut bir hesabından ibarettir. Lambda
+hesabının sözdiziminde bu fonksiyonların belirli türden nesneler üzerinde
+olduğunu düşündüren hiçbir şey yoktur; özellikle sözdizim doğal sayılardan
+hiç söz etmez. Temel işlemleri olan uygulama ve lambda soyutlaması, yalnızca
+doğal sayılar üzerindeki fonksiyonlara değil, her fonksiyona uygulanır.
+
+Bununla birlikte biraz yaratıcılıkla lambda hesabında aritmetik fonksiyonları,
+yani doğal sayılar üzerindeki fonksiyonları tanımlamak mümkündür. Bunun için
+her $n\in\Nat$ doğal sayısına, $n$'nin \emph{Church sayısı} olan özel bir
+$\lambd$-terimi $\num n$ atarız. Church sayıları adını Alonzo Church'ten alır.
+
+\begin{defn}
+  $n\in\Nat$ ise karşılık gelen \emph{Church sayısı} $\num{n}$, $n$'yi
+  gösterir:
+  \[
+    \num{n} \ident \lambd[fx][f^n(x)].
+  \]
+  Burada $f^n(x)$, $f$'nin $x$'e $n$ kez uygulanmasının sonucudur. Örneğin
+  $\num{0}$ terimi $\lambd[fx][x]$, $\num{3}$ terimi ise
+  $\lambd[fx][f(f(f\,x))]$'tir.
+\end{defn}
+
+Church sayısı $\num n$, iki $f,x$ argümanı alıp $f^n(x)$ döndüren bir
+fonksiyonu gösteren lambda terimi olarak kodlanır. Church sayıları açıkça
+normal biçimdedir.
+
+Doğal sayıların lambda hesabındaki bir gösterimi, ancak bu sayılarla hesap
+yapabiliyorsak yararlıdır. Church sayılarıyla hesap yapmak, bir
+$\lambd$-terimi $F$'yi böyle bir $\num n$ Church sayısına uygulayıp birleşik
+$F\,\num n$ terimini normal biçime indirgemek demektir. Bu terim her zaman
+normal biçime indirgeniyor ve normal biçim her zaman bir $\num m$ Church
+sayısı oluyorsa hesaplamanın çıktısını $m$ sayısı olarak düşünebiliriz. Bu
+durumda $F$'nin $f\colon\Nat\to\Nat$ fonksiyonunu, yani
+$F\,\num n\red\num m$ ancak ve ancak $f(n)=m$ olduğunda geçerli olan
+fonksiyonu tanımladığını düşünebiliriz. Church--Rosser özelliği gereği normal
+biçimler, varsa, tektir. Dolayısıyla $F\,\num n\red\num m$ ise
+$F\,\num n$'nin indirgenebileceği başka bir normal terim, özellikle de başka
+bir Church sayısı yoktur.
+
+Tersine, bir $f\colon\Nat\to\Nat$ fonksiyonu verildiğinde $f$'yi bu biçimde
+tanımlayan bir $F$ terimi olup olmadığını sorabiliriz. Varsa $F$'nin $f$'yi
+\emph{!!{lambda define}s} ve $f$'nin !!{lambda definable} olduğunu söyleriz.
+Bunu çok yerli ve kısmi fonksiyonlara genelleyebiliriz.
+
+\begin{defn}
+$f\colon\Nat^k\to\Nat$ olsun. Her $n_0$, \dots,~$n_{k-1}$ için
+\[
+F \, \num{n_0} \, \num{n_1} \dots \num{n_{k-1}} \red
+\num{f(n_0,n_1,\dots,n_{k-1})}
+\]
+$f(n_0,\dots,n_{k-1})$ tanımlı olduğunda geçerli, tanımsız olduğunda ise
+$F\,\num{n_0}\,\num{n_1}\dots\num{n_{k-1}}$ normal biçimsizse, $F$ lambda
+teriminin $f$'yi \emph{!!{lambda define}s} olduğunu söyleriz.
+\end{defn}
+
+Çok basit bir örnek sabit fonksiyonlardır. $C_k\ident\lambd[x][\num{k}]$
+terimi, $c_k(n)=k$ olan $c_k\colon\Nat\to\Nat$ fonksiyonunu
+!!{lambda define}s. Gerçekten her $n$ için
+$C_k\,\num n\ident(\lambd[x][\num{k}])\num n\redone\num{k}$.
+Özdeşlik fonksiyonu $\lambd[x][x]$ tarafından !!{lambda defined}.
+Daha karmaşık fonksiyonları tanımlamak elbette daha zordur ve çoğu zaman
+büyük yaratıcılık gerektirir. Bu nedenle her hesaplanabilir fonksiyonun
+!!{lambda definable} olması şaşırtıcı gelebilir. Tersi de doğrudur: bir
+fonksiyon !!{lambda definable} ise hesaplanabilirdir.
+
+\end{document}

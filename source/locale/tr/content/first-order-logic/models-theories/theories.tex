@@ -1,0 +1,142 @@
+% Part: first-order-logic
+% Chapter: models-theories
+% Section: theories
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{fol}{mat}{the}
+
+\olsection{Birinci Dereceden Kuram Örnekleri}
+
+\begin{ex}
+$\Lang L_<$ dilindeki katı doğrusal sıralamalar kuramı
+\begin{align*}
+\{\quad & \lforall[x][\lnot x < x], \\
+& \lforall[x][\lforall[y][((x < y \lor y <
+    x) \lor x = y)]], \\
+& \lforall[x][\lforall[y][\lforall[z][((x < y
+      \land y < z) \lif x < z)]]] \quad \}
+\end{align*}
+kümesiyle aksiyomlaştırılır. Bu küme amaçlanan !!{structure}s
+ifadelerini tam olarak yakalar: Her katı doğrusal sıralama bu aksiyom
+sisteminin bir modelidir; tersine, $R$, $X$ kümesi üzerinde bir
+doğrusal sıralamaysa $\Domain M=X$ ve $\Assign{<}{M}=R$ olan
+$\Struct M$ yapısı bu kuramın bir modelidir.
+\end{ex}
+
+\begin{ex}
+$\Obj 1$ (!!{constant}) ve $\cdot$ (iki yerli !!{function}) simgelerini
+içeren dilde gruplar kuramı
+\begin{align*}
+& \lforall[x][\eq[(x \cdot \Obj 1)][x]]\\
+& \lforall[x][\lforall[y][\lforall[z][\eq[(x \cdot (y \cdot z))][((x
+          \cdot y) \cdot z)]]]]\\
+& \lforall[x][\lexists[y][\eq[(x \cdot y)][\Obj 1]]]
+\end{align*}
+ile aksiyomlaştırılır.
+\end{ex}
+
+\begin{ex}
+Peano aritmetiği kuramı, aritmetik dili~$\Lang L_A$ içindeki aşağıdaki
+tümcelerle aksiyomlaştırılır:
+\begin{align*}
+& \lforall[x][\lforall[y][(\eq[x'][y'] \lif \eq[x][y])]]\\
+& \lforall[x][\eq/[\Obj 0][x']]\\
+& \lforall[x][\eq[(x + \Obj 0)][x]]\\
+& \lforall[x][\lforall[y][\eq[(x + y')][(x + y)']]]\\
+& \lforall[x][\eq[(x \times \Obj 0)][\Obj 0]]\\
+& \lforall[x][\lforall[y][\eq[(x \times y')][((x \times y) + x)]] ]\\
+& \lforall[x][\lforall[y][(x < y \liff \lexists[z][\eq[(z' + x)][y])]]]
+\intertext{ve ayrıca aşağıdaki biçimdeki bütün tümceler:}
+& (!A(\Obj 0) \land \lforall[x][(!A(x) \lif !A(x'))]) \lif \lforall[x][!A(x)].
+\end{align*}
+Son biçimde sonsuz sayıda tümce bulunduğu için bu aksiyom sistemi
+sonsuzdur. Son biçime \emph{tümevarım şeması} denir. (Aslında tümevarım
+şeması burada gösterdiğimizden biraz daha karmaşıktır.)
+
+Son aksiyom,~$<$ bağıntısının \emph{açık bir tanımıdır}.
+\end{ex}
+
+\begin{ex}
+Saf kümeler kuramı, matematiğin temellerinde (ve felsefesinde) önemli
+bir rol oynar. Bir kümenin bütün !!{element}s yine saf kümelerse o
+kümeye saf denir. Bu nedenle boş küme saftır; fakat !!a{element}
+olarak küme olmayan bir şeyi içeren bir küme saf değildir. Dolayısıyla
+saf kümeler, yalnızca boş kümeden ve kendileri küme olmayan nesneler
+olan hiçbir ``temel elemandan'' yararlanmadan oluşturulan kümelerdir.
+
+Aşağıdaki sistem, saf kümeler kuramı için bir aksiyom sistemi olarak
+düşünülebilir:
+\begin{align*}
+& \lexists[x][\lnot \lexists[y][y \in x]]\\
+& \lforall[x][\lforall[y][(\lforall[z](z \in x \liff z \in y) \lif
+\eq[x][y])]]\\
+& \lforall[x][\lforall[y][\lexists[z][\lforall[u][(u \in z \liff
+(\eq[u][x] \lor \eq[u][y]))]]]]\\
+& \lforall[x][\lexists[y][\lforall[z][(z \in y \liff \lexists[u][(z \in
+        u \land u \in x)])]]]\\
+\intertext{ve ayrıca aşağıdaki biçimdeki bütün tümceler:} &
+\lexists[x][\lforall[y][(y \in x \liff !A(y))]].
+\end{align*}
+Birinci aksiyom hiç !!{element}s bulunmayan bir kümenin var olduğunu
+(yani $\emptyset$ kümesinin varlığını); ikincisi kümelerin kaplamsal
+olduğunu; üçüncüsü herhangi $X$ ve $Y$ kümeleri için $\{X,Y\}$
+kümesinin var olduğunu; dördüncüsü ise herhangi bir $X$ kümesi için
+$\cup X$ kümesinin var olduğunu söyler. Burada $\cup X$, $X$'in bütün
+elemanlarının birleşimidir.
+
+Son olarak anılan !!{sentence}s topluca \emph{naif küme oluşturma
+şeması} diye adlandırılır. Bu şema özünde her $!A(x)$ için
+$\Setabs{x}{!A(x)}$ kümesinin var olduğunu söyler; ilk bakışta doğru,
+yararlı, hatta zorunlu görünebilecek bir aksiyomdur. ``Naif'' denmesinin
+nedeni, bu kuramı sağlanamaz kıldığının ortaya çıkmasıdır: $!A(y)$
+yerine $\lnot y\in y$ alırsak
+\[
+\lexists[x][\lforall[y][(y \in x \liff \lnot y \in y)]]
+\]
+!!{sentence} ifadesini elde ederiz ve bu !!{sentence} hiçbir
+!!{structure} içinde sağlanmaz.
+\end{ex}
+
+\begin{ex}
+\emph{Mereoloji} alanında \emph{parça olma} bağıntısı temel bir
+bağıntıdır. Küme kuramlarında olduğu gibi, bu bağıntıya ilişkin çeşitli
+(bazen birbiriyle çatışan) anlayışları aksiyomlaştıran parça olma
+kuramları vardır.
+
+Mereoloji dili tek bir iki yerli yüklem simgesi~$\Obj P$ içerir ve
+$\Atom{\Obj P}{x,y}$, ``$x$, $y$'nin bir parçasıdır'' anlamına gelir.
+Bu yorumu göz önünde tuttuğumuzda bu dil için !!a{structure}
+ifadesine \emph{parça olma yapısı} denir. Elbette tek bir iki yerli
+yüklem içeren her yapı bu adı gerçekten hak etmez. ``Parça olma''
+anlamını yakalayabilmesi için $\Assign{\Obj P}{M}$ bazı koşulları
+sağlamalıdır; bunları bir parça olma kuramının aksiyomları olarak
+belirtebiliriz. Örneğin parça olma nesneler üzerinde bir kısmi
+sıralamadır: Her nesne kendisinin (gerçi \emph{öz olmayan}) bir
+parçasıdır; iki farklı nesne birbirinin parçası olamaz; bir nesnenin
+bir parçasının parçası da o nesnenin parçasıdır. Bu anlamda ``parçası
+olmak'', ``alt kümesi olmak'' bağıntısına benzer; fakat ne yansımalı ne
+de geçişli olan ``elemanı olmak'' bağıntısına benzemez.
+\begin{align*}
+& \lforall[x][\Atom{\Obj P}{x,x}] \\
+& \lforall[x][\lforall[y][((\Part{x}{y} \land \Part{y}{x})
+      \lif \eq[x][y])]] \\
+& \lforall[x][\lforall[y][\lforall[z][((\Part{x}{y} \land
+        \Part{y}{z}) \lif \Part{x}{z})]]]\\
+\intertext{Ayrıca herhangi iki nesnenin mereolojik bir toplamı vardır
+(bu iki nesneyi parça olarak içeren ve bu bakımdan en küçük olan bir nesne):} &
+\lforall[x][\lforall[y][\lexists[z][\lforall[u][(\Part{z}{u} \liff
+        (\Part{x}{u} \land \Part{y}{u}))]]]].
+\end{align*}
+Bunlar, metafizikçilerin ele aldığı temel parça olma ilkelerinden
+yalnızca bazılarıdır. Bununla birlikte, önce bazı bağıntılar
+tanımlanmadan daha ileri ilkeleri formülleştirmek ya da yazmak hızla
+zorlaşır. Örneğin mereolojiyle ilgilenen metafizikçilerin çoğu şu
+ilkeyi de geçerli sayar: Bir $x$ nesnesinin bir öz parçası~$y$ varsa,
+$x$ ayrıca $y$ ile hiçbir ortak parçası bulunmayan ve $y$ ile
+birleşimi $x$ olan bir $z$ parçasına sahiptir.
+\end{ex}
+
+\end{document}

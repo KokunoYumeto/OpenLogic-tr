@@ -1,0 +1,588 @@
+% Part: proof-theory
+% Chapter: cut-elimination
+% Section: interpolation
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{pt}{cut}{itp}
+
+\olsection{Maehara Lemması ve Craig Aradeğerleme Teoremi}
+
+William Craig'e ait aradeğerleme teoremi, $!A \Entails !B$ ise $!A
+\Entails !C$ ve $!C \Entails !B$ olacak biçimde !!a{sentence}~$!C$ (bir
+\emph{aradeğerleme}) bulunduğunu söyler. Önemli olarak,
+aradeğerleme~$!C$,~$!C$ içinde oluşan !!{constant}s ile !!{predicate}s{}in
+hepsi hem~$!A$ hem~$!B$ içinde oluşacak biçimde seçilebilir. (Hiçbir
+!!{function}s{}ın söz konusu olmadığını varsayıyoruz.) Bu kısıtlama olmasa
+$!A$~ile $!B$ önemsiz biçimde aradeğerleme görevi görebilirdi.
+
+Aradeğerleme teoremi klasik birinci dereceden mantık için geçerlidir ve
+keşfedilen ``birinci dereceden mantığın son önemli özelliği'' diye
+adlandırılmıştır. Model kuramında ve otomatik akıl yürütmede önemli
+uygulamaları vardır. Özgün güdüsü ve uygulaması bilim felsefesindeydi;
+çünkü bir kuramın hangi ilkeller aracılığıyla aksiyomlaştırılıp
+aksiyomlaştırılamayacağını incelemekte kullanılabilir. Ayrıca, bir kuram bir
+kavramı örtük olarak tanımlayabiliyorsa onu açık olarak da
+tanımlayabileceğini söyleyen Beth tanımlanabilirlik teoremini gerektirir.
+
+Matematiksel mantıktaki pek çok sonuç gibi aradeğerleme teoremi de hem model
+kuramının hem ispat kuramının yöntemleriyle ispatlanabilir. İspat kuramsal
+yöntemlerin üstünlüğü, yalnızca bir aradeğerlemenin varlığını göstermekle
+kalmayıp $!A \Entails !B$ olduğunu gösteren !!a{proof}{}tan, örneğin $!A
+\Sequent !B$'nin~\Log{G3c} içindeki !!a{proof}{}ından aradeğerlemeyi hesaplayan
+bir algoritma sağlamalarıdır.
+
+$\Lang L(!A)$,~$!A$ içindeki !!{constant}s ile !!{predicate}s kümesi ve
+$\Lang L(\Gamma) = \bigcup \Setabs{\Lang L(!A)}{!A \in \Gamma}$ olsun. Bu
+bölüm boyunca, ele aldığımız !!{formula}s{}in hiçbir !!{function}s
+içermediğini varsayıyoruz.
+
+\begin{thm}[Craig Aradeğerleme Teoremi]\ollabel{thm:interpolation}
+~$!A$'nın !!{language}{}i $\Lang L(!A)$ ve $!B$'ninki $\Lang L(!B)$ olsun.
+$\Log{G3c} \Proves !A \Sequent !B$ ise, $\Log{G3c} \Proves !A \Sequent !C$
+ve $\Log{G3c} \Proves !C \Sequent !B$ olacak biçimde !!a{formula}~$!C$
+vardır; bu formülün !!{language}{}i $\Lang L(!C) \subseteq \Lang L(!A) \cap
+\Lang L(!B)$'dır.
+\end{thm}
+
+~\Log{G3c} içindeki !!{proof}s{}ın yapısından yararlanmak için aradeğerleme
+teoreminin bir genellemesini ispatlarız. Bu amaçla, sekantların öncülü ile
+ardılının ayrı ayrı iki parçaya ayrıldığını düşünün. $\Gamma_1$ ile
+$\Delta_1$'in birinci parçaya, $\Gamma_2$ ile $\Delta_2$'nin ikinci parçaya
+ait olduğunu belirtmek için $\maeh{\Gamma_1}{\Gamma_2} \Sequent
+\maeh{\Delta_1}{\Delta_2}$ yazarız. Aradeğerleme teoremi o zaman aşağıdaki
+lemmadan doğrudan çıkar.
+
+\begin{lem}[Maehara Lemması]\ollabel{lem:maehara} $\Log{G3c}
+\Proves \maeh{\Gamma_1}{\Gamma_2} \Sequent \maeh{\Delta_1}{\Delta_2}$
+ise, $\Log{G3c} \Proves \Gamma_1 \Sequent \Delta_1, !C$ ve $\Log{G3c}
+\Proves !C, \Gamma_2 \Sequent \Delta_2$ olacak biçimde !!a{formula}~$!C$
+vardır; bunun !!{language}{}i $\Lang L(!C) \subseteq \Lang L(\Gamma_1,
+\Delta_1) \cap \Lang L(\Gamma_2, \Delta_2)$'dır.
+\end{lem}
+
+\begin{proof}
+  $\pi \Proves \maeh{\Gamma_1}{\Gamma_2} \Sequent
+  \maeh{\Delta_1}{\Delta_2}$ olduğunu varsayın. İddiayı
+  $n=\pheight{\pi}$ üzerine tümevarımla ispatlarız.
+
+  $n=0$ ise $\maeh{\Gamma_1}{\Gamma_2} \Sequent
+  \maeh{\Delta_1}{\Delta_2}$ bir aksiyomdur ve atomik bir
+  !!{formula}~$!A$, hem $\Gamma_1, \Gamma_2$ hem $\Delta_1, \Delta_2$ içinde
+  oluşur. ~$!A$'nın solda birinci ya da ikinci parçaya ve sağda birinci ya
+  da ikinci parçaya ait olmasına göre dört durum vardır.
+  \begin{enumerate}
+    \item $!A \in \Gamma_1$ ve $!A \in \Delta_1$. Hem $\Gamma_1 \Sequent
+    \Delta_1, !C$ hem $!C, \Gamma_2 \Sequent \Delta_2$ !!{provable} olacak
+    biçimde bir~$!C$ isteriz. ~$!A$ hem solda hem sağda oluştuğu için
+    birincisi~$!C$'yi nasıl seçersek seçelim zaten bir aksiyomdur. $!C,
+    \Gamma_2 \Sequent \Delta_2$'nın !!{provable} olmasını güvenceye almak
+    için tek seçeneğimiz $!C \ident \lfalse$ almaktır.
+    \item $!A \in \Gamma_1$ ve $!A \in \Delta_2$. O zaman $\Gamma_1
+    \Sequent \Delta_1, !A$ ile $!A, \Gamma_2 \Sequent \Delta_2$ ikisi de
+    aksiyomdur; dolayısıyla $!C \ident !A$ seçebiliriz.
+    \item $!A \in \Gamma_2$ ve $!A \in \Delta_1$. O zaman $!A, \Gamma_1
+    \Sequent \Delta_1$ ile $\Gamma_2 \Sequent \Delta_2, !A$ aksiyom
+    olurdu; fakat~$!A$ yanlış taraflardadır. Bu nedenle $!A$ aradeğerleme
+    değildir. Bununla birlikte, \RightR{\lnot} ve \LeftR{\lnot} kullanarak
+    $\Gamma_1 \Sequent \Delta_1, \lnot!A$ ile $\lnot !A, \Gamma_2 \Sequent
+    \Delta_2$'yı !!{prove}{}yabiliriz.
+    \item $!A \in \Gamma_2$ ve $!A \in \Delta_2$. Alıştırma.
+  \end{enumerate}
+  $\maeh{\Gamma_1}{\Gamma_2} \Sequent \maeh{\Delta_1}{\Delta_2}$'nın
+  $\lfalse \in \Gamma_1$ ya da $\lfalse \in \Gamma_2$ olduğu için bir
+  aksiyom olduğu durumlar alıştırma olarak bırakılmıştır.
+
+  $n>0$ ise $\pi$ bir mantıksal çıkarımla biter. Hangi kuralın kullanıldığına
+  ve esas formülün hangi parçaya ait olduğuna göre durumları ayırmamız
+  gerekir. Her durumda, lemma $\pheight{\pi_1} < n$ olan bütün
+  !!{proof}s~$\pi_1$ için ve~$\pi_1$'in son-sekantı iki parçaya nasıl
+  ayrılırsa ayrılsın geçerlidir biçimindeki tümevarım varsayımını
+  kullanabiliriz. Bazı özel durumları ele alalım.
+  \begin{enumerate}
+    \item $\pi$, esas formülü~$\lnot !A$ olan $\RightR{\lnot}$ ile biter.
+    İki durumumuz vardır: $\lnot !A$'nın birinci ya da ikinci parçaya ait
+    olmasına göre $\pi$ şu ikisinden biriyle biter:
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi_1$}
+    \Deduce$\maeh{!A, \Gamma_1}{\Gamma_2} \fCenter
+      \maeh{\Delta_1}{\Delta_2}$
+    \RightLabel{\RightR{\lnot}}
+    \UnaryInf$\maeh{\Gamma_1}{\Gamma_2} \fCenter
+      \maeh{\Delta_1, \lnot !A}{\Delta_2}$
+    \DisplayProof
+    \]
+    ya da
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi_1$}
+    \Deduce$\maeh{\Gamma_1}{!A, \Gamma_2} \fCenter
+      \maeh{\Delta_1}{\Delta_2}$
+    \RightLabel{\RightR{\lnot}}
+    \UnaryInf$\maeh{\Gamma_1}{\Gamma_2} \fCenter
+      \maeh{\Delta_1}{\Delta_2, \lnot !A}$
+    \DisplayProof
+    \]
+    Esas !!{formula}~$\lnot !A$ birinci parçaya aitse öncüldeki etkin
+    !!{formula}~$!A$'yı da birinci parçaya atadığımıza dikkat edin. Bu,
+    yapabildiğimiz bir seçimdir. Etkin formülü öteki parçaya atasaydık da
+    tümevarım varsayımı uygulanırdı; fakat o zaman bir aradeğerleme
+    bulamazdık (alıştırma: deneyin).
+
+    Önce $\lnot !A$'nın birinci parçaya ait olduğu ilk durumu ele alın.
+    Tümevarım varsayımı gereğince~$\pi_1$'in son-sekantının bir
+    aradeğerlemesi, yani !!a{formula}~$!C_1$ vardır; öyle ki aşağıdakilerin
+    ikisi de
+    \begin{align*}
+    !A, \Gamma_1 & \Sequent \Delta_1, !C_1 &&\text{ve} &
+    !C_1, \Gamma_2 & \Sequent \Delta_2
+    \intertext{ispatlanabilirdir. İstediğimiz ise !!a{formula}~$!C$'dir;
+    aşağıdakilerin ikisi de !!{provable} olmalıdır:}
+    \Gamma_1 & \Sequent \Delta_1, \lnot !A, !C &&\text{ve} &
+    !C, \Gamma_2 & \Sequent \Delta_2
+    \end{align*}
+    Açıkça yalnızca $!C \ident !C_1$ alabiliriz: tümevarım varsayımı sağdaki
+    sekantın !!{provable} olduğunu zaten söylemiştir; soldaki sekant da
+    tümevarım varsayımından aldığımız sekanta~$\RightR{\lnot}$ uygulanarak
+    çıkar. Tümevarım varsayımı bize ayrıca $\Lang L(!C_1) \subseteq \Lang
+    L(!A, \Gamma_1, \Delta_1) \cap \Lang L(\Gamma_2, \Delta_2)$ olduğunu
+    söyler. $\Lang L(\lnot !A) = \Lang L(!A)$ ve $\Lang L(!C) = \Lang
+    L(!C_1)$ olduğundan, $\Lang L(!C_1) \subseteq \Lang L(\Gamma_1,
+    \Delta_1, \lnot !A) \cap \Lang L(\Gamma_2, \Delta_2)$ elde ederiz.
+
+    İkinci durumda $\lnot !A$'nın ikinci parçaya ait olması nedeniyle durum
+    biraz farklıdır. Öncüldeki etkin !!{formula}{}ü de ikinci parçaya atar ve
+    tümevarım varsayımını şu sekantlara uygularız:
+    \begin{align*}
+    \Gamma_1 & \Sequent \Delta_1, !C_1 &&\text{ve} &
+    !C_1, !A, \Gamma_2 & \Sequent \Delta_2
+    \intertext{bunlar ispatlanabilirdir. Bunların ikincisine yine
+    \RightR{\lnot} kuralını uygularsak şunların !!{proof}s{}ını elde ederiz:}
+    \Gamma_1 & \Sequent \Delta_1, !C_1 &&\text{ve} &
+    !C_1, \Gamma_2 & \Sequent \Delta_2, \lnot !A
+    \end{align*}
+    Bunlar, $!C_1$ bir aradeğerleme olduğunda !!{provable} olmasını
+    istediğimiz sekantların tam kendisidir; yine $!C \ident !C_1$ alırız.
+    Önceki gibi $\Lang L(!C_1) \subseteq \Lang L(\Gamma_1, \Delta_1) \cap
+    \Lang L(\Gamma_2, \Delta_2, \lnot !A)$'dır.
+    \item $\pi$, esas !!{formula}{}ü~$!A \lif !B$ olan $\RightR{\lif}$ ile
+    biter. Yine $!A \lif !B$'nin birinci ya da ikinci parçaya ait olmasına
+    göre iki durumumuz vardır. !!{proof}~$\pi$ şu ikisinden biriyle biter:
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi_1$}
+    \Deduce$\maeh{!A, \Gamma_1}{\Gamma_2} \fCenter
+      \maeh{\Delta_1, !B}{\Delta_2}$
+    \RightLabel{\RightR{\lif}}
+    \UnaryInf$\maeh{\Gamma_1}{\Gamma_2} \fCenter
+      \maeh{\Delta_1, !A \lif !B}{\Delta_2}$
+    \DisplayProof
+    \]
+    ya da
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi_1$}
+    \Deduce$\maeh{\Gamma_1}{!A, \Gamma_2} \fCenter
+      \maeh{\Delta_1}{\Delta_2, !B}$
+    \RightLabel{\RightR{\lif}}
+    \UnaryInf$\maeh{\Gamma_1}{\Gamma_2} \fCenter
+      \maeh{\Delta_1}{\Delta_2, !A \lif !B}$
+    \DisplayProof
+    \]
+    Etkin !!{formula}{}ü yine öncülde, sonuçtaki esas !!{formula} ile aynı
+    parçaya atadık. İlk durumda tümevarım varsayımını uygular ve şunların
+    !!{proof}s{}ını elde ederiz:
+    \begin{align*}
+    !A, \Gamma_1 & \Sequent \Delta_1, !B, !C_1 &&\text{ve} & !C_1, \Gamma_2 & \Sequent \Delta_2
+    \intertext{Soldaki sekant \RightR{\lif} için uygun bir öncüldür. Böylece
+    şu !!{provable} sekantlarımız vardır:}
+    \Gamma_1 & \Sequent \Delta_1, !A \lif !B, !C_1 &&\text{ve} & !C_1, \Gamma_2 & \Sequent \Delta_2
+    \end{align*}
+    Bu,~$!C_1$'in~$\pi$'nin son-sekantı için de bir aradeğerleme olduğu
+    anlamına gelir ve bir kez daha $!C \ident !C_1$ alabiliriz.
+    
+    Öteki durum aynı biçimde ele alınır.
+    \item $\pi$, esas !!{formula}{}ü~$!A \lif !B$ olan $\LeftR{\lif}$ ile
+    biter. $!A \lif !B$ birinci parçaya aitse !!{proof}~$\pi$ şöyle biter:
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi_1$}
+    \Deduce$\maeh{\Gamma_1}{\Gamma_2} \fCenter
+      \maeh{\Delta_1, !A}{\Delta_2}$
+    \AxiomC{}
+    \RightLabel{$\pi_2$}
+    \Deduce$\maeh{!B, \Gamma_1}{\Gamma_2} \fCenter
+      \maeh{\Delta_1}{\Delta_2}$
+    \RightLabel{\LeftR{\lif}}
+    \BinaryInf$\maeh{!A \lif !B, \Gamma_1}{\Gamma_2} \fCenter
+      \maeh{\Delta_1}{\Delta_2}$
+    \DisplayProof
+    \]
+    Tümevarım varsayımı şimdi bize, sol öncülün aradeğerlemesi $!C_1$ için
+    iki ve ikinci öncülün aradeğerlemesi $!C_2$ için iki olmak üzere dört
+    !!{provable} sekant verir:
+    \begin{align*}
+    \Gamma_1 & \Sequent \Delta_1, !A, !C_1 &&\text{(1)} &
+    !C_1, \Gamma_2 & \Sequent \Delta_2 && \text{(2)}\\
+    !B, \Gamma_1 & \Sequent \Delta_1, !C_2 &&\text{(3)} &
+    !C_2, \Gamma_2 & \Sequent \Delta_2 && \text{(4)}
+    \end{align*}
+    Zayıflatmayı uygulayıp (1)'in sağına $!C_2$,~(3)'ün sağına $!C_1$
+    eklersek, (1) ve (3) sekantları~\LeftR{\lif}'in öncülleri olabilir:
+    \[
+    \AxiomC{}
+    \Deduce$\Gamma_1 \fCenter \Delta_1, !A, !C_1, !C_2$
+    \AxiomC{}
+    \Deduce$!B, \Gamma_1 \fCenter \Delta_1, !C_1, !C_2$
+    \RightLabel{\LeftR{\lif}}
+    \BinaryInf$!A \lif !B, \Gamma_1 \fCenter \Delta_1, !C_1, !C_2$
+    \DisplayProof
+    \]
+    $\RightR{\lor}$ uygulayarak şu sekantı elde ederiz:
+    \[
+    !A \lif !B, \Gamma_1 \fCenter \Delta_1, !C_1 \lor !C_2
+    \]
+    Bu, $!C_1 \lor !C_2$'nin bu durumda aradeğerlememiz olabileceğini
+    düşündürür. Nitekim, kalan (2) ve~(4) sekantlarından öteki gerekli
+    sekantı !!{prove}{}yabiliriz:
+    \[
+    \AxiomC{}
+    \Deduce$!C_1, \Gamma_2 \fCenter \Delta_2$
+    \AxiomC{}
+    \Deduce$!C_2, \Gamma_2 \fCenter \Delta_2$
+    \RightLabel{\LeftR{\lor}}
+    \BinaryInf$!C_1 \lor !C_2, \Gamma_2 \fCenter \Delta_2$
+    \DisplayProof
+    \]
+    $!C_1 \lor !C_2$'nin doğru dilde olduğunu doğrulamak kalır. Tümevarım
+    varsayımı bize şunları verir:
+    \begin{align*}
+    \Lang L(!C_1) & \subseteq
+    \Lang L(\Gamma_1, \Delta_1, !A) \cap \Lang L(\Gamma_2, \Delta_2) &\text{ve}\\
+    \Lang L(!C_2) & \subseteq
+    \Lang L(!B, \Gamma_1, \Delta_1) \cap \Lang L(\Gamma_2, \Delta_2)
+    \intertext{Şunlar nedeniyle:}
+    \Lang L(!A) & \subseteq \Lang L(!A \lif !B) &\text{ve}\\
+    \Lang L(!B) & \subseteq \Lang L(!A \lif !B)
+    \intertext{şu ikisi de geçerlidir:}
+    \Lang L(!C_1) & \subseteq
+    \Lang L(\Gamma_1, \Delta_1, !A \lif !B) \cap \Lang L(\Gamma_2, \Delta_2) &\text{ve}\\
+    \Lang L(!C_2) & \subseteq
+    \Lang L(\Gamma_1, \Delta_1, !A \lif !B) \cap \Lang L(\Gamma_2, \Delta_2)
+    \intertext{ve sonuç olarak $\Lang L (!C_1 \lor !C_2) = {}$}
+    \Lang L(!C_1) \cup \Lang L(!C_2) & \subseteq
+    \Lang L(\Gamma_1, \Delta_1, !A \lif !B) \cap \Lang L(\Gamma_2, \Delta_2),
+    \end{align*}
+    istendiği gibi.
+
+    $!A \lif !B$'nin ikinci parçaya ait olduğu durumda durum farklıdır,
+    fakat benzer biçimde ele alınır. Tümevarım varsayımı bize yine dört
+    !!{provable} sekant verir:
+    \begin{align*}
+    \Gamma_1 & \Sequent \Delta_1, !C_1 &&\text{(1)} &
+    !C_1, \Gamma_2 & \Sequent \Delta_2, !A && \text{(2)}\\
+    \Gamma_1 & \Sequent \Delta_1, !C_2 &&\text{(3)} &
+    !C_2, !B, \Gamma_2 & \Sequent \Delta_2 && \text{(4)}
+    \end{align*}
+    Şimdi (2) ve (4) sekantları---bazı zayıflatılmış !!{formula}s ile
+    birlikte---~\LeftR{\lif}'in öncülleri olur:
+    \[
+    \AxiomC{}
+    \Deduce$!C_1, !C_2, \Gamma_2 \fCenter \Delta_2, !A$
+    \AxiomC{}
+    \Deduce$!B, !C_1, !C_2, \Gamma_2 \fCenter \Delta_2$
+    \RightLabel{\LeftR{\lif}}
+    \BinaryInf$!A \lif !B, !C_1, !C_2, \Gamma_2 \fCenter \Delta_2$
+    \DisplayProof
+    \]
+    Bunu yine $!C_1$ ile $!C_2$'den kurulmuş tek bir !!{formula} içeren bir
+    sekanta dönüştürmek isteriz; fakat bu kez onu öncülde isteriz (çünkü
+    artık ikinci parçayı ele alıyoruz). $\LeftR{\land}$ uygulamak işi görür;
+    aradeğerleme olarak $!C \ident (!C_1 \land !C_2)$ almalıyız. Uygun bir
+    rastlantıyla, öteki parça için karşılık gelen sekantı !!{prove}{}mak üzere
+    kalan (1) ve (3) sekantlarını kullanabiliriz:
+    \[
+    \AxiomC{}
+    \Deduce$\Gamma_1 \fCenter \Delta_1, !C_1$
+    \AxiomC{}
+    \Deduce$\Gamma_1 \fCenter \Delta_1, !C_2$
+    \RightLabel{\RightR{\land}}
+    \BinaryInf$\Gamma_1 \fCenter \Delta_1, !C_1 \land !C_2$
+    \DisplayProof
+    \]
+    Önceki gibi $\Lang L(!C_1 \land !C_2) \subseteq \Lang
+    L(\Gamma_1, \Delta_1) \cap \Lang L(\Gamma_2, \Delta_2, !A \lif
+    !B)$'dır.
+
+    \item $\pi$, esas !!{formula}{}ü~$\lforall[x][!A(x)]$ olan
+    $\RightR{\lforall}$ ile biter:
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi_1$}
+    \Deduce$\maeh{\Gamma_1}{\Gamma_2} \fCenter
+    \maeh{\Delta_1, !A(c)}{\Delta_2}$
+    \RightLabel{\RightR{\lforall}}
+    \UnaryInf$\maeh{\Gamma_1}{\Gamma_2} \fCenter
+      \maeh{\Delta_1, \lforall[x][!A(x)]}{\Delta_2}$
+    \DisplayProof
+    \]
+    ya da
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi_1$}
+    \Deduce$\maeh{\Gamma_1}{\Gamma_2} \fCenter
+      \maeh{\Delta_1}{\Delta_2, !A(c)}$
+    \RightLabel{\RightR{\lforall}}
+    \UnaryInf$\maeh{\Gamma_1}{\Gamma_2} \fCenter
+      \maeh{\Delta_1}{\Delta_2, \lforall[x][!A(x)]}$
+    \DisplayProof
+    \]
+    İlk durumda tümevarım varsayımı bize $\Gamma_1 \Sequent \Delta_1,
+    !A(c), !C_1$ ile $!C_1, \Gamma_2 \Sequent \Delta_2$'nın !!{proof}s{}ını
+    verir. Birincisine $\RightR{\lforall}$ uygulayarak $\Gamma_1 \Sequent
+    \Delta_1, \lforall[x][!A(x)], !C_1$'i elde edebiliriz. (Özdeğişken
+    koşulu sağlanır; çünkü~$\pi$'nin sonundaki \RightR{\lforall} kuralında
+    zaten sağlanmıştır.) Dolayısıyla $\Lang L(!C_1) \subseteq \Lang
+    L(\Gamma_1, \Delta_1, \lforall[x][!A(x)]) \cap \Lang L(\Gamma_2,
+    \Delta_2)$ koşulu sağlanıyorsa $!C_1$ bir aradeğerleme olur. Tümevarım
+    varsayımı gereğince $\Lang L(!C_1) \subseteq \Lang L(\Gamma_1,
+    \Delta_1, !A(c)) \cap \Lang L(\Gamma_2, \Delta_2)$'dır. O halde~$c$
+    hakkında kaygılanmamız gerekir---$c$,~$!C_1$ içinde oluşabilir mi?
+    Oluşamaz. $c$,~$!C_1$ içinde oluşsaydı hem $c \in \Lang L(\Gamma_1,
+    \Delta_1, !A(c))$ (ki bu doğrudur) hem de $c \in \Lang L(\Gamma_2,
+    \Delta_2)$ olurdu. Fakat o zaman $c$,~$\pi$ içindeki
+    $\RightR{\lforall}$ çıkarımının sonucunda oluşarak özdeğişken koşulunu
+    ihlal ederdi.
+    
+    Öteki durum benzerdir.
+
+    \item $\pi$, esas !!{formula}{}ü~$\lexists[x][!A(x)]$ olan
+    $\RightR{\lexists}$ ile biter. Yine iki durumumuz vardır.
+    $\lexists[x][!A(x)]$'in birinci parçaya ait olduğu durumu ele alır,
+    ötekini alıştırma olarak bırakırız.
+
+    İlk durumda $\pi$ şöyle biter:
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi_1$}
+    \Deduce$\maeh{\Gamma_1}{\Gamma_2} \fCenter
+      \maeh{\Delta_1, \lexists[x][!A(x)], !A(t)}{\Delta_2}$
+    \RightLabel{\RightR{\lexists}}
+    \UnaryInf$\maeh{\Gamma_1}{\Gamma_2} \fCenter
+      \maeh{\Delta_1, \lexists[x][!A(x)]}{\Delta_2}$
+    \DisplayProof
+    \]
+    Tümevarım varsayımı bize $\Gamma_1 \Sequent \Delta_1,
+    \lexists[x][!A(x)], !A(t), !C_1$ ile $!C_1, \Gamma_2 \Sequent
+    \Delta_2$'nın !!{proof}s{}ını verir. Birincisine $\RightR{\lexists}$
+    uygulayarak $\Gamma_1 \Sequent \Delta_1, \lexists[x][!A(x)], !C_1$'i
+    elde edebiliriz. Dolayısıyla $\Lang L(!C_1) \subseteq \Lang
+    L(\Gamma_1, \Delta_1, \lexists[x][!A(x)]) \cap \Lang L(\Gamma_2,
+    \Delta_2)$ koşulu sağlanıyorsa $!C_1$ yine bir aradeğerleme olur. Burada
+    tümevarım varsayımı bize $\Lang L(!C_1) \subseteq \Lang L(\Gamma_1,
+    \Delta_1, \lexists[x][!A(x)], !A(t)) \cap \Lang L(\Gamma_2, \Delta_2)$
+    verir. Hiçbir !!{function}s bulunmadığını varsaydığımızı şimdi
+    anımsayın. Bu,~$t$ teriminin ancak !!a{constant}, yani $t \ident b$
+    olabileceği anlamına gelir. $b \notin \Lang L(!C_1)$ ise ya da $b \in
+    \Lang L(\Gamma_1, \Delta_1, \lexists[x][!A(x)]) \cap \Lang L(\Gamma_2,
+    \Delta_2)$ ise kaygılanacak bir şey yoktur: aradeğerleme olarak $!C_1$
+    alabiliriz. Peki $b \in \Lang L(!C_1)$ ve $b \notin \Lang L(\Gamma_1,
+    \Delta_1, \lexists[x][!A(x)]) \cap \Lang L(\Gamma_2, \Delta_2)$ ise ne
+    olur? Öncelikle,~$!C_1$ içindeki bütün~$b$ oluşumlarını
+    !!a{variable}~$y$ ile değiştirerek $!C_1 \ident \Subst{!C_1'}{b}{y}$
+    yazabiliriz; burada $!C_1'$~$b$ içermez. Ayrıca ya $b \notin \Lang
+    L(\Gamma_1, \Delta_1, \lexists[x][!A(x)])$ ya da $b \notin \Lang
+    L(\Gamma_2, \Delta_2)$'dır. Sırasıyla $!C \ident
+    \lforall[y][!C_1'(y)]$ ya da $!C \ident \lexists[y][!C_1'(y)]$
+    alabiliriz. Birinci durumda şunlar vardır:
+    \[
+    \AxiomC{}
+    \Deduce$\Gamma_1 \fCenter
+      \Delta_1, \lexists[x][!A(x)], !A(b), !C_1'(b)$
+    \RightLabel{\RightR{\lexists}}
+    \UnaryInf$\Gamma_1 \fCenter \Delta_1, \lexists[x][!A(x)], !C_1'(b)$
+    \RightLabel{\RightR{\lforall}}
+    \UnaryInf$\Gamma_1 \fCenter
+      \Delta_1, \lexists[x][!A(x)], \lforall[y][!C_1'(y)]$
+    \DisplayProof
+    \]
+    ve
+    \[
+    \AxiomC{}
+    \Deduce$!C_1'(b), \lforall[y][!C_1'(y)], \Gamma_2 \fCenter \Delta_2$
+    \RightLabel{\LeftR{\lforall}}
+    \UnaryInf$\lforall[y][!C_1'(y)], \Gamma_2 \fCenter \Delta_2$
+    \DisplayProof
+    \]
+    En üstteki sekantların !!{proof}s{}ı tümevarım varsayımından gelir
+    (ikincisinde öncüle $\lforall[y][!C_1'(y)]$ eklemek için zayıflatmanın
+    kabul edilebilirliğini uygularız). İlk !!{proof} içindeki
+    \RightR{\lforall} özdeğişken koşulu, $b \notin \Lang L(\Gamma_1,
+    \Delta_1, \lexists[x][!A(x)])$ olduğundan ve $!C_1'$~$b$ içermeyecek
+    biçimde tanımlandığından sağlanır.
+    
+    İkinci durumda (tümevarım varsayımına ek olarak
+    ~ $\lexists[y][!C_1'(y)]$ ile zayıflatmanın kabul edilebilirliğinden)
+    şunlar vardır:
+    \[
+    \AxiomC{}
+    \Deduce$\Gamma_1 \fCenter
+      \Delta_1, \lexists[x][!A(x)], !A(b), \lexists[y][!C_1'(y)], !C_1'(b)$
+    \RightLabel{\RightR{\lexists}}
+    \UnaryInf$\Gamma_1 \fCenter
+      \Delta_1, \lexists[x][!A(x)], \lexists[y][!C_1'(y)], !C_1'(b)$
+    \RightLabel{\RightR{\lexists}}
+    \UnaryInf$\Gamma_1 \fCenter
+      \Delta_1, \lexists[x][!A(x)], \lexists[y][!C_1'(y)]$
+    \DisplayProof
+    \]
+    ve
+    \[
+    \AxiomC{}
+    \Deduce$!C_1'(b), \Gamma_2 \fCenter \Delta_2$
+    \RightLabel{\LeftR{\lexists}}
+    \UnaryInf$\lexists[y][!C_1'(y)], \Gamma_2 \fCenter \Delta_2$
+    \DisplayProof
+    \]
+    İkinci !!{proof} içindeki \LeftR{\lexists} özdeğişken koşulu, $b \notin
+    \Lang L(\Gamma_2, \Delta_2)$ olduğundan ve $!C_1'$~$b$ içermeyecek
+    biçimde tanımlandığından sağlanır.
+  \end{enumerate}
+  Öteki durumlar benzerdir; onları alıştırma olarak bırakıyoruz.
+\end{proof}
+
+\begin{prob}
+Şu kurallara sahip bir $\lnand$ bağlacımız olduğunu varsayın:
+\[
+\Axiom$\Gamma \fCenter \Delta, !A$
+\Axiom$\Gamma \fCenter \Delta, !B$
+\RightLabel{\LeftR{\lnand}}
+\BinaryInf$!A \lnand !B, \Gamma \fCenter \Delta$
+\DisplayProof
+\quad
+\Axiom$!A, !B, \Gamma \fCenter \Delta$
+\RightLabel{\RightR{\lnand}}
+\UnaryInf$\Gamma \fCenter \Delta, !A \lnand !B$
+\DisplayProof
+\]
+~$\pi$'nin bu kurallardan biriyle bittiği \olref{lem:maehara} ispatı
+durumlarını tamamlayarak Maehara Lemması'nın hâlâ geçerli olduğunu gösterin.
+\end{prob}
+
+Maehara Lemması'nı saptadıktan sonra Craig Aradeğerleme Teoremi'ni
+ispatlamak için onu kullanabiliriz.
+
+\begin{proof}[\olref{thm:interpolation} İspatı]
+  $!A \Sequent !B$'nin !!{provable} olduğunu varsayın.
+  Aradeğerleme~$!C$'yi elde etmek için $\maeh{!A}{\ } \Sequent
+  \maeh{\ }{!B}$'ye \olref{lem:maehara}'yı uygulayın. $\Proves !A \Sequent
+  !C$ ve $\Proves !C \Sequent !B$ elde ederiz.
+\end{proof}
+
+$\Gamma$, !!{sentence}s kümesi olan ve bir $n$-li yüklem~$R$ içeren,
+!!a{language}~$\Lang L$ içindeki bir kuram olsun. Aşağıdaki koşul
+sağlanıyorsa $\Gamma$'nın~$R$'yi \emph{örtük olarak tanımladığını} söyleriz:
+\begin{align*}
+\Gamma, \Gamma'
+& \Entails \lforall[x_1][\dots\lforall[x_n][(R(x_1,\dots,x_n) \liff
+R'(x_1, \dots, x_n))]],
+\intertext{burada $\Gamma'$,~$\Gamma$ içindeki bütün~$R$ oluşumlarının
+$R' \notin \Lang L$ ile değiştirildiği kuramdır. $\Gamma$,~$R$'yi ancak ve
+ancak~$R$ içermeyen bir~$!A(x_1, \dots, x_n)$ var olup şu koşul
+sağlandığında \emph{açık olarak tanımlar}:}
+\Gamma &\Entails
+\lforall[x_1][\dots\lforall[x_n][(R(x_1,\dots,x_n) \liff !A(x_1,
+\dots, x_n))]].
+\end{align*}
+Açıkça, $\Gamma$, $R$'yi açık olarak tanımlıyorsa örtük olarak da
+tanımlar. Tersi açık değildir, ancak yine de geçerlidir:
+
+\begin{lem}[Beth Tanımlanabilirlik Teoremi]
+  $\Gamma$,~$R$'yi örtük olarak tanımlıyorsa açık olarak da tanımlar.
+\end{lem}
+
+\begin{proof}
+  $\Gamma$'nın~$R$'yi örtük olarak tanımladığını varsayın. $R'$, $\Gamma'$
+  yukarıdaki gibi ve $\Lang L' = \Lang L(\Gamma') = \Lang L \setminus
+  \{R\} \cup \{R'\}$ olsun. Varsayım gereğince şunu elde ederiz:
+  \begin{align*}
+    \Gamma, \Gamma' & 
+    \Sequent \lforall[x_1][\dots\lforall[x_n][(R(x_1,\dots,x_n) 
+    \liff R'(x_1, \dots, x_n))]]
+  \intertext{$c_1$, \dots,~$c_n$,~$\Gamma$ içinde oluşmayan !!{constant}s
+  olsun. Tersinirlik lemması gereğince şunu elde ederiz:}
+    \Gamma, \Gamma', R(c_1,\dots,c_n) & \Sequent  R'(c_1, \dots, c_n)
+  \intertext{Şuna Maehara Lemması'nı uygulayın:}
+    \maeh{\Gamma, R(c_1,\dots,c_n)}{\Gamma'} & \Sequent
+      \maeh{\ }{R'(c_1, \dots, c_n)}
+  \intertext{Böylece aşağıdaki koşulları sağlayan bir
+  ~$!A \ident !A(x_1, \dots, x_n)$ bulun:}
+    \Gamma, R(c_1,\dots,c_n) & \Sequent !A(c_1, \dots, c_n) \\
+    !A(c_1, \dots, c_n), \Gamma' & \Sequent R'(c_1, \dots, c_n)
+  \intertext{bunların !!{proof}s{}ı vardır. $\Lang L(!A) = \Lang L_1 \cap
+  \Lang L_2 = \Lang L(\Gamma) \setminus \{R\}$ olduğundan, $!A$~$R$
+  içermez. İkinci sekantın !!{proof}{}ı içinde her yerde $R'$'yi~$R$ ile
+  değiştirip şunun !!a{proof}{}ını elde edin:}
+    !A(c_1, \dots, c_n), \Gamma & \Sequent R(c_1, \dots, c_n)
+  \end{align*}
+  Şunun !!a{proof}{}ını elde etmek için \RightR{\lif} ve
+  \RightR{\lforall} uygulayın:
+  \[
+    \Gamma \Sequent \lforall[x_1][\dots\lforall[x_n][(R(x_1,\dots,x_n) \liff !A(x_1, \dots, x_n))]].
+  \]
+  Bu,~$!A(x_1, \dots, x_n)$'in $\Gamma$ içinde~$R$'yi açıkça
+  tanımladığını gösterir.
+\end{proof}
+
+Aradeğerlemeye denk olan (ve onun gibi Maehara Lemması kullanılarak
+ispatlanabilen) üçüncü bir sonuç şu teoremdir: İki tutarlı kuram~$\Gamma_1$,
+$\Gamma_2$, $\Lang L(\Gamma) \subseteq \Lang L(\Gamma_1) \cap \Lang
+L(\Gamma_2)$ dili içinde tam bir $\Gamma$ kuramı içeriyorsa, $\Gamma_1 \cup
+\Gamma_2$ tutarlıdır.
+
+Tam bir kuramın, kendi dilindeki her !!{sentence}~$!A$ için ya $\Gamma
+\Proves !A$ ya da $\Gamma \Proves \lnot !A$ olan bir kuram olduğunu
+anımsayın. $\Gamma_1$ ile~$\Gamma_2$,~$\Gamma$'nın tutarlı uzantıları
+olduğundan $\Gamma$ tutarlı olmalıdır. Buradan $!A$, $\Lang L(\Gamma_1)
+\cap \Lang L(\Gamma_2)$ dilinde !!a{sentence} ise $\Gamma_1 \Entails !A$
+ve $\Gamma_2 \Entails \lnot !A$'nın birlikte geçerli olamayacağı çıkar.
+Bunu görmek için böyle bir~$!A$ olduğunu varsayın. $\Gamma_1 \Entails !A$
+ise $\Gamma \Entails !A$'dır. Aksi durumda~$\Gamma$'nın tamlığı gereğince
+$\Gamma \Entails \lnot !A$ ve $\Gamma \subseteq \Gamma_1$ olduğundan
+$\Gamma_1 \Entails \lnot !A$ olur; bu da $\Gamma_1$'i tutarsız kılar.
+Öyleyse $\Gamma \Entails !A$ ve $\Gamma \subseteq \Gamma_2$ olduğundan
+$\Gamma_2 \Entails !A$'dır. Dolayısıyla $\Gamma \Entails/ \lnot !A$;
+yoksa $\Gamma_2$ tutarsız olurdu.
+
+$\Gamma_1 \Entails !A$ ve $\Gamma_2 \Entails \lnot !A$ olan
+!!a{sentence}~$!A$'nın ortak !!{language}~$\Lang L(\Gamma_1) \cap \Lang
+L(\Gamma_2)$ içinde bulunmaması ispat için gereken her şeydir; şimdi ispatı
+Maehara Lemması'nı kullanarak ispat kuramsal biçimde veriyoruz.
+
+\begin{thm}[Robinson Ortak Tutarlılık Teoremi]
+$\Gamma_1$, $\Gamma_2$ tutarlı kuramlar olsun ve !!{language} $\Lang
+L(\Gamma_1) \cap \Lang L(\Gamma_2)$ içindeki hiçbir~$!A$ için $\Gamma_1
+\Entails !A$ ve $\Gamma_2 \Entails \lnot !A$ birlikte geçerli olmasın. O
+zaman $\Gamma_1 \cup \Gamma_2$ tutarlıdır.
+\end{thm}
+
+\begin{proof}
+  Tersine $\Gamma_1 \cup \Gamma_2$'nin tutarsız olduğunu varsayın. O zaman
+  $\Gamma_1, \Gamma_2 \Sequent \ $ sekantının !!a{proof}{}ı vardır.
+  $\maeh{\Gamma_1}{\Gamma_2} \Sequent \maeh{\ }{\ }$'ye Maehara Lemması'nı
+  uygulayarak, $\Proves \Gamma_1 \Sequent !A$ ve $\Proves !A, \Gamma_2
+  \Sequent \quad$ olacak biçimde !!a{sentence}~$!A$ elde edin; bu tümce
+  !!{language}~$\Lang L(\Gamma_1) \cap \Lang L(\Gamma_2)$ içindedir.
+  İkinciden $\Proves
+  \Gamma_2 \Sequent \lnot !A$'yı elde ederiz. Fakat böyle bir
+  !!{sentence}{}nin bulunmadığını varsaymıştık.
+\end{proof}
+
+Yukarıda $\Gamma$, $\Gamma_1$, $\Gamma_2$ kuramlarının sonlu olduğunu
+örtük olarak varsaydık. Tıkızlık gereğince sonuçlar sonsuz kuramlar için de
+geçerlidir.
+
+\end{document}

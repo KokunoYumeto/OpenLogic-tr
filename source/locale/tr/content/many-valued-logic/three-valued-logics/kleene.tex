@@ -1,0 +1,194 @@
+% Part: many-valued-logic
+% Chapter: three-valued-logics
+% Section: kleene
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{mvl}{thr}{skl}
+
+\olsection{Kleene Mantıkları}
+
+Stephen Kleene, doğruluk değerlerini hesaplama yordamlarının sonuçları olarak
+gören bir anlayışla gerekçelendirilmiş iki üç değerli mantık ortaya koydu:
+Bir yordam $\True$ ya da $\False$ sonucunu verebilir, fakat sonlanmayabilir
+de. Bu durumda karşılık gelen doğruluk değeri tanımsızdır ve $\Undef$
+doğruluk değeriyle gösterilir.
+
+Bir $!A$ önermesinin değillemesini hesaplamak için önce $!A$'nın değerini
+hesaplar, ardından sonucun karşıtını döndürürsünüz. $!A$'nın hesaplanması
+sonlanmazsa yordamın bütünü de sonlanmaz; dolayısıyla $\Undef$'ın
+değillemesi $\Undef$'dır.
+
+Bir $!A \land !B$ tümel evetlemesini hesaplamak için iki seçenek vardır:
+Önce $!A$, ardından $!B$ hesaplanabilir; her ikisinin sonucu $\True$ ise
+sonuç $\True$, değilse $\False$ olur. Hesaplamalardan biri durmazsa yordamın
+bütünü de durmaz. Dolayısıyla bu durumda bileşenlerden biri tanımsızsa tümel
+evetleme de tanımsızdır. Aynı durum tikel evetleme için de geçerlidir.
+
+Ancak $!A$ ile $!B$'yi paralel olarak değerlendirebilirsek daha iyisini
+yapabiliriz. İki yordamdan biri durup $\False$ döndürdüğünde durabiliriz;
+çünkü yanıt yanlış olmak zorundadır. Bu durumda bir bileşeni yanlış olan
+tümel evetleme, öteki bileşeni tanımsız olsa bile yanlıştır. Benzer biçimde
+bir tikel evetlemeyi paralel hesaplarken iki bileşenden birinin yordamı doğru
+sonucunu verir vermez durabiliriz; çünkü tikel evetleme doğru olmak
+zorundadır. Dolayısıyla bu durumda bileşenlerden biri tanımsız olsa bile
+bileşik önermenin sonucunu bilebiliriz. Bu yorumda $\Undef$'ı “tanımsız”
+yerine “bilinmeyen” diye okuyabiliriz.
+
+Bu iki yorum Kleene'in güçlü ve zayıf mantıklarını doğurur. Koşullu,
+$\lnot !A \lor !B$'ye eşdeğer olarak tanımlanır.
+
+\begin{defn}
+\emph{Güçlü Kleene mantığı}~$\LogKs$ şu matrisle tanımlanır:
+\begin{enumerate}
+  \item $\lnot$, $\land$, $\lor$, $\lif$ bağlaçlarını içeren standart
+  önerme dili $\Lang L_0$.
+  \item Doğruluk değerleri kümesi $V = \{\True, \Undef, \False\}$.
+  \item Tek belirlenmiş değer $\True$'dur; yani $V^+ = \{\True\}$.
+  \item Doğruluk fonksiyonları aşağıdaki tablolarla verilir:
+  \begin{center}
+    \begin{tabular}{c|c} 
+      $\tf{\lnot}$ & \\ 
+      \hline  
+      $\True$ & $\False$ \\ 
+      $\Undef$ & $\Undef$ \\
+      $\False$ & $\True$ 
+    \end{tabular}
+    \quad
+    \begin{tabular}{c|ccc} 
+      $\tf{\land}[\LogKs]$ & $\True$ & $\Undef$ & $\False$ \\ 
+      \hline 
+      $\True$ & $\True$ & $\Undef$ & $\False$ \\ 
+      $\Undef$ & $\Undef$ & $\Undef$ & $\False$\\ 
+      $\False$ & $\False$ & $\False$ & $\False$ 
+    \end{tabular}
+    \\[2ex]
+    \begin{tabular}{c|ccc} 
+      $\tf{\lor}[\LogKs]$ & $\True$ & $\Undef$ & $\False$ \\ 
+      \hline 
+      $\True$ & $\True$ & $\True$ & $\True$ \\ 
+      $\Undef$ & $\True$ & $\Undef$ & $\Undef$ \\
+      $\False$ & $\True$ & $\Undef$ & $\False$ 
+    \end{tabular}
+    \quad
+    \begin{tabular}{c|ccc} 
+      $\tf{\lif}[\LogKs]$ & $\True$ & $\Undef$ & $\False$ \\ 
+      \hline 
+      $\True$ & $\True$ & $\Undef$ & $\False$ \\ 
+      $\Undef$ & $\True$ & $\Undef$ & $\Undef$  \\ 
+      $\False$ & $\True$ & $\True$ & $\True$ 
+    \end{tabular}
+  \end{center} 
+\end{enumerate}
+\end{defn}
+
+\begin{defn}
+\emph{Zayıf Kleene mantığı}~$\LogKw$ şu matrisle tanımlanır:
+\begin{enumerate}
+  \item $\lnot$, $\land$, $\lor$, $\lif$ bağlaçlarını içeren standart
+  önerme dili $\Lang L_0$.
+  \item Doğruluk değerleri kümesi $V = \{\True, \Undef, \False\}$.
+  \item Tek belirlenmiş değer $\True$'dur; yani $V^+ = \{\True\}$.
+  \item Doğruluk fonksiyonları aşağıdaki tablolarla verilir:
+  \begin{center}
+    \begin{tabular}{c|c} 
+      $\tf{\lnot}$ & \\ 
+      \hline  
+      $\True$ & $\False$ \\ 
+      $\Undef$ & $\Undef$ \\
+      $\False$ & $\True$ 
+    \end{tabular}
+    \quad
+    \begin{tabular}{c|ccc} 
+      $\tf{\land}[\LogKw]$ & $\True$ & $\Undef$ & $\False$ \\ 
+      \hline 
+      $\True$ & $\True$ & $\Undef$ & $\False$ \\ 
+      $\Undef$ & $\Undef$ & $\Undef$ & $\Undef$\\ 
+      $\False$ & $\False$ & $\Undef$ & $\False$ 
+    \end{tabular}
+    \\[2ex]
+    \begin{tabular}{c|ccc} 
+      $\tf{\lor}[\LogKw]$ & $\True$ & $\Undef$ & $\False$ \\ 
+      \hline 
+      $\True$ & $\True$ & $\Undef$ & $\True$ \\ 
+      $\Undef$ & $\Undef$ & $\Undef$ & $\Undef$ \\
+      $\False$ & $\True$ & $\Undef$ & $\False$ 
+    \end{tabular}
+    \quad
+    \begin{tabular}{c|ccc} 
+      $\tf{\lif}[\LogKw]$ & $\True$ & $\Undef$ & $\False$ \\ 
+      \hline 
+      $\True$ & $\True$ & $\Undef$ & $\False$ \\ 
+      $\Undef$ & $\Undef$ & $\Undef$ & $\Undef$  \\ 
+      $\False$ & $\True$ & $\Undef$ & $\True$ 
+    \end{tabular}
+  \end{center} 
+\end{enumerate}
+\end{defn}
+
+\begin{prop}
+  $\LogKs$ ile $\LogKw$'nin hiç totolojisi yoktur.
+\end{prop}
+
+\begin{proof}
+  Bütün !!{propositional variable}s~$p$ için
+  $\pAssign v(p) = \Undef$ ise herhangi bir $!A$ formülünün doğruluk değeri
+  $\pValue v(!A) = \Undef$ olur; çünkü her iki mantıkta da
+  \[
+    \tf{\lnot}(\Undef) = \tf{\lor}(\Undef, \Undef) = \tf{\land}(\Undef,
+  \Undef) = \tf{\lif}(\Undef, \Undef) = \Undef
+  \]
+  geçerlidir. Her iki mantıkta da $\Undef \notin V^+$ olduğundan bu
+  !!{valuation} altında $!A$ belirlenmiş bir değer almaz.
+\end{proof}
+
+Zayıf ve güçlü Kleene mantığının hiç totolojisi olmasa da önemsiz olmayan
+gerektirme bağıntıları vardır.
+
+\begin{prob}
+  Aşağıdaki bağıntılardan hangileri (a) güçlü ve (b) zayıf Kleene mantığında
+  geçerlidir? Her biri için bir doğruluk tablosu verin.
+  \begin{enumerate}
+    \item $p, p \lif q \Entails q$
+    \item $p \lor q, \lnot p \Entails q$
+    \item $p \land q \Entails p$
+    \item $p \Entails p \land p$
+    \item $p \Entails p \lor q$
+  \end{enumerate}
+\end{prob}
+
+Dmitry Bochvar, $\Undef$'ı “anlamsız” diye yorumladı ve paradoksal tümcelerin
+$\Undef$ değerini aldığını şart koşarak Yalancı paradoksu gibi paradoksları
+çözmek için kullanmaya çalıştı. Esasen ek bağlaçlarla genişletilmiş zayıf
+Kleene mantığı olan bir mantık ortaya koydu; bu bağlaçlardan ikisi “dışsal
+değilleme” ile “tanımsızdır” işlemcisidir:
+\begin{center}
+  \begin{tabular}{c|c} 
+    $\tf{\sim}$ & \\ 
+    \hline  
+    $\True$ & $\False$ \\ 
+    $\Undef$ & $\True$ \\
+    $\False$ & $\True$ 
+  \end{tabular}
+\quad
+  \begin{tabular}{c|c} 
+    $\tf{+}$ & \\ 
+    \hline  
+    $\True$ & $\False$ \\ 
+    $\Undef$ & $\True$ \\
+    $\False$ & $\False$ 
+  \end{tabular}
+\end{center}
+
+\begin{prob}
+  Bochvar mantığında $\sim$'yi $\lnot$ ve~$+$ cinsinden tanımlayabilir
+  misiniz? Yani !!a{formula} bulun; bu formül yalnızca
+  !!{propositional variable}~$p$'yi içersin, $\sim$'yi içermesin ve her zaman
+  $\mathord{\sim}p$ ile aynı doğruluk değerini alsın. Doğru olduğunuzu
+  göstermek için bir doğruluk tablosu verin.
+\end{prob}
+
+
+\end{document}

@@ -1,0 +1,159 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sth}{choice}{countablechoice}
+\olsection{Sayılabilir Seçim}
+
+Seçim/İyi Sıralama hiç kullanılmadan şunu ispatlamak kolaydır:
+
+\begin{lem}[$\Zminus$ içinde]
+Her sonlu kümenin bir seçim fonksiyonu vardır.
+\end{lem}
+
+\begin{proof}
+$a=\{b_1,\ldots,b_n\}$ olsun. Kolaylık için her
+$b_i\neq\emptyset$ varsayın. Öyleyse
+$c_1\in b_1,\ldots,c_n\in b_n$ olan $c_1,\ldots,c_n$ nesneleri vardır.
+Şimdi \olref[z][pairs]{prop:pairsconsequences} gereği
+$\{\langle b_1,c_1\rangle,\ldots,\langle b_n,c_n\rangle\}$ kümesi
+vardır; bu da $a$ için bir seçim fonksiyonudur.
+\end{proof}
+
+Fakat sonsuz kümeleri ele alır almaz işler bulanıklaşır. Örneğin
+yukarıdakinin şu ``en küçük'' genişletmesini ele alın:
+
+\begin{defish}
+\emph{Sayılabilir Seçim.} Her \emph{sayılabilir} kümenin bir seçim
+fonksiyonu vardır.
+\end{defish}
+
+Bu, Seçim'in özel bir durumudur. Üstelik ilkenin kullanıldığı açıkça fark
+edilmeden oldukça sık başvurulduğu ortaya çıkar. İşte iki güzel
+örnek.\footnote{\citet[\S9.4]{Potter2004} ve Luca Incurvati'ye borçluyuz.}
+
+\begin{ex}
+Doğal bir düşünce şudur: her $A$ kümesi için ya $\cardle{\omega}{A}$ ya
+da bir $n\in\omega$ için $\cardeq{A}{n}$ olur. Bu, her kümenin ya sonlu
+ya da sonsuz olduğu yönündeki sezgisel düşünceyi ifade etmenin bir yoludur.
+Cantor ve başka birçok matematikçi bu iddiayı ispatlamadan ileri sürdü.
+Biz temkinli davranarak bunu
+\olref[cardinals][classing]{generalinfinitycharacter} içinde ispatladık.
+Fakat o ispatta her $A$ kümesinin iyi sıralanabileceğini ve dolayısıyla
+$\card{A}$'nın varlığının güvence altında olduğunu varsaydığımız için
+$\ZFC$ içinde çalışıyorduk. Yani Seçim'i açıkça varsaydık.
+
+Gerçekten \citet{Dedekind1888} bu iddia için kendi ispatını şöyle sundu:
+
+\begin{thm}[$\Zminus + \text{Sayılabilir Seçim}$ içinde]
+Her $A$ için ya $\cardle{\omega}{A}$ ya da bir $n\in\omega$ için
+$\cardeq{A}{n}$ olur.
+\end{thm}
+
+\begin{proof}
+Her $n\in\omega$ için $\cardneq{A}{n}$ varsayın. O zaman özellikle her
+$n<\omega$ için tam $\cardexpo{2}{n}$ elemanlı bir
+$A_n\subseteq A$ altkümesi vardır. Bu $A_0,A_1,A_2,\ldots$ dizisini
+kullanarak her $n$ için şunu tanımlayın:
+\[
+	B_n = A_n \setminus \bigcup_{i < n} A_i.
+\]
+Şuna dikkat edin:
+\begin{align*}
+	\card{\bigcup_{i < n}A_i}
+	&\leq \card{A_0} + \card{A_1} + \ldots + \card{A_{n-1}}\\
+	&=1 + 2 + \ldots + 2^{n-1}\\
+	& = 2^n - 1\\
+	& < 2^n = \card{A_n}
+\end{align*}
+Dolayısıyla her $B_n$'nin en az bir $c_n$ elemanı vardır. Üstelik
+$B_n$'ler ikişer ikişer ayrıktır; böylece $c_n=c_m$ ise $n=m$ olur.
+Fakat her $c_n\in A$ olduğundan $f(n)=c_n$ fonksiyonu
+$\omega\to A$ bir iğnelemedir.
+\end{proof}
+\noindent
+Dedekind, Sayılabilir Seçim'i kullandığını belirtmedi. Peki
+\emph{siz} kullanıldığı yeri gördünüz mü? Yeniden bakın. (Gerçekten:
+\emph{yeniden bakın}.)
+
+İspat Sayılabilir Seçim'i iki kez kullandı. Bir kez
+$A_0$, $A_1$, $A_2$, \dots\@ kümeler dizisini elde etmek için kullandık. Sonra her
+$B_n$'den $c_n$ elemanını seçmek için yeniden kullandık. Üstelik Seçim'in
+bu kullanımı ortadan kaldırılamaz. \citet[p.~138]{Cohen1966}, Seçim'in
+hiçbir sürümü olmadığında sonucun başarısız olduğunu ispatladı. Yani
+$\omega$ ile \emph{karşılaştırılamayan} kümelerin bulunması $\ZF$ ile
+tutarlıdır.
+\end{ex}
+
+\begin{ex}
+\citeyear{Cantor1878} yılında Cantor, sayılabilir kümelerin sayılabilir
+birleşiminin sayılabilir olduğunu belirtti. İspat sunmadı; belki de ispatın
+açık olduğunu düşünüyordu. Biz temkinli davranarak bu sonucun daha genel
+bir sürümünü \olref[card-arithmetic][simp]{kappaunionkappasize} içinde
+ispatladık. Fakat ispatımız açıkça Seçim'i varsaydı. Daha az genel sonucun
+ispatı bile Sayılabilir Seçim'i gerektirir.
+
+\begin{thm}[$\Zminus + \text{Sayılabilir Seçim}$ içinde]
+Her $n\in\omega$ için $A_n$ sayılabilir ise
+$\bigcup_{n<\omega}A_n$ sayılabilirdir.
+\end{thm}
+
+\begin{proof}
+Genelliği kaybetmeden her $A_n\neq\emptyset$ varsayın. Öyleyse her
+$n\in\omega$ için bir $f_n\colon\omega\to A_n$ !!a{surjection} vardır.
+$f(m,n)=f_n(m)$ ile
+$f\colon\omega\times\omega\to\bigcup_{n<\omega}A_n$ tanımlayın.
+$\omega\times\omega$ sayılabilir
+(\olref[sfr][siz][zigzag]{natsquaredenumerable}) ve $f$ bir
+!!a{surjection} olduğundan sonuç çıkar.
+\end{proof}
+\noindent
+Sayılabilir Seçim'in kullanıldığı yeri gördünüz mü? $f_0$, $f_1$, $f_2$, \dots
+fonksiyonlar dizisini seçmek için kullanılır.\footnote{Seçim'in benzer bir
+kullanımı, \olref[card-arithmetic][simp]{kappaunionkappasize} içinde
+``Her $\beta\in\cardfont{a}$ için bir $f_\beta$ !!a{injection}
+sabitleyin'' yönergesini verdiğimizde ortaya çıktı.} Ve yine, herhangi bir
+Seçim ilkesi olmadığında sonuç başarısız olur. Özellikle
+\citet{FefermanLevy1963}, sayılabilir kümelerin sayılabilir bir birleşiminin
+kardinalitesinin $\beth_1$ olmasının $\ZF$ ile tutarlı olduğunu ispatladı.
+Fakat Russell aynı noktayı çok daha eğlenceli biçimde anlatır:
+\begin{quote}
+  Bu, her çizme çifti aldığında bir çift de çorap alan, başka hiçbir zaman
+  çorap almayan ve her ikisini almaya öylesine tutkuyla bağlı olan bir
+  milyonerle örneklenir ki sonunda $\aleph_0$ çift çizmesi ve $\aleph_0$
+  çift çorabı olur\dots\@ Çizmeler arasında sağ ve solu ayırt edebiliriz;
+  dolayısıyla her çiftten birini seçebiliriz: bütün sağ çizmeleri ya da
+  bütün sol çizmeleri seçebiliriz. Fakat çoraplarda buna benzer hiçbir
+  seçim ilkesi kendini göstermez ve çarpımsal aksiyomu [yani aslında
+  Seçim'i] varsaymadıkça her çiftten bir çoraptan oluşan herhangi bir
+  sınıfın bulunduğundan emin olamayız.
+  \citep[p.~126]{Russell1919}
+\end{quote}
+Kısacası şunu ispatlamak için Seçim'in bir biçimi gerekir: sayılabilir
+çoklukta çorap çiftiniz varsa (yalnızca) sayılabilir çoklukta çorabınız
+vardır. Gerçekten Sayılabilir Seçim (ya da ona denk bir şey) olmadan
+sayılabilir kümelerin sayılabilir bir birleşimi sayılabilir olmayabilir.
+\end{ex}
+
+Çıkarılacak ders, Sayılabilir Seçim'in kullanıcıları bunu pek fark etmeden
+defalarca kullanılmış olmasıdır. Felsefi soru şudur: Sayılabilir Seçim'i
+nasıl \emph{gerekçelendirebiliriz}?
+
+Sezgisel bir gerekçelendirme girişimi bir süper göreve başvurabilir. İlk
+seçimi bir dakikanın $\nicefrac{1}{2}$'sinde, ikinci seçimi
+$\nicefrac{1}{4}$'ünde, \dots, $n$inci seçimi
+$\nicefrac{1}{2^n}$'inde, \dots\@ yaptığımızı varsayın. O zaman $1$ dakika
+içinde bir $\omega$-seçimler dizisi yapmış ve bir seçim fonksiyonu
+tanımlamış oluruz.
+
+Fakat böyle bir düşünce deneyi gerçekte bize ne söyleyebilir? Öncelikle bu,
+``seçme'' düşüncesini oldukça kelimesi kelimesine almaya dayanır. Ayrıca
+matematiği metafizik olanaklılığa bağlar görünmektedir.
+
+Daha önemlisi: bize \emph{salt} Sayılabilir Seçim yerine \emph{koşulsuz}
+Seçim için hiçbir gerekçe vermeyecektir. Çünkü \emph{her} kümenin bir
+seçim fonksiyonu olması gerekiyorsa ``keyfî sıra sayısı uzunluğunda bir
+süper görev'' gerçekleştirebilmemiz gerekir. Açıkçası bu düşünce
+gülünçtür.
+
+\end{document}

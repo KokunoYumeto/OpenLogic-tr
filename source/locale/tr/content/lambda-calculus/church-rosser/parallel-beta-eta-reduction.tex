@@ -1,0 +1,102 @@
+% Part: lambda-calculus
+% Chapter: church-rosser
+% Section: parallel-beta-eta-reduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{lam}{cr}{pbe}
+
+\olsection{Paralel $\beta\eta$-indirgeme}
+
+Bu bölümde $\beta\eta$-indirgemeye karşılık gelen paralel indirgeme kavramı
+olan paralel $\beta\eta$-indirgemenin Church--Rosser özelliğini ispatlıyoruz.
+
+\begin{defn}[Paralel $\beta\eta$-indirgeme, $\beredpar$]
+  \ollabel{defn:beredpar}
+  Terimler üzerindeki \emph{paralel $\beta\eta$-indirgeme} ($\beredpar$)
+  tümevarımlı olarak şöyle tanımlanır:
+  \begin{enumerate}
+    \item \ollabel{defn:beredpar1} $x \beredpar x$.
+    \item \ollabel{defn:beredpar2} $N \beredpar N'$ ise
+      $\lambd[x][N] \beredpar \lambd[x][N']$.
+    \item \ollabel{defn:beredpar3} $P \beredpar P'$ ve $Q \beredpar Q'$ ise
+      $PQ \beredpar P'Q'$.
+    \item \ollabel{defn:beredpar4} $N \beredpar N'$ ve $Q \beredpar Q'$ ise
+      $(\lambd[x][N])Q \beredpar \Subst{N'}{Q'}{x}$.
+    \item \ollabel{defn:beredpar5} $N \beredpar N'$ ise ve
+      $x \notin \FV{N}$ olmak koşuluyla
+      $\lambd[x][Nx] \beredpar N'$.
+  \end{enumerate}
+\end{defn}
+
+\begin{thm}\ollabel{thm:refl}
+  $M \beredpar M$.
+\end{thm}
+
+\begin{proof}
+  Alıştırma.
+\end{proof}
+
+\begin{prob}
+  \olref[lam][cr][pbe]{thm:refl} teoremini ispatlayın.
+\end{prob}
+
+\begin{defn}[$\beta\eta$-tam geliştirme]\ollabel{defn:becd}
+  $M$ teriminin \emph{$\beta\eta$-tam geliştirmesi} $\becd{M}$ şöyle
+  tanımlanır:
+  \begin{align}
+    \becd{x} &= x \ollabel{defn:becd1} \\
+    \becd{(\lambd[x][N])} &= \lambd[x][\becd{N}] \ollabel{defn:becd2}\\
+    \becd{(PQ)} &= \becd{P}\becd{Q} && \text{$P$ bir $\lambd$-soyutlaması değilse}
+    \ollabel{defn:becd3} \\
+    \becd{((\lambd[x][N])Q)} &= \Subst{\becd{N}}{\becd{Q}}{x}
+                             \ollabel{defn:becd4} \\
+    \becd{(\lambd[x][Nx])} &= \becd{N} \ollabel{defn:becd5} &&
+                             \text{$x\notin\FV{N}$ ise.}
+  \end{align}
+\end{defn}
+
+\begin{lem}\ollabel{lem:comp}
+  $M \beredpar M'$ ve $R \beredpar R'$ ise $\Subst{M}{R}{y}
+  \beredpar \Subst{M'}{R'}{y}$.
+\end{lem}
+
+\begin{proof}
+  $M \beredpar M'$ !!{derivation} üzerinde tümevarımla.
+
+  İlk dört durum \olref[pb]{lem:comp} içindeki durumların aynısıdır. Son kural
+  \olref{defn:beredpar5} ise bazı $x,N,N'$ için
+  $M=\lambd[x][Nx]$, $M'=N'$, $x\notin\FV{N}$ ve $N\beredpar N'$ olur.
+  Göstermek istediğimiz
+  $\Subst{(\lambd[x][Nx])}{R}{y}\beredpar\Subst{N'}{R'}{y}$, yani
+  $\lambd[x][\Subst{N}{R}{y}x]\beredpar\Subst{N'}{R'}{y}$ bağıntısıdır.
+  Bu, \olref{defn:beredpar}\olref{defn:beredpar5} ile tümevarım
+  varsayımından çıkar.
+\end{proof}
+
+\begin{lem}\ollabel{lem:cont}
+  $M \beredpar M'$ ise $M' \beredpar \becd{M}$.
+\end{lem}
+
+\begin{proof}
+  $M \beredpar M'$ !!{derivation} üzerinde tümevarımla.
+
+  İlk dört durum \olref[pb]{lem:cont} içindeki durumlara benzer. Son kural
+  \olref{defn:beredpar5} ise bazı $x,N,N'$ için
+  $M=\lambd[x][Nx]$, $M'=N'$, $x\notin\FV{N}$ ve $N\beredpar N'$ olur.
+  Göstermek istediğimiz $N'\beredpar\becd{(\lambd[x][Nx])}$, yani
+  $N'\beredpar\becd{N}$ bağıntısıdır; bu da tümevarım varsayımından doğrudan
+  çıkar.
+\end{proof}
+
+\begin{thm}\ollabel{thm:cr}
+  $\beredpar$ Church--Rosser özelliğini sağlar.
+\end{thm}
+
+\begin{proof}
+  Doğrudan \olref{lem:cont} lemasından çıkar.
+\end{proof}
+
+\end{document}

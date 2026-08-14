@@ -1,0 +1,39 @@
+% Part: sets-functions-relations
+% Chapter: functions
+% Section: isomorphisms
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+
+\begin{document}
+
+\olfileid[tr]{sfr}{fun}{iso}
+\olsection{İzomorfizm}
+
+\begin{explain}
+Bir \emph{izomorfizm}, ilişkilendirdiği kümelerin yapısını koruyan bir
+bire bir örten fonksiyondur; burada yapı, kümelerin !!{element}s{}ı arasında
+geçerli olan bağıntılardan oluşur. $X=\{1,2,3\}$ ve $Y=\{4,5,6\}$ kümelerini
+ele alın. Bu iki küme ardıl, küçüktür ve büyüktür bağıntılarıyla
+yapılandırılmıştır. İki küme arasındaki bir izomorfizm, bu yapıları koruyan
+!!a{bijection}{}dur. Dolayısıyla !!a{bijective} $f \colon X \to Y$ fonksiyonu,
+$i<j$ ancak ve ancak $f(i)<f(j)$, $i>j$ ancak ve ancak $f(i)>f(j)$ ve $j$,
+$i$'nin ardılı ancak ve ancak $f(j)$, $f(i)$'nin ardılıysa bir izomorfizmdir.
+\end{explain}
+
+\begin{defn}[İzomorfizm]
+$X$ ile $Y$ kümeler, $R$ ile $S$ de sırasıyla $X$ ve $Y$ üzerinde bağıntılar
+olmak üzere $U$ çifti $\langle X, R\rangle$, $V$ çifti ise $\langle Y,
+S\rangle$ olsun. $X$'ten $Y$'ye bir !!{bijection} $f$, ancak ve ancak
+bağıntısal yapıyı koruyorsa $U$'dan $V$'ye bir \emph{izomorfizm}dir; yani
+$X$'teki her $x_{1}$ ve $x_{2}$ için $\tuple{x_1,x_2} \in R$ ancak ve ancak
+$\tuple{f(x_1),f(x_2)} \in S$ olur.
+\end{defn}
+
+\begin{ex}
+$X=\{1,2,3\}$ ile $Y=\{4,5,6\}$ kümelerini ve küçüktür ile büyüktür
+bağıntılarını ele alın. $f(x) = 7-x$ ile verilen $f\colon X \to Y$ fonksiyonu,
+$\tuple{X,<}$ ile $\tuple{Y,>}$ arasında bir izomorfizmdir.
+\end{ex}
+
+\end{document}

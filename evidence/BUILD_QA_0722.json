@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "release": "OLP-0722-20260814",
+  "status": "PASS",
+  "engine": "pdfTeX 3.141592653-2.6-1.40.29 (MiKTeX 26.5)",
+  "exit_code": 0,
+  "reader_pages": 1037,
+  "reader_bytes": 5470171,
+  "reader_sha256": "2D9939692A971EDF468D3B41F38C57283C046BE9D110783CF50D10CDB3152900",
+  "missing_character_diagnostics": 0,
+  "fatal_or_error_diagnostics": 0,
+  "unresolved_references": 0,
+  "unresolved_citations": 0,
+  "build_log_bytes": 2290271,
+  "build_log_sha256": "3C93282140F5593B2C9C2C64CEDE86E128F5B91EC201B5DE050EAAADE000FCA4",
+  "recorder_fls_bytes": 387389,
+  "recorder_fls_sha256": "D9095CEA4E2CAEC0F1AD5481E6B6BB2A8B86603E48195A16017659DF6F8F2574",
+  "scope_note": "One bounded complete-edition build; no native-review gate"
+}

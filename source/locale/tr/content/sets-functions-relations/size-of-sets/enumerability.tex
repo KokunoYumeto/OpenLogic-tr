@@ -19,14 +19,14 @@
 \end{editorial}
 
 \begin{explain}
-Daha önce kümeleri, !!{element}larını listeleyerek örneklemiştik. Şimdi bir
-kümenin, sonsuz olsa bile, !!{element}larını nasıl ve ne zaman
+Daha önce kümeleri, !!{element}s{}ını listeleyerek örneklemiştik. Şimdi bir
+kümenin, sonsuz olsa bile, !!{element}s{}ını nasıl ve ne zaman
 listeleyebileceğimizi daha genel terimlerle ele alalım.
 \end{explain}
 
 \begin{defn}[Numaralandırma, sezgisel tanım]
 Sezgisel olarak bir $A$ kümesinin \emph{numaralandırması}, $A$'nın
-!!{element}larından oluşan, sonlu ya da sonsuz ve $A$'nın her !!{element}ını
+!!{element}s{}ından oluşan, sonlu ya da sonsuz ve $A$'nın her !!{element}{}ını
 sonlu bir konumda içeren bir listedir. $A$'nın bir numaralandırması varsa
 $A$'ya \emph{!!{enumerable}} denir.
 \end{defn}
@@ -35,13 +35,13 @@ $A$'ya \emph{!!{enumerable}} denir.
 Numaralandırmalarla ilgili birkaç nokta:
 \begin{enumerate}
 \item Yalnızca bir başlangıcı olan ve ilk !!{element} dışındaki her
-  !!{element}ın hemen önünde tek bir !!{element} bulunan listeleri
-  numaralandırma sayarız. Başka bir deyişle, listenin ilk !!{element}ı ile
-  başka herhangi bir !!{element}ı arasında yalnızca sonlu sayıda eleman
-  vardır. Bu özellikle, bir numaralandırmanın her !!{element}ının sonlu bir
-  konumu olduğu anlamına gelir: ilk !!{element}ın konumu~$1$, ikincininki~$2$
+  !!{element}{}ın hemen önünde tek bir !!{element} bulunan listeleri
+  numaralandırma sayarız. Başka bir deyişle, listenin ilk !!{element}{}ı ile
+  başka herhangi bir !!{element}{}ı arasında yalnızca sonlu sayıda eleman
+  vardır. Bu özellikle, bir numaralandırmanın her !!{element}{}ının sonlu bir
+  konumu olduğu anlamına gelir: ilk !!{element}{}ın konumu~$1$, ikincininki~$2$
   vb.'dir.
-\item Aynı $A$ kümesinin, !!{element}ların görünme sırasına göre farklılaşan
+\item Aynı $A$ kümesinin, !!{element}s{}ın görünme sırasına göre farklılaşan
   numaralandırmaları olabilir: $4$, $1$, $25$, $16$,~$9$ listesi de $1$,
   $4$, $9$, $16$,~$25$ listesi de ilk beş kare sayının kümesini numaralandırır.
 \item Tekrarlı numaralandırmalar da numaralandırmadır: $1$, $1$, $2$, $2$,
@@ -53,7 +53,7 @@ Numaralandırmalarla ilgili birkaç nokta:
   numaralandırmasında örüntüyü görmek daha kolaydır.
 \item Numaralandırmaların bir başlangıcı olmalıdır: \dots, $3$, $2$, $1$
   pozitif tam sayıların bir numaralandırması değildir, çünkü ilk
-  !!{element}ı yoktur. Bunun sezgisel tanımdan nasıl çıktığını görmek için
+  !!{element}{}ı yoktur. Bunun sezgisel tanımdan nasıl çıktığını görmek için
   kendinize ``76 sayısı listede hangi konumda yer alır?'' diye sorun.
 \item Şu liste pozitif tam sayıların bir numaralandırması değildir: $1$, $3$,
   $5$, \dots, $2$, $4$, $6$, \dots\@ Sorun, çift sayıların sonlu konumlarda
@@ -67,11 +67,11 @@ Numaralandırmalarla ilgili birkaç nokta:
 \end{prop}
 
 \begin{proof}
-  $A$'nın, her $x_i$'nin $A$'nın bir !!{element}ı olduğu $x_1$, $x_2$,
+  $A$'nın, her $x_i$'nin $A$'nın bir !!{element}{}ı olduğu $x_1$, $x_2$,
   \dots{} numaralandırmasına sahip olduğunu varsayalım. Tekrarlanan
-  !!{element}ları çıkararak bir numaralandırmadaki tekrarları kaldırabiliriz.
+  !!{element}s{}ı çıkararak bir numaralandırmadaki tekrarları kaldırabiliriz.
   Örneğin numaralandırmayı, $x_i$ eğer $x_1$, \dots, $x_{i-1}$ arasında
-  bulunmayan bir $A$ !!a{element}ı ise onu listelediğimiz, zaten $x_1$,
+  bulunmayan bir $A$ !!a{element}{}ı ise onu listelediğimiz, zaten $x_1$,
   \dots,~$x_{i-1}$ arasında yer alıyorsa da listeden çıkardığımız yeni bir
   numaralandırmaya dönüştürebiliriz.
 \end{proof}
@@ -92,14 +92,14 @@ tanımın eşdeğer olduğuna kendimizi ikna edelim. Önce, $\PosInt$'tan bir $A
 kümesine giden her !!{surjective} fonksiyon $A$'yı numaralandırır. Böyle bir
 fonksiyon, yukarıda sezgisel olarak tanımlanan şu numaralandırmayı belirler:
 $f(1)$, $f(2)$, $f(3)$, \dots. $f$ !!{surjective} olduğundan $A$'nın her
-!!{element}ının bazı $n \in \PosInt$ için $f(n)$'nin değeri olması güvence
-altındadır. Dolayısıyla $A$'nın her !!{element}ı listenin sonlu bir konumunda
+!!{element}{}ının bazı $n \in \PosInt$ için $f(n)$'nin değeri olması güvence
+altındadır. Dolayısıyla $A$'nın her !!{element}{}ı listenin sonlu bir konumunda
 yer alır. Fonksiyon !!{injective} olmayabileceği için liste tekrarlı olabilir;
 ama yukarıda belirtildiği üzere buna izin verilir.
 
-Öte yandan, $A$'nın bütün !!{element}larını numaralandıran bir liste
-verildiğinde, $f(n)$'yi listenin $n$'inci !!{element}ı, $n$'inci bir
-!!{element} yoksa da listenin son !!{element}ı alarak bir !!{surjective}
+Öte yandan, $A$'nın bütün !!{element}s{}ını numaralandıran bir liste
+verildiğinde, $f(n)$'yi listenin $n$'inci !!{element}{}ı, $n$'inci bir
+!!{element} yoksa da listenin son !!{element}{}ı alarak bir !!{surjective}
 $f\colon \PosInt \to A$ fonksiyonu tanımlayabiliriz. Bunun !!{surjective} bir
 fonksiyon üretmediği tek durum $A$'nın ve dolayısıyla listenin boş olmasıdır.
 Öyleyse boş olmayan her liste bir !!{surjective} $f\colon \PosInt \to A$
@@ -109,7 +109,7 @@ fonksiyonu belirler.
 \begin{defn}
   \ollabel{defn:enumerable}
   Bir $A$ kümesi, ancak ve ancak boşsa ya da bir numaralandırması varsa
-  !!{enumerable}dir.
+  !!{enumerable}{}dir.
 \end{defn}
 
 \begin{ex}
@@ -182,10 +182,10 @@ f(n) = \begin{cases}
   !!{enumerable} olduğu olgusunu varsayabilirsiniz.
 \end{prob}
 
-Bir kümenin !!{element}larını listelerken saymaya ilk !!{element}dan başlamak
+Bir kümenin !!{element}s{}ını listelerken saymaya ilk !!{element}{}dan başlamak
 belki daha doğal olsa da matematikçiler nesneleri saymak için doğal
 sayıları~$\Nat$ kullanmayı sever. Bir listenin $0$'ıncı, $1$'inci, $2$'nci
-vb. !!{element}larından söz ederler. Buna uygun olarak bir numaralandırmayı
+vb. !!{element}s{}ından söz ederler. Buna uygun olarak bir numaralandırmayı
 $\Nat$'tan $A$'ya giden bir !!{surjective} fonksiyon diye tanımlayabiliriz.
 Elbette iki tanım eşdeğerdir.
 
@@ -205,18 +205,18 @@ Bu bize şu sonucu verir:
 
 \begin{cor}\ollabel{cor:enum-nat}
 Bir $A$ kümesi, ancak ve ancak boşsa ya da bir !!{surjective} $f\colon \Nat
-\to A$ fonksiyonu varsa !!{enumerable}dir.
+\to A$ fonksiyonu varsa !!{enumerable}{}dir.
 \end{cor}
 
-Yukarıda $A$ kümesinin !!{element}larından oluşan bir listenin tekrarsız bir listeye
+Yukarıda $A$ kümesinin !!{element}s{}ından oluşan bir listenin tekrarsız bir listeye
 dönüştürülebileceğini ele aldık. Bu, numaralandırmalar için de doğrudur; ama
 titizlikle ifade ve ispat edilmesi biraz daha zordur. Her $f\colon \PosInt
 \to A$ fonksiyonu bütün $n \in \PosInt$ için tanımlı olmalıdır. $A$'da
 yalnızca sonlu sayıda !!{element} varsa $\PosInt$'ın sonsuz sayıdaki
-!!{element}ı üzerinde tanımlı, değerleri arasında $A$'nın bütün
-!!{element}ları bulunan ama aynı değeri iki kez almayan bir fonksiyonumuz
+!!{element}{}ı üzerinde tanımlı, değerleri arasında $A$'nın bütün
+!!{element}s{}ı bulunan ama aynı değeri iki kez almayan bir fonksiyonumuz
 açıkça olamaz. Bu durumda, yani tekrarsız listenin sonlu olduğu durumda,
-$f$ için yalnızca sonlu sayıda !!{element}ı olan farklı bir tanım kümesi
+$f$ için yalnızca sonlu sayıda !!{element}{}ı olan farklı bir tanım kümesi
 seçmeliyiz. Tekrarın bulunmaması $f$'nin !!{injective} olmasını gerektirir.
 Aynı zamanda !!{surjective} de olduğundan, bazı sonlu $\{1, \dots, n\}$
 kümeleri ya da $\PosInt$ ile $A$ arasında bir !!{bijection} arıyoruz.
@@ -232,17 +232,17 @@ $g\colon Z \to A$ vardır.
   $g$ fonksiyonunu özyinelemeli olarak tanımlarız: $g(1)=f(1)$ olsun. $g(i)$
   daha önce tanımlanmışsa, varsa $f(1)$, $f(2)$, \dots{} değerleri arasında
   henüz $g(1)$, \dots, $g(i)$ arasında bulunmayan ilk değeri $g(i+1)$ olarak alalım.
-  $A$'nın yalnızca $n$ !!{element}ı varsa $g(1)$, \dots, $g(n)$'nin hepsi
+  $A$'nın yalnızca $n$ !!{element}{}ı varsa $g(1)$, \dots, $g(n)$'nin hepsi
   tanımlanır ve böylece $g\colon \{1, \dots, n\} \to A$ fonksiyonunu
-  tanımlamış oluruz. $A$'nın sonsuz sayıda !!{element}ı varsa, herhangi bir
+  tanımlamış oluruz. $A$'nın sonsuz sayıda !!{element}{}ı varsa, herhangi bir
   $i$ için $f(1)$, $f(2)$, \dots{} numaralandırmasında henüz $g(1)$, \dots,
-  $g(i)$ arasında bulunmayan bir $A$ !!a{element}ı olmalıdır. Bu durumda bir
+  $g(i)$ arasında bulunmayan bir $A$ !!a{element}{}ı olmalıdır. Bu durumda bir
   $g\colon \PosInt \to A$ fonksiyonu tanımlamış oluruz.
 
   $A$'nın her elemanı $f(1)$, $f(2)$, \dots{} arasında bulunduğu ($f$
   !!{surjective} olduğu) ve dolayısıyla sonunda bazı $i$ için $g(i)$'nin bir
-  değeri olacağı için $g$ !!{surjective}dir. $g$ aynı zamanda
-  !!{injective}dir; çünkü $g(j)=g(i)$ olacak biçimde bir $j<i$ bulunsaydı
+  değeri olacağı için $g$ !!{surjective}{}dir. $g$ aynı zamanda
+  !!{injective}{}dir; çünkü $g(j)=g(i)$ olacak biçimde bir $j<i$ bulunsaydı
   $g(i)$ zaten $g(1)$, \dots, $g(i-1)$ arasında olurdu; bu da $g$'yi
   tanımlama biçimimize aykırıdır.
 \end{proof}
@@ -250,12 +250,12 @@ $g\colon Z \to A$ vardır.
 \begin{cor}\ollabel{cor:enum-nat-bij}
 Bir $A$ kümesi, ancak ve ancak boşsa ya da $N=\Nat$ veya bazı $n\in\Nat$
 için $N=\{0, \dots, n\}$ olacak biçimde bir !!{bijection} $f\colon N\to A$
-varsa !!{enumerable}dir.
+varsa !!{enumerable}{}dir.
 \end{cor}
 
 \begin{proof}
 $A$, ancak ve ancak boşsa ya da bir !!{surjective} $f\colon \PosInt \to A$
-varsa !!{enumerable}dir. \olref{prop:enum-bij}'e göre ikinci koşul, $Z=
+varsa !!{enumerable}{}dir. \olref{prop:enum-bij}'e göre ikinci koşul, $Z=
 \PosInt$ ya da bazı $n\in\PosInt$ için $Z=\{1, \dots, n\}$ olacak biçimde
 bir !!{bijective} $f\colon Z\to A$ fonksiyonunun bulunmasına eşdeğerdir.
 \olref{prop:enum-shift}'in ispatındaki aynı argümana göre bu da $N=\Nat$ ya

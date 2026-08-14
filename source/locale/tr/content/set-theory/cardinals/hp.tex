@@ -1,0 +1,95 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sth}{cardinals}{hp}
+\olsection{Ek: Hume İlkesi}
+
+\olref[cp]{sec} içinde Cantor İlkesi'ni betimledik. İlke şuydu:
+\begin{align*}
+	\card{A} = \card{B} & \text{ ancak ve ancak } A \approx B.
+\intertext{Bu, günümüzde \emph{Hume İlkesi} denen şu ilkeye çok benzer:}
+	\fregenum{x} {F(x)} = \fregenum{x}{G(x)} & \text{ ancak ve ancak } F \sim G.
+\end{align*}
+Burada `$F\sim G$', tam olarak $F$ler kadar $G$ bulunduğunu, yani $F$lerle
+$G$ler arasında bire bir eşleme kurulabildiğini kısaltır:
+\begin{align*}
+	\exists R(&\forall v\forall y(Rvy \lif (Fv \land Gy)) \land {}\\
+		&\forall v(Fv \lif \lexists![y][Rvy]) \land {}\\
+		&\forall y(Gy \lif \lexists![v][Rvy])).
+\end{align*}
+Fakat Hume İlkesi ile Cantor İlkesi arasında bir tür farkı vardır. Cantor
+İlkesi'nin ifadesindeki ``$A$'' ve ``$B$'' değişkenleri \emph{kümeleri}
+temsil eden birinci dereceden terimlerdir. Hume İlkesi'nin ifadesindeki
+``$F$'', ``$G$'' ve ``$R$'' ise birinci dereceden terimler \emph{değildir};
+bunun yerine \emph{yüklem konumunda} bulunurlar. (Belki de
+\emph{özellikleri} temsil ederler.) Dolayısıyla Hume İlkesi'ni Türkçe şöyle
+açıklayabiliriz: $F$lerin sayısı $G$lerin sayısına ancak ve ancak $F$lerle
+$G$ler arasında bire bir eşleme varsa eşittir. Buna \emph{Hume İlkesi}
+denir; çünkü Hume bir keresinde şunu yazmıştır:
+\begin{quote}
+  İki sayı, birinin her birimine ötekinin bir birimi karşılık gelecek
+  biçimde birleştirildiğinde onların eşit olduğunu söyleriz.
+  \citep[Kısım III, Kitap 1, \S1]{Hume1740}
+\end{quote}
+Hume İlkesi, Hume'dan bu parçayı alıntılayıp ardından (gerçekte) bizim Hume
+İlkesi dediğimiz şeyin taslağını çizen \citet[\S63]{Frege1884} tarafından
+çağdaş matematiksel-mantıksal tartışmada öne çıkarılmıştır.
+
+Hume İlkesi ile Temel Yasa V arasındaki yapısal benzerliğe dikkat
+etmelisiniz. Temel Yasa V'yi \olref[story][blv]{sec} içinde şöyle
+formüle ettik:
+\[
+	\fregeext{x}{F(x)} = \fregeext{x}{G(x)} \text{ ancak ve ancak }
+	\lforall[x][(F(x) \liff G(x))].
+\]
+Bu noktada biraz yorum ve karşılaştırma yararlı olabilir.
+
+Hume İlkesi ya da Temel Yasa V gibi bir ilkeyi iki biçimde ele alabiliriz:
+\emph{yüklemsel} ya da \emph{yüklemsel olmayan}
+(\olref[story][predicative]{sec} kesimini hatırlayın). Temel Yasa V'nin
+yüklemsel olmayan okumasında her $F$ için $\fregeext{x}{F(x)}$ nesnesi,
+Temel Yasa V'yi formüle ederken kullandığımız niceleme evreninin içinde yer
+alır. Benzer biçimde Hume İlkesi'nin yüklemsel olmayan okumasında her $F$
+için $\fregenum{x}{F(x)}$ nesnesi, Hume İlkesi'ni formüle ederken
+kullandığımız niceleme evreninin içinde yer alır. Buna karşılık
+\emph{yüklemsel} anlayışta $\fregeext{x}{F(x)}$ ve
+$\fregenum{x}{F(x)}$ nesneleri farklı bir evrenden gelen varlıklar olur.
+
+Temel Yasa V'yi yüklemsel olmayan biçimde okursak Naif Küme Oluşturma
+aracılığıyla tutarsızlığa yol açar (ayrıntılar için
+\olref[story][blv]{sec} kesimine bakın). Naif Küme Oluşturma'ya çok benzer
+biçimde, onu \emph{yüklemsel} okuyarak tutarlı hâle getirebiliriz. Fakat o
+zaman muhtemelen istediğimiz her şeyi yapmayacaktır.
+
+Hume İlkesi ise yüklemsel olmayan biçimde \emph{tutarlı olarak} okunabilir.
+Bu biçimde okunduğunda oldukça güçlüdür.
+
+Örneğin, açıkça hiçbir şeyin sağlamadığı ``$x\neq x$'' yüklemini ele alın.
+Hume İlkesi bize şimdi bir $\#x(x\neq x)$ nesnesi verir. Bunu $0$ sayısı
+olarak ele alabiliriz. \emph{Yüklemsel olmayan} anlayışta---ve
+\emph{yalnızca} bu anlayışta---bu $0$ varlığı ilk niceleme evrenimizin
+içinde bulunur. Dolayısıyla ``$x=0$'' yüklemiyle Hume İlkesi'ni anlamlı
+biçimde uygulayıp bir $\#x(x=0)$ nesnesi elde edebiliriz. Bunu $1$ sayısı
+olarak ele alabiliriz. Ayrıca Hume İlkesi $0\neq1$ olduğunu gerektirir;
+çünkü kendisiyle özdeş olmayan nesnelerle $0$'la özdeş nesneler arasında
+bire bir eşleme kurulamaz (birincilerden hiç yoktur, ikincilerden bir tane
+vardır). Yine yüklemsel olmayan biçimde çalıştığımızda $1$ ilk niceleme
+evrenimizde bulunur. Bu yüzden ``$(x=0\lor x=1)$'' yüklemiyle Hume
+İlkesi'ni anlamlı biçimde uygulayıp $\#x(x=0\lor x=1)$ nesnesini elde
+edebiliriz. Bunu $2$ sayısı olarak ele alabilir ve $0\neq2$, $1\neq2$ vb.
+olduğunu gösterebiliriz.
+
+Kısacası yüklemsel olmayan biçimde ele alınan Hume İlkesi \emph{sonsuz
+sayıda nesne} bulunduğunu gerektirir. Bu, \emph{yeni-Fregeci
+mantıkçıları} Hume İlkesi'ni aritmetiğin temeli olarak almaya teşvik
+etmiştir.
+
+Ancak Frege'nin \emph{kendisi} Hume İlkesi'ni aritmetiğin temeli olarak
+almadı. Bunun yerine Hume İlkesi'ni açık bir tanımdan ispatladı:
+$\fregenum{x}{F(x)}$, $F\sim\Phi$ kavramının kaplamı olarak tanımlanır.
+Çağdaş terimlerle bunu
+$\fregenum{x}{F(x)}=\Setabs{G}{F\sim G}$ olarak ifade etmeye çalışabiliriz;
+fakat bu bizi Naif Küme Oluşturma'nın sorunlarına geri götürür.
+
+\end{document}

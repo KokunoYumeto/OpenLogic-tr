@@ -1,0 +1,151 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sth}{spine}{recursion}
+\olsection{Sonlu Ötesi Özyineleme Teoremleri}
+
+Önce \olref[valpha]{defValphas} tanımının başarılı olduğunu
+doğrulamalıyız. Daha genel olarak, sonlu ötesi özyinelemeyle bir tanım
+vermeye yönelik her girişimin başarıya ulaşacağını ispatlamamız gerekir.
+Bu kesimin amacı budur.
+
+\emph{Uyarı: Bu malzeme zordur}. Bununla birlikte ana fikir oldukça
+basittir: Sonlu Ötesi Tümevarım ile Yerine Koyma, sonlu ötesi özyinelemenin
+(çeşitli sürümlerinin) meşruluğunu güvence altına alır.\footnote{Hatırlatma:
+açıkça aksi belirtilmedikçe bütün formüller ve terimler parametreler
+içerebilir.}
+
+\begin{defn}
+	$\tau(x)$ bir terim, $f$ bir fonksiyon ve $\alpha$ bir sıra sayısı olsun.
+	Hem $\dom{f}=\alpha$ hem de
+	$(\forall\beta\in\alpha)f(\beta)=
+	\tau(\funrestrictionto{f}{\beta})$ ise $f$'ye $\tau$ için bir
+	\emph{$\alpha$-yaklaştırması} deriz.
+\end{defn}
+
+\begin{lem}[Sınırlı Özyineleme]\ollabel{transrecursionfun}
+Her $\tau(x)$ terimi ve her $\alpha$ sıra sayısı için $\tau$'nun biricik bir
+$\alpha$-yaklaştırması vardır.
+\end{lem}
+\begin{proof}
+Her $\gamma\leq\alpha$ için biricik bir $\gamma$-yaklaştırması bulunduğunu
+göstereceğiz.
+
+Önce biricikliği kuruyoruz. $g$ ve $h$ sırasıyla $\gamma$- ve
+$\delta$-yaklaştırmaları olsun. Argümanları üzerinde sonlu ötesi tümevarım,
+her $\beta\in\dom{g}\cap\dom{h}=\gamma\cap\delta=
+\min(\gamma,\delta)$ için $g(\beta)=h(\beta)$ olduğunu gösterir. Dolayısıyla
+yaklaştırmalarımız (varlarsa) biriciktir ve bütün ortak değerlerde uyuşur.
+
+Varlığı kurmak için şimdi $\delta\leq\alpha$ sıra sayıları üzerinde basit
+sonlu ötesi tümevarım (\olref[ordinals][opps]{simpletransrecursion})
+kullanıyoruz.
+
+Boş fonksiyon açıkça bir $\emptyset$-yaklaştırmasıdır.
+
+$g$ bir $\gamma$-yaklaştırmasıysa
+$g\cup\{\tuple{\gamma,\tau(g)}\}$ bir
+$\ordsucc{\gamma}$-yaklaştırmasıdır.
+
+$\gamma$ bir limit sıra sayısı ve her $\delta<\gamma$ için $g_\delta$ bir
+$\delta$-yaklaştırmasıysa
+$g=\bigcup_{\delta\in\gamma}g_\delta$ olsun. Çeşitli $g_\delta$'larımız
+bütün değerlerde uyuştuğu için bu bir fonksiyondur. Ayrıca
+$\delta\in\gamma$ ise
+$g(\delta)=g_{\ordsucc{\delta}}(\delta)=
+\tau(\funrestrictionto{g_{\ordsucc{\delta}}}{\delta})=
+\tau(\funrestrictionto{g}{\delta})$ olur.
+
+Bu, sonlu ötesi tümevarımla ispatı tamamlar.
+\end{proof}
+
+Bir fonksiyon yerine bir \emph{terim} tanımlamamıza izin verirsek önceki
+sonuçtaki $\alpha$ sınırını kaldırabiliriz. Aşağıdaki sonucun ifade ve
+ispatında $\sigma$ bir terim olduğunda
+$\funrestrictionto{\sigma}{\alpha}=
+\Setabs{\tuple{\beta,\sigma(\beta)}}{\beta\in\alpha}$ olsun.
+
+\begin{thm}[Genel Özyineleme]\ollabel{transrecursionschema}
+Her $\tau(x)$ terimi için, her $\alpha$ sıra sayısında
+$\sigma(\alpha)=\tau(\funrestrictionto{\sigma}{\alpha})$ olacak biçimde
+bir $\sigma(x)$ terimini açıkça tanımlayabiliriz.
+\end{thm}
+
+\begin{proof}
+Her $\alpha$ için \olref{transrecursionfun} gereği $\tau$'nun biricik bir
+$\alpha$-yaklaştırması $f_\alpha$ vardır. $\sigma(\alpha)$'yı
+$f_{\ordsucc{\alpha}}(\alpha)$ olarak tanımlayın. Şimdi:
+	\begin{align*}
+		\sigma(\alpha) &=
+		f_{\ordsucc{\alpha}}(\alpha) \\&=
+		\tau(\funrestrictionto{f_{\ordsucc{\alpha}}}{\alpha}) \\&=
+		\tau(\Setabs{\tuple{\beta, f_{\ordsucc{\alpha}}(\beta)}}{\beta \in \alpha}) \\&=
+		\tau(\Setabs{\tuple{\beta, f_{\ordsucc{\beta}}(\beta)}}{\beta \in \alpha})\\&=
+		\tau(\funrestrictionto{\sigma}{\alpha}).
+	\end{align*}
+Burada bütün $\beta<\alpha$ için
+$f_{\ordsucc{\beta}}(\beta)=f_{\ordsucc{\alpha}}(\beta)$ olduğu,
+\olref{transrecursionfun} sonucundaki gibi kullanılmıştır.
+\end{proof}
+\noindent
+\olref{transrecursionschema} sonucunun bir \emph{şema} olduğuna dikkat
+edin. Kritik olarak $\sigma$'nın bir fonksiyon, yani belirli türden bir
+\emph{küme} tanımlamasını bekleyemeyiz; çünkü o zaman $\dom{\sigma}$ bütün
+sıra sayılarının kümesi olur ve Burali--Forti Paradoksu'yla
+(\olref[ordinals][basic]{buraliforti}) çelişirdi.
+
+Yine de \olref{transrecursionschema} sonucunun $V_\alpha$ tanımımızı
+doğruladığını göstermemiz gerekir. Bu hemen açık olmayabilir; fakat son ve
+basit bir sonlu ötesi özyineleme sürümüyle görünür hâle gelecektir.
+
+\begin{thm}[Basit Özyineleme]\ollabel{simplerecursionschema}
+Her $\tau(x)$ ve $\theta(x)$ terimi ile her $A$ kümesi için şu koşulları
+sağlayan bir $\sigma(x)$ terimini açıkça tanımlayabiliriz:
+\begin{align*}
+	\sigma(\emptyset) &= A\\
+	\sigma(\ordsucc{\alpha}) &= \tau(\sigma(\alpha)) &&
+		\text{her $\alpha$ sıra sayısı için}\\
+	\sigma(\alpha) &= \theta(\ran{\funrestrictionto{\sigma}{\alpha}})&&
+	\text{$\alpha$ bir limit sıra sayısı olduğunda.}
+\end{align*}
+\end{thm}
+
+\begin{proof}
+Önce $\xi(x)$ terimini şöyle tanımlıyoruz:
+%t $\xi(x) = A$ if $x$ is not a function whose domain is an ordinal;
+%otherwise let:
+\[
+	\xi(x) =
+	\begin{cases}
+			A &\text{$x$, tanım kümesi bir sıra sayısı olan}\\
+			&\hspace{1em}\text{bir fonksiyon değilse; aksi hâlde:}\\
+			\tau(x(\alpha)) & \text{$\dom{x} = \ordsucc{\alpha}$ ise}\\
+			\theta(\ran{x}) & \text{$\dom{x}$ bir limit sıra sayısıysa.}
+	\end{cases}
+\]
+\olref{transrecursionschema} gereği her $\alpha$ sıra sayısı için
+$\sigma(\alpha)=\xi(\funrestrictionto{\sigma}{\alpha})$ olan bir
+$\sigma(x)$ terimi vardır; ayrıca
+$\funrestrictionto{\sigma}{\alpha}$, tanım kümesi $\alpha$ olan bir
+fonksiyondur. Basit sonlu ötesi tümevarımla
+(\olref[ordinals][opps]{simpletransrecursion}) $\sigma$'nın gereken
+özelliklere sahip olduğunu gösteriyoruz.
+
+Önce $\sigma(\emptyset)=\xi(\emptyset)=A$ olur.
+
+Sonra $\sigma(\ordsucc{\alpha})=
+\xi(\funrestrictionto{\sigma}{\ordsucc{\alpha}})=
+\tau(\funrestrictionto{\sigma}{\ordsucc{\alpha}}(\alpha))=
+\tau(\sigma(\alpha))$ olur.
+
+Son olarak $\alpha$ bir limit olduğunda
+$\sigma(\alpha)=\xi(\funrestrictionto{\sigma}{\alpha})=
+\theta(\ran{\funrestrictionto{\sigma}{\alpha}})$ olur.
+\end{proof}
+\noindent
+Şimdi \olref[valpha]{defValphas} tanımını doğrulamak için yalnızca
+$A=\emptyset$, $\tau(x)=\Pow{x}$ ve $\theta(x)=\bigcup x$ alın. Böylece
+nihayet $V_\alpha$'ların tanımı doğrulanmış olur!{}
+
+\end{document}

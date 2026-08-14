@@ -1,0 +1,89 @@
+% Part: many-valued-logic
+% Chapter: syntax-and-semantics
+% Section: sublogics
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{mvl}{syn}{sub}
+
+\olsection{$\LogCL$'nin Alt Mantıkları Olarak Çok Değerli Mantıklar}
+
+Alışılmış çok değerli mantıkların tümü, $\{\True,\False\}$ içindeki
+argümanlar için bir doğruluk fonksiyonunun değeri klasik doğruluk
+fonksiyonlarıyla uyuşacak matrisler kullanılarak tanımlanır. Daha açık olarak
+bu mantıklarda $x\in\{\True,\False\}$ ise
+$\tf{\lnot}[\Log L](x)=\tf{\lnot}[\LogCL](x)$; $\star$, $\land$, $\lor$,
+$\lif$ bağlaçlarından biri ve $x,y\in\{\True,\False\}$ ise
+$\tf{\star}[\Log L](x,y)=\tf{\star}[\LogCL](x,y)$. Başka bir deyişle
+$\lnot$, $\land$, $\lor$ ve $\lif$ doğruluk fonksiyonlarının
+$\{\True,\False\}$'a kısıtlamaları tam olarak klasik doğruluk
+fonksiyonlarıdır.
+
+\begin{prop}\ollabel{prop:mvl-cl}
+  Bir $\Log L$ çok değerli mantığının dilinde $\lnot$, $\land$, $\lor$,
+  $\lif$ bağlaçlarının bulunduğunu, $\True,\False\in V$ olduğunu ve doğruluk
+  fonksiyonlarının şunları sağladığını varsayın:
+  \begin{enumerate}
+    \item\ollabel{prop:not} $x=\True$ ya da $x=\False$ ise
+    $\tf{\lnot}[\Log L](x)=\tf{\lnot}[\LogCL](x)$;
+    \item\ollabel{prop:land} $\tf{\land}[\Log L](x,y)=\tf{\land}[\LogCL](x,y)$,
+    \item\ollabel{prop:lor} $\tf{\lor}[\Log L](x,y)=\tf{\lor}[\LogCL](x,y)$,
+    \item\ollabel{prop:lif} $\tf{\lif}[\Log L](x,y)=\tf{\lif}[\LogCL](x,y)$,
+    eğer $x,y\in\{\True,\False\}$ ise.
+  \end{enumerate}
+  O zaman her $p\in\PVar$ için $\pAssign v(p)\in\{\True,\False\}$ olan,
+  $V$'ye giden her $\pAssign v$ değerlemesi ve her $!A$ formülü için
+  $\pValue v[\Log L](!A)=\pValue v[\LogCL](!A)$.
+\end{prop}
+
+\begin{proof}
+  $!A$ üzerinde tümevarımla.
+  \begin{enumerate}
+  \item $!A\ident p$ atomikse
+  $\pValue v[\Log L](!A)=\pAssign v(p)=\pValue v[\LogCL](!A)$.
+  \item $!A\ident\lnot B$ ise
+  \begin{align*}
+    \pValue v[\Log L](!A) & = \tf{\lnot}[\Log L](\pValue v[\Log L](!B)) & &\text{\olref[val]{defn:pValue} gereği}\\
+    & = \tf{\lnot}[\Log L](\pValue v[\LogCL](!B)) && \text{tümevarım varsayımı gereği}\\
+    & = \tf{\lnot}[\LogCL](\pValue v[\LogCL](!B)) 
+&&\text{\olref{prop:not} varsayımı gereği,}\\
+&&&\text{çünkü $\pValue v[\LogCL](!B) \in \{\True, \False\}$,}\\
+& = \pValue v[\LogCL](!A) &&\text{\olref[val]{defn:pValue} gereği}.
+\end{align*}
+\item $!A\ident(!B\land !C)$ ise
+\begin{align*}
+  \pValue v[\Log L](!A) & = \tf{\land}[\Log L](\pValue v[\Log L](!B), \pValue v[\Log L](!C)) & &\text{\olref[val]{defn:pValue} gereği}\\
+  & = \tf{\land}[\Log L](\pValue v[\LogCL](!B),\pValue v[\LogCL](!C)) && \text{tümevarım varsayımı gereği}\\
+  & = \tf{\land}[\LogCL](\pValue v[\LogCL](!B),\pValue v[\LogCL](!C)) 
+&&\text{\olref{prop:land} varsayımı gereği,}\\
+&&&\text{çünkü $\pValue v[\LogCL](!B),\pValue v[\LogCL](!C) \in \{\True, \False\}$,}\\
+& = \pValue v[\LogCL](!A) &&\text{\olref[val]{defn:pValue} gereği}.
+\end{align*}
+\end{enumerate}
+$!A\ident(!B\lor !C)$ ve $!A\ident(!B\lif !C)$ durumları benzerdir.
+\end{proof}
+
+\begin{cor}
+  Bir çok değerli mantık \olref{prop:mvl-cl} koşullarını sağlıyor,
+  $\True\in V^+$ ve $\False\notin V^+$ ise
+  ${\Entails[\Log L]}\subseteq{\Entails[\LogCL]}$; yani
+  $\Gamma\Entails[\Log L]!B$ ise $\Gamma\Entails[\LogCL]!B$. Özellikle
+  $\Log L$'nin her totolojisi klasik bir totolojidir.
+\end{cor}
+
+\begin{proof}
+  Karşıt-tersi ispatlarız. $\Gamma\Entails/[\LogCL]!B$ olduğunu varsayın.
+  O zaman her $!A\in\Gamma$ için $\pValue v[\LogCL](!A)=\True$ ve
+  $\pValue v[\LogCL](!B)=\False$ olacak biçimde bir
+  !!{valuation} $\pAssign v\colon\PVar\to\{\True,\False\}$ vardır.
+  $\True,\False\in V$ olduğundan, bu !!{valuation} $\pAssign v$ aynı zamanda
+  $\Log L$ için !!a{valuation} olur. \olref{prop:mvl-cl} gereği her
+  $!A\in\Gamma$ için $\pValue v[\Log L](!A)=\True$ ve
+  $\pValue v[\Log L](!B)=\False$. $\True\in V^+$ ve $\False\notin V^+$
+  olduğundan bu, $\pSat{v}{\Gamma}[\Log L]$ ve
+  $\pSat/{v}{!B}[\Log L]$, yani
+  $\Gamma\Entails/[\Log L]!B$ demektir.
+\end{proof}
+\end{document}

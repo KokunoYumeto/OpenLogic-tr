@@ -1,0 +1,134 @@
+% Part: model-theory
+% Chapter: interpolation
+% Section: definability
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{mod}{int}{def}
+
+\olsection{Tanımlanabilirlik Teoremi}
+
+Aradeğerleme teoreminin önemli bir uygulaması Beth tanımlanabilirlik
+teoremidir. $n$ yerli bir $R$ bağıntısını tanımlamak için $R$'yi
+içermeyen ve $n$ serbest !!{variable}s içeren !!a{formula}~$!C$
+verebiliriz. Bu, $R$'nin $!C$ cinsinden \emph{açık} bir tanımı olur.
+Ardından, $n$ yerli !!{predicate}~$P$ içeren !!a{language} içindeki
+bir $\Sigma(P)$ kuramının $P$'yi açıkça tanımladığını, biçimselleştirilmiş
+bir açık tanımı içeriyorsa (ya da en azından gerektiriyorsa)
+söyleyebiliriz; yani
+\[
+\Sigma(P) \Entails \lforall[x_1][\dots
+  \lforall[x_n][(\Atom{P}{x_1,\dots, x_n} \liff !C(x_1, \dots,
+    x_n))]].
+\]
+Fakat açık tanım, bir bağıntıyı tam olarak belirleme anlamında
+tanımlamanın yalnızca bir yoludur. Bir kuram, her modelde $P$'nin
+yorumunun !!{language} dilinin geri kalanının yorumuyla sabitlendiği
+bir kuram da olabilir. Tanımlanabilirlik teoremi, bir kuram $P$'nin
+yorumunu bu biçimde sabitlediğinde, yani $P$'yi \emph{örtük olarak
+tanımladığında}, onu açıkça da tanımladığını söyler.
+
+\begin{defn}
+$\Lang L$, !!{predicate}~$P$ içermeyen !!a{language} olsun.
+$\Lang L\cup\{P\}$ dilindeki bir !!{sentence}s kümesi~$\Sigma(P)$,
+ancak ve ancak $\Lang L$ dilinde
+\[
+\Sigma(P) \Entails \lforall[x_1][\dots
+  \lforall[x_n][(\Atom{P}{x_1,\dots, x_n} \liff !C(x_1, \dots,
+    x_n))]]
+\]
+olacak !!a{formula}~$!C(x_1,\dots,x_n)$ varsa $P$'yi
+\emph{açıkça tanımlar}.
+\end{defn}
+
+\begin{defn}
+$\Lang L$, !!{predicate}s~$P$ ve $P'$ simgelerini içermeyen
+!!a{language} olsun. $\Lang L\cup\{P\}$ dilindeki bir !!{sentence}s
+kümesi~$\Sigma(P)$, ancak ve ancak
+\[
+\Sigma(P) \cup \Sigma(P') \Entails \lforall[x_1][\dots
+  \lforall[x_n][(\Atom{P}{x_1,\dots, x_n} \liff \Atom{P'}{x_1,\dots,
+      x_n})]]
+\]
+ise $P$'yi \emph{örtük olarak tanımlar}. Burada $\Sigma(P')$,
+$\Sigma(P)$ içinde $P$'nin her yerde $P'$ ile değiştirilmesiyle elde
+edilir.
+\end{defn}
+
+Başka bir deyişle her $\Struct M$ modeli ve
+$R,R'\subseteq\Domain M^n$ için hem
+$\Sat{\Expan{M}{R}}{\Sigma(P)}$ hem
+$\Sat{\Expan{M}{R'}}{\Sigma(P')}$ ise $R=R'$ olur. Burada
+$\Expan M R$, $\Lang L$ dilinin $\Lang L\cup\{P\}$ diline,
+$\Assign P{M'}=R$ olacak biçimde genişlemesi olan
+!!{structure}~$\Struct{M'}$; $\Expan M{R'}$ da benzeridir.
+
+\begin{thm}[Beth tanımlanabilirlik teoremi]
+$\Lang L\cup\{P\}$ dilindeki bir $\Sigma(P)$ !!{formula}s kümesi
+$P$'yi örtük olarak tanımlar ancak ve ancak açıkça tanımlar.
+\end{thm}
+
+\begin{proof}
+$\Sigma(P)$, $P$'yi açıkça tanımlıyorsa
+\begin{align*}
+  \Sigma(P) & \Entails & \lforall[x_1][\dots \lforall[x_n]
+    [(\Atom{P}{x_1,\dots, x_n} \liff !C(x_1,\dots,x_n))]]\\
+  \Sigma(P') & \Entails & \lforall[x_1][\dots \lforall[x_n]
+    [(\Atom{P'}{x_1,\dots, x_n} \liff !C(x_1,\dots,x_n))]]
+\end{align*}
+olur ve sonuç çıkar. Ters yön için $\Sigma(P)$'nin $P$'yi örtük olarak
+tanımladığını varsayalım. Önce $\Lang L$ diline !!{constant}s
+$c_1,\dots,c_n$ ekleyelim. O zaman
+\[
+\Sigma(P) \cup \Sigma(P') \Entails
+\Atom{P}{c_1, \dots, c_n} \to \Atom{P'}{c_1, \dots, c_n}.
+\]
+Tıkızlık gereği sonlu $\Delta_0\subseteq\Sigma(P)$ ve
+$\Delta_1\subseteq\Sigma(P')$ kümeleri vardır ve
+\[
+\Delta_0 \cup \Delta_1 \Entails
+\Atom{P}{c_1, \dots, c_n} \to \Atom{P'}{c_1, \dots, c_n}.
+\]
+$!D(P)$, ya $!A(P)\in\Delta_0$ ya da $!A(P')\in\Delta_1$ olan bütün
+!!{sentence}s~$!A(P)$ ifadelerinin birleşimi; $!D(P')$ de aynı
+koşuldaki bütün !!{sentence}s~$!A(P')$ ifadelerinin birleşimi olsun.
+O zaman
+$!D(P)\land !D(P')\Entails
+\Atom P{c_1,\dots,c_n}\to P'c_1\dots c_n$. Her !!{predicate}
+tek bir $\Entails$ tarafında bulunacak biçimde bunu yeniden düzenleriz:
+\[
+!D(P) \land \Atom{P}{c_1, \dots, c_n} \Entails
+!D(P') \to \Atom{P'}{c_1, \dots, c_n}.
+\]
+Craig aradeğerleme teoremi gereği $P$ veya $P'$ içermeyen
+!!a{sentence}~$!C(c_1,\dots,c_n)$ vardır ve
+\begin{align*}
+  !D(P) \land \Atom{P}{c_1, \dots, c_n}
+    & \Entails !C(c_1,\dots, c_n); \\
+  !C(c_1,\dots, c_n)
+    & \Entails !D(P') \to \Atom{P'}{c_1, \dots, c_n}).
+\end{align*}
+Birinci gerektirmeden
+$!D(P)\Entails\Atom P{c_1,\dots,c_n}\lif !C(c_1,\dots,c_n)$ elde
+edilir. İkinciden de, bir $\Lang L\cup\{P\}$ modeli
+$\Expan M R$ içinde $!A(P)$ doğruysa ve ancak ona karşılık gelen
+$\Lang L\cup\{P'\}$ modelinde $!A(P')$ doğruysa,
+$!C(c_1,\dots,c_n)\Entails
+!D(P)\lif\Atom{P}{c_1,\dots,c_n}$; buradan
+\[
+!D(P) \Entails !C(c_1,\dots,c_n) \to \Atom{P}{c_1,\dots, c_n}.
+\]
+İkisini birleştirince
+$!D(P)\Entails\Atom P{c_1,\dots,c_n}\liff !C(c_1,\dots,c_n)$; tekdüzelik
+ve genelleme yoluyla da
+\[
+\Sigma(P) \Entails
+\lforall[x_1][\dots\lforall[x_n][(\Atom{P}{x_1,\dots, x_n} \liff
+    !C(x_1,\dots, x_n))]]
+\]
+elde edilir.
+\end{proof}
+
+\end{document}

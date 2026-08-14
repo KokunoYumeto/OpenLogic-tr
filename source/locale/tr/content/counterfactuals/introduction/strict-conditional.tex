@@ -1,0 +1,106 @@
+% Part: counterfactuals
+% Chapter: introduction
+% Section: strict-conditional
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{cnt}{int}{str}
+
+\olsection{Sıkı Koşul}
+
+Lewis \emph{sıkı koşul}~$\strictif$'i ortaya koydu ve gerektirmeye maddi
+koşulun değil, bunun karşılık geldiğini savundu. Aletik modal mantıkta
+$!A\strictif !B$, $\Box(!A\lif !B)$ olarak tanımlanabilir. Dolayısıyla sıkı
+bir koşul (bir dünyada), ancak ve ancak karşılık gelen maddi koşul zorunluysa
+doğrudur.
+
+Sıkı koşul, maddi koşulun paradoksları karşısında ne ölçüde başarılıdır?
+Önbileşeni yanlış olan ya da artbileşeni doğru olan bir sıkı koşul doğru da
+yanlış da olabilir. Ayrıca $(!A\strictif !B)\lor(!B\strictif !A)$ geçerli
+değildir. Sıkı koşul $!A\strictif !B$, $\lnot !A\lor !B$'ye de denk
+değildir; dolayısıyla doğruluk fonksiyonlu değildir.
+
+Şunlar geçerlidir:
+\begin{align}
+  !A \strictif !B & \Entails \lnot !A \lor !B
+  \text{ fakat:}\\
+  \lnot !A \lor !B & \Entails/ !A \strictif !B\\
+  !B & \Entails/ !A \strictif !B\\
+  \lnot !A & \Entails/ !A \strictif !B\\
+  \lnot(!A \strictif !B) & \Entails/ !A \land \lnot !B
+  \text{ fakat:}\\
+  !A \land \lnot !B & \Entails \lnot(!A \strictif !B)
+  \intertext{Bununla birlikte sıkı koşul yine de modus ponens'i destekler:}
+  !A, !A \strictif !B & \Entails !B
+  \intertext{Sıkı koşul birleştirilebilir:}
+  !A \strictif !B,  !A \strictif !C & \Entails !A \strictif (!B \land !C)
+  \intertext{Önbileşeni güçlendirme sıkı koşul için geçerlidir:}
+  !A \strictif !B & \Entails (!A \land !C) \strictif !B
+  \intertext{Sıkı koşul ayrıca geçişlidir:}
+  !A \strictif !B, !B \strictif !C & \Entails !A \strictif !C
+  \intertext{Son olarak sıkı koşul karşıt tersine denktir:}
+  !A \strictif !B & \Entails \lnot !B \strictif \lnot !A\\
+  \lnot !B \strictif \lnot !A & \Entails !A \strictif !B
+\end{align}
+
+\begin{prob}
+  Sıkı koşul için geçerli olmayan aşağıdaki gerektirme bağıntılarına
+  $\Log{S5}$ karşı örnekleri verin:
+  \begin{enumerate}
+  \item $\lnot p \Entails/ \Box(p \lif q)$
+  \item $q \Entails/ \Box(p \lif q)$
+  \item $\lnot\Box(p \lif q) \Entails/ p \land \lnot q$
+  \item $\Entails/ \Box(p \lif q) \lor \Box(q \lif p)$
+  \end{enumerate}
+\end{prob}
+
+\begin{prob}
+  Aşağıdakilerin $\Log{S5}$ ispatlarını vererek geçerli gerektirme
+  bağıntılarının sıkı koşul için geçerli olduğunu gösterin:
+  \begin{enumerate}
+  \item  $\Box(!A \lif !B) \Entails \lnot !A \lor !B$
+  \item $!A \land \lnot !B \Entails \lnot\Box(!A \lif !B)$
+  \item $!A, \Box(!A \lif !B) \Entails !B$
+  \item $\Box(!A \lif !B), \Box(!A \lif !C) \Entails \Box(!A \lif (!B
+    \land !C))$
+  \item $\Box(!A \lif !B) \Entails \Box((!A \land !C) \lif !B)$
+  \item $\Box(!A \lif !B), \Box(!B \lif !C) \Entails \Box(!A
+    \lif !C)$
+  \item $\Box(!A \lif !B) \Entails \Box(\lnot !B \lif \lnot !A)$
+  \item $\Box(\lnot !B \lif \lnot !A) \Entails \Box(!A \lif !B)$
+  \end{enumerate}
+\end{prob}
+
+Yine de sıkı koşulun kendine özgü ``paradoksları'' vardır. Önbileşeni yanlış
+ya da artbileşeni doğru olan maddi koşulun doğru olması gibi, önbileşeni
+\emph{zorunlu olarak} yanlış ya da artbileşeni zorunlu olarak doğru olan
+sıkı koşul da doğrudur. Üstelik doğru olan her sıkı koşul zorunlu olarak
+doğru, yanlış olan her sıkı koşul da zorunlu olarak yanlıştır. Başka bir
+deyişle:
+\begin{align}
+  \Box \lnot !A & \Entails !A \strictif !B\\
+  \Box !B & \Entails !A \strictif !B\\
+  !A \strictif !B& \Entails \Box(!A \strictif !B)\\
+  \lnot(!A \strictif !B) & \Entails \Box\lnot(!A \strictif !B)
+\end{align}
+$\strictif$'i ``gerektirir'' diye düşünüyorsanız bunlar sorun değildir.
+Nihayetinde mantıksal gerektirme bağıntıları matematiksel olgulardır ve bu
+nedenle olumsal olamazlar. Fakat $\strictif$'i ``eğer \dots{} ise \dots''i
+yakalaması beklenen mantıksal bir bağlaç olarak kullanmak istiyorsanız,
+özellikle son ikisi sorun çıkarır. Kuşkusuz olumsal olarak doğru ya da
+olumsal olarak yanlış ``eğer \dots{} ise \dots'' ifadeleri vardır; hatta
+genellikle ne zorunlu ne de olanaksızdırlar.
+
+\begin{prob}
+  Aşağıdakilerin $\Log{S5}$ içindeki ispatlarını verin:
+  \begin{enumerate}
+    \item  $\Box \lnot !A \Entails !A \strictif !B$
+    \item $!A \strictif !B \Entails \Box(!A \strictif !B)$
+    \item $\lnot(!A \strictif !B) \Entails \Box\lnot(!A \strictif !B)$
+  \end{enumerate}
+  Bunu yaparken $\strictif$'in tanımını kullanın.
+\end{prob}
+
+\end{document}

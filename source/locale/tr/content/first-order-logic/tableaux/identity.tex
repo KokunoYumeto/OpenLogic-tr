@@ -1,0 +1,103 @@
+% Part: first-order-logic
+% Chapter: tableaux
+% Section: identity
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{fol}{tab}{ide}
+
+\olsection{\usetoken{S}{identity} İçeren \usetoken{P}{tableau}}
+
+!!^{tableau}s, !!{identity} içerdiklerinde ek çıkarım kuralları gerektirir.
+$\eq$ kuralları şöyledir ($t$, $t_1$ ve $t_2$ kapalı terimlerdir):
+
+\begin{defish}
+\AxiomC{}
+\RightLabel{$\eq$}
+\UnaryInfC{\sFmla{\True}{\eq[t][t]}}
+\DisplayProof
+\hfill
+\AxiomC{\sFmla{\True}{\eq[t_1][t_2]}}
+\noLine
+\UnaryInfC{\sFmla{\True}{!A(t_1)}}
+\RightLabel{$\TRule{\True}{\eq}$}
+\UnaryInfC{\sFmla{\True}{!A(t_2)}}
+\DisplayProof
+\hfill
+\AxiomC{\sFmla{\True}{\eq[t_1][t_2]}}
+\noLine
+\UnaryInfC{\sFmla{\False}{!A(t_1)}}
+\RightLabel{$\TRule{\False}{\eq}$}
+\UnaryInfC{\sFmla{\False}{!A(t_2)}}
+\DisplayProof
+\end{defish}
+Diğer bütün kurallardan farklı olarak $\TRule{\True}{\eq}$ ve
+$\TRule{\False}{\eq}$ kurallarının dalda önceden \emph{iki} işaretli
+!!{formula}s, yani hem $\sFmla{\True}{\eq[t_1][t_2]}$ hem de
+$\sFmla{S}{!A(t_1)}$ bulunmasını gerektirdiğine dikkat edin.
+
+\begin{ex}
+$s$ ile $t$ kapalı terimlerse $\eq[s][t], !A(s) \Proves !A(t)$:
+\begin{oltableau}
+  [\sFmla{\False}{\formula{A}(t)}, just = \TAss
+    [\sFmla{\True}{\eq[s][t]}, just = \TAss
+      [\sFmla{\True}{\formula{A}(s)}, just = \TAss
+        [\sFmla{\True}{\formula{A}(t)}, just={\TRule{\True}{\eq}[2, 3]}, close]
+      ]
+    ]
+  ]
+\end{oltableau}
+Bu, özdeşlerin birbirinin yerine konabilirliği ilkesi ya da Leibniz Yasası
+olarak tanıdık gelebilir.
+
+!!^{tableau}s $\eq$ bağıntısının simetrik olduğunu, yani
+$\eq[s_1][s_2] \Proves \eq[s_2][s_1]$ olduğunu ispatlar:
+\begin{oltableau}
+  [\sFmla{\False}{\eq[s_2][s_1]}, just = \TAss
+    [\sFmla{\True}{\eq[s_1][s_2]}, just = \TAss
+      [\sFmla{\True}{\eq[s_1][s_1]}, just = {$\eq$}
+        [\sFmla{\True}{\eq[s_2][s_1]}, just = {\TRule{\True}{\eq}[2, 3]}, close]
+      ]
+    ]
+  ]
+\end{oltableau}
+Burada $2$.~satır, $\TRule{\True}{\eq}$ kuralının ilk önkoşul
+!!{formula}{}ü~$\sFmla{\True}{\eq[s_1][s_2]}$'dir. $3$.~satır ise
+$\sFmla{\True}{!A(s_1)}$ biçimindeki ikinci önkoşuldur---$!A(x)$'i
+$\eq[x][s_1]$ olarak düşünün; böylece $!A(s_1)$, $\eq[s_1][s_1]$ ve
+$!A(s_2)$, $\eq[s_2][s_1]$ olur.
+
+Ayrıca $\eq$ bağıntısının geçişli olduğunu, yani $\eq[s_1][s_2],
+\eq[s_2][s_3] \Proves \eq[s_1][s_3]$ olduğunu da ispatlarlar:
+\begin{oltableau}
+  [\sFmla{\False}{\eq[s_1][s_3]}, just = \TAss
+    [\sFmla{\True}{\eq[s_1][s_2]}, just = \TAss
+      [\sFmla{\True}{\eq[s_2][s_3]}, just = \TAss
+        [\sFmla{\True}{\eq[s_1][s_3]}, just = {\TRule{\True}{\eq}[3, 2]}, close]
+      ]
+    ]
+  ]
+\end{oltableau}
+Bu !!{tableau} içinde $\TRule{\True}{\eq}$ kuralının ilk önkoşul
+!!{formula}{}ü $3$.~satırdaki $\sFmla{\True}{\eq[s_2][s_3]}$'tür
+($s_2$,~$t_1$; $s_3$ ise~$t_2$ rolündedir). $\sFmla{\True}{!A(s_2)}$
+biçimindeki ikinci önkoşul $2$.~satırdır. Burada $!A(x)$'i
+$\eq[s_1][x]$ olarak düşünün; böylece $!A(s_2)$, $\eq[s_1][s_2]$ (yani
+$2$.~satır), $!A(s_3)$ ise sonuçtaki !!{formula}~$\eq[s_1][s_3]$ olur.
+\end{ex}
+
+\begin{prob}
+Aşağıdakiler için kapalı !!{tableau}s verin:
+\begin{enumerate}
+\item $\sFmla{\False}{\lforall[x][\lforall[y][((x = y \land !A(x))
+      \lif !A(y))]]}$
+\item $\sFmla{\False}{\lexists[x][(!A(x) \land
+    \lforall[y][(!A(y) \lif y = x)])]}$,\\
+  $\sFmla{\True}{\lexists[x][!A(x)] \land
+    \lforall[y][\lforall[z][((!A(y) \land !A(z)) \lif y = z)]]}$
+\end{enumerate}
+\end{prob}
+
+\end{document}

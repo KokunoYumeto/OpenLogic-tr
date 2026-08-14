@@ -1,0 +1,136 @@
+% Part: applied-modal-logics
+% Chapter: temporal-logic
+% Section: temporal-logic-semantics
+% [tr source emendation] Upstream misidentifies this section in its comment
+% as `language-epistemic-logic`; the file, ID, and chapter are temporal.
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{aml}{tl}{sem}
+
+\olsection{Zamansal Mantığın Semantiği}
+
+\begin{defn}
+Zamansal mantığın temel dili şunları içerir:
+\begin{enumerate}
+  \tagitem{prvFalse}{!!{falsity} için önerme sabiti~$\lfalse$.}{}
+  \tagitem{prvTrue}{!!{truth} için önerme sabiti~$\ltrue$.}{}
+  \item !!{denumerable}s bir !!{propositional variable}s kümesi:
+    $\Obj p_0$, $\Obj p_1$, $\Obj p_2$, \dots
+  \item Önerme bağlaçları: \startycommalist
+  \iftag{prvNot}{\ycomma $\lnot$ (değilleme)}{}%
+  \iftag{prvAnd}{\ycomma $\land$ (tümel evetleme)}{}%
+  \iftag{prvOr}{\ycomma $\lor$ (tikel evetleme)}{}%
+  \iftag{prvIf}{\ycomma $\lif$ (!!{conditional})}{}%
+  \iftag{prvIff}{\ycomma $\liff$ (!!{biconditional})}{}.
+  \item Geçmiş işleçleri $\Ptemp$ ve $\Htemp$.
+  \item Gelecek işleçleri $\Ftemp$ ve $\Gtemp$.
+\end{enumerate}
+\end{defn}
+
+İleride başka tür modal işleçlerin eklenebilme olasılığını tartışacağız.
+
+\begin{defn}
+Zamansal dilin \emph{!!^{formula}s{}i} tümevarımlı olarak şöyle tanımlanır:
+\begin{enumerate}
+\tagitem{prvFalse}{$\lfalse$ atomik bir !!{formula}{}dür.}{}
+
+\tagitem{prvTrue}{$\ltrue$ atomik bir !!{formula}{}dür.}{}
+
+\item Her önerme değişkeni $\Obj p_i$, (atomik) bir !!{formula}{}dür.
+
+\tagitem{prvNot}{$!A$ !!a{formula} ise $\lnot !A$ da
+  !!a{formula}{}dür.}{}
+
+\tagitem{prvAnd}{$!A$ ve $!B$ !!{formula}s ise $(!A \land
+  !B)$ de !!a{formula}{}dür.}{}
+
+\tagitem{prvOr}{$!A$ ve $!B$ !!{formula}s ise $(!A \lor !B)$
+  de !!a{formula}{}dür.}{}
+
+\tagitem{prvIf}{$!A$ ve $!B$ !!{formula}s ise $(!A \lif !B)$
+  de !!a{formula}{}dür.}{}
+
+\tagitem{prvIff}{$!A$ ve $!B$ !!{formula}s ise $(!A \liff !B)$
+  de !!a{formula}{}dür.}{}
+
+\item $!A$ !!a{formula} ise $\Ptemp !A$, $\Htemp !A$, $\Ftemp !A$ ve
+  $\Gtemp !A$ da !!{formula}s olur.
+  % [tr source emendation] Upstream has bare `F !A` here, unlike the declared
+  % operator and its semantic clause; Turkish restores `\Ftemp !A`.
+
+\tagitem{limitClause}{Başka hiçbir şey !!a{formula} değildir.}{}
+\end{enumerate}
+\end{defn}
+
+Diğer içlemsel mantık türlerinde olduğu gibi zamansal mantıkların semantiği
+de bağıntısal modellerle verilir.
+
+\begin{defn}
+  Zamansal dil için bir \emph{model}, $\mModel{M}=\tuple{T,\prec,V}$
+  üçlüsüdür; burada
+  \begin{enumerate}
+  \item $T$, zaman noktaları olarak yorumlanan boş olmayan bir kümedir.
+  \item $\prec$, $T$ üzerinde ikili bir bağıntıdır.
+  \item $V$, her !!{propositional variable}~$p$'ye zaman noktalarından oluşan
+    bir $V(p)$ kümesi atayan bir fonksiyondur.
+  \end{enumerate}
+  $t\prec t'$ olduğunda $t$'nin $t'$ noktasından \emph{önce geldiğini} söyleriz.
+  $t\in V(p)$ olduğunda $p$'nin $t$'de \emph{doğru} olduğunu söyleriz.
+\end{defn}
+
+Şimdilik öncelik bağıntımız $\prec$ üzerine hiçbir koşul koymadığımıza
+dikkat edin. Bu, şu aşamada zamansal modellerimizin yapısı üzerinde hiçbir
+kısıtlama bulunmadığı anlamına gelir. Dolayısıyla zamanın doğrusal,
+dallanan, döngüsel ya da bambaşka bir yapıda olduğu modellerimiz olabilir.
+
+Normal modal mantıkta olduğu gibi her zamansal model de içindeki hangi
+!!{formula}s{}in hangi noktalarda doğru sayılacağını belirler. Bağıntısal
+semantiğin temel kavramı için aynı ``$\mModel{M}$ modeli, !!{formula}~$!A$'yı
+$t$ noktasında doğru kılar'' gösterimini kullanırız. Bu bağıntı tümevarımlı
+olarak tanımlanır ve modal olmayan bütün işleçler için normal modal mantık
+durumuyla aynıdır.
+
+\begin{defn}\ollabel{defn:tmodels}
+  \emph{!!a{formula}~$!A$'nın $t$'deki doğruluğu}, bir $\mModel M$ içinde,
+  yani $\mSat{M}{!A}[t]$ olmak üzere tümevarımlı olarak şöyle tanımlanır:
+  \begin{enumerate}
+  \tagitem{prvFalse}{\indcase{!A}{\lfalse}{$\mSat{M}{\lfalse}[t]$ hiçbir zaman geçerli değildir.}}{}
+  \tagitem{prvTrue}{\indcase{!A}{\ltrue}{$\mSat{M}{\ltrue}[t]$ her zaman geçerlidir.}}{}
+  \item $\mSat{M}{p}[t]$ ancak ve ancak $t\in V(p)$ ise geçerlidir.
+  \tagitem{prvNot}{\indcase{!A}{\lnot !B}{$\mSat{M}{\indfrm}[t]$ ancak ve ancak
+    $\mSat/{M}{!B}[t]$ ise geçerlidir.}}{}
+  \tagitem{prvAnd}{\indcase{!A}{(!B \land !C)}{$\mSat{M}{\indfrm}[t]$ ancak ve ancak
+    $\mSat{M}{!B}[t]$ ve $\mSat{M}{!C}[t]$ ise geçerlidir.}}{}
+  \tagitem{prvOr}{\indcase{!A}{(!B \lor !C)}{$\mSat{M}{\indfrm}[t]$ ancak ve ancak
+    $\mSat{M}{!B}[t]$ ya da $\mSat{M}{!C}[t]$ ise geçerlidir} (ikisi de olabilir).}{}
+  \tagitem{prvIf}{\indcase{!A}{(!B \lif !C)}{$\mSat{M}{\indfrm}[t]$ ancak ve ancak
+    $\mSat/{M}{!B}[t]$ ya da $\mSat{M}{!C}[t]$ ise geçerlidir.}}{}
+  \tagitem{prvIff}{\indcase{!A}{(!B \liff !C)}{$\mSat{M}{\indfrm}[t]$ ancak ve ancak
+    hem $\mSat{M}{!B}[t]$ hem $\mSat{M}{!C}[t]$ geçerliyse ya da
+    ne $\mSat{M}{!B}[t]$ ne de $\mSat{M}{!C}[t]$ geçerliyse doğrudur.}}{}
+  \item\ollabel{defn:sub:mmodels-p}
+    \indcase{!A}{\Ptemp !B}{$\mSat{M}{\indfrm}[t]$ ancak ve ancak
+    $\mSat{M}{!B}[t']$ olan bazı $t'\in T$ bulunup $t'\prec t$ ise geçerlidir}
+  \item\ollabel{defn:sub:mmodels-h}
+    \indcase{!A}{\Htemp !B}{$\mSat{M}{\indfrm}[t]$ ancak ve ancak
+    $\mSat{M}{!B}[t']$ ifadesi her $t'\in T$ için $t'\prec t$ olduğunda
+    geçerliyse doğrudur}
+  \item\ollabel{defn:sub:mmodels-f}
+    \indcase{!A}{\Ftemp !B}{$\mSat{M}{\indfrm}[t]$ ancak ve ancak
+    $\mSat{M}{!B}[t']$ olan bazı $t'\in T$ bulunup $t\prec t'$ ise geçerlidir}
+  \item\ollabel{defn:sub:mmodels-g}
+    \indcase{!A}{\Gtemp !B}{$\mSat{M}{\indfrm}[t]$ ancak ve ancak
+    $\mSat{M}{!B}[t']$ ifadesi her $t'\in T$ için $t\prec t'$ olduğunda
+    geçerliyse doğrudur}
+  \end{enumerate} 
+\end{defn}
+
+Semantiğe bakarak $\Ptemp$ ile~$\Htemp$ işleçlerinin ve aynı şekilde
+$\Ftemp$ ile $\Gtemp$ işleçlerinin birbirinin düali olduğunu görebilirsiniz.
+Böylece $\Htemp !A$, $\lnot\Ptemp\lnot !A$ olarak tanımlanabilir; aynı
+durum $\Gtemp$ ile~$\Ftemp$ için de geçerlidir.
+
+\end{document}

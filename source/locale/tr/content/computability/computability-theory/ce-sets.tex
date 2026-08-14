@@ -1,0 +1,52 @@
+% Part: computability
+% Chapter: computability-theory
+% Section: ce-sets
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{cmp}{thy}{ces}
+\olsection{Hesaplanabilir Biçimde Numaralandırılabilir Kümeler}
+
+\begin{defn}
+Bir küme boşsa ya da hesaplanabilir bir fonksiyonun görüntü kümesiyse
+\emph{hesaplanabilir biçimde numaralandırılabilir}dir.
+\end{defn}
+
+\begin{history}
+Hesaplanabilir biçimde numaralandırılabilir kümelere \emph{özyinelemeli
+biçimde numaralandırılabilir} de denir. Bu özgün terminolojidir; günümüzde
+iki terim ile ``c.e.'' ve ``r.e.'' kısaltmalarının tümü yaygın biçimde
+kullanılır.
+\end{history}
+
+\begin{explain}
+Tanımın ne anlama geldiğini ve terminolojinin neden uygun olduğunu düşünün.
+Düşünce şudur: $S$, hesaplanabilir $f$ fonksiyonunun görüntü kümesiyse
+\[
+  S=\{f(0),f(1),f(2),\dots\}
+\]
+olur ve $f$, $S$ elemanlarını ``numaralandırıyor'' diye görülebilir. Tanıma
+göre $f$'nin artan bir fonksiyon olmasının gerekmediğine, yani numaralandırma
+sırasının artan olması gerekmediğine dikkat edin. Hatta $f$'nin bire bir
+olması bile gerekmez; $S$'nin $f(0),f(1),f(2),\dots$ numaralandırmasında
+tekrarlara izin verilir. Örneğin sabit $f(x)=0$ fonksiyonu $\{0\}$ kümesini
+numaralandırır.
+\end{explain}
+
+Her hesaplanabilir küme hesaplanabilir biçimde numaralandırılabilir. Bunu
+görmek için $S$ hesaplanabilir olsun. $S$ boşsa tanım gereği hesaplanabilir
+biçimde numaralandırılabilir. Değilse $a$, $S$'nin herhangi bir elemanı olsun
+ve $f$'yi
+\[
+  f(x)=\begin{cases}
+    x & \text{$\Char{S}(x)=1$ ise}\\
+    a & \text{aksi durumda}
+  \end{cases}
+\]
+ile tanımlayalım. O zaman $f$ hesaplanabilir ve $S$, $f$'nin görüntü
+kümesidir.
+
+\end{document}
+

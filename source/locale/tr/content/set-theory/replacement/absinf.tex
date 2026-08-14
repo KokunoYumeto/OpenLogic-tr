@@ -1,0 +1,111 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sth}{replacement}{absinf}
+\olsection{Yerine Koyma ve ``Mutlak Sonsuzluk''}
+
+Şimdi \limofsize{} ilkesini geride bırakıp Yerine Koyma'yı
+gerekçelendirmeye yönelik, kümelerin aşamalar hâlinde oluşturulması fikrini
+ciddiye alan farklı bir (içsel) girişimler ailesini inceleyeceğiz.
+
+Yinelemeli süreci ilk kez ana hatlarıyla ortaya koyduğumuzda her aşamada ne
+olduğunu açıklayan bazı ilkeler sunduk. Bunlar \stageshier, \stagesord{} ve
+\stagesacc{} idi. Daha sonra aşamaların sayısı hakkında bir şeyler söyleyen
+bazı ilkeler ekledik: \stagessucc{} bize küme oluşturma sürecinin hiçbir zaman
+sona ermediğini, \stagesinf{} ise sürecin sonsuzuncu bir aşamadan geçtiğini
+söyledi.
+
+Bu son iki ilkenin şöyle daha geniş bir ilkeden çıktığını öne sürmek
+akla yatkındır:
+\begin{enumerate}
+	\item[] \stagesinex. Mutlak olarak sonsuz sayıda aşama vardır;
+	hiyerarşi olabileceği kadar yüksektir.
+\end{enumerate}
+Bu elbette gayriresmî bir ilkedir. Fakat birikimli-yinelemeli küme anlayışı
+tarafından doğrudan \emph{gerektirilmese} bile onunla kesinlikle
+\emph{bağdaşır} görünür. En azından \limofsize{} ilkesinin aksine, kümelerin
+aşama aşama oluşturulduğu fikrini korur.
+
+Şimdiki umut, \stagesinex{} ilkesinden yararlanarak Yerine Koyma'yı
+gerekçelendirmektir. Bunun nasıl yapılabileceğine bakalım.
+
+\olref[ordinals][idea]{sec} içinde, (özü itibarıyla) $\omega+\omega$'ya
+izomorf olması gereken bir iyi sıralama kurmanın kolay olduğunu gördük. Başka
+deyişle sıra tipi (özü itibarıyla) $\omega+\omega$ olan, aşama aşama ilerleyen
+bir yinelemeli süreci kolayca tasarlayabiliriz. Dolayısıyla \stagesinex{}
+ilkesini kabul etmişsek hiyerarşide en azından $\omega+\omega$'ncı aşamanın,
+yani $V_{\omega+\omega}$'nın bulunduğunu da kuşkusuz kabul etmeliyiz; çünkü
+hiyerarşi bu kadar ilerlemeyi elbette \emph{sürdürebilir}.
+
+Bu düşünce şöyle genelleşir: yinelemeli hiyerarşiyi kurma süreci, herhangi bir
+iyi sıralama için en az o iyi sıralama kadar ilerlemelidir. Bunu yalnızca
+\olref[ordinals][ordtype]{thmOrdinalRepresentation} sonucunu bir
+\emph{aksiyom} sayarak güvenceye alabiliriz. Bu bize her iyi sıralamanın bir
+von Neumann sıra sayısına izomorf olduğunu söyler. Her von Neumann sıra sayısı
+kendi rankına eşit olacağından
+\olref[ordinals][ordtype]{thmOrdinalRepresentation}, küme teorimizde ne zaman
+bir iyi sıralama betimleyebilsek yinelemeli küme kurma sürecinin o iyi
+sıralamanın ötesine geçmek zorunda olduğunu söyler.
+
+Bu fikir kesinlikle \stagesinex{} ilkesinin bir sonucu gibi görünür. Ne yazık
+ki amacımız bu fikirden Yerine Koyma'yı çıkarmaksa basit, teknik bir engelle
+karşılaşırız: Yerine Koyma,
+\olref[ordinals][ordtype]{thmOrdinalRepresentation} sonucundan kesin olarak
+daha güçlüdür. (Bu gözlem \citet[\S13.2]{Potter2004} tarafından yapılmıştır;
+onu \olref[sth][replacement][finiteaxiomatizability]{sec} içinde
+ispatlayacağız.)
+
+Sonuç olarak \stagesinex{} ilkesini Yerine Koyma'yı verecek biçimde
+anlayacaksak ilke, hiyerarşinin herhangi bir iyi sıralamanın ötesine geçtiğini
+\emph{yalnızca} söyleyemez. Bundan daha güçlü bir iddiada bulunmalıdır. Bu
+amaçla \cite{Shoenfield:AST}, fikrin son derece doğal bir güçlendirmesini
+önerdi: hiyerarşi hiçbir kümeyle \emph{kofinal} değildir.\footnote{G\"odel
+benzer bir düşünce önermiş görünür; bkz. \citet[p.~223]{Potter2004}. G\"odel
+ve \citeauthor{Shoenfield:AST} üzerine bir tartışma için bkz.
+\citet[90--5]{Incurvati2020}.} Biraz daha ayrıntılı söylersek: $\tau$, kümeleri
+hiyerarşinin aşamalarına gönderen bir eşlemeyse herhangi bir $A$ kümesinin
+$\tau$ altındaki görüntüsü hiyerarşiyi tüketmez. Başka deyişle (şematik
+olarak):
+\begin{enumerate}
+	\item[] \stagescofin. $A$ bir kümeyse ve her $x \in A$ için $\tau(x)$
+	bir aşamaysa, her $x \in A$ için $\tau(x)$'ten sonra gelen bir aşama vardır.
+\end{enumerate}
+$\ZF$'nin \stagescofin{} ilkesinin uygun biçimde formelleştirilmiş bir
+sürümünü ispatladığı açıktır. Tersine, \stagescofin{} ilkesinin Yerine
+Koyma'yı gerekçelendirdiğini gayriresmî olarak savunabiliriz.\footnote{Bir
+\stagescofin{} formelleştirmesinden yararlanarak Yerine Koyma'yı ispatlamak
+daha güç olurdu; çünkü $\Z$ tek başına aşamaları tanımlayacak kadar güçlü
+değildir ve dolayısıyla \stagescofin{} ilkesinin nasıl formelleştirileceği
+açık değildir. Yine de bir seçenek,
+\olref[sth][replacement][extrinsic]{sec} içinde tartışıldığı gibi $\LT$'nin
+bir genişlemesinde çalışmaktır.} $(\forall x \in A)\lexists![y][\phi(x,y)]$
+olduğunu varsayın. Her $x \in A$ için $\sigma(x)$, $\phi(x,y)$ koşulunu
+sağlayan $y$; $\tau(x)$ da $\sigma(x)$'in ilk oluşturulduğu aşama olsun.
+\stagescofin{} gereği $(\forall x \in A)\tau(x)\in V$ koşulunu sağlayan bir
+$V$ aşaması vardır. Her $\tau(x) \in V$ ve $\sigma(x) \subseteq \tau(x)$
+olduğundan Ayırma yoluyla
+$\Setabs{y \in V}{(\exists x \in A)\sigma(x) = y} =
+\Setabs{y}{(\exists x \in A)\phi(x,y)}$ kümesini elde edebiliriz.
+
+\begin{prob}
+	\stagescofin{} ilkesini $\ZF$ içinde formelleştirin.
+\end{prob}
+
+Dolayısıyla \stagescofin{} Yerine Koyma'yı doğrular. Ayrıca
+\stagesinex{} ilkesinin \stagescofin{} ilkesini doğrulaması en azından akla
+yatkındır. \stagescofin{} ilkesinin başarısız olduğunu varsayın. O zaman
+hiyerarşi bazı $A$ kümeleriyle kofinaldir; yani herhangi bir $S$ aşaması için
+$S \in \tau(x)$ olacak biçimde bazı $x \in A$ bulunan bir $\tau$ eşlememiz
+vardır. Bu durumda hiyerarşinin sözde ``mutlak sonsuzluğunu'' kavramanın bir
+yolunu elde etmiş oluruz: hiyerarşi, $\tau$'nun $A$'ya uygulanmasıyla oluşan
+görüntü kümesi tarafından \emph{tüketilir}. Bu da hiyerarşinin ``mutlak
+olarak sonsuz'' olduğu düşüncesini zedeler. Karşıtını alırsak:
+\stagesinex{} ilkesi \stagescofin{} ilkesini gerektirir; o da Yerine
+Koyma'yı gerekçelendirir.
+
+Bu, Yerine Koyma için içsel bir gerekçelendirme sağlamaya yönelik gerçekten
+umut verici bir girişimdir. Ancak nihayetinde işe yarayıp yaramadığına sizin
+karar vermeniz gerekecek.
+
+\end{document}

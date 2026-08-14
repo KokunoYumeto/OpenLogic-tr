@@ -1,20 +1,21 @@
 {
   "schema_version": 1,
-  "graph_type": "typed_evidence_graph",
+  "graph_type": "typed_release_evidence_graph",
   "nodes": [
-    {"id": "authority", "type": "source_authority", "value": "OpenLogic commit 9620cc73f9c8e0ad003c514a5d3748f29611c4c0"},
-    {"id": "closure", "type": "source_closure", "value": "CLOSURE_0062.csv, 722 rows"},
-    {"id": "targets", "type": "translation_targets", "value": "OLP-0001 through OLP-0062, 62 files"},
-    {"id": "terms", "type": "terminology_ledger", "value": "TERMS_0062.csv, 171 rows"},
-    {"id": "adverse", "type": "source_adverse_ledger", "value": "SOURCE_ADVERSE_0062.md"},
-    {"id": "structural_qa", "type": "deterministic_check", "value": "TRANCHE_0062_STRUCTURAL_QA.json, PASS 62/62"},
-    {"id": "review", "type": "independent_model_review", "value": "REVIEW_0062.md, clean 0/0/0"},
-    {"id": "driver", "type": "build_driver", "value": "checkpoint-0062-tr.tex"},
-    {"id": "reader", "type": "reader_pdf", "value": "103 pages, SHA-256 3598C3CB1ACC9DBEC0B1A92B98BED9E9615030D00CC866133CC738A1DB073CAF"},
-    {"id": "workbench_release", "type": "git_release", "value": "KokunoYumeto/OpenLogic tag tr-olp-0062-20260813"},
-    {"id": "publication_repo", "type": "git_publication_repository", "value": "KokunoYumeto/OpenLogic-tr"},
+    {"id": "authority", "type": "source_authority", "value": "OpenLogic commit 9620cc73f9c8e0ad003c514a5d3748f29611c4c0; tree f67757bb9305b173634082ab4cefd5601a707a34"},
+    {"id": "closure", "type": "source_closure", "value": "CLOSURE_0722.csv; 722 rows; SHA-256 2B424C62612499B15AF475E77367A06FF68E71FCA620A289BA1B37D5B8BC5AEC"},
+    {"id": "targets", "type": "translation_targets", "value": "OLP-0001 through OLP-0722; 722 files"},
+    {"id": "terms", "type": "terminology_ledger", "value": "complete Turkish terminology and interlanguage observation ledgers"},
+    {"id": "adverse", "type": "source_diff_ledger", "value": "SOURCE_ADVERSE_0722.md plus complete source-backed correction history"},
+    {"id": "structural_qa", "type": "deterministic_check", "value": "COMPLETE_0722_STRUCTURAL_QA.json; PASS 722/722; SHA-256 46F5FE080693D3A99DE234A9588C28D5A683D0FDACFA62AD2323AC3B8EB01499"},
+    {"id": "build", "type": "deterministic_build", "value": "exit 0; zero missing-character, unresolved-reference, or unresolved-citation diagnostics"},
+    {"id": "text", "type": "reader_text_layer", "value": "46,990 lines; residue scans clean; SHA-256 26D2CAE84B478ADD70D9EDBC8088F6BD2C761FD47EF01F5DED5E008F6EBFC286"},
+    {"id": "render", "type": "all_page_visual_qa", "value": "CLEAN 1,037/1,037 pages"},
+    {"id": "driver", "type": "build_driver", "value": "locale/tr/open-logic-complete.tex"},
+    {"id": "reader", "type": "reader_pdf", "value": "1,037 pages; 5,470,171 bytes; SHA-256 2D9939692A971EDF468D3B41F38C57283C046BE9D110783CF50D10CDB3152900"},
+    {"id": "publication_repo", "type": "git_publication_repository", "value": "https://github.com/KokunoYumeto/OpenLogic-tr; planned tag tr-olp-0722-20260814 not yet created"},
     {"id": "concept_doi", "type": "language_concept_doi", "value": "10.5281/zenodo.21921844"},
-    {"id": "version_doi", "type": "exact_version_doi", "value": "10.5281/zenodo.21921845"}
+    {"id": "version_doi", "type": "exact_version_doi", "value": "10.5281/zenodo.21927145; reserved, not yet published"}
   ],
   "edges": [
     {"from": "targets", "relation": "translated_against", "to": "authority"},
@@ -22,13 +23,13 @@
     {"from": "targets", "relation": "terminology_governed_by", "to": "terms"},
     {"from": "targets", "relation": "source_deltas_disclosed_by", "to": "adverse"},
     {"from": "targets", "relation": "checked_by", "to": "structural_qa"},
-    {"from": "targets", "relation": "checked_by", "to": "review"},
-    {"from": "reader", "relation": "built_from", "to": "driver"},
     {"from": "driver", "relation": "imports", "to": "targets"},
-    {"from": "reader", "relation": "published_as", "to": "workbench_release"},
-    {"from": "publication_repo", "relation": "mirrors_release", "to": "workbench_release"},
-    {"from": "version_doi", "relation": "identifies", "to": "reader"},
+    {"from": "reader", "relation": "built_from", "to": "driver"},
+    {"from": "reader", "relation": "validated_by", "to": "build"},
+    {"from": "reader", "relation": "validated_by", "to": "text"},
+    {"from": "reader", "relation": "validated_by", "to": "render"},
     {"from": "version_doi", "relation": "is_version_of", "to": "concept_doi"},
-    {"from": "concept_doi", "relation": "is_translation_of", "to": "authority"}
+    {"from": "concept_doi", "relation": "is_translation_of", "to": "authority"},
+    {"from": "publication_repo", "relation": "will_publish", "to": "reader"}
   ]
 }

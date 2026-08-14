@@ -1,0 +1,95 @@
+% Part: computability
+% Chapter: recursive-functions
+% Section: non-pr-functions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{cmp}{rec}{npr}
+\olsection{İlkel Özyinelemeli Olmayan Fonksiyonlar}
+
+İlkel özyinelemeli fonksiyonlar, sezgisel olarak hesaplanabilir bütün
+fonksiyonları tüketmez. Bütün tek yerli ilkel özyinelemeli fonksiyonları
+$f_0,f_1,f_2,\dots$ biçiminde öyle listeleyebildiğimiz sezgisel olarak açık
+olmalıdır ki $f_x$ fonksiyonunun $y$ girdisindeki değerini etkin biçimde
+hesaplayabilelim. Başka bir deyişle
+\[
+  g(x,y)=f_x(y)
+\]
+ile tanımlanan $g(x,y)$ fonksiyonu hesaplanabilirdir. O zaman
+\begin{eqnarray*}
+  h(x) & = & g(x,x)+1\\
+       & = & f_x(x)+1
+\end{eqnarray*}
+fonksiyonu da hesaplanabilirdir. Her ilkel özyinelemeli $f_i$ fonksiyonu
+için $h$ ile $f_i$ değerleri $i$ noktasında farklıdır. Dolayısıyla $h$
+hesaplanabilir, fakat ilkel özyinelemeli değildir; $g$ için de aynı şey
+söylenebilir. Bu, Cantor'un köşegenleştirme savının ``etkin'' bir sürümüdür.
+
+İlkel özyinelemeli olmayan hesaplanabilir fonksiyonlara daha açık örnekler
+verilebilir. $g^n(x)$ gösterimi, toplam $n$ tane $g$ bulunacak biçimde
+$g(g(\dots g(x)))$ ifadesini göstersin ve $g_0,g_1,\dots$ fonksiyon dizisi
+\begin{eqnarray*}
+  g_0(x) & = & x+1\\
+  g_{n+1}(x) & = & g_n^x(x)
+\end{eqnarray*}
+ile tanımlansın. Her $g_n$ fonksiyonunun ilkel özyinelemeli olduğunu
+doğrulayabilirsiniz. Birbirini izleyen her fonksiyon öncekinden çok daha hızlı
+büyür: $g_1(x)=2x$, $g_2(x)=2^x\cdot x$ ve $g_3(x)$ kabaca $x$ tane $2$'den
+oluşan bir üs kulesi gibi büyür. Ackermann--P\'eter fonksiyonu özünde
+$G(x)=g_x(x)$ fonksiyonudur ve bunun her ilkel özyinelemeli fonksiyondan daha
+hızlı büyüdüğü gösterilebilir.
+
+İlkel özyinelemeli fonksiyonları numaralandırma sorununa dönelim. Her ilkel
+özyinelemeli fonksiyona simgesel bir gösterim atadığımızı anımsayın; dolayısıyla
+gösterimleri numaralandırmamız yeterlidir. Her $F$ gösterimine bir doğal sayı
+$\#(F)$'yi özyinelemeli olarak şöyle atayabiliriz:
+\begin{eqnarray*}
+  \#(0) & = & \langle0\rangle\\
+  \#(S) & = & \langle1\rangle\\
+  \#(\Proj{n}{i}) & = & \langle2,n,i\rangle\\
+  \#(\fn{Comp}_{k,l}[H,G_0,\dots,G_{k-1}]) & = &
+    \langle3,k,l,\#(H),\#(G_0),\dots,\#(G_{k-1})\rangle\\
+  \#(\fn{Rec}_l[G,H]) & = & \langle4,l,\#(G),\#(H)\rangle.
+\end{eqnarray*}
+Burada önceki bölümde verilen kodlar aracılığıyla her sayı dizisinin doğal
+bir sayı olarak görülebilmesini kullanıyoruz. Sonuçta her koda bir doğal sayı
+atanır. Elbette bazı diziler ve dolayısıyla bazı sayılar hiçbir gösterime
+karşılık gelmez. Fakat $i$ böyle bir gösterimi kodluyorsa $f_i$, gösterimi
+$i$ ile kodlanan tek yerli ilkel özyinelemeli fonksiyon; aksi durumda sabit
+$0$ fonksiyonu olsun. Böylece tek yerli ilkel özyinelemeli fonksiyonları
+numaralandırmanın açık bir yolunu elde ederiz.
+
+(Sabit sıfır fonksiyonu gibi bazı fonksiyonlar listede birden fazla kez
+görünür. Bu yalnızca kodlamamızın bir yan ürünü değildir; sabit sıfır
+fonksiyonunun birden fazla gösterime sahip olmasından da kaynaklanır. Daha
+sonra bu tekrarların hesaplanabilir biçimde önlenemeyeceğini göreceğiz.
+Örneğin belirli bir gösterimin sabit sıfır fonksiyonunu temsil edip etmediğine
+karar veren hesaplanabilir bir fonksiyon yoktur.)
+
+Şimdi $g(x,y)$ fonksiyonunu, az önce açıkladığımız numaralandırmadaki
+$f_x(y)$ ile verebiliriz. $g(x,y)$ fonksiyonunun hesaplanabilir olduğunu
+nereden biliyoruz? Sezgisel olarak bu açıktır: $g(x,y)$'yi hesaplamak için
+önce $x$'in ``paketini açar'', tek yerli bir fonksiyon gösterimi olup
+olmadığına bakarız. Öyleyse bu fonksiyonun $y$ girdisindeki değerini
+hesaplarız.
+
+\begin{tagblock}{TMs}
+\begin{digress}
+Bunu yapan bir programın, örneğin Java ya da C++ ile, biraz çalışmayla
+yazılabileceğine şimdiden ikna olmuş olabilirsiniz. O zaman sezgisel olarak
+hesaplanabilir olan her şeyin bir Turing makinesiyle hesaplanabileceğini
+söyleyen Church--Turing tezine başvurabiliriz.
+
+Elbette $g(x,y)$ fonksiyonunun hesaplanabilir olduğunu göstermenin daha
+doğrudan yolu, onu hesaplayan bir Turing makinesini açıkça betimlemektir. Bu,
+özellikle Church--Turing tezine ve sezgiye başvurmayı önler. Yakında
+$g(x,y)$'nin hesaplanabilir olduğunu, bir Turing makinesinde
+\emph{benzetilebilen} bir hesaplama modeline, yani özyinelemeli fonksiyonlara
+başvurarak gösterecek kadar araç geliştirmiş olacağız.
+\end{digress}
+\end{tagblock}
+
+\end{document}
+

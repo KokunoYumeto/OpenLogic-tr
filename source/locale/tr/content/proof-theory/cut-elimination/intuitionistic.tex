@@ -1,0 +1,72 @@
+$!A \ident (!B \lif !C)$ ise $\pi$ şöyle biter:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$!B, \Gamma \fCenter \Delta, !C$
+\RightLabel{\RightR{\lif}}
+\UnaryInf$\Gamma \fCenter \Delta, !B \lif !C$
+\LeftSubproofLabel{$\pi_1$}
+\AxiomC{}
+\RightLabel{$\pi_2'$}
+\Deduce$!B \lif !C, \Pi \fCenter \Lambda, !B$
+\AxiomC{}
+\RightLabel{$\pi_2''$}
+\Deduce$!C, \Pi \fCenter \Lambda$
+\RightLabel{\LeftR{\lif}}
+\BinaryInf$!B \lif !C, \Pi \fCenter \Lambda$
+\RightSubproofLabel{$\pi_2$}
+\RightLabel{\Cut}
+\BinaryInf$\Gamma, \Pi \fCenter \Delta, \Lambda$
+\DisplayProof
+\]
+\Cut{} ile biten şu !!{proof}{}ı ele alın:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$!B, \Gamma \fCenter \Delta, !C$
+\RightLabel{\RightR{\lif}}
+\UnaryInf$\Gamma \fCenter \Delta, !B \lif !C$
+\LeftSubproofLabel{$\pi_1$}
+\AxiomC{}
+\RightLabel{$\pi_2'$}
+\Deduce$!B \lif !C, \Pi \fCenter \Lambda, !B$
+\RightLabel{\Cut}
+\BinaryInf$\Gamma, \Pi \fCenter \Delta, \Lambda, !B$
+\DisplayProof
+\]
+Bu ispat $\pi$'den daha düşük kesme !!{height}~değerine sahiptir. Tümevarım
+varsayımı, $\Gamma, \Pi \fCenter \Delta, \Lambda, !B$ sekantının
+!!a{proof}{}ı~$\pi_1''$nü verir. Şimdi \Cut{} ile biten şu !!{proof}{}ı ele alın:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$!B, \Gamma \fCenter \Delta, !C$
+\AxiomC{}
+\RightLabel{$\pi_2''$}
+\Deduce$!C, \Pi \fCenter \Lambda$
+\RightLabel{\Cut}
+\BinaryInf$!B, \Gamma, \Pi \fCenter \Delta, \Lambda$
+\DisplayProof
+\]
+Bunun hem kesme derecesi hem de kesme !!{height}~değeri, $\pi$'nin kesme derecesi
+ile !!{height}~değerinden küçüktür. Dolayısıyla tümevarım varsayımı,
+$!B, \Gamma, \Pi, \Pi \fCenter \Delta, \Lambda, \Lambda$ sekantının bir
+\Log{G3c}-!!{proof}{}ı~$\pi_2'''$nü verir. Şimdi tümevarım varsayımını
+\Cut{} ile biten şu !!{proof}{}a uygulayın:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1''$}
+\Deduce$\Gamma, \Pi \fCenter \Delta, \Lambda, !B$
+\AxiomC{}
+\RightLabel{$\pi_2'''$}
+\Deduce$!B, \Gamma, \Pi, \Pi \fCenter \Delta, \Lambda,
+\Lambda$
+\RightLabel{\Cut}
+\BinaryInf$!B, \Gamma, \Pi \fCenter \Delta, \Lambda$
+\DisplayProof
+\]
+Bunun kesme derecesi $< \cutr{\pi}$ olduğundan
+$\Gamma,\Gamma,\Pi,\Pi,\Pi \fCenter \Delta,\Lambda,\Lambda,\Lambda$
+sekantının !!a{proof}{}ını elde ederiz. \olref[seq][inv]{prop:G3c-cont-adm}
+uygulanarak $\Gamma,\Pi \fCenter \Delta,\Lambda$ sekantının
+!!{proof}{}ı~$\pi'$ elde edilir.

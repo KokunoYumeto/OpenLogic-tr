@@ -1,0 +1,64 @@
+% Part: counterfactuals
+% Chapter: minimal-change-semantics
+% Section: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{cnt}{min}{int}
+
+\olsection{Giriş}
+
+Stalnaker ile Lewis ``Kibrit çakılsaydı yanardı'' gibi karşıolgusal koşullar
+için açıklamalar önerdi. Bu açıklamalar, böyle tümcelerin doğruluk
+koşullarının nasıl doğru anlaşılması gerektiğine ilişkin önerilerdi. İki
+önerinin de ardındaki düşünce şudur: Bir karşıolgusal koşulun doğru olup
+olmadığını değerlendirmek için, önbileşeni doğru kılmak üzere gerçek dünyanın
+durumundan en az ölçüde ayrılan olası dünyaları incelemeliyiz. Bu olası
+dünyalarda artbileşen doğruysa karşıolgusal doğrudur. Örneğin elimde bir
+kibritle kibrit kutusu tuttuğumu varsayalım. Gerçek dünyada yalnızca onlara
+bakıyor ve kibriti çaksaydım ne olacağını düşünüyorum. Kibriti çaktığım, fakat
+gerçek dünyadan en az ayrılan durumda eyleme geçmeye karar verir ve kibriti
+çakarım. Başka hiçbir şeyin değişmemesi anlamında bu ayrım en azdır: Aynı
+zamanda havaya sıçramam, kibriti çakmam saçımı da tutuşturmaz, parmaklarımdaki
+bütün gücü birden yitirmem, su tabancasıyla kurulmuş bir pusuda aynı anda
+sırılsıklam edilmem vb. Bu alternatif olasılıkta kibrit yanar. Dolayısıyla
+kibriti çaksaydım yanacağı doğrudur.
+
+Bu sezgisel açıklama, karşıolgusal mantıkların biçimsel semantiğiyle
+birleştirilebilir. Lewis karşıolgusal için ``$\boxright$'' simgesini,
+Stalnaker ise~``$>$'' simgesini kullandı. Biz~$\cif$'i kullanacak ve onu
+önerme mantığına ikili bağlaç olarak ekleyeceğiz. Böylece $!A\lif !B$
+biçimindeki !!{formula}s{}in yanı sıra $!A\cif !B$ biçiminde !!{formula}s da
+vardır. Modal mantığın bağıntısal semantiği gibi biçimsel semantik de
+!!{formula}s{}in dünyalarda değerlendirildiği modellere dayanır;
+$\mSat{M}{!A\cif !B}[w]$'yi tanımlayan sağlama koşulu, bazı (başka)
+dünyalar~$w'$ için $\mSat{M}{!A}[w']$ ile $\mSat{M}{!B}[w']$ kullanılarak
+verilir. Hangi $w'$? Sezgisel olarak $\mSat{M}{!A}[w']$ olan ve~$w$'ye en
+yakın dünya ya da dünyalar. Bu nedenle modele bir ``yakınlık'' bağıntısının
+da eklenmesi gerekir.
+
+Lewis karşıolgusal durumları grafiksel olarak göstermenin öğretici bir
+yolunu sundu. Her olası dünya, başka dünyaları içeren iç içe küreler
+kümesinin merkezindedir---bu küreleri eş merkezli çemberler olarak çizeriz.
+İki küre arasındaki dünyalar merkezdeki dünyaya birbirleri kadar yakındır;
+içteki bir kürede bulunanlar daha yakın, dıştaki bir kürede bulunanlar daha
+uzaktır.
+\begin{center}
+\begin{tikzpicture}[scale=.7]\small
+  \spheresystem{5}
+  \draw (0,0) node {$w$};
+  \propositionintersect{0}{4}{40}{3.5}
+  {\tikzset{proposition/.append={smooth,tension=1.4}}
+  \proposition[shift={(1.6,-1)}]{90}{1}{30}{4}}
+  \path (1.5,3) node[below] {$\formula{B}$};
+  \path (3,0) node {$\formula{A}$};
+\end{tikzpicture}
+\end{center}
+En yakın $!A$-dünyaları, $!A$'nın sağlandığı ve merkezdeki~$w$ dünyasının
+çevresindeki en küçük kürede (gri alanda) bulunan $w'$ dünyalarıdır.
+Sezgisel olarak $!A\cif !B$, en yakın bütün $!A$-dünyalarında $!B$ doğruysa
+$w$'de sağlanır.
+
+\end{document}

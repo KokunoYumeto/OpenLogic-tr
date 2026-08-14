@@ -1,0 +1,61 @@
+% Part: first-order-logic
+% Chapter: proof-systems
+% Section: sequent-calculus
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[tr]{fol}{prf}{seq}}
+      {\olfileid[tr]{pl}{prf}{seq}}
+
+\olsection{Sekant Hesabı}
+
+Birçok !!{derivation} sistemi !!{sentence}s içeren düzenlemelerle çalışırken,
+sekant hesabı \emph{sekantlarla} çalışır. Sekant, şu biçimde bir ifadedir:
+\[
+!A_1, \dots, !A_m \Sequent !B_1, \dots, !B_n.
+\]
+Başka bir deyişle sekant, sekant simgesi~$\Sequent$ ile ayrılan iki
+!!{sentence}s dizisinden oluşur. Dizilerden herhangi biri boş olabilir.
+Bir !!^a{derivation}, sekant hesabında bir sekant ağacıdır. En üstteki sekantlar
+özel bir biçimdedir (bunlara “başlangıç sekantları” veya “aksiyomlar” denir)
+ve diğer her sekant, hemen üstündeki sekantlardan bir çıkarım kuralıyla elde
+edilir. Çıkarım kuralları ya sekantlardaki !!{sentence}s üzerinde işlem yapar
+(bunları sol veya sağ tarafta ekler, çıkarır ya da yeniden sıralar) ya da
+kuralın sonucuna karmaşık bir !!{formula} getirir. Örneğin $\LeftR{\land}$
+kuralı, $!A, \Gamma \Sequent \Delta$ ifadesinden $!A \land !B, \Gamma
+\Sequent \Delta$ ifadesinin çıkarılmasına izin verir. $\RightR{\lif}$ kuralı
+ise herhangi bir $\Gamma$, $\Delta$, $!A$ ve~$!B$ için $!A, \Gamma \Sequent
+\Delta, !B$ ifadesinden $\Gamma \Sequent \Delta, !A \lif !B$ ifadesinin
+çıkarılmasına izin verir. (Özellikle $\Gamma$ ve~$\Delta$ boş olabilir.)
+
+Sekant hesabına dayalı $\Proves$ bağıntısı şöyle tanımlanır: $\Gamma_0$'daki
+her $!A$ için $!A\in\Gamma$ olacak ve kökünde $\Gamma_0 \Sequent !A$ sekantı
+bulunan bir !!{derivation} var olacak biçimde bir $\Gamma_0$ dizisi varsa,
+$\Gamma \Proves !A$ olur. $\Sequent !A$ sekantı için !!a{derivation} varsa
+$!A$, sekant hesabında bir teoremdir. Örneğin aşağıdaki !!a{derivation},
+$\Proves (!A \land !B) \lif !A$ olduğunu gösterir:
+\begin{prooftree}
+  \Axiom$!A \fCenter !A$
+  \RightLabel{\LeftR{\land}}
+  \UnaryInf$!A \land !B \fCenter !A$
+  \RightLabel{\RightR{\lif}}
+  \UnaryInf$\fCenter (!A \land !B) \lif !A$
+\end{prooftree}
+
+$\Gamma_0 \Sequent$ sekantı için !!a{derivation} varsa (burada
+$\Gamma_0$'daki her $!A$, $\Gamma$'nın elemanıdır ve sekantın sağ tarafı
+boştur), $\Gamma$ kümesi sekant hesabında tutarsızdır. Tutarsız bir kümeden
+\RightR{\Weakening} kuralıyla her bir !!{sentence} için onu !!{derive} mümkündür.
+
+Sekant hesabı 1930'larda Gerhard Gentzen tarafından geliştirildi. Sistematik
+ve simetrik tasarımı sayesinde, !!{derivation}s kuramı geliştirmek için çok
+yararlı bir biçimciliktir. Sekant hesabında !!{derivation}s bulmak görece
+kolaydır; ancak bunları okumak ve ispatlarla bağlantılarını görmek çoğu zaman
+zordur. Yine de sekant hesabı, !!{derivation}s kullanan çok zarif bir
+yaklaşım olduğunu kanıtlamıştır ve birçok mantığın bu tür bir !!{derivation}
+sistemi vardır.
+
+\end{document}

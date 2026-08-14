@@ -1,0 +1,74 @@
+% part: intuitionistic-logic
+% chapter: semantics
+% section: relational-models
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{int}{sem}{rel}
+
+\olsection{\usetoken{P}{relational model}}
+
+Sezgici önerme mantığına kesin bir semantik vermek için, !!{formula}s{}i
+kendisine göre değerlendirebileceğimiz bir model sayılmanın ne demek olduğunu
+tanımlamalıyız. Böyle bir tanım temelinde geçerlilik ve mantıksal gerektirme
+gibi semantik kavramları da tanımlamak mümkün olur. Böyle bir semantik,
+!!{relational model}s tarafından verilir.
+
+\begin{defn}
+  Sezgici önerme mantığı için !!^a{relational model}, bir
+  $\mModel{M} = \tuple{W, R, V}$ üçlüsüdür; burada
+  \begin{enumerate}
+  \item $W$ boş olmayan bir kümedir,
+  \item $R$,~$W$ üzerinde bir kısmi sıralamadır (yani yansımalı, ters simetrik
+    ve geçişli bir ikili bağıntıdır),
+  \item $V$, her !!{propositional
+    variable}~$p$'ye~$W$'nin bir alt kümesini
+    atayan bir fonksiyondur ve
+  \item $V$, $R$'ye göre monotondur; yani $w \in V(p)$ ve $Rww'$ ise
+    $w' \in V(p)$ olur.
+  \end{enumerate}
+\end{defn}
+
+\begin{defn}\ollabel{defn:true-at-w}
+  $!A$'nın \emph{$w$'de, $\mModel{M}$ modelinde doğru olması},
+  $\mSat{M}{!A}[w]$, kavramını tümevarımlı olarak şöyle tanımlarız:
+  \begin{enumerate}
+  \item \indcase{!A}{p}{$\mSat{M}{\indfrm}[w]$ ancak ve ancak $w \in V(p)$ ise.}
+  \item \indcase{!A}{\lfalse}{$\mSat{M}{\indfrm}[w]$ değil.}
+  \item \indcase{!A}{\lnot !B}{$\mSat{M}{\indfrm}[w]$ ancak ve ancak hiçbir
+    $w'$ için $Rww'$ ile $\mSat{M}{!B}[w']$ birlikte geçerli değilse.}
+  \item \indcase{!A}{!B \land !C}{$\mSat{M}{\indfrm}[w]$ ancak ve ancak
+    $\mSat{M}{!B}[w]$ ve $\mSat{M}{!C}[w]$ ise.}
+  \item \indcase{!A}{!B \lor !C}{$\mSat{M}{\indfrm}[w]$ ancak ve ancak
+    $\mSat{M}{!B}[w]$ ya da $\mSat{M}{!C}[w]$ (veya her ikisi) ise.}
+  \item \indcase{!A}{!B \lif !C}{$\mSat{M}{\indfrm}[w]$ ancak ve ancak her
+    $w'$ için, $Rww'$ iken $\mSat{M}{!B}[w']$ değil ya da
+    $\mSat{M}{!C}[w']$ ise} (veya her ikisi).
+  \end{enumerate}
+  $\mSat/{M}{!A}[w]$ yazımı, $\mSat{M}{!A}[w]$ olmadığını belirtir. $\Gamma$
+  bir !!{formula}s kümesiyse $\mSat{M}{\Gamma}[w]$, $\mSat{M}{!B}[w]$
+  demektir ve bu tüm $!B \in \Gamma$ için geçerlidir.
+\end{defn}
+
+\begin{prob}
+  \olref[int][sem][rel]{defn:true-at-w} uyarınca
+  $\mSat{M}{\lnot !A}[w]$ ancak ve ancak $\mSat{M}{!A \lif \lfalse}[w]$ ise
+  geçerlidir; bunu gösterin.
+\end{prob}
+
+\begin{prop}\ollabel{prop:true-monotonic}
+  Dünyalardaki doğruluk~$R$'ye göre monotondur; yani
+  $\mSat{M}{!A}[w]$ ve $Rww'$ ise $\mSat{M}{!A}[w']$.
+\end{prop}
+
+\begin{proof}
+  Alıştırma.
+\end{proof}
+
+\begin{prob}
+  \olref[int][sem][rel]{prop:true-monotonic} önermesini ispatlayın.
+\end{prob}
+
+\end{document}

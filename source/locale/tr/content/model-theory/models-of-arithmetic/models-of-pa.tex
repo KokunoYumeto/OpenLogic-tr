@@ -1,0 +1,263 @@
+% Part: model-theory
+% Chapter: models-of-arithmetic
+% Section: models-of-pa
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{mod}{mar}{mpa}
+\section{$\Th{PA}$ Modelleri}
+
+\begin{explain}
+$\Th{TA}$ kuramının her standart olmayan modeli aynı zamanda
+$\Th{PA}$ modelidir. $\Th{TA}$ ve dolayısıyla $\Th{PA}$ kuramının
+standart olmayan modellerinin var olduğunu biliyoruz. Böyle modellerin
+bütün standart ``sayıların'' ``ötesinde'' bulunan, evrenin
+!!{element}s ifadeleri olan standart olmayan ``sayılar'' içerdiğini de
+biliyoruz. Peki bunlar nasıl düzenlenmiştir? Kaç tanedir? Daha zayıf
+$\Th Q$ kuramının modellerinin yalnızca tek bir standart olmayan sayı
+içerebildiğini gördük. Fakat bu basit !!{structure}s, $\Th{PA}$ veya
+$\Th{TA}$ modelleri değildir.
+
+$\Th{PA}$ ya da $\Th{TA}$ modellerinin yapısını anlamanın anahtarı,
+bu kuramlarda hangi olguların !!{derivable} olduğunu görmektir.
+Örneğin $\Th{PA}$ daha şimdiden
+$\lforall[x][\eq/[x][x']]$ ve
+$\lforall[x][\lforall[y][\eq[(x+y)][(y+x)]]]$ tümcelerini ispatlar;
+dolayısıyla bu !!{sentence}s ifadelerinin yanlış olduğu basit yapılar
+$\Th{PA}$ modeli olamaz.
+
+$\Struct M$, $\Th{PA}$ modeli olsun. $\Th{PA}\Proves !A$ ise
+$\Sat{M}{!A}$. Yine $\Assign{\Obj0}{M}$ için $\nszero$,
+$\Assign{\prime}{M}$ için $\nssucc$, $\Assign{+}{M}$ için $\nsplus$,
+$\Assign{\times}{M}$ için $\nstimes$ ve $\Assign{<}{M}$ için
+$\nsless$ kullanalım. Her !!{sentence}~$!A$, $\nszero$, $\nssucc$,
+$\nsplus$, $\nstimes$ ve $\nsless$ hakkında bir koşul belirtir;
+$\Sat{M}{!A}$ ise bu koşul sağlanmalıdır. Örneğin $\Sat{M}{!Q_1}$,
+yani
+$\Sat{M}{\lforall[x][\lforall[y][(\eq[x'][y']\lif\eq[x][y])]]}$
+ise $\nssucc$ !!{injective} olmak zorundadır.
+\end{explain}
+
+\begin{prop}
+$\Struct M$ içinde $\nsless$ katı bir doğrusal sıralamadır; yani:
+\begin{enumerate}
+\item Hiçbir $x\in\Domain M$ için $x\nsless x$ değil.
+\item $x\nsless y$ ve $y\nsless z$ ise $x\nsless z$.
+\item Her $x\neq y$ için $x\nsless y$ veya $y\nsless x$.
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+$\Th{PA}$ şunları ispatlar:
+\begin{enumerate}
+\item $\lforall[x][\lnot x < x]$;
+\item $\lforall[x][\lforall[y][\lforall[z][((x < y \land y < z) \lif x < z)]]]$;
+\item $\lforall[x][\lforall[y][((x < y \lor y < x) \lor \eq[x][y])]]$.
+\end{enumerate}
+\end{proof}
+
+\begin{prop}
+\ollabel{prop:M-discrete} $\nszero$, $\Domain M$ içindeki
+$\nsless$ sıralamasının en küçük !!{element} ifadesidir. Her $x$ için
+$x\nsless x^\nssucc$ ve $x^\nssucc$, bu özelliğe sahip en küçük
+!!{element} ifadesidir. $x\neq\nszero$ olan her $x$ için
+$y^\nssucc=x$ olacak tek bir $y$ vardır. Bu $y$'ye $\Struct M$
+içindeki $x$'in ``öncülü'' der ve $^\nssucc x$ ile gösteririz.
+\end{prop}
+
+\begin{proof}
+Alıştırma.
+\end{proof}
+
+\begin{prob}
+\olref[mod][mar][mpa]{prop:M-discrete} içindeki $\nszero$, $\nssucc$
+ve $\nsless$ özelliklerini güvence altına alan, $\Lang{L_A}$ dilinde
+$\Th{PA}$ kuramında !!{derivable} (ve dolayısıyla $\Struct N$ içinde
+doğru) !!{sentence}s bulun.
+\end{prob}
+
+\begin{prop}
+$\Struct M$ yapısının bütün standart !!{element}s, $\nsless$
+sıralamasına göre bütün standart olmayan !!{element}s ifadelerinden
+küçüktür.
+\end{prop}
+
+\begin{proof}
+$\Struct M$ yapısının standart bir !!{element} ifadesi olan
+$\Value{\num n}{M}$ için kısaca $n$ yazacağız. Daha $\Th Q$ bile her
+$n\in\Nat$ için
+$\lforall[x][(x<\num n'\lif(\eq[x][\num0]\lor\eq[x][\num1]
+\lor\dots\lor\eq[x][\num n]))]$ ispatlar. $\nszero$ değerinden
+$\nsless$ olan hiçbir !!{element}s yoktur. Dolayısıyla $n$ standart ve
+$x$ standart değilse $x\nsless n$ olamaz. Tanım gereği standart
+olmayan eleman hiçbir $n\in\Nat$ için $\Value{\num n}{M}$ olmadığına
+göre $x\neq n$. $\nsless$ doğrusal bir sıralama olduğundan
+$n\nsless x$ olmak zorundadır.
+\end{proof}
+
+\begin{prop}
+$\Domain M$ içindeki her standart olmayan !!{element}~$x$ şu alt
+kümenin bir elemanıdır:
+\[
+\dots ^{\nssucc\nssucc\nssucc}x \nsless ^{\nssucc\nssucc}x \nsless
+^{\nssucc}x \nsless x \nsless x^{\nssucc} \nsless x^{\nssucc\nssucc}
+\nsless x^{\nssucc\nssucc\nssucc} \nsless \dots
+\]
+Bu alt kümeye $x$'in \emph{bloğu} der ve $[x]$ ile gösteririz. En küçük
+ve en büyük !!{element} içermez. Bazı standart $n$ için
+$x\nsplus n=y$ ya da $y\nsplus n=x$ olan $y\in\Domain M$
+elemanlarının kümesi olarak nitelenebilir.
+\end{prop}
+
+\begin{proof}
+Böyle bir $[x]$ kümesi her zaman vardır; çünkü $\Domain M$ içindeki
+her !!{element}~$y$ tek bir ardıla~$y^\nssucc$ ve $y\neq\nszero$ ise
+tek bir öncüle~$^\nssucc y$ sahiptir. Ardışık $y,y^\nssucc$
+!!{element}s için $y\nsless y^\nssucc$ ve $y^\nssucc$, $\Domain M$
+içinde $y$'den $\nsless$ olan en küçük !!{element} ifadesidir.
+Her zaman $^\nssucc y\nsless y$ ve $y\nsless y^\nssucc$ olduğundan
+$[x]$'in en küçük ya da en büyük !!{element} ifadesi yoktur.
+$y\in[x]$ ise $x\in[y]$; çünkü ya
+$y^{\nssucc\dots\nssucc}=x$ ya da
+$x^{\nssucc\dots\nssucc}=y$. Birincisinde $n$ tane $\nssucc$ varsa
+$y\nsplus n=x$ ve tersi geçerlidir; çünkü $n$, $\prime$ sayısıysa
+$\Th{PA}\Proves\lforall[x][\eq[x^{\prime\dots\prime}][(x+\num n)]]$.
+\end{proof}
+
+\begin{prop}
+$[x]\neq[y]$ ve $x\nsless y$ ise her $u\in[x]$ ve her $v\in[y]$ için
+$u\nsless v$.
+\end{prop}
+
+\begin{proof}
+$\Th{PA}\Proves\lforall[x][\lforall[y][(x<y\lif(x'<y\lor x'=y))]]$
+olduğuna dikkat edin. Dolayısıyla $u\nsless v$ ve $[u]\neq[v]$ ise
+her $n$ için $u\nsplus n^\nssucc\nsless v$.
+
+Her $u\in[x]$ için $u\nsless y$: Varsayım gereği $x\nsless y$.
+$u\nsless x$ ise geçişlilikten $u\nsless y$. $x\nsless u$ ve
+$u\in[x]$ ise bazı $n$ için $u=x\nsplus n^\nssucc$; az önceki olgu
+gereği yine $u\nsless y$.
+
+Şimdi $v\in[y]$ ve $v\nsless y$ olsun; yani bazı standart $m$ için
+$v\nsplus m^\nssucc=y$. $v\nsless x$ olamaz; yoksa
+$y=v\nsplus m^\nssucc\nsless x$ olurdu. Ayrıca $x\neq v$; yoksa
+$x\nsplus m^\nssucc=v\nsplus m^\nssucc=y$ ve $[x]=[y]$ olurdu.
+Dolayısıyla $x\nsless v$. O zaman her $n$ için
+$x\nsplus n^\nssucc\nsless v$. Böylece $x\nsless u$ ve $u\in[x]$
+ise $u\nsless v$; $u\nsless x$ ise geçişlilikten yine $u\nsless v$.
+
+Son olarak $y\nsless v$ ise gösterdiğimiz $u\nsless y$ ile
+geçişlilikten $u\nsless v$.
+\end{proof}
+
+\begin{cor}
+$[x]\neq[y]$ ise $[x]\cap[y]=\emptyset$.
+\end{cor}
+
+\begin{proof}
+$z\in[x]$ ve $x\nsless y$ varsayalım. O zaman bütün $u\in[y]$ için
+$z\nsless u$. $z\in[y]$ olsaydı $z\nsless z$ olurdu. $y\nsless x$
+durumu da benzerdir.
+\end{proof}
+
+\begin{explain}
+Bu, blokların kendilerinin $\nsless$ sıralamasına uygun biçimde
+sıralanabileceği anlamına gelir: $[x]\nsless[y]$ ancak ve ancak
+$x\nsless y$; eşdeğer olarak herhangi $u\in[x]$ ve $v\in[y]$ için
+$u\nsless v$. Standart blok $[0]$ açıkça en küçük bloktur. Hiçbir
+standart olmayan blokla kesişmez; iki standart olmayan blok da
+birbiriyle kesişmez. Özellikle ardılları veya öncülleri tekrar tekrar
+alarak başka bir bloğa ``ulaşılamaz.''
+\end{explain}
+
+\begin{prop}
+$x$ ve $y$ standart değilse $x\nsless x\nsplus y$ ve
+$x\nsplus y\notin[x]$.
+\end{prop}
+
+\begin{proof}
+$y$ standart değilse $y\neq\nszero$.
+$\Th{PA}\Proves\lforall[x][(y\neq\Obj0\lif x<(x+y))]$. Şimdi
+$x\nsplus y\in[x]$ varsayalım. $x\nsless x\nsplus y$ olduğundan bazı
+standart $n$ için $x\nsplus n^\nssucc=x\nsplus y$ olurdu. Fakat
+$\Th{PA}\Proves\lforall[x][\lforall[y][\lforall[z][
+(\eq[(x+y)][(x+z)]\lif y=z)]]]$ (toplamada sadeleştirme yasası).
+Bu, bazı standart $n$ için $y=n^\nssucc$ demek olurdu; oysa $y$
+standart değildir.
+\end{proof}
+
+\begin{prop}
+En küçük standart olmayan blok yoktur.
+\end{prop}
+
+\begin{proof}
+$\Th{PA}\Proves\lforall[x][\lexists[y][(\eq[(y+y)][x]\lor
+\eq[(y+y)'][x])]]$; yani her $x$, olası kalan~$1$ ile birlikte $2$'ye
+bölünebilir. $x$ standart değilse $y$ de standart değildir. Önceki
+önerme gereği $y\nsless y\nsplus y$ ve $y\nsplus y\notin[y]$.
+Dolayısıyla $y\nsless(y\nsplus y)^\nssucc$ ve
+$(y\nsplus y)^\nssucc\notin[y]$. Fakat ya $x=y\nsplus y$ ya da
+$x=(y\nsplus y)^\nssucc$; öyleyse $y\nsless x$ ve $y\notin[x]$.
+\end{proof}
+
+\begin{prop}
+En büyük blok yoktur.
+\end{prop}
+
+\begin{proof}
+Alıştırma.
+\end{proof}
+
+\begin{prob}
+Standart olmayan bir $\Th{PA}$ modelinde en büyük blok bulunmadığını
+gösterin.
+\end{prob}
+
+\begin{prop}
+\ollabel{prop:blocks-dense}
+Blokların sıralaması yoğundur. Yani $x\nsless y$ ve $[x]\neq[y]$ ise
+ikisi arasında, ikisinden de farklı bir $[z]$ bloğu vardır.
+\end{prop}
+
+\begin{proof}
+$x\nsless y$ varsayalım. Daha önce olduğu gibi $x\nsplus y$, olası bir
+kalanla ikiye bölünebilir: Ya $x\nsplus y=z\nsplus z$ ya da
+$x\nsplus y=(z\nsplus z)^\nssucc$ olacak bir $z\in\Domain M$ vardır.
+$z$, $x$ ile $y$'nin ``ortalamasıdır''; $x\nsless z$ ve
+$z\nsless y$.
+\end{proof}
+
+\begin{prob}
+\olref[mod][mar][mpa]{prop:blocks-dense} önermesinin ayrıntılı bir
+ispatını yazın. $z$'nin varlığını güvence altına almak için $\Th{PA}$
+hangi !!{sentence} ifadesini !!{derive} etmelidir? Neden
+$x\nsless z$ ve $z\nsless y$; neden $[x]\neq[z]$ ve $[z]\neq[y]$?
+\end{prob}
+
+\begin{explain}
+Sayılabilir standart olmayan bir modelde standart olmayan bloklar
+rasyoneller gibi sıralanır: Uç noktaları olmayan !!a{denumerable}
+yoğun doğrusal sıralama oluştururlar. Böyle herhangi iki
+!!{denumerable} sıralamanın izomorf olduğu gösterilebilir. Buradan,
+doğru aritmetiğin herhangi iki !!{enumerable} standart olmayan modeli
+$\Struct M_1$ ve $\Struct M_2$ için yalnız $<$ ile $=$ içeren dile
+indirgenmiş yapıların izomorf olduğu çıkar. Gerçekten bir izomorfizma
+$h$ şöyle tanımlanabilir: $\Struct M_1$ ve $\Struct M_2$ yapılarının
+standart kısımları standart model~$\Struct N$ ile, dolayısıyla
+birbiriyle izomorftur. Standart olmayan kısmı oluşturan bloklar
+rasyoneller gibi sıralandığından izomorftur; blokların bir izomorfizması
+her blok içindeki gelişigüzel elemanları eşleştirip ardından
+$\Struct M_1$ içindeki $x$'in ardılının görüntüsünü, $\Struct M_2$
+içindeki $x$ görüntüsünün ardılı olarak alarak blokların \emph{içine}
+genişletilebilir. $\mathfrak M_1$ ile $\mathfrak M_2$ yapılarının
+aritmetiğin tam dilinde izomorf olduğu \emph{sonucu çıkmaz} (izomorfizma
+her zaman !!a{language} diline göredir); çünkü $\Domain{M_1}$ ve
+$\Domain{M_2}$ üzerinde toplama ve çarpmayı tanımlamanın izomorf olmayan
+yolları vardır. (Bu sonuç ayrıca Vaught'un, tam bir kuramın sayılabilir
+modellerinin sayısının $2$ olamayacağını söyleyen ünlü teoreminden de
+çıkar.)
+\end{explain}
+\end{document}

@@ -1,0 +1,128 @@
+% Part: first-order-logic
+% Chapter: axiomatic-deduction
+% Section: proving-things
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[tr]{fol}{axd}{pro}}
+      {\olfileid[tr]{pl}{axd}{pro}}
+
+\olsection{\usetoken{P}{derivation} Örnekleri}
+
+\begin{ex}
+$(\lnot !D \lor !E) \lif (!D \lif !E)$ ifadesini ispatlamak istediğimizi
+varsayalım. Bunun aksiyomlarımızdan herhangi birinin örneği olmadığı açıktır;
+dolayısıyla onu !!{derive} işlemiyle elde etmek için \MP{} kuralını
+kullanmalıyız. Bu örnekte gereken kural MP'dir; $!A$ ile $!A \lif !B$
+verildiğinde $!B$'yi doğru bir adım olarak gerekçelendirmemizi sağlar. Bir strateji,
+\olref[prp]{ax:lor3} içinde $!A$ yerine $\lnot !D$, $!B$ yerine $!E$ ve $!C$
+yerine $!D \lif !E$ koymak, yani şu örneği kullanmak olabilir:
+\[
+(\lnot !D \lif (!D \lif !E)) \lif ((!E \lif (!D \lif !E)) \lif ((\lnot
+!D \lor !E) \lif (!D \lif !E))).
+\]
+Neden? MP'nin iki kez uygulanması, istediğimiz son bölümü verir.
+$\lnot !D \lif (!D \lif !E)$ ifadesinin \olref[prp]{ax:lnot2}'nin ve
+$!E \lif (!D \lif !E)$ ifadesinin \olref[prp]{ax:lif1}'in bir örneği
+olduğunu kolayca görürüz. Böylece !!{derivation} şöyledir:
+\begin{derivation}
+  1. &  $\lnot !D \lif (!D \lif !E)$ & \olref[prp]{ax:lnot2} \\
+  2. & $(\lnot !D \lif (!D \lif !E)) \lif {}$\\
+  &\qquad $((!E \lif (!D \lif !E)) \lif ((\lnot !D \lor !E) \lif (!D \lif !E)))$ & \olref[prp]{ax:lor3}\\
+  3. & $(!E \lif (!D \lif !E)) \lif ((\lnot !D \lor !E) \lif (!D \lif !E))$ & 1, 2, \MP\\
+  4. & $!E \lif (!D \lif !E)$ & \olref[prp]{ax:lif1}\\
+  5. & $(\lnot !D \lor !E) \lif (!D \lif !E)$ & 3, 4, \MP
+\end{derivation}
+\end{ex}
+
+\begin{ex}\ollabel{ex:identity}
+$!D \lif !D$ için bir !!a{derivation} bulmaya çalışalım. Bu, bir aksiyom
+örneği değildir; dolayısıyla onu !!{derive} işlemiyle elde etmek için \MP{}
+kullanmalıyız. \olref[prp]{ax:lif1}, \MP{} uygulayabileceğimiz $!A \lif !B$
+biçiminde bir aksiyomdur. Bunun işe yaraması için \MP{}'nin doğru bir adım
+olarak vereceği $!B$ elbette hedefimiz olan $!D \lif !D$ olmalıdır. O zaman
+$!A$ da $!D$ olmalı; yani \olref[prp]{ax:lif1}'in şu örneğine bakabiliriz:
+\[
+!D \lif (!D \lif !D)
+\]
+\MP{} uygulamak için karşılık gelen ikinci öncülü, yani $!A$'yı da
+gerekçelendirmemiz gerekir. Bizim durumumuzda bu $!D$ olur; ancak
+$!D$'yi tek başına !!{derive} işlemiyle elde edemeyiz. Bu nedenle başka bir
+strateji gerekir.
+
+Yalnızca $\lif$ içeren diğer aksiyom \olref[prp]{ax:lif2}, yani
+\[
+(!A \lif (!B \lif !C)) \lif ((!A \lif !B) \lif (!A \lif !C))
+\]
+ifadesidir. İç içe son koşula \MP{}'yi iki kez uygulayarak ulaşabiliriz.
+Dolayısıyla \olref[prp]{ax:lif2}'nin, $!A \lif !C$ bölümünün !!{derive}
+işlemiyle elde etmek istediğimiz !!{formula} olan $!D \lif !D$'ye eşit
+olduğu bir örneğini isteriz. Elbette
+$!A$ ile $!C$ bu durumda $!D$'dir. $!A \lif (!B \lif !C)$ ile
+$!A \lif !B$ ifadelerinin, yani $!D \lif (!B \lif !D)$ ile
+$!D \lif !B$ ifadelerinin de !!{derivable} olması için $!B$'yi nasıl
+seçmeliyiz? Bunların ilki, $!B$ için ne seçersek seçelim zaten
+\olref[prp]{ax:lif1}'in bir örneğidir. $!B$'yi $(!D \lif !D)$ seçersek
+$!D \lif !B$ de \olref[prp]{ax:lif1}'in başka bir örneği olur. Buna göre
+!!{derivation} şöyledir:
+\begin{derivation}
+  1. & $!D \lif ((!D \lif !D) \lif !D)$ & \olref[prp]{ax:lif1}\\
+  2. & $(!D \lif ((!D \lif !D) \lif !D)) \lif {}$\\
+  & \qquad $((!D \lif (!D \lif !D)) \lif (!D \lif !D))$ & \olref[prp]{ax:lif2}\\
+  3. & $(!D \lif (!D \lif !D)) \lif (!D \lif !D)$ & 1, 2, \MP\\
+  4. & $!D \lif (!D \lif !D)$ & \olref[prp]{ax:lif1}\\
+  5. & $!D \lif !D$ & 3, 4, \MP
+\end{derivation}
+\end{ex}
+
+\begin{ex}\ollabel{ex:chain}
+Bazen bir !!a{derivation} bulunduğunu göstermek isteriz: hedef bir
+!!{formula}, $\Gamma$ ise başka !!{formula}s içerir. Örneğin
+$\Gamma = \{!A \lif !B, !B \lif !C\}$ kümesinden $!A \lif !C$'yi
+!!{derive} işlemiyle elde edebileceğimizi gösterelim.
+\begin{derivation}
+  1. & $!A \lif !B$ & \Hyp\\
+  2. & $!B \lif !C$ & \Hyp\\
+  3. & $(!B \lif !C) \lif (!A \lif (!B \lif !C))$ & \olref[prp]{ax:lif1} \\
+  4. & $!A \lif (!B \lif !C)$ & 2, 3, \MP\\
+  5. & $(!A \lif (!B \lif !C)) \lif {}$\\
+  & \qquad $((!A \lif !B) \lif (!A \lif !C))$ & \olref[prp]{ax:lif2}\\
+  6. & $((!A \lif !B) \lif (!A \lif !C))$ & 4, 5, \MP\\
+  7. & $!A \lif !C$ & 1, 6, \MP
+\end{derivation}
+``\Hyp'' (hypothesis, yani varsayım) etiketi taşıyan satırlar, satırdaki
+ifadenin bir !!{formula} olduğunu ve $\Gamma$ içinde bir !!a{element} olarak
+yer aldığını belirtir.
+\end{ex}
+
+\begin{prop}
+  \ollabel{prop:chain} $\Gamma \Proves !A \lif !B$ ve $\Gamma
+  \Proves !B \lif !C$ ise $\Gamma \Proves !A \lif !C$.
+\end{prop}
+
+\begin{proof}
+  $\Gamma \Proves !A \lif !B$ ve $\Gamma \Proves !B \lif !C$ olduğunu
+  varsayalım. O zaman $\Gamma$'dan $!A \lif !B$ için bir !!a{derivation};
+  ayrıca $\Gamma$'dan $!B \lif !C$ için bir !!a{derivation} vardır. Bunları
+  art arda yazarak tek bir !!{derivation} içinde birleştirin. Şimdi önceki
+  örnekteki !!{derivation} içinden 3--7. satırları ekleyin. Böylece $\Gamma$'dan
+  şu !!a{derivation} elde edilir; bunun son satırı $!A \lif !C$'dir. Bu
+  !!{derivation} için 4. ve 7. satırların gerekçeleri geçerliliğini
+  korur: 1. satıra yapılan başvuruyu $!A \lif !B$ ile biten !!{derivation} içindeki son
+  satıra, 2. satıra yapılan başvuruyu da $!B \lif !C$'nin
+  ilgili !!{derivation} içindeki son satıra yapılan başvuruyla değiştiririz.
+\end{proof}
+
+\begin{prob}
+Aşağıdakileri aksiyomlardan başlayan !!{derivation}s sergileyerek gösterin:
+\begin{enumerate}
+\item $(!A \land !B) \lif (!B \land !A)$
+\item $((!A \land !B) \lif !C) \lif (!A \lif (!B \lif !C))$
+\item $\lnot(!A \lor !B) \lif \lnot !A$
+\end{enumerate}
+\end{prob}
+
+\end{document}

@@ -1,0 +1,100 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{his}{set}{pathology}
+\olsection{Patolojiler}
+
+Ancak \emph{limit} tanımının bazı oldukça ``patolojik'' kuruluşlara izin
+verdiği ortaya çıktı.
+
+Bolzano 1830'lar dolayında \emph{her yerde sürekli}, fakat \emph{hiçbir yerde
+türevlenebilir olmayan} bir fonksiyon keşfetti. (Ne yazık ki Bolzano bunu hiç
+yayımlamadı; matematikçiler bu fikirle ilk kez, Weierstrass'ın aynı fikri
+bağımsız olarak keşfetmesi sayesinde 1872'de karşılaştılar.)\footnote{Bu
+tarihçe, Wikipedia'nın
+\href{http://en.wikipedia.org/wiki/Weierstrass_function}{Weierstrass
+fonksiyonu} maddesindeki son derece ayrıntılı dipnotlarda belgelenmiştir.}
+Bu, en hafif deyişle oldukça şaşırtıcıydı. $|x|$ gibi her yerde sürekli,
+fakat belirli bir noktada türevlenebilir olmayan fonksiyonlar bulmak kolaydır.
+Ama her yerde sürekli olduğu hâlde \emph{hiçbir yerde} türevlenebilir olmayan
+bir fonksiyon bambaşka bir yaratıktır. Bir an için böyle bir fonksiyonu nasıl
+çizmeye çalışacağınızı düşünün. Sürekli olmasını sağlamak için onu kaleminizi
+kâğıttan hiç kaldırmadan çizebilmeniz gerekir; fakat hiçbir yerde
+türevlenebilir olmamasını sağlamak için kaleminizin yönünü durmaksızın ve
+ansızın değiştirmeniz gerekir.
+
+Bunu başka ``patolojiler'' izledi. Cantor, 5 Ocak 1874'te Dedekind'e yazdığı
+bir mektupta şu problemi ortaya attı:
+\begin{quote}
+Bir yüzey (örneğin sınırıyla birlikte bir kare) ile bir doğru (örneğin uç
+noktalarıyla birlikte bir doğru parçası), yüzeyin her noktasına doğrunun bir
+noktası ve tersine doğrunun her noktasına yüzeyin bir noktası karşılık
+gelecek biçimde bire bir eşlenebilir mi?
+
+Şu anda bu sorunun yanıtı bana hâlâ çok güç görünüyor---gerçi burada da
+insanın \emph{hayır} demeye öylesine güçlü bir eğilimi var ki ispatı neredeyse
+gereksiz saymak istiyor. [\citealt{Gouvea2011}'den alıntı]
+\end{quote}
+Fakat Cantor 1877'de yanıldığını ispatladı. Gerçekte bir doğru ile bir kare
+tam olarak aynı sayıda noktaya sahiptir. Dedekind'e 29 Haziran 1877'de
+``\emph{je le vois, mais je ne le crois pas}''; yani ``Görüyorum ama
+inanmıyorum'' diye yazdı. Matematiğin ``yerleşik tarihinde'' bu söz, yeni
+sonuçların dönemin matematikçilerine ne denli \emph{kelimenin tam anlamıyla
+inanılmaz} geldiğinin göstergesi olarak sık sık ele alınır. (Yazışma
+\citet{Gouvea2011}'de sunulur ve ona \olref[his][set][mythology]{sec}'te
+yeniden döneceğiz. Cantor'un ispatı \olref[his][set][cantorplane]{sec}'te
+özetlenir.)
+
+Cantor'un sonucundan esinlenen Peano, bir doğrunun bir düzlem üzerine
+\emph{pürüzsüzce} eşlenmesinin mümkün olup olmadığını düşünmeye başladı. Bu,
+\emph{uzayı dolduran bir eğri} olacaktı. Peano \citeyear{Peano1890}'da tam da
+böyle bir eğri kurdu. Bu gerçekten sezgiye aykırıdır: Öklid doğruyu ``genişliği
+olmayan uzunluk'' (I. Kitap, 2. Tanım) diye tanımlamıştı; fakat Peano bir
+doğruyu uygun biçimde kıvırarak uzunluğunun genişliğe dönüştürülebileceğini
+göstermişti. Hilbert \citeyear{Hilbert1891}'da, kendisini açıklayan bazı
+resimlerle birlikte, biraz daha sezgisel bir uzay dolduran eğri betimledi.
+Eğri aşamalar hâlinde kurulur; kuruluşun ilk altı aşaması şöyledir:
+\begin{center}
+\begin{tikzpicture}
+\begin{scope}[xshift=20pt, yshift=20pt]
+	\draw [oldiagcolorC, l-system={Hilbert curve, step=40pt, angle=90, axiom=L, order=1}] lindenmayer system;
+\end{scope}
+\begin{scope}[xshift=110pt, yshift=10pt]
+	\draw [oldiagcolorC, l-system={Hilbert curve, step=20pt, angle=90, axiom=L, order=2}] lindenmayer system;
+\end{scope}
+\begin{scope}[xshift=205pt, yshift=5pt]
+	\draw [oldiagcolorC, l-system={Hilbert curve, step=10pt, angle=90, axiom=L, order=3}] lindenmayer system;
+\end{scope}
+\begin{scope}[xshift=2.5pt, yshift=-97.5pt]
+	\draw [oldiagcolorC, l-system={Hilbert curve, step=5pt, angle=90, axiom=L, order=4}] lindenmayer system;
+\end{scope}
+\begin{scope}[xshift=101.25pt, yshift=-98.75pt]
+	\draw [oldiagcolorC, l-system={Hilbert curve, step=2.5pt, angle=90, axiom=L, order=5}] lindenmayer system;
+\end{scope}
+\begin{scope}[xshift=200.625pt, yshift=-99.375pt]
+	\draw [oldiagcolorC, l-system={Hilbert curve, step=1.25pt, angle=90, axiom=L, order=6}] lindenmayer system;
+\end{scope}
+\draw[gray] (0pt,0pt) rectangle (80pt, 80pt);
+\draw[gray] (100pt,0pt) rectangle (180pt, 80pt);
+\draw[gray] (200pt,0pt) rectangle (280pt, 80pt);
+\draw[gray] (0pt,-100pt) rectangle (80pt, -20pt);
+\draw[gray] (100pt,-100pt) rectangle (180pt, -20pt);
+\draw[gray] (200pt,-100pt) rectangle (280pt, -20pt);
+\end{tikzpicture}  
+\end{center}
+O zamana dek kesin bir tanıma kavuşmuş olan limitte karenin tamamı düz
+!!{colorC} renkle dolar. Ayrıca Hilbert eğrisi her yerde sürekli, fakat hiçbir
+yerde türevlenebilir değildir; sezgisel olarak bunun nedeni sonsuz limitte
+fonksiyonun her an birdenbire yön değiştirmesidir. (Hilbert'in kuruluşunu
+\olref[his][set][hilbertcurve]{sec}'te daha ayrıntılı olarak özetleyeceğiz.)
+
+İyi ya da kötü, bu ``patolojik'' geometrik kuruluşlar geometrik sezgiye
+başvurudan kuşkulanmak için bir neden sayıldı. Küme teorisiyle doruğa ulaşacak
+yeni bir matematik yapma tarzının neredeyse \emph{propagandasına} dönüştüler.
+Alanın daha sonraki mit yaratımında bu sonuçların hem tümüyle kesin hem de
+tümüyle sarsıcı olduğu sık sık yinelendi. Böylece ikili bir amaca hizmet
+ettiler: geometrik sezgiye güvenmeye karşı bir uyarı ve yeni düşünme
+biçimlerinin verimliliğinin bir gösterimi.
+
+\end{document}

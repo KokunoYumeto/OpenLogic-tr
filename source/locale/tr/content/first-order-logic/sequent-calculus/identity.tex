@@ -1,0 +1,77 @@
+% Part: first-order-logic
+% Chapter: sequent-calculus
+% Section: equality
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{fol}{seq}{ide}
+
+\olsection{\usetoken{P}{derivation}: \usetoken{S}{identity} İçeren Durum}
+
+!!^{derivation}s, !!{identity} içerdiklerinde ek başlangıç sekantları ve çıkarım
+kuralları gerektirir.
+
+\begin{defn}[$\eq$ için başlangıç sekantları]
+$t$ kapalı bir terimse ${}\Sequent\eq[t][t]$ bir başlangıç sekantıdır.
+\end{defn}
+
+$\eq$ için kurallar aşağıdadır ($t_1$ ile $t_2$ kapalı terimlerdir):
+
+\begin{defish}
+\Axiom$ \eq[t_1][t_2], \Gamma \fCenter \Delta, !A(t_1) $
+\RightLabel{$\eq$}
+\UnaryInf$\eq[t_1][t_2], \Gamma \fCenter \Delta, !A(t_2)$
+\DisplayProof
+\hfill
+\Axiom$\eq[t_1][t_2], \Gamma \fCenter \Delta, !A(t_2) $
+\RightLabel{$\eq$}
+\UnaryInf$\eq[t_1][t_2], \Gamma  \fCenter \Delta, !A(t_1)$
+\DisplayProof
+\end{defish}
+
+\begin{ex}
+$s$ ile $t$ kapalı terimlerse $\eq[s][t],!A(s)\Proves !A(t)$:
+\begin{prooftree}
+\Axiom$ !A(s) \fCenter !A(s)$
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$\eq[s][t], !A(s)  \fCenter !A(s)$
+\RightLabel{$\eq$}
+\UnaryInf$\eq[s][t], !A(s)  \fCenter !A(t)$
+\end{prooftree}
+Bu, özdeşlerin birbirinin yerine konabilmesi ilkesi ya da Leibniz Yasası
+olarak bilinir.
+
+$\Log{LK}$, $\eq$ bağıntısının simetrik ve geçişli olduğunu ispatlar:
+\begin{prooftree}
+\Axiom$ \fCenter \eq[t_1][t_1] $
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$ \eq[t_1][t_2] \fCenter \eq[t_1][t_1] $
+\RightLabel{$\eq$}
+\UnaryInf$ \eq[t_1][t_2] \fCenter \eq[t_2][t_1]$
+\DisplayProof\qquad\bottomAlignProof
+\Axiom$ \eq[t_1][t_2] \fCenter \eq[t_1][t_2] $
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$\eq[t_2][t_3], \eq[t_1][t_2]  \fCenter \eq[t_1][t_2] $
+\RightLabel{$\eq$}
+\UnaryInf$\eq[t_2][t_3], \eq[t_1][t_2]  \fCenter \eq[t_1][t_3]$
+\RightLabel{\LeftR{\Exchange}}
+\UnaryInf$\eq[t_1][t_2], \eq[t_2][t_3]  \fCenter \eq[t_1][t_3]$
+\end{prooftree}
+Soldaki !!{derivation} içinde $!A(x)$ olarak
+!!{formula}~$\eq[x][t_1]$ alınmıştır. Sağdaki türetimdeyse $!A(x)$ olarak
+$\eq[t_1][x]$ alınır.
+\end{ex}
+
+\begin{prob}
+Aşağıdaki sekantlar için !!{derivation}s verin:
+\begin{enumerate}
+\item $\Sequent \lforall[x][\lforall[y][((x = y \land !A(x)) \lif !A(y))]]$
+\item $\lexists[x][!A(x)] \land \lforall[y][\lforall[z][((!A(y) \land
+    !A(z)) \lif y = z)]] \Sequent
+\lexists[x][(!A(x) \land \lforall[y][(!A(y) \lif y = x)])]$
+\end{enumerate}
+\end{prob}
+
+\end{document}

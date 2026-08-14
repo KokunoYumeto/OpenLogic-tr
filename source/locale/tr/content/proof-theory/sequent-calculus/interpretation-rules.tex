@@ -1,0 +1,141 @@
+% Part: proof-theory
+% Chapter: sequent-calculus
+% Section: interpretation-rules
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{pt}{seq}{irl}
+
+\olsection{Kuralların Yorumlanması}
+
+Bir sekantın yorumunu anımsayalım: $\Gamma \Sequent \Delta$ sekantı,
+ya en az bir $!A \in \Gamma$ yanlışsa ya da en az bir $!A \in \Delta$
+doğruysa bir !!a{structure}~$\Struct{M}$ içinde doğrudur. \Log{G3c}'nin
+mantıksal kurallarını, ana !!{formula}{}ünün doğruluk koşullarını
+kodluyor gibi okuyabiliriz. \RightR{\lif}'i ele alalım. Ana
+!!{formula}{}ü $!A \lif !B$'dir. $!A$ yanlışsa ya da $!B$ doğruysa bu
+formül doğrudur. Dolayısıyla $\ \Sequent !A \lif !B$ sekantı ancak ve
+ancak $!A \Sequent !B$ doğruysa doğrudur. Bu sekantların önbileşen ve
+artbileşenlerine $\Gamma$, $\Delta$ bağlam !!{formula}s{}ini eklediğimizde
+tam olarak \RightR{\lif} kuralının sonucu ile öncülünü elde ederiz.
+\LeftR{\lif} için durum benzerdir. $!A \lif !B$, $!A$ doğru ve $!B$
+yanlışsa yanlıştır. Öyleyse $!A \lif !B \Sequent \ $ ancak ve ancak hem
+$\ \Sequent !A$ hem de $!B \Sequent \ $ doğruysa doğrudur.
+\LeftR{\lif}'in sonucu, öncüllerinin ve bağlacıyla kurulan bileşimine denktir. Bu
+örüntü, \Log{G3c}'nin kurallarının sağlam olmasını sağlar (bütün öncüller
+doğruysa sonuç da doğrudur). Kurallar aynı zamanda tamlığı da sağlar.
+
+Aslında doğruluk fonksiyonlu herhangi bir bağlacın doğruluk koşulları,
+bir sekant kümesi olarak bu biçimde betimlenebilir. Bunun nedeni, klasik
+mantıktaki her doğruluk fonksiyonunun ve bağlaçlı normal biçimde bir
+!!a{formula} ile, yani atomik ve değillenmiş atomik !!{formula}s{}in veya
+bağlaçlı bileşenlerinin ve bağlacıyla birleştirilmesiyle betimlenebilmesidir.
+Örneğin $!A
+\oplus !B$'nin, $!A$ ile $!B$'den tam olarak biri doğru olduğunda, yani
+``dışlayıcı veya'' durumunda doğru olduğunu varsayalım. O zaman $!A \oplus
+!B$ ancak ve ancak $(!A \lor !B) \land (\lnot !A \lor \lnot !B)$ doğruysa
+doğrudur; $(\lnot !A \lor !B) \land (!A \lor \lnot !B)$ doğruysa
+yanlıştır. Dolayısıyla $\oplus$ için sekant hesabı kurallarını şöyle
+tanıtabilirdik:
+\begin{align*}
+&
+\Axiom$\Gamma \fCenter \Delta, !A, !B$
+\Axiom$!A, !B, \Gamma \fCenter \Delta$
+\RightLabel{\RightR{\oplus}}
+\BinaryInf$\Gamma \fCenter \Delta, !A \oplus !B$
+\DisplayProof
+\\
+& \Axiom$!A, \Gamma \fCenter \Delta, !B$
+\Axiom$!B, \Gamma \fCenter \Delta, !A$
+\RightLabel{\LeftR{\oplus}}
+\BinaryInf$!A \oplus !B, \Gamma \fCenter \Delta$
+\DisplayProof
+\end{align*}
+Bu kurallar da sağlam ve tam olurdu. Sonuçları ancak ve ancak bütün
+öncülleri doğruysa doğrudur.
+
+\begin{prob}
+$!A \downarrow !B$'nin ancak ve ancak ne $!A$ ne de $!B$ doğruysa doğru
+olduğunu varsayın (``NOR''). Bunun \Log{G3c} kuralları nasıl olurdu?
+($!A \downarrow !B$ doğru olduğunda ve yalnız o zaman aynı anda doğru olan
+iki sekant bulun. Bunlar \RightR{\downarrow} kuralını verir. Ardından $!A
+\downarrow !B$ yanlış olduğunda ve yalnız o zaman doğru olan bir sekant
+bulun. Bu da \LeftR{\downarrow} kuralını verir.)
+\end{prob}
+
+\Log{G3c}'de her bağlaç ve niceleyicinin tam iki kuralı vardır: bir sol
+kural ve bir sağ kural. Buna karşılık \Log{G1c}'de iki \LeftR{\land} ve
+iki \RightR{\lor} kuralı vardır. Bunun nedeni, \Log{G1c}'nin örnek aldığı
+Gentzen'in özgün sistemi~\Log{LK}'nin önemli bir klasik olmayan mantık,
+yani sezgici mantık için bir \Log{LJ} çeşitlemesinin bulunmasıdır. Sezgici
+mantık için sağlam ve tam bir sistem elde etmek amacıyla \Log{LJ}'deki her
+sekantın artbileşeni en fazla bir !!{formula} içerecek biçimde
+sınırlandırılmıştır. Bu, öncülünün artbileşeninde hem $!A$ hem de $!B$
+bulunan \Log{G3c}'nin \RightR{\lor} kuralını kullanmayı olanaksız kılar.
+Bu nedenle Gentzen \Log{LJ} için bir çift \RightR{\lor} kuralı kullandı ve
+aynısını \Log{LK} için de kullandı. Benzer biçimde sezgici sürüm~\Log{G1i},
+bütün artbileşenleri en fazla bir !!{formula} ile sınırlandırılmış
+\Log{G1c}'den ibarettir. (\Log{G3c}'nin de bir sezgici sürümü vardır; ancak
+bazı kuralları \Log{G3c}'deki karşılıklarından ayrılır. Örneğin o da bir
+çift \RightR{\lor} kuralı kullanır.)
+
+\Log{G1c}'nin yapısal kurallarının sağlam olduğunu görmek kolaydır. Örneğin
+$\Gamma \Sequent \Delta$ sağda doğru ya da solda yanlış bir !!{formula}
+içeriyorsa $\Gamma \Sequent \Delta, !A$ da aynı !!{formula}{}ü içerir; $!A$'nın
+doğru ya da yanlış olması önemsizdir. Dolayısıyla \RightR{\Weakening}'in
+öncülü doğruysa sonucu da doğrudur. Burada tersinin geçerli olmadığına
+dikkat edin. Sonuç $!A$ doğru olduğu için doğru olabilir; bu durumda
+öncülün doğru olması güvence altında değildir.
+
+Peki yapısal kurallara neden gerek vardır? Örneğin $\ \Sequent !A \lor
+\lnot !A$'yı !!{prove}{}mak için büzülme (\RightR{\Contraction},
+\LeftR{\Contraction}) gerekir. $!A \Sequent !A$ ile başlarsanız önce
+\RightR{\lnot} ile $\Sequent !A, \lnot !A$ elde edilir. Sonra
+\RightR{\lor}'un iki sürümü art arda kullanılabilir: biri $\lnot !A$'dan,
+öteki $!A$'dan $!A \lor \lnot !A$ elde etmek için. Ortaya çıkan sekant
+$\ \Sequent !A \lor \lnot !A, !A \lor \lnot !A$'dır. Öyleyse
+\Log{G1c}'de $\Sequent !A \lor \lnot !A$ elde etmek için bir !!a{proof}
+içindeki aynı !!{formula}{}ün iki geçişini ``büzebilmek'' gerekir:
+\[
+\Axiom$!A \fCenter !A$
+\RightLabel{\RightR{\lnot}}
+\UnaryInf$\fCenter !A, \lnot !A$
+\RightLabel{\RightR{\lor}}
+\UnaryInf$\fCenter !A, !A \lor \lnot !A$
+\RightLabel{\RightR{\lor}}
+\UnaryInf$\fCenter !A \lor \lnot !A, !A \lor \lnot !A$
+\RightLabel{\RightR{\Contraction}}
+\UnaryInf$\fCenter !A \lor \lnot !A$
+\DisplayProof
+\]
+Gerçekte zayıflatma ya da büzülme olmadan \Log{G1c}'de !!{prove}{}yamayacağınız
+geçerli sekantlar vardır. Örneğin \Log{G1c}'de $!A \Sequent
+!B \lif !A$ sekantının bir !!a{proof}{}ı \RightR{\lif} ile bitmelidir
+(çünkü yalnız $!B \lif !A$ ana formül olabilir) ve bunun öncül olarak
+$!B, !A \Sequent !A$'ya gereksinimi vardır. Bu da $!A \Sequent !A$
+aksiyomundan \LeftR{\Weakening} ile elde edilir:
+\[
+\Axiom$!A \fCenter !A$
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$!B, !A \fCenter !A$
+\RightLabel{\RightR{\lif}}
+\UnaryInf$!A \fCenter !B \lif !A$
+\DisplayProof
+\]
+
+\Log{G3c}'de büzülme ve zayıflatma kurallarına hiç gerek yoktur.
+Zayıflatma aksiyomların içine yerleştirilmiştir. İki öncüllü kurallarda
+$\Gamma$, $\Delta$ bağlamının iki kopyası birleştirilerek büzülmeden büyük
+ölçüde kaçınılabilir. Hem \Log{G1c} hem de \Log{G3c} böyle ``bağlam
+paylaşan'' kurallara sahiptir. Tek öncüllü kurallarda büzülme yalnız
+\RightR{\lor}, \LeftR{\land}, \RightR{\lexists} ve \LeftR{\lforall}
+için gerekir. Bu kuralların \Log{G3c}'deki sürümleri büzülmeyi tümüyle
+gereksiz kılar. İki öncüllü kuralların bağımsız bağlamlara sahip olduğu bir
+\Log{G2c} sistemi vardır (bkz. \olref{tab:G2c}). \Log{G2c}'de büzülme,
+\Log{G1c}'dekinden bile daha önemlidir.
+
+\subfile{rules-G2c}
+
+\end{document}

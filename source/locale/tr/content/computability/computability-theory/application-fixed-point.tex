@@ -1,0 +1,67 @@
+% Part: computability
+% Chapter: computability-theory
+% Section: applications-fixed-point
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{cmp}{thy}{apf}
+\olsection{Sabit Nokta Teoreminin Uygulanması}
+
+Sabit nokta teoremi özünde kısmi hesaplanabilir fonksiyonları indisleri
+cinsinden tanımlamamızı sağlar. Örneğin her $y$ için
+\[
+  \cfind{e}(y)=e+y
+\]
+olacak bir $e$ indisi bulabiliriz. Başka bir örnek olarak sabit nokta
+teoreminin ispatı, Java ya da C++ ile kendisini çıktı olarak veren bir program
+tasarlamak için kullanılabilir.
+
+Her $e$ için $W_e$, $\cfind{e}$ fonksiyonunun tanım kümesi olursa
+$W_0,W_1,W_2,\dots$ dizisinin hesaplanabilir biçimde numaralandırılabilir
+kümeleri numaralandırdığını anımsayın. Bu kümelerin bazıları
+hesaplanabilirdir. Girdi olarak bir $x$ değeri alan ve $W_x$ hesaplanabilir
+olduğunda onun karakteristik fonksiyonunun bir indisini döndüren bir
+algoritmanın bulunup bulunmadığı sorulabilir. Yanıt ``hayır''dır; böyle bir
+algoritma yoktur.
+
+\begin{thm}
+Şu özelliğe sahip hiçbir kısmi hesaplanabilir $f$ fonksiyonu yoktur:
+$W_e$ hesaplanabilir olduğunda $f(e)$ tanımlı ve $\cfind{f(e)}$, $W_e$'nin
+karakteristik fonksiyonu olsun.
+\end{thm}
+
+\begin{proof}
+$f$ herhangi bir hesaplanabilir fonksiyon olsun. $W_e$ hesaplanabilir,
+fakat $\cfind{f(e)}$ onun karakteristik fonksiyonu olmayacak bir $e$
+kuracağız. Sabit nokta teoremini kullanarak
+\[
+  \cfind{e}(y)\simeq\begin{cases}
+    0 & \text{$y=0$ ve $\cfind{f(e)}(0)\fdefined=0$ ise}\\
+    \text{tanımsız} & \text{aksi durumda}
+  \end{cases}
+\]
+olacak bir $e$ indisi bulabiliriz. Yani $e$, sabit nokta teoreminin
+\[
+  g(x,y)\simeq\begin{cases}
+    0 & \text{$y=0$ ve $\cfind{f(x)}(0)\fdefined=0$ ise}\\
+    \text{tanımsız} & \text{aksi durumda}
+  \end{cases}
+\]
+fonksiyonuna uygulanmasıyla elde edilir.
+Biçimsel olmayan biçimde $g$'nin kısmi hesaplanabilir olduğunu şöyle
+görebiliriz: Algoritma $x,y$ girdisinde önce $y=0$ olup olmadığını denetler.
+Öyleyse $f(x)$'i, ardından evrensel makineyle $\cfind{f(x)}(0)$ değerini
+hesaplar. Bu son hesap durup $0$ döndürürse algoritma $0$ döndürür; aksi
+durumda durmaz.
+
+Şimdi $\cfind{f(e)}(0)$ tanımlı ve $0$'a eşitse $\cfind{e}(y)$ tam olarak
+$y=0$ olduğunda tanımlıdır; dolayısıyla $W_e=\{0\}$ olur.
+$\cfind{f(e)}(0)$ tanımsızsa ya da tanımlı fakat $0$'a eşit değilse
+$W_e=\emptyset$ olur. Her iki durumda da $\cfind{f(e)}$, $W_e$'nin
+karakteristik fonksiyonu değildir; çünkü $0$ girdisinde yanlış yanıt verir.
+\end{proof}
+
+\end{document}
+

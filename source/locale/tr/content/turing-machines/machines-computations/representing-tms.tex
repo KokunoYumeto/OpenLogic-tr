@@ -1,0 +1,282 @@
+% Part: turing-machines
+% Chapter: machines-computations
+% Section: representing-tms
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{tur}{mac}{rep}
+\olsection{Turing Makinelerinin Gösterilmesi}
+
+\begin{explain}
+Turing makineleri \emph{durum diyagramları}yla görsel olarak gösterilebilir.
+Diyagramlar oklarla bağlanan durum hücrelerinden oluşur. Bekleneceği üzere
+her durum hücresi makinenin bir durumunu gösterir. Her ok, o durumda yerine
+getirilebilecek bir yönergeyi; okun üstüne ya da altına yazılan bilgi ise
+yönergenin ayrıntılarını gösterir. Yalnızca iki iç durumu, $q_0$ ve $q_1$,
+ve tek yönergesi olan aşağıdaki makineyi ele alalım:
+\[
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=none,draw=black,text=black]
+
+  \node[initial,state] (A) {$q_0$};
+  \node[state] (B) [right of=A] {$q_1$};
+
+  \path (A) edge node {\TMtrans{\TMblank}{\TMstroke}{\TMright}} (B);
+\end{tikzpicture}
+\]
+Turing makinesinin bir okuma-yazma kafasına ve üzerinde girdi yazılı bir
+şeride sahip olduğunu anımsayın. Yönerge şöyle okunabilir:
+\emph{$q_0$ durumunda $\TMblank$ okunuyorsa $\TMstroke$ yaz, sağa git ve
+$q_1$ durumuna geç}. Bu, $\tuple{q_0,\TMblank}$ çiftini
+$\tuple{q_1,\TMstroke,\TMright}$ üçlüsüne götüren geçiş fonksiyonuna
+eşdeğerdir.
+\end{explain}
+
+\begin{ex}
+\emph{Çift Sayı Makinesi}: Aşağıdaki Turing makinesi şeritte ancak ve ancak
+çift sayıda $\TMstroke$ varsa durur; burada bütün $\TMstroke$ simgelerinin
+şeritteki ilk $\TMblank$ simgesinden önce geldiğini varsayıyoruz.
+\[
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=none,draw=black,text=black]
+
+  \node[initial,state] (A) {$q_0$};
+  \node[state] (B) [right of=A] {$q_1$};
+
+  \path (A) edge [bend left] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (B)
+        (B) edge [loop above] node {\TMtrans{\TMblank}{\TMblank}{\TMright}} (B)
+            edge [bend left] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (A);
+\end{tikzpicture}
+\]
+
+Durum diyagramı aşağıdaki geçiş fonksiyonuna karşılık gelir:
+\begin{align*}
+\delta(q_0,\TMstroke) & = \tuple{q_1,\TMstroke,\TMright},\\
+\delta(q_1,\TMstroke) & = \tuple{q_0,\TMstroke,\TMright},\\
+\delta(q_1,\TMblank) & = \tuple{q_1,\TMblank,\TMright}.
+\end{align*}
+\end{ex}
+
+\begin{explain}
+Yukarıdaki makine yalnızca girdi çift sayıda çizgiden oluştuğunda durur.
+Aksi durumda makine kuramsal olarak sonsuza kadar çalışmayı sürdürür. Her
+makine ve girdi için çıktıyı belirlemek üzere makinenin
+\emph{konfigürasyonlarını} adım adım izlemek mümkündür. Konfigürasyonların
+biçimsel tanımını daha sonra vereceğiz. Şimdilik onları, çalışma sırasında
+herhangi bir andaki makine durumunu gösteren bir diyagram dizisi olarak
+sezgisel biçimde düşünebiliriz. Konfigürasyonlar şerit içeriğini, makinenin
+durumunu ve okuma-yazma kafasının konumunu gösterir.
+
+Dört $\TMstroke$ girdisiyle başlatılan çift sayı makinesinin
+konfigürasyonlarını izleyelim. Bu durumda makinenin durmasını bekleriz.
+Ardından makineyi üç $\TMstroke$ girdisiyle çalıştıracağız; o zaman makine
+sonsuza kadar çalışacaktır.
+
+Makine $q_0$ durumunda, en soldaki $\TMstroke$ simgesini tarayarak başlar.
+Makinenin başlangıç durumunu şöyle gösterebiliriz:
+\[
+\TMendtape \TMstroke_0 \TMstroke \TMstroke \TMstroke \TMblank \ldots
+\]
+Yukarıdaki konfigürasyon açıktır. Makine birinci durumda, en soldaki
+$\TMstroke$ simgesini tarayarak başlar. Bu, ilk $\TMstroke$ üzerindeki durum
+adının alt indisiyle gösterilir. Bu noktada uygulanabilir yönerge
+$\delta(q_0,\TMstroke)=\tuple{q_1,\TMstroke,\TMright}$ olduğundan makine
+şeritte sağa gider ve $q_1$ durumuna geçer.
+\[
+\TMendtape \TMstroke \TMstroke_1 \TMstroke \TMstroke \TMblank \ldots
+\]
+Makine artık $q_1$ durumunda $\TMstroke$ taradığından
+$\delta(q_1,\TMstroke)=\tuple{q_0,\TMstroke,\TMright}$ yönergesini
+``izlemeliyiz''. Bunun sonucunda
+\[
+\TMendtape \TMstroke \TMstroke \TMstroke_0 \TMstroke \TMblank \ldots
+\]
+konfigürasyonu elde edilir. Makine çalışmayı sürdürürken kurallar aynı sırayla
+yeniden uygulanır ve aşağıdaki iki konfigürasyon ortaya çıkar:
+\[
+\TMendtape \TMstroke \TMstroke \TMstroke \TMstroke_1 \TMblank \ldots
+\]
+\[
+\TMendtape \TMstroke \TMstroke \TMstroke \TMstroke \TMblank_0 \ldots
+\]
+Makine artık $q_0$ durumunda $\TMblank$ taramaktadır. Geçiş diyagramından
+yerine getirilecek bir yönerge olmadığı kolayca görülür; dolayısıyla makine
+durmuştur. Bu, girdinin kabul edildiği anlamına gelir.
+
+Şimdi makineyi üç $\TMstroke$ girdisiyle başlattığımızı varsayalım. Aynı
+yönergeler yerine getirildiğinden ilk birkaç konfigürasyon, yalnızca şerit
+girdisindeki küçük farkla benzerdir:
+\[
+\TMendtape \TMstroke_0 \TMstroke \TMstroke \TMblank \ldots
+\]
+\[
+\TMendtape \TMstroke \TMstroke_1 \TMstroke \TMblank \ldots
+\]
+\[
+\TMendtape \TMstroke \TMstroke \TMstroke_0 \TMblank \ldots
+\]
+\[
+\TMendtape \TMstroke \TMstroke \TMstroke \TMblank_1 \ldots
+\]
+Makine bütün $\TMstroke$ simgelerini geçmiş ve $q_1$ durumunda bir
+$\TMblank$ okumaktadır. Diyagramda gösterildiği gibi
+$\delta(q_1,\TMblank)=\tuple{q_1,\TMblank,\TMright}$ biçiminde bir yönerge
+vardır. Şerit sağa doğru sonsuza kadar $\TMblank$ ile dolu olduğundan makine
+bu yönergeyi \emph{sonsuza kadar} yerine getirir; $q_1$ durumunda kalıp
+giderek daha sağa gider. Makine hiçbir zaman durmaz ve girdiyi kabul etmez.
+\end{explain}
+
+\begin{explain}
+Bütün makinelerin durmayacağını belirtmek önemlidir. Durma, makinenin yerine
+getirecek yönergesinin kalmaması demekse her durumdaki her simge için çıkan
+bir ok bulunmasını güvenceye alarak hiç durmayan bir makine kurabiliriz.
+Çift sayı makinesi, $q_0$ durumunda $\TMblank$ taramak için bir yönerge
+eklenerek sonsuza kadar çalışacak biçimde değiştirilebilir.
+\end{explain}
+
+\begin{ex}
+\[
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=none,draw=black,text=black]
+
+  \node[initial,state] (A) {$q_0$};
+  \node[state] (B) [right of=A] {$q_1$};
+
+  \path
+  (A) edge [bend left] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (B)
+      edge [loop above] node {\TMtrans{\TMblank}{\TMblank}{\TMright}} (A)
+  (B) edge [loop above] node {\TMtrans{\TMblank}{\TMblank}{\TMright}} (B)
+      edge [bend left] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (A);
+\end{tikzpicture}
+\]
+\end{ex}
+
+\begin{explain}
+Makine tabloları Turing makinelerini göstermenin başka bir yoludur. Makine
+tablolarında şerit alfabesi $x$ ekseninde, makine durumları kümesi ise $y$
+ekseninde gösterilir. Tabloda her durumla simgenin kesişimine yönergenin
+geri kalanı, yani yeni durum, yeni simge ve hareket yönü yazılır. Makine
+tabloları makinenin hangi durumda ve hangi simgede durduğunu belirlemeyi
+kolaylaştırır. Tablodaki her boşluk makinenin olası bir durma noktasıdır.
+Makinenin durduğu noktaların her zaman hemen görünmediği durum diyagramları
+ve yönerge kümelerinden farklı olarak, durma noktaları makine tablosundaki
+boşluklar bulunarak hızla belirlenir.
+\end{explain}
+
+\begin{ex}
+Çift sayı makinesinin makine tablosu şöyledir:
+\[
+\centering
+\begin{tabular}{lllll}
+\cline{2-4}
+\multicolumn{1}{l|}{} & \multicolumn{1}{c|}{$\TMblank$}
+& \multicolumn{1}{c|}{$\TMstroke$} & \multicolumn{1}{c|}{$\TMendtape$} & \\ \cline{1-4}
+\multicolumn{1}{|l|}{$q_0$} & \multicolumn{1}{l|}{}
+& \multicolumn{1}{l|}{\TMtrans{\TMstroke}{q_1}{\TMright}} &
+\multicolumn{1}{l|}{\phantom{\TMtrans{\TMstroke}{q_1}{\TMright}}} & \\ \cline{1-4}
+\multicolumn{1}{|l|}{$q_1$} & \multicolumn{1}{l|}{\TMtrans{\TMblank}{q_1}{\TMright}}
+& \multicolumn{1}{l|}{\TMtrans{\TMstroke}{q_0}{\TMright}} &
+\multicolumn{1}{l|}{\phantom{\TMtrans{\TMstroke}{q_1}{\TMright}}} & \\ \cline{1-4}
+\end{tabular}
+\]
+Görüldüğü gibi makine $q_0$ durumunda $\TMblank$ tararken durur.
+\end{ex}
+
+\begin{explain}
+Şimdiye kadar yalnızca girdiyi okuyup kabul eden makineleri ele aldık. Fakat
+Turing makineleri hem okuma hem yazma yeteneğine sahiptir. Böyle bir makine
+örneği, çok sayıda başka örnek de vardır, bir \emph{iki katına çıkarıcı}dır.
+İki katına çıkarıcı şeritte $n$ tane $\TMstroke$ bloğuyla başlatıldığında
+$2n$ tane $\TMstroke$ bloğunu çıktı olarak verir.
+\end{explain}
+
+\begin{ex}
+  \ollabel{ex:doubler}
+  İki katına çıkarıcı makineyi kurmadan önce problemi çözecek bir
+  \emph{strateji} bulmak önemlidir. Makine, bizim kurduğumuz biçimiyle kaç
+  tane $\TMstroke$ okuduğunu anımsayamadığından şeritteki bütün
+  $\TMstroke$ simgelerini izlemenin bir yoluna gereksinim duyarız. Böyle bir
+  yol, çıktıyı girdiden bir $\TMblank$ ile ayırmaktır. Makine girdideki ilk
+  $\TMstroke$ simgesini silebilir, girdinin geri kalanını geçebilir, bir
+  $\TMblank$ bırakıp iki yeni $\TMstroke$ yazabilir. Ardından geri dönüp
+  girdideki ikinci $\TMstroke$ simgesini bulur ve onu da iki katına çıkarır.
+  Her bir girdi $\TMstroke$ simgesi için iki çıktı $\TMstroke$ simgesi yazar.
+  Girdiyi ilerledikçe silerek hiçbir $\TMstroke$ simgesinin atlanmamasını ya
+  da iki kez iki katına çıkarılmamasını güvenceye alırız. Bütün girdi
+  silindiğinde şeritte $2n$ tane $\TMstroke$ kalır. Ortaya çıkan Turing
+  makinesinin durum diyagramı \olref{fig:doubler} içinde gösterilmiştir.
+  \begin{figure}
+\[
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=none,draw=black,text=black]
+
+  \node[initial,state] (1) {$q_0$};
+  \node[state] (2) [right of=1] {$q_1$};
+  \node[state] (3) [right of=2] {$q_2$};
+  \node[state] (4) [below of=3] {$q_3$};
+  \node[state] (5) [left of=4] {$q_4$};
+  \node[state] (6) [left of=5] {$q_5$};
+
+  \path (1) edge node {\TMtrans{\TMstroke}{\TMblank}{\TMright}} (2)
+    (2) edge [loop above] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (2)
+      edge node {\TMtrans{\TMblank}{\TMblank}{\TMright}} (3)
+    (3) edge [loop above] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (3)
+        edge node {\TMtrans{\TMblank}{\TMstroke}{\TMright}} (4)
+    (4) edge [loop below] node {\TMtrans{\TMblank}{\TMstroke}{\TMleft}} (4)
+        edge node {\TMtrans{\TMstroke}{\TMstroke}{\TMleft}} (5)
+    (5) edge [loop below] node {\TMtrans{\TMstroke}{\TMstroke}{\TMleft}} (5)
+        edge node {\TMtrans{\TMblank}{\TMblank}{\TMleft}} (6)
+    (6) edge [loop below] node {\TMtrans{\TMstroke}{\TMstroke}{\TMleft}} (6)
+        edge node {\TMtrans{\TMblank}{\TMblank}{\TMright}} (1);
+\end{tikzpicture}
+\]
+\caption{İki katına çıkarıcı makine}
+\ollabel{fig:doubler}
+\end{figure}
+\end{ex}
+
+\begin{prob}
+Keyfî bir girdi seçip \olref[tur][mac][rep]{ex:doubler} içindeki iki katına
+çıkarıcı makinenin konfigürasyonlarını adım adım izleyin.
+\end{prob}
+
+\begin{prob}
+Alfabesi $\{\TMendtape,\TMblank,A,B\}$ olan ve $A$ sayısıyla $B$ sayısının
+eşit \emph{ve} bütün $A$ simgelerinin bütün $B$ simgelerinden önce geldiği
+her $A$ ve $B$ dizgesini kabul eden, yani üzerinde duran; $A$ ile $B$
+sayılarının eşit olmadığı ya da bütün $A$ simgelerinin bütün $B$
+simgelerinden önce gelmediği her dizgeyi reddeden, yani üzerinde durmayan bir
+Turing makinesi tasarlayın. Örneğin makine $AABB$ ile $AAABBB$ girdilerini
+kabul, $AAB$ ile $AABBAABB$ girdilerini reddetmelidir.
+\end{prob}
+
+\begin{prob}
+Alfabesi $\{\TMendtape,\TMblank,A,B\}$ olan, girdi olarak herhangi bir
+$A$ ve $B$ dizgesi $\alpha$ alıp $\alpha\alpha$ biçiminde çıktı üretmek için
+onu çoğaltan bir Turing makinesi tasarlayın. Örneğin $ABBA$ girdisi
+$ABBAABBA$ çıktısını vermelidir.
+\end{prob}
+
+\begin{prob}
+\emph{Alfabetik mi?:} Alfabesi $\{\TMendtape,\TMblank,A,B\}$ olan ve sonlu
+bir $A$ ve $B$ dizisi girdi olarak verildiğinde bütün $A$ simgelerinin bütün
+$B$ simgelerinin solunda olup olmadığını denetleyen bir Turing makinesi
+tasarlayın. Makine girdi dizgesini şeritte bırakmalı; dizge ``alfabetik'' ise
+durmalı, değilse sonsuza kadar döngüye girmelidir.
+\end{prob}
+
+\begin{prob}
+\emph{Alfabetik sıralayıcı:} Alfabesi
+$\{\TMendtape,\TMblank,A,B\}$ olan ve sonlu bir $A$ ve $B$ dizisini girdi
+olarak alıp bütün $A$ simgeleri bütün $B$ simgelerinin soluna gelecek biçimde
+yeniden düzenleyen bir Turing makinesi tasarlayın. Örneğin $BABAA$ dizisi
+$AAABB$, $ABBABB$ dizisi ise $AABBBB$ olmalıdır.
+\end{prob}
+
+\end{document}

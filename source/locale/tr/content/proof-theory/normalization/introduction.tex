@@ -1,0 +1,57 @@
+% Part: proof-theory
+% Chapter: normalization
+% Section: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{pt}{nor}{int}
+
+\olsection{Giriş}
+
+Bir koşullu~$!A \lif !B$ !!{prove}{}dıysanız, onu~\Elim{\lif} kullanarak
+$!B$'nin !!a{proof}{}ında kullanabilirsiniz. Bunun için elbette $!A$'nın bir
+!!a{proof}{}ı~$\delta_1$ da gerekir. $!A \lif !B$'nin !!{proof}{}ı~$\delta$,
+büyük olasılıkla, açık $!A$ varsayımından $!B$'nin bir !!{proof}{}ı~$\delta_2$
+üretip onu $!A \lif !B$'nin ispatına dönüştüren~\Intro{\lif} ile biter. Öyle
+ise son !!{proof}{}ınız şu biçimdedir:
+\[
+\AxiomC{$\Discharge{!A}{x}$}
+\RightLabel{$\delta_2$}
+\DeduceC{$!B$}
+\DischargeRule{\Intro{\lif}}{x}
+\UnaryInfC{$!A \lif !B$}
+\AxiomC{}
+\RightLabel{$\delta_1$}
+\DeduceC{$!A$}
+\RightLabel{\Elim{\lif}}
+\BinaryInfC{$!B$}
+\DisplayProof
+\]
+Stratejiniz elinizde bulunan bir şeyi ($!A \lif !B$'nin !!a{proof}{}ını)
+yeniden kullandığı için verimli olsa da !!{proof}{}ınız verimli değildir.
+$!A \lif !B$'yi yalnızca hemen gidermek üzere tanıtmak bir dolambaç gibi
+görünür. $!B$'yi !!{prove}{}mak için daha doğrudan bir yol olmalıdır.
+
+Gerçekte her zaman vardır. Yukarıdaki gibi ``dolambaçlar''---hemen ardından
+!!a{elimination} kuralı gelen !!a{introduction} kuralı---doğal tümdengelim
+!!{proof}s{}ından her zaman çıkarılabilir. Buna \emph{normalleştirme}, elde
+edilen ispata da \emph{normal} !!{proof} (ya da \emph{normal biçimde}
+!!a{proof}) denir.
+
+Bu sonucun ispatı, sekant hesabındaki kesme-giderimi teoremi gibi biraz
+karmaşıktır ve çok sayıda durumun ele alınmasını gerektirir. Klasik
+$\Log{N1c}$ için ispatı, sezgici $\Log{N1i}$ için ispatından daha zordur.
+Kesme-giderimi, sekant hesabındaki \Cut{} kuralıyla daha fazla şey
+!!{prove}{}yamayacağınızı gösterdiği gibi normalleştirme de dolambaçlar
+kullanarak, onlardan kaçınarak ispatlanabilenden daha fazla şey
+ispatlayamayacağınızı gösterir. Başka benzerlikler de vardır: Normal bir
+!!{proof}, aynı sonucun dolambaçlı en kısa !!{proof}{}ından çok daha uzun
+olabilir; tıpkı sekant hesabındaki kesmeli !!{proof}s{}ın en kısa kesmesiz
+!!{proof}{}tan çok daha kısa olabilmesi gibi. Bir sonucu !!{proof}{}ınızda
+yalnızca sonucun alt-!!{formula}s{}ini kullanarak her zaman !!{prove}{}yabileceğinizi
+söyleyen alt-!!{formula} özelliği, sekant hesabında
+kesme-gideriminden çıktığı gibi doğal tümdengelimde normalleştirmeden çıkar.
+
+\end{document}

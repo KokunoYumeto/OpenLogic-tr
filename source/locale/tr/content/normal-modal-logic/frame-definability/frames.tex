@@ -1,0 +1,52 @@
+% Part: normal-modal-logic
+% Chapter: frame-definability
+% Section: frames
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{nml}{frd}{fra}
+
+\olsection{Çerçeveler}
+
+\begin{defn}
+  Bir \emph{çerçeve}, $W$'nin boş olmayan bir dünyalar kümesi ve $R$'nin
+  $W$ üzerinde ikili bir bağıntı olduğu $\mModel{F}=\tuple{W,R}$ ikilisidir.
+  Bir $\mModel{M}$ modeli, ancak ve ancak bir $V$ değerlemesi için
+  $\mModel{M}=\tuple{W,R,V}$ ise $\mModel{F}=\tuple{W,R}$ çerçevesine
+  \emph{dayanır}.
+\end{defn}
+
+\begin{defn}
+  $\mModel{F}$ bir çerçeveyse, $\mModel{F}$'ye dayanan her
+  $\mModel{M}$ modeli için $\mSat{M}{!A}$ olduğunda $!A$'nın
+  \emph{$\mModel{F}$ içinde geçerli} olduğunu söyler ve
+  $\mModel{F}\Entails !A$ yazarız.
+
+  $\mClass{F}$ bir çerçeveler sınıfıysa, her $\mModel{F}\in\mClass{F}$
+  çerçevesi için $\mModel{F}\Entails !A$ olduğunda $!A$'nın
+  \emph{$\mClass{F}$ içinde geçerli} olduğunu söyler ve
+  $\mClass{F}\Entails !A$ yazarız.
+\end{defn}
+
+Çerçevelerin ilginç olmasının nedeni, şemalar ile erişilebilirlik
+bağıntısı $R$'nin özellikleri arasındaki karşılıklılığın
+\emph{model düzeyinde değil}, çerçeve düzeyinde olmasıdır. Örneğin \Ax{T} bütün yansımalı
+modellerde doğru olsa da \Ax{T}'nin doğru olduğu her model yansımalı
+değildir. Bununla birlikte \emph{şu doğrudur}: \Ax{T} bütün yansımalı
+\emph{çerçevelerde} \emph{geçerli} olmakla kalmaz, \Ax{T}'nin geçerli olduğu
+her çerçeve de yansımalıdır.
+
+\begin{rem}
+Bir çerçeveler sınıfındaki geçerlilik, bir modeller sınıfındaki geçerlilik
+kavramının özel bir durumudur: $\mClass{C}$, $\mClass{F}$ içindeki bir
+çerçeveye dayanan bütün modellerin sınıfıysa $\mClass{F}\Entails !A$ ancak
+ve ancak $\mClass{C}\Entails !A$.
+
+Açıkça, !!a{formula} ya da bir şema geçerliyse, yani \emph{bütün}
+modeller sınıfına göre geçerliyse, herhangi bir $\mClass{F}$ çerçeveler
+sınıfına göre de geçerlidir.
+\end{rem}
+
+\end{document}

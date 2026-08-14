@@ -1,0 +1,115 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sth}{spine}{foundation}
+
+\olsection{Temellendirme}
+
+Yalnızca \emph{neredeyse} tamamladık---henüz \emph{tam} bitirmedik---çünkü
+$\ZFminus$ içinde \emph{her} kümenin bir $V_\alpha$'da bulunduğunu, yani
+her kümenin bir aşamada oluşturulduğunu güvence altına alan hiçbir şey
+yoktur.
+
+Hiyerarşinin dışında kümeler bulunup bulunmadığını matematiksel açıdan
+\emph{önemsemememizin} oldukça açık bir anlamı vardır. (Orada herhangi bir
+küme varsa onu görmezden gelebiliriz.) Fakat küme \emph{kavramımızı}, her
+kümenin bir aşamada oluşturulduğu düşüncesiyle gerekçelendirdik
+(\olref[z][story]{sec} içindeki \stageshier{} ilkesine bakın). Bu yüzden
+hiyerarşinin dışında kalan kümeler bulunması olasılığını dışlamak isteriz.
+Buna göre, her kümenin hiyerarşinin bir yerinde ortaya çıkmasını güvence
+altına alan yeni bir aksiyom eklemeliyiz.
+
+$V_\alpha$'lar aşamalarımız olduğuna göre, şu ifadeyi doğrudan aksiyom
+olarak eklemeyi düşünebiliriz:
+
+\begin{defish}
+\emph{Düzenlilik.} $\forall A \exists \alpha\, A \subseteq V_\alpha$
+\end{defish}
+
+Bu bütünüyle makul bir yaklaşım olurdu. Ancak sonraki kesimde açıklanacak
+nedenlerle bunun yerine alternatif bir aksiyom kabul edeceğiz:
+
+\begin{axiom}[Temellendirme]
+$(\forall A \neq \emptyset)(\exists B \in A)A \cap B = \emptyset$.
+\end{axiom}
+
+Biraz çabayla Temellendirme'nin ($\ZFminus$ içinde) Düzenlilik'i
+gerektirdiğini gösterebiliriz:
+\begin{defn}
+Her $A$ kümesi için:
+\begin{align*}
+	\text{cl}_0(A) &= A,\\
+	\text{cl}_{n+1}(A) &= \bigcup \text{cl}_n(A),\\
+	\text{trcl}(A) &= \bigcup_{n < \omega} \text{cl}_{n}(A).
+\end{align*}
+$\text{trcl}(A)$'ya $A$'nın \emph{geçişli kapanışı} deriz.
+\end{defn}
+\noindent
+``Geçişli kapanış'' adı yerindedir:
+\begin{prop}\ollabel{subsetoftrcl}
+$A \subseteq \trcl{A}$ ve $\trcl{A}$ geçişli bir kümedir.
+\end{prop}
+
+\begin{proof}
+Açıktır ki $A=\text{cl}_0(A)\subseteq\text{trcl}(A)$ olur. Ayrıca
+$x\in b\in\trcl{A}$ ise bir $n$ için $b\in\text{cl}_n(A)$ ve dolayısıyla
+$x\in\text{cl}_{n+1}(A)\subseteq\text{trcl}(A)$ olur.
+\end{proof}
+
+\begin{lem}\ollabel{lem:TransitiveWellFounded}
+$A$ geçişli bir kümeyse $A\subseteq V_\alpha$ olacak biçimde bir $\alpha$
+vardır.
+\end{lem}
+
+\begin{proof}
+\olref[ordinals][opps]{defsupstrict} içindeki ``$\supstrict(X)$'' tanımını
+hatırlayarak iki küme tanımlayın:
+\begin{align*}
+	D  &= \Setabs{x \in A}{\forall \delta\ x \nsubseteq V_\delta}\\
+	\alpha &= \supstrict\Setabs{\delta}{(\exists x \in A)
+	(x \subseteq V_\delta \land (\forall \gamma \in \delta)x \nsubseteq V_\gamma)}.
+\end{align*}
+$D=\emptyset$ olduğunu varsayın. $x\in A$ ise o zaman
+$x\subseteq V_\delta$ olacak biçimde bir $\delta$ vardır ve sıra sayılarının
+iyi sıralanması gereği
+$(\forall\gamma\in\delta)x\nsubseteq V_\gamma$ olan en küçük böyle
+$\delta$ seçilebilir. Dolayısıyla $\delta\in\alpha$ ve
+\olref[spine][Valphabasic]{Valphabasicprops} gereği $x\in V_\alpha$ olur.
+Böylece gerektiği gibi $A\subseteq V_\alpha$ elde edilir.
+
+O hâlde $D=\emptyset$ olduğunu göstermek yeterlidir. Olmayana ergiyle aksi
+durumu varsayın. Temellendirme gereği
+$B\in D\subseteq A$ ve $D\cap B=\emptyset$ olan bir $B$ vardır.
+$x\in B$ ise $A$ geçişli olduğundan $x\in A$ olur; ayrıca $x\notin D$
+olduğundan $x\subseteq V_\delta$ olacak biçimde bir $\delta$ vardır. Şimdi
+\[
+	\beta = \supstrict\Setabs{\delta}{(\exists x \in B)(x \subseteq V_\delta \land (\forall \gamma < \delta)x \nsubseteq V_\gamma)}
+\]
+olsun. Daha önceki gibi $B\subseteq V_\beta$ elde edilir; bu, $B\in D$
+iddiasıyla çelişir.
+\end{proof}
+
+\begin{thm}\ollabel{zfentailsregularity}
+Düzenlilik geçerlidir.
+\end{thm}
+
+\begin{proof}
+$A$ sabit olsun. \olref{subsetoftrcl} gereği
+$A\subseteq\trcl{A}$ ve $\trcl{A}$ geçişlidir. Dolayısıyla
+\olref{lem:TransitiveWellFounded} gereği
+$A\subseteq\trcl{A}\subseteq V_\alpha$ olacak biçimde bir $\alpha$ vardır.
+\end{proof}
+
+Bu sonuçlar $\ZFminus$'ın
+$\emph{Temellendirme}\Rightarrow\emph{Düzenlilik}$ koşullusunu
+ispatladığını gösterir. \olref[spine][rank]{zfminusregularityfoundation}
+içinde $\ZFminus$'ın
+$\emph{Düzenlilik}\Rightarrow\emph{Temellendirme}$ koşullusunu
+ispatladığını göstereceğiz. Buna göre Temellendirme ile Düzenlilik
+$\ZFminus$ altında \emph{denktir}. Fakat bu, $\ZFminus$ verildiğinde
+Temellendirme'yi Düzenlilik'e denk olduğunu belirterek
+gerekçelendirebileceğimiz anlamına gelir. Düzenlilik'i ise
+\stageshier{} temelinde doğrudan gerekçelendirebiliriz.
+
+\end{document}

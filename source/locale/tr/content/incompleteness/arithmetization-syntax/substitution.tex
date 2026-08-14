@@ -1,0 +1,55 @@
+% Part: incompleteness
+% Chapter: arithmetization-syntax
+% Section: substitution
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{inc}{art}{sub}
+\olsection{Yerine Koyma}
+
+Yerine koymanın, $u$ !!a{variable} için onun $!A$ !!a{formula} içindeki bütün
+serbest geçişlerini bir $t$ terimiyle değiştirme işlemi olduğunu anımsayın; bu işlem
+$\Subst{!A}{t}{u}$ ile yazılır. !!{variable}s{}in, !!{formula}s{}in ve terimlerin
+Gödel numaraları üzerinde gerçekleştirilen bu işlem ilkel özyinelemelidir.
+
+\begin{prop}\ollabel{prop:subst-primrec}
+\[
+\fn{Subst}(\Gn{!A}, \Gn{t}, \Gn{u}) = \Gn{\Subst{!A}{t}{u}}
+\]
+özelliğini taşıyan ilkel özyinelemeli bir $\fn{Subst}(x,y,z)$ fonksiyonu
+vardır.
+\end{prop}
+
+\begin{proof}
+$\fn{hSubst}$ fonksiyonunu ilkel özyinelemeyle aşağıdaki gibi
+tanımlayabiliriz:
+\begin{multline*}
+\begin{aligned}
+\fn{hSubst}(x, y, z, 0) & = \emptyseq \\
+\fn{hSubst}(x, y, z, i+1) & =
+\end{aligned}\\
+\begin{cases}
+\fn{hSubst}(x, y, z, i) \concat y & \text{$\fn{FreeOcc}(x, z, i)$ ise} \\
+\fn{append}(\fn{hSubst}(x, y, z, i), (x)_{i}) & \text{değilse.}
+\end{cases}
+\end{multline*}
+Artık $\fn{Subst}(x,y,z)$, $\fn{hSubst}(x,y,z,\len{x})$ olarak
+tanımlanabilir.
+\end{proof}
+
+\begin{prop}
+\ollabel{prop:free-for}
+Gödel numarası $y$ olan terimin, Gödel numarası $z$ olan değişkenin yerine
+Gödel numarası $x$ olan formülde !!{free for} olması durumunda geçerli olan
+$\fn{FreeFor}(x,y,z)$ bağıntısı ilkel özyinelemelidir.
+\end{prop}
+
+\begin{proof} Alıştırma. \end{proof}
+
+\begin{prob}
+\olref[inc][art][sub]{prop:free-for} önermesini ispatlayın.
+\end{prob}
+
+\end{document}

@@ -1,0 +1,188 @@
+% Part: methods
+% Chapter: induction
+% Section: relations
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{mth}{ind}{rel}
+
+\olsection{Bağıntılar ve Fonksiyonlar}
+
+Bir nesneler kümesini (doğal sayılar ya da düzgün terimler gibi)
+tümevarımsal olarak tanımladıktan sonra, bu nesneler \emph{üzerindeki
+bağıntıları} da tümevarımla tanımlayabiliriz. Örneğin şu düşünceyi ele
+alın: bir düzgün~$t_1$ terimi, bir düzgün~$t_2$ teriminin parçası olarak
+geçiyorsa onun altterimidir. Bunun için $t_1 \sqsubseteq t_2$ simgesini
+kullanalım. Elbette her düzgün terim kendisinin bir altterimidir: $t
+\sqsubseteq t$. Bu bağıntının tümevarımsal tanımını şöyle verebiliriz:
+
+\begin{defn}
+  Bir düzgün~$t_1$ teriminin~$t_2$'nin altterimi olması bağıntısı, $t_1
+  \sqsubseteq t_2$,~$t_2$ üzerinde tümevarımla şöyle tanımlanır:
+  \begin{enumerate}
+  \item $t_2$ bir harfse $t_1 \sqsubseteq t_2$, ancak ve ancak $t_1 = t_2$
+    ise geçerlidir.
+  \item $t_2$, $[s_1 \circ s_2]$ ise $t_1 \sqsubseteq t_2$, ancak ve
+    ancak $t_1 = t_2$, $t_1 \sqsubseteq s_1$ ya da $t_1 \sqsubseteq s_2$
+    ise geçerlidir.
+  \end{enumerate}
+\end{defn}
+
+Bu tanım bize örneğin $\mathrm{a} \sqsubseteq [\mathrm{b} \circ
+\mathrm{a}]$ olduğunu söyler. Çünkü (2), $\mathrm{a} \sqsubseteq
+[\mathrm{b} \circ \mathrm{a}]$'nın ancak ve ancak $\mathrm{a} =
+[\mathrm{b} \circ \mathrm{a}]$ ya da $\mathrm{a} \sqsubseteq
+\mathrm{b}$ ya da $\mathrm{a} \sqsubseteq \mathrm{a}$ ise geçerli
+olduğunu söyler. İlk ikisi yanlıştır: $\mathrm{a}$ açıkça $[\mathrm{b}
+\circ \mathrm{a}]$ ile özdeş değildir ve (1)'e göre $\mathrm{a}
+\sqsubseteq \mathrm{b}$ ancak ve ancak $\mathrm{a} = \mathrm{b}$ ise
+geçerlidir; bu da yanlıştır. Bununla birlikte yine (1)'e göre,
+$\mathrm{a} \sqsubseteq \mathrm{a}$ ancak ve ancak $\mathrm{a} =
+\mathrm{a}$ ise geçerlidir; bu doğrudur.
+
+Bu tanımın başarısının henüz kanıtlamadığımız bir olguya dayandığına
+dikkat etmek önemlidir: her düzgün~$t$ terimi ya tek başına bir harftir
+ya da \emph{biricik biçimde belirlenmiş} düzgün $s_1$ ve $s_2$ terimleri
+için $t = [s_1 \circ s_2]$ olur. Buradaki ``biricik biçimde belirlenmiş'',
+$t = [s_1 \circ s_2]$ iken \emph{aynı zamanda} $= [r_1 \circ r_2]$ olup
+$s_1 \neq r_1$ ya da $s_2 \neq r_2$ olamayacağı anlamına gelir. Durum
+böyle olsaydı (2). madde kendi kendisiyle
+çatışabilirdi: $t_2$'yi $[s_1 \circ s_2]$ olarak okuyunca $t_1
+\sqsubseteq t_2$ sonucunu, fakat $t_2$'yi $[r_1 \circ r_2]$ olarak
+okuyunca $t_1 \sqsubseteq t_2$ olmadığını elde edebilirdik. Bunun
+olamayacağını kanıtlamadan önce, \emph{olabildiği} bir örneğe bakalım.
+
+\begin{defn}
+  \emph{Parantezsiz terimleri} tümevarımsal olarak şöyle tanımlayın:
+  \begin{enumerate}
+  \item Her harf bir parantezsiz terimdir.
+    \item $s_1$ ile $s_2$ parantezsiz terimlerse $s_1 \circ s_2$ de
+      parantezsiz bir terimdir.
+    \item Başka hiçbir şey parantezsiz terim değildir.
+  \end{enumerate}
+\end{defn}
+
+Parantezsiz terimlere örnek olarak $\mathrm{a}$, $\mathrm{b} \circ
+\mathrm{d}$, $\mathrm{b} \circ \mathrm{a} \circ \mathrm{b}$ verilebilir.
+Parantezsiz terimler için ``altterim''i yukarıdaki gibi tanımlasaydık,
+ikinci madde şöyle olurdu:
+\begin{center}
+  $t_2 = s_1 \circ s_2$ ise $t_1 \sqsubseteq t_2$, ancak ve ancak $t_1
+  = t_2$, $t_1 \sqsubseteq s_1$ ya da $t_1 \sqsubseteq s_2$ ise
+  geçerlidir.
+\end{center}
+
+Şimdi $\mathrm{b} \circ \mathrm{a} \circ \mathrm{b}$, şu değerlerle
+$s_1 \circ s_2$ biçimindedir:
+\begin{align*}
+  s_1 & = \mathrm{b} \text{ ve} & s_2 & = \mathrm{a} \circ \mathrm{b}.
+\intertext{Aynı zamanda şu değerlerle $r_1 \circ r_2$ biçimindedir:}
+  r_1 & = \mathrm{b} \circ \mathrm{a} \text{ ve} & r_2 &= \mathrm{b}.
+\end{align*}
+Peki $\mathrm{a} \circ \mathrm{b}$, $\mathrm{b} \circ \mathrm{a}
+\circ \mathrm{b}$'nin bir altterimi midir? İlk okuyuşa göre yanıt evet,
+ikinci okuyuşa göre hayırdır.
+
+Bir düzgün terimin başka düzgün terimlerden kurulma yolunun tek türlü olması
+özelliğine \emph{tek türlü okunabilirlik} denir. Böyle tümevarımsal olarak
+tanımlanan nesneler için bağıntıların tümevarımsal tanımları önemli
+olduğundan, bu özelliğin geçerli olduğunu kanıtlamalıyız.
+
+\begin{prop}
+  $t$'nin bir düzgün terim olduğunu varsayın. O zaman ya $t$ tek başına
+  bir harftir ya da biricik biçimde belirlenmiş düzgün $s_1$, $s_2$
+  terimleri için~$t = [s_1 \circ s_2]$ olur.
+\end{prop}
+
+\begin{proof}
+  $t$ tek başına bir harfse koşul sağlanır. Öyleyse $t$'nin tek başına
+  bir harf olmadığını varsayın. Tümevarımsal tanımdan, bu durumda
+  $t$'nin bazı düzgün $s_1$ ve~$s_2$ terimleri için $[s_1 \circ s_2]$
+  biçiminde olması gerektiğini görebiliriz. Geriye bunların biricik biçimde
+  belirlendiğini, yani $t = [r_1 \circ r_2]$ ise $s_1 = r_1$ ve $s_2 =
+  r_2$ olduğunu göstermek kalır.
+
+  Öyleyse düzgün $s_1$, $s_2$, $r_1$, $r_2$ terimleri için $t = [s_1
+  \circ s_2]$ ve aynı zamanda $t = [r_1 \circ r_2]$ olduğunu varsayın.
+  $s_1 = r_1$ ve $s_2 = r_2$ olduğunu göstermeliyiz. Önce $s_1$ ile
+  $r_1$ özdeş olmalıdır; yoksa biri ötekinin öz başlangıç parçası olur.
+  Fakat \olref[sti]{prop:initial} gereği $s_1$ ile~$r_1$'in ikisi de
+  düzgün terimse bu olanaksızdır. $s_1 = r_1$ ise açıkça $s_2 = r_2$ de
+  geçerlidir.
+\end{proof}
+
+Fonksiyonları da tümevarımsal olarak tanımlayabiliriz: örneğin herhangi
+bir düzgün terimi, içindeki iç içe $[\dots]$ yapısının en büyük
+derinliğine gönderen~$f$ fonksiyonunu şöyle tanımlayabiliriz:
+
+\begin{defn}
+  \ollabel{defn:depth} Bir düzgün terimin \emph{derinliği}, $f(t)$,
+  tümevarımsal olarak şöyle tanımlanır:
+  \[
+  f(t) = \begin{cases}
+    0 & \text{ $t$ bir harfse}\\
+    \max(f(s_1), f(s_2)) + 1 & \text{ $t = [s_1 \circ s_2]$ ise.}
+  \end{cases}
+  \]
+\end{defn}
+
+Örneğin
+\begin{align*}
+  f([\mathrm{a} \circ \mathrm{b}]) & =
+    \max(f(\mathrm{a}),f(\mathrm{b})) + 1 = \\
+  &= \max(0, 0) + 1 = 1, \text{ ve}\\
+  f([[\mathrm{a} \circ \mathrm{b}] \circ \mathrm{c}]) & =
+    \max(f([\mathrm{a} \circ \mathrm{b}]), f(\mathrm{c})) + 1 = \\
+  & = \max(1,0) + 1 = 2.
+\end{align*}
+
+Burada elbette $s_1$ ile $s_2$'nin düzgün terimler olduğunu varsayar ve
+her düzgün terimin ya bir harf ya da $[s_1 \circ s_2]$ biçiminde olduğu
+olgusunu kullanırız. Bu biçimde yalnızca tek yolla olabilmesi yine
+önemlidir. Nedenini görmek için daha önce tanımladığımız parantezsiz
+terimleri yeniden ele alın. Buna karşılık gelen ``tanım'' şöyle olurdu:
+\[
+  g(t) =
+  \begin{cases}
+    0 & \text{ $t$ bir harfse}\\
+   \max(g(s_1), g(s_2)) + 1 & \text{ $t = s_1 \circ s_2$ ise.}
+  \end{cases}
+\]
+Şimdi $\mathrm{a} \circ \mathrm{b} \circ \mathrm{c} \circ
+\mathrm{d}$ parantezsiz terimini ele alın. Birden fazla biçimde
+okunabilir; örneğin şu değerlerle $s_1 \circ s_2$ olarak:
+\begin{align*}
+  s_1 & = \mathrm{a} \text{ ve} &
+  s_2 & = \mathrm{b} \circ \mathrm{c} \circ \mathrm{d},
+\intertext{ya da şu değerlerle $r_1 \circ r_2$ olarak:}
+  r_1 & = \mathrm{a} \circ \mathrm{b} \text{ ve} &
+  r_2 &= \mathrm{c} \circ \mathrm{d}.
+\end{align*}
+$g$'yi ilk okuyuşa göre hesaplamak şunu verirdi:
+\begin{align*}
+  g(s_1 \circ s_2) & =
+  \max(g(\mathrm{a}), g(\mathrm{b} \circ \mathrm{c} \circ \mathrm{d})) + 1 =\\ & =
+  \max(0,2) + 1 = 3
+  \intertext{öteki okuyuşa göre ise şunu elde ederiz:}
+  g(r_1 \circ r_2) & =
+  \max(g(\mathrm{a} \circ \mathrm{b}), g(\mathrm{c} \circ \mathrm{d})) + 1=\\ &
+  = \max(1,1) + 1 = 2
+\end{align*}
+Fakat bir fonksiyon her zaman tek bir değer vermelidir; öyleyse~$g$
+``tanımımız'' aslında hiçbir fonksiyon tanımlamaz.
+
+\begin{prob}
+  $l(t)$, düzgün~$t$ terimindeki simgelerin sayısı olmak üzere, $l$
+  fonksiyonunun tümevarımsal bir tanımını verin.
+\end{prob}
+
+\begin{prob}
+  Düzgün terimler~$t$ üzerinde yapısal tümevarımla $f(t) < l(t)$
+  olduğunu kanıtlayın (burada $l(t)$,~$t$'deki simgelerin sayısı ve
+  $f(t)$, \olref[mth][ind][rel]{defn:depth}'te tanımlandığı üzere
+  $t$'nin derinliğidir).
+\end{prob}
+
+\end{document}

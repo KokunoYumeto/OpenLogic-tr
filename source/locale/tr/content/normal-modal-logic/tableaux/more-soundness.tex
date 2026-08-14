@@ -1,0 +1,222 @@
+% Part: normal-modal-logic
+% Chapter: tableaux
+% Section: more-soundness
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{nml}{tab}{msn}
+      
+\olsection{Ek Kuralların Sağlamlığı}
+
+!!a{tableau}{}daki bir dal, belirli bir sınıftaki modelde sağlanabilir olduğunda
+kuralın uygulanmasıyla ortaya çıkan dal da o sınıftaki bir modelde
+sağlanabiliyorsa, kurala bu modeller sınıfı için sağlam deriz.
+
+\begin{prop}
+  \ollabel{prop:soundness-T} 
+  \iftag{prvBox}{\Ax{T}$\Box$}{}%
+  \iftag{notprvBox,notprvDiamond}{}{ ve }%
+  \iftag{prvDiamond}{\Ax{T}$\Diamond$}{}
+  \iftag{notprvBox,notprvDiamond}{kuralı}{kuralları}
+  yansımalı modeller için sağlamdır.
+\end{prop}
+
+\begin{proof}
+\begin{tagenumerate}{prvBox,prvDiamond}
+\tagitem{prvBox}{Dal, $\sFmla{\True}{\Box !B}[\sigma] \in \Gamma$'ya
+  T$\Box$ uygulanarak genişletilsin:
+  \iftag{probBox}{Alıştırma.}{Bunun sonucunda dala yeni bir !!{signed
+      formula} $\sFmla{\True}{!B}[\sigma]$ eklenir.
+    $\mSat{M}{\Gamma}[f]$, özellikle de $\mSat{M}{\Box
+      !B}[f(\sigma)]$ olsun. $R$ yansımalı olduğundan
+    $Rf(\sigma)f(\sigma)$. Dolayısıyla $\mSat{M}{!B}[f(\sigma)]$;
+    yani $\mModel{M},f$, $\sFmla{\True}{!B}[\sigma]$'yı sağlar.}}{}
+\tagitem{prvDiamond}{Dal, $\sFmla{\False}{\Diamond !B}[\sigma] \in
+  \Gamma$'ya T$\Diamond$ uygulanarak genişletilsin:
+  \iftag{probDiamond}{Alıştırma.}{Bunun sonucunda dala yeni bir !!{signed
+      formula} $\sFmla{\False}{!B}[\sigma]$ eklenir.
+    $\mSat{M}{\Gamma}[f]$, özellikle de $\mSat/{M}{\Diamond
+      !B}[f(\sigma)]$ olsun. $R$ yansımalı olduğundan
+    $Rf(\sigma)f(\sigma)$. Dolayısıyla $\mSat/{M}{!B}[f(\sigma)]$;
+    yani $\mModel{M},f$, $\sFmla{\False}{!B}[\sigma]$'yı sağlar.}}{}
+\end{tagenumerate}
+\end{proof}
+
+\tagprob{probBox,probDiamond}
+\begin{prob}
+  \olref[nml][tab][msn]{prop:soundness-T} önermesinin ispatını tamamlayın.
+\end{prob}
+\tagendprob
+
+\begin{prop}
+  \ollabel{prop:soundness-D} 
+  \iftag{prvBox}{\Ax{D}$\Box$}{}%
+  \iftag{notprvBox,notprvDiamond}{}{ ve }%
+  \iftag{prvDiamond}{\Ax{D}$\Diamond$}{}
+  \iftag{notprvBox,notprvDiamond}{kuralı}{kuralları}
+  seri modeller için sağlamdır.
+\end{prop}
+
+\begin{proof}
+\begin{tagenumerate}{prvBox,prvDiamond}
+\tagitem{prvBox}{Dal, $\sFmla{\True}{\Box !B}[\sigma] \in \Gamma$'ya
+  D$\Box$ uygulanarak genişletilsin:
+  \iftag{probBox}{Alıştırma.}{Bunun sonucunda dala yeni bir !!{signed
+      formula} $\sFmla{\True}{\Diamond !B}[\sigma]$ eklenir.
+    $\mSat{M}{\Gamma}[f]$, özellikle de $\mSat{M}{\Box
+      !B}[f(\sigma)]$ olsun. $R$ seri olduğundan $Rf(\sigma)w$ olan bir
+    $w\in W$ vardır. O zaman $\mSat{M}{!B}[w]$, dolayısıyla
+    $\mSat{M}{\Diamond !B}[f(\sigma)]$. Böylece $\mModel{M},f$,
+    $\sFmla{\True}{\Diamond!B}[\sigma]$'yı sağlar.}}{}
+\tagitem{prvDiamond}{Dal, $\sFmla{\False}{\Diamond !B}[\sigma] \in
+  \Gamma$'ya D$\Diamond$ uygulanarak genişletilsin:
+  \iftag{probDiamond}{Alıştırma.}{Bunun sonucunda dala yeni bir !!{signed
+      formula} $\sFmla{\False}{\Box !B}[\sigma]$ eklenir.
+    $\mSat{M}{\Gamma}[f]$, özellikle de $\mSat/{M}{\Diamond
+      !B}[f(\sigma)]$ olsun. $R$ seri olduğundan $Rf(\sigma)w$ olan bir
+    $w\in W$ vardır. O zaman $\mSat/{M}{!B}[w]$, dolayısıyla
+    $\mSat/{M}{\Box !B}[f(\sigma)]$. Böylece $\mModel{M},f$,
+    $\sFmla{\False}{\Box!B}[\sigma]$'yı sağlar.}}{}
+\end{tagenumerate}
+\end{proof}
+
+\tagprob{probBox,probDiamond}
+\begin{prob}
+  \olref[nml][tab][msn]{prop:soundness-D} önermesinin ispatını tamamlayın.
+\end{prob}
+\tagendprob
+
+\begin{prop}
+  \ollabel{prop:soundness-B} 
+  \iftag{prvBox}{\Ax{B}$\Box$}{}%
+  \iftag{notprvBox,notprvDiamond}{}{ ve }%
+  \iftag{prvDiamond}{\Ax{B}$\Diamond$}{}
+  \iftag{notprvBox,notprvDiamond}{kuralı}{kuralları}
+  simetrik modeller için sağlamdır.
+\end{prop}
+
+\begin{proof}
+\begin{tagenumerate}{prvBox,prvDiamond}
+\tagitem{prvBox}{Dal, $\sFmla{\True}{\Box !B}[\sigma.n] \in \Gamma$'ya
+  B$\Box$ uygulanarak genişletilsin:
+  \iftag{probBox}{Alıştırma.}{Bunun sonucunda dala yeni bir !!{signed
+      formula} $\sFmla{\True}{!B}[\sigma]$ eklenir.
+    $\mSat{M}{\Gamma}[f]$, özellikle de $\mSat{M}{\Box
+      !B}[f(\sigma.n)]$ olsun. $f$, daldaki öneklerin $\mModel{M}$ içindeki
+    bir yorumu olduğundan $Rf(\sigma)f(\sigma.n)$. $R$ simetrik olduğundan
+    $Rf(\sigma.n)f(\sigma)$. $\mSat{M}{\Box !B}[f(\sigma.n)]$ olduğundan
+    $\mSat{M}{!B}[f(\sigma)]$. Dolayısıyla $\mModel{M},f$,
+    $\sFmla{\True}{!B}[\sigma]$'yı sağlar.}}{}
+\tagitem{prvDiamond}{Dal, $\sFmla{\False}{\Diamond !B}[\sigma.n] \in
+  \Gamma$'ya B$\Diamond$ uygulanarak genişletilsin:
+  \iftag{probDiamond}{Alıştırma.}{Bunun sonucunda dala yeni bir !!{signed
+      formula} $\sFmla{\False}{!B}[\sigma]$ eklenir.
+    $\mSat{M}{\Gamma}[f]$, özellikle de $\mSat/{M}{\Diamond
+      !B}[f(\sigma.n)]$ olsun. $f$, daldaki öneklerin $\mModel{M}$ içindeki
+    bir yorumu olduğundan $Rf(\sigma)f(\sigma.n)$. $R$ simetrik olduğundan
+    $Rf(\sigma.n)f(\sigma)$. $\mSat/{M}{\Diamond !B}[f(\sigma.n)]$
+    olduğundan $\mSat/{M}{!B}[f(\sigma)]$. Dolayısıyla $\mModel{M},f$,
+    $\sFmla{\False}{!B}[\sigma]$'yı sağlar.}}{}
+\end{tagenumerate}
+\end{proof}
+
+\tagprob{probBox,probDiamond}
+\begin{prob}
+  \olref[nml][tab][msn]{prop:soundness-B} önermesinin ispatını tamamlayın.
+\end{prob}
+\tagendprob
+
+\begin{prop}
+  \ollabel{prop:soundness-4} 
+  \iftag{prvBox}{\Ax{4}$\Box$}{}%
+  \iftag{notprvBox,notprvDiamond}{}{ ve }%
+  \iftag{prvDiamond}{\Ax{4}$\Diamond$}{}
+  \iftag{notprvBox,notprvDiamond}{kuralı}{kuralları}
+  geçişli modeller için sağlamdır.
+\end{prop}
+
+\begin{proof}
+\begin{tagenumerate}{prvBox,prvDiamond}
+\tagitem{prvBox}{Dal, $\sFmla{\True}{\Box !B}[\sigma] \in \Gamma$'ya
+  4$\Box$ uygulanarak genişletilsin:
+  \iftag{probBox}{Alıştırma.}{Bunun sonucunda dala yeni bir !!{signed
+      formula} $\sFmla{\True}{\Box!B}[\sigma.n]$ eklenir.
+    $\mSat{M}{\Gamma}[f]$, özellikle de $\mSat{M}{\Box !B}[f(\sigma)]$
+    olsun. $f$, daldaki öneklerin $\mModel{M}$ içindeki bir yorumu ve
+    $\sigma.n$ kullanılmış olmak zorunda olduğundan
+    $Rf(\sigma)f(\sigma.n)$. Şimdi $Rf(\sigma.n)w$ olan gelişigüzel bir $w$
+    dünyası alalım. $R$ geçişli olduğundan $Rf(\sigma)w$.
+    $\mSat{M}{\Box !B}[f(\sigma)]$ olduğundan $\mSat{M}{!B}[w]$.
+    Dolayısıyla $\mSat{M}{\Box !B}[f(\sigma.n)]$ ve $\mModel{M},f$,
+    $\sFmla{\True}{\Box !B}[\sigma.n]$'yı sağlar.}}{}
+\tagitem{prvDiamond}{Dal, $\sFmla{\False}{\Diamond !B}[\sigma] \in
+  \Gamma$'ya 4$\Diamond$ uygulanarak genişletilsin:
+  \iftag{probDiamond}{Alıştırma.}{Bunun sonucunda dala yeni bir !!{signed
+      formula} $\sFmla{\False}{\Diamond!B}[\sigma.n]$ eklenir.
+    $\mSat{M}{\Gamma}[f]$, özellikle de $\mSat/{M}{\Diamond
+      !B}[f(\sigma)]$ olsun. $f$, daldaki öneklerin $\mModel{M}$ içindeki
+    bir yorumu ve $\sigma.n$ kullanılmış olmak zorunda olduğundan
+    $Rf(\sigma)f(\sigma.n)$. Şimdi $Rf(\sigma.n)w$ olan gelişigüzel bir $w$
+    dünyası alalım. $R$ geçişli olduğundan $Rf(\sigma)w$.
+    $\mSat/{M}{\Diamond !B}[f(\sigma)]$ olduğundan $\mSat/{M}{!B}[w]$.
+    Dolayısıyla $\mSat/{M}{\Diamond !B}[f(\sigma.n)]$ ve $\mModel{M},f$,
+    $\sFmla{\False}{\Diamond !B}[\sigma.n]$'yı sağlar.}}{}
+\end{tagenumerate}
+\end{proof}
+
+\tagprob{probBox,probDiamond}
+\begin{prob}
+  \olref[nml][tab][msn]{prop:soundness-4} önermesinin ispatını tamamlayın.
+\end{prob}
+\tagendprob
+
+\begin{prop}
+  \ollabel{prop:soundness-4r} 
+  \iftag{prvBox}{\Ax{4r}$\Box$}{}%
+  \iftag{notprvBox,notprvDiamond}{}{ ve }%
+  \iftag{prvDiamond}{\Ax{4r}$\Diamond$}{}
+  \iftag{notprvBox,notprvDiamond}{kuralı}{kuralları}
+  Öklidyen modeller için sağlamdır.
+\end{prop}
+
+\begin{proof}
+\begin{tagenumerate}{prvBox,prvDiamond}
+\tagitem{prvBox}{Dal, $\sFmla{\True}{\Box !B}[\sigma.n] \in \Gamma$'ya
+  4r$\Box$ uygulanarak genişletilsin:
+  \iftag{probBox}{Alıştırma.}{Bunun sonucunda dala yeni bir !!{signed
+      formula} $\sFmla{\True}{\Box!B}[\sigma]$ eklenir.
+    $\mSat{M}{\Gamma}[f]$, özellikle de $\mSat{M}{\Box
+      !B}[f(\sigma.n)]$ olsun. $f$, daldaki öneklerin $\mModel{M}$ içindeki
+    bir yorumu olduğundan $Rf(\sigma)f(\sigma.n)$. Şimdi $Rf(\sigma)w$ olan
+    gelişigüzel bir $w$ dünyası alalım. $R$ Öklidyen olduğundan
+    $Rf(\sigma.n)w$. $\mSat{M}{\Box !B}[f(\sigma.n)]$ olduğundan
+    $\mSat{M}{!B}[w]$. Dolayısıyla $\mSat{M}{\Box !B}[f(\sigma)]$ ve
+    $\mModel{M},f$, $\sFmla{\True}{\Box !B}[\sigma]$'yı sağlar.}}{}
+\tagitem{prvDiamond}{Dal, $\sFmla{\False}{\Diamond !B}[\sigma.n] \in
+  \Gamma$'ya 4r$\Diamond$ uygulanarak genişletilsin:
+  \iftag{probDiamond}{Alıştırma.}{Bunun sonucunda dala yeni bir !!{signed
+      formula} $\sFmla{\False}{\Diamond!B}[\sigma]$ eklenir.
+    $\mSat{M}{\Gamma}[f]$, özellikle de $\mSat/{M}{\Diamond
+      !B}[f(\sigma.n)]$ olsun. $f$, daldaki öneklerin $\mModel{M}$ içindeki
+    bir yorumu olduğundan $Rf(\sigma)f(\sigma.n)$. Şimdi $Rf(\sigma)w$ olan
+    gelişigüzel bir $w$ dünyası alalım. $R$ Öklidyen olduğundan
+    $Rf(\sigma.n)w$. $\mSat/{M}{\Diamond !B}[f(\sigma.n)]$ olduğundan
+    $\mSat/{M}{!B}[w]$. Dolayısıyla $\mSat/{M}{\Diamond !B}[f(\sigma)]$ ve
+    $\mModel{M},f$, $\sFmla{\False}{\Diamond !B}[\sigma]$'yı sağlar.}}{}
+\end{tagenumerate}
+\end{proof}
+
+\tagprob{probBox,probDiamond}
+\begin{prob}
+  \olref[nml][tab][msn]{prop:soundness-4r} önermesinin ispatını tamamlayın.
+\end{prob}
+\tagendprob
+
+\begin{cor}
+\ollabel{cor:soundness-logics} \olref[mru]{tab:logics-rules}'te verilen
+!!{tableau} sistemleri, karşılık gelen model sınıfları için sağlamdır.
+\end{cor}
+
+\end{document}

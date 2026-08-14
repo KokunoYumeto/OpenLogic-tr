@@ -1,10 +1,16 @@
 {
   "schema_version": "DataCite-4.7-intent",
   "language_concept_doi": "10.5281/zenodo.21921844",
-  "exact_version_doi": "10.5281/zenodo.21921845",
+  "exact_version_doi": "10.5281/zenodo.21927145",
+  "exact_version_record_id": 21927145,
   "original_or_source_identifier": "https://github.com/OpenLogicProject/OpenLogic/commit/9620cc73f9c8e0ad003c514a5d3748f29611c4c0",
   "global_collection_concept_doi": null,
   "relations": [
+    {
+      "from": "exact_version",
+      "relationType": "IsVersionOf",
+      "to": "language_concept"
+    },
     {
       "from": "language_concept",
       "relationType": "IsTranslationOf",
@@ -12,8 +18,8 @@
     },
     {
       "from": "exact_version",
-      "relationType": "IsVersionOf",
-      "to": "language_concept"
+      "relationType": "IsTranslationOf",
+      "to": "original_or_source"
     }
   ],
   "pending_relations": [
@@ -21,7 +27,7 @@
       "from": "language_concept",
       "relationType": "IsPartOf",
       "to": "global_collection",
-      "reason": "No genuine global Open Logic multilingual collection concept DOI exists at release."
+      "reason": "No genuine global Open Logic multilingual collection concept DOI exists; no active relation is asserted."
     }
   ],
   "reciprocals": [
@@ -29,13 +35,9 @@
       "from": "original_or_source",
       "relationType": "HasTranslation",
       "to": "language_concept",
-      "status": "intent; upstream metadata is not controlled here"
-    },
-    {
-      "from": "language_concept",
-      "relationType": "HasVersion",
-      "to": "exact_version"
+      "status": "intent only; upstream metadata is not controlled here"
     }
   ],
-  "zenodo_translation_vocabulary_available_at_release": false
+  "zenodo_translation_vocabulary_available_at_freeze": false,
+  "publication_state": "exact DOI reserved; package upload, publication, and public readback pending"
 }

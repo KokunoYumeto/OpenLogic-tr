@@ -1,0 +1,139 @@
+% Part: normal-modal-logic
+% Chapter: filtrations
+% Section: euclidean-filtrations
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{nml}{fil}{euc}
+
+\olsection{Öklidyen Modellerin Süzmeleri}
+
+\olref[acc]{sec}'deki yaklaşım, Öklidyen ya da hem seri hem Öklidyen
+modeller için işe yaramaz. \olref{fig:ser-eucl}'de gösterilen hem
+Öklidyen hem seri modeli ele alalım. $\Gamma=\{p,\Box p\}$ olsun.
+$\Gamma$ üzerinden süzme alındığında $w_1$ ile $w_3$, $\Gamma$ üzerinde
+uyuşan tek farklı dünya çifti olduğundan $[w_1]=[w_3]$ olur. Her süzme,
+$\mModel{M}$ modelinden devralınan ve \olref{fig:ser-eucl2}'de gösterilen
+okları da içerir. Bu model Öklidyen değildir. Üstelik modeli Öklidyen yapmak
+için ona oklar ekleyemeyiz. $[w_2]$ ile $[w_4]$ arasına iki yönlü oklar,
+ardından $[w_2]$ ile~$[w_5]$ arasına da iki yönlü oklar eklememiz gerekirdi.
+Fakat $\Box p$'nin $[w_2]$'de doğru, $p$'nin ise $[w_5]$'te yanlış olması
+gerekir.
+
+\begin{figure}[htpb]
+  \centering
+  \begin{tikzpicture}[modal]
+    \node[world] (w1)
+          [label={left: \mFalse{p}},
+            label={below: $\mSat{{}}{\Box p}$}] {$w_1$};
+    \node[world] (w2)
+          [label={right: \mTrue{p}},
+            label = {below: $\mSat{{}}{\Box p}$},
+            right=of w1] {$w_2$};
+    \draw[->] (w1) to (w2);
+    \draw[reflexive above] (w2) to (w2);
+    \node[world] (w3)
+          [label={left: \mFalse{p}},
+            label={below: $\mSat{{}}{\Box p}$},
+            below=of w1] {$w_3$};
+    \node[world] (w4)
+          [label={right:\mTrue{p}},
+            label={below: $\mSat/{{}}{\Box p}$},
+            right=of w3] {$w_4$};
+    \draw[->] (w3) to (w4);
+    \draw[reflexive above] (w4) to (w4);
+    \node[world] (w5)
+          [label={right: \mFalse{p}},
+            label=below:$\mSat/{{}}{\Box p}$,
+            right=of w4] {$w_5$};
+    \draw[->, bend left] (w4) to (w5);
+    \draw[->, bend left] (w5) to (w4);
+    \draw[reflexive above] (w5) to (w5);
+  \end{tikzpicture}
+  \caption{Seri ve Öklidyen bir model.}
+  \ollabel{fig:ser-eucl}
+\end{figure}
+
+\begin{figure}[ht]
+  \centering
+  \begin{tikzpicture}[modal,every text node part/.style={align=center}]
+    \node[world] (w1)
+          [label={left: \mFalse{p}},
+            label={right:$[w_1]=[w_3]$},
+            label={below: $\mSat{{}}{\Box p}$}] {$[w_1]$};
+    \node[world] (w2)
+         [label={right: \mTrue{p}},
+           label = {below: $\mSat{{}}{\Box p}$},
+           right=of w1, yshift=1.5cm] {$[w_2]$};
+    \draw[->] (w1) to (w2);
+    \draw[reflexive above] (w2) to (w2);
+    \node[world] (w4)
+         [label={right:\mTrue{p}},
+           label={below: $\mSat/{{}}{\Box p}$},
+           right=of w1,yshift=-1.5cm] {$[w_4]$};
+    \draw[->] (w1) to (w4);
+    \draw[reflexive above] (w4) to (w4);
+    \node[world] (w5)
+         [label={right: \mFalse{p}},
+             label=below:$\mSat/{{}}{\Box p}$,
+             right=of w4] {$[w_5]$};
+    \draw[->, bend left] (w4) to (w5);
+    \draw[->, bend left] (w5) to (w4);
+    \draw[reflexive above] (w5) to (w5);
+  \end{tikzpicture}
+  \caption{\olref{fig:ser-eucl}'deki modelin süzmesi.}
+  \ollabel{fig:ser-eucl2}
+\end{figure}
+
+Özellikle Öklidyen bir süzme elde etmek için alt-!!{formula}s altında kapalı
+gelişigüzel $\Gamma$ kümeleri üzerinden alınan süzmeleri incelemek yeterli
+değildir. Bunun yerine \emph{modal olarak kapalı} $\Gamma$ kümelerini
+incelememiz gerekir (bkz. \olref[pre]{defn:modallyclosed}). Bu tür tümce
+kümeleri sonsuzdur; dolayısıyla karşılık gelen sistemin sonlu model
+özelliğini ya da karar verilebilirliğini doğrudan vermezler.
+
+\begin{thm}\ollabel{thm:modal-closed-filt}
+  $\Gamma$ modal olarak kapalı,
+  $\mModel{M}=\tuple{W,R,V}$ ve
+  $\mModel{M^*}=\tuple{W^*,R^*,V^*}$, $\mModel{M}$'nin en kaba süzmesi
+  olsun.
+  \begin{enumerate}
+  \item $\mModel{M}$ geçişliyse $\mModel{M^*}$ de geçişlidir.
+  \item $\mModel{M}$ Öklidyense $\mModel{M^*}$ de Öklidyendir.
+  \item $\mModel{M}$ simetrikse $\mModel{M^*}$ de simetriktir.
+  \end{enumerate}
+\end{thm}
+
+\begin{proof}
+\begin{enumerate}
+  \item $\mModel{M^*}$ en kaba süzmeyse tanım gereğince $R^*[u][v]$
+    ancak ve ancak $C_1(u,v)$ olduğunda geçerlidir. Geçişlilik için
+    $C_1(u,v)$ ile $C_1(v,w)$'nin geçerli olduğunu varsayalım;
+    $C_1(u,w)$'yi göstermeliyiz.
+    \iftag{prvBox}{$\mSat{M}{\Box !A}[u]$ olsun. \Ax{4} bütün geçişli
+      modellerde geçerli olduğundan $\mSat{M}{\Box\Box!A}[u]$; modal
+      kapalılık nedeniyle $\Box\Box!A\in\Gamma$ olduğundan önce
+      $C_1(u,v)$ ile $\mSat{M}{\Box!A}[v]$, sonra $C_1(v,w)$ ile
+      $\mSat{M}{!A}[w]$ elde edilir. }{}
+    \iftag{prvDiamond}{$\mSat{M}{!A}[w]$ olsun. Modal kapalılıktan
+      $\Diamond!A\in\Gamma$ ve $C_1(v,w)$ ile
+      $\mSat{M}{\Diamond!A}[v]$. Yine modal kapalılıktan
+      $\Diamond\Diamond!A\in\Gamma$ ve $C_1(u,v)$ ile
+      $\mSat{M}{\Diamond\Diamond!A}[u]$. $\Ax{4}_\Diamond$ bütün
+      geçişli modellerde geçerli olduğundan
+      $\mSat{M}{\Diamond!A}[u]$.}{}
+  \item Alıştırma. Hem \Ax{5}'in hem de $\Ax{5_\Diamond}$'ın bütün
+    Öklidyen modellerde geçerli olduğunu kullanın.
+  \item Alıştırma. \Ax{B} ile $\Ax{B_\Diamond}$'ın bütün simetrik
+    modellerde geçerli olduğunu kullanın.
+\end{enumerate}
+\end{proof}
+
+\begin{prob}
+  \olref[nml][fil][euc]{thm:modal-closed-filt} teoreminin ispatını
+  tamamlayın.
+\end{prob}
+
+\end{document}

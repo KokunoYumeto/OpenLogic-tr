@@ -1,0 +1,114 @@
+% Part: lambda-calculus
+% Chapter: introduction
+% Section: free-variables
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{lam}{syn}{fv}
+\olsection{Serbest Değişkenler}
+
+Lambda hesabı fonksiyonları ele alır; fonksiyonlar lambda soyutlamasıyla
+ortaya çıkar. Sezgisel olarak $\lambd[x][M]$, fonksiyonun argümanı $x$'e
+atandığında değerleri $M$ tarafından verilen fonksiyondur. Ancak $M$ içindeki
+her $x$ geçişi bu soyutlamayla ilgili değildir: $M$ başka bir
+$\lambd[x][N]$ soyutlaması içeriyorsa $N$ içindeki $x$ geçişleri
+$\lambd[x][N]$ ile ilgilidir, $\lambd[x][M]$ ile değil. Dolayısıyla
+$\lambd[x][M]$ içindeki bir $\lambd[x]$ lambda soyutlaması, $M$ içindeki
+başka bir lambda soyutlaması tarafından zaten bağlanmamış $x$ geçişlerini,
+yani $M$ içindeki \emph{serbest} $x$ geçişlerini \emph{bağlar}.
+
+\begin{defn}[Kapsam]
+$\lambd[x][M]$ bir $N$ teriminin içinde geçiyorsa, $M$'nin karşılık gelen
+geçişi $\lambd[x]$'in \emph{kapsamıdır}.
+\end{defn}
+
+
+\begin{defn}[Serbest ve bağlı geçiş]
+  Bir $M$ terimindeki $x$ değişkeninin bir geçişi, herhangi bir
+  $\lambd[x]$'in kapsamında değilse \emph{serbest}, aksi durumda
+  \emph{bağlıdır}. $\lambd[x][M]$ içindeki bir $x$ geçişi, ancak ve ancak
+  $M$ içindeki karşılık gelen $x$ geçişi serbestse baştaki $\lambd[x]$
+  tarafından bağlanır.
+\end{defn}
+
+\begin{ex}
+  $\lambd[x][x y]$ içinde hem $x$ hem de $y$, $\lambd[x]$'in kapsamındadır;
+  dolayısıyla $x$, $\lambd[x]$ tarafından bağlanır. $y$ herhangi bir
+  $\lambd[y]$'nin kapsamında olmadığından serbesttir. $\lambd[x][x x]$
+  içinde $x$'in her iki geçişi de $\lambd[x]$ tarafından bağlanır; çünkü
+  ikisi de $xx$ içinde serbesttir. $((\lambd[x][xx])x)$ içinde $x$'in son
+  geçişi herhangi bir $\lambd[x]$'in kapsamında olmadığından serbesttir.
+  $\lambd[x][(\lambd[x][x])x]$ içinde ilk $\lambd[x]$'in kapsamı
+  $(\lambd[x][x])x$, ikinci $\lambd[x]$'in kapsamı ise $x$'in sondan bir
+  önceki geçişidir. $(\lambd[x][x])x$ içinde $x$'in son geçişi serbest,
+  sondan bir önceki geçişi bağlıdır. Dolayısıyla
+  $\lambd[x][(\lambd[x][x])x]$ içindeki sondan bir önceki $x$ geçişi ikinci
+  $\lambd[x]$, son geçişi ise ilk $\lambd[x]$ tarafından bağlanır.
+\end{ex}
+
+Bir $P$ terimindeki bütün değişken geçişlerini inceleyerek serbest değişkenler
+kümesini elde edebiliriz. Bu küme $\FV{P}$ ile gösterilir ve doğal biçimde
+şöyle tanımlanır:
+
+\begin{defn}[Bir terimin serbest değişkenleri] \ollabel{def:fv}
+  Bir terimin \emph{serbest değişkenler} kümesi tümevarımlı olarak şöyle
+  tanımlanır:
+  \begin{enumerate}
+    \item $\FV{x} = \{x\}$ \ollabel{def:fv1}
+    \item $\FV{\lambd[x][N]} = \FV{N} \setminus \{x\}$ \ollabel{def:fv2}
+    \item $\FV{PQ} = \FV{P} \cup \FV{Q}$ \ollabel{def:fv3}
+  \end{enumerate}
+\end{defn}
+
+\begin{prob}
+  \begin{enumerate}
+  \item $\lambd[g][(\lambd[x][g (x x)]) \lambd[x][g (x x)]]$ terimindeki
+    $\lambd[g]$ ile iki $\lambd[x]$'in kapsamlarını belirleyin.
+  \item $\lambd[g][(\lambd[x][g (x x)]) \lambd[x][g (x x)]]$ içindeki
+    bütün değişken geçişleri bağlı mıdır? Her biri hangi soyutlama tarafından
+    bağlanır?
+    \item $\FV{\lambd[x][(\lambd[y][(\lambd[z][x y]) z]) y]}$ kümesini
+    verin.
+  \end{enumerate}
+\end{prob}
+
+\begin{explain}
+Serbest değişken dış dünyaya, yani \emph{ortama}, yapılan bir gönderme
+gibidir. Serbest değişkenler içeren bir terim, davranışı ortamın nasıl
+kurulduğuna bağlı olduğundan kısmen belirlenmiş bir terim sayılabilir.
+Örneğin bir $x$ argümanı alıp bu argümanın $f$ altındaki değerini döndüren
+$\lambd[x][f x]$ teriminde $f$ değişkeni serbesttir. Terimin değeri bulunduğu
+ortama, özellikle de o ortamdaki $f$ değerine bağlıdır.
+
+Bu terime soyutlama uygularsak $\lambd[f][\lambd[x][f x]]$ elde ederiz. Bu
+terim artık ortam değişkeni $f$'ye bağlı değildir; çünkü iki argüman alan ve
+birincisini ikinciye uygulamanın sonucunu döndüren bir fonksiyon gösterir.
+Ortamda $f$'nin değerini değiştirmek bu terimin davranışını etkilemez: terim,
+ortamdaki $f$ değerini değil, yalnızca argüman olarak verilen değeri kullanır.
+\end{explain}
+
+\begin{defn}[Kapalı terim, kombinatör]
+  Hiçbir serbest değişkeni olmayan terime \emph{kapalı terim} ya da
+  \emph{kombinatör} denir.
+\end{defn}
+
+\begin{lem}\ollabel{lem:fv}
+  \begin{enumerate}
+    \item \ollabel{lem:fv-abs} $y \neq x$ ise $y \in
+      \FV{\lambd[x][N]}$ ancak ve ancak $y \in \FV{N}$ ise.
+    \item \ollabel{lem:fv-app} $y \in \FV{PQ}$ ancak ve ancak
+      $y \in \FV{P}$ ya da $y \in \FV{Q}$ ise.
+    \end{enumerate}
+\end{lem}
+
+\begin{proof}
+  Alıştırma.
+\end{proof}
+
+\begin{prob}
+  \olref[lam][syn][fv]{lem:fv} lemasını ispatlayın.
+\end{prob}
+
+\end{document}

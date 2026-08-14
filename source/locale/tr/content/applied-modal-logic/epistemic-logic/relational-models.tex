@@ -1,0 +1,51 @@
+% Part: applied-modal-logics
+% Chapter: epistemic-logic
+% Section: relational-models
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{aml}{el}{rel}
+
+\olsection{Bağıntısal Modeller}
+
+Epistemik mantıkların temel semantik kavramı, olağan modal mantıklarınkiyle
+aynıdır. Bağıntısal modeller yine bir dünyalar kümesinden ve hangi
+!!{propositional variable}s{}nin hangi dünyalarda ``doğru'' sayılacağını
+belirleyen bir atamadan oluşur. Yalnızca tek bir özneyle ilgileniyorsak her
+zamanki gibi tek bir erişilebilirlik bağıntımız vardır. Ancak çok özneli bir
+epistemik mantığımız varsa bu tek erişilebilirlik bağıntısının yerini, her
+$a$ için bir tane olmak üzere, özne simgeleri kümemiz $G$ ile dizinlenmiş bir
+erişilebilirlik bağıntıları kümesi alır.
+
+Bir \emph{bağıntısal model}, ikili erişilebilirlik bağıntılarıyla---her özne
+için bir tane---birbirine bağlanan bir dünyalar kümesi ile hangi
+!!{propositional variable}s{}nin hangi dünyalarda doğru olduğunu belirleyen bir
+atamadan oluşur.
+
+\begin{defn}
+  Çok özneli epistemik dil için bir \emph{model}, $\mModel{M} = \tuple{W, R,
+  V}$ üçlüsüdür; burada
+  \begin{enumerate}
+  \item $W$, boş olmayan bir ``dünyalar'' kümesidir,
+  \item Her $a \in G$ için ${R}_a$, $W$ üzerinde ikili bir erişilebilirlik
+  bağıntısıdır ve
+  \item $V$, her !!{propositional variable}~$p$'ye bir $V(p)$ olası dünyalar
+  kümesi atayan bir fonksiyondur.
+  \end{enumerate}
+  $R_a ww'$ geçerli olduğunda $w'$ dünyasının, a öznesi açısından,
+  $w$'den \emph{erişilebilir} olduğunu söyleriz. $w \in V(p)$ olduğunda
+  $p$'nin $w$'de \emph{doğru} olduğunu söyleriz.
+  % [tr source emendation] Upstream's phrase `accessible by a from w` is
+  % ungrammatical; Turkish states the intended indexed accessibility relation.
+\end{defn}
+
+İşleyiş, yalnızca daha fazla erişilebilirlik bağıntısı eklenmiş olması dışında
+normal modal mantıktakiyle aynıdır. Belirli bir öznenin erişilebilirlik
+bağıntısını genellikle onun bilgisel durumlarına ilişkin bir şeyi temsil
+edecek biçimde yorumlarız. Örneğin çoğu kez $R_a ww'$ ifadesini, $w'$'nün
+$a$'nın $w$'deki bilgisiyle bağdaşmasını ifade ediyor sayarız. Başka bir
+deyişle özne $w$'de, $w$ dünyası ile $w'$ dünyasını birbirinden ayırt edemez.
+
+\end{document}

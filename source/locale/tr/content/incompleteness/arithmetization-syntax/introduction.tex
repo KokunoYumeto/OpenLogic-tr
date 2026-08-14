@@ -1,0 +1,85 @@
+% Part: incompleteness
+% Chapter: arithmetization-syntax
+% Section: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{inc}{art}{int}
+\olsection{Giriş}
+
+Hesaplanabilirlik ile mantık arasında bağlantı kurmak için mantığın
+nesnelerinden (simgelerden, terimlerden, !!{formula}s{}den,
+!!{derivation}s{}den), bunlar üzerindeki işlemlerden, bunların özellik ve
+bağıntılarından hesaplamalı işleme elverişli bir biçimde söz edebilmemiz
+gerekir. Bunu, simgeler, simge dizileri ve bunlardan kurulan diğer nesneler
+üzerindeki hesaplanabilir fonksiyon ve bağıntıları ele alarak doğrudan
+yapabiliriz. Mantıksal sözdizimin bütün nesneleri sonlu olduğundan ve
+!!a{enumerable} simge kümelerinden kurulduğundan, bazı hesaplama modelleri
+için bu mümkündür. Fakat özyinelemeli fonksiyonlar gibi diğer hesaplama
+modelleri yalnızca sayılarla ve bunlar üzerindeki bağıntı ve fonksiyonlarla
+sınırlıdır. Üstelik en sonunda sözdizimiyle belirli teorilerin, özellikle
+aritmetik dilinde formüle edilen teorilerin içinde de uğraşabilmek isteriz.
+Bu durumlarda sözdizimi \emph{aritmetikleştirmek}, yani sözdizimsel nesneleri,
+bunlar üzerindeki işlemleri ve bunların bağıntılarını sırasıyla sayılar,
+aritmetik fonksiyonlar ve aritmetik bağıntılar olarak temsil etmek gerekir.
+Leibniz'e kadar uzanan düşünce, sözdizimsel nesnelere sayılar atamaktır.
+
+Simgelere ``kodları'' olarak sayılar atamak görece kolaydır. Örneğin sonsuz
+sayıda !!{variable} ve hatta her $n$ aritesi için sonsuz sayıda
+!!{function} bulunduğundan, bazı simgeler küçük bir güçlük çıkarır. Ama
+elbette simgelere sistemli biçimde, örneğin $\Obj v_2$ ile $\Obj v_3$'e
+farklı kodlar atanacak biçimde sayılar vermek mümkündür. Terimler ve
+!!{formula}s gibi simge dizileri daha büyük bir güçlüktür. Ne var ki sayı
+dizilerini salt aritmetik yoldan (örneğin dizilerin asal sayıların kuvvetleriyle
+kodlanması yoluyla) ele alabilirsek, tek tek simgelerin kodlanmasını simge
+dizilerinin kodlanmasına, ardından !!{formula}s{}den oluşan dizilerin ya da
+!!{derivation}s gibi başka düzenlemelerin kodlanmasına genişletebiliriz.
+Bu genişletilmiş kodlamaya ``Gödel numaralandırması'' denir. Her terime,
+!!{formula} ve !!{derivation} için bir Gödel numarası atanır.
+
+Simge dizilerini simgelerinin kodlarından oluşan diziler olarak kodlayıp
+dizileri hesaplanabilir fonksiyonlarla işlenebilen bir kodlama sistemi
+seçtiğimizde, Gödel numaralarını da hesaplanabilir fonksiyonlarla ele
+alabiliriz. Uygulamada ilgili bütün fonksiyonlar ilkel özyinelemeli olacaktır.
+Örneğin bir dizinin uzunluğunu hesaplamak ve dizinin kodundan $i$'inci
+elemanını hesaplamak ilkel özyinelemelidir. Diziyi kodlayan sayı, diyelim ki
+!!a{formula} $!A$ için Gödel numarasıysa, bu !!a{formula} için uzunluğun ve
+!!a{formula} içindeki $i$'inci simgenin kodunun da $!A$'nın Gödel numarasından
+hesaplanabildiğini hemen görürüz. Örneğin bir sayının düzgün kurulmuş bir
+terimin ya da doğru bir !!{derivation}{}in Gödel numarası olması özelliğinin
+ilkel özyinelemeli olduğunu ispatlamak biraz daha zordur. Bununla birlikte,
+ilgili diziler (terimler, !!{formula}s ve !!{derivation}s) tümevarımlı olarak
+tanımlandığından bu mümkündür.
+
+Örnek olarak yerine koyma işlemini ele alalım. $!A$ bir formül, $x$ bir
+değişken ve $t$ bir terimse $\Subst{!A}{t}{x}$, $!A$ içindeki her serbest
+$x$ geçişinin $t$ ile değiştirilmesinin sonucudur. Şimdi $!A$, $x$ ve $t$'ye
+sırasıyla $k$, $l$ ve $m$ Gödel numaralarını atadığımızı varsayalım. Aynı
+şema $\Subst{!A}{t}{x}$'e de, diyelim $n$ Gödel numarasını atar. $k$, $l$
+ve $m$'yi $n$'ye götüren bu eşleme, yerine koyma işleminin aritmetik
+karşılığıdır. Yerine koyma işlemi $!A$, $x$, $t$'yi
+$\Subst{!A}{t}{x}$'e götürürken aritmetikleştirilmiş yerine koyma fonksiyonu
+$k$, $l$, $m$ Gödel numaralarını $n$ Gödel numarasına götürür. Bu
+fonksiyonun ilkel özyinelemeli olduğunu göreceğiz.
+
+Sözdizimin aritmetikleştirilmesi yalnızca soyut bakımdan ilginç değildir.
+Gerçi aritmetik dili gibi, dillerden ``söz etme'' düzeneklerini kendiliğinden
+içermeyen dillerin ifadelerin karmaşık özelliklerini biçimselleştirebildiğini
+görmek başlangıçta hiç de önemsiz olmayan bir kavrayıştı. Bundan sonra bu
+dildeki bir teorinin, örneğin Peano aritmetiğinin, kendi dili hakkında
+(örneğin !!{sentence}s{}in ispatlanabilir ya da doğru olup olmadığı hakkında)
+neyi \emph{ispatlayabildiğini} sormak küçük bir adımdır. Bu bizi Gödel'in
+(ispatlanamazlık hakkındaki) ve Tarski'nin (doğrunun tanımlanamazlığı
+hakkındaki) ünlü sınırlama teoremlerine götürür. Ancak sözdizimi
+aritmetikleştirme yöntemi, hesaplanabilirlik teorisinde teorilerin hesaplama
+gücü ya da farklı hesaplanabilirlik modelleri arasındaki ilişki gibi önemli
+sonuçları ispatlamak için de önemlidir. Sözdizimin aritmetikleştirilmesi,
+başka nesne ve özellikleri aritmetikleştirmeye örnek olur. Örneğin
+konfigürasyonları ve hesaplamaları (diyelim Turing makinelerininkileri) benzer
+biçimde aritmetikleştirmek mümkündür. Bu, bir modeldeki (örneğin Turing
+makinelerindeki) hesaplamaların başka bir modelde (örneğin özyinelemeli
+fonksiyonlarda) benzetilmesini sağlar.
+
+\end{document}

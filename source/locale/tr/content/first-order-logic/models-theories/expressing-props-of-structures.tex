@@ -1,0 +1,66 @@
+% Part: first-order-logic
+% Chapter: models-theories
+% Section: expressing-props-of-structures
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{fol}{mat}{exs}
+
+\olsection{\printtoken{P}{structure} Özelliklerini İfade Etmek}
+
+\begin{explain}
+Fonksiyonlar ve bağıntılar üzerindeki koşulları, daha genel olarak bir
+yapıdaki fonksiyon ve bağıntıların bu koşulları sağladığını ifade etmek
+çoğu kez yararlı ve önemlidir. Örneğin bir dil için, !!{predicate}s
+ifadelerinin ne ``anlama gelmesini'' istediğimizi ``yakalayan''
+!!{structure}s ile yakalamayanları ayırt etmenin yollarını isteriz.
+Hangi !!{structure}s ifadelerini ``amaçladığımızı'' belirlemekte
+elbette tamamen özgürüz. Örneğin !!{predicate}~$\le$ yorumunun bir
+sıralama olması gerektiğini ya da yalnızca evreni kümelerden oluşan ve
+$\Obj\in$ simgesinin ``-nın !!a{element} öğesidir'' bağıntısıyla
+yorumlandığı~$\Lang L$ yorumlarıyla ilgilendiğimizi belirtebiliriz.
+Fakat bunu dilin !!{sentence}s ifadeleriyle yapabilir miyiz? Başka bir
+deyişle !!a{structure}~$\Struct M$ üzerindeki hangi koşulları
+$\Struct M$ dilindeki !!a{sentence} (ya da belki bir !!{sentence}s
+kümesi) ile ifade edebiliriz? İfade edemeyeceğimiz bazı koşullar
+vardır. Örneğin~$\Lang L_A$ dilinde yalnızca
+$\Domain M=\Nat$ olan !!{structure}~$\Struct M$ yapılarında doğru olan
+hiçbir tümce yoktur. ``Evren yalnızca doğal sayıları içerir''
+ifadesini dile getiremeyiz. Fakat belki !!{structure}s ifadelerinin
+``yapısal özellikleri''ni ifade edebiliriz. !!{structure}s
+özelliklerinden hangilerini !!{sentence}s ile ifade edebiliriz? Başka
+bir deyişle hangi !!{structure}s topluluklarını, !!a{sentence} (ya da
+bir !!{sentence}s kümesi) doğru kılan yapılar olarak betimleyebiliriz?
+\end{explain}
+
+\begin{defn}[Bir kümenin modeli]
+$\Gamma$, bir~$\Lang L$ dilindeki !!{sentence}s kümesi olsun. Bütün
+$!A\in\Gamma$ için $\Sat M{!A}$ ise !!a{structure}~$\Struct M$
+ifadesinin~$\Gamma$'nın \emph{bir modeli} olduğunu söyleriz.
+\end{defn}
+
+\begin{ex}
+$\lforall[x][x\leq x]$ tümcesi~$\Struct M$ içinde ancak ve ancak
+$\Assign\le M$ yansımalı bir bağıntıysa doğrudur.
+$\lforall[x][\lforall[y][((x\leq y\land y\leq x)\lif x=y)]]$
+tümcesi~$\Struct M$ içinde ancak ve ancak $\Assign\le M$ ters
+simetrikse doğrudur.
+$\lforall[x][\lforall[y][\lforall[z][((x\leq y\land y\leq z)
+\lif x\leq z)]]]$ tümcesi~$\Struct M$ içinde ancak ve ancak
+$\Assign\le M$ geçişliyse doğrudur. Dolayısıyla
+\begin{align*}
+\{quad &\lforall[x][x \le x], \\
+   & \lforall[x][\lforall[y][((x \le y \land y \le
+    x) \lif x = y)]], \\
+   &\lforall[x][\lforall[y][\lforall[z][((x \le y
+      \land y \le z) \lif x \le z)]]] \quad \}
+\end{align*}
+kümesinin modelleri,~$\Assign\le M$ bağıntısının yansımalı, ters
+simetrik ve geçişli; yani kısmi sıralama olduğu yapıların tam
+kendisidir. Bu nedenle bunları \emph{kısmi sıralamaların birinci
+dereceden kuramının} aksiyomları olarak alabiliriz.
+\end{ex}
+
+\end{document}

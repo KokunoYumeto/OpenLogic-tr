@@ -1,0 +1,130 @@
+% Part: sets-functions-relations
+% Chapter: induction
+% Section: induction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sfr}{ind}{int}
+
+\olsection{Giriş}
+
+\begin{explain}
+Tümevarım, matematikte ve mantıkta yaygın biçimde kullanılan bir ispat
+tekniğidir. Doğal sayılar üzerinde tümevarım yapılan matematik derslerinden
+ona aşina olabilirsiniz. Matematikte ve mantıkta tümevarıma elverişli pek çok
+başka nesne kümesi de vardır.
+
+Genel olarak tümevarım evrensel bir iddiayı ispatlamayı, yani belirli türdeki
+her nesnenin bir özelliği taşıdığını göstermeyi sağlar. Özellikle ``evrensel
+giriş'' ispat yöntemi fazla karmaşık olduğunda yararlıdır. Tümevarım yalnızca
+özel biçimlerde kurulmuş matematiksel nesneler üzerinde işler: Kümedeki her
+eleman ya temel bir elemansa ya da temel elemanlardan kuruluyorsa küme
+üzerinde tümevarım kullanabiliriz. Daha kesin olarak:
+\end{explain}
+
+\begin{defn}
+Bir $S$ kümesi, $x \in S$ olduğunda $f(x) \in S$ de oluyorsa $f$
+fonksiyonu altında \emph{kapalı}dır.
+\end{defn}
+
+\begin{explain}
+Örneğin doğal sayılar ($\mathbb{N}$), $f(x) = x+1$ ardıl fonksiyonu altında
+kapalıdır. $x$ bir doğal sayıysa $x+1$ de bir doğal sayıdır. Buna karşılık
+doğal sayılar $f(x) = x-1$ öncül fonksiyonu altında kapalı değildir; çünkü
+$0$ doğal sayı olduğu halde $-1$ değildir.
+\end{explain}
+
+\begin{defn}
+Bir $P$ özelliği, $f$'nin tanım kümesindeki her $a$ nesnesi için $P(a)$,
+$P(f(a))$ sonucunu gerektiriyorsa $f(x)$ fonksiyonu altında \emph{korunur}
+(yani $a$, $P$ özelliğini taşıyorsa $f(a)$ da taşır).
+\end{defn}
+
+\begin{explain}
+``Çift sayı olma'' özelliği $f(x) = x+2$ fonksiyonu altında korunur; çünkü
+$x$ çiftse $x+2$ de çifttir. Çift sayı olma özelliği ardıl fonksiyonu altında
+korunmaz; çünkü $x$ çiftse $x+1$ tektir.
+
+Tümevarım doğal sayılar üzerinde işler; çünkü her doğal sayıya, ardıl
+fonksiyonunu sonlu sayıda uygulayarak $0$'dan ulaşılabilir. Bu, üzerinde
+tümevarım yapabileceğimiz her kümenin ayırt edici özelliğidir.
+\end{explain}
+
+\begin{defn}[$\Nat$ üzerinde tümevarım]
+$0$, bir $P$ özelliğini taşıyor ve $P$ ardıl fonksiyonu altında korunuyorsa
+her doğal sayı $P$ özelliğini taşır.
+\end{defn}
+
+\begin{ex} İlk $n$ doğal sayının toplamı $\frac{n(n+1)}{2}$'dir. \\
+
+\textbf{Temel durum.} İlk $0$ doğal sayının toplamı
+$0=\frac{0\cdot 1}{2}$'dir.\\
+
+\textbf{Tümevarım adımı.} Özelliğin $k$ için geçerli olduğunu varsayın.
+$k+1$ için de geçerli olduğunu göstereceğiz. Başka bir deyişle $P(k)$'nin,
+yani
+\[ 0 + 1 + \ldots + k = \frac{k(k+1)}{2} \]
+eşitliğinin geçerli olduğunu varsayın. $P(k)$ varsayımını kullanarak
+$P(k+1)$'in, yani
+\[ 0 + 1 + \ldots + k + (k+1) = \frac{(k+1)(k+2)}{2} \]
+eşitliğinin geçerli olduğunu göstereceğiz.
+
+\begin{align*}
+0 + 1 + \ldots + k &= \frac{k(k+1)}{2} \tag{Varsayım} \\
+0 + 1 + \ldots + k + (k+1) &= \frac{k(k+1)}{2} + (k+1)
+\tag{Her iki tarafa $k+1$ ekleyin} \\
+&= \frac{k(k+1) + 2(k+1)}{2} \\
+&= \frac{k^2 + 3k +2}{2} \\
+&=\frac{(k+1)(k+2)}{2}
+\end{align*}
+Dolayısıyla tümevarım adımı geçerlidir ve iddiayı ispatladık.
+\end{ex}
+
+\begin{explain}
+!!{formula}s için temel elemanlar atomik !!{formula}s{}dir. Daha karmaşık
+!!{formula}s, daha az karmaşık !!{formula}s{}in işleçlerle birleştirilmesiyle
+elde edilir. Her işleç, iki !!{formula}{}ü söz konusu işleçle birleştiren yeni
+bir !!{formula} döndüren bir fonksiyona karşılık gelir. Örneğin iki
+!!{formula} olan $!A$ ve $!B$'yi bir tümel evetlemede birleştiren fonksiyon
+$\mathcal E _\land (!A, !B) = !A \land !B$ biçiminde yazılabilir. Bunlara
+\emph{formül-kurma fonksiyonları} diyebiliriz. !!{formula}s kümesi bu
+fonksiyonlar altında kapalıdır: $!A$ ve $!B$ !!{formula}s olduğunda
+$\lnot !A$, $!A \land !B$ vb. de !!{formula}s{}dir.
+\end{explain}
+
+\begin{defn}[!!{formula}s üzerinde tümevarım]
+Her atomik !!{formula}, $P$ özelliğini taşıyor ve $P$ formül-kurma
+fonksiyonları altında korunuyorsa her !!{formula}, $P$ özelliğini taşır.
+\end{defn}
+
+\begin{explain}
+Bu tanım, !!{formula}s üzerinde tümevarımsal ispatlar için bir ``tarif''
+önerir. Her !!{formula}{}ün $P$ özelliğini taşıdığını göstermemiz isteniyorsa
+aşağıdaki adımları izleriz:\\
+
+\textbf{Temel durum.} $!A$ atomik bir !!{formula} olsun. [\ldots]
+Dolayısıyla $!A$, $P$ özelliğini taşır.
+
+\textbf{Tümevarım adımı.} $!A$ ve $!B$, her ikisi de $P$ özelliğini taşıyan
+!!{formula}s olsun.
+
+$\lnot$ durumu: [\ldots] Dolayısıyla $\lnot !A$, $P$ özelliğini taşır.
+
+$\land$ durumu: [\ldots] Dolayısıyla $!A \land !B$, $P$ özelliğini taşır.
+
+$\lor$ durumu: [\ldots] Dolayısıyla $!A \lor !B$, $P$ özelliğini taşır.
+
+$\lif$ durumu: [\ldots] Dolayısıyla $!A \lif !B$, $P$ özelliğini taşır.
+
+$\liff$ durumu: [\ldots] Dolayısıyla $!A \liff !B$, $P$ özelliğini taşır.
+
+$\lforall[]$ durumu: [\ldots] Dolayısıyla $\lforall[x] !A$, $P$ özelliğini taşır.
+
+$\lexists[]$ durumu: [\ldots] Dolayısıyla $\lexists[x] !A$, $P$ özelliğini taşır. \\
+
+Dolayısıyla her !!{formula}, $P$ özelliğini taşır.
+\end{explain}
+
+\end{document}

@@ -1,0 +1,41 @@
+% Part: lambda-calculus
+% Chapter: introduction
+% Section: fixed-point-combinator
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{lam}{int}{fix}
+\olsection{Sabit Nokta Birleştiricileri}
+
+Bir $g$ lambda teriminiz olduğunu ve $k$'nin $gk$ ile $\beta$-eşdeğer olması
+özelliğini taşıyan başka bir $k$ terimi istediğinizi varsayın. Gösterim
+uzlaşımlarımızı kullanarak
+\[
+\fn{diag}(x) = xx
+\]
+ve
+\[
+l(x) = g(\fn{diag}(x))
+\]
+terimlerini tanımlayın; başka bir deyişle $l$,
+$\lambd[x][g(xx)]$ terimidir. $k$, $ll$ terimi olsun. O zaman
+\begin{align*}
+k & = (\lambd[x][g(xx)])(\lambd[x][g(xx)]) \\
+& \red  g((\lambd[x][g(xx)])(\lambd[x][g(xx)])) \\
+& = gk.
+\end{align*}
+Eğer
+\[
+Y = \lambd[g][((\lambd[x][g(xx)])(\lambd[x][g(xx)]))]
+\]
+alınırsa $Yg$ ile $g(Yg)$ ortak bir terime indirgenir; dolayısıyla
+$Yg\equiv_\beta g(Yg)$. Buna ``Curry birleştiricisi'' denir. Bunun yerine
+\[
+Y = (\lambd[xg][g(xxg)])(\lambd[xg][g(xxg)])
+\]
+alınırsa, daha güçlü olarak $Yg$ gerçekten $g(Yg)$'ye indirgenir. $Y$'nin
+bu ikinci sürümüne ``Turing birleştiricisi'' denir.
+
+\end{document}

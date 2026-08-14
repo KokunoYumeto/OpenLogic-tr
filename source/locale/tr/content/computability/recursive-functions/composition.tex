@@ -1,0 +1,91 @@
+% Part: computability
+% Chapter: recursive-functions
+% Section: composition
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{cmp}{rec}{com}
+\olsection{Bileşke}
+
+$f$ ve $g$ doğal sayıların iki tek yerli fonksiyonuysa bunların
+bileşkesini alabiliriz: $h(x)=f(g(x))$. Yeni $h(x)$ fonksiyonu $f$ ve
+$g$ fonksiyonlarından \emph{bileşke} yoluyla tanımlanır. Bunu birden
+çok girdili fonksiyonlara genellemek istiyoruz.
+
+Bunu yapmanın bir yolu şudur: $f$, $k$ yerli; $g_0,\dots,g_{k-1}$ ise
+hepsi $n$ yerli olan $k$ fonksiyon olsun. Yeni bir $n$ yerli $h$
+fonksiyonunu şöyle tanımlayabiliriz:
+\[
+h(x_0, \dots, x_{n-1}) =
+f(g_0(x_0, \dots, x_{n-1}), \dots, g_{k-1}(x_0, \dots, x_{n-1})).
+\]
+$f$ ve bütün $g_i$ fonksiyonları hesaplanabilirse $h$ de
+hesaplanabilirdir: $h(x_0,\dots,x_{n-1})$ hesaplamak için önce her
+$i=0,\dots,k-1$ için $y_i=g_i(x_0,\dots,x_{n-1})$ değerlerini
+hesaplayın. Ardından bu değerleri $f$'ye girdi verip
+$h(x_0,\dots,x_{n-1})=f(y_0,\dots,y_{k-1})$ hesaplayın.
+
+Bu, var olan fonksiyonları kullanarak yeni bir fonksiyon hesaplarken
+olanları gereğinden fazla kısıtlayan bir niteleme gibi görünebilir.
+Öncelikle bazen bir fonksiyonun bütün girdilerini kullanmayız; örneğin
+$\Add$ fonksiyonunun ilkel özyinelemeli tanımında kullanılmak üzere
+$g(x,y,z)=\Succ(z)$ tanımladık. Şu fonksiyonları kullanmamıza izin
+verildiğini varsayalım:
+\[
+\Proj{n}{i}(x_0, \dots, x_{n-1}) = x_i.
+\]
+$\Proj{k}{i}$ fonksiyonlarına \emph{izdüşüm} fonksiyonları denir;
+$\Proj{n}{i}$, $n$ yerli bir fonksiyondur. O zaman $g$ şöyle
+tanımlanabilir:
+\[
+g(x, y, z) = \Succ(\Proj{3}{2}(x, y, z)).
+\]
+Burada $f$ rolünü tek yerli $\Succ$ oynar; dolayısıyla $k=1$.
+$g_0$ rolünü oynayan tek bir üç yerli $\Proj{3}{2}$ fonksiyonumuz
+vardır. Sonuç, üçüncü girdinin ardılını döndüren üç yerli bir
+fonksiyondur.
+
+İzdüşüm fonksiyonları, girdileri yeniden sıralayarak veya özdeşleyerek
+yeni fonksiyonlar tanımlamamıza da olanak verir. Örneğin
+$h(x)=\Add(x,x)$ fonksiyonu
+\[
+h(x_0)=\Add(\Proj{1}{0}(x_0),\Proj{1}{0}(x_0))
+\]
+ile tanımlanabilir. Burada $k=2$, $n=1$; $f(y_0,y_1)$ rolünü $\Add$,
+$g_0(x_0)$ ve $g_1(x_0)$ rollerinin ikisini de tek yerli izdüşüm
+fonksiyonu (başka bir deyişle özdeşlik fonksiyonu)
+$\Proj{1}{0}(x_0)$ oynar.
+
+$f(y_0,y_1)$ elimizde bulunan bir fonksiyonsa
+$h(x_0,x_1)=f(x_1,x_0)$ fonksiyonunu
+\[
+h(x_0, x_1) = f(\Proj{2}{1}(x_0, x_1),\Proj{2}{0}(x_0, x_1))
+\]
+ile tanımlayabiliriz. Burada $k=2$, $n=2$; $g_0$ ve $g_1$ rollerini
+sırasıyla $\Proj{2}{1}$ ve $\Proj{2}{0}$ oynar.
+
+$g_0,\dots,g_{k-1}$ fonksiyonlarının tümünün aynı $n$ sayıda girdiye
+sahip olması da kaygı uyandırabilir. (Bir fonksiyonun \emph{yer sayısı}
+girdi sayısıdır; $n$ yerli bir fonksiyonun yer sayısı $n$'dir.) Ancak
+izdüşüm fonksiyonlarını eklemek istenen esnekliği sağlar. Örneğin $f$
+ve $g$ üç yerli, $h$ ise
+\[
+h(x,y)=f(x,g(x,x,y),y)
+\]
+ile tanımlanan iki yerli bir fonksiyon olsun. $h$ tanımı izdüşüm
+fonksiyonlarıyla şöyle yeniden yazılabilir:
+\[
+h(x,y) = f(\Proj{2}{0}(x,y), g(\Proj{2}{0}(x,y), \Proj{2}{0}(x,y),
+\Proj{2}{1}(x,y)), \Proj{2}{1}(x,y)).
+\]
+O zaman $h$, $f$ fonksiyonunun $\Proj{2}{0}$, $l$ ve $\Proj{2}{1}$
+ile bileşkesidir; burada
+\[
+l(x,y)=g(\Proj{2}{0}(x,y),\Proj{2}{0}(x,y),\Proj{2}{1}(x,y)),
+\]
+yani $l$, $g$ fonksiyonunun $\Proj{2}{0}$, $\Proj{2}{0}$ ve
+$\Proj{2}{1}$ ile bileşkesidir.
+
+\end{document}

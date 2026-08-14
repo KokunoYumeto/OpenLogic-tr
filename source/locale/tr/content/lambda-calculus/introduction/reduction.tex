@@ -1,0 +1,74 @@
+% Part: lambda-calculus
+% Chapter: introduction
+% Section: reduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{lam}{int}{red}
+\olsection{Lambda Terimlerinin İndirgenmesi}
+
+Lambda terimleriyle ne yapılabilir? Sadeleştirilebilirler. $M$ ve $N$
+herhangi iki lambda terimi ve $x$ herhangi bir değişkense, yerine koymadan
+sonra $M$'nin bağlı değişkenleri $N$'nin serbest değişkenleriyle çakışacaksa
+bu bağlı değişkenleri yeniden adlandırdıktan sonra, $M$ içinde $x$ yerine
+$N$ koymanın sonucunu $\Subst{M}{N}{x}$ ile gösterebiliriz. Örneğin
+\[
+\Subst{(\lambd[w][xxw])}{yyz}{x} = \lambd[w][(yyz)(yyz)w].
+\]
+
+\begin{digress}
+Yerine koyma için alternatif gösterimler $[N/x]M$, $[x/N]M$ ve
+$M[x/N]$'dir. Dikkatli olun!
+\end{digress}
+
+Sezgisel olarak $(\lambd[x][M])N$ ile $\Subst{M}{N}{x}$ aynı anlama gelir;
+ilk terimi ikincisiyle değiştirme işlemine \emph{$\beta$-daraltması} denir.
+$(\lambd[x][M])N$'ye \emph{indirgenebilir ifade},
+$\Subst{M}{N}{x}$'e onun \emph{daraltılmışı} denir. Genel olarak bir $P$
+terimi, bir alt terimin $\beta$-daraltmasıyla $P'$ terimine
+dönüştürülebiliyorsa, $P$'nin \emph{bir adımda $P'$'ye $\beta$-indirgendiğini}
+söyler ve $P\redone P'$ yazarız. $P$'den $P'$'ye belli sayıda (belki sıfır)
+tek adımlı indirgemeyle ulaşılabiliyorsa $P$, $P'$'ye
+\emph{$\beta$-indirgenir}; simgesel olarak $P\red P'$. Daha fazla
+$\beta$-indirgenemeyen bir terime \emph{$\beta$-indirgenemez} ya da
+\emph{$\beta$-normal} denir. Bağlam açık olduğunda ``$\beta$-indirgenir''
+yerine yalnızca ``indirgenir'' vb. diyeceğiz.
+
+Bazı örnekleri ele alalım.
+\begin{enumerate}
+\item Şunlar geçerlidir:
+\begin{align*}
+(\lambd[x][xxy]) \lambd[z][z] & \redone (\lambd[z][z])(\lambd[z][z]) y \\
+& \redone (\lambd[z][z]) y \\
+& \redone y.
+\end{align*}
+\item Bir terimi ``sadeleştirmek'' onu daha karmaşık hâle getirebilir:
+\begin{align*}
+(\lambd[x][xxy])(\lambd[x][xxy]) & \redone (\lambd[x][xxy])(\lambd[x][xxy])y \\
+& \redone (\lambd[x][xxy])(\lambd[x][xxy])yy \\
+& \redone \dots
+\end{align*}
+\item Bir terimi değişmeden de bırakabilir:
+\[
+(\lambd[x][xx])(\lambd[x][xx]) \redone (\lambd[x][xx])(\lambd[x][xx]).
+\]
+\item Ayrıca bazı terimler birden çok yolla indirgenebilir. Örneğin en dıştaki
+  uygulamayı daraltarak
+\[
+(\lambd[x][(\lambd[y][yx]) z)] v \redone (\lambd[y][yv]) z,
+\]
+en içtekini daraltarak da
+\[
+(\lambd[x][(\lambd[y][yx]) z)] v \redone (\lambd[x][zx]) v
+\]
+elde edilir. Bununla birlikte bu durumda iki terimin de aynı $zv$ terimine
+indirgenmeye devam ettiğine dikkat edin.
+\end{enumerate}
+
+Son örnekteki nihai sonuç bir rastlantı değildir; lambda kalkülüsünün
+``Church--Rosser özelliği'' diye bilinen derin ve önemli bir özelliğini
+gösterir.
+
+\end{document}

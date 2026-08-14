@@ -1,0 +1,130 @@
+% Part: normal-modal-logic
+% Chapter: sequent-calculus
+% Section: rules-for-K
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{nml}{seq}{rul}
+
+\olsection{\Log{K} için Kurallar}
+
+Olağan önerme bağlaçlarının kuralları, olağan sekant hesabı $\Log{LK}$'deki
+kurallarla aynıdır. Aksiyomlar da aynıdır: $!A\Sequent !A$ biçimindeki her
+sekant bir aksiyom sayılır.
+
+Modal işleç\iftag{prvBox}{\iftag{prvDiamond}{leri $\Box$ ve}{~$\Box$}}{}
+\iftag{prvDiamond}{~$\Diamond$}{} için aşağıdaki ek
+\iftag{notprvBox,notprvDiamond}{kural}{kurallar} vardır:
+\[
+  \iftag{prvBox}{\iftag{prvDiamond}{% <> and [] primitive
+    \Axiom$\Gamma \fCenter \Delta, !A$
+    \RightLabel{$\Box$}
+    \UnaryInf$\Box\Gamma \fCenter \Diamond\Delta, \Box!A$
+    \DisplayProof
+    \qquad
+    \Axiom$!A, \Gamma \fCenter \Delta$
+    \RightLabel{$\Diamond$}
+    \UnaryInf$\Diamond!A, \Box\Gamma \fCenter \Diamond\Delta$
+    \DisplayProof
+}{% only Box primitive
+\Axiom$\Gamma \fCenter !A$
+\RightLabel{$\Box$}
+\UnaryInf$\Box\Gamma \fCenter \Box!A$
+\DisplayProof
+}}{% only <> primitive
+  \Axiom$!A \fCenter \Delta$
+  \RightLabel{$\Diamond$}
+  \UnaryInf$\Diamond!A \fCenter \Diamond\Delta$
+  \DisplayProof
+}
+\]
+Burada \iftag{prvBox}{$\Box\Gamma$, $\Gamma$ içindeki bütün !!{formula}s{}in
+önüne $\Box$ getirilerek $\Gamma$'dan elde edilen !!{formula} dizisidir
+\iftag{prvDiamond}{ ve }{}}{}
+\iftag{prvDiamond}{$\Diamond\Delta$, $\Delta$ içindeki bütün !!{formula}s{}in
+önüne $\Diamond$ getirilerek $\Delta$'dan elde edilen !!{formula}
+dizisidir}{}.
+\iftag{notprvDiamond}{$\Box$ kuralının öncülünün sağ tarafında en çok bir
+!!{formula}, yani $!A$, bulunmalıdır. }{}%
+\iftag{notprvBox}{$\Diamond$ kuralının öncülünün sol tarafında en çok bir
+!!{formula}, yani $!A$, bulunmalıdır. }{}%
+\iftag{prvBox}{$\Gamma$\iftag{prvDiamond}{ ile~}{}}{}
+\iftag{prvDiamond}{$\Delta$}{} boş olabilir; bu durumda sonuç sekantının
+karşılık gelen
+\iftag{prvBox}{$\Box\Gamma$\iftag{prvDiamond}{ ile~}{}}{}
+\iftag{prvDiamond}{$\Diamond\Delta$}{} bölümü de boştur.
+
+\iftag{prvBox}{Sağda $\Box$ eklemeyi\iftag{prvDiamond}{ ve }{}}{}
+\iftag{prvDiamond}{solda $\Diamond$ eklemeyi}{} tek bir !!{formula}~$!A$ ile
+sınırlamak zorunludur. Eğer
+\iftag{prvBox}{sağdaki gelişigüzel sayıda !!{formula}{}ün önüne $\Box$
+getirmeye\iftag{prvDiamond}{ ya da }{}}{}
+\iftag{prvDiamond}{soldaki gelişigüzel sayıda !!{formula}{}ün önüne
+$\Diamond$ getirmeye}{} izin verseydik şunu !!{derive} edebilirdik:
+  \[
+    \iftag{prvBox}{
+      \Axiom$!A \fCenter !A$
+      \RightLabel{\RightR{\lnot}}
+      \UnaryInf$\fCenter !A, \lnot !A$
+      \RightLabel{$\Box*$}
+      \UnaryInf$\fCenter \Box!A, \Box\lnot !A$
+      \doubleLine
+      \RightLabel{\RightR{\lor}}
+      \UnaryInf$\fCenter \Box!A \lor \Box \lnot !A$
+      \DisplayProof}{}
+    \iftag{notprvBox,notprvDiamond}{}{\qquad}
+    \iftag{prvDiamond}{
+      \Axiom$!A \fCenter !A$
+      \RightLabel{\LeftR{\lnot}}
+      \UnaryInf$\lnot !A, !A \fCenter$
+      \RightLabel{$\Diamond*$}
+      \UnaryInf$\Diamond\lnot !A,\Diamond!A \fCenter $
+      \RightLabel{\RightR{\lnot}}
+      \UnaryInf$\Diamond!A \fCenter \lnot\Diamond\lnot !A$
+      \RightLabel{\RightR{\lif}}
+      \UnaryInf$ \fCenter \Diamond!A \lif \lnot\Diamond\lnot !A$
+      \DisplayProof}{}
+  \]
+Oysa \iftag{prvBox}{$\Box!A \lor \Box \lnot !A$
+\iftag{prvDiamond}{ ile $\Diamond!A \lif \lnot\Diamond\lnot !A$}{}}
+{$\Diamond!A \lif \lnot\Diamond\lnot !A$}, $\Log{K}$'de geçerli değildir.
+
+Öncülde $!A$'ya ek olarak yan formüllere izin verip
+\iftag{prvBox}{$\Box$ kuralının yalnızca sağdaki $!A$'ya $\Box$
+eklemesine\iftag{prvDiamond}{ ya da }{}}{}
+\iftag{prvDiamond}{$\Diamond$ kuralının yalnızca soldaki $!A$'ya
+$\Diamond$ eklemesine}{} (yan formülleri değiştirmeden bırakmasına) izin
+verseydik şunu !!{derive} edebilirdik:
+\[
+  \iftag{prvBox}{
+    \Axiom$!A \fCenter !A$
+    \RightLabel{\RightR{\lnot}}
+    \UnaryInf$\fCenter !A, \lnot !A$
+    \RightLabel{\RightR{\Exchange}}
+    \UnaryInf$\fCenter \lnot !A, !A$
+    \RightLabel{$\Box*$}
+    \UnaryInf$\fCenter \lnot!A, \Box !A$
+    \doubleLine
+    \RightLabel{\RightR{\lor}}
+    \UnaryInf$\fCenter \lnot!A \lor \Box !A$
+    \DisplayProof}{}
+  \iftag{notprvBox,notprvDiamond}{}{\qquad}
+  \iftag{prvDiamond}{
+    \Axiom$!A \fCenter !A$
+    \RightLabel{\LeftR{\lnot}}
+    \UnaryInf$\lnot !A, !A \fCenter$
+    \RightLabel{$\Diamond*$}
+    \UnaryInf$\Diamond\lnot !A, !A \fCenter $
+    \RightLabel{\RightR{\lnot}}
+    \UnaryInf$!A \fCenter \lnot\Diamond\lnot !A$
+    \RightLabel{\RightR{\lif}}
+    \UnaryInf$ \fCenter !A \lif \lnot\Diamond\lnot !A$
+    \DisplayProof}{}
+\]
+Oysa \iftag{prvBox}{$\lnot!A \lor \Box !A$ ($!A\lif\Box!A$'ya
+denktir)\iftag{prvDiamond}{ ile $!A \lif \lnot\Diamond\lnot !A$}{}}
+{$!A \lif \lnot\Diamond\lnot !A$}, $\Log{K}$'de geçerli değildir.
+
+\end{document}

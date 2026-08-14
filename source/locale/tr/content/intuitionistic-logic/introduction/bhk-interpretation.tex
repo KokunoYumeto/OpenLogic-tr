@@ -1,0 +1,154 @@
+% part: intuitionistic-logic
+% chapter: introduction
+% section: bhk-interpretation
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{int}{int}{bhk}
+
+\olsection{Brouwer--Heyting--Kolmogorov Yorumu}
+
+\begin{editorial}
+  BHK yorumu kullanılarak sezgici önermelerin geçerliliğinin ispatlanması
+  kafa karıştırıcıdır; bu ispatlar daha iyi açıklanmalıdır.
+\end{editorial}
+
+Sezgici bağlaçların, genellikle Brouwer--Heyting--Kolmogorov yorumu diye
+bilinen biçimsel olmayan yapıcı bir yorumu vardır. Bu yorum, yapıcı bir ispat
+diye düşünebileceğiniz bir ``inşa'' kavramını kullanır. (Bir !!a{derivation}
+kavramını biçimsel bir !!{derivation} sistemi içindeki kavramla karıştırmamak
+için BHK yorumunda ``ispat'' sözcüğünü kullanmıyoruz.) BHK yorumu, bu sezgisel
+kavrama dayanarak sezgici bağlaçların anlamlarını açıklar.
+
+\begin{enumerate}
+\item Atomik bir önermenin inşasını neyin oluşturduğunu bildiğimizi varsayarız.
+\item $!A_1 \land !A_2$'nin inşası bir $\tuple{M_1, M_2}$ çiftidir; burada
+  $M_1$,~$!A_1$'in ve $M_2$,~$!A_2$'nin bir inşasıdır.
+\item $!A_1 \lor !A_2$'nin inşası bir $\tuple{s, M}$ çiftidir; burada ya $s$,
+  $1$'dir ve $M$,~$!A_1$'in bir inşasıdır ya da $s$, $2$'dir ve $M$,~$!A_2$'nin
+  bir inşasıdır.
+\item $!A \lif !B$'nin inşası,~$!A$'nın bir inşasını~$!B$'nin bir inşasına
+  dönüştüren bir fonksiyondur.
+\item $\lfalse$'ın (saçmalığın) hiçbir inşası yoktur.
+\item $\lnot !A$, $!A \lif \lfalse$ ile eş anlamlı olarak tanımlanır. Yani
+  $\lnot !A$'nın inşası,~$!A$'nın bir inşasını~$\lfalse$'ın bir inşasına
+  dönüştüren bir fonksiyondur.
+\end{enumerate}
+
+\begin{ex}
+Örnek olarak $\lnot \lfalse$'ı alın. Bunun bir inşası, girdi olarak
+$\lfalse$'ın herhangi bir inşası verildiğinde çıktı olarak~$\lfalse$'ın bir
+inşasını sağlayan fonksiyondur. Özdeşlik fonksiyonu~$\Id{}$ açıkça böyle bir
+inşadır:~$M$ verildiğinde, onun~$\lfalse$'ın bir inşası olması koşuluyla,
+$\Id{}(M) = M$ yine~$\lfalse$'ın bir inşasını verir.
+\end{ex}
+
+Genel olarak $\lnot !A$, ``$!A$'nın inşası olanaksızdır'' anlamına gelir.
+
+\begin{ex}
+$!A \lif \lnot \lnot !A$'yı herhangi bir~$!A$ önermesi için ispatlayalım;
+bu, $!A \lif ((!A \lif \lfalse) \lif \lfalse)$'tır. Aranan inşa bir~$f$
+fonksiyonu olmalıdır. Bu fonksiyona bir~$M$ inşası verilir; bu,~$!A$'nın
+inşasıdır. Fonksiyon, bir~$f(M)$ inşası döndürür; bu da $(!A \lif \lfalse)
+\lif \lfalse$'ın inşasıdır. $f$, $(!A \lif \lfalse) \lif \lfalse$'ın
+inşasını şöyle kurar: Bir $g$ fonksiyonu tanımlamalıyız. Bu fonksiyona bir~$h$
+inşası girdi verilir; bu, $!A \lif \lfalse$'ın inşasıdır. Fonksiyon çıktı
+olarak~$\lfalse$'ın bir inşasını verir. $g$'yi şöyle tanımlayabiliriz:
+girdi~$h$'yi inşa~$M$'ye uygulayın; bu, daha önce aldığımız~$!A$ inşasıdır.
+Çıktı~$h(M)$, yani $h$'nin çıktısı,~$\lfalse$'ın bir inşası olduğundan,
+$f(M)(h) = h(M)$ ifadesi~$\lfalse$'ın bir inşasıdır; yeter ki $M$,~$!A$'nın
+bir inşası olsun.
+\end{ex}
+
+\begin{ex}
+$\lnot(!A \land \lnot !A)$, yani $(!A \land (!A \lif \lfalse)) \lif
+\lfalse$ için bir inşa verelim. Bu, bir~$f$ fonksiyonudur; girdi olarak
+bir~$M$ inşası alır, bu inşa $!A \land (!A \lif \lfalse)$'ın inşasıdır ve
+fonksiyon~$\lfalse$'ın bir inşasını verir. $!B_1 \land !B_2$'nin bir inşası
+bir $\tuple{N_1, N_2}$ çiftidir; burada $N_1$,~$!B_1$'in ve $N_2$,~$!B_2$'nin
+bir inşasıdır. $p_1$ ve $p_2$ fonksiyonlarını tanımlayabiliriz; bu fonksiyonlar
+$!B_1 \land !B_2$'nin bir inşasından sırasıyla $!B_1$ ile $!B_2$'nin
+inşalarını geri alır:
+\begin{align*}
+  p_1(\tuple{N_1, N_2}) &= N_1\\
+  p_2(\tuple{N_1, N_2}) &= N_2
+\end{align*}
+$f$ şunu yapar: Önce $p_1$'i girdisi~$M$'ye uygular. Böylece~$!A$'nın bir
+inşasını elde eder. Ardından $p_2$'yi~$M$'ye uygulayarak $!A \lif \lfalse$'ın
+bir inşasını elde eder. Böyle bir inşa da bir~$p_2(M)$ fonksiyonudur; girdi
+olarak~$!A$'nın bir inşası verildiğinde~$\lfalse$'ın bir inşasını verir. Başka
+bir deyişle $p_2(M)$'yi $p_1(M)$'ye uygularsak~$\lfalse$'ın bir inşasını elde
+ederiz. Dolayısıyla $f(M) = p_2(M)(p_1(M))$ diye tanımlayabiliriz.
+\end{ex}
+
+\begin{ex}
+$((!A \land !B) \lif !C) \lif (!A \lif (!B \lif !C))$ için bir inşa, yani
+bir $f$ fonksiyonu verelim. Bu fonksiyon bir~$g$ inşasını---bu, $(!A \land
+!B) \lif !C$'nin inşasıdır---$(!A \lif (!B \lif !C))$'nin bir inşasına
+dönüştürür. $g$ inşasının kendisi de ($!A \land !B$'nin inşalarından~$!C$'nin
+inşalarına giden) bir fonksiyondur. Çıktı $f(g)$ ise bir~$h_g$ fonksiyonudur;
+bu fonksiyon $!A$'nın inşalarından, $!B$'nin inşalarından~$!C$'nin inşalarına
+giden fonksiyonlara gider.
+
+Peki, bu kafa karıştırıcı. Belirli bir $h_g$ fonksiyonu kurmalıyız; bu,
+$f$'nin~$g$ girdisine karşılık vereceği çıktı olacaktır. $h_g$'nin girdisi
+bir~$M$ inşasıdır; bu,~$!A$'nın inşasıdır. $h_g(M)$'nin çıktısı bir~$k_M$
+fonksiyonu olmalıdır; bu fonksiyon~$N$ inşalarından---bunlar~$!B$'nin
+inşalarıdır---$!C$'nin inşalarına gider. $k_{g,M}(N) = g(\tuple{M, N})$
+olsun. $\tuple{M, N}$'nin~$!A \land !B$'nin bir inşası olduğunu unutmayın.
+Dolayısıyla $k_{g,M}$, $!B \lif !C$'nin bir inşasıdır:~$N$ inşalarını---bunlar
+~$!B$'nin inşalarıdır---$!C$'nin inşalarına gönderir. Şimdi $h_g(M) =
+k_{g,M}$ olsun. Bu,~$M$ inşalarını---bunlar~$!A$'nın inşalarıdır---$k_{g,M}$
+inşalarına gönderir; bunlar da $!B \lif !C$'nin inşalarıdır. Son olarak
+$f(g) = h_g$ olsun. Bu,~$g$ inşalarını---bunlar $(!A \land !B) \lif !C$'nin
+inşalarıdır---$!A \lif (!B \lif !C)$'nin inşalarına gönderen bir
+fonksiyondur. Oh be!{}
+\end{ex}
+
+$!A \lor \lnot !A$ önermesine Üçüncü Hâlin Olanaksızlığı Yasası denir. Bunu
+belirli bazı $!A$'lar için (örneğin $\lfalse \lor \lnot \lfalse$ için)
+ispatlayabiliriz, ama genel olarak ispatlayamayız. Bunun nedeni, sezgici veya
+bağlacının bileşenlerinden birinin inşasını gerektirmesi, oysa şu anda ne
+ispatlanabilen ne de çürütülebilen önermelerin (örneğin Goldbach sanısının)
+bulunmasıdır. Bununla birlikte üçüncü hâlin olanaksızlığı yasasını da
+çürütemezsiniz; yani $\lnot \lnot (!A \lor \lnot !A)$ geçerlidir.
+
+\begin{ex}
+$\lnot \lnot (!A \lor \lnot !A)$'yı ispatlamak için bir~$f$ fonksiyonuna
+ihtiyacımız vardır; bu fonksiyon $\lnot(!A \lor \lnot !A)$'nın, yani $(!A
+\lor (!A \lif \lfalse)) \lif \lfalse$'ın bir inşasını~$\lfalse$'ın bir
+inşasına dönüştürür. Başka bir deyişle öyle bir $f$ fonksiyonu gerekir ki
+$f(g)$,~$\lfalse$'ın bir inşası olsun; yeter ki $g$, $\lnot(!A \lor \lnot
+!A)$'nın bir inşası olsun.
+
+$g$'nin $\lnot(!A \lor \lnot !A)$'nın bir inşası, yani onun $!A \lor
+\lnot !A$'nın bir inşasını~$\lfalse$'ın bir inşasına dönüştüren bir fonksiyon
+olduğunu varsayın. $!A \lor \lnot !A$'nın bir inşası bir $\tuple{s, M}$
+çiftidir; burada ya $s = 1$ ve $M$,~$!A$'nın bir inşasıdır ya da $s = 2$ ve
+$M$,~$\lnot !A$'nın bir inşasıdır. $h_1$, bir~$M_1$ inşasını---bu,~$!A$'nın
+inşasıdır---$!A \lor \lnot !A$'nın bir inşasına gönderen fonksiyon olsun:
+$M_1$'i $\tuple{1, M_1}$'e göndersin. $h_2$ de bir~$M_2$ inşasını---bu,
+$\lnot !A$'nın inşasıdır---$!A \lor \lnot !A$'nın bir inşasına gönderen
+fonksiyon olsun: $M_2$'yi $\tuple{2, M_2}$'ye göndersin.
+
+$k$, $\comp{h_1}{g}$ olsun: bu,~$!A$'nın bir inşası verildiğinde~$\lfalse$'ın
+bir inşasını döndüren bir fonksiyondur; yani $!A \lif \lfalse$'ın ya da
+$\lnot !A$'nın bir inşasıdır. Şimdi $l$, $\comp{h_2}{g}$ olsun. Bu,
+$\lnot !A$'nın bir inşası verildiğinde~$\lfalse$'ın bir inşasını sağlayan bir
+fonksiyondur. $k$, $\lnot !A$'nın bir inşası olduğundan $l(k)$,
+~$\lfalse$'ın bir inşasıdır.
+
+Bütün bunlarla, bir~$g$ inşasını---bu, $\lnot(!A \lor \lnot !A)$'nın
+inşasıdır---$\lfalse$'ın bir inşasına nasıl dönüştürebileceğimizi betimledik;
+yani bir~$f$ fonksiyonu bir~$g$ inşasını---bu, $\lnot(!A \lor \lnot !A)$'nın
+inşasıdır---$l(k)$ inşasına---bu,~$\lfalse$'ın inşasıdır---gönderir ve böylece
+$\lnot\lnot(!A \lor \lnot !A)$'nın bir inşası olur.
+\end{ex}
+
+Gördüğünüz gibi, !!{formula}s{}in sezgici geçerliliğini göstermek için BHK
+yorumunu kullanmak kısa sürede zahmetli ve kafa karıştırıcı hâle gelir. Neyse
+ki sezgici mantık için daha iyi !!{derivation} sistemleri ve daha kesin
+semantik yorumlar vardır.
+\end{document}

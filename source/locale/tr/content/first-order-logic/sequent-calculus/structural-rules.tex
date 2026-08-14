@@ -1,0 +1,80 @@
+% Part: first-order-logic
+% Chapter: sequent-calculus
+% Section: structural-rules
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[tr]{fol}{seq}{srl}}
+      {\olfileid[tr]{pl}{seq}{srl}}
+
+\olsection{Yapısal Kurallar}
+
+Bir sekantın sol ve sağ tarafında bulunan !!{sentence}s üzerinde yeniden
+düzenleme yapmamızı sağlayan birkaç kurala daha ihtiyacımız vardır. Mantıksal
+kurallar ancak öncülde işlem gören !!{sentence}s en solda veya en sağda
+durduğunda uygulanabildiğinden, doğru konuma ulaşması gereken !!{sentence}s
+üzerinde kullanabileceğimiz bir ``yer değiştirme'' kuralına ihtiyaç duyarız.
+Bazen aynı biçimdeki !!{sentence}s arasından iki kopyayı tek kopyada birleştirmek ve
+iki taraftan birine !!a{sentence} eklemek de önemlidir.
+
+\subsection{Zayıflatma}
+
+\begin{defish}
+\Axiom$ \Gamma \fCenter \Delta $
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$ !A, \Gamma \fCenter \Delta$
+\DisplayProof
+\hfill
+\Axiom$ \Gamma \fCenter \Delta$
+\RightLabel{\RightR{\Weakening}}
+\UnaryInf$ \Gamma \fCenter \Delta, !A$
+\DisplayProof
+\end{defish}
+
+\subsection{Daraltma}
+
+\begin{defish}
+\Axiom$ !A, !A, \Gamma \fCenter \Delta $
+\RightLabel{\LeftR{\Contraction}}
+\UnaryInf$ !A, \Gamma \fCenter \Delta$
+\DisplayProof
+\hfill
+\Axiom$ \Gamma \fCenter \Delta, !A, !A$
+\RightLabel{\RightR{\Contraction}}
+\UnaryInf$ \Gamma \fCenter \Delta, !A$
+\DisplayProof
+\end{defish}
+
+\subsection{Yer Değiştirme}
+
+\begin{defish}
+\Axiom$ \Gamma, !A, !B, \Pi \fCenter \Delta $
+\RightLabel{\LeftR{\Exchange}}
+\UnaryInf$ \Gamma, !B, !A, \Pi \fCenter \Delta$
+\DisplayProof
+\hfill
+\Axiom$ \Gamma \fCenter \Delta, !A, !B, \Lambda$
+\RightLabel{\RightR{\Exchange}}
+\UnaryInf$ \Gamma \fCenter \Delta, !B, !A, \Lambda$
+\DisplayProof
+\end{defish}
+
+Zayıflatma, daraltma ve yer değiştirme çıkarımlarından oluşan bir dizi çoğu
+zaman çift çıkarım çizgileriyle gösterilir.
+
+``Kesme'' adı verilen aşağıdaki kural kesin anlamda zorunlu değildir; ancak
+önceki !!{derivation}s üzerinde yeniden çalışmayı ve bunları birleştirmeyi çok kolaylaştırır.
+\begin{defish}
+\[
+\Axiom$ \Gamma \fCenter \Delta, !A$
+\Axiom$ !A, \Pi \fCenter \Lambda $
+\RightLabel{\Cut}
+\BinaryInf$ \Gamma, \Pi \fCenter \Delta, \Lambda$
+\DisplayProof
+\]
+\end{defish}
+
+\end{document}

@@ -1,0 +1,72 @@
+% Part: methods
+% Chapter: proofs
+% Section: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{mth}{prf}{int}
+
+\olsection{Giriş}
+
+Başlangıç mantığı derslerindeki deneyiminiz sayesinde, muhtemelen bir
+!!a{derivation} sistemiyle---büyük olasılıkla bir doğal türetim ya da
+Fitch tarzı !!{derivation} sistemiyle, belki de bir kanıt ağacı
+sistemiyle---rahat çalışıyorsunuzdur. Bu sistemlerde kanıtlar yaparak ya
+bir !!a{formula} kanıtladığınızı ya da verilen bir argümanın geçerli
+olduğunu gösterdiğinizi muhtemelen hatırlıyorsunuzdur. Bunu yapmak için,
+istenen sonuca ulaşıncaya kadar sistemin kurallarını uyguladınız. Mantık
+\emph{hakkında} akıl yürütürken de birtakım şeyleri kanıtlarız; ancak
+çoğu durumda bir !!a{derivation} sistemi kullanmayız. Aslında ele
+aldığımız kanıtların çoğu, bütünüyle birinci dereceden mantığın dilinde
+değil, Türkçe olarak (belki araya biraz simgesel dil katılarak)
+yapılır. Böyle kanıtlar kurarken başlangıçta ne yapacağınızı
+bilemeyebilirsiniz---bir !!a{derivation} sistemi olmadan bir şeyi nasıl
+kanıtlarım? Nereden başlarım? Kanıtımın doğru olduğunu nasıl anlarım?
+
+Bir kanıta girişmeden önce kanıtın ne olduğunu ve nasıl kurulacağını
+bilmek önemlidir. Adından da anlaşılacağı üzere bir \emph{kanıt}, bir
+şeyin doğru olduğunu göstermeye yarar. Bunu bir diyalog biçiminde
+düşünebilirsiniz---birisi size bir şeyin doğru olup olmadığını, örneğin
+iki dışındaki her asal sayının tek olup olmadığını sorar. Yalnızca
+``evet'' demek yetmez; \emph{nedenini} bilmek isteyebilir. Bu durumda ona
+bir kanıt verirsiniz.
+
+Gündelik konuşmada bir yanıta kabaca işaret etmek ya da eksik bir yanıt
+vermek yeterli olabilir. Oysa mantıkta ve matematikte titiz bir kanıt
+isteriz---bir şeyin \emph{hiçbir} kuşkuya yer bırakmayacak biçimde doğru
+olduğunu göstermek isteriz. Bu, kanıtımızdaki her adımın
+gerekçelendirilmesi ve gerekçenin sağlam olması gerektiği anlamına gelir
+(yani kullandığınız varsayımın gerçekten kanıtladığınız teoremin
+ifadesinde varsayılmış olması, uyguladığınız tanımların doğru
+uygulanması, başvurduğunuz gerekçelerin doğru çıkarımlar olması vb.).
+
+Genellikle bir ifadeyi kanıtlarız. Kanıtladığımız ifadelere çeşitli
+adlar veririz: önermeler, teoremler, lemmalar ya da sonuçlar. Önerme,
+kanıtlanmaya değer temel bir ifadedir: kayda geçirilecek kadar önemlidir
+ama özellikle derin olmayabilir veya sık kullanılmayabilir. Teorem,
+önemli ve dikkate değer bir önermedir. Kanıtı çoğu zaman birkaç adıma
+ayrılır; bazen ilk kanıtlayan kişinin (örneğin Cantor Teoremi,
+L\"owenheim--Skolem teoremi), bazen de ilgili olduğu olgunun (örneğin
+tamlık teoremi) adını taşır. Lemma, daha önemli bir sonucun kanıtında
+kullanılan bir önerme ya da teoremdir. Kafa karıştırıcı biçimde,
+lemmalar bazen başlı başına önemli sonuçlardır ve onları ortaya koyan
+kişinin adını da taşırlar (örneğin Zorn Lemması). Sonuç ise başka bir
+sonuçtan kolayca çıkan bir ifadedir.
+
+Kanıtlanacak ifade çoğu kez, ne tür şeyler hakkında bir şey
+kanıtladığımızı açıklığa kavuşturan varsayımlar içerir. İfade ``$!A$,
+$!B \lif !C$ biçiminde bir !!a{formula} olsun'' ya da ``$\Gamma
+\Proves !A$ olduğunu varsayalım'' veya buna benzer bir sözle
+başlayabilir. Bunlar önermenin, teoremin ya da lemmanın
+\emph{hipotezleridir}; kanıtınızda bunların doğru olduğunu
+varsayabilirsiniz. Bunlar kanıtladığımız şeyi sınırlar ve ayrıca
+hakkında konuştuğumuz nesneler için birtakım adlar ortaya koyar.
+Örneğin önermeniz ``$!A$, $!B \lif !C$ biçiminde bir !!a{formula}
+olsun'' diye başlıyorsa, yalnızca belirli türdeki bütün formüller
+(yani koşullu önermeler) hakkında bir şey kanıtlıyorsunuzdur ve
+$!B \lif !C$'nin, kanıtınızın ele alacağı keyfî bir koşullu önerme
+olduğu anlaşılır.
+
+\end{document}

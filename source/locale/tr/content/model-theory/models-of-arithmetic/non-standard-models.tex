@@ -1,0 +1,120 @@
+% Part: model-theory
+% Chapter: models-of-arithmetic
+% Section: non-standard-models
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{mod}{mar}{nst}
+\section{Standart Olmayan Modeller}
+
+\begin{explain}
+$\Lang{L_A}$ için !!a{structure}, $\Struct N$ ile izomorfsa standart
+deriz. !!a{structure}, $\Struct N$ ile izomorf değilse standart olmayan
+diye adlandırılır.
+\end{explain}
+
+\begin{defn}
+$\Lang{L_A}$ için !!{structure}~$\Struct M$, $\Struct N$ ile izomorf
+değilse \emph{standart olmayan} bir yapıdır. Bazı $n\in\Nat$ için
+$\Value{\num n}{M}$ değerine eşit olan $x\in\Domain M$ !!{element}s
+$\Struct M$ yapısının \emph{standart sayıları}; böyle olmayanlar ise
+\emph{standart olmayan sayıları} diye adlandırılır.
+\end{defn}
+
+\begin{explain}
+\olref[stm]{prop:standard-domain} gereği $\Lang{L_A}$ için her standart
+!!{structure} yalnızca standart !!{element}s içerir. Dolayısıyla
+standart olmayan !!a{structure} en az bir standart olmayan eleman
+içermelidir. Aslında standart olmayan !!a{element} bulunması,
+!!{structure} ifadesinin standart olmadığını güvence altına alır.
+\end{explain}
+
+\begin{prop}
+$\Lang{L_A}$ için !!a{structure}~$\Struct M$ standart olmayan bir sayı
+içeriyorsa $\Struct M$ standart değildir.
+\end{prop}
+
+\begin{proof}
+Tersini, yani $\Struct M$ standart olduğu halde standart olmayan bir
+sayı~$x$ içerdiğini varsayalım. $g\colon\Nat\to\Domain M$ bir
+izomorfizma olsun. $n$ üzerinde tümevarımla
+$g(\Value{\num n}{N})=\Value{\num n}{M}$ olduğu kolayca görülür.
+Başka bir deyişle $g$, $\Struct N$ yapısının standart sayılarını
+$\Struct M$ yapısının standart sayılarına eşler. $\Struct M$ standart
+olmayan bir sayı içeriyorsa $g$ !!{surjective} olamaz; bu varsayımla
+çelişir.
+\end{proof}
+
+\begin{prob}
+$\Th Q$ kuramının şu aksiyomları içerdiğini hatırlayın:
+\begin{align*}
+& \lforall[x][\lforall[y][(\eq[x'][y'] \lif \eq[x][y])]] \tag{$!Q_1$}\\
+& \lforall[x][\eq/[\Obj 0][x']] \tag{$!Q_2$}\\
+& \lforall[x][(\eq[x][\Obj 0] \lor \lexists[y][\eq[x][y']])] \tag{$!Q_3$}.
+\end{align*}
+Aşağıdaki koşulları sağlayan !!{structure}s~$\Struct{M_1}$,
+$\Struct{M_2}$ ve $\Struct{M_3}$ verin:
+\begin{enumerate}
+\item $\Sat{M_1}{!Q_1}$, $\Sat{M_1}{!Q_2}$, $\Sat/{M_1}{!Q_3}$;
+\item $\Sat{M_2}{!Q_1}$, $\Sat/{M_2}{!Q_2}$, $\Sat{M_2}{!Q_3}$; ve
+\item $\Sat/{M_3}{!Q_1}$, $\Sat{M_3}{!Q_2}$, $\Sat{M_3}{!Q_3}$.
+\end{enumerate}
+Her biri için yalnızca $\Assign{\Obj0}{M_i}$ ve
+$\Assign{\prime}{M_i}$ yorumlarını belirtmeniz yeterlidir.
+\end{prob}
+
+\begin{explain}
+$\Lang{L_A}$ için standart olmayan !!{structure}s vermek oldukça
+kolaydır. Örneğin !!{domain}~$\Int$ olan ve bütün mantıksal olmayan
+simgeleri alışılmış biçimde yorumlayan yapıyı alın. Negatif sayılar
+hiçbir $n$ için $\num n$ değerleri olmadığından bu yapı standart
+değildir. Elbette $\Struct N$ ile aynı tümceleri doğru kılma anlamında
+bir aritmetik \emph{modeli} olmayacaktır. Örneğin
+$\lforall[x][\eq/[x'][\Obj0]]$ yanlıştır. Bununla birlikte tıkızlık
+teoremini kullanarak standart olmayan aritmetik modellerinin varlığını
+kolayca ispatlayabiliriz.
+\end{explain}
+
+\begin{prop}
+$\Th{TA}=\Setabs{!A}{\Sat{N}{!A}}$, $\Struct N$ yapısının kuramı olsun.
+$\Th{TA}$ kuramının !!a{enumerable} standart olmayan modeli vardır.
+\end{prop}
+
+\begin{proof}
+$\Lang{L_A}$ dilini yeni bir !!{constant}~$c$ ile genişletin ve
+\[
+\Gamma=\Th{TA}\cup\{\eq/[c][\num0],\eq/[c][\num1],
+\eq/[c][\num2],\dots\}
+\]
+!!{sentence}s kümesini ele alın. $\Gamma$'nın herhangi bir
+$\Struct{M^c}$ modeli, bütün $n\in\Nat$ için
+$x\neq\Value{\num n}{M}$ olan $x=\Assign{c}{M}$ !!a{element}
+içerir; dolayısıyla $x$ standart değildir. Ayrıca
+$\Th{TA}\subseteq\Gamma$ olduğundan açıkça
+$\Sat{M^c}{\Th{TA}}$. Yalnız $c$ simgesini unutarak $\Struct{M^c}$
+yapısını $\Lang{L_A}$ için !!a{structure}~$\Struct M$ biçimine
+getirirsek evreni yine standart olmayan $x$ elemanını içerir ve
+$\Sat{M}{\Th{TA}}$ geçerliliğini korur. Sonuncusu, $c$ simgesinin
+$\Th{TA}$ içinde geçmemesiyle güvence altındadır. Dolayısıyla
+$\Gamma$'nın bir modeli olduğunu göstermek yeterlidir.
+
+$\Gamma$'nın bir modeli bulunduğunu göstermek için tıkızlık teoremini
+kullanırız. $\Gamma$'nın her sonlu alt kümesi sağlanabilirse $\Gamma$
+da sağlanabilir. Gelişigüzel sonlu bir $\Gamma_0\subseteq\Gamma$
+alalım. $\Gamma_0$, $\Th{TA}$ içinden bazı !!{sentence}s ve
+$\eq/[c][\num n]$ biçiminde sonlu sayıda tümce içerir. Bu ikinci türden
+hiç tümce yoksa $k=-1$; varsa
+$\eq/[c][\num k]\in\Gamma_0$ olacak en büyük $k$ olsun.
+$\Struct N$ yapısını $\Assign{c}{N_k}=k+1$ yorumunu ekleyerek
+$\Struct{N_k}$ biçiminde genişletin. $\Sat{N_k}{\Gamma_0}$: Eğer
+$!A\in\Th{TA}$ ise $\Struct{N_k}$, $c$ dışında her bakımdan
+$\Struct N$ ile aynı ve $c$, $!A$ içinde geçmediğinden
+$\Sat{N_k}{!A}$. Ayrıca $n\leq k$ ve
+$\Value c{N_k}=k+1$ olduğundan
+$\Sat{N_k}{\eq/[c][\num n]}$. Böylece $\Gamma$'nın her sonlu alt
+kümesi sağlanabilirdir.
+\end{proof}
+
+\end{document}

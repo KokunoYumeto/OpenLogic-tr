@@ -1,0 +1,165 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{his}{set}{hilbertcurve}
+
+\olsection{Ek: Hilbert'in Uzay Dolduran Eğrileri}
+
+\olref[pathology]{sec} kesiminde, Cantor'un bir doğru ile bir karenin tam
+olarak aynı sayıda noktaya sahip olduğuna ilişkin ispatının
+(\olref[his][set][cantorplane]{thm:cantorplane}) Peano'yu uzay dolduran bir
+\emph{eğrinin} bulunup bulunamayacağını sormaya yönelttiğinden söz ettik.
+Peano 1890'da olumlu bir yanıt elde etti. Bu kesimde Hilbert'in uzay dolduran
+eğrisinin (ufak bir değişiklikle) nasıl kurulacağını (ayrıntılara pek
+girmeden) açıklıyoruz.\footnote{Daha kesin bir açıklama için
+\cite{Rose2010} kaynağına bakın. Değişiklik, aşağıdaki eğrilerin kırmızı
+kısımlarının eklenmesinden ibarettir. Bu, eğrinin sürekli olduğunu denetlemeyi
+biraz kolaylaştırır.}
+
+Bir $h$ fonksiyonunu $h_1$, $h_2$, $h_3$, \dots\@ fonksiyon dizisinin limiti
+olarak tanımlamalıyız. Önce kuruluşu betimliyoruz. Sonra uzayı doldurduğunu
+gösteriyoruz. Ardından bir eğri olduğunu gösteriyoruz.
+
+$h$'nin görüntü kümesini birim kare, $\unitsquare$, olarak alacağız. İşte
+$h$'ye ilk yaklaşımımız, yani $h_1$:
+\begin{center}
+	\begin{tikzpicture}
+	\draw[gray] (0pt, 0pt) rectangle (80pt, 80pt);
+	\draw[step = 40pt, gray, very thin] (0pt, 0pt) grid (80pt, 80pt);
+	\draw[oldiagcolorC, thick] (20pt, 0)--(20pt, 20pt);
+	\draw[oldiagcolorC, thick] (60pt, 0)--(60pt, 20pt);		
+	\begin{scope}[xshift=20pt, yshift=20pt]
+	\draw [black, thick, l-system={Hilbert curve, step=40pt, angle=90, axiom=L, order=1}]  lindenmayer system;
+	\end{scope}
+	\end{tikzpicture}
+\end{center}
+İzlemeyi kolaylaştırmak için karenin üzerine $2 \times 2$'lik bir ızgara
+yerleştirdik. Eğrinin sol alt çeyrekte başladığını, sol üste, sonra sağ üste,
+son olarak da sağ alta ilerlediğini düşünebiliriz. Kuruluşun ikinci aşaması,
+yani $h_2$ şöyledir:
+\begin{center}
+	\begin{tikzpicture}
+	\draw[gray] (0pt, 0pt) rectangle (80pt, 80pt);
+	\draw[step = 20pt, gray, very thin] (0pt, 0pt) grid (80pt, 80pt);
+	\draw[oldiagcolorC, thick] (0pt, 10pt)--(10pt, 10pt);
+	\draw[oldiagcolorC, thick] (70pt, 10pt)--(80pt, 10pt);
+	\draw[thick, oldiagcolorE] (10pt, 30pt)--(10pt, 50pt); 
+	\draw[thick, oldiagcolorE] (30pt, 50pt)--(50pt, 50pt); 
+	\draw[thick, oldiagcolorE] (70pt, 50pt)--(70pt, 30pt); \begin{scope}[xshift=10pt, yshift=30pt]
+	\draw [thick, rotate=270,black, l-system={Hilbert curve, step=20pt, angle=90, axiom=L, order=1}]  lindenmayer system;
+	\end{scope}
+	\begin{scope}[xshift=10pt, yshift=50pt]
+	\draw [thick, black, l-system={Hilbert curve, step=20pt, angle=90, axiom=L, order=1}]  lindenmayer system;
+	\end{scope}
+	\begin{scope}[xshift=50pt, yshift=50pt]
+	\draw [thick, black, l-system={Hilbert curve, step=20pt, angle=90, axiom=L, order=1}]  lindenmayer system;
+	\end{scope}
+	\begin{scope}[xshift=70pt, yshift=10pt]
+	\draw [thick, rotate=90,black, l-system={Hilbert curve, step=20pt, angle=90, axiom=L, order=1}]  lindenmayer system;
+	\end{scope}
+	\end{tikzpicture}
+\end{center}
+Farklı renkler $h_2$'nin nasıl kurulduğunu açıklamaya yardımcı olacaktır.
+Önce $h_1$'in !!{colorC} olmayan kısmının küçültülmüş kopyalarını karemizin
+sol alt, sol üst, sağ üst ve sağ alt bölümlerine yerleştiriyoruz (siyahla
+çizilmiştir). Sonra bu dört şekli birbirine bağlıyoruz (!!{colorE}
+çizgilerle). Son olarak şeklimizi karenin sınırına bağlıyoruz (!!{colorC}
+çizgilerle).
+
+Şimdi $h_3$'e geçelim. $h_2$, $h_1$'in kırmızı olmayan kısmının birbirine
+bağlı, küçültülmüş dört kopyasından oluşturulduğu gibi $h_3$ de $h_2$'nin
+kırmızı olmayan kısmının küçültülmüş dört kopyasından oluşur (siyahla
+çizilmiştir); bunlar daha sonra birbirine bağlanır (!!{colorE} çizgilerle) ve
+son olarak karenin sınırına bağlanır (!!{colorC} çizgilerle).
+\begin{center}
+	\begin{tikzpicture}
+	\draw[gray] (0pt, 0pt) rectangle (80pt, 80pt);
+	\draw[step = 10pt, gray, very thin] (0pt, 0pt) grid (80pt, 80pt);
+	\draw[thick, oldiagcolorC](5pt, 0pt)--(5pt, 5pt); 
+	\draw[thick, oldiagcolorC] (75pt, 0pt)--(75pt, 5pt); 
+	\draw[thick, oldiagcolorE] (75pt, 45pt)--(75pt, 35pt);
+	\draw[thick, oldiagcolorE] (5pt, 35pt)--(5pt, 45pt); 
+	\draw[thick, oldiagcolorE] (35pt, 45pt)--(45pt, 45pt); 
+	\draw[thick, oldiagcolorE] (75pt, 45pt)--(75pt, 35pt); \begin{scope}[xshift=5pt, yshift=35pt]
+	\draw [rotate=270, thick, black, l-system={Hilbert curve, step=10pt, angle=90, axiom=L, order=2}]  lindenmayer system;
+	\end{scope}
+	\begin{scope}[xshift=5pt, yshift=45pt]
+	\draw [thick, black, l-system={Hilbert curve, step=10pt, angle=90, axiom=L, order=2}]  lindenmayer system;
+	\end{scope}
+	\begin{scope}[xshift=45pt, yshift=45pt]
+	\draw [thick, black, l-system={Hilbert curve, step=10pt, angle=90, axiom=L, order=2}]  lindenmayer system;
+	\end{scope}
+	\begin{scope}[xshift=75pt, yshift=5pt]
+	\draw [thick, rotate=90,black, l-system={Hilbert curve, step=10pt, angle=90, axiom=L, order=2}]  lindenmayer system;
+	\end{scope}
+	\end{tikzpicture}
+\end{center}
+Böylece $h_{n+1}$'i $h_n$'den tanımlamanın genel örüntüsünü görürüz.
+Nihayet $h$ eğrisinin \emph{kendisini}, birbirini izleyen $h_1$, $h_2$,
+\dots\@ fonksiyonlarının noktasal limitini ele alarak tanımlarız. Yani her
+$x \in \unitline$ için:
+\begin{align*}
+	h(x) &= \lim_{n \rightarrow \infty} h_n(x)
+\end{align*} 
+Şimdi bu eğrinin uzayı doldurduğunu gösterelim. $h_n$ eğrisini çizerken
+$2^n \times 2^n$'lik bir ızgarayı $\unitsquare$ üzerine yerleştiririz.
+Pisagor Teoremi gereği her ızgara gözünün köşegeni şu uzunluktadır:
+\[
+\sqrt{\left(\nicefrac{1}{2^{n}}\right)^2+\left(\nicefrac{1}{2^{n}}\right)^2} = 2^{(\frac{1}{2}-n)}
+\]
+ve $h_n$'nin her ızgara gözünden geçtiği açıktır. Öyleyse $\unitsquare$
+içindeki her nokta, \emph{en çok} $2^{(\frac{1}{2}-n)}$ uzaklıkta bulunan
+$h_n$ üzerindeki bir noktaya sahiptir. Şimdi, $h$ fonksiyonu $h_1$, $h_2$, $h_3$,
+\dots\@ fonksiyonlarının limiti olarak tanımlanmıştır. Buna göre herhangi bir
+noktanın $h$'ye en büyük uzaklığı şöyledir:
+\[
+\lim_{n \rightarrow \infty} 2^{(\frac{1}{2}-n)} = 0.
+\]
+Yani $\unitsquare$ içindeki her nokta $0$ uzaklıkla~$h$ üzerindedir. Başka bir
+deyişle $\unitsquare$'in her noktası eğrinin \emph{üzerindedir}. Demek ki $h$
+uzayı doldurur!{}
+
+Geriye $h$'nin gerçekten bir \emph{eğri} olduğunu göstermek kalır. Bunu
+göstermek için kavramı tanımlamalıyız. Modern tanım, Jordan'ın 1887'de verdiği
+(yani ilk uzay dolduran eğrinin sunulmasından yalnızca birkaç yıl önceki) bir
+tanıma dayanır:
+
+\begin{defn}
+Bir eğri, $\unitline$'dan $\Real^2$'ye sürekli bir eşlemedir.
+\end{defn}
+
+Bu oldukça sezgiseldir: bir eğri, sezgisel olarak, standart bir doğru
+parçasını $\Real^2$ düzlemine götüren ``pürüzsüz'' bir eşlemedir. $h$
+fonksiyonumuz gerçekten $\unitline$'dan $\Real^2$'ye bir eşlemedir. Öyleyse
+yalnızca $h$'nin sürekli olduğunu göstermemiz gerekir. Sürekliliği
+\olref[limits]{sec}'te $\epsilon$/$\delta$ gösterimini kullanarak tanımladık.
+Gündelik dille şunu ortaya koymak istiyoruz: \emph{Bir $p$ noktasını
+$\unitsquare$ içinde, istenen herhangi bir $\epsilon$ kesinlik düzeyiyle
+belirtirseniz $\unitline$'ın öyle bir açık parçasını bulabiliriz ki bu açık
+parçadaki herhangi bir $x$ verildiğinde $h(x)$, $\epsilon$'dan daha kısa bir
+uzaklıkla $p$'ye yakın olsun.
+}
+
+Öyleyse $p$ ile $\epsilon$'u belirttiğinizi varsayalım. Bu aslında merkezi
+$p$, yarıçapı $\epsilon$ olan bir çemberi $\unitsquare$ üzerine çizmektir.
+(Çember $\unitsquare$'in kenarından taşabilir, ama bunun önemi yoktur.) Şimdi
+$h_n$ fonksiyonunu betimlerken $2^n \times 2^n$'lik bir ızgarayı
+$\unitsquare$ üzerine çizdiğimizi anımsayın. $\epsilon$ ne kadar küçük olursa
+olsun, öyle bir $n$ vardır ki $2^n \times 2^n$ ızgaranın $\unitsquare$
+üzerindeki tek bir gözü, merkezi $p$ ve yarıçapı $\epsilon$ olan çemberin
+bütünüyle içinde kalır.
+
+O $n$'yi alın ve $I$, $\unitline$'ın $h_n$ tarafından bütünüyle ilgili ızgara
+gözünün içine eşlenen en büyük açık parçası olsun. ($I$'nın var olduğu
+açıktır; çünkü $h_n$'nin $2^n\times 2^n$ ızgaradaki her gözden geçtiğini daha
+önce belirtmiştik.) Şimdi $x \in I$ olduğunda $h(x)$ noktasının aynı ızgara
+gözünde kaldığını göstermek yeterlidir. \emph{Bunu} göstermek için de herhangi bir
+$h_m(x)$'in aynı ızgara gözünde bulunduğunu, herhangi bir $m > n$ için
+göstermek yeterlidir. Ama bu açıktır. $h_m$'de ne olduğunu $m > n$ için ele
+alırsak birim aralığın
+tam olarak ``aynı parçasının'' aynı ızgara gözü içine eşlendiğini görürüz;
+yalnızca onu o bölgeye gittikçe daha uzatılmış ve kıvrımlı bir biçimde
+eşleriz.
+
+\end{document}

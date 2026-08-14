@@ -1,0 +1,52 @@
+% Part: first-order-logic
+% Chapter: model-theory
+% Section: substructures
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{mod}{bas}{sub}
+\olsection{Alt \printtoken{p}{structure}}
+
+!!a{structure}~$\Struct M$ ifadesinin !!{domain}, başka bir
+$\Struct{M'}$ yapısının evreninin alt kümesi olabilir. Fakat elbette
+$\Struct M$ yapısını $\Struct{M'}$ yapısının bir ``parçası'' saymak
+için yalnızca $\Domain M\subseteq\Domain{M'}$ olması yetmez; ayrıca
+$\Struct M$ ile $\Struct{M'}$, en azından ortak kısım~$\Domain M$
+üzerinde dilin simgelerini yorumlama biçimleri bakımından
+``uyuşmalıdır.''
+
+\begin{defn}
+\ollabel{defn:substructure}
+Aynı $\Lang L$ dili için !!{structure}s~$\Struct M$ ve $\Struct M'$
+verilsin. Aşağıdaki koşullar sağlandığında ve ancak bu durumda
+$\Struct M$ yapısının $\Struct M'$ yapısının \emph{alt !!{structure}}
+olduğunu, $\Struct M'$ yapısının da $\Struct M$ yapısının bir
+\emph{genişlemesi} olduğunu söyler ve $\Struct M\substruct\Struct M'$
+yazarız:
+\begin{enumerate}
+\item $\Domain M\subseteq\Domain{M'}$.
+\item Her sabit $c\in\Lang L$ için
+  $\Assign{c}{M}=\Assign{c}{M'}$.
+\item Her $n$ yerli !!{function}~$f\in\Lang L$ ve bütün
+  $a_1,\dots,a_n\in\Domain M$ için
+  $\Assign{f}{M}(a_1,\dots,a_n)=\Assign{f}{M'}(a_1,\dots,a_n)$.
+\item Her $n$ yerli !!{predicate}~$R\in\Lang L$ ve bütün
+  $a_1,\dots,a_n\in\Domain M$ için
+  $\langle a_1,\dots,a_n\rangle\in\Assign{R}{M}$ ancak ve ancak
+  $\langle a_1,\dots,a_n\rangle\in\Assign{R}{M'}$.
+\end{enumerate}
+\end{defn}
+
+\begin{rem}
+\ollabel{rem:substructure}
+Dil hiçbir sabit ya da !!{function}s içermiyorsa, herhangi bir
+$N\subseteq\Domain M$ kümesi $\Assign{R}{N}=\Assign{R}{M}\cap N^n$
+alınarak $\Struct M$ yapısının $\Domain N=N$ evrenli bir alt
+!!{structure}~$\Struct N$ yapısını belirler.
+\end{rem}
+
+% prove something about this? Examples?
+
+\end{document}

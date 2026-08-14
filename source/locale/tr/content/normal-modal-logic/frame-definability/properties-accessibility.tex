@@ -1,0 +1,188 @@
+% Part: normal-modal-logic
+% Chapter: frame-definability
+% Section: properties-accessibility
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{nml}{frd}{acc}
+
+\olsection{Erişilebilirlik Bağıntılarının Özellikleri}
+
+Birçok modal !!{formula}{}ün erişilebilirlik bağıntısının basit, hatta
+tanıdık özelliklerini nitelendirdiği ortaya çıkar. Bunun bir yönü şudur:
+belirli bir özelliğe sahip her model, karşılık gelen bir !!{formula}{}ü (ve
+onun bütün yerine koyma örneklerini) doğru kılar. Erişilebilirlik
+bağıntılarının beş klasik türüyle ve doğruluğunu güvence altına aldıkları
+formüllerle başlayalım.
+
+\begin{thm}\ollabel{thm:soundschemas}
+  $\mModel{M}=\tuple{W,R,V}$ bir model olsun. $R$, \olref{tab:five}
+  tablosunun solundaki özelliğe sahipse, sağdaki !!{formula}{}ün her örneği
+  $\mModel{M}$ içinde doğrudur.
+\end{thm}
+
+\begin{table}[t]
+    \begin{tabular}{| l || l |}
+      \hline
+      {\emph{$R$ \dots ise}} & {\emph{\dots $\mModel{M}$ içinde doğrudur:}} \\
+      \hline \hline
+      \emph{seri}: $\forall u \exists v Ruv$ & \hbox to.43\textwidth
+           {$\Box p \lif \Diamond p$ \hfill (\Ax{D})} \\
+      \hline
+      \emph{yansımalı}: $\forall w Rww$
+      & \hbox to.43\textwidth
+          {$\Box p \lif p$ \hfill (\Ax{T})} \\
+      \hline
+      \emph{simetrik}: &  \hbox to .43\textwidth
+           {$p \lif \Box\Diamond p$ \hfill (\Ax{B})} \\
+           $\forall u\forall v(Ruv \lif Rvu)$ & \\
+      \hline
+      \emph{geçişli}: & \hbox to.43\textwidth
+           {$\Box p \lif \Box \Box p$ \hfill (\Ax{4})} \\
+      $\forall u \forall v \forall w ((Ruv \land Rvw) \lif Ruw)$ & \\
+      \hline
+      \emph{Öklidyen}: & \hbox to .43\textwidth
+        {$\Diamond p \lif \Box\Diamond p$ \hfill (\Ax{5})} \\
+      $\forall w \forall u \forall v ((Rwu \land Rwv) \lif Ruv)$ &\\
+      \hline
+    \end{tabular}
+    \caption{Beş karşılıklılık olgusu.}
+    \ollabel{tab:five}
+  \end{table}
+
+
+\begin{proof}
+  \Ax{B} durumunu ele alalım: şemanın bir modelde doğru olduğunu göstermek
+  için bütün örneklerinin modelin bütün dünyalarında doğru olduğunu
+  göstermeliyiz. Öyleyse \Ax{B}'nin belirli bir $!A\lif\Box\Diamond !A$
+  örneğini ve gelişigüzel bir $w\in W$ dünyasını alalım. $\Box\Diamond !A$'nın
+  $w$'de doğru olduğunu göstermek üzere önbileşen $!A$'nın $w$'de doğru
+  olduğunu varsayalım. Böylece $\Diamond !A$'nın $w$'den erişilebilen bütün
+  $w'$ dünyalarında doğru olduğunu göstermemiz gerekir. $Rww'$ olan herhangi
+  bir $w'$ için simetri varsayımından $Rw'w$ de elde edilir (bkz.
+  \olref{fig:Bsymm}). $\mSat{M}{!A}[w]$ olduğundan
+  $\mSat{M}{\Diamond !A}[w']$ olur. $w'$, $Rww'$ olan gelişigüzel bir dünya
+  olduğundan $\mSat{M}{\Box\Diamond!A}[w]$ sonucuna varırız.
+
+  Öteki durumları alıştırma olarak bırakıyoruz.
+\end{proof}
+
+\begin{prob}
+  \olref[nml][frd][acc]{thm:soundschemas} teoreminin ispatını tamamlayın.
+\end{prob}
+
+\begin{figure}
+  \begin{center}
+    \begin{tikzpicture}[modal]
+      \node[world] (w1) [label={below:$\mSat{{}}{\formula{A}}$\\
+          $\mSat{{}}{\Box\Diamond \formula{A}}$}] {$w$};
+      \node[world] (w2) [label=below:{$\mSat{{}}{\Diamond \formula{A}}$},
+        right=of w1] {$w'$};
+      \draw[->, bend left] (w1) to (w2);
+      \draw[->, bend left] (w2) to (w1);
+    \end{tikzpicture}
+  \end{center}
+\caption{Simetriden çıkarılan akıl yürütme.}
+\ollabel{fig:Bsymm}
+\end{figure}
+
+\olref{thm:soundschemas} teoremindeki gerektirmelerin terslerinin geçerli
+olmadığına dikkat edin: bir modelin bir şemayı doğrulamasından, o modelin
+erişilebilirlik bağıntısının karşılık gelen özelliğe sahip olduğu çıkmaz.
+\Ax{T} ve yansımalı olmayan modeller durumunda, \Ax{T}'nin kendisinin
+başarısız olduğu bir model örneği vermek kolaydır: $W=\{w\}$,
+$R=\emptyset$ ve $V(p)=\emptyset$ olsun. Bu durumda $R$ yansımalı değildir, fakat
+$\mSat{M}{\Box p}[w]$ ve $\mSat/{M}{p}[w]$ olur. Ancak burada \Ax{T}'nin
+$\mModel{M}$ içinde başarısız olan yalnızca tek bir örneği vardır; örneğin
+$\Box\lnot p\lif\lnot p$ gibi başka örnekler doğrudur. \Ax{T}'nin
+\emph{her yerine koyma örneğinin} $\mModel{M}$ içinde doğru, ama
+$\mModel{M}$'nin yansımalı olmadığı örnekler vermek daha zordur. Yine de bu
+tür modeller de vardır:
+
+\begin{prop}\ollabel{prop:reflexive}
+  $\mModel{M}=\tuple{W,R,V}$, $W=\{u,v\}$ ve
+  $R=\{(u,v),(v,u)\}$ olan bir model olsun.
+  Bütün $p$'ler için $u\in V(p)\Leftrightarrow v\in V(p)$ olduğunu
+  varsayalım. O zaman:
+  \begin{enumerate}
+  \item Bütün $!A$'lar için $\mSat{M}{!A}[u]$ ancak ve ancak
+    $\mSat{M}{!A}[v]$ olur ($!A$ üzerinde tümevarım kullanın).
+  \item \Ax{T}'nin her örneği $\mModel{M}$ içinde doğrudur.
+  \end{enumerate}
+  $\mModel{M}$ yansımalı olmadığından (hatta \emph{yansımasızdır}),
+  \olref{thm:soundschemas} teoreminin tersi \Ax{T} durumunda başarısızdır
+  (\olref{thm:soundschemas} içinde anılan öteki şemaların bazıları---ama
+  hepsi değil---için de benzer akıl yürütmeler verilebilir).
+\end{prop}
+
+\begin{prob}
+  \olref[nml][frd][acc]{prop:reflexive} önermesindeki iddiaları ispatlayın.
+\end{prob}
+
+Beş klasik !!{formula} olan \Ax{D}, \Ax{T}, \Ax{B}, \Ax{4} ve \Ax{5}
+üzerinde duracak olsak da erişilebilirlik bağıntılarının birkaç başka
+özelliğini \olref{tab:anotherfive} tablosunda kaydediyoruz. Her dünyadan en
+fazla bir dünyaya erişilebiliyorsa erişilebilirlik bağıntısı $R$
+kısmen fonksiyoneldir. Her dünyadan tam olarak bir dünyaya erişilebiliyorsa
+ona fonksiyonel deriz. (Dolayısıyla fonksiyonel bağıntılar tam olarak hem
+seri hem kısmen fonksiyonel olanlardır.) Erişilebilirlik bağıntısı bir
+(kısmi) fonksiyon gibi işlediği için bunlara ``fonksiyonel'' denir. $Ruv$
+olduğunda $u$ ile $v$ ``arasında'' bir $w$ varsa bağıntı zayıf yoğundur.
+Bu bakımdan zayıf yoğun bağıntılar bir anlamda geçişli bağıntıların tersidir:
+geçişli bir bağıntıda $u$'dan $v$'ye $w$ üzerinden dolanarak
+ulaşabiliyorsanız $u$'dan $v$'ye doğrudan da ulaşabilirsiniz; zayıf yoğun
+bir bağıntıda ise $u$'dan $v$'ye doğrudan ulaşabiliyorsanız bir $w$
+üzerinden dolanarak da ulaşabilirsiniz. Bir $w$ dünyasından $u$ ve $v$
+dünyalarına ulaşabildiğiniz her durumda hem $u$'dan hem $v$'den tek bir $t$
+dünyasına ulaşabiliyorsanız bağıntı zayıf yönlendirilmiştir---buna bazen
+``elmas özelliği'' ya da ``birleşme'' denir.
+
+\begin{table}[t]
+    \begin{tabular}{| p{.50\textwidth} || p{.43\textwidth} |}
+      \hline
+      {\emph{$R$ \dots ise}} & {\emph{\dots $\mModel{M}$ içinde doğrudur:}} \\
+      \hline \hline
+      \emph{kısmen fonksiyonel}: &
+      \multirow{2}{*}{$\Diamond p \lif \Box p$} \\
+      $ \forall w \forall u \forall v ((Rwu \land Rwv) \lif u =v )$ & \\
+      \hline
+      \multirow{2}{*}{\emph{fonksiyonel}: $\forall w \exists v \forall u(Rwu \liff \eq[u][v]) $}
+      & \multirow{2}{*}{$\Diamond p \liff \Box p$} \\
+      & \\
+      \hline
+      \emph{zayıf yoğun}: &  \multirow{2}{*}{$\Box \Box p \lif
+        \Box p$} \\
+      $\forall u\forall v(Ruv \lif \exists w(Ruw \land Rwv))$ & \\
+      \hline
+      \emph{zayıf bağlantılı}: &
+      \multirow{3}{*}{\hbox to.43\textwidth{$
+        \begin{array}{@{}l@{}}
+          \Box ((p \land \Box p) \lif q) \lor {} \\
+          \qquad \Box ((q \land \Box q) \lif p)
+        \end{array}$ \hfill (\Ax{L})}
+      } \\
+      $\forall w \forall u \forall v ((Rwu \land Rwv) \lif {}$ &\\
+      \qquad $(Ruv \lor u=v \lor Rvu))$ & \\
+      \hline
+      \emph{zayıf yönlendirilmiş}: & \multirow{3}{*}{\hbox to .43\textwidth
+        {$\Diamond\Box p \lif \Box\Diamond p$\hfill (\Ax{G})}} \\
+      $\forall w \forall u \forall v ((Rwu \land Rwv) \lif {}$ & \\
+      \qquad $\exists t (Rut \land Rvt))$ & \\
+      \hline
+    \end{tabular}
+    \caption{Beş başka karşılıklılık olgusu.}
+    \ollabel{tab:anotherfive}
+  \end{table}
+
+\begin{prob}
+  $\mModel{M}=\tuple{W,R,V}$ bir model olsun. $R$,
+  \olref[nml][frd][acc]{tab:anotherfive} tablosunun solundaki özellikleri
+  sağlıyorsa, sağda karşılık gelen formülün her örneğinin $\mModel{M}$
+  içinde doğru olduğunu gösterin.
+\end{prob}
+
+
+
+\end{document}

@@ -1,0 +1,63 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sth}{replacement}{limofsize}
+\olsection{Büyüklük Sınırlaması}
+
+Yerine Koyma için ``içsel'' bir gerekçelendirme sunmaya yönelik belki de en
+yaygın girişim şu kavrama dayanır:
+\begin{enumerate}
+	\item[] \limofsize. Sayısı aşırı fazla olmayan her şey topluluğu bir küme
+	oluşturur.
+\end{enumerate}
+Bu ilke Yerine Koyma'yı hemen doğrular. Sonuçta Yerine Koyma ile oluşturulan
+hiçbir küme, oluşturulduğu kümeden daha büyük olamaz. Kesin olarak söylersek:
+Yerine Koyma'yı kullanarak $\funimage{\tau}{A} =
+\Setabs{\tau(x)}{x \in A}$ kümesini oluşturduğunuzu varsayın; o zaman
+$\cardle{\funimage{\tau}{A}}{A}$ olur. Dolayısıyla $A$'nın !!{element}s{}ı bir
+kümeyi oluşturamayacak kadar çok değilse görüntüleri de
+$\funimage{\tau}{A}$ kümesini oluşturamayacak kadar çok değildir.
+
+Yerine Koyma'yı gerekçelendirmek için \limofsize{} ilkesine başvurmanın açık
+güçlüğü, \limofsize{} gibi herhangi bir ilkeyi \emph{henüz} ortaya koymamış
+olmamızdır. Üstelik \crefrange{sth:story::chap}{sth:z::chap} içinde
+birikimli-yinelemeli küme anlayışına ilişkin öykümüzü anlatırken hiçbir şey
+\limofsize{} yönünde bir \emph{ipucu} bile vermedi. Boolos'un bir noktada
+``Belki de küme teorisinin `ardında' en az iki düşünce bulunduğu sonucuna
+varılabilir'' diye yazmasının nedeni tam da budur
+\citeyearpar[p.~19]{Boolos1989}. Bir yanda birikimli-yinelemeli küme anlayışı
+çevresindeki fikirlerin $\Z$'yi doğrulaması amaçlanır. Öte yanda
+\limofsize{} ilkesinin Yerine Koyma'yı doğrulaması amaçlanır.
+
+Fakat sorun, şimdiye dek \limofsize{} hakkında yalnızca \emph{sessiz}
+kalmış olmamız değildir. Daha çok, \limofsize{} ilkesinin (az önceki
+biçimiyle) birikimli-yinelemeli küme kavramıyla oldukça kötü uyuşmasıdır.
+Sonuçta kümelerin \emph{aşamalar} hâlinde oluşturulması fikrinden hiç söz
+etmez.
+% [tr source emendation] Upstream has `the issue it is not just`; Turkish
+% renders the evident intended construction `the issue is not just`.
+
+Bu ``iki düşüncenin'' (yani birikimli-yinelemeli küme anlayışı ile
+\limofsize{} ilkesinin) tarihi göz önüne alındığında bu hiç şaşırtıcı
+değildir. Bu ``iki düşünce'', nihayetinde küme kuramsal paradoksları engellemeye
+yönelik oldukça farklı iki tasarıya karşılık gelir. Birikimli-yinelemeli küme
+kavramı Russell paradoksunu kabaca şöyle engeller: \emph{Bir Russell
+kümesinin var olmasını hiçbir zaman beklememeliydik; çünkü o hiçbir aşamada
+``oluşturulamazdı''.} Buna karşılık \limofsize{} ilkesinin Russell kümesini
+kabaca şöyle dışlaması amaçlanır: \emph{Bir Russell kümesinin var olmasını
+hiçbir zaman beklememeliydik; çünkü o aşırı büyük olurdu.}
+
+Böyle söylendiğinde açık konuşalım: paradokslara bir yanıt olarak ele alınan
+\limofsize{} ilkesinin \emph{çok} daha fazla gerekçelendirilmeye ihtiyacı
+vardır. Örneğin Russell Paradoksu'nun şu sürümünü düşünün: \emph{Hiçbir pug,
+kendisini koklamayan pugların tam olarak hepsini koklamaz}
+(\olref[sth][story][rus]{sec} kesimine bakın). ``Böyle bir pug neden yok?''
+diye sorarsanız, onun aşırı sayıda pugı koklamak zorunda olacağının söylenmesi
+iyi bir yanıt değildir. Öyleyse bir Russell kümesinin var olmamasına ilişkin,
+var olamayacak kadar ``büyük'' olması neden iyi bir sezgisel açıklama olsun?
+
+Kısacası \limofsize{} ilkesinin ``sezgisel'' güdülenimi konusunda biraz
+şaşkınsanız bu bağışlanabilir bir durumdur.
+
+\end{document}

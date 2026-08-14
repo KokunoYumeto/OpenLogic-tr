@@ -1,0 +1,54 @@
+% Part: first-order-logic
+% Chapter: natural-deduction
+
+\documentclass[../../../include/open-logic-chapter]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olchapter[tr]{fol}{ntd}{Doğal Tümdengelim}}
+      {\olchapter[tr]{pl}{ntd}{Doğal Tümdengelim}}
+
+\begin{editorial}
+Bu bölüm, Gentzen/Prawitz tarzında bir doğal tümdengelim sistemi sunar.
+  
+Bir ispat sistemi olarak doğal tümdengelimle ilgili içeriği dâhil etmek veya
+dışarıda bırakmak için ``prfND'' etiketi kullanılır.
+\end{editorial}
+
+\olimport{rules-and-proofs}
+
+\olimport{propositional-rules}
+
+\iftag{FOL}{%
+  \olimport{quantifier-rules}
+}{}
+
+\olimport{derivations}
+
+\olimport{proving-things}
+
+\iftag{FOL}{%
+  \olimport{proving-things-quant}
+}{}
+
+\olimport{proof-theoretic-notions}
+
+\olimport{provability-consistency}
+
+\olimport{provability-propositional}
+
+\iftag{FOL}{%
+  \olimport{provability-quantifiers}
+}{}
+
+\olimport{soundness}
+
+\iftag{FOL}{%
+  \olimport{identity}
+  \olimport{soundness-identity}
+}{}
+
+\OLEndChapterHook
+
+\end{document}

@@ -1,0 +1,110 @@
+% Part: conditional-logics
+% Chapter: minimal-change-semantics
+% Section: sphere-models
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{con}{min}{sph}
+
+\olsection{Küre Modelleri}
+
+Karşıolgusallara biçimsel semantik vermenin bir yolu, Lewis'in biçimsel
+olmayan açıklamasını matematiksel bir yapıya dönüştürmektir. Bu durumda bir
+$w$ dünyasının çevresindeki küreler dünya kümeleridir. Küreler iç içe
+olduğundan, $w$ çevresindeki dünya kümelerinin alt küme bağıntısıyla doğrusal
+olarak sıralanması gerekir.
+
+\begin{defn}
+  Bir \emph{küre modeli}, $W$'nin boş olmayan bir dünyalar kümesi,
+  $V\colon\PVar\to\Pow{W}$'nin bir değerleme ve
+  $O\colon W\to\Pow{\Pow{W}}$'nin her $w$ dünyasına bir
+  \emph{küreler sistemi}~$O_w$ atadığı $\mModel{M}=\tuple{W,O,V}$
+  üçlüsüdür. Her $w$ için $O_w$ bir dünya kümeleri kümesidir ve şunları
+  sağlamalıdır:
+  \begin{enumerate}
+  \item $O_w$, $w$ üzerinde \emph{merkezlidir}: $\{w\}\in O_w$.
+  \item $O_w$ \emph{iç içedir}: $S_1,S_2\in O_w$ olduğunda
+    $S_1\subseteq S_2$ ya da $S_2\subseteq S_1$; yani $O_w$,
+    $\subseteq$ ile doğrusal sıralıdır.
+  \item $O_w$, boş olmayan birleşimler altında kapalıdır.
+  \item $O_w$, boş olmayan kesişimler altında kapalıdır.
+  \end{enumerate}
+\end{defn}
+
+$O_w$'nin ardındaki sezgi, $w$'nin ``çevresindeki'' dünyaların $w$'den ne
+kadar uzakta olduklarına göre katmanlara ayrılmasıdır. En içteki küre yalnızca
+$w$'nin kendisi, yani $\{w\}$ kümesidir: $w$, başka her küredeki dünyalardan
+$w$'ye daha yakındır. $S\subsetneq S'$ ise $S'\setminus S$ içindeki dünyalar
+$w$'den, $S$ içindeki dünyalara göre daha uzaktır: $S'\setminus S$, $S$ ile
+$S'$'nin dışındaki dünyalar arasındaki ``katmandır.'' Özellikle kürelerin dış
+yüzeylerinin içindeki bütün dünyaları içerdiğini düşünmeliyiz; küreler yalnızca
+tek tek katmanlardan ibaret değildir.
+
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[layerwidth=1.5,scale=.6]\tiny
+  \spheresystem{3}
+  \propositionintersect{0}{3}{60}{6}
+  \path (0,0) node[world] {$w$};
+  \spherepos{-30}{2}{node[world] {$w_2$}}
+  \spherepos{220}{2}{node[world] {$w_3$}}
+  \spherepos{90}{2}{node[world] {$w_1$}}
+  \spherepos[shift={(.1,0)}]{10}{3}{node[world] {$w_5$}}
+  \spherepos[shift={(.1,0)}]{-10}{3}{node[world] {$w_6$}}
+  \spherepos{225}{3}{node[world] {$w_4$}}
+  \spherepos{20}{4}{node[world] {$w_7$}}
+  \path (5,0) node[left] {$p$};
+\end{tikzpicture}
+\caption{Bir küre modelinin şeması}
+\ollabel{fig:sphere-model}
+\end{center}
+\end{figure}
+
+\olref{fig:sphere-model}'deki şema, $W=\{w,w_1,\dots,w_7\}$ ve
+$V(p)=\{w_5,w_6,w_7\}$ olan küre modeline karşılık gelir. En içteki küre
+$S_1=\{w\}$'dir. $w$'ye en yakın dünyalar $w_1,w_2,w_3$ olduğundan bir
+sonraki büyük küre $S_2=\{w,w_1,w_2,w_3\}$'tür. Daha dışarıdaki dünyalar
+$w_4,w_5,w_6$ olduğundan en dış küre $S_3=\{w,w_1,\dots,w_6\}$'dır.
+$w$ çevresindeki küreler sistemi $O_w=\{S_1,S_2,S_3\}$'tür. $w_7$ dünyası
+$w$ çevresindeki hiçbir kürede değildir. $p$'nin doğru olduğu en yakın
+dünyalar $w_5$ ile~$w_6$'dır; dolayısıyla $p$'yi kabul eden en küçük küre
+$S_3$'tür.
+
+Bir küre modeli~$\mModel M$ içinde $w$ dünyasında bir $!A$ !!{formula}{}ünün
+sağlanmasını, $\mSat{M}{!A}[w]$'yi tanımlamak için modal !!{formula}s{}in
+tanımını $!B\cif !C$ için bir koşul ekleyerek genişletiriz:
+
+\begin{defn}
+  $\mSat{M}{!B \cif !C}[w]$ ancak ve ancak aşağıdakilerden biri geçerlidir:
+  \begin{enumerate}
+  \item\ollabel{sphere-vac} Her $u\in\bigcup O_w$ için
+    $\mSat/{M}{!B}[u]$; ya da
+  \item\ollabel{sphere-nonvac} Bazı $S\in O_w$ için:
+    \begin{enumerate}
+      \item bazı $u\in S$ için $\mSat{M}{!B}[u]$ ve
+      \item her $v\in S$ için ya $\mSat/{M}{!B}[v]$ ya da
+        $\mSat{M}{!C}[v]$.
+    \end{enumerate}
+  \end{enumerate}
+\end{defn}
+
+Bu tanıma göre $\mSat{M}{!B\cif !C}[w]$, ancak ve ancak önbileşen~$!B$,
+$w$ çevresindeki kürelerin her yerinde yanlışsa ya da $!B$'nin doğru olduğu
+ve maddi koşul $!B\lif !C$'nin bu ``$!B$-kabul eden'' küredeki bütün
+dünyalarda doğru olduğu bir $S$ küresi varsa geçerlidir. Sezgisel açıklamadan
+beklenebileceğinin tersine tanımda $S$'nin $!B$'yi kabul eden \emph{en iç}
+küre olmasını istemediğimize dikkat edin. Fakat
+\olref{sphere-nonvac}'deki koşul bir $S$ küresi için sağlanıyorsa $S$
+içindeki bütün küreler için de sağlanır; dolayısıyla özellikle en içteki küre
+için sağlanır.
+
+Ayrıca küre modellerinin tanımı, $!B$'yi kabul eden en içte bir kürenin
+\emph{var olmasını} gerektirmez: $!B$'yi kabul eden
+$S_1\supsetneq S_2\supsetneq\dots\supsetneq\{w\}$ biçiminde sonsuz bir
+küre dizisi bulunabilir ve bu nedenle en içteki $!B$-kabul eden küre
+bulunmayabilir. Bu durumda $\mSat{M}{!B\cif !C}[w]$, ancak ve ancak bazı~$i$
+için $!B\lif !C$, $S_i,S_{i+1},\dots$ kürelerinin tamamında geçerlidir.
+
+\end{document}

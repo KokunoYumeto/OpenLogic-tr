@@ -1,0 +1,129 @@
+% Part: incompleteness
+% Chapter: incompleteness-provability
+% Section: first-incompleteness-thm
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{inc}{inp}{1in}
+
+\olsection{Birinci Eksiklik Teoremi}
+
+Artık G\"odel'in birinci eksiklik teoremine ilişkin özgün ispatını
+açıklayabiliriz. $\Th{T}$, aritmetik dilini genişleten bir dilde hesaplanabilir
+biçimde aksiyomlaştırılmış herhangi bir kuram olsun ve $\Th{T}$,
+$\Th{Q}$'nun aksiyomlarını içersin. Bu, özellikle $\Th{T}$'nin hesaplanabilir
+fonksiyonları ve bağıntıları temsil ettiği anlamına gelir.
+
+Formüllerin ve ispatların sayılarla makul bir biçimde kodlandığı
+varsayıldığında $\Prf[\Th{T}](x,y)$ bağıntısının hesaplanabilir olduğunu
+savunduk; burada $\Prf[\Th{T}](x,y)$, ancak ve ancak $x$, $\Th{T}$ içindeki
+!!a{derivation}{}in G\"odel sayısı ve bu türetimin sonundaki !!{formula}'nın
+G\"odel sayısı $y$ ise geçerlidir. Hatta G\"odel, aklındaki belirli kuram için, makalesindeki 45
+fonksiyon ve bağıntı listesini kullanarak bu bağıntının ilkel özyinelemeli
+olduğunu gösterebilmiştir. Kırk beşinci bağıntı $x B y$, onun seçtiği özel
+$\Th{T}$ için tam olarak $\Prf[\Th{T}](x,y)$'dir. G\"odel'in makalesinde
+``özyinelemeli'' sözcüğünü kullandığı yerde bugün ``ilkel özyinelemeli''
+ifadesini kullanacağımızı anımsayın.
+
+$\Prf[\Th{T}](x,y)$ hesaplanabilir olduğundan $\Th{T}$ içinde temsil
+edilebilir. Onu temsil eden formülü $\OPrf[\Th{T}](x,y)$ ile göstereceğiz.
+$\OProv[\Th{T}](y)$,
+$\lexists[x][\OPrf[\Th{T}](x,y)]$ formülü olsun. Bu, G\"odel'in listesindeki
+46'ncı bağıntı olan $\fn{Bew}(y)$'yi betimler. G\"odel'in belirttiği gibi bu,
+``özyinelemeli olduğu ileri sürülemeyen'' tek bağıntıdır. Muhtemelen şunu
+kastediyordu: tanımdan onun hesaplanabilir olduğu açık değildir; sonraki
+gelişmeler gerçekten de hesaplanabilir olmadığını göstermiştir.
+
+$\Th{T}$, $\Th{Q}$'yu içeren !!{axiomatizable} bir kuram olsun. O zaman
+$\Prf[\Th{T}](x,y)$ karar verilebilirdir; dolayısıyla $\Th{Q}$ içinde
+!!a{formula}~$\OPrf[\Th{T}](x,y)$ ile temsil edilebilir. $\OProv[\Th{T}](y)$
+yukarıda betimlediğimiz formül olsun. Sabit nokta lemması uyarınca,
+$\Th{Q}$'nun (dolayısıyla $\Th{T}$'nin)
+\begin{equation}
+\ollabel{eqn:qpf}
+!G_\Th{T} \liff \lnot \OProv[\Th{T}](\gn{!G_\Th{T}}).
+\end{equation}
+formülünü !!{derive} ettiği bir $!G_\Th{T}$ formülü vardır. $!G_\Th{T}$'nin
+özünde ``$!G_\Th{T}$, $\Th{T}$ içinde !!{derivable} değildir'' dediğine
+dikkat edin.
+
+\begin{lem}\ollabel{lem:cons-G-unprov}
+$\Th{T}$, $\Th{Q}$'yu genişleten tutarlı ve !!{axiomatizable} bir kuramsa
+$\Th{T} \Proves/ !G_\Th{T}$ olur.
+\end{lem}
+
+\begin{proof}
+$\Th{T}$'nin $!G_\Th{T}$'yi !!{derive} ettiğini varsayın. O zaman \emph{gerçekten}
+!!a{derivation} vardır ve bir $m$ sayısı için
+$\Prf[\Th{T}](m,\Gn{!G_\Th{T}})$ bağıntısı geçerlidir. Fakat bu durumda
+$\Th{Q}$, $\OPrf[\Th{T}](\num m,\gn{!G_\Th{T}})$ tümcesini !!{derive} eder.
+Dolayısıyla $\Th{Q}$, tanım gereği $\OProv[\Th{T}](\gn{!G_\Th{T}})$ olan
+$\lexists[x][\OPrf[\Th{T}](x,\gn{!G_\Th{T}})]$ formülünü !!{derive} eder.
+\olref{eqn:qpf} uyarınca $\Th{Q}$, $\lnot !G_\Th{T}$'yi !!{derive} eder;
+$\Th{T}$, $\Th{Q}$'yu genişlettiğinden aynısı $\Th{T}$ için de geçerlidir.
+$\Th{T}$, $!G_\Th{T}$'yi !!{derive} ederse $\lnot !G_\Th{T}$'yi de
+!!{derive} ettiğini ve bu nedenle tutarsız olacağını göstermiş olduk.
+\end{proof}
+
+\begin{defn}
+\ollabel{thm:oconsis-q}
+Bir $\Th{T}$ kuramına şu koşul sağlanıyorsa \emph{$\omega$-tutarlı} denir:
+$\lexists[x][!A(x)]$ herhangi bir tümceyse ve $\Th{T}$,
+$\lnot !A(\num 0)$, $\lnot !A(\num 1)$, $\lnot !A(\num 2)$, \dots
+formüllerini !!{derive} ediyorsa $\Th{T}$, $\lexists[x][!A(x)]$'i ispatlamaz.
+\end{defn}
+
+Her $\omega$-tutarlı kuramın ayrıca tutarlı olduğuna dikkat edin. Bunun nedeni,
+$\Th{T}$ tutarsızsa her $!A$ için $\Th{T} \Proves !A$ olmasıdır. Özellikle
+$\Th{T}$ tutarsızsa her $n$ için hem $\lnot !A(\num n)$'yi !!{derive} eder
+hem de $\lexists[x][!A(x)]$'i !!{derive} eder. Dolayısıyla $\Th{T}$ tutarsızsa
+$\omega$-tutarsızdır. Karşıt tersinden, $\Th{T}$ $\omega$-tutarlıysa tutarlı
+olmak zorundadır.
+
+\begin{lem}\ollabel{lem:omega-cons-G-unref}
+$\Th{T}$, $\Th{Q}$'yu genişleten $\omega$-tutarlı ve !!{axiomatizable} bir
+kuramsa $\Th{T} \Proves/ \lnot !G_\Th{T}$ olur.
+\end{lem}
+
+\begin{proof}
+$\Th{T}$, $\lnot !G_\Th{T}$'yi !!{derive} ederse $\omega$-tutarsız olduğunu
+göstereceğiz. $\Th{T}$'nin $\lnot !G_\Th{T}$'yi !!{derive} ettiğini varsayın.
+$\Th{T}$ tutarsızsa $\omega$-tutarsızdır ve işimiz biter. Aksi durumda
+$\Th{T}$ tutarlıdır; bu yüzden \olref{lem:cons-G-unprov} uyarınca
+$!G_\Th{T}$'yi !!{derive} etmez. $\Th{T}$ içinde $!G_\Th{T}$'nin
+!!{derivation}{}i bulunmadığından $\Th{Q}$
+\[
+\lnot \OPrf[\Th{T}](\num 0, \gn{!G_\Th{T}}), \lnot \OPrf[\Th{T}](\num 1,
+\gn{!G_\Th{T}}), \lnot \OPrf[\Th{T}](\num 2, \gn{!G_\Th{T}}), \dots
+\]
+formüllerini !!{derive} eder; dolayısıyla $\Th{T}$ de eder. Öte yandan
+\olref{eqn:qpf} uyarınca $\lnot !G_\Th{T}$,
+$\lexists[x][\OPrf[\Th{T}](x,\gn{!G_\Th{T}})]$ formülüne denktir. Öyleyse
+$\Th{T}$ $\omega$-tutarsızdır.
+\end{proof}
+
+\begin{prob}
+  Her $\omega$-tutarlı kuram tutarlıdır. Tersinin geçerli olmadığını, yani
+  tutarlı fakat $\omega$-tutarsız kuramlar bulunduğunu gösterin. Bunu
+  $\Th{Q} \cup \{\lnot !G_\Th{Q}\}$ kuramının tutarlı fakat
+  $\omega$-tutarsız olduğunu göstererek yapın.
+\end{prob}
+
+\begin{thm}
+\ollabel{thm:first-incompleteness} $\Th{T}$, $\Th{Q}$'yu genişleten herhangi
+bir $\omega$-tutarlı, !!{axiomatizable} kuram olsun. O zaman $\Th{T}$ tam
+değildir.
+\end{thm}
+
+\begin{proof}
+  $\Th{T}$ $\omega$-tutarlıysa tutarlıdır; dolayısıyla
+  \olref{lem:cons-G-unprov} uyarınca $\Th{T} \Proves/ !G_\Th{T}$ olur.
+  \olref{lem:omega-cons-G-unref} uyarınca da
+  $\Th{T} \Proves/ \lnot !G_\Th{T}$ olur. Bu, $\Th{T}$ ne $!G_\Th{T}$'yi
+  ne de $\lnot !G_\Th{T}$'yi !!{derive} ettiğinden eksik olduğu anlamına
+  gelir.
+\end{proof}
+
+\end{document}

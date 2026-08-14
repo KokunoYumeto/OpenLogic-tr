@@ -1,0 +1,60 @@
+% Part: first-order-logic
+% Chapter: axiomatic-deduction
+% Section: deduction-theorem-quantifiers
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{fol}{axd}{ddq}
+
+\olsection{Niceleyicilerle Tümdengelim Teoremi}
+
+\begin{thm}[Tümdengelim Teoremi]
+\ollabel{thm:deduction-thm-q} $\Gamma \cup \{!A\} \Proves !B$ ise
+$\Gamma \Proves !A \lif !B$.
+\end{thm}
+
+\begin{proof}
+Yine $\Gamma \cup \{!A\}$'dan $!B$ için verilen !!{derivation} ele alınır ve
+uzunluğuna göre tümevarım yapılır.
+
+Tümevarım başlangıcının ispatı, \olref[ded]{thm:deduction-thm} ispatındakiyle
+aynıdır.
+
+Tümevarım adımında, $\Gamma \cup \{!A\}$'dan $!B$ için bir !!{derivation}
+ele alalım ve bunun bir çıkarım kuralıyla gerekçelendirilen $!B$ adımıyla
+bittiğini varsayalım. Kural
+modus ponens ise \olref[ded]{thm:deduction-thm} ispatındaki gibi ilerleriz.
+Kural \QR{} ise $!B \ident !C \lif \lforall[x][!D(x)]$ olduğunu ve
+$a$'nın $!C$, $!A$, $\Gamma$ ya da~$!D(x)$ içinde geçmediği durumda
+$!C \lif !D(a)$ biçiminde !!a{formula} bulunduğunu ve bunun !!{derivation}
+içinde daha önce geldiğini biliriz. Dolayısıyla
+\begin{align*}
+  \Gamma \cup \{!A\} & \Proves !C \lif !D(a),\\
+  \intertext{ve tümevarım varsayımı uygulanabildiğinden}
+    \Gamma & \Proves !A \lif (!C \lif !D(a)).\\
+  \intertext{Ayrıca}
+  & \Proves (!A \lif (!C \lif !D(a))) \lif ((!A \land !C) \lif !D(a))\\
+  \intertext{olduğundan modus ponens ile}
+  \Gamma & \Proves (!A \land !C) \lif !D(a).\\
+  \intertext{Özdeğişken koşulu hâlâ geçerlidir; bu nedenle bu !!{derivation} içine \QR{} ile gerekçelendirilen bir adım ekleyerek}
+    \Gamma & \Proves (!A \land !C) \lif \lforall[x][!D(x)].\\
+  \intertext{Ayrıca}
+    & \Proves ((!A \land !C) \lif \lforall[x][!D(x)]) \lif
+    (!A \lif (!C \lif \lforall[x][!D(x)])),\\
+  \intertext{dolayısıyla modus ponens ile}
+    \Gamma & \Proves !A \lif (!C \lif \lforall[x][!D(x)])
+\end{align*}
+elde edilir; yani $\Gamma \Proves !A \lif !B$.
+
+$!B$'nin \QR{} ile gerekçelendirildiği ancak
+$\lexists[x][!D(x)] \lif !C$ biçiminde olduğu durumu alıştırma olarak
+bırakıyoruz.
+\end{proof}
+
+\begin{prob}
+  \olref[fol][axd][ddq]{thm:deduction-thm-q} ispatını tamamlayın.
+\end{prob}
+
+\end{document}

@@ -1,0 +1,71 @@
+% Part: first-order-logic
+% Chapter: sequent-calculus
+% Section: rules-and-proofs
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[tr]{fol}{seq}{rul}}
+      {\olfileid[tr]{pl}{seq}{rul}}
+
+\olsection{Kurallar ve \usetoken{P}{derivation}}
+
+Aşağıda $\Gamma, \Delta, \Pi, \Lambda$, öğeleri !!{sentence}s olan sonlu
+dizileri göstersin.
+
+\begin{defn}[Sekant]
+Bir \emph{sekant},
+\[
+\Gamma \Sequent \Delta
+\]
+biçiminde bir ifadedir; burada $\Gamma$ ile $\Delta$, öğeleri $\Lang L$
+dilindeki !!{sentence}s olan sonlu (boş da olabilen) dizilerdir. $\Gamma$'ya
+\emph{öncül}, $\Delta$'ya ise \emph{ardıl} denir.
+\end{defn}
+
+\begin{explain}
+Bir sekantın ardındaki sezgisel düşünce şudur: öncüldeki bütün !!{sentence}s
+doğruysa ardıldaki !!{sentence}s arasından en az biri doğrudur. Başka bir
+deyişle $\Gamma = \tuple{!A_1, \dots, !A_m}$ ve $\Delta = \tuple{!B_1,
+\dots, !B_n}$ ise $\Gamma \Sequent \Delta$ ancak ve ancak
+\[
+(!A_1 \land \cdots \land !A_m) \lif (!B_1 \lor \cdots \lor
+!B_n)
+\]
+doğru olduğunda doğrudur. İki özel durum vardır: $\Gamma$'nın boş olması ve
+$\Delta$'nın boş olması. $\Gamma$ boşsa, yani $m=0$ ise $\quad \Sequent
+\Delta$ ancak ve ancak $!B_1 \lor \dots \lor !B_n$ doğru olduğunda
+doğrudur. $\Delta$ boşsa, yani $n=0$ ise $\Gamma \Sequent \quad$ ancak ve
+ancak $\lnot(!A_1 \land \dots \land !A_m)$ doğru olduğunda doğrudur.
+Karşılık gelen !!{sentence} geçerliyse sekanta geçerli deriz.
+\end{explain}
+
+$\Gamma$, öğeleri !!{sentence}s olan bir diziyse $\Gamma,!A$ ile $\Gamma$'nın sağ ucuna
+$!A$ eklenerek elde edilen diziyi (ve $!A,\Gamma$ ile $\Gamma$'nın sol ucuna
+$!A$ eklenerek elde edilen diziyi) gösteririz. $\Delta$ da öğeleri !!{sentence}s olan bir
+dizisiyse $\Gamma,\Delta$, iki dizinin art arda eklenmesidir.
+
+\begin{defn}[Başlangıç Sekantı]
+Bir \emph{başlangıç sekantı}, herhangi bir !!{sentence}~$!A$ için
+\iftag{prvFalse,prvTrue}{aşağıdaki biçimlerden birindeki sekanttır:
+  \begin{enumerate}
+    \item $!A \Sequent !A$
+    \tagitem{prvTrue}{$\quad \Sequent \ltrue$}{}
+    \tagitem{prvFalse}{$\lfalse \Sequent \quad$}{}
+  \end{enumerate}}
+{$!A \Sequent !A$ biçimindeki sekanttır}.
+\end{defn}
+
+Sekant hesabındaki !!^{derivation}s, en üstteki sekantların başlangıç
+sekantları olduğu belirli sekant ağaçlarıdır; bir sekant bir veya iki başka
+sekantın altında duruyorsa onlardan bir çıkarım kuralıyla doğru biçimde elde
+edilmelidir. $\Log{LK}$ kuralları iki ana türe ayrılır: \emph{mantıksal}
+kurallar ve \emph{yapısal} kurallar. Mantıksal kurallar, alttaki sekantta
+!!{main operator} konumunda duran ve $!A$ ve/veya $!B$ içeren
+!!{sentence} temel alınarak adlandırılır. Her kuralın iki biçimi vardır: biri
+!!{sentence} içindeki !!{operator} sol tarafta bulunan bir sekant, diğeri bu !!{sentence}
+sağ tarafta bulunan bir sekant çıkarmak içindir.
+
+\end{document}

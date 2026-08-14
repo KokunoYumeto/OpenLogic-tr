@@ -1,0 +1,140 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{sth}{spine}{rank}
+\olsection{Rank}
+
+Aşamaları $V_\alpha$'lar olarak tanımladığımıza ve her kümenin bir aşamanın
+alt kümesi olduğunu bildiğimize göre bir kümenin \emph{rankını}
+tanımlayabiliriz. Sezgisel olarak $A$'nın rankı, $A$'nın oluşturulduğu ilk
+andır. Daha kesin olarak:
+
+\begin{defn}\ollabel{defnsetrank}
+Her $A$ kümesi için $\setrank{A}$, $A\subseteq V_\alpha$ koşulunu sağlayan
+en küçük $\alpha$ sıra sayısıdır.
+\end{defn}
+\begin{prop}\ollabel{ranksexist}
+	Her $A$ için $\setrank{A}$ vardır.
+\end{prop}
+\begin{proof}
+	Alıştırma olarak bırakılmıştır.
+\end{proof}
+\begin{prob}
+	\olref[sth][spine][rank]{ranksexist} sonucunu ispatlayın.
+\end{prob}
+\noindent
+Rankların iyi sıralanması bazı önemli sonuçları ispatlamamızı sağlar:
+\begin{prop}\ollabel{valphalowerrank}
+Her $\alpha$ sıra sayısı için
+$V_\alpha=\Setabs{x}{\setrank{x}\in\alpha}$.
+\end{prop}
+
+\begin{proof}
+$\setrank{x}\in\alpha$ ise
+$x\subseteq V_{\setrank{x}}\in V_\alpha$ olur; $V_\alpha$ kuvvetli
+olduğundan (\olref[Valphabasic]{Valphabasicprops} birkaç kez kullanılarak)
+$x\in V_\alpha$ elde edilir. Tersine $x\in V_\alpha$ olsun. Basit sonlu
+ötesi tümevarımla şu görülür: $\alpha$ ardıl $\ordsucc{\beta}$ ise
+$x\subseteq V_\beta$ ve dolayısıyla $\setrank{x}\leq\beta<\alpha$ olur;
+$\alpha$ limit ise bir $\beta<\alpha$ için $x\in V_\beta$ ve dolayısıyla
+yine $\setrank{x}<\alpha$ olur. Böylece $\setrank{x}\in\alpha$.
+\end{proof}
+\begin{prob}
+	\olref[sth][spine][rank]{valphalowerrank} içinde anılan basit sonlu ötesi
+	tümevarımı tamamlayın.
+\end{prob}
+
+\begin{prop}\ollabel{rankmemberslower}
+$B\in A$ ise $\setrank{B}\in\setrank{A}$.
+\end{prop}
+
+\begin{proof}
+\olref{valphalowerrank} gereği
+$A\subseteq V_{\setrank{A}}=
+\Setabs{x}{\setrank{x}\in\setrank{A}}$ olur.
+\end{proof}
+\noindent
+Bu olguyla, bir tür tümevarım kullanarak \emph{bütün kümeler} hakkında
+sonuç ispatlamamızı sağlayan bir sonuç kurabiliriz:
+
+\begin{thm}[$\in$-Tümevarım Şeması]
+Her $\phi$ formülü için:
+\[
+	\forall A((\forall x \in A)\phi(x) \lif \phi(A)) \lif \forall A \phi(A).
+\]
+\end{thm}
+
+\begin{proof}
+Karşıt-tersi ispatlayacağız. $\lnot\forall A\phi(A)$ olduğunu varsayın.
+Sonlu Ötesi Tümevarım
+(\olref[ordinals][basic]{ordinductionschema}) gereği olabilecek en küçük
+ranka sahip bir $\phi$-olmayan vardır; yani $\lnot\phi(A)$ ve
+$\forall x(\setrank{x}\in\setrank{A}\lif\phi(x))$ olan bir $A$ vardır.
+Şimdi $x\in A$ ise \olref{rankmemberslower} gereği
+$\setrank{x}\in\setrank{A}$ ve dolayısıyla $\phi(x)$ olur. Böylece
+$(\forall x\in A)\phi(x)\land\lnot\phi(A)$ elde edilir.
+\end{proof}\noindent
+Bu güçlü sonucu gayriresmî olarak şöyle açıklayabiliriz. Bir kümede bulunan
+her !!{element} $\phi$ olduğunda kümenin kendisi de $\phi$ ise $\phi$'ye
+\emph{kalıtsal} diyelim. O zaman $\in$-Tümevarım şunu söyler: $\phi$
+kalıtsalsa her küme $\phi$'dir.
+
+Rank tartışmasını (şimdilik) tamamlamak için daha önce birkaç kez haber
+verdiğimiz bazı iddiaları ispatlayacağız.
+
+\begin{prop}\ollabel{ranksupstrict}
+$\setrank{A} = \supstrict_{x \in A}\setrank{x}$.
+\end{prop}
+
+\begin{proof}
+$\alpha=\supstrict_{x\in A}\setrank{x}$ olsun.
+\olref{rankmemberslower} gereği $\alpha\leq\setrank{A}$ olur. Fakat
+$x\in A$ ise $\setrank{x}\in\alpha$ ve dolayısıyla
+\olref{valphalowerrank} gereği $x\in V_\alpha$ olur. Böylece
+$A\subseteq V_\alpha$, yani $\setrank{A}\leq\alpha$ olur. Sonuç olarak
+$\setrank{A}=\alpha$.
+\end{proof}
+
+\begin{cor}\ollabel{ordsetrankalpha}
+Her $\alpha$ sıra sayısı için $\setrank{\alpha}=\alpha$.
+\end{cor}
+
+\begin{proof}
+Sonlu ötesi tümevarım için bütün $\beta\in\alpha$ üzerinde
+$\setrank{\beta}=\beta$ olduğunu varsayın. Şimdi
+$\setrank{\alpha}=\supstrict_{\beta\in\alpha}\setrank{\beta}=
+\supstrict_{\beta\in\alpha}\beta=\alpha$ olur; burada
+\olref{ranksupstrict} kullanılmıştır.
+%	First note that $\setrank{\alpha} \neq \beta$ for any $\beta \in
+%	\alpha$. For otherwise we would have $\beta = \setrank{\beta} \in
+%	\setrank{\alpha} = \beta$ by \olref{rankmemberslower}, i.e.,
+%	$\beta \in \beta$, a contradiction. 
+%
+%	Now note that $\alpha \subseteq V_\alpha$. For $\alpha =
+%	\Setabs{\beta}{\beta \in \alpha}$ by
+%	\olref[sfr][ordinals][basic]{ordissetofsmallerord}. And if
+%	$\beta \in \alpha$ then $\beta \subseteq V_{\setrank{\beta}} =
+%	V_\beta \in V_\alpha$, hence $\beta \in V_\alpha$, by
+%	\olref[sfr][spine][Valphabasic]{Valphabasicprops} twice. 
+\end{proof}
+
+Son olarak \olref[foundation]{sec} sonunda vaat edilen, $\ZFminus$'ın
+$\emph{Düzenlilik}\Rightarrow\emph{Temellendirme}$ koşullusunu
+ispatladığı sonucunun hızlı bir ispatını verelim. (``Rank'' kavramı ile
+\olref{rankmemberslower} bu ispatta kullanılabilir; çünkü bu kesimin
+başında belirtildiği gibi bunlar $\ZFminus+\text{Düzenlilik}$ kullanılarak
+sunulabilir.)
+
+\begin{prop}[$\ZFminus + \text{Düzenlilik}$ içinde çalışarak]\ollabel{zfminusregularityfoundation}
+Temellendirme geçerlidir.
+\end{prop}
+
+\begin{proof}
+$A\neq\emptyset$ sabit olsun ve $A$ içinde olabilecek en küçük ranka sahip
+bir $B$ seçin. $c\in B$ ise \olref{rankmemberslower} gereği
+$\setrank{c}\in\setrank{B}$ olur; dolayısıyla $B$'nin seçimi gereği
+$c\notin A$'dır. Böylece $A\cap B=\emptyset$ olur.
+\end{proof}
+
+\end{document}

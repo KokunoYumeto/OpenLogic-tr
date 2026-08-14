@@ -1,0 +1,40 @@
+% Part: lambda-calculus
+% Chapter: introduction
+% Section: lambda-computable
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{lam}{int}{cmp}
+\olsection{\usetoken{S}{lambda definable} Fonksiyonlar Hesaplanabilirdir}
+
+\begin{thm}
+\ollabel{thm:lambda-computable}
+Kısmi bir $f$ fonksiyonu bir lambda terimi tarafından !!{lambda defined}
+ise hesaplanabilirdir.
+\end{thm}
+
+\begin{proof}
+Bir $f$ fonksiyonunun bir $X$ lambda terimi tarafından !!{lambda defined}
+olduğunu varsayalım. $f$'yi hesaplamak için biçimsel olmayan bir yordam
+betimleyelim. $m_0$, \dots, $m_{n-1}$ girdisinde
+$X\num m_0\ldots\num m_{n-1}$ terimini yazın. Önce özgün terimin bütün tek
+adımlı indirgemelerini, onların altına bunların bütün tek adımlı
+indirgemelerini (yani özgün terimin iki adımlı indirgemelerini) yazarak bir
+ağaç kurun ve böyle sürdürün. Bir sayıya ulaşırsanız onu yanıt olarak
+döndürün; aksi durumda fonksiyon tanımsızdır.
+
+Church tezine başvurmak bize bu fonksiyonun hesaplanabilir olduğunu söyler.
+Teoremi ispatlamanın daha iyi bir yolu, bu arama yordamının özyinelemeli bir
+betimlemesini vermektir. Örneğin ``$\fn{IsASubterm}$'',
+``$\fn{Substitute}$'', ``$\fn{ReducesToInOneStep}$'',
+``$\fn{ReductionSequence}$'', ``$\fn{Numeral}$'' vb. ilkel özyinelemeli
+fonksiyon ve bağıntı dizileri tanımlanabilir. $f(m_0,\dots,m_{n-1})$'i
+hesaplayan kısmi özyinelemeli yordam, $X\num{m_0}\dots\num{m_{n-1}}$ ile
+başlayıp bir sayıyla biten tek adımlı indirgeme dizisini arar ve bu sayıya
+karşılık gelen sayıyı döndürür. Ayrıntılar uzun ve sıkıcı, fakat bütünüyle
+rutindir.
+\end{proof}
+
+\end{document}

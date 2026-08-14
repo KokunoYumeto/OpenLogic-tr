@@ -1,0 +1,211 @@
+% Part: normal-modal-logic
+% Chapter: tableaux
+% Section: completeness
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{nml}{tab}{cpl}
+
+\olsection{\Log{K} için Tamlık}
+
+\begin{explain}
+  !!{tableau}s yönteminin tam olduğunu göstermek için, $\Gamma \Proves !A$
+  olduğunu gösteren kapalı bir !!{tableau} bulunmadığında
+  $\Gamma \Entails/ !A$, yani bir karşı-model bulunduğunu göstermeliyiz.
+  Fakat ``kapalı bir !!{tableau} yoktur'' demek, onu kurmayı deneyebileceğimiz
+  her yolun kapanmayı başaramaması demektir. Püf noktası şudur: bütün bu yollar
+  kapanmayı başaramıyorsa, belirli bir \emph{sistematik ve tüketici} yol da
+  kapanmayı başaramaz. Oysa kapalı bir !!{tableau} varsa bu sistematik ve
+  tüketici yol kapanırdı. Tek bir tablo, açık dalları arasında bir karşı-model
+  tanımlamak için gereken bütün bilgileri içerecektir. Bu tablodaki açık bir
+  dalın verdiği karşı-model, o dalda kullanılan bütün önekleri dünya olarak
+  alır ve !!a{propositional variable} $p$, $\sigma$'da ancak ve ancak
+  $\sFmla{\True}{p}[\sigma]$ dalda geçiyorsa doğrudur.
+\end{explain}
+
+\begin{defn}
+  !!a{tableau}{}daki bir dala, kural uygulanabilen bir önekli !!{formula}
+  $\sFmla{S}{!A}[\sigma]$ içerdiği her durumda ayrıca şunları da içeriyorsa
+  tam denir:
+  \begin{enumerate}
+    \item önermesel yığma kurallarında, kuralın karşılık gelen sonuçları olan
+      önekli !!{formula}s{}i;
+    \item önermesel dallanma kurallarında, karşılık gelen sonuç
+      !!{formula}s{}inden birini;
+    \item yeni önek gerektiren modal kurallarda, olası sonuçlardan en az birini;
+    \item kullanılmış önek gerektiren modal kurallarda, dalda geçen her önek
+      için karşılık gelen sonucu.
+  \end{enumerate}
+\end{defn}
+
+\begin{explain}
+Örneğin tam bir dal $\sFmla{\True}{!B \land !C}[\sigma]$ içerdiğinde hem
+$\sFmla{\True}{!B}[\sigma]$ hem $\sFmla{\True}{!C}[\sigma]$ içerir.
+$\sFmla{\True}{!B \lor !C}[\sigma]$ içeriyorsa
+$\sFmla{\True}{!B}[\sigma]$ ile $\sFmla{\True}{!C}[\sigma]$'dan en az birini
+içerir. \iftag{prvBox}{$\sFmla{\False}{\Box !B}[\sigma]$}
+{$\sFmla{\True}{\Diamond !B}[\sigma]$} içeriyorsa en az bir $n$ için ayrıca
+\iftag{prvBox}{$\sFmla{\False}{!B}[\sigma.n]$}
+{$\sFmla{\True}{!B}[\sigma.n]$} içerir. \iftag{prvBox}
+{$\sFmla{\True}{\Box !B}[\sigma]$}
+{$\sFmla{\False}{\Diamond !B}[\sigma]$} içerdiğinde ise $\sigma.n$'nin dalda
+kullanılmış olduğu her $n$ için ayrıca \iftag{prvBox}
+{$\sFmla{\True}{!B}[\sigma.n]$}
+{$\sFmla{\False}{!B}[\sigma.n]$} içerir.
+\end{explain}
+
+\begin{prop}\ollabel{prop:complete-tableau}
+  Her sonlu $\Gamma$, her dalı tam olan !!a{tableau}{}ya sahiptir.
+\end{prop}
+
+\begin{proof}
+  $\Gamma$ için !!a{tableau}{}daki açık bir dalı ele alalım. Dalda kural
+  uygulanabilecek sonlu sayıda önekli !!{formula} vardır. Sabit bir sırayla
+  (örneğin yukarıdan aşağıya), (1)--(4) koşullarının henüz sağlanmadığı bu
+  önekli !!{formula}s{}in her birine uygulanabilen kuralları uygulayarak dalı
+  genişletin. Bazı durumlarda bu dallanmaya yol açar; ortaya çıkan her dalın
+  ucunda, kalan bütün önekli !!{formula}s için kuralı uygulayın. Önekli
+  !!{formula}s{}in sayısı ve dalda kullanılan öneklerin sayısı sonlu olduğundan,
+  bu yordam sonunda özgün dalı genişleten (belki birçok) dal verir. Yordamı
+  bunların her birine uygulayıp yineleyin. Kuruluş gereğince her dal tamdır.
+\end{proof}
+
+\begin{thm}[Tamlık]
+  \ollabel{thm:tableau-completeness}
+  $\Gamma$ kapalı bir !!{tableau}{}ya sahip değilse sağlanabilirdir.
+\end{thm}
+
+\begin{proof}
+Önerme gereğince $\Gamma$, her dalı tam olan !!a{tableau}{}ya sahiptir. Kapalı
+bir !!{tableau}{}ya sahip olmadığından, en az bir dalı açık ve tam olan
+!!a{tableau}{}ya sahiptir. $\Delta$ daldaki önekli !!{formula}s kümesi,
+$P(\Delta)$ da onda geçen önekler kümesi olsun.
+
+Dünyaları $\Delta$'da geçen önekler olan
+$\mModel{M(\Delta)} = \tuple{P(\Delta), R, V}$ modelini tanımlayalım.
+Erişilebilirlik bağıntısı
+\[
+R\sigma\sigma' \quad \text{ancak ve ancak} \quad
+\sigma'=\sigma.n \quad \text{bazı $n$ için}
+\]
+ve değerleme
+\[
+V(p) = \Setabs{\sigma}{\sFmla{\True}{p}[\sigma] \in \Delta}
+\]
+ile verilsin. $!A$ üzerinde tümevarımla,
+$\sFmla{\True}{!A}[\sigma] \in \Delta$ ise
+$\mSat{M(\Delta)}{!A}[\sigma]$; $\sFmla{\False}{!A}[\sigma] \in \Delta$
+ise $\mSat/{M(\Delta)}{!A}[\sigma]$ olduğunu gösterelim.
+
+\begin{enumerate}
+  \item \indcase{!A}{p}{$\sFmla{\True}{\indfrm}[\sigma] \in \Delta$ ise
+    (değerlemenin tanımı gereğince) $\sigma \in V(p)$ ve dolayısıyla
+    $\mSat{M(\Delta)}{\indfrm}[\sigma]$.
+
+    $\sFmla{\False}{\indfrm}[\sigma] \in \Delta$ ise
+    $\sFmla{\True}{\indfrm}[\sigma] \notin \Delta$; aksi hâlde dal kapalı
+    olurdu. Öyleyse $\sigma \notin V(p)$ ve dolayısıyla
+    $\mSat/{M(\Delta)}{\indfrm}[\sigma]$.}
+  \item \indcase{!A}{\lnot !B}{\iftag{probNot}{Alıştırma.}{
+      $\sFmla{\True}{\indfrm}[\sigma] \in \Delta$ ise, dal tam olduğundan
+      $\sFmla{\False}{!B}[\sigma] \in \Delta$. Tümevarım varsayımıyla
+      $\mSat/{M(\Delta)}{!B}[\sigma]$ ve dolayısıyla
+      $\mSat{M(\Delta)}{\indfrm}[\sigma]$.
+
+      $\sFmla{\False}{\indfrm}[\sigma] \in \Delta$ ise, dal tam olduğundan
+      $\sFmla{\True}{!B}[\sigma] \in \Delta$. Tümevarım varsayımıyla
+      $\mSat{M(\Delta)}{!B}[\sigma]$ ve dolayısıyla
+      $\mSat/{M(\Delta)}{\indfrm}[\sigma]$.}}
+  \item \indcase{!A}{!B \land !C}{\iftag{probAnd}{Alıştırma.}{
+      $\sFmla{\True}{\indfrm}[\sigma] \in \Delta$ ise, dal tam olduğundan
+      hem $\sFmla{\True}{!B}[\sigma] \in \Delta$ hem
+      $\sFmla{\True}{!C}[\sigma] \in \Delta$. Tümevarım varsayımıyla
+      $\mSat{M(\Delta)}{!B}[\sigma]$ ve
+      $\mSat{M(\Delta)}{!C}[\sigma]$. Dolayısıyla
+      $\mSat{M(\Delta)}{\indfrm}[\sigma]$.
+
+      $\sFmla{\False}{\indfrm}[\sigma] \in \Delta$ ise, dal tam olduğundan
+      $\sFmla{\False}{!B}[\sigma] \in \Delta$ ya da
+      $\sFmla{\False}{!C}[\sigma] \in \Delta$. Tümevarım varsayımıyla
+      $\mSat/{M(\Delta)}{!B}[\sigma]$ ya da
+      $\mSat/{M(\Delta)}{!C}[\sigma]$. Dolayısıyla
+      $\mSat/{M(\Delta)}{\indfrm}[\sigma]$.}}
+  \item \indcase{!A}{!B \lor !C}{\iftag{probOr}{Alıştırma.}{
+      $\sFmla{\True}{\indfrm}[\sigma] \in \Delta$ ise, dal tam olduğundan
+      $\sFmla{\True}{!B}[\sigma] \in \Delta$ ya da
+      $\sFmla{\True}{!C}[\sigma] \in \Delta$. Tümevarım varsayımıyla
+      $\mSat{M(\Delta)}{!B}[\sigma]$ ya da
+      $\mSat{M(\Delta)}{!C}[\sigma]$. Dolayısıyla
+      $\mSat{M(\Delta)}{\indfrm}[\sigma]$.
+
+      $\sFmla{\False}{\indfrm}[\sigma] \in \Delta$ ise, dal tam olduğundan
+      hem $\sFmla{\False}{!B}[\sigma] \in \Delta$ hem
+      $\sFmla{\False}{!C}[\sigma] \in \Delta$. Tümevarım varsayımıyla hem
+      $\mSat/{M(\Delta)}{!B}[\sigma]$ hem
+      $\mSat/{M(\Delta)}{!C}[\sigma]$. Dolayısıyla
+      $\mSat/{M(\Delta)}{\indfrm}[\sigma]$.}}
+  \item \indcase{!A}{!B \lif !C}{\iftag{probIf}{Alıştırma.}{
+      $\sFmla{\True}{\indfrm}[\sigma] \in \Delta$ ise, dal tam olduğundan
+      $\sFmla{\False}{!B}[\sigma] \in \Delta$ ya da
+      $\sFmla{\True}{!C}[\sigma] \in \Delta$. Tümevarım varsayımıyla
+      $\mSat/{M(\Delta)}{!B}[\sigma]$ ya da
+      $\mSat{M(\Delta)}{!C}[\sigma]$. Dolayısıyla
+      $\mSat{M(\Delta)}{\indfrm}[\sigma]$.
+
+      $\sFmla{\False}{\indfrm}[\sigma] \in \Delta$ ise, dal tam olduğundan
+      hem $\sFmla{\True}{!B}[\sigma] \in \Delta$ hem
+      $\sFmla{\False}{!C}[\sigma] \in \Delta$. Tümevarım varsayımıyla hem
+      $\mSat{M(\Delta)}{!B}[\sigma]$ hem
+      $\mSat/{M(\Delta)}{!C}[\sigma]$. Dolayısıyla
+      $\mSat/{M(\Delta)}{\indfrm}[\sigma]$.}}
+  \item \indcase{!A}{\Box !B}{\iftag{probBox}{Alıştırma.}{
+      $\sFmla{\True}{\indfrm}[\sigma] \in \Delta$ ise, dal tam olduğundan
+      dalda kullanılan her $\sigma.n$ için, başka bir deyişle
+      $R\sigma\sigma'$ olan her $\sigma' \in P(\Delta)$ için
+      $\sFmla{\True}{!B}[\sigma.n] \in \Delta$. Tümevarım varsayımıyla
+      $R\sigma\sigma'$ olan her $\sigma'$ için
+      $\mSat{M(\Delta)}{!B}[\sigma']$. Dolayısıyla
+      $\mSat{M(\Delta)}{\indfrm}[\sigma]$.
+
+      $\sFmla{\False}{\indfrm}[\sigma] \in \Delta$ ise, dal tam olduğundan
+      bazı $\sigma.n$ için $\sFmla{\False}{!B}[\sigma.n] \in \Delta$.
+      Tümevarım varsayımıyla $\mSat/{M(\Delta)}{!B}[\sigma.n]$.
+      $R\sigma(\sigma.n)$ olduğundan $R\sigma\sigma'$ ve
+      $\mSat/{M(\Delta)}{!B}[\sigma']$ olan bir $\sigma'$ vardır.
+      Dolayısıyla $\mSat/{M(\Delta)}{\indfrm}[\sigma]$.}}
+  \item \indcase{!A}{\Diamond !B}{\iftag{probDiamond}{Alıştırma.}{
+      $\sFmla{\True}{\indfrm}[\sigma] \in \Delta$ ise, dal tam olduğundan
+      bazı $\sigma.n$ için $\sFmla{\True}{!B}[\sigma.n] \in \Delta$.
+      Tümevarım varsayımıyla $\mSat{M(\Delta)}{!B}[\sigma.n]$.
+      $R\sigma(\sigma.n)$ olduğundan $R\sigma\sigma'$ ve
+      $\mSat{M(\Delta)}{!B}[\sigma']$ olan bir $\sigma'$ vardır.
+      Dolayısıyla $\mSat{M(\Delta)}{\indfrm}[\sigma]$.
+
+      $\sFmla{\False}{\indfrm}[\sigma] \in \Delta$ ise, dal tam olduğundan
+      dalda kullanılan her $\sigma.n$ için, başka bir deyişle
+      $R\sigma\sigma'$ olan her $\sigma' \in P(\Delta)$ için
+      $\sFmla{\False}{!B}[\sigma.n] \in \Delta$. Tümevarım varsayımıyla
+      $R\sigma\sigma'$ olan her $\sigma'$ için
+      $\mSat/{M(\Delta)}{!B}[\sigma']$. Dolayısıyla
+      $\mSat/{M(\Delta)}{\indfrm}[\sigma]$.}}
+\end{enumerate}
+$\Gamma \subseteq \Delta$ olduğundan $\mSat{M(\Delta)}{\Gamma}$.
+\end{proof}
+
+\begin{prob}
+\olref[nml][tab][cpl]{thm:tableau-completeness} teoreminin ispatını tamamlayın.
+\end{prob}
+
+\begin{cor}
+\ollabel{cor:entailment-completeness}
+$\Gamma \Entails !A$ ise $\Gamma \Proves !A$.
+\end{cor}
+
+\begin{cor}
+\ollabel{cor:weak-completeness}
+$!A$ bütün modellerde doğruysa $\Proves !A$.
+\end{cor}
+
+\end{document}

@@ -1,0 +1,60 @@
+% Part: turing-machines
+% Chapter: machines-computations
+% Section: turing-machines
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{tur}{mac}{tur}
+\olsection{Turing Makineleri}
+
+\begin{explain}
+Bir Turing makinesini oluşturan şeyin biçimsel tanımı soyut görünür, fakat
+aslında basittir: Turing makinesinin işleyişini belirtmek için gereken bütün
+bilgiyi tek bir matematiksel yapı içinde toplar. Bunlar (1)~makinenin
+bulunabileceği durumlar, (2)~şeritte kullanılmasına izin verilen simgeler,
+(3)~makinenin başlaması gereken durum ve (4)~makinenin yönerge kümesidir.
+\end{explain}
+
+\begin{defn}[Turing makinesi]
+Bir \emph{Turing makinesi} $M$, aşağıdakilerden oluşan
+$\langle Q,\Sigma,q_0,\delta\rangle$ dörtlüsüdür:
+\begin{enumerate}
+\item Sonlu bir \emph{durumlar} kümesi $Q$.
+\item $\TMendtape$ ile $\TMblank$ simgelerini içeren sonlu bir
+  \emph{alfabe} $\Sigma$.
+\item Bir \emph{başlangıç durumu} $q_0\in Q$.
+\item Sonlu bir \emph{yönerge kümesi}
+  $\delta\colon Q\times\Sigma\pto
+  Q\times\Sigma\times\{\TMleft,\TMright,\TMstay\}$.
+\end{enumerate}
+Kısmi $\delta$ fonksiyonuna $M$'nin \emph{geçiş fonksiyonu} da denir.
+\end{defn}
+
+\begin{explain}
+Şeridin yalnızca bir yönde sonsuz olduğunu varsayıyoruz. Bu nedenle özel bir
+$\TMendtape$ simgesini şeridin sol ucunun işareti olarak belirlemek
+yararlıdır. Bu, Turing makinesi programlarının şeridin dışına çıkma
+``tehlikesi'' içinde olduklarını anlamalarını kolaylaştırır. Bu simgenin hiç
+üzerine yazılmadığını, yani $\delta(q,\TMendtape)$ tanımlıysa
+$\delta(q,\TMendtape)=\tuple{q',\TMendtape,x}$ olduğunu varsayabilirdik.
+Bazı ders kitapları bunu yapar; biz yapmıyoruz. Turing makinenizi kurarken
+$\TMendtape$ simgesinin üzerine hiçbir zaman yazmamasına dikkat edebilirsiniz.
+Üstelik üzerine yazmaya izin vermenin uygun bir esneklik sağladığı durumlar
+vardır.
+\end{explain}
+
+\begin{ex}
+\emph{Çift Sayı Makinesi:} Çift sayı makinesi biçimsel olarak
+$\tuple{Q,\Sigma,q_0,\delta}$ dörtlüsüdür; burada
+\begin{align*}
+Q & = \{q_0,q_1\}\\
+\Sigma & = \{\TMendtape,\TMblank,\TMstroke\},\\
+\delta(q_0,\TMstroke) & = \tuple{q_1,\TMstroke,\TMright},\\
+\delta(q_1,\TMstroke) & = \tuple{q_0,\TMstroke,\TMright},\\
+\delta(q_1,\TMblank) & = \tuple{q_1,\TMblank,\TMright}.
+\end{align*}
+\end{ex}
+
+\end{document}

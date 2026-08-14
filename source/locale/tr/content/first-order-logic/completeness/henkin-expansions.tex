@@ -1,0 +1,215 @@
+% Part: first-order-logic
+% Chapter: completeness
+% Section: henkin-expansion
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{fol}{com}{hen}
+
+\olsection{Henkin Genişlemesi}
+
+\begin{explain}
+Tamlık teoremini ispatlamaktaki güçlüğün bir bölümü, tam ve tutarlı
+bir~$\Gamma$ kümesinden kurduğumuz modelin~$\Gamma$ içindeki bütün
+niceleyicili !!{formula}s ifadelerini doğru kılması gereğidir. Bunu
+güvence altına almak için Leon Henkin'e dayanan bir hile kullanırız.
+Hile özünde, dili sonsuz sayıda !!{constant}s ile genişletmekten ve her
+$!A(x)$ !!{formula} ifadesi için---burada bir !!{variable} serbesttir---
+\iftag{prvEx}
+      {$\lexists[x][!A(x)]\lif !A(c)$}
+      {$\lnot\lforall[x][!A(x)]\lif\lnot !A(c)$}
+biçiminde bir formül eklemekten oluşur; burada $c$ yeni
+!!{constant}s arasındadır. $\Gamma$'yı sağlayan !!{structure}
+kurulduğunda bu, her
+\iftag{prvEx}
+{doğru varlıksal tümcenin bir tanığının}
+{yanlış tümel tümcenin bir karşı örneğinin}
+yeni sabitler arasında bulunmasını güvence altına alır.
+\end{explain}
+
+\begin{prop}
+\ollabel{prop:lang-exp}
+$\Gamma$,~$\Lang L$ içinde tutarlıysa ve $\Lang L'$,
+$\Lang L$ diline !!a{denumerable} yeni !!{constant}s kümesi
+$\Obj d_0$, $\Obj d_1$, \dots\ eklenerek elde edilmişse,
+$\Gamma$~$\Lang L'$ içinde de tutarlıdır.
+\end{prop}
+
+\begin{defn}[Doygun küme]
+Bir $\Lang L$ dilindeki !!{formula}s kümesi~$\Gamma$, her
+$!A(x)\in\Frm[L]$ !!{formula} ifadesi için---burada bir !!{variable}~$x$
+serbesttir---
+öyle bir !!a{constant}~$c\in\Lang L$ varsa ki
+\iftag{prvEx}
+      {$\lexists[x][!A(x)]\lif !A(c)\in\Gamma$}
+      {$\lnot\lforall[x][!A(x)]\lif\lnot !A(c)\in\Gamma$}
+olsun, \emph{doygun}dur.
+\end{defn}
+
+Aşağıdaki tanım bir sonraki teoremin ispatında kullanılacaktır.
+
+\begin{defn}
+\ollabel{defn:henkin-exp}
+$\Lang L'$,~\olref{prop:lang-exp} önermesindeki gibi olsun.
+$\Lang L'$ dilinde bir değişkenin ($x_i$) serbest geçtiği bütün
+$!A_i(x_i)$ !!{formula}s ifadelerinin $!A_0(x_0)$, $!A_1(x_1)$, \dots\
+numaralandırmasını sabitleyelim. !!{sentence}s~$!D_n$ ifadelerini~$n$
+üzerinde tümevarımla tanımlarız.
+
+$c_0$,~$\Lang L$ diline eklediğimiz $\Obj d_i$ simgeleri arasından
+$!A_0(x_0)$ içinde geçmeyen ilk !!{constant} olsun. $!D_0$, \dots,
+$!D_{n-1}$ ifadelerinin tanımlanmış olduğunu varsayarak $c_n$'yi, yeni
+$\Obj d_i$ !!{constant}s arasından ne $!D_0$, \dots,~$!D_{n-1}$
+ifadelerinde ne de $!A_n(x_n)$ içinde geçen ilk sabit olarak seçelim.
+
+Şimdi $!D_n$ şu !!{formula} olsun: \iftag{prvEx}
+{$\lexists[x_n][!A_n(x_n)]\lif !A_n(c_n)$}
+{$\lnot\lforall[x_n][!A_n(x_n)]\lif\lnot !A_n(c_n)$}.
+\end{defn}
+
+\begin{lem}
+\ollabel{lem:henkin}
+Her tutarlı~$\Gamma$ kümesi, doygun ve tutarlı bir~$\Gamma'$ kümesine
+genişletilebilir.
+\end{lem}
+
+\begin{proof}
+Bir~$\Lang L$ dilindeki tutarlı tümceler kümesi~$\Gamma$ verilsin.
+!!a{denumerable} yeni !!{constant}s kümesi ekleyerek
+dili~$\Lang L'$ diline genişletelim. \olref{prop:lang-exp} uyarınca
+$\Gamma$ bu daha zengin dilde de tutarlıdır. Ayrıca $!D_i$ ifadeleri
+\olref{defn:henkin-exp} tanımındaki gibi olsun. Şöyle tanımlayalım:
+\begin{align*}
+\Gamma_0 & = \Gamma \\
+\Gamma_{n+1} & = \Gamma_n \cup \{!D_n \}.
+\end{align*}
+Başka bir deyişle $\Gamma_{n+1}=\Gamma\cup\{!D_0,\dots,!D_n\}$ ve
+$\Gamma'=\bigcup_n\Gamma_n$ olsun. $\Gamma'$ açıkça doygundur.
+
+$\Gamma'$ tutarsız olsaydı bir~$n$ için $\Gamma_n$ tutarsız olurdu
+(Alıştırma: nedenini açıklayın). Dolayısıyla $\Gamma'$ kümesinin
+tutarlı olduğunu göstermek için her~$\Gamma_n$ kümesinin tutarlı
+olduğunu~$n$ üzerinde tümevarımla göstermek yeterlidir.
+
+Tümevarımın temel durumu, teoremin varsayımı olan $\Gamma_0=\Gamma$
+kümesinin tutarlı olduğu savıdır. Tümevarım adımında $\Gamma_n$
+tutarlı olduğu halde $\Gamma_{n+1}=\Gamma_n\cup\{!D_n\}$ kümesinin
+tutarsız olduğunu varsayalım. $!D_n$ ifadesinin
+\iftag{prvEx}
+{$\lexists[x_n][!A_n(x_n)]\lif !A_n(c_n)$}
+{$\lnot\lforall[x_n][!A_n(x_n)]\lif\lnot !A_n(c_n)$}
+olduğunu hatırlayalım; burada $!A_n(x_n)$,~$\Lang L'$ dilinde yalnızca
+$x_n$ değişkeninin serbest olduğu !!a{formula} ifadesidir.
+$c_n$'yi seçme biçimimizden ötürü (bkz. \olref{defn:henkin-exp})
+$c_n$, ne $!A_n(x_n)$ içinde ne de~$\Gamma_n$ içinde geçer.
+
+$\Gamma_n\cup\{!D_n\}$ tutarsızsa $\Gamma_n\Proves\lnot !D_n$ ve
+dolayısıyla aşağıdakilerin ikisi de geçerlidir:
+\iftag{prvEx}{
+\[
+\Gamma_n \Proves \lexists[x_n][!A_n(x_n)]
+\qquad
+\Gamma_n \Proves \lnot !A_n(c_n)
+\]}{
+\[
+\Gamma_n \Proves \lnot\lforall[x_n][!A_n(x_n)]
+\qquad
+\Gamma_n \Proves !A_n(c_n).
+\]}
+$c_n$,~$\Gamma_n$ ya da~$!A_n(x_n)$ içinde geçmediğinden
+\tagrefs{prfAX/{fol:axd:qpr:thm:strong-generalization},prfSC/{fol:seq:qpr:thm:strong-generalization},prfND/{fol:ntd:qpr:thm:strong-generalization},prfTab/{fol:tab:qpr:thm:strong-generalization}}
+uygulanabilir.
+\iftag{prvEx}
+{$\Gamma_n\Proves\lnot !A_n(c_n)$}
+{$\Gamma_n\Proves !A_n(c_n)$}
+ifadesinden
+\iftag{prvEx}
+{$\Gamma_n\Proves\lforall[x_n][\lnot !A_n(x_n)]$}
+{$\Gamma_n\Proves\lforall[x_n][!A_n(x_n)]$}
+elde ederiz. Böylece aynı anda
+\iftag{prvEx}
+{$\Gamma_n\Proves\lexists[x_n][!A_n(x_n)]$ ve
+$\Gamma_n\Proves\lforall[x_n][\lnot !A_n(x_n)]$}
+{$\Gamma_n\Proves\lnot\lforall[x_n][!A_n(x_n)]$ ve
+$\Gamma_n\Proves\lforall[x_n][!A_n(x_n)]$}
+olur; dolayısıyla $\Gamma_n$ kümesinin kendisi tutarsızdır.
+\iftag{prvEx}
+{(Şuna dikkat edin:
+\iftag{prvAll}
+{$\lforall[x_n][\lnot !A_n(x_n)]\Proves
+  \lnot\lexists[x_n][!A_n(x_n)]$}
+{$\lforall[x_n][\lnot !A_n]$ ifadesi
+  $\lnot\lexists[x_n][\lnot\lnot !A_n(x_n)]$ olarak tanımlanır ve
+  $\lnot\lexists[x_n][\lnot\lnot !A_n(x_n)]\Proves
+  \lnot\lexists[x_n][!A_n(x_n)]$}.)}{}
+Bu bir çelişkidir: $\Gamma_n$'nin tutarlı olduğu varsayılmıştı.
+Öyleyse $\Gamma_n\cup\{!D_n\}$ tutarlıdır.
+\end{proof}
+
+\begin{explain}
+Şimdi doygun olan \emph{tam} ve tutarlı kümelerin şu özelliğe sahip
+olduğunu göstereceğiz: \iftag{prvAll}{tümel niceleyicili bir
+  !!{sentence} ifadesini ancak ve ancak onun bütün örneklerini
+  içerdiğinde içerir}{}\iftag{defAll,defEx}{}{ ve }
+\iftag{prvEx}{varlıksal niceleyicili bir !!{sentence} ifadesini ancak
+  ve ancak onun en az bir örneğini içerdiğinde içerir}{}. Bunu, tam,
+tutarlı ve doygun bir kümeden üreteceğimiz !!{structure} ifadesinin
+kümedeki niceleyicili bütün tümceleri doğru kıldığını göstermek için
+kullanacağız.
+\end{explain}
+
+\begin{prop}\ollabel{prop:saturated-instances}
+$\Gamma$'nın tam, tutarlı ve doygun olduğunu varsayalım.
+\begin{tagenumerate}{prvEx,prvAll}
+\tagitem{prvEx}{$\lexists[x][!A(x)]\in\Gamma$ ancak ve ancak en az bir
+  kapalı~$t$ terimi için $!A(t)\in\Gamma$ ise.}{}
+\tagitem{prvAll}{$\lforall[x][!A(x)]\in\Gamma$ ancak ve ancak bütün
+  kapalı~$t$ terimleri için $!A(t)\in\Gamma$ ise.}{}
+\end{tagenumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{tagenumerate}{prvEx,prvAll}
+  \tagitem{prvEx}{%
+    \iftag{probEx}{Alıştırma.}{Önce $\lexists[x][!A(x)]\in\Gamma$
+      olduğunu varsayalım. $\Gamma$ doygun olduğundan bir
+      !!{constant}~$c$ için $(\lexists[x][!A(x)]\lif !A(c))\in\Gamma$.
+      \tagrefs{prfAX/{fol:axd:ppr:prop:provability-lif},prfSC/{fol:seq:ppr:prop:provability-lif},prfND/{fol:ntd:ppr:prop:provability-lif},prfTab/{fol:tab:ppr:prop:provability-lif}}
+      sonucunun (1). maddesi ile
+      \olref[ccs]{prop:ccs}\olref[ccs]{prop:ccs-prov-in} uyarınca
+      $!A(c)\in\Gamma$.
+
+    Öteki yönde doygunluk gerekmez: $!A(t)\in\Gamma$ olduğunu
+    varsayalım. \tagrefs{prfAX/{fol:axd:qpr:prop:provability-quantifiers},prfSC/{fol:seq:qpr:prop:provability-quantifiers},prfND/{fol:ntd:qpr:prop:provability-quantifiers},prfTab/{fol:tab:qpr:prop:provability-quantifiers}}
+    sonucunun (1). maddesine göre $\Gamma\Proves\lexists[x][!A(x)]$.
+    \olref[ccs]{prop:ccs}\olref[ccs]{prop:ccs-prov-in} uyarınca
+    $\lexists[x][!A(x)]\in\Gamma$.}}{}
+  \tagitem{prvAll}{%
+    \iftag{probAll}{Alıştırma.}{Bütün kapalı~$t$ terimleri için
+      $!A(t)\in\Gamma$ olduğunu varsayalım. Olmayana ergiyle
+      $\lforall[x][!A(x)]\notin\Gamma$ olsun. $\Gamma$ tam olduğundan
+      $\lnot\lforall[x][!A(x)]\in\Gamma$. Doygunluk uyarınca bir
+      !!{constant}~$c$ için \iftag{prvEx}{$(\lexists[x][\lnot !A(x)]
+        \lif\lnot !A(c))\in\Gamma$}{$(\lnot\lforall[x][!A(x)]
+        \lif\lnot !A(c))\in\Gamma$}. Varsayıma göre $c$ kapalı bir
+      terim olduğundan $!A(c)\in\Gamma$. Fakat bu,~$\Gamma$'yı
+      tutarsız kılar. (Alıştırma: Aşağıdakinin tutarsız olduğunu
+      gösteren !!{derivation} ifadesini verin:
+      \[
+      \lnot \lforall[x][!A(x)],
+      \iftag{prvEx}{\lexists[x][\lnot !A(x)] \lif \lnot
+        !A(c)}{\lnot\lforall[x][!A(x)] \lif \lnot
+        !A(c)}, !A(c).
+      \])
+
+      Ters yönde doygunluk gerekmez: $\lforall[x][!A(x)]\in\Gamma$
+      olduğunu varsayalım.
+      \tagrefs{prfAX/{fol:axd:qpr:prop:provability-quantifiers},prfSC/{fol:seq:qpr:prop:provability-quantifiers},prfND/{fol:ntd:qpr:prop:provability-quantifiers},prfTab/{fol:tab:qpr:prop:provability-quantifiers}}
+      sonucunun (2). maddesine göre $\Gamma\Proves !A(t)$.
+      \olref[ccs]{prop:ccs} uyarınca $!A(t)\in\Gamma$ elde ederiz.}}{}
+  \end{tagenumerate}
+\end{proof}
+
+\end{document}

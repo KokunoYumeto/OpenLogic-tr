@@ -1,0 +1,119 @@
+% Part: normal-modal-logic
+% Chapter: axioms-systems
+% Section: normal-logics
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{nml}{prf}{nor}
+
+\olsection{Normal Modal Mantıklar}
+
+Her modal !!{formula}s kümesi, bir aksiyomlar kümesinden türetilebilen
+!!{formula}s olarak kolayca nitelenemez. Modal mantıkların düzgün davranmasını
+isteriz. Her şeyden önce klasik önerme mantığında !!{derive} mümkün olan her
+şey yine !!{derivable} olmalıdır; elbette artık !!{formula}s
+\iftag{prvBox}{$\Box$\iftag{prvDiamond}{ ve~}{}}{}
+\iftag{prvDiamond}{$\Diamond$}{} da içerebilir. Bunun için bir modal mantığın bütün totoloji
+örneklerini içermesini ve modus ponens altında kapalı olmasını isteriz.
+
+\begin{defn}
+  Bir \emph{modal mantık}, aşağıdaki koşulları sağlayan bir modal
+  !!{formula}s kümesi $\Sigma$'dır:
+  \begin{enumerate}
+  \item bütün totolojileri içerir;
+  \item yerine koyma altında kapalıdır; yani $!A\in\Sigma$ ve
+    $!D_1,\dots,!D_n$ !!{formula}s ise
+    \[
+    \SSubst{!A}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}} \in \Sigma;
+    \]
+  \item \emph{modus ponens} altında kapalıdır; yani $!A$ ile
+    $!A\lif !B\in\Sigma$ ise $!B\in\Sigma$'dır.
+  \end{enumerate}
+\end{defn}
+
+Modal mantıklar için bağıntısal semantiği kullanabilmek üzere, bütün modal
+modellerde geçerli !!{formula}s da mantığa katılmalıdır.
+$\Ax{K}$'nin\iftag{prvDiamond}{ ve~$\Dual{}$'ın}{} bütün örnekleri
+!!{derivable} olduğunda ve !!a{formula}~$!A$ !!{derivable} iken $\Box !A$
+için de aynısı geçerli olduğunda bu koşulun sağlandığı ortaya çıkar. Bu koşulları
+sağlayan bir modal mantığa \emph{normal} denir. (Elbette normal olmayan
+modal mantıklar da vardır; ancak alışılmış bağıntısal modeller onlar için
+yeterli değildir.)
+
+\begin{defn}
+  Bir modal mantık $\Sigma$, şu formülleri içeriyorsa
+  \begin{align*}
+    \tag{\Ax{K}} & \Box(p \lif q) \lif (\Box p \lif \Box q),
+    \iftag{prvDiamond}{\\
+      \tag{\Dual} & \Diamond p \liff \lnot\Box\lnot p}{}
+  \end{align*}
+  ve \emph{zorunlulaştırma} altında kapalıysa, yani $!A\in\Sigma$ iken
+  $\Box !A\in\Sigma$ ise \emph{normaldir}.
+\end{defn}
+
+Totolojik gerektirmenin \emph{bir dünyadaki doğruluğu} koruyacak kadar
+``ince taneli'' olmasına karşılık, \Nec{} kuralının yalnızca \emph{bir
+modeldeki doğruluğu} (dolayısıyla bir çerçevede ya da çerçeveler sınıfındaki
+geçerliliği de) koruduğuna dikkat edin.
+
+\begin{prop}\ollabel{prop:rk}
+  Her normal modal mantık şu \RK{} kuralı altında kapalıdır:
+  \begin{prooftree}
+    \AxiomC{$!A_1 \lif (!A_2 \lif \cdots (!A_{n-1} \lif !A_n)\cdots)$}
+    \RightLabel{\RK}
+    \UnaryInfC{$\Box!A_1 \lif (\Box!A_2 \lif \cdots (\Box!A_{n-1}
+      \lif \Box!A_n)\cdots).$}
+  \end{prooftree}
+\end{prop}
+
+\begin{proof}
+  $n$ üzerinde tümevarımla: $n=1$ ise kural yalnızca \Nec{} kuralıdır ve
+  her normal modal mantık \Nec{} altında kapalıdır.
+
+  Sonucun $n-1$ için geçerli olduğunu varsayıp $n$ için gösterelim.
+
+  Varsayalım ki
+  \begin{align*}
+  & !A_1 \lif (!A_2 \lif \cdots (!A_{n-1} \lif !A_n)\cdots) \in \Sigma.
+  \intertext{Tümevarım varsayımından}
+  & \Box!A_1 \lif (\Box!A_2 \lif \cdots \Box(!A_{n-1} \lif !A_n)\cdots)
+  \in \Sigma.
+  \intertext{$\Sigma$ normal bir modal mantık olduğundan $\Ax{K}$'nin
+    bütün örneklerini, özellikle şunu içerir:}
+  & \Box(!A_{n-1} \lif !A_n) \lif (\Box!A_{n-1} \lif \Box!A_n) \in \Sigma.
+  \intertext{Modus ponens ve uygun totoloji örneklerini kullanarak şunu elde
+    ederiz:}
+  & \Box!A_1 \lif (\Box!A_2 \lif \cdots (\Box!A_{n-1}
+  \lif \Box!A_n)\cdots) \in \Sigma. 
+  \end{align*}
+\end{proof}
+
+\begin{prop}\ollabel{prop:notDiamondBot}
+  Her normal modal mantık $\Sigma$, $\lnot\Diamond\lfalse$ formülünü içerir.
+\end{prop}
+
+\begin{prob}
+  \olref[nml][prf][nor]{prop:notDiamondBot} önermesini ispatlayın.
+\end{prob}
+
+\begin{prop}
+  $!A_1,\dots,!A_n$ !!{formula}s olsun. $!A_1,\dots,!A_n$'nin bütün örneklerini içeren
+  en küçük bir modal mantık $\Sigma$ vardır.
+\end{prop}
+
+\begin{proof}
+  $!A_1,\dots,!A_n$ verildiğinde $\Sigma$'yı, $!A_1,\dots,!A_n$'nin bütün örneklerini
+  içeren normal modal mantıkların kesişimi olarak tanımlayın.
+  $\Frm[L]$, yani bütün !!{formula}s kümesi, böyle bir modal mantık olduğundan kesişim
+  boş değildir.
+\end{proof}
+
+\begin{defn}
+$!A_1,\dots,!A_n$'yi içeren en küçük normal modal mantığa bir
+\emph{modal sistem} denir ve $\Log{K}!A_1\dots !A_n$ ile gösterilir. En
+küçük normal modal mantık $\Log{K}$ ile gösterilir.
+\end{defn}
+
+\end{document}

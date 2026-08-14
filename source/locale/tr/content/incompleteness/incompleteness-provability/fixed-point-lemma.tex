@@ -1,0 +1,141 @@
+% Part: incompleteness
+% Chapter: incompleteness-provability
+% Section: fixed-point-lemma
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[tr]{inc}{inp}{fix}
+
+\olsection{Sabit Nokta Lemması}
+
+\begin{explain}
+Sabit nokta lemması, $\Th{T}$ kuramı $\Th{Q}$'yu genişletiyorsa, her
+$!B(x)$ !!{formula} için $\Th{T} \Proves !A \liff !B(\gn{!A})$ olacak
+biçimde !!a{sentence}~$!A$ bulunduğunu söyler. Yalancı tümcesi durumunda
+$!A$'nın, $\Th{T}$ içinde ispatlanabilir biçimde, ``$\gn{!A}$ yanlıştır''
+önermesine; başka deyişle $\Gn{!A}$'nın yanlış !!{sentence}'nin G\"odel
+sayısı olduğu önermesine denk olmasını isterdik. İspatın fikrini anlamak için
+bunu Quine'ın $!A$ hakkındaki şu gayriresmî açıklamasıyla karşılaştırmak
+yararlı olacaktır: ``{}`önüne kendi tırnaklı biçimi getirildiğinde yanlışlık
+verir' ifadesi, önüne kendi tırnaklı biçimi getirildiğinde yanlışlık verir.''
+Bir ifadenin alınıp önüne kendi tırnaklı biçimi getirilerek bir tümce
+oluşturulması işlemine, ifadeyi \emph{köşegenleştirme}; sonucuna da ifadenin
+köşegenleştirilmiş biçimi denebilir. Dolayısıyla `önüne kendi tırnaklı biçimi
+getirildiğinde yanlışlık verir' ifadesinin köşegenleştirilmiş biçimi,
+``{}`önüne kendi tırnaklı biçimi getirildiğinde yanlışlık verir' ifadesi,
+önüne kendi tırnaklı biçimi getirildiğinde yanlışlık verir'' tümcesidir.
+Quine'ın yalancı tümcesinin `yanlışlık verir' ifadesinin değil, `önüne kendi
+tırnaklı biçimi getirildiğinde yanlışlık verir' ifadesinin köşegenleştirilmiş
+biçimi olduğuna dikkat edin. Öyleyse yalancı tümcesini üretmek için
+köşegenleştirilen özelliğin kendisi de köşegenleştirme içerir!{}
+
+Aritmetik dilinde, bir serbest değişkenli !!a{formula}'nın tırnaklı biçimini,
+onun G\"odel sayısını hesaplayıp bu sayının standart rakamını serbest
+değişkenin yerine koyarak oluştururuz. $!E(x)$'in köşegenleştirilmiş biçimi,
+$n=\Gn{!E(x)}$ olmak üzere $!E(\num{n})$'dir. (Bundan böyle
+$\num{\Gn{!E(x)}}$ ifadesini $\gn{!E(x)}$ diye kısaltalım.) $!B(x)$ ``bir
+yanlışlıktır'' anlamına geliyorsa, ``önüne kendi tırnaklı biçimi getirildiğinde
+yanlışlık verir'' önermesi, ``köşegenleştirilmiş biçiminin G\"odel sayısına
+uygulandığında yanlışlık verir'' olurdu. $!E(x)$'i, $n$ G\"odel sayılı
+!!{formula}'nın köşegenleştirilmiş biçiminin G\"odel sayısını hesaplayan
+$\fn{diag}(n)$ fonksiyonu için bir $\Obj{diag}$ simgemiz olsaydı,
+$!B(\Obj{diag}(x))$ diye yazabilirdik. Quine'ın yalancı tümcesi biçimi de
+bunun köşegenleştirilmiş biçimi, yani $!E(\gn{!E(x)})$ ya da
+$!B(\Obj{diag}(\gn{!B(\Obj{diag}(x))}))$ olurdu. Elbette $!B(x)$ artık başka
+herhangi bir özellik olabilir ve aynı kuruluş yine çalışır. Eksiklik teoremi
+için $!B(x)$'i ``$x$, $\Th{T}$ içinde !!{derivable} değildir'' olarak
+alacağız. O zaman $!E(x)$, ``köşegenleştirilmiş biçiminin G\"odel sayısına
+uygulandığında !!a{sentence} verir; bu tümce $\Th{T}$ içinde !!{derivable}
+değildir'' anlamına gelecektir.
+
+Bunu $\Th{T}$ içinde biçimselleştirmek için $\fn{diag}$'ı
+biçimselleştirmenin bir yolunu bulmalıyız. $\fn{diag}(n)$ hesaplanabilir,
+hatta ilkel özyinelemeli bir fonksiyondur: $n$, $!E(x)$ formülünün G\"odel
+sayısıysa $\fn{diag}(n)$, $!E(\gn{!E(x)})$'in G\"odel sayısını verir.
+($\gn{!E(x)}$'in, $!E(x)$'in G\"odel sayısının standart rakamı, yani
+$\num{\Gn{!E(x)}}$ olduğunu anımsayın.) $\Obj{diag}$, $\Th{T}$ içinde
+$\fn{diag}$ fonksiyonunu temsil eden bir fonksiyon simgesi olsaydı, $!A$'yı
+$!B(\Obj{diag}(\gn{!B(\Obj{diag}(x))}))$ formülü olarak alabilirdik. Şuna
+dikkat edin:
+\begin{align*}
+\fn{diag}(\Gn{!B(\Obj{diag}(x))}) & = 
+\Gn{!B(\Obj{diag}(\gn{!B(\Obj{diag}(x))}))} \\
+& = \Gn{!A}.
+\end{align*}
+$\Th{T}$'nin
+\[
+\Obj{diag}(\gn{!B(\Obj{diag}(x))}) = \gn{!A},
+\]
+formülünü !!{derive} edebildiğini varsayarsak
+$!B(\Obj{diag}(\gn{!B(\Obj{diag}(x))})) \liff !B(\gn{!A})$ formülünü de
+!!{derive} edebilir. Fakat tanım gereği sol taraf $!A$'dır.
+
+Elbette $\Obj{diag}$ genel olarak $\Th{T}$'nin bir fonksiyon simgesi değildir;
+özellikle de $\Th{Q}$'nun simgelerinden biri değildir. Ancak $\fn{diag}$
+hesaplanabilir olduğundan, $\Th{Q}$ içinde bir
+$!D_{\fn{diag}}(x,y)$ formülüyle \emph{temsil edilebilir}. Bu nedenle
+$!B(\Obj{diag}(x))$ yazmak yerine
+$\lexists[y][(!D_{\fn{diag}}(x,y) \land !B(y))]$ yazabiliriz. Yukarıda
+taslağı verilen ispat bunun dışında aynı biçimde ilerler; hatta daha
+$\Th{Q}$ içinde işler.
+\end{explain}
+
+\begin{lem}
+\ollabel{lem:fixed-point} $!B(x)$, tek serbest değişkeni $x$ olan herhangi
+bir formül olsun. O zaman $\Th{Q} \Proves !A \liff !B(\gn{!A})$ olacak
+biçimde bir $!A$ tümcesi vardır.
+\end{lem}
+
+
+\begin{proof}
+$!B(x)$ verilsin. $!E(x)$,
+$\lexists[y][(!D_{\fn{diag}}(x,y) \land !B(y))]$ formülü; $!A$ ise bunun
+köşegenleştirilmiş biçimi, yani $!E(\gn{!E(x)})$ formülü olsun.
+
+$!D_{\fn{diag}}$, $\fn{diag}$'ı temsil ettiğinden ve
+$\fn{diag}(\Gn{!E(x)}) = \Gn{!A}$ olduğundan, $\Th{Q}$ şunları
+!!{derive} edebilir:
+\begin{align}
+  & !D_{\fn{diag}}(\gn{!E(x)}, \gn{!A}) \ollabel{repdiag1} \\
+  & \lforall[y][(!D_{\fn{diag}}(\gn{!E(x)},y) \lif
+  \eq[y][\gn{!A}])]. \ollabel{repdiag2}
+\end{align}
+Şimdi $\Th{Q} \Proves !A \liff !B(\gn{!A})$ olduğunu gösterelim. Yalnızca
+mantığı ve $\Th{Q}$ içinde !!{derivable} olguları kullanarak gayriresmî
+biçimde akıl yürüteceğiz.
+
+Önce $!A$'yı, yani $!E(\gn{!E(x)})$'i varsayın. $!E(x)$'in tanımına
+dönersek $!E(\gn{!E(x)})$'in tam olarak
+\[
+\lexists[y][(!D_{\fn{diag}}(\gn{!E(x)},y) \land !B(y))].
+\]
+olduğunu görürüz. Böyle bir $y$ ele alın. $!D_{\fn{diag}}(\gn{!E(x)},y)$
+olduğundan, \olref{repdiag2} uyarınca $y=\gn{!A}$'dır. Dolayısıyla $!B(y)$'den
+$!B(\gn{!A})$ elde edilir.
+
+Şimdi $!B(\gn{!A})$'yı varsayın. \olref{repdiag1} uyarınca
+\begin{align*}
+& !D_{\fn{diag}}(\gn{!E(x)}, \gn{!A}) \land !B(\gn{!A}).
+\intertext{Bundan}
+& \lexists[y][(!D_{\fn{diag}}(\gn{!E(x)},y) \land !B(y))].
+\end{align*}
+çıkar. Fakat bu tam olarak $!E(\gn{!E(x)})$, yani $!A$'dır.
+\end{proof}
+
+\begin{digress}
+Bunu hesaplanabilirlik kuramındaki sabit nokta lemmasının ispatıyla
+karşılaştırmalısınız. Burada bir \emph{önermeyi} kendisi cinsinden tanımlamak
+isterken orada bir \emph{fonksiyonu} kendisi cinsinden tanımlamak istemiştik;
+bu fark bir yana, fikir gerçekten aynıdır.
+\end{digress}
+
+\begin{prob} 
+  !!^a{formula}~$!A(x)$, her $!B$ !!{sentence} için $\Th{Q}
+  \Proves !B \liff !A(\gn{!B})$ ise bir \emph{doğruluk tanımı}dır. Sabit nokta
+  lemmasını kullanarak hiçbir !!{formula}'nın doğruluk tanımı olamayacağını
+  gösterin.
+\end{prob}
+
+\end{document}
