@@ -23,6 +23,6 @@
     "a regional Turkic proxy surface",
     "modification of the frozen upstream authority"
   ],
-  "publication_state": "complete local four-asset package sealed and audited; GitHub release exists with superseded assets awaiting corrective replacement/readback; Zenodo files absent and publication/readback not performed",
+  "publication_state": "complete four-asset package sealed and audited; corrected assets public and byte-for-byte readback verified on GitHub and Zenodo with 0 errors",
   "license": "CC BY 4.0"
 }

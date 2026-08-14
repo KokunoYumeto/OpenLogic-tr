@@ -3,19 +3,42 @@
   "release_scope": "Complete Turkish edition, OLP-0722, 722/722",
   "release_identifier": "tr-olp-0722-20260814",
   "release_exists_publicly": true,
-  "tag": null,
-  "tag_object": null,
-  "tagged_content_commit": null,
-  "post_readback_branch_tip": null,
-  "release_url": null,
-  "reader_url": null,
-  "reader_filename": "00_OPENLOGIC_tr_COMPLETE_LINKED_READER_OLP-0722.pdf",
-  "reader_bytes": 5470171,
-  "reader_sha256": "2D9939692A971EDF468D3B41F38C57283C046BE9D110783CF50D10CDB3152900",
+  "tag": "tr-olp-0722-20260814",
+  "tag_object": "22b4196d87f6246c552487d3c6df40116468bd2e",
+  "tagged_content_commit": "7cd0e89be208e2db9964b360aa1c17ec7e175319",
+  "tagged_content_tree": "c8d38e63d1098a10736a3e98a15a93198b351d96",
+  "release_url": "https://github.com/KokunoYumeto/OpenLogic-tr/releases/tag/tr-olp-0722-20260814",
   "local_four_asset_package_complete": true,
   "local_package_identity_source": "03_OPENLOGIC_tr_SHA256_MANIFEST_OLP-0722.txt and the non-embedded post-package receipt",
-  "public_asset_state": "earlier asset set superseded; corrected local four-asset package awaits replacement",
-  "corrective_asset_replacement_complete": false,
-  "readback_verified": false,
-  "publication_status": "public GitHub release exists; exact tag object, tagged commit, release URL, and reader URL are unrecorded locally; corrected assets have not been claimed uploaded or read back"
+  "public_asset_state": "corrected four-asset set public and byte-for-byte readback verified",
+  "corrective_asset_replacement_complete": true,
+  "readback_verified": true,
+  "readback_asset_count": 4,
+  "readback_errors": 0,
+  "assets": [
+    {
+      "filename": "00_OPENLOGIC_tr_COMPLETE_LINKED_READER_OLP-0722.pdf",
+      "bytes": 5470171,
+      "sha256": "2D9939692A971EDF468D3B41F38C57283C046BE9D110783CF50D10CDB3152900"
+    },
+    {
+      "filename": "01_OPENLOGIC_tr_EDITABLE_SOURCES_OLP-0722.zip",
+      "bytes": 1631874,
+      "sha256": "FDFB4E6B7361F9A84BE621E8B0CCD03BAA9F855113A62D01E44E870128AE5B8B"
+    },
+    {
+      "filename": "02_OPENLOGIC_tr_EVIDENCE_AND_PROVENANCE_OLP-0722.zip",
+      "bytes": 5120364,
+      "sha256": "B18BE2748B744A1EE5782CAFB759648E80C86297B3BE65460B2FEDAB160B69BA"
+    },
+    {
+      "filename": "03_OPENLOGIC_tr_SHA256_MANIFEST_OLP-0722.txt",
+      "bytes": 393,
+      "sha256": "8A51D94346A9E3A8489355D524E769B441DE5BB049B44D1451BFEE4CAAC6782A"
+    }
+  ],
+  "publication_receipt": "evidence/PUBLICATION_GITHUB_0722.md",
+  "publication_receipt_bytes": 1759,
+  "publication_receipt_sha256": "517B2E227018BD7FDCCDA4EEAF8171406993E5E5AB001F613668EFD7D92B6C51",
+  "publication_status": "public GitHub release complete; corrected four-asset replacement and byte-for-byte readback verified with 0 errors"
 }

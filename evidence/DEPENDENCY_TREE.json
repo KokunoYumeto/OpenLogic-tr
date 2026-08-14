@@ -41,11 +41,12 @@
         "name": "publication layer",
         "children": [
           {"name": "local four-asset package sealed and independently audited"},
-          {"name": "exact DOI 10.5281/zenodo.21927145 reserved"},
+          {"name": "exact DOI 10.5281/zenodo.21927145 public at Zenodo record 21927145"},
           {"name": "stable concept DOI 10.5281/zenodo.21921844"},
-          {"name": "GitHub release exists; exact tag object, commit, and release URL are unrecorded locally"},
-          {"name": "earlier GitHub asset set superseded; corrective replacement and readback required"},
-          {"name": "Zenodo OLP-0722 files absent; upload, publication, and public readback not performed"}
+          {"name": "GitHub corrected four-asset release public and byte-for-byte readback verified; tag object 22b4196d87f6246c552487d3c6df40116468bd2e"},
+          {"name": "tagged standalone commit 7cd0e89be208e2db9964b360aa1c17ec7e175319; tree c8d38e63d1098a10736a3e98a15a93198b351d96"},
+          {"name": "Zenodo four-file record done/submitted, public, and byte-for-byte readback verified"},
+          {"name": "GitHub and Zenodo readback errors: 0"}
         ]
       }
     ]

@@ -9,11 +9,14 @@
 
 ## Release identity
 
-- Exact release DOI (reserved): [10.5281/zenodo.21927145](https://doi.org/10.5281/zenodo.21927145)
+- Exact release DOI: [10.5281/zenodo.21927145](https://doi.org/10.5281/zenodo.21927145)
 - Stable Turkish concept DOI: [10.5281/zenodo.21921844](https://doi.org/10.5281/zenodo.21921844)
+- Public Zenodo record: [zenodo.org/records/21927145](https://zenodo.org/records/21927145)
 - Repository: [KokunoYumeto/OpenLogic-tr](https://github.com/KokunoYumeto/OpenLogic-tr)
-- Release identifier: `tr-olp-0722-20260814` (the exact public tag object and
-  release URL are not recorded in the local evidence)
+- Public GitHub release: [tr-olp-0722-20260814](https://github.com/KokunoYumeto/OpenLogic-tr/releases/tag/tr-olp-0722-20260814)
+- Annotated tag object: `22b4196d87f6246c552487d3c6df40116468bd2e`
+- Tagged standalone content commit: `7cd0e89be208e2db9964b360aa1c17ec7e175319`
+- Tagged standalone content tree: `c8d38e63d1098a10736a3e98a15a93198b351d96`
 - Version: `OLP-0722-20260814`
 - Release date: 2026-08-14
 - Language: Turkish / Türkçe (BCP 47 `tr`; Zenodo `tur`)
@@ -21,11 +24,9 @@
   `9620cc73f9c8e0ad003c514a5d3748f29611c4c0`, tree
   `f67757bb9305b173634082ab4cefd5601a707a34`
 
-The exact DOI is reserved. The complete four-asset package has been generated
-and independently audited under `output/doi/OLP-0722`. A GitHub release exists,
-but its earlier asset set is superseded and awaits corrective replacement and
-byte-for-byte readback; no replacement is claimed here. The Zenodo OLP-0722
-record has no uploaded files and has not been published or read back.
+The complete four-asset package was independently audited, published on GitHub
+and Zenodo, and read back byte for byte from both public surfaces. All four
+assets match the final corrected local hashes; observed readback errors: 0.
 
 ## Reader and evidence
 
@@ -37,6 +38,9 @@ record has no uploaded files and has not been published or read back.
   `02_OPENLOGIC_tr_EVIDENCE_AND_PROVENANCE_OLP-0722.zip`.
 - Public SHA-256 manifest:
   `03_OPENLOGIC_tr_SHA256_MANIFEST_OLP-0722.txt`.
+- Publication receipts:
+  [`PUBLICATION_GITHUB_0722.md`](evidence/PUBLICATION_GITHUB_0722.md) and
+  [`PUBLICATION_ZENODO_0722.md`](evidence/PUBLICATION_ZENODO_0722.md).
 - Extracted text: 2,593,270 bytes; 46,990 lines;
   SHA-256 `26D2CAE84B478ADD70D9EDBC8088F6BD2C761FD47EF01F5DED5E008F6EBFC286`.
 - Source closure: 722/722 rows;

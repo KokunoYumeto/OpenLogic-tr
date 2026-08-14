@@ -72,15 +72,39 @@
     "editable_sources_zip": {"identity": "EXTERNAL_MANIFEST", "audit_errors": 0},
     "evidence_and_provenance_zip": {"identity": "EXTERNAL_MANIFEST", "audit_errors": 0},
     "public_manifest": {"identity": "NON_EMBEDDED_POST_PACKAGE_RECEIPT", "payload_rows": 3, "replay_errors": 0},
-    "public_upload_or_readback_claimed": false
+    "public_upload_or_readback_claimed": true
+  },
+  "publication_readback": {
+    "status": "PASS",
+    "github": {
+      "release_url": "https://github.com/KokunoYumeto/OpenLogic-tr/releases/tag/tr-olp-0722-20260814",
+      "tag_object": "22b4196d87f6246c552487d3c6df40116468bd2e",
+      "tagged_content_commit": "7cd0e89be208e2db9964b360aa1c17ec7e175319",
+      "tagged_content_tree": "c8d38e63d1098a10736a3e98a15a93198b351d96",
+      "assets_verified": 4,
+      "errors": 0,
+      "receipt": "evidence/PUBLICATION_GITHUB_0722.md",
+      "receipt_sha256": "517B2E227018BD7FDCCDA4EEAF8171406993E5E5AB001F613668EFD7D92B6C51"
+    },
+    "zenodo": {
+      "record_url": "https://zenodo.org/records/21927145",
+      "record_id": 21927145,
+      "workflow_state": "done/submitted",
+      "exact_version_doi": "10.5281/zenodo.21927145",
+      "concept_doi": "10.5281/zenodo.21921844",
+      "files_verified": 4,
+      "errors": 0,
+      "receipt": "evidence/PUBLICATION_ZENODO_0722.md",
+      "receipt_sha256": "CF4D11DDF9F0B4A03F78927CC2C83C601AAF2E68E91DD739BE23659EA7EC55CE"
+    }
   },
   "artifact_manifest": "evidence/ARTIFACT_SHA256.tsv",
   "unresolved_items": "evidence/UNRESOLVED_ITEMS.tsv",
   "human_review_required": false,
   "native_review_required": false,
   "release_closed": true,
-  "release_gate_definition": "Translation, exact-source replay, structural QA, deterministic build, text-layer scans, and all-page visual QA are closed. External publication operations are tracked separately.",
-  "external_publication_complete": false,
-  "publication_action": "Exact DOI 10.5281/zenodo.21927145 reserved and local four-asset package complete. GitHub release exists with an earlier superseded asset set; corrective replacement and readback remain. Zenodo files are absent and upload/publication/readback are not complete.",
+  "release_gate_definition": "Translation, exact-source replay, structural QA, deterministic build, text-layer scans, all-page visual QA, GitHub corrective asset replacement/readback, and Zenodo publication/readback are closed.",
+  "external_publication_complete": true,
+  "publication_action": "COMPLETE: corrected four-asset set is public on GitHub and Zenodo; all four files were read back byte for byte from both hosts with 0 errors.",
   "closure_reason": "All 722/722 modules and every defined deterministic reader gate passed"
 }

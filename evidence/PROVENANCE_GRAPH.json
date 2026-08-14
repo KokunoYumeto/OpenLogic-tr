@@ -15,9 +15,9 @@
     {"id": "driver", "type": "build_driver", "value": "locale/tr/open-logic-complete.tex"},
     {"id": "reader", "type": "reader_pdf", "value": "1,037 pages; 5,470,171 bytes; SHA-256 2D9939692A971EDF468D3B41F38C57283C046BE9D110783CF50D10CDB3152900"},
     {"id": "local_package", "type": "four_asset_release_package", "value": "COMPLETE and locally audited; ZIP and outer-manifest identities are recorded noncircularly in the external manifest and post-package receipt"},
-    {"id": "publication_repo", "type": "git_publication_repository", "value": "https://github.com/KokunoYumeto/OpenLogic-tr; public release exists, earlier assets are superseded, and exact tag object/commit/release URL are unrecorded locally; corrective replacement/readback pending"},
+    {"id": "publication_repo", "type": "git_publication_repository", "value": "https://github.com/KokunoYumeto/OpenLogic-tr/releases/tag/tr-olp-0722-20260814; corrected four-asset release public and readback verified; tag object 22b4196d87f6246c552487d3c6df40116468bd2e; tagged commit 7cd0e89be208e2db9964b360aa1c17ec7e175319; tree c8d38e63d1098a10736a3e98a15a93198b351d96"},
     {"id": "concept_doi", "type": "language_concept_doi", "value": "10.5281/zenodo.21921844"},
-    {"id": "version_doi", "type": "exact_version_doi", "value": "10.5281/zenodo.21927145; reserved, not yet published"}
+    {"id": "version_doi", "type": "exact_version_doi", "value": "10.5281/zenodo.21927145; public Zenodo record https://zenodo.org/records/21927145; done/submitted; four-file readback verified with 0 errors"}
   ],
   "edges": [
     {"from": "targets", "relation": "translated_against", "to": "authority"},
@@ -34,6 +34,7 @@
     {"from": "local_package", "relation": "contains", "to": "reader"},
     {"from": "version_doi", "relation": "is_version_of", "to": "concept_doi"},
     {"from": "concept_doi", "relation": "is_translation_of", "to": "authority"},
-    {"from": "publication_repo", "relation": "awaits_corrective_asset_replacement_from", "to": "local_package"}
+    {"from": "publication_repo", "relation": "publishes_verified_copy_of", "to": "local_package"},
+    {"from": "version_doi", "relation": "identifies_verified_publication_of", "to": "local_package"}
   ]
 }
