@@ -10,9 +10,9 @@
   "source_git_tree": "f67757bb9305b173634082ab4cefd5601a707a34",
   "source_closure_manifest": "control/CLOSURE.csv; packaged as source_authority/CLOSURE_0722.csv",
   "source_closure_rows": 722,
-  "source_closure_manifest_bytes": 829550,
-  "source_closure_manifest_sha256": "2B424C62612499B15AF475E77367A06FF68E71FCA620A289BA1B37D5B8BC5AEC",
-  "coverage_and_topology": "722-file content closure; 642 complete-reader-reachable modules and 80 retained non-reader modules; Turkish targets complete 722/722",
+  "source_closure_manifest_bytes": 1058824,
+  "source_closure_manifest_sha256": "4F0DFAA58C38B54C00180DE30AE09507D0DF9FBEA1E0ED6729DB7E2FA77AAC2F",
+  "coverage_and_topology": "722-file content closure; 642 complete-reader-reachable modules and 80 retained non-reader modules; Turkish targets complete and aggregate-admitted 722/722; build/render PASS applies to 642 reader targets and is NOT_APPLICABLE to the 80 retained non-reader targets",
   "authority_hierarchy": [
     "Official OpenLogicProject/OpenLogic Git commit and tree",
     "Frozen 722-row closure with per-source and per-target SHA-256",
@@ -23,6 +23,6 @@
     "a regional Turkic proxy surface",
     "modification of the frozen upstream authority"
   ],
-  "publication_state": "complete local reader and QA evidence frozen; package, Git release, Zenodo publication, and public readback pending",
+  "publication_state": "complete local four-asset package sealed and audited; GitHub release exists with superseded assets awaiting corrective replacement/readback; Zenodo files absent and publication/readback not performed",
   "license": "CC BY 4.0"
 }

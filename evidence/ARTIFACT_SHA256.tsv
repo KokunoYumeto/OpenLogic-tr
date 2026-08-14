@@ -1,9 +1,9 @@
 relative_path	bytes	sha256	state
-reader/00_OPENLOGIC_tr_COMPLETE_LINKED_READER_OLP-0722.pdf	5470171	2D9939692A971EDF468D3B41F38C57283C046BE9D110783CF50D10CDB3152900	final local reader verified
-01_OPENLOGIC_tr_EDITABLE_SOURCES_OLP-0722.zip	PENDING	PENDING	generated only by the final deterministic packager
-02_OPENLOGIC_tr_EVIDENCE_AND_PROVENANCE_OLP-0722.zip	PENDING	PENDING	generated only by the final deterministic packager
-03_OPENLOGIC_tr_SHA256_MANIFEST_OLP-0722.txt	PENDING	PENDING	generated with the final payload
-source_authority/CLOSURE_0722.csv	829550	2B424C62612499B15AF475E77367A06FF68E71FCA620A289BA1B37D5B8BC5AEC	final verified package input
+00_OPENLOGIC_tr_COMPLETE_LINKED_READER_OLP-0722.pdf	5470171	2D9939692A971EDF468D3B41F38C57283C046BE9D110783CF50D10CDB3152900	sealed local reader identity; corrective release-set replacement/readback tracked externally
+01_OPENLOGIC_tr_EDITABLE_SOURCES_OLP-0722.zip			EXTERNAL_MANIFEST: local asset complete; exact post-package identity belongs in 03_OPENLOGIC_tr_SHA256_MANIFEST_OLP-0722.txt
+02_OPENLOGIC_tr_EVIDENCE_AND_PROVENANCE_OLP-0722.zip			EXTERNAL_MANIFEST: local asset complete; self-identity intentionally recorded only outside this ZIP
+03_OPENLOGIC_tr_SHA256_MANIFEST_OLP-0722.txt			EXTERNAL_MANIFEST: outer manifest complete; its own post-package identity is recorded in the non-embedded package receipt
+source_authority/CLOSURE_0722.csv	1058824	4F0DFAA58C38B54C00180DE30AE09507D0DF9FBEA1E0ED6729DB7E2FA77AAC2F	final verified package input; 722 aggregate-admitted rows
 package_control/COMPLETE_0722_STRUCTURAL_QA.json	2443209	46F5FE080693D3A99DE234A9588C28D5A683D0FDACFA62AD2323AC3B8EB01499	PASS 722/722
 build_and_render_evidence/Open_Logic_Project_Complete_Turkish_Edition_OLP-0722.txt	2593270	26D2CAE84B478ADD70D9EDBC8088F6BD2C761FD47EF01F5DED5E008F6EBFC286	final verified text layer
 build_and_render_evidence/open-logic-complete-tr.log	2290271	3C93282140F5593B2C9C2C64CEDE86E128F5B91EC201B5DE050EAAADE000FCA4	build exit 0; diagnostic gates clean

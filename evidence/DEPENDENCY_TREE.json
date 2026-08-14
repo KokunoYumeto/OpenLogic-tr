@@ -31,19 +31,21 @@
         "children": [
           {"name": "exact source/hash replay: PASS 722/722"},
           {"name": "structural QA: PASS 722/722"},
-          {"name": "deterministic build: exit 0"},
-          {"name": "text-layer residue scan: PASS"},
-          {"name": "all-page rendered inspection: CLEAN 1,037/1,037"}
+          {"name": "aggregate model-review admission: 722/722"},
+          {"name": "deterministic build: exit 0 for 642 reader-reachable targets; N/A for 80 retained non-reader targets"},
+          {"name": "text-layer residue scan: PASS for the complete reader"},
+          {"name": "all-page rendered inspection: CLEAN 1,037/1,037 for the complete reader"}
         ]
       },
       {
         "name": "publication layer",
         "children": [
-          {"name": "local reader frozen and hashed"},
+          {"name": "local four-asset package sealed and independently audited"},
           {"name": "exact DOI 10.5281/zenodo.21927145 reserved"},
           {"name": "stable concept DOI 10.5281/zenodo.21921844"},
-          {"name": "Git tag tr-olp-0722-20260814 planned, not yet created"},
-          {"name": "package, Git release, Zenodo publication, and public readback pending"}
+          {"name": "GitHub release exists; exact tag object, commit, and release URL are unrecorded locally"},
+          {"name": "earlier GitHub asset set superseded; corrective replacement and readback required"},
+          {"name": "Zenodo OLP-0722 files absent; upload, publication, and public readback not performed"}
         ]
       }
     ]

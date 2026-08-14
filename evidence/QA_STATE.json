@@ -9,8 +9,8 @@
   "source_replay": {
     "status": "PASS",
     "rows": 722,
-    "closure_bytes": 829550,
-    "closure_sha256": "2B424C62612499B15AF475E77367A06FF68E71FCA620A289BA1B37D5B8BC5AEC"
+    "closure_bytes": 1058824,
+    "closure_sha256": "4F0DFAA58C38B54C00180DE30AE09507D0DF9FBEA1E0ED6729DB7E2FA77AAC2F"
   },
   "structural_qa": {
     "status": "PASS",
@@ -19,6 +19,12 @@
     "receipt_bytes": 2443209,
     "receipt_sha256": "46F5FE080693D3A99DE234A9588C28D5A683D0FDACFA62AD2323AC3B8EB01499"
   },
+  "aggregate_admission": {
+    "structural": {"state": "PASS_AGGREGATE_CORPUS", "targets": 722},
+    "semantic": {"state": "ADMITTED_AGGREGATE_MODEL_REVIEW", "targets": 722},
+    "build": {"state": "PASS_AGGREGATE_COMPLETE_READER", "applicable_targets": 642, "not_applicable_retained_nonreader": 80},
+    "render": {"state": "CLEAN_AGGREGATE_COMPLETE_READER", "applicable_targets": 642, "not_applicable_retained_nonreader": 80}
+  },
   "deterministic_build": {
     "status": "PASS",
     "exit_code": 0,
@@ -26,6 +32,7 @@
     "fatal_or_error_diagnostics": 0,
     "unresolved_references": 0,
     "unresolved_citations": 0,
+    "applicability": "642 canonical-reader-reachable targets; NOT_APPLICABLE for 80 retained non-reader targets",
     "log_sha256": "3C93282140F5593B2C9C2C64CEDE86E128F5B91EC201B5DE050EAAADE000FCA4",
     "fls_sha256": "D9095CEA4E2CAEC0F1AD5481E6B6BB2A8B86603E48195A16017659DF6F8F2574"
   },
@@ -57,6 +64,16 @@
     "contact_sheets": 65,
     "page_metrics_sha256": "FEBE3788B88808B70BF16D6208B56415DD02D938D4C0C7ABE56D1CDC63D9A8C9"
   },
+  "local_package": {
+    "status": "COMPLETE_LOCAL",
+    "output_file_count": 4,
+    "independent_package_audit": "PASS",
+    "reader": {"bytes": 5470171, "sha256": "2D9939692A971EDF468D3B41F38C57283C046BE9D110783CF50D10CDB3152900"},
+    "editable_sources_zip": {"identity": "EXTERNAL_MANIFEST", "audit_errors": 0},
+    "evidence_and_provenance_zip": {"identity": "EXTERNAL_MANIFEST", "audit_errors": 0},
+    "public_manifest": {"identity": "NON_EMBEDDED_POST_PACKAGE_RECEIPT", "payload_rows": 3, "replay_errors": 0},
+    "public_upload_or_readback_claimed": false
+  },
   "artifact_manifest": "evidence/ARTIFACT_SHA256.tsv",
   "unresolved_items": "evidence/UNRESOLVED_ITEMS.tsv",
   "human_review_required": false,
@@ -64,6 +81,6 @@
   "release_closed": true,
   "release_gate_definition": "Translation, exact-source replay, structural QA, deterministic build, text-layer scans, and all-page visual QA are closed. External publication operations are tracked separately.",
   "external_publication_complete": false,
-  "publication_action": "Exact DOI 10.5281/zenodo.21927145 reserved; local package, planned Git tag/release, Zenodo publication, and public readback pending",
+  "publication_action": "Exact DOI 10.5281/zenodo.21927145 reserved and local four-asset package complete. GitHub release exists with an earlier superseded asset set; corrective replacement and readback remain. Zenodo files are absent and upload/publication/readback are not complete.",
   "closure_reason": "All 722/722 modules and every defined deterministic reader gate passed"
 }

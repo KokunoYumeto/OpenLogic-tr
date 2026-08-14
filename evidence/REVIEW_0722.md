@@ -11,9 +11,9 @@ State: **FINAL TECHNICAL REVIEW RECEIPT**
 - Corpus: OLP-0001--0722, all 722 tracked `content/**/*.tex` files at that
   authority. The closure comprises 642 canonical-reader-reachable files and
   80 deliberately retained non-reader files.
-- Final `CLOSURE.csv`: 722 rows, 722/722 translated targets present, 829,550
+- Final `CLOSURE.csv`: 722 rows, 722/722 translated targets present, 1,058,824
   bytes, SHA-256
-  `2B424C62612499B15AF475E77367A06FF68E71FCA620A289BA1B37D5B8BC5AEC`.
+  `4F0DFAA58C38B54C00180DE30AE09507D0DF9FBEA1E0ED6729DB7E2FA77AAC2F`.
 - Final `COMPLETE_0722_STRUCTURAL_QA.json`: result `PASS`, 2,443,209 bytes,
   SHA-256
   `46F5FE080693D3A99DE234A9588C28D5A683D0FDACFA62AD2323AC3B8EB01499`.
@@ -94,6 +94,7 @@ production reports and is explicitly non-exhaustive. Absence of a file from
 that itemization is not evidence that the frozen source is defect-free.
 
 Review was independent AI/model review, not institutional certification. A
-native or human review is neither required nor represented as a gate. This
-receipt does not claim that packaging, Git publication, Zenodo publication, or
-public readback is complete.
+native or human review is neither required nor represented as a gate. The
+local four-file package is separately sealed and hash-replayed. This review
+receipt does not itself claim completion of the corrective Git asset
+replacement, Zenodo upload/publication, or public readback.

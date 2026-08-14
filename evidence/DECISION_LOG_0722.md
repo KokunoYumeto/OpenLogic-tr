@@ -40,3 +40,28 @@ Date: 2026-08-14
    and must be evidenced after they actually occur.
 5. Generated TeX intermediates, contact sheets, render scratch pages, caches,
    credentials, and `.git` internals are excluded from release archives.
+
+## Final state-consistency correction
+
+1. A post-package audit found that the generated 722-row closure still carried
+   its safe pre-review `PENDING` defaults even though the named aggregate
+   receipts were final. The corrected closure changes only the four QA-state
+   fields, `review_metadata`, and `next_action`; all source/target identities
+   remain byte-for-byte the same.
+2. Final row states are deliberately aggregate and scope-limited:
+   `PASS_AGGREGATE_CORPUS` for structural replay and
+   `ADMITTED_AGGREGATE_MODEL_REVIEW` under `REVIEW_0722.md`. Build/render are
+   PASS/CLEAN for 642 complete-reader-reachable files and explicitly not
+   applicable for 80 retained non-reader files. These labels do not claim
+   per-file theorem reproof, native/human review, institutional certification,
+   or upstream endorsement.
+3. Outer source/evidence ZIP and manifest identities are recorded only in the
+   external manifest and post-package receipt. The latter is excluded from the
+   evidence ZIP to avoid recursive or stale self-identification.
+4. The staged DOI-methodology copy retains credential-safety instructions but
+   redacts four exact private local credential-file locations. Redactions are
+   listed in `release_identity/REDACTIONS.tsv`; no credential file or value is
+   read or packaged.
+5. A GitHub release exists, but its earlier asset set is superseded pending
+   corrective replacement/readback. No OLP-0722 Zenodo upload, publication, or
+   public readback is complete at this correction freeze.

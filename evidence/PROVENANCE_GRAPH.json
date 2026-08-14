@@ -3,8 +3,9 @@
   "graph_type": "typed_release_evidence_graph",
   "nodes": [
     {"id": "authority", "type": "source_authority", "value": "OpenLogic commit 9620cc73f9c8e0ad003c514a5d3748f29611c4c0; tree f67757bb9305b173634082ab4cefd5601a707a34"},
-    {"id": "closure", "type": "source_closure", "value": "CLOSURE_0722.csv; 722 rows; SHA-256 2B424C62612499B15AF475E77367A06FF68E71FCA620A289BA1B37D5B8BC5AEC"},
+    {"id": "closure", "type": "source_closure", "value": "CLOSURE_0722.csv; 722 aggregate-admitted rows; 1,058,824 bytes; SHA-256 4F0DFAA58C38B54C00180DE30AE09507D0DF9FBEA1E0ED6729DB7E2FA77AAC2F"},
     {"id": "targets", "type": "translation_targets", "value": "OLP-0001 through OLP-0722; 722 files"},
+    {"id": "reader_targets", "type": "canonical_reader_reachable_targets", "value": "642 targets; 80 additional retained non-reader targets have build/render status NOT_APPLICABLE"},
     {"id": "terms", "type": "terminology_ledger", "value": "complete Turkish terminology and interlanguage observation ledgers"},
     {"id": "adverse", "type": "source_diff_ledger", "value": "SOURCE_ADVERSE_0722.md plus complete source-backed correction history"},
     {"id": "structural_qa", "type": "deterministic_check", "value": "COMPLETE_0722_STRUCTURAL_QA.json; PASS 722/722; SHA-256 46F5FE080693D3A99DE234A9588C28D5A683D0FDACFA62AD2323AC3B8EB01499"},
@@ -13,7 +14,8 @@
     {"id": "render", "type": "all_page_visual_qa", "value": "CLEAN 1,037/1,037 pages"},
     {"id": "driver", "type": "build_driver", "value": "locale/tr/open-logic-complete.tex"},
     {"id": "reader", "type": "reader_pdf", "value": "1,037 pages; 5,470,171 bytes; SHA-256 2D9939692A971EDF468D3B41F38C57283C046BE9D110783CF50D10CDB3152900"},
-    {"id": "publication_repo", "type": "git_publication_repository", "value": "https://github.com/KokunoYumeto/OpenLogic-tr; planned tag tr-olp-0722-20260814 not yet created"},
+    {"id": "local_package", "type": "four_asset_release_package", "value": "COMPLETE and locally audited; ZIP and outer-manifest identities are recorded noncircularly in the external manifest and post-package receipt"},
+    {"id": "publication_repo", "type": "git_publication_repository", "value": "https://github.com/KokunoYumeto/OpenLogic-tr; public release exists, earlier assets are superseded, and exact tag object/commit/release URL are unrecorded locally; corrective replacement/readback pending"},
     {"id": "concept_doi", "type": "language_concept_doi", "value": "10.5281/zenodo.21921844"},
     {"id": "version_doi", "type": "exact_version_doi", "value": "10.5281/zenodo.21927145; reserved, not yet published"}
   ],
@@ -23,13 +25,15 @@
     {"from": "targets", "relation": "terminology_governed_by", "to": "terms"},
     {"from": "targets", "relation": "source_deltas_disclosed_by", "to": "adverse"},
     {"from": "targets", "relation": "checked_by", "to": "structural_qa"},
-    {"from": "driver", "relation": "imports", "to": "targets"},
+    {"from": "reader_targets", "relation": "subset_of", "to": "targets"},
+    {"from": "driver", "relation": "imports", "to": "reader_targets"},
     {"from": "reader", "relation": "built_from", "to": "driver"},
     {"from": "reader", "relation": "validated_by", "to": "build"},
     {"from": "reader", "relation": "validated_by", "to": "text"},
     {"from": "reader", "relation": "validated_by", "to": "render"},
+    {"from": "local_package", "relation": "contains", "to": "reader"},
     {"from": "version_doi", "relation": "is_version_of", "to": "concept_doi"},
     {"from": "concept_doi", "relation": "is_translation_of", "to": "authority"},
-    {"from": "publication_repo", "relation": "will_publish", "to": "reader"}
+    {"from": "publication_repo", "relation": "awaits_corrective_asset_replacement_from", "to": "local_package"}
   ]
 }

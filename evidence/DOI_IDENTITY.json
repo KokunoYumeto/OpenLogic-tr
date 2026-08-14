@@ -8,7 +8,7 @@
   "language_bcp47": "tr",
   "language_zenodo": "tur",
   "object_scope": "Complete Turkish edition, OLP-0001 through OLP-0722, all 722/722 frozen content modules",
-  "publication_status": "exact DOI reserved; local package, Git tag and release, Zenodo publication, and public readback pending",
+  "publication_status": "exact DOI reserved and local four-asset package complete; GitHub release exists with a superseded asset set awaiting corrective replacement/readback; Zenodo files absent and publication/readback not performed",
   "prior_public_exact_version_doi": "10.5281/zenodo.21921845",
   "prior_version_status": "historical 62-module release; superseded in content by OLP-0722",
   "global_collection_concept_doi": null,

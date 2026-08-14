@@ -1,7 +1,8 @@
 {
   "repository": "https://github.com/KokunoYumeto/OpenLogic-tr",
   "release_scope": "Complete Turkish edition, OLP-0722, 722/722",
-  "planned_tag": "tr-olp-0722-20260814",
+  "release_identifier": "tr-olp-0722-20260814",
+  "release_exists_publicly": true,
   "tag": null,
   "tag_object": null,
   "tagged_content_commit": null,
@@ -11,6 +12,10 @@
   "reader_filename": "00_OPENLOGIC_tr_COMPLETE_LINKED_READER_OLP-0722.pdf",
   "reader_bytes": 5470171,
   "reader_sha256": "2D9939692A971EDF468D3B41F38C57283C046BE9D110783CF50D10CDB3152900",
+  "local_four_asset_package_complete": true,
+  "local_package_identity_source": "03_OPENLOGIC_tr_SHA256_MANIFEST_OLP-0722.txt and the non-embedded post-package receipt",
+  "public_asset_state": "earlier asset set superseded; corrected local four-asset package awaits replacement",
+  "corrective_asset_replacement_complete": false,
   "readback_verified": false,
-  "publication_status": "planned tag not created; no Git push, release, asset upload, or public readback performed at metadata freeze"
+  "publication_status": "public GitHub release exists; exact tag object, tagged commit, release URL, and reader URL are unrecorded locally; corrected assets have not been claimed uploaded or read back"
 }
