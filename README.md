@@ -1,5 +1,7 @@
 # Open Logic Project — Türkçe Tam Sürüm
 
+> Bu sürüm [Open Logic çevirileri ana kataloğunda](https://github.com/KokunoYumeto/OpenLogic-translations) yer alır; katalog, çevrilmiş kaynak kapsamı ile bağımsız okuyucu kapsamını ayrı bildirir.
+
 > **Complete Turkish edition:** all 722/722 frozen Open Logic Project content
 > modules are translated into Turkish. The linked reader covers the 642
 > canonical-reader-reachable modules; 80 retained non-reader modules remain in
@@ -72,7 +74,7 @@ or any other Turkic standard. Interlanguage observations are preserved as
 auditable research notes and are not represented as translations into those
 languages.
 
-Performed at Floris’s direction by “OpenAI 5.6 Sol, Ultra mode” (“OpenAI’s
+Produced for this translation programme by “OpenAI 5.6 Sol, Ultra mode” (“OpenAI’s
 current flagship model for complex work”). Human or native review is not a
 release gate. The release evidence instead records exact source replay,
 structural and semantic checks, a deterministic build, complete text-layer
