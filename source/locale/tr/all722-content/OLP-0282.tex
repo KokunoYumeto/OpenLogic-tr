@@ -1,0 +1,103 @@
+% Generated from locale/tr/content/incompleteness/arithmetization-syntax/coding-symbols.tex; do not hand-edit.
+
+
+\olfileid[tr]{inc}{art}{cod}
+\olsection{Simgelerin Kodlanması}
+
+Birinci dereceden mantığın temel $\Lang L$ dili,
+\[
+\lfalse \quad \lnot \quad \lor \quad \land \quad \lif \quad \lforall
+\quad \lexists \quad \eq \quad ( \quad ) \quad ,
+\]
+simgelerinin yanı sıra !!{enumerable} değişken ve !!{constant} kümelerini,
+ayrıca !!{enumerable} olup gelişigüzel aritede !!{function}s{}dan ve
+!!{predicate}s{}den oluşan kümeleri kullanır. Bu simgelerin her birine, her simgeye kodu
+olarak tek bir sayı atanacak ve farklı iki simgeye aynı sayı atanmayacak
+biçimde \emph{kodlar} verebiliriz. Bütün simgelerin kümesi !!{enumerable}
+olduğundan ve bu küme ile doğal sayılar kümesi arasında !!a{bijection}
+bulunduğundan bunun mümkün olduğunu biliyoruz. Ancak kodundan simgeyi (ve
+örneğin !!a{function}{}un aritesi gibi onun hakkındaki bazı bilgileri)
+hesaplanabilir biçimde geri elde edebildiğimizden emin olmak isteriz. Elbette
+bunu yapmanın birçok yolu vardır. Aşağıda ilkel özyinelemeli fonksiyonları
+kullanan böyle bir yol veriyoruz. ($\tuple{n_0, \dots, n_k}$'nın
+$n_0$, \dots, $n_k$ sayı dizisini kodlayan sayı olduğunu anımsayın.)
+
+\begin{defn}
+$s$, $\Lang L$ dilinin bir simgesiyse $s$'nin \emph{simge kodu}
+$\scode s$ aşağıdaki gibi tanımlansın:
+\begin{enumerate}
+\item $s$ mantıksal simgelerden biriyse $\scode s$ aşağıdaki tabloda
+  verilmiştir:
+\[
+\begin{array}{cccccccccc}
+  \lfalse & \lnot & \lor & \land & \lif & \lforall \\
+\tuple{0, 0} & \tuple{0, 1} & \tuple{0, 2} & \tuple{0, 3} &
+\tuple{0, 4} & \tuple{0, 5} \\
+\lexists & \eq & ( & ) & ,\\
+\tuple{0, 6} & \tuple{0, 7} &
+\tuple{0, 8} & \tuple{0, 9} & \tuple{0, 10}
+\end{array}
+\]
+\item $s$, $i$'inci değişken $\Obj v_i$ ise $\scode s = \tuple{1, i}$.
+\item $s$, $i$'inci !!{constant} $\Obj c_i$ ise
+  $\scode s = \tuple{2, i}$.
+\item $s$, $i$'inci $n$-li !!{function} $\Obj f_i^n$ ise
+  $\scode s = \tuple{3, n, i}$.
+\item $s$, $i$'inci $n$-li !!{predicate} $\Obj P_i^n$ ise
+  $\scode s = \tuple{4, n, i}$.
+\end{enumerate}
+\end{defn}
+
+\begin{prop}
+Aşağıdaki bağıntılar ilkel özyinelemelidir:
+\begin{enumerate}
+\item $\fn{Fn}(x, n)$ ancak ve ancak $x$, bir $i$ için $\Obj f^n_i$'nin,
+  yani $n$-li bir !!{function} koduysa.
+\item $\fn{Pred}(x, n)$ ancak ve ancak $x$, bir $i$ için $\Obj P^n_i$'nin
+  koduysa ya da $x$, $\eq$ simgesinin kodu ve $n = 2$ ise; başka bir
+  deyişle $x$, $n$-li bir !!{predicate} koduysa.
+\end{enumerate}
+\end{prop}
+
+\begin{defn}
+$s_0, \dots, s_{n-1}$ bir simge dizisiyse bu dizinin \emph{Gödel numarası}
+$\tuple{\scode{s_0}, \dots, \scode{s_{n-1}}}$'dir.
+\end{defn}
+
+\begin{explain}
+\emph{Kodlar} ile \emph{Gödel numaralarının} farklı şeyler olduğuna dikkat
+edin. Örneğin $\Obj v_5$ değişkeninin kodu $\scode{\Obj v_5} = \tuple{1, 5}
+= 2^2\cdot 3^6$'dır. Fakat bir terim olarak ele alınan $\Obj v_5$ değişkeni,
+aynı zamanda uzunluğu $1$ olan bir simge dizisidir. $\Obj v_5$
+\emph{teriminin} \emph{Gödel numarası} $\Gn{\Obj v_5}$,
+$\tuple{\scode{\Obj v_5}} = 2^{\scode{\Obj v_5} + 1} =
+2^{2^2\cdot 3^6 + 1}$'dir.
+\end{explain}
+
+\begin{ex}
+$k_0$, \dots, $k_{n-1}$ bir sayı dizisiyse, asal sayıların kuvvetleriyle
+kodlamada $\tuple{k_0, \dots, k_{n-1}}$ dizisinin kodunun
+\[
+2^{k_0+1}\cdot3^{k_1+1}\cdot \dots \cdot p_{n-1}^{k_{n-1}+1}
+\]
+olduğunu anımsayın; burada $p_i$, $p_0=2$ ile başlayan $i$'inci asal
+sayıdır. Örneğin $\eq[\Obj v_0][\Obj 0]$ formülünün, daha açık yazılışıyla
+${\eq}(\Obj v_0,\Obj c_0)$'ın Gödel numarası
+\[
+\tuple{\scode{\eq},\scode{(},\scode{\Obj v_0},\scode{,}, \scode{\Obj
+    c_0},\scode{)}}
+\]
+olur. Burada $\scode{\eq}$, $\tuple{0,7} = 2^{0+1}\cdot 3^{7+1}$;
+$\scode{\Obj v_0}$, $\tuple{1,0} = 2^{1+1}\cdot3^{0+1}$ vb.'dir.
+Dolayısıyla $\Gn{=(\Obj v_0,\Obj c_0)}$ şöyledir:
+\begin{multline*}
+2^{\scode{=} + 1}\cdot 3^{\scode{(}+1}\cdot 5^{\scode{\Obj v_0}+1}
+\cdot 7^{\scode{,} + 1} \cdot 11^{\scode{\Obj c_0}+1} \cdot
+13^{\scode{)}+1} = \\
+2^{2^1\cdot 3^8 + 1}\cdot 3^{2^1\cdot 3^9+1}\cdot 5^{2^2\cdot 3^1+1}
+\cdot 7^{2^1\cdot 3^{11} + 1} \cdot 11^{2^3\cdot3^1+1} \cdot
+13^{2^1\cdot3^{10}+1} = \\
+2^{13\,123}\cdot 3^{39\,367}\cdot 5^{13}\cdot 7^{354\,295}\cdot11^{25}\cdot13^{118\,099}.
+\end{multline*}
+\end{ex}
+

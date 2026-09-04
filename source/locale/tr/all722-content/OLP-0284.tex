@@ -1,0 +1,89 @@
+% Generated from locale/tr/content/incompleteness/arithmetization-syntax/coding-formulas.tex; do not hand-edit.
+
+
+\olfileid[tr]{inc}{art}{frm}
+\olsection{\printtoken{P}{formula}ın Kodlanması}
+
+$\fn{Term}(x)$ bağıntısını ilkel özyinelemeli olarak tanımladıktan sonra,
+!!{formula}s için karşılık gelen $\fn{Frm}(x)$ bağıntısını da ilkel
+özyinelemeli olarak tanımlayabiliriz.
+
+\begin{prop}
+$x$'in atomik bir !!{formula} için Gödel numarası olması durumunda geçerli olan
+$\fn{Atom}(x)$ bağıntısı ilkel özyinelemelidir.
+\end{prop}
+
+\begin{proof}
+$x$ sayısı, ancak ve ancak aşağıdakilerden biri geçerliyse atomik bir
+!!{formula} için Gödel numarasıdır:
+\begin{enumerate}
+\item Her $i<n$ için $\fn{Term}((z)_i)$ olacak biçimde $n,j<x$ ve $z<x$
+  vardır ve $x=$
+\[
+\Gn{\Obj P^n_j(} \concat \fn{flatten}(z) \concat \Gn{)}.
+\]
+\item $\fn{Term}(z_1)$ ve $\fn{Term}(z_2)$ olacak biçimde $z_1,z_2<x$
+  vardır ve $x=$
+\[
+\Gn{{\eq}(} \concat z_1 \concat \Gn{,} \concat z_2 \concat{\Gn{)}}.
+\]
+  \tagitem{prvFalse}{$x = \Gn{\lfalse}$.}{}
+  \tagitem{prvTrue}{$x = \Gn{\ltrue}$.}{}
+\end{enumerate}
+\end{proof}
+
+\begin{prop}
+\ollabel{prop:frm-primrec}
+$x$'in !!a{formula}{}ün Gödel numarası olması durumunda geçerli olan
+$\fn{Frm}(x)$ bağıntısı ilkel özyinelemelidir.
+\end{prop}
+
+\begin{proof}
+Bir $s$ simge dizisi, ancak ve ancak !!a{formula} ise ve $s$'nin atomik
+!!{formula}s{}den kuruluş kurallarına göre nasıl kurulduğunu kaydeden,
+!!{formula}s{}den oluşan bir $s_0$, \dots, $s_{k-1}=s$ kuruluş dizisi varsa
+formüldür. Her $s_i$'nin
+kodu (hatta $\tuple{s_0,\dots,s_{k-1}}$ dizisinin kodunun kodu), $s$'nin
+$x$ kodundan küçüktür.
+\end{proof}
+
+\begin{prob}
+\olref[inc][art][frm]{prop:frm-primrec} için,
+\olref[inc][art][trm]{prop:term-primrec} önermesinin ilk ispatındaki çizgi
+boyunca ayrıntılı bir ispat
+verin.
+\end{prob}
+
+\begin{prop}
+\ollabel{prop:freeocc-primrec}
+Gödel numarası $x$ olan formülün $i$'inci simgesinin, Gödel numarası $z$
+olan değişkenin serbest bir geçişi olması durumunda geçerli olan
+$\fn{FreeOcc}(x,z,i)$ bağıntısı ilkel özyinelemelidir.
+\end{prop}
+
+\begin{proof}
+Alıştırma.
+\end{proof}
+
+\begin{prob}
+\olref[inc][art][frm]{prop:freeocc-primrec} önermesini ispatlayın.
+!!a{formula}{}ün içinde bulunan ve kendisi de !!a{formula} olan her alt
+dizenin onun bir alt-!!{formula}{}ü olduğu olgusundan yararlanabilirsiniz.
+\end{prob}
+
+\begin{prop}
+$x$'in !!a{sentence}{}nin Gödel numarası olması durumunda geçerli olan
+$\fn{Sent}(x)$ özelliği ilkel özyinelemelidir.
+\end{prop}
+
+\begin{proof}
+Bir !!{sentence}, !!a{formula} olup !!{variable}s{}in serbest geçişlerini içermez.
+Dolayısıyla $\fn{Sent}(x)$ ancak ve ancak
+\begin{multline*}
+\bforall{i<\len{x}}{\bforall{z<x}{}}\\
+(\bexists{j<z}{z=\Gn{\Obj v_j}} \lif \lnot\fn{FreeOcc}(x,z,i))
+\end{multline*}
+geçerliyse geçerlidir.
+\end{proof}
+
+

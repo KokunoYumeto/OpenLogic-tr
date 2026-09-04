@@ -1,0 +1,64 @@
+% Generated from locale/tr/content/first-order-logic/introduction/soundness-completeness.tex; do not hand-edit.
+
+
+\olfileid[tr]{fol}{int}{scp}
+
+\olsection{Sağlamlık ve Tamlık}
+
+Birinci dereceden mantık için !!{derivation} sistemleri de tanıtacağız.
+Mantıkçıların geliştirdiği birçok !!{derivation} sistemi vardır, fakat
+hepsi !!{sentence}s arasında aynı !!{derivability} bağıntısını
+tanımlar. Kesin olarak tanımlanmış belirli türde !!a{derivation}
+varsa,~$\Gamma$'nın~$!A$'yı \emph{türettiğini},
+$\Gamma\Proves !A$, söyleriz. !!^{derivation}s her zaman simgelerin
+sonlu düzenlemeleridir: bir !!{sentence}s listesi ya da daha karmaşık
+bir yapı olabilir. !!{derivation} sistemlerinin amacı, !!a{sentence}
+ifadesinin bir~$\Gamma$ kümesi tarafından mantıksal olarak gerektirilip
+gerektirilmediğini belirlemeye yarayan araç sağlamaktır. Bu amaca
+hizmet edebilmeleri için $\Gamma\Entails !A$ ancak ve ancak
+$\Gamma\Proves !A$ ise geçerli olmalıdır.
+
+$\Gamma\Proves !A$ olduğu halde $\Gamma\Entails !A$ değilse
+!!{derivation} sistemimiz fazla güçlüdür; gereğinden fazlasını
+ispatlar. $\Gamma\Proves !A$ ise $\Gamma\Entails !A$ olmasına
+\emph{sağlamlık} denir ve bu, iyi her !!{derivation} sistemi için
+asgari bir gerekliliktir. Öte yandan $\Gamma\Entails !A$ olduğu halde
+$\Gamma\Proves !A$ değilse !!{derivation} sistemimiz fazla zayıftır;
+yeterince ispat vermez. $\Gamma\Entails !A$ ise $\Gamma\Proves !A$
+olmasına \emph{tamlık} denir. Sağlamlığı ispatlamak genellikle görece
+kolaydır (tümevarımlı olarak tanımlanan !!{derivation}s tek tek ele
+alındığında bunların yapısı üzerinde tümevarımla). Tamlığı ispatlamak
+daha zordur.
+
+Sağlamlık ve tamlığın bir dizi önemli sonucu vardır. Bir
+!!{sentence}s kümesi~$\Gamma$, bir çelişki (örneğin
+$!A\land\lnot !A$) türetiyorsa \emph{tutarsız} olarak adlandırılır.
+Tutarsız~$\Gamma$ kümelerinin hiçbir modeli olamaz; bunlar
+sağlanamazdır. Tamlıktan tersi çıkar: tutarsız olmayan---ya da
+diyeceğimiz gibi \emph{tutarlı}---her~$\Gamma$ kümesinin bir modeli
+vardır. Aslında bu tamlığa denktir ve tamlığın gerçekten ispatlayacağımız
+biçimidir. Bu derin ve belki şaşırtıcı bir sonuçtur:~$\Gamma$'dan
+$!A\land\lnot !A$ ispatlayamamanız bile~$\Gamma$'nın betimlediği gibi
+!!a{structure} bulunduğunu güvence altına alır. Böylece tamlık şu
+soruya yanıt verir: Hangi !!{sentence}s kümelerinin modelleri vardır?
+Yanıt: Tam olarak ve yalnızca tutarlı kümelerin.
+
+Sağlamlık ve tamlık teoremlerinin iki önemli sonucu vardır: tıkızlık
+teoremi ile Löwenheim--Skolem teoremi. Bunlar model kuramının önemli
+sonuçlarıdır ve birçok ilginç sonucu ortaya koymak için kullanılabilir.
+İkisine daha önce değindik: Birinci dereceden mantık, !!a{structure}
+ifadesinin !!{domain} boyutunun sonlu ya da !!{nonenumerable} olduğunu
+ifade edemez.
+
+Tarihsel olarak bütün bunları---birinci dereceden mantığın sözdizim ve
+semantiğinin nasıl tanımlanacağını, iyi !!{derivation} sistemlerinin
+nasıl tanımlanacağını, bunların sağlam ve tam olduğunun nasıl
+ispatlanacağını, birinci dereceden dillerde nelerin ifade edilip
+edilemeyeceğinin açıklığa kavuşturulmasını---çözmek ve doğru yapmak uzun
+zaman aldı. Artık nasıl yapılacağını biliyoruz; yine de bütün
+ayrıntılardan geçmek kafa karıştırıcı ve yorucu olabilir. Fakat aynı
+zamanda önemlidir; çünkü birinci dereceden mantığın biçimsel dili için
+burada geliştirilen yöntemler mantık, bilgisayar bilimi ve dilbilimin
+her yanında uygulanır. Bu yüzden ayrıntıları çalışmak uzun vadede
+karşılığını verir.
+

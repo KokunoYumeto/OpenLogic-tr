@@ -1,0 +1,104 @@
+% Generated from locale/tr/content/first-order-logic/tableaux/quantifier-rules.tex; do not hand-edit.
+
+
+\olfileid[tr]{fol}{tab}{qrl}
+
+\olsection{Niceleyici Kuralları}
+
+\subsection{$\lforall$ Kuralları}
+
+\begin{defish}
+\AxiomC{\sFmla{\True}{\lforall[x][!A(x)]}}
+\RightLabel{\TRule{\True}{\lforall}}
+\UnaryInfC{\sFmla{\True}{!A(t)}}
+\DisplayProof
+\hfill
+\AxiomC{\sFmla{\False}{\lforall[x][!A(x)]}}
+\RightLabel{\TRule{\False}{\lforall}}
+\UnaryInfC{\sFmla{\False}{!A(a)}}
+\DisplayProof
+\end{defish}
+
+\TRule{\True}{\lforall} kuralında $t$ kapalı bir terimdir (yani değişken
+içermeyen bir terimdir). \TRule{\False}{\lforall} kuralında $a$,
+\TRule{\False}{\lforall} kuralının üstündeki dalın hiçbir yerinde
+geçmemesi gereken !!a{constant}'tır. $a$'ya
+\TRule{\False}{\lforall} çıkarımının \emph{özdeğişkeni} deriz.\footnote{Yukarıdaki
+kuralda $a$ bir !!a{constant} olduğu hâlde ``özdeğişken'' terimini
+kullanıyoruz. Bunun tarihsel nedenleri vardır.}
+
+\subsection{$\lexists$ Kuralları}
+
+\begin{defish}
+\AxiomC{\sFmla{\True}{\lexists[x][!A(x)]}}
+\RightLabel{\TRule{\True}{\lexists}}
+\UnaryInfC{\sFmla{\True}{!A(a)}}
+\DisplayProof
+\hfill
+\AxiomC{\sFmla{\False}{\lexists[x][!A(x)]}}
+\RightLabel{\TRule{\False}{\lexists}}
+\UnaryInfC{\sFmla{\False}{!A(t)}}
+\DisplayProof
+\end{defish}
+
+Yine $t$ kapalı bir terimdir; $a$ ise~\TRule{\True}{\lexists} kuralının
+üstündeki dalda geçmeyen !!a{constant}'tır. $a$'ya
+\TRule{\True}{\lexists} çıkarımının \emph{özdeğişkeni} deriz.
+
+Bir özdeğişkenin \TRule{\False}{\lforall} ya da
+\TRule{\True}{\lexists} çıkarımının üstündeki dalda geçmemesi koşuluna
+\emph{özdeğişken koşulu} denir.
+
+\begin{explain}
+$!A$ bir !!a{formula} olup !!{variable}~$x$ onda serbest geçtiğinde bunu
+~$!A(x)$ yazarak belirttiğimizi anımsayın. Aynı bağlamda $!A(t)$,
+~$\Subst{!A}{t}{x}$ için bir kısaltmadır. Dolayısıyla
+\TRule{\False}{\lexists} kuralını şöyle de yazabilirdik:
+\begin{prooftree}
+  \AxiomC{\sFmla{\False}{\lexists[x][!A]}}
+  \RightLabel{\TRule{\False}{\lexists}}
+  \UnaryInfC{\sFmla{\False}{\Subst{!A}{t}{x}}}
+\end{prooftree}
+$t$'nin~$!A$ içinde zaten geçebileceğine dikkat edin; örneğin $!A$,
+~$\Atom{\Obj P}{t,x}$ olabilir. Bu nedenle
+~$ \sFmla{\False}{\lexists[x][\Atom{\Obj P}{t,x}]}$ ifadesinden
+$\sFmla{\False}{\Atom{\Obj P}{t,t}}$ çıkarmak
+~\TRule{\False}{\lexists} kuralının doğru bir uygulamasıdır. Buna karşılık
+\TRule{\False}{\lforall} ve~\TRule{\True}{\lexists} kurallarındaki
+özdeğişken koşulları, !!{constant}~$a$'nın $!A$ içinde geçmemesini
+gerektirir. Dolayısıyla
+$\sFmla{\False}{\lforall[x][\Atom{\Obj P}{a,x}]}$ ifadesinden
+$\sFmla{\False}{\Atom{\Obj P}{a,a}}$ ifadesini
+~$\TRule{\False}{\lforall}$ kullanarak doğru biçimde çıkaramazsınız.
+\end{explain}
+
+\begin{explain}
+\TRule{\True}{\lforall} ve \TRule{\False}{\lexists} kurallarında
+terim~$t$ herhangi bir kapalı terim olabilir. Buna karşılık
+\TRule{\True}{\lexists} ve \TRule{\False}{\lforall} kurallarında
+özdeğişken koşulu, !!{constant}~$a$'nın ilgili çıkarımın üstündeki dalların
+hiçbir yerinde geçmemesini gerektirir. Bu koşul, sistemin sağlam olmasını
+güvence altına almak için gereklidir. Koşul olmasaydı aşağıdaki ağaç,
+$\lexists[x][\formula{A}(x)] \lif \lforall[x][\formula{A}(x)]$ için kapalı
+bir !!{tableau} olurdu:
+\begin{center}
+\begin{tableau}{}
+  [\sFmla{\False}{\lexists[x][\formula{A}(x)] \lif \lforall[x][\formula{A}(x)]}, just=\TAss
+    [\sFmla{\True}{\lexists[x][\formula{A}(x)]},
+      just={\TRule{\False}{\lif}[1]}
+      [\sFmla{\False}{\lforall[x][\formula{A}(x)]},
+        just={\TRule{\False}{\lif}[1]}
+        [\sFmla{\True}{\formula{A}(a)},
+          just={\TRule{\True}{\lexists}[2]}
+          [\sFmla{\False}{\formula{A}(a)},
+            just={\TRule{\False}{\lforall}[3]}, close]
+        ]
+      ]
+    ]
+  ]
+\end{tableau}
+\end{center}
+Oysa $\lexists[x][\formula{A}(x)] \lif
+\lforall[x][\formula{A}(x)]$ geçerli değildir.
+\end{explain}
+

@@ -1,0 +1,66 @@
+% Generated from locale/tr/content/many-valued-logic/sequent-calculus/rules-and-proofs.tex; do not hand-edit.
+
+
+\olfileid[tr]{mvl}{seq}{rul}
+
+\olsection{Kurallar ve \usetoken{P}{derivation}}
+
+Aşağıda $\Gamma,\Delta,\Pi,\Lambda$, sonlu !!{sentence}s dizilerini
+göstersin.
+
+\begin{defn}[Sekant]
+Bir \emph{$n$ taraflı sekant},
+\[
+\Gamma_1 \nSequent \dots \nSequent \Gamma_n
+\]
+biçiminde bir ifadedir; burada her $\Gamma_i$, $\Lang L$ dilinin
+!!{sentence}s{}den oluşan sonlu, boş olması da mümkün, bir dizidir.
+\end{defn}
+
+\begin{defn}[Başlangıç sekantı]
+Bir \emph{$n$ taraflı başlangıç sekantı}, dildeki herhangi bir !!{sentence}
+$!A$ için $!A\nSequent\dots\nSequent !A$ biçiminde bir $n$ taraflı
+sekanttır.
+
+Dil $0$-konumlu bir $\star$ bağlacı, yani önerme sabiti içeriyorsa
+$\star$'ın $\tf{\star}\in V$ ile ilişkili doğruluk değerinin konumunda
+$\star$ bulunan ve diğer konumları boş olan
+$\dots\nSequent\star\nSequent\dots$ sekantını da başlangıç sekantı sayarız.
+\end{defn}
+
+Bir $n$ değerli $\Log L$ mantığının her bağlacı için bu bağlacın $\Log L$
+içinde alabileceği her doğruluk değerine karşılık gelen bir mantıksal kural
+vardır. $\Log L$ için $n$ taraflı sekant hesabındaki !!^{derivation}s,
+en üst sekantları başlangıç sekantları olan sekant ağaçlarıdır. Bir sekant
+bir ya da daha çok sekantın altında duruyorsa $\Log L$ bağlaçlarına ait bir
+çıkarım kuralıyla bunlardan doğru biçimde çıkmalıdır.
+
+\begin{defn}[Teoremler]
+!!^a{sentence} $!A$, $\Log L$'nin belirlenmiş doğruluk değerlerine karşılık
+gelen her konumda $!A$ bulunan $n$-sekantın !!a{derivation} varsa, $n$
+değerli $\Log L$ mantığının bir \emph{teoremidir}. $!A$ teoremse
+$\Proves[\Log L]!A$, değilse $\Proves/[\Log L]!A$ yazarız.
+\end{defn}
+
+\begin{defn}[!!^{derivability}]
+Bir !!^{sentence} $!A$, $\Log L$ $n$ değerli mantığında bir !!{sentence}s
+kümesi $\Gamma$'dan \emph{!!{derivable}} ise ve ancak o zaman
+$\Gamma\Proves[\Log L]!A$ yazarız. Bunun anlamı şudur: sonlu bir
+$\Gamma_0\subseteq\Gamma$ ve $\Gamma_0$ içindeki !!{sentence}s{}in oluşturduğu
+bir $\Gamma_0'$ dizisi vardır ve
+\[ \Lambda_1 \nSequent \dots \nSequent \Lambda_n \]
+sekantının !!a{derivation} vardır; burada $\Lambda_i$, $i$'inci konum
+belirlenmiş bir doğruluk değerine karşılık geliyorsa $!A$, aksi durumda
+$\Gamma_0'$'dür. $!A$, $\Gamma$'dan !!{derivable} değilse
+$\Gamma\Proves/!A$ yazarız.
+\end{defn}
+
+Örneğin üç değerli Łukasiewicz mantığının üç taraflı bir sekant hesabı
+vardır. $\Gamma\nSequent\Pi\nSequent\Delta$ sekantında $\Gamma$, $\False$;
+$\Delta$, $\True$; $\Pi$ ise $\Undef$ değerine karşılık gelir. Aksiyomlar
+$!A\nSequent !A\nSequent !A$ biçimindedir. Yalnızca $\True$ belirlenmiş
+olduğundan $\Gamma\Proves[\LogLuk[3]]!A$ ancak ve ancak
+$\Gamma\nSequent\Gamma\nSequent !A$ sekantının !!a{derivation} varsa
+geçerlidir. $\Undef$ da belirlenmiş olsaydı
+$\Gamma\nSequent !A\nSequent !A$ sekantının !!a{derivation} gerekirdi.
+

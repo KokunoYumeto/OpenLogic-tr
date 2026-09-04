@@ -1,0 +1,261 @@
+% Generated from locale/tr/content/first-order-logic/syntax-and-semantics/formation-sequences.tex; do not hand-edit.
+
+
+\olfileid[tr]{fol}{syn}{fseq}
+
+\olsection{Oluşum Dizileri}
+
+!!{formula}s için tümevarımsal bir tanım vermek ve tamamlayıcı bir
+yöntem olarak !!{formula}s hakkında özellikleri tümevarımla ispatlamak zarif
+ve etkili bir yaklaşımdır. Bununla birlikte, !!{formula}s söz konusu
+olduğunda kuruluş sürecini daha aşağıdan yukarıya, adım adım ele almak da yararlı olabilir. Bunu
+burada \emph{oluşum dizisi} kavramıyla yapacağız.
+%
+Terimler ile !!{formula}s bu yolla tanıtılırken tümevarımsal tanımlara
+gerek olmadığını göstermek için önce bir~$\Lang L$ dilinden
+alınmış gelişigüzel bir simge dizisi kavramını sunuyoruz.
+
+\begin{defn}[Simge dizileri]
+\ollabel{defn:string}
+$\Lang L$ birinci dereceden bir dil olsun. Bir \emph{$\Lang L$-dizisi},
+$\Lang L$'nin simgelerinden oluşan sonlu bir dizidir. $\Lang L$ dilinin
+bağlamdan açıkça belli olduğu yerlerde bir $\Lang L$-dizisinden çoğu
+kez yalnızca \emph{simge dizisi} diye söz ederiz.
+\end{defn}
+
+\begin{ex}
+Her birinci dereceden $\Lang L$ dili için bütün
+$\Lang L$-!!{formula}s birer $\Lang L$-dizisidir, fakat bunun tersi
+geçerli değildir. Örneğin 
+\[)(\Obj v_0\lif\lexists\]
+bir $\Lang L$-dizisidir, ama bir $\Lang L$-!!{formula} değildir.
+\end{ex}
+
+\begin{defn}[Terimler için oluşum dizileri]
+\ollabel{defn:fseq-trm}
+Sonlu bir $\Lang L$-dizileri dizisi $\tuple{t_0,\dotsc,t_n}$, $t \ident
+t_n$ ise ve her $i \leq n$ için ya $t_i$ bir !!a{variable} ya da bir
+!!a{constant} ise veya $\Lang L$, $k$-yerli bir !!{function}~$f$
+içeriyor ve $t_i \ident f(t_{m_1},\dotsc,t_{m_k})$ olacak biçimde
+$m_1,\dotsc,m_k < i$ indisleri bulunuyorsa, $t$ terimi için bir
+\emph{oluşum dizisi}dir. Ayrım yapmak gerektiğinde terimlere ilişkin
+oluşum dizilerine \emph{terim oluşum dizileri} diyeceğiz.
+\end{defn}
+
+\begin{ex}
+Şu dizi
+\[
+    \tuple{\Obj c_0, \Obj v_0, \Atom{\Obj f^2_0}{\Obj c_0, \Obj v_0}, \Atom{\Obj f^1_0}{\Atom{\Obj f^2_0}{\Obj c_0, \Obj v_0}}}
+\]
+$\Atom{\Obj f^1_0}{\Atom{\Obj f^2_0}{\Obj c_0, \Obj v_0}}$ terimi için
+bir oluşum dizisidir; şu dizi de öyledir:
+\[
+    \tuple{\Obj v_0, \Obj c_0, \Atom{\Obj f^2_0}{\Obj c_0, \Obj v_0}, \Atom{\Obj f^1_0}{\Atom{\Obj f^2_0}{\Obj c_0, \Obj v_0}}}.
+\]
+\end{ex}
+
+\begin{defn}[Formüller için oluşum dizileri]
+\ollabel{defn:fseq-frm}
+Sonlu bir $\Lang L$-dizileri dizisi $\tuple{!A_0,\dotsc,!A_n}$,
+$!A \ident !A_n$ ise ve her $i \leq n$ için ya $!A_i$ atomik bir
+!!{formula} ise ya da aşağıdakilerden biri geçerli olacak biçimde
+$j,k < i$ indisleri ve bir !!a{variable}~$x$ varsa, $!A$ için bir
+\emph{oluşum dizisi}dir:
+\begin{enumerate}
+    \tagitem{prvNot}{$!A_i \ident \lnot !A_j$.}{}%
+    \tagitem{prvAnd}{$!A_i \ident (!A_j \land !A_k)$.}{}%
+    \tagitem{prvOr}{$!A_i \ident (!A_j \lor !A_k)$.}{}%
+    \tagitem{prvIf}{$!A_i \ident (!A_j \lif !A_k)$.}{}%
+    \tagitem{prvIff}{$!A_i \ident (!A_j \liff !A_k)$.}{}%
+    \tagitem{prvAll}{$!A_i \ident \lforall[x][!A_j]$.}{}%
+    \tagitem{prvEx}{$!A_i \ident \lexists[x][!A_j]$.}{}%
+\end{enumerate}
+Ayrım yapmak gerektiğinde formüllere ilişkin oluşum dizilerine
+\emph{formül oluşum dizileri} diyeceğiz.
+\end{defn}
+
+\begin{ex}
+\[
+\tuple{
+    \Atom{\Obj A^1_0}{\Obj v_0},
+    \Atom{\Obj A^1_1}{\Obj c_1},
+    (\Atom{\Obj A^1_1}{\Obj c_1} \land \Atom{\Obj A^1_0}{\Obj v_0}),
+    \lexists[\Obj v_0][(\Atom{\Obj A^1_1}{\Obj c_1} \land \Atom{\Obj A^1_0}{\Obj v_0})]
+}
+\]
+şu formülün bir oluşum dizisidir:
+$\lexists[\Obj v_0][(\Atom{\Obj A^1_1}{\Obj c_1} \land \Atom{\Obj
+A^1_0}{\Obj v_0})]$. Aşağıdaki de bu formülün bir oluşum dizisidir:
+\begin{multline*}
+\tuple{
+    \Atom{\Obj A^1_0}{\Obj v_0},
+    \Atom{\Obj A^1_1}{\Obj c_1},
+    (\Atom{\Obj A^1_1}{\Obj c_1} \land \Atom{\Obj A^1_0}{\Obj v_0}),
+    \Atom{\Obj A^1_1}{\Obj c_1},\\
+    \lforall[\Obj v_1][\Atom{\Obj A^1_0}{\Obj v_0}],
+    \lexists[\Obj v_0][(\Atom{\Obj A^1_1}{\Obj c_1} \land \Atom{\Obj A^1_0}{\Obj v_0})]
+}.
+\end{multline*}
+%
+İkinci örnekten görüldüğü gibi oluşum dizileri, gereksiz olan veya
+kuruluşa katkıda bulunmayan !!{formula}s, yani ``artıklar'' içerebilir.
+\end{ex}
+
+\begin{prop}\ollabel{prop:formed}
+$\Frm[L]$ içindeki her !!{formula}~$!A$ bir oluşum dizisine sahiptir.
+\end{prop}
+
+\begin{proof}
+$!A$ atomik olsun. O zaman $\tuple{!A}$ dizisi, $!A$ için bir oluşum
+dizisidir.
+%
+Şimdi $!B$ ile~$!C$'nin sırasıyla $\tuple{!B_0,\dotsc,!B_n}$ ve
+$\tuple{!C_0,\dotsc,!C_m}$ oluşum dizilerine sahip olduğunu varsayalım.
+%
+\begin{enumerate}
+  \tagitem{prvNot}{$!A \ident \lnot !B$ ise
+      $\tuple{!B_0,\dotsc,!B_n,\lnot !B_n}$,
+      $!A$ için bir oluşum dizisidir.}{}
+  \tagitem{prvAnd}{$!A \ident (!B \land !C)$ ise
+      $\tuple{!B_0,\dotsc,!B_n,!C_0,\dotsc,!C_m,(!B_n \land !C_m)}$,
+      $!A$ için bir oluşum dizisidir.}{}
+  \tagitem{prvOr}{$!A \ident (!B \lor !C)$ ise
+      $\tuple{!B_0,\dotsc,!B_n,!C_0,\dotsc,!C_m,(!B_n \lor !C_m)}$,
+      $!A$ için bir oluşum dizisidir.}{}
+  \tagitem{prvIf}{$!A \ident (!B \lif !C)$ ise
+      $\tuple{!B_0,\dotsc,!B_n,!C_0,\dotsc,!C_m,(!B_n \lif !C_m)}$,
+      $!A$ için bir oluşum dizisidir.}{}
+  \tagitem{prvIff}{$!A \ident (!B \liff !C)$ ise
+      $\tuple{!B_0,\dotsc,!B_n,!C_0,\dotsc,!C_m,(!B_n \liff !C_m)}$,
+      $!A$ için bir oluşum dizisidir.}{}
+  \tagitem{prvAll}{$!A \ident \lforall[x][!B]$ ise
+      $\tuple{!B_0,\dotsc,!B_n,\lforall[x][!B_n]}$,
+      $!A$ için bir oluşum dizisidir.}{}
+  \tagitem{prvEx}{$!A \ident \lexists[x][!B]$ ise
+      $\tuple{!B_0,\dotsc,!B_n,\lexists[x][!B_n]}$,
+      $!A$ için bir oluşum dizisidir.}{}
+\end{enumerate}
+!!{formula}s üzerinde tümevarım ilkesi uyarınca her !!{formula} bir
+oluşum dizisine sahiptir.
+\end{proof}
+
+Tersini de ispatlayabiliriz. Bu önemlidir; çünkü formülleri tanımlamanın
+iki yolunun eşdeğer olduğunu, yani aynı sonuçları verdiğini gösterir.
+Ayrıca oluşum dizilerinin uzunluğu üzerinde olağan tümevarım kullanarak
+formüller hakkında teoremler ispatlayabileceğimiz anlamına gelir.
+
+\begin{lem}
+\ollabel{lem:fseq-init}
+$\tuple{!A_0,\dotsc,!A_n}$, $!A_n$ için bir oluşum dizisi ve $k \leq n$
+olsun. O zaman $\tuple{!A_0,\dotsc,!A_k}$, $!A_k$ için bir oluşum
+dizisidir.
+\end{lem}
+
+\begin{proof}
+Alıştırma.
+\end{proof}
+
+\begin{prob}
+\olref[fol][syn][fseq]{lem:fseq-init}'i ispatlayın.
+\end{prob}
+
+\begin{thm}
+\ollabel{thm:fseq-frm-equiv}
+$\Frm[L]$, $!A$ için bir formül oluşum dizisi bulunan bütün $\Lang
+L$-dizileri~$!A$ dizilerinin kümesidir.
+\end{thm}
+
+\begin{proof}
+$F$, $\Lang L$ dilindeki simgelerden oluşan ve bir oluşum dizisine sahip
+bütün simge dizilerinin kümesi olsun. \olref[fol][syn][fseq]{prop:formed}'da
+$\Frm[L] \subseteq F$ olduğunu gördük; şimdi ters kapsamayı ispatlayalım.
+
+$!A$'nın bir $\tuple{!A_0,\dotsc,!A_n}$ oluşum dizisi olduğunu
+varsayalım. $n$ üzerinde kuvvetli tümevarımla $!A \in \Frm[L]$ olduğunu
+ispatlarız. Tümevarım varsayımımız, son indisi $m < n$ olan bir oluşum
+dizisine sahip her simge dizisinin $\Frm[L]$'de bulunduğudur. Oluşum
+dizisi tanımı uyarınca ya $!A \ident !A_n$ atomiktir ya da aşağıdaki
+durumlardan birinin geçerli olmasını sağlayan $j,k < n$ indisleri vardır:
+\begin{enumerate}
+    \tagitem{prvNot}{$!A \ident \lnot !A_j$.}{}%
+    \tagitem{prvAnd}{$!A \ident (!A_j \land !A_k)$.}{}%
+    \tagitem{prvOr}{$!A \ident (!A_j \lor !A_k)$.}{}%
+    \tagitem{prvIf}{$!A \ident (!A_j \lif !A_k)$.}{}%
+    \tagitem{prvIff}{$!A \ident (!A_j \liff !A_k)$.}{}%
+    \tagitem{prvAll}{$!A \ident \lforall[x][!A_j]$.}{}%
+    \tagitem{prvEx}{$!A \ident \lexists[x][!A_j]$.}{}%
+\end{enumerate}
+Şimdi durumlara göre akıl yürütelim. $!A$ atomikse
+$!A_n \in \Frm[L]$'dir. Bunun yerine
+$!A \ident (!A_j \land !A_k)$ olduğunu varsayalım.
+\olref[fol][syn][fseq]{lem:fseq-init} uyarınca
+$\tuple{!A_0,\dotsc,!A_j}$ ve $\tuple{!A_0,\dotsc,!A_k}$ sırasıyla
+$!A_j$ ile~$!A_k$ için oluşum dizileridir. Bunlar $!A$'nın oluşum
+dizisinin öz başlangıç alt dizileridir ve son indisleri $n$'den küçüktür.
+Dolayısıyla tümevarım varsayımı uyarınca $!A_j$ ile~$!A_k$,
+$\Frm[L]$'dedir; bir !!a{formula} tanımı uyarınca
+$(!A_j \land !A_k)$ de öyledir. Öteki durumlar koşut akıl yürütmelerle
+elde edilir.
+\end{proof}
+
+Terimlere ilişkin oluşum dizileri, !!{formula}s için olanlara benzer
+özelliklere sahiptir.
+
+\begin{prop}
+\ollabel{prop:fseq-trm-equiv}
+$\Trm[L]$, $t$ için bir terim oluşum dizisi bulunan bütün $\Lang L$-dizileri
+$t$ dizilerinin kümesidir.
+\end{prop}
+
+\begin{proof}
+Alıştırma.
+\end{proof}
+
+\begin{prob}
+\olref[fol][syn][fseq]{prop:fseq-trm-equiv}'i ispatlayın.
+İpucu: \olref[fol][syn][fseq]{thm:fseq-frm-equiv}'in ispatında kullanılan
+yönteme benzer bir yöntem kullanın.
+\end{prob}
+
+Oluşum dizilerinde iki tür ``artık'' görülebilir: yinelenen öğeler ve
+formülün ya da terimin kuruluşuyla ilgisiz öğeler. En küçük oluşum
+dizilerine bakarak ikisini de eleyebiliriz.
+
+\begin{defn}[En küçük oluşum dizileri]
+\ollabel{defn:minimal-fseq}
+Bir $!A$ formülü için $\tuple{!A_0, \ldots, !A_n}$ oluşum dizisi,
+$!A$ için başka her oluşum dizisi~$s$ için $s$'nin uzunluğu $n+1$'den büyük ya da
+ona eşitse, $!A$ için bir \emph{en küçük oluşum dizisi}dir.
+
+Benzer biçimde bir $t$ terimi için $\tuple{t_0, \ldots, t_n}$ oluşum
+dizisi, $t$ için başka her oluşum dizisi~$s$ için $s$'nin uzunluğu $n+1$'den büyük
+ya da ona eşitse, $t$ için bir \emph{en küçük oluşum dizisi}dir.
+\end{defn}
+
+Bir formülün veya terimin birden çok en küçük oluşum dizisi olabileceğine
+dikkat edin; fakat bunlar tam olarak aynı simge dizilerini içerir.
+
+\begin{prop}
+\ollabel{prop:subformula-equivs}
+Aşağıdakiler birbirine eşdeğerdir:
+\begin{enumerate}
+    \item $!B$, $!A$'nın bir alt !!{formula}{}dür.
+    \item $!B$, $!A$'nın her oluşum dizisinde geçer.
+    \item $!B$, $!A$'nın bir en küçük oluşum dizisinde geçer.
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+Alıştırma.
+\end{proof}
+
+\begin{prob}
+\olref[fol][syn][fseq]{prop:subformula-equivs}'i ispatlayın.
+\end{prob}
+
+\begin{history}
+Oluşum dizilerini Raymond Smullyan, \emph{First-Order Logic}
+\citep{Smullyan1968} adlı ders kitabında ortaya koymuştur. Oluşum
+dizilerinin başka özelliklerini \citet{Zuckerman1973} saptamıştır.
+\end{history}
+

@@ -1,0 +1,91 @@
+% Generated from locale/tr/content/applied-modal-logic/epistemic-logic/bisimulations.tex; do not hand-edit.
+
+
+\olfileid[tr]{aml}{el}{bsd}
+
+\olsection{Bisimülasyonlar}
+
+Epistemik dilimizin ifade gücü konusunda geriye kalan sorulardan biri,
+modeller ile bu modellerde geçerli formüller arasındaki ilişkiyle ilgilidir.
+Çerçeve karşılıklılığı sonuçlarımızdan, belirli formüller bir çerçevede
+geçerliyse o çerçevenin belirli özellikleri sağlamasını da güvenceye
+alacaklarını gördük. Fakat modal dilimiz, örneğin üzerinde yansımalı bir ok
+bulunan bir dünya ile her biri bir sonrakine giden sonsuz bir dünyalar
+zincirini ayırt etmemize izin verir mi? Başka deyişle, bu iki dünyadan
+yalnızca birinde geçerli olabilecek herhangi bir $A$ formülü var mıdır?
+
+Bisimülasyon, bağıntısal modeller arasında tanımlayarak modellerin fiilen aynı
+yapıya sahip olduğunu söylememizi sağlayan bir bağıntıdır. Göreceğimiz gibi,
+epistemik dilimizde yakalanabilen bir model denkliği anlayışını belirler.
+
+\begin{defn}[Bisimülasyon]
+$M_1 = \tuple{W_1, R_1, V_1}$ ve $M_2 = \tuple{W_2, R_2, V_2}$ iki
+bağıntısal model, $\mathcal{R} \subseteq W_1 \times W_2$ de ikili bir bağıntı
+olsun. $\mathcal{R}$ bağıntısına \emph{bisimülasyon} deriz; bunun için her
+$\tuple{w_1, w_2} \in \mathcal{R}$ bakımından aşağıdakiler geçerli olmalıdır:
+
+\begin{enumerate}
+  \item $w_1 \in V_1(p)$ ancak ve ancak $w_2 \in V_2(p)$ ise; bu, bütün
+  !!{propositional variable}s~$p$ için geçerlidir.
+  \item Bütün $a \in G$ özneleri ve $v_1 \in W_1$ dünyaları için
+  $R_{1_a} w_1 v_1$ ise, bazı $v_2 \in W_2$ bulunup $R_{2_a} w_2 v_2$ ve
+  $\tuple{v_1, v_2} \in \mathcal{R}$ ise.
+  \item Bütün $a \in G$ özneleri ve $v_2 \in W_2$ dünyaları için
+   $R_{2_a} w_2 v_2$ ise, bazı $v_1 \in W_1$ bulunup $R_{1_a} w_1 v_1$ ve
+   $\tuple{v_1, v_2} \in \mathcal{R}$ ise.
+\end{enumerate}
+% [tr source emendation] Upstream uses undeclared agent set `A` in the two
+% forth/back clauses; the chapter declares and consistently uses `G`.
+
+$M_1$ ile $M_2$ arasında $w_1$ ve $w_2$ dünyalarını bağlayan bir bisimülasyon
+bulunduğunda $\tuple{M_1, w_1} \leftrightarroweq \tuple{M_2, w_2}$ de
+yazabilir ve $\tuple{M_1, w_1}$ ile $\tuple{M_2, w_2}$'ye
+\emph{bisimüler} diyebiliriz.
+\end{defn}
+
+Bisimülasyon bağıntısındaki farklı koşullar farklı şeyleri güvenceye alır. 1.
+koşul, bütün !!{propositional variable}s üzerinde uyuşmayı güvenceye aldığı
+için bisimüler dünyaların aynı modal içermeyen formülleri sağlamasını sağlar.
+Sırasıyla ``ileri'' ve ``geri'' koşulları diye anılan diğer iki koşul ise
+erişilebilirlik bağıntılarının aynı yapıya sahip olmasını güvenceye alır.
+
+\begin{thm}
+$\tuple{M_1, w_1} \leftrightarroweq \tuple{M_2, w_2}$ ise her
+!!{formula}~$!A$ için $\mSat{M_1}{!A}[w_1]$ ancak ve ancak
+$\mSat{M_2}{!A}[w_2]$ ise geçerlidir.
+\end{thm}
+
+\begin{figure}
+  \begin{center}
+    \begin{tikzpicture}[modal]
+      \node[world] (w1) {$w_1$}; 
+      \node[world] (w2) [above left=of w1]{$w_2$}; 
+      \node[world] (w3) [above right=of w1] {$w_3$};
+      \draw[<->] (w1) to node {$a$} (w2);
+      \draw[->,loop below] (w1) to node {$a$} (w1);
+      \draw[<->] (w1) to [swap] node {$a$} (w3);
+      \draw[->,loop above] (w2) to node {$a$} (w2) ;
+      \draw[->,loop above] (w3) to node {$a$} (w3) ;
+      
+      \node[world](v1)[right of=w1, xshift=1.5in]{$v_1$};
+      \node[world](v2)[above of=v1]{$v_2$};
+      \draw[<->] (v1) to node {$a$} (v2);
+      \draw[->,loop below] (v1) to node {$a$} (v1);
+      \draw[->,loop above] (v2) to node {$a$} (v2) ;
+
+      \draw[-,dotted] (w1) to (v1) ;
+      \draw[-,dotted,bend left=45] (w2) to (v2) ;
+      \draw[-,dotted,bend left=30] (w3) to (v2) ;
+    \end{tikzpicture}
+  \end{center}
+  \caption{İki bisimüler model.}
+  \ollabel{fig:bisimilar}
+\end{figure}
+
+\olref{fig:bisimilar}'de gösterilen iki model tam olarak aynı olmasa da
+$w_1$ ve~$v_1$ dünyalarını bağlayan bir bisimülasyon vardır. Bu bisimülasyon
+hem $w_2$'yi hem $w_3$'ü de~$v_2$'ye bağlar; bunun ardındaki düşünce, modal
+dilimizde ifade edilebilen hiçbir şeyin onları gerçekten ayıramamasıdır.
+Ancak $w_2$ ile~$w_3$ farklı !!{propositional variable}s{}ni sağlasaydı durum
+farklı olurdu.
+

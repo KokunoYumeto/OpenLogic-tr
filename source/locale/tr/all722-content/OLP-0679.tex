@@ -1,0 +1,184 @@
+% Generated from locale/tr/content/proof-theory/proof-search/completeness.tex; do not hand-edit.
+
+
+\olfileid[tr]{pt}{ps}{cpl}
+
+\olsection{Tamlık}
+
+Şimdi ispat arama algoritmasının şaşmaz olduğunu gösteriyoruz; yani algoritma
+başarısız olarak durur ya da hiç durmazsa başlangıç sekantı~$\Gamma \Sequent
+\Delta$ için !!{proof} yoktur. Bunu yapmak üzere bütün $!A \in \Gamma$
+öğeleri için $\Sat{M}{!A}$ ve bütün~$!A \in \Delta$ öğeleri için
+$\Sat/{M}{!A}$ olacak biçimde !!a{structure}~$\Struct M$ tanımlarız. Başka
+bir deyişle~$\Gamma$ içindeki bütün !!{formula} biçimleri doğru,~$\Delta$ içindeki
+bütün !!{formula} biçimleri ise~$\Struct M$ içinde yanlıştır; dolayısıyla $\Gamma
+\Sequent \Delta$ geçerli değildir. \Log{G3c} sağlam olduğundan $\Gamma
+\Sequent \Delta$ için !!{proof} yoktur.
+
+$\Struct{M}$'yi, !!{formula} biçimlerinden oluşan iki küme~$\Theta$, $\Xi$ ile
+!!{constant} simgelerinden oluşan bir küme~$C$ üzerinden tanımlarız. $\Theta$, $\Xi$ ve~$C$'yi,
+başarısız olmuş (başarısız olarak durmuş ya da hiç sona ermemiş) ispat
+aramasının bir \emph{başarısızlık dalı}ndan elde ederiz. Başarısızlık dalı,
+$\Pi_n \Sequent \Lambda_n$ sekantları ve !!{constant} simgesi kümeleri~$C_n$
+dizisidir; burada $\Pi_0 \Sequent \Lambda_0$, son sekant~$\Gamma \Sequent
+\Delta$'dır ve $\Pi_{n+1} \Sequent \Lambda_{n+1}$, $n+1$.~aşamada $\Pi_n
+\Sequent \Lambda_n$ için üretilen ve algoritmanın !!a{proof} bulamadığı bir
+öncüldür. Aksi hâlde algoritma !!a{proof} bulmuş olacağından her~$n$ için
+böyle bir öncülün var olması gerektiği açıktır. $C_n$,~$\Pi_n \Sequent
+\Lambda_n$ ile ilişkilendirilmiş !!{constant} simgesi kümesi olsun.
+
+Algoritma yalnızca atomik !!{formula} biçimleri içeren bir en üst sekantta başarısız
+olarak durursa o sekantta biten dal bir başarısızlık dalıdır. Algoritma hiç
+sona ermezse gittikçe daha büyük ağaçlar üretmeyi sürdürür. Bunların sonsuz
+bir ağaç büyüttüğünü düşünebilirsiniz (algoritma sonsuz sayıda adım çalışmış
+olsaydı elde edeceğiniz ağaç). Bu ağaç sonsuz, fakat sonlu dallanan bir ağaç
+olurdu (her düğümün yalnızca bir ya da iki çocuğu---hemen üzerindeki
+sekantlar---vardır). K\H{o}nig'in lemması gereği her sonsuz ve sonlu dallanan
+ağacın sonsuz bir dalı vardır. Arama algoritmasının sonsuza dek çalıştığı
+durumda böyle bir sonsuz dal, bir başarısızlık dalı olurdu.
+
+$\Pi_n \Sequent \Lambda_n$ ile $C_n$ dizisi bir başarısızlık dalıysa
+$\Theta = \bigcup_n \Pi_n$ ve $\Xi = \bigcup_n \Lambda_n$ (indisleri ve
+!!{formula} öğelerinin yinelenen oluşumlarını kaldırarak), ayrıca $C =
+\bigcup_n C_n$ olsun.
+
+Artık~$\Struct{M}$'yi tanımlayabiliriz.
+\begin{enumerate}
+\item Evren $\Domain{M}$,~$C$ ile $\Gamma \Sequent \Delta$ içinde bulunan
+!!{function} simgeleri kullanılarak kurulabilen, fakat hiç !!{variable} içermeyen
+terimler kümesidir.
+\item $c \in \Domain{M}$ ise $\Assign{c}{M} = c$.
+\item $f$,~$\Gamma \Sequent \Delta$ içinde geçen $m$-konumlu bir
+!!{function} ve $t_1$, \dots, $t_m \in \Domain{M}$ ise
+$\Assign{f}{M}(t_1, \dots, t_m) = f(t_1, \dots, t_m)$.
+\item $R$,~$\Gamma \Sequent \Delta$ içinde geçen $m$-konumlu bir
+!!{predicate} ise $\Assign{R}{M} = \Setabs{\tuple{t_1, \dots, t_m} \in
+\Domain{M}^m}{R(t_1, \dots, t_m) \in \Theta}$.
+\end{enumerate}
+$\Struct{M}$, evreni bir terimler kümesi olduğu ve !!{constant} ile
+!!{function} simgelerinin $\Value{t}{M} = t$ olmasını güvence altına alacak biçimde
+yorumlandığı için bir \emph{terim modeli}dir. $\Theta$ içindeki atomik
+!!{formula} biçimleri, $\Assign{R}{M}$'yi $\Sat{M}{R(t_1, \dots, t_m)}$ ancak ve
+ancak $R(t_1, \dots, t_m) \in \Theta$ ise geçerli olacak biçimde tanımlamak
+için kullanılır.
+
+\begin{lem}\ollabel{lem:truth}
+Bütün $!A \in \Theta \cup \Xi$ için:
+\begin{enumerate}
+  \item $!A \in \Theta$ ise $\Sat{M}{!A}$.
+  \item $!A \in \Xi$ ise $\Sat/{M}{!A}$.
+\end{enumerate}
+\end{lem}
+
+\begin{proof}
+  $\depth{!A}$ üzerinde tümevarımla.
+
+Önce $!A$'nın atomik olduğunu, yani ya $!A \ident \lfalse$ ya da $!A
+\ident R(t_1, \dots, t_m)$ olduğunu varsayın.
+
+$\Pi_n \Sequent \Lambda_n$ bir başarısızlık dalı olduğundan hiçbir $\Pi_n$
+$\lfalse$ içeremez (aksi hâlde $\Pi_n \Sequent \Lambda_n$ bir aksiyom
+olurdu). $\Struct{M}$ tanımı gereği $\Sat{M}{R(t_1, \dots, t_m)}$ ancak ve
+ancak $R(t_1, \dots, t_m) \in \Theta$ ise geçerlidir. Bunlar birlikte,
+$!A \in \Theta$ ise $\Sat{M}{!A}$ olduğunu gösterir.
+
+$!A$ atomik ve $!A \in \Pi_n$ ise $!A \in \Pi_{n+1}$; $!A \in
+\Lambda_n$ ise $!A \in \Lambda_{n+1}$ olur. (Bu, ispat arama
+algoritmasının ardıl sekantları üretme biçiminden çıkar.) Dolayısıyla $!A
+\in \Theta \cap \Xi$ ise bazı~$n$ için $!A \in \Pi_n \cap \Lambda_n$
+olur. Bu, $\Pi_n \Sequent \Lambda_n$'nin bir aksiyom olduğu anlamına gelir;
+oysa başarısızlık dalı hiç aksiyom içeremez. Böylece atomik~$!A$ için kuruluş
+gereği $!A \notin \Theta \cap \Xi$ olur; bunun sonucu olarak $!A \in \Xi$
+ise $!A \notin \Theta$'dır. $\Struct{M}$ tanımı gereği bu, $!A \in \Xi$
+ise $\Sat/{M}{!A}$ olduğunu gösterir.
+
+Tümevarım adımı için (1) ve (2)'nin bütün !!{formula} biçimleri için,
+bu biçimler $!A$'dan daha düşük !!{depth} taşıdığında geçerli olduğunu
+varsayın. Durumları ayırarak (1) ve
+(2)'yi~$!A$ için kanıtlarız.
+
+$!A^i$,~$\Pi_n \Sequent \Lambda_n$ içinde geçtiğinde $i$,~$\Pi_n \Sequent
+\Lambda_n$ içindeki en küçük indis olmadığı sürece $!A^i$'nin~$\Pi_{n+1}
+\Sequent \Lambda_{n+1}$ içinde de geçtiğine önce dikkat edin. Her aşamada
+eklenen en üst sekantlarda en küçük indis büyüdüğünden, sonunda $!A^i$'nin
+geçtiği ve $i$'nin en küçük indis olduğu bir $\Pi_n \Sequent \Lambda_n$
+sekantına ulaşırız. Algoritma $n+1$.~aşamada~$!A^i$'yi indirger. Başka bir
+deyişle $!A \in \Theta$ ise bazı $n$ için $\Pi_n = \Pi_n', !A^i$ ve $i$ en
+küçük indistir. $!A \in \Xi$ ise bazı $n$ için $\Lambda_n = \Lambda_n',
+!A^i$ ve~$i$ en küçük indistir.
+
+\begin{enumerate}
+  \item $!A \in \Theta$ ve $!A \ident !B \land !C$. O zaman bazı $n$ için
+  $\Pi_n = \Pi_n', (!B \land !C)^i$. $\Pi_{n+1} \Sequent \Lambda_{n+1}$,
+  \LeftR{\land} kuralının karşılık gelen öncülüdür; yani $\Pi_{n+1} =
+  \Pi_n', !B^{k+1}, !C^{k+2}$. Dolayısıyla $!B, !C \in \Theta$.
+  Tümevarım varsayımı gereği $\Sat{M}{!B}$ ve $\Sat{M}{!C}$. $\Sat{M}{}$
+  tanımı gereği $\Sat{M}{!B \land !C}$ elde edilir.
+
+  \item $!A \in \Xi$ ve $!A \ident !B \land !C$. O zaman bazı $n$ için
+  $\Lambda_n = \Lambda_n', (!B \land !C)^i$. $\Pi_{n+1} \Sequent
+  \Lambda_{n+1}$, sonucu $\Pi_n \Sequent \Lambda'_n, (!B \land !C)^i$ olan
+  \RightR{\land} kuralının iki öncülünden biridir; yani $\Lambda_{n+1} =
+  \Lambda_n', !B^{k+1}$ ya da $\Lambda_{n+1} = \Lambda_n', !C^{k+1}$.
+  Dolayısıyla ya $!B \in \Xi$ ya da $!C \in \Xi$. Tümevarım varsayımı
+  gereği ya $\Sat/{M}{!B}$ ya da $\Sat/{M}{!C}$. $\Sat{M}{}$ tanımı gereği
+  $\Sat/{M}{!B \land !C}$ elde edilir.
+
+  \item $!A \ident \lnot !B$, $!A \ident !B \lor !C$ ve $!A \ident !B
+  \lif !C$ durumları benzerdir ve alıştırma olarak bırakılmıştır.
+
+  \item $!A \in \Theta$ ve $!A \ident \lexists[x][!B(x)]$. O zaman bazı
+  $n$ için $\Pi_n = \Pi_n', \lexists[x][!B(x)]^i$. $\Pi_{n+1} \Sequent
+  \Lambda_{n+1}$, \LeftR{\lexists} kuralının karşılık gelen öncülüdür;
+  yani bazı~$c$ için $\Pi_{n+1} = \Pi_n', !B(c)^{k+1}$. Dolayısıyla
+  $!B(c) \in \Theta$ ve~$c \in C$. Tümevarım varsayımı gereği
+  $\Sat{M}{!B(c)}$. $\Sat{M}{}$ tanımı gereği
+  $\Sat{M}{\lexists[x][!B(x)]}$ elde edilir.
+
+  \item $!A \in \Xi$ ve $!A \ident \lexists[x][!B(x)]$. O zaman bazı $n$
+  için $\Lambda_n = \Lambda_n', \lexists[x][!B(x)]^i$. $\lexists[x][!B(x)]$
+  her indirgendiğinde yeni bir indisle öncül sekantının sağında kaldığından,
+  bir başarısızlık dalında sağda geçiyorsa sağ tarafta sonsuz kez indirgenir.
+  Her $t \in \Domain{M}$ sonunda bir başarısızlık dalında ``yalnızca~$C_n$
+  içindeki sabitleri içeren ve $\lexists[x][!B(x)]$ sağda indirgenirken daha
+  önce kullanılmamış ilk terim'' olur. Dolayısıyla bütün $t \in \Domain{M}$
+  için bazı~$n$ bakımından $!B(t) \in \Lambda_n$ ve sonuç olarak $!B(t) \in
+  \Xi$ olur. Tümevarım varsayımı gereği bütün $t \in \Domain{M}$ için
+  $\Sat/{M}{!B(t)}$. $\Sat{M}{}$ tanımı gereği
+  $\Sat/{M}{\lexists[x][!B(x)]}$ elde edilir.
+
+  \item $!A \ident \lforall[x][!B(x)]$ durumları benzerdir ve alıştırma
+  olarak bırakılmıştır.
+\end{enumerate}
+\end{proof}
+
+\begin{cor}\ollabel{cor:complete} \Log{G3c} için ispat arama algoritması
+tamdır: Başarısız olarak durur ya da hiç sona ermezse başlangıç
+sekantı~$\Gamma \Sequent \Delta$ geçerli değildir ve dolayısıyla !!{proof}
+yoktur.
+\end{cor}
+
+\begin{proof}
+  Algoritma başarısız olarak durur ya da hiç sona ermezse, üzerinden
+  $\Struct{M}$ tanımlanabilen bir başarısızlık dalı vardır. \olref{lem:truth}
+  gereği bütün $!A \in \Gamma$ için $\Sat{M}{!A}$ ve bütün $!A \in \Delta$
+  için $\Sat/{M}{!A}$. ($\Pi_0 = \Gamma$ ve $\Lambda_0 = \Delta$ olduğunu,
+  dolayısıyla $\Gamma \subseteq \Theta$ ile $\Delta \subseteq \Xi$ olduğunu
+  hatırlayın.) Öyleyse $\Gamma \Sequent \Delta$ geçerli değildir.
+  \Log{G3c}'nin sağlamlığı gereği $\Gamma \Sequent \Delta$ için !!{proof}
+  yoktur.
+\end{proof}
+
+\begin{cor}
+$\Gamma \Sequent \Delta$ geçerliyse $\Log{G3c} \Proves \Gamma \Sequent
+\Delta$ olduğundan \Log{G3c} tamdır.
+\end{cor}
+
+\begin{proof}
+  Karşıt tersini kanıtlarız. $\Log{G3c} \Proves/ \Gamma \Sequent \Delta$
+  olduğunu varsayın. Bulunacak !!{proof} olmadığından ispat arama algoritması
+  başarısız olarak durmalı ya da hiç sona ermemelidir. \olref{cor:complete}
+  gereği $\Gamma \Sequent \Delta$ geçerli değildir.
+\end{proof}
+
+

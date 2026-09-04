@@ -1,0 +1,127 @@
+% Generated from locale/tr/content/model-theory/basics/isomorphism.tex; do not hand-edit.
+
+
+\olfileid[tr]{mod}{bas}{iso}
+\olsection{İzomorf Yapılar}
+
+Birinci dereceden !!{structure}s iki biçimde birbirine benzeyebilir.
+Birincisi, aynı !!{sentence}s ifadelerini doğru kılmalarıdır. Böyle
+!!{structure}s ifadelerine \emph{elementer eşdeğer} deriz. Ancak yapılar
+çok farklı oldukları halde aynı !!{sentence}s ifadelerini doğru
+kılabilir; örneğin biri !!{enumerable} iken öteki olmayabilir. Bunun
+nedeni, dilin yeterince zengin olmaması ya da Löwenheim--Skolem teoremi
+gibi birinci dereceden mantığın temel sınırlamaları yüzünden
+!!a{structure} ifadesinin birçok özelliğinin birinci dereceden dillerde
+ifade edilememesidir. Dolayısıyla !!{structure}s ifadelerinin
+benzeyebileceği daha katı bir anlam da, onları oluşturan nesneler
+dışında yapısal özellikleri bakımından farklılık göstermemeleri; yani
+özünde aynı olmalarıdır. Bunu kesinleştirmenin bir yolu
+\emph{izomorfizma} kavramıdır.
+
+\begin{defn}
+\ollabel{defn:elem-equiv}
+Aynı !!{language}~$\Lang L$ için iki !!{structure}s~$\Struct M$ ve
+$\Struct M'$ verilsin. $\Lang L$ dilinin her !!{sentence}~$!A$ ifadesi
+için $\Sat{M}{!A}$ ancak ve ancak $\Sat{M'}{!A}$ ise $\Struct M$
+yapısının $\Struct M'$ yapısına \emph{elementer eşdeğer} olduğunu
+söyler ve $\Struct M\equiv\Struct M'$ yazarız.
+\end{defn}
+
+\begin{defn}
+\ollabel{defn:isomorphism}
+Aynı !!{language}~$\Lang L$ için iki !!{structure}s~$\Struct M$ ve
+$\Struct M'$ verilsin. Aşağıdaki koşulları sağlayan bir
+$h\colon\Domain M\to\Domain{M'}$ fonksiyonu varsa ve ancak varsa
+$\Struct M$ yapısının $\Struct M'$ yapısına \emph{izomorf} olduğunu
+söyler ve $\Struct M\simeq\Struct M'$ yazarız:
+\begin{enumerate}
+\item $h$ !!{injective}: $h(x)=h(y)$ ise $x=y$;
+\item $h$ !!{surjective}: Her $y\in\Domain{M'}$ için $h(x)=y$ olacak
+  bir $x\in\Domain M$ vardır;
+\item \ollabel{defn:iso-const}her !!{constant}~$c$ için
+  $h(\Assign{c}{M})=\Assign{c}{M'}$;
+\item \ollabel{defn:iso-pred}her $n$ yerli !!{predicate}~$P$ için
+  \[
+  \tuple{a_1, \dots, a_n}\in \Assign{P}{M} \quad\text{ancak ve ancak}\quad
+  \tuple{h(a_1), \dots, h(a_n)} \in \Assign{P}{M'};
+  \]
+\item \ollabel{defn:iso-func}her $n$ yerli !!{function}~$f$ için
+  \[
+  h(\Assign{f}{M}(a_1, \dots, a_n)) =
+  \Assign{f}{M'}(h(a_1), \dots, h(a_n)).
+  \]
+\end{enumerate}
+\end{defn}
+
+\begin{thm}
+\ollabel{thm:isom}
+$\Struct M\iso\Struct M'$ ise $\Struct M\elemequiv\Struct{M'}$.
+\end{thm}
+
+\begin{proof}
+$h$, $\Struct M$ yapısından $\Struct M'$ yapısına bir izomorfizma
+olsun. Her atama~$s$ için $h\circ s$, $h$ ile $s$'nin bileşkesidir;
+yani $\Struct M'$ içindeki $(h\circ s)(x)=h(s(x))$ atamasıdır. $t$ ve
+$!A$ üzerinde tümevarımla şu daha güçlü savlar ispatlanabilir:
+\begin{enumerate}
+  \item[a.] $h(\Value{t}{M}[s]) = \Value{t}{M'}[h\circ s]$.
+  \item[b.] $\Sat{M}{!A}[s]$ ancak ve ancak
+    $\Sat{M'}{!A}[h\circ s]$.
+\end{enumerate}
+Birinci sav $t$'nin karmaşıklığı üzerinde tümevarımla ispatlanır.
+\begin{enumerate}
+\item $t\ident c$ ise $\Value{c}{M}[s]=\Assign{c}{M}$ ve
+  $\Value{c}{M'}[h\circ s]=\Assign{c}{M'}$. Dolayısıyla
+  $h(\Value{t}{M}[s])=h(\Assign{c}{M})=\Assign{c}{M'}$
+  (\olref{defn:isomorphism} tanımındaki \olref{defn:iso-const}
+  gereği) $=\Value{t}{M'}[h\circ s]$.
+\item $t\ident x$ ise $\Value{x}{M}[s]=s(x)$ ve
+  $\Value{x}{M'}[h\circ s]=h(s(x))$. Dolayısıyla
+  $h(\Value{x}{M}[s])=h(s(x))=\Value{x}{M'}[h\circ s]$.
+\item $t\ident f(t_1,\dots,t_n)$ ise
+  \begin{align*}
+    \Value{t}{M}[s] & = \Assign{f}{M}(\Value{t_1}{M}[s], \dots, \Value{t_n}{M}[s])
+      \quad\text{ve}\\
+  \Value{t}{M'}[h \circ s] & = \Assign{f}{M'}(\Value{t_1}{M'}[h \circ
+    s], \dots, \Value{t_n}{M'}[h \circ s]).
+  \end{align*}
+  Tümevarım varsayımına göre her $i$ için
+  $h(\Value{t_i}{M}[s])=\Value{t_i}{M'}[h\circ s]$. Öyleyse
+  \begin{align}
+    h(\Value{t}{M}[s])
+    & = h(\Assign{f}{M}(\Value{t_1}{M}[s], \dots, \Value{t_n}{M}[s])) \notag\\
+    & = \Assign{f}{M'}(h(\Value{t_1}{M}[s]), \dots,
+    h(\Value{t_n}{M}[s])) \ollabel{iso-1}\\
+    & = \Assign{f}{M'}(\Value{t_1}{M'}[h \circ s], \dots,
+    \Value{t_n}{M'}[h \circ s]) \ollabel{iso-2}\\
+    & = \Value{t}{M'}[h\circ s]. \notag
+  \end{align}
+  Burada \olref{iso-1}, \olref{defn:isomorphism} tanımındaki
+  \olref{defn:iso-func} koşulundan; \olref{iso-2} ise tümevarım
+  varsayımından çıkar.
+\end{enumerate}
+(b) kısmı alıştırma olarak bırakılmıştır.
+
+$!A$ bir tümceyse $s$ ve $h\circ s$ atamalarının önemi yoktur;
+$\Sat{M}{!A}$ ancak ve ancak $\Sat{M'}{!A}$ elde ederiz.
+\end{proof}
+
+\begin{prob}
+\olref[mod][bas][iso]{thm:isom} teoreminin (b) kısmını ayrıntılı olarak
+ispatlayın. \olref[mod][bas][iso]{defn:isomorphism} tanımında
+izomorfizmaları niteleyen beş özelliğin her birinin nerede
+kullanıldığını belirtin.
+\end{prob}
+
+\begin{defn}
+Bir $\Struct M$ yapısının \emph{otomorfizması}, $\Struct M$ yapısından
+kendisine bir izomorfizmadır.
+\end{defn}
+
+\begin{prob}
+Herhangi bir $\Struct M$ yapısı için $X$, $\Struct M$ içinde
+tanımlanabilir bir alt küme ve $h$, $\Struct M$ yapısının bir
+otomorfizmasıysa $X=\Setabs{h(x)}{x\in X}$ olduğunu (yani $X$'in $h$
+altında değişmez kaldığını) gösterin.
+\end{prob}
+

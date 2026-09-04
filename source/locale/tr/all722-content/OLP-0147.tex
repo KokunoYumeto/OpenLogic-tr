@@ -1,0 +1,66 @@
+% Generated from locale/tr/content/first-order-logic/introduction/models-theories.tex; do not hand-edit.
+
+
+\olfileid[tr]{fol}{int}{mod}
+
+\olsection{Modeller ve Kuramlar}
+
+Birinci dereceden mantığın sözdizimini ve semantiğini tanımladıktan
+sonra !!{structure}s ifadelerinin ve semantik kavramların özelliklerini
+incelemeye başlayabiliriz. Ayrıca !!{derivation} sistemlerini tanımlayıp
+inceleyebiliriz. Bir !!{sentence}s kümesi için şunu sorabiliriz: Bu
+kümedeki bütün !!{sentence}s ifadelerini hangi !!{structure}s doğru
+kılar? Bir !!{sentence}s kümesi~$\Gamma$ verildiğinde bunları sağlayan
+!!a{structure}~$\Struct M$,~\emph{$\Gamma$'nın modeli} olarak
+adlandırılır. $\Gamma$ ile başlayıp modellerini bulmaya çalışabiliriz:
+Bunlar neye benzer? Ne kadar büyük ya da küçük olmaları gerekir? Fakat
+tek bir !!{structure} ya da bir !!{structure}s topluluğuyla başlayıp
+hangi !!{sentence}s ifadelerinin bunlarda doğru olduğunu da sorabiliriz.
+Bu !!{structure}s ifadelerini, tam olarak bunlarda doğru olan tümceler
+olmaları anlamında \emph{karakterize eden} !!{sentence}s var mıdır?
+Bu tür sorular \emph{model kuramının} alanına girer. Aynı zamanda
+\emph{aksiyomatik yöntemin} de temelini oluştururlar: Bir
+!!{structure}s topluluğunu bir kuramın aksiyomları olan bir
+!!{sentence}s kümesiyle betimlemek. Bunu mümkün kılan gözlem, tam
+olarak aksiyomların birinci dereceden mantıkta mantıksal olarak
+gerektirdiği !!{sentence}s ifadelerinin aksiyomların bütün modellerinde
+doğru olmasıdır.
+
+Çok basit bir örnek olarak önsıralamaları ele alalım. Bir önsıralama,
+bir~$A$ kümesi üzerinde hem yansımalı hem de geçişli olan~$R$
+bağıntısıdır. Üzerinde iki-li $R\subseteq A\times A$ bağıntısı bulunan
+bir~$A$ kümesi, tek bir iki-li bağıntı simgesi~$\Obj P$ içeren birinci
+dereceden dil için !!a{structure} vermek üzere tam olarak gereken
+şeydir: $\Domain M=A$ ve $\Assign{\Obj P}M=R$ koyarız. $R$ bir
+önsıralama olduğundan yansımalı ve geçişlidir; bunu söyleyen birinci
+dereceden mantık !!{sentence}s kümesi~$\Gamma$ bulabiliriz:
+\begin{align*}
+  & \lforall[\Obj v_0][\Atom{\Obj P}{\Obj v_0,\Obj v_0}]\\
+  & \lforall[\Obj v_0][\lforall[\Obj v_1][\lforall[\Obj v_2][((\Atom{\Obj P}{\Obj v_0,\Obj v_1} \land \Atom{\Obj P}{\Obj v_1,\Obj v_2}) \lif \Atom{\Obj P}{\Obj v_0,\Obj v_2})]]].
+\end{align*}
+Bu !!{sentence}s ifadeleri, ``her~$x$ için $Rxx$'' ($R$ yansımalıdır)
+ve ``$Rxy$ ile $Ryz$ olduğunda $Rxz$ de olur'' ($R$ geçişlidir)
+tümcelerinin simgeleştirmeleridir. !!a{structure}~$\Struct M$ yapısının
+bu iki !!{sentence}s kümesi~$\Gamma$'nın bir modeli olması, ancak ve
+ancak $R$'nin (yani $\Assign{\Obj P}M$'nin)~$A$ (yani $\Domain M$)
+üzerinde bir önsıralama olmasıyla denktir. Başka bir deyişle
+$\Gamma$'nın modelleri tam olarak önsıralamalardır. Yalnızca~$\Obj P$
+!!{predicate} simgesini içeren birinci dereceden dilde ifade edilebilen
+bütün önsıralama özellikleri (yukarıdaki yansımalılık ve geçişlilik
+gibi)~$\Gamma$ içindeki iki !!{sentence}s tarafından mantıksal olarak
+gerektirilir; tersi de geçerlidir. Dolayısıyla~$\Gamma$'nın modelleri
+hakkında ispatladığımız her şeyi bütün önsıralamalar hakkında da
+ispatlamış oluruz.
+
+Her belirli kuram ve model sınıfı için (örneğin~$\Gamma$ ve bütün
+önsıralamalar), karşılık gelen birinci dereceden dilde neyin ifade
+edilip neyin edilemeyeceğine dair ilginç sorular vardır. Bütün diller
+ve model sınıfları için ilginç olan bazı !!{structure}s özellikleri de
+vardır; bunlar !!{domain} boyutuyla ilgilidir. Örneğin herhangi bir
+$n\in\PosInt$ için !!{domain} içinde tam olarak $n$ tane !!{element}s
+bulunduğu her zaman ifade edilebilir. Sonsuz sayıda !!{sentence}s
+kullanarak !!{domain} ifadesinin sonsuz olduğu da ifade edilebilir.
+Fakat evrenin sonlu ya da !!{nonenumerable} olduğu ifade edilemez.
+Birinci dereceden dillerin bu sınırlılıkları hakkındaki sonuçlar,
+tıkızlık ve Löwenheim--Skolem teoremlerinin sonuçlarıdır.
+

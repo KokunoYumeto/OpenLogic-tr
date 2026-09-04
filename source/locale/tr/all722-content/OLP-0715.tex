@@ -1,0 +1,26 @@
+% Generated from locale/tr/content/propositional-logic/syntax-and-semantics/soundness.tex; do not hand-edit.
+
+
+\olfileid[tr]{pl}{prp}{snd}
+
+\olsection{Önerme Mantığının Sağlamlığı}
+
+\begin{thm}[Sağlamlık]
+\ollabel{thm:soundness}
+$\Gamma\Proves!A$ ise $\Gamma \Entails !A$ olur.
+\end{thm}
+
+\begin{proof}
+Teoremler üzerinde tümevarımla. $!A$ bir aksiyomsa $\Entails
+!A$ ve dolayısıyla $\Gamma \Entails!A$ olur. Benzer biçimde
+$!A \in \Gamma$ ise $\Gamma \Entails!A$ olur. Tümevarım adımı için $!A$'nın,
+$!C$ ve $!C\lif!A$'dan \emph{modus ponens} ile elde edildiğini varsayın;
+ayrıca tümevarım varsayımı olarak teoremin $!C\lif !A$ ve $!C$ için geçerli
+olduğunu kabul edin. \olref[pl][syn][sem]{prop:semanticalfacts} önermesinin üçüncü
+maddesi istenen sonucu verir.
+\end{proof}
+
+\begin{cor}
+$\Gamma$ sağlanabilirse tutarlıdır. Dolayısıyla önerme mantığı tutarlıdır.
+\end{cor}
+

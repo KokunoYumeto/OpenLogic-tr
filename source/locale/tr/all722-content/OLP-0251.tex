@@ -1,0 +1,48 @@
+% Generated from locale/tr/content/computability/computability-theory/def-functions-self-reference.tex; do not hand-edit.
+
+
+\olfileid[tr]{cmp}{thy}{slf}
+\olsection{Fonksiyonların Kendine Göndermeyle Tanımlanması}
+
+Fonksiyonları kendileri cinsinden tanımlayabilmek genel olarak yararlıdır.
+Örneğin hesaplanabilir $k$, $l$ ve $m$ fonksiyonları verildiğinde sabit nokta
+lemması, her $y$ için
+\[
+  f(y)\simeq\begin{cases}
+    k(y) & \text{$l(y)=0$ ise}\\
+    f(m(y)) & \text{aksi durumda}
+  \end{cases}
+\]
+denklemini sağlayan kısmi hesaplanabilir bir $f$ fonksiyonunun bulunduğunu
+söyler. Daha açık olarak $f$,
+\[
+  g(x,y)\simeq\begin{cases}
+    k(y) & \text{$l(y)=0$ ise}\\
+    \cfind{x}(m(y)) & \text{aksi durumda}
+  \end{cases}
+\]
+fonksiyonu alınarak ve ardından sabit nokta lemmasıyla
+$\cfind{e}(y)=g(e,y)$ olacak bir $e$ indisi bulunarak elde edilir.
+
+Somut bir örnek olarak ``en büyük ortak bölen'' fonksiyonu
+$\fn{gcd}(u,v)$
+\[
+  \fn{gcd}(u,v)\simeq\begin{cases}
+    v & \text{$u=0$ ise}\\
+    \fn{gcd}(\fn{mod}(v,u),u) & \text{aksi durumda}
+  \end{cases}
+\]
+ile tanımlanabilir; burada $\fn{mod}(v,u)$, $v$'nin $u$'ya bölümünden kalanı
+gösterir. Sabit nokta lemmasına başvurmak $\fn{gcd}$ fonksiyonunun kısmi
+hesaplanabilir olduğunu gösterir. Aslında $y$'nin $\tuple{u,v}$ çiftini
+kodlaması sağlanarak bu yukarıdaki biçime getirilebilir. Ardından $u$
+üzerinde bir tümevarım, $\fn{gcd}$ fonksiyonunun gerçekte tümel olduğunu
+gösterir.
+
+Elbette kendine göndermeli tanımların, az önce tartışılan örneklerden çok daha
+gösterişli olanları kurulabilir. Programlama dillerinin çoğu fonksiyonların
+bir biçimde kendileri cinsinden tanımlanmasını destekler. Bunun, sabit nokta
+teoreminin tam genelliği içinde yapmamızı sağladığı gibi bir fonksiyonu,
+fonksiyonu hesaplayan algoritmanın bir \emph{indisi} cinsinden tanımlamaktan
+biraz daha az çarpıcı olduğuna dikkat edin.
+

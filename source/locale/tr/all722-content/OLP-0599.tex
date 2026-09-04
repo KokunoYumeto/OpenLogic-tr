@@ -1,0 +1,79 @@
+% Generated from locale/tr/content/set-theory/choice/banach.tex; do not hand-edit.
+
+
+\olfileid[tr]{sth}{choice}{banach}
+\olsection{Banach--Tarski Paradoksu}
+
+Boolos'un Yerine Koyma'yı gerekçelendirmeye çalıştığı gibi biz de
+\emph{dışsal} değerlendirmelere başvurarak Seçim'i gerekçelendirmeyi
+deneyebiliriz (bkz. \olref[replacement][extrinsic]{sec}). Sonuçta Seçim'i
+benimsemenin birçok istenir sonucu vardır: her kardinal sayıyı
+karşılaştırabilmek, her kümeyi iyi sıralayabilmek, kardinal sayıları belirli
+bir sıra sayısı türü olarak ele alabilmek vb.
+
+Fakat bazen Seçim'in \emph{istenmeyen} sonuçları olduğu öne sürülür.
+Bu çoğunlukla \cite{BanachTarski1924} sonucundan kaynaklanır.
+
+\begin{thm}[Banach--Tarski Paradoksu ($\ZFC$ içinde)]
+Her top sonlu sayıda parçaya ayrılabilir ve bu parçalar (döndürme ve
+öteleme yoluyla) yeniden bir araya getirilerek o topun iki kopyası
+oluşturulabilir.
+\end{thm}
+\noindent
+İlk bakışta bu oldukça şaşırtıcıdır. İki topun hacmi açıkça özgün topun
+hacminin \emph{iki katıdır}. Fakat rijit hareketler---döndürme ve
+öteleme---hacmi değiştirmez. Dolayısıyla Banach--Tarski yoktan yeni madde
+var edebilmemize izin veriyor görünür.
+
+Durum daha da kötüleşir.\footnote{Bkz.
+\citet[Theorem 3.12]{Wagon2016}.} Benzer bir uslamlama, bir bezelyenin sonlu
+sayıda parçaya ayrılabileceğini ve bu parçaların (döndürme ve öteleme
+yoluyla) yeniden bir araya getirilerek Big Ben biçiminde ve büyüklüğünde
+bir varlık oluşturulabileceğini gösterir.
+
+Ne var ki bunların hiçbiri tek başına $\ZF$ içinde geçerli değildir.
+\footnote{Banach--Tarski, Seçim'den kesinlikle daha zayıf ilkelerle de
+ispatlanabilir; bkz. \citet[303]{Wagon2016}.} Öyleyse bir kararla karşı
+karşıyayız: Seçim'i reddetmek ya da ``paradoks''la yaşamayı öğrenmek.
+
+``Paradoks''la yaşamayı öğrenmemiz gerektiğini öne süreceğiz. Gerçekten
+bunun büyük bir paradoks olduğunu düşünmüyoruz. Özellikle aşağıdaki
+sonuçların herhangi birinden niçin daha fazla ya da daha az paradoksal
+olduğunu göremiyoruz:\footnote{\citet[276--7]{Potter2004},
+\citet[16]{Weston2003} ve \citet[31, 308--9]{Wagon2016} başka örnekler
+kullanarak benzer noktalar ileri sürer.}
+\begin{enumerate}
+	\item $(0,1)$ aralığında $\Real$'deki kadar nokta vardır.
+	\\\emph{İspat}: $\tan(\pi(r-\nicefrac{1}{2}))$ fonksiyonunu ele alın.
+	\item Bir doğru üzerinde bir karedeki kadar nokta vardır.
+	\\Bkz. \olref[his][set][pathology]{sec} ve
+	\olref[his][set][cantorplane]{sec}.
+	\item Düzlem dolduran eğriler vardır.
+	\\Bkz. \olref[his][set][pathology]{sec} ve
+	\olref[his][set][hilbertcurve]{sec}.
+\end{enumerate}
+Bu üç sonucun hiçbiri Seçim'i gerektirmez. Gerçekten artık bunları yalnızca
+şaşırtıcı ve güzel matematik parçaları olarak görüyoruz. Belki
+Banach--Tarski Paradoksu'na karşı da aynı tutumu benimsemeliyiz.
+
+Kuşkusuz burada teknik bir gözlem gerekir; fakat bu yalnızca soğukkanlı
+olmayı gerektirir. Rijit hareketler hacmi korur. Dolayısıyla topun ayrıldığı
+beş\footnote{Paradoksu ``sonlu sayıda parça'' cinsinden ifade ettik.
+Gerçekte \citet{Robinson1947}, ayrıştırmanın \emph{beş} parçayla (fakat
+daha azıyla değil) yapılabileceğini ispatladı. Bir ispat için bkz.
+\citet[pp.~66--7]{Wagon2016}.} parçanın hepsi \emph{ölçülebilir} olamaz.
+Kabaca söylersek bu ayrı ayrı parçalara bir hacim atamak anlamsızdır.
+Bunları gözde canlandırılamayan, noktaların ``sonsuz saçılımları'' olarak
+düşünmelisiniz. Böyle ``sonsuz saçılmış'' kümeleri tasarlamak belki
+``tuhaf''tır. Fakat varlıkları, önceden kullanılabilir kümelerin
+\emph{bütün olanaklı} koleksiyonlarını oluşturmamızı söyleyen ve
+\stagesacc{} içinde somutlaşan buyruktan çıkıyor görünür.
+
+Bunların hiçbiri ikna edici gelmediyse Banach--Tarski Paradoksu'nu
+benimsemek lehine son bir (dışsal) sav şudur: bütün zamanların en iyi
+matematik şakasını doğrudan gerektirir:
+\begin{enumerate}
+	\item[] \emph{Soru}. ``Banach--Tarski''nin bir anagramı nedir?
+	\item[] \emph{Yanıt}. ``Banach--Tarski Banach--Tarski''.
+\end{enumerate}
+

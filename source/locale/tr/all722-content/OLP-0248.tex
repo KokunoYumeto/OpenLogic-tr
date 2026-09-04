@@ -1,0 +1,114 @@
+% Generated from locale/tr/content/computability/computability-theory/rice-theorem.tex; do not hand-edit.
+
+
+\olfileid[tr]{cmp}{thy}{rce}
+\olsection{Rice Teoremi}
+
+Düşündüğünüzde $\fn{Tot}$'un özel ayrıntılarının
+\olref[tot]{prop:total} ispatında rol oynamadığını görürsünüz. $h(x,y)$
+fonksiyonunu tam olarak $x\in K$ olduğunda sabit $j(y)=0$ fonksiyonu gibi
+davranacak biçimde tasarladık; fakat o koşullarda herhangi başka bir kısmi
+hesaplanabilir fonksiyon gibi davranmasını da sağlayabilirdik. Bu gözlem,
+kabaca hesaplanabilir fonksiyonların önemsiz olmayan hiçbir özelliğinin karar
+verilebilir olmadığını söyleyen daha genel bir teorem kurmamızı sağlar.
+
+$\cfind{0},\cfind{1},\cfind{2},\dots$ dizisinin kısmi hesaplanabilir
+fonksiyonlar için standart numaralandırmamız olduğunu unutmayın.
+
+\begin{thm}[Rice Teoremi]
+  $C$, kısmi hesaplanabilir fonksiyonların herhangi bir kümesi ve
+  $A=\Setabs{n}{\cfind{n}\in C}$ olsun. $A$ hesaplanabilirse ya $C$ boştur
+  ya da $C$, bütün kısmi hesaplanabilir fonksiyonların kümesidir.
+\end{thm}
+
+Bir \emph{indis kümesi}, aynı fonksiyonu ``hesaplayan'' $n$ ile $m$
+indislerinin ya ikisini birden içeren ya da ikisini de içermeyen bir $A$
+kümesidir. Teoremdeki $A$'nın bu özelliği taşıdığını görmek zor değildir.
+Tersine $A$ bir indis kümesi ve $C$ bu indislerin hesapladığı fonksiyonlar
+kümesiyse $A=\Setabs{n}{\cfind{n}\in C}$ olur.
+
+\begin{explain}
+Bu terminolojiyle Rice teoremi, önemsiz olmayan hiçbir indis kümesinin karar
+verilebilir olmadığını söyler. Teoremi anlamak için \emph{programlar}, örneğin
+sevdiğiniz programlama dilindeki programlar ile bunların hesapladığı
+fonksiyonlar arasındaki ayrımı vurgulamak yararlıdır. Sözdizimsel nesneler
+olan programlar, yani indisler hakkında hesaplanabilir sorular elbette
+vardır: Bu programda $150$'den fazla simge var mı? $22$'den fazla satır var
+mı? Bir ``while'' deyimi var mı? ``hello world'' dizisi bir ``print''
+deyiminin argümanı olarak geçiyor mu? Rice teoremi, programın
+\emph{davranışı} hakkındaki önemsiz olmayan hiçbir sorunun hesaplanabilir
+olmadığını söyler. Şunlar bu tür sorulardır: Program $0$ girdisinde duruyor
+mu? Hiç duruyor mu? Hiç çift sayı çıktı olarak veriyor mu?
+\end{explain}
+
+\begin{proof}[Rice teoreminin ispatı]
+$C$ ne boş ne de bütün kısmi hesaplanabilir fonksiyonların kümesi olsun ve
+$A$, $C$ içindeki fonksiyonların indisleri kümesi olsun. $A$ hesaplanabilir
+olsaydı durma problemini çözebileceğimizi göstereceğiz; böylece $A$
+hesaplanabilir değildir.
+
+Genelliği kaybetmeden hiçbir yerde tanımlı olmayan $f$ fonksiyonunun $C$
+içinde olmadığını varsayabiliriz; aksi durumda aşağıdaki savda $C$ ile
+tümleyeninin yerlerini değiştiririz. $g$, $C$ içindeki herhangi bir fonksiyon
+olsun. Düşünce şudur: $A$'ya karar verebilseydik $f$'yi hesaplayan indislerle
+$g$'yi hesaplayan indisleri ayırt edebilir ve bu yetiyi durma problemini
+çözmek için kullanabilirdik.
+
+Şöyle yaparız. Evrensel kısmi hesaplanabilir fonksiyonları kullanarak
+\[
+  h(x,y)\simeq\begin{cases}
+    \text{tanımsız} & \text{$\cfind{x}(x)\fundefined$ ise}\\
+    g(y) & \text{aksi durumda}
+  \end{cases}
+\]
+fonksiyonunu tanımlayabiliriz. $h$'yi hesaplamak için önce
+$\cfind{x}(x)$ değerini hesaplamayı deneriz. Bu hesap durursa $g(y)$
+hesabına geçer, \emph{o} hesap da durursa çıktıyı döndürürüz. Daha biçimsel
+olarak
+\[
+  h(x,y)\simeq\Proj{2}{0}(g(y),\fn{Un}(x,x))
+\]
+yazabiliriz; burada $\Proj{2}{0}(z_0,z_1)=z_0$, hesaplanabilir olan ve
+$0$. argümanı döndüren iki yerli izdüşüm fonksiyonudur.
+
+$h$ kısmi hesaplanabilir fonksiyonların bir bileşkesidir ve sağ taraf tam
+olarak $\fn{Un}(x,x)$ ile $g(y)$ değerlerinin ikisi de tanımlı olduğunda
+tanımlı ve $g(y)$'ye eşittir.
+
+Sabit bir $x$ için $\cfind{x}(x)$ tanımsızsa $h(x,y)$ her $y$ için
+tanımsızdır; $\cfind{x}(x)$ tanımlıysa $h(x,y)\simeq g(y)$ olur. Böylece
+her sabit $x$ değerinde $h(x,y)$ ya $f$ ya da $g$ gibi davranır ve
+$\cfind{x}(x)$'in tanımlı olup olmadığına karar vermek bu iki durumdan
+hangisinin geçerli olduğuna karar vermektir. Fakat bu, $h_x(y)\simeq h(x,y)$
+fonksiyonunun $C$ içinde olup olmadığına karar vermektir; $A$
+hesaplanabilir olsaydı bunu yapabilirdik.
+
+Daha biçimsel olarak $h$ kısmi hesaplanabilir olduğundan bazı $e$ indisi için
+$\cfind{e}$ fonksiyonuna eşittir. $s$-$m$-$n$ teoremi uyarınca her $x$ için
+$\cfind{s(e,x)}(y)=h_x(y)$ olacak ilkel özyinelemeli bir $s$ fonksiyonu
+vardır. Artık her $x$ için $\cfind{x}(x)\fdefined$ ise
+$\cfind{s(e,x)}$, $g$ ile aynı fonksiyondur ve $s(e,x)\in A$ olur. Öte
+yandan $\cfind{x}(x)\uparrow$ ise $\cfind{s(e,x)}$, $f$ ile aynı
+fonksiyondur ve $s(e,x)\notin A$ olur. Başka bir deyişle her $x$ için
+$x\in K$ ancak ve ancak $s(e,x)\in A$ olur. $A$ hesaplanabilir olsaydı
+$K$ de hesaplanabilir olurdu; bu bir çelişkidir. Dolayısıyla $A$
+hesaplanabilir değildir.
+\end{proof}
+
+Rice teoremi çok güçlüdür. Aşağıdaki doğrudan sonuç bazı örnek uygulamalar
+verir.
+\begin{cor}
+Aşağıdaki kümeler karar verilemezdir:
+\begin{enumerate}
+\item $\Setabs{x}{\text{$17$, $\cfind{x}$ fonksiyonunun görüntü kümesindedir}}$
+\item $\Setabs{x}{\text{$\cfind{x}$ sabittir}}$
+\item $\Setabs{x}{\text{$\cfind{x}$ tümeldir}}$
+\item $\Setabs{x}{\text{$y<y'$ ve $\cfind{x}(y)\fdefined$ olduğunda,
+    $\cfind{x}(y')\fdefined$ ise $\cfind{x}(y)<\cfind{x}(y')$ olur}}$.
+\end{enumerate}
+\end{cor}
+
+\begin{proof}
+  Bunların tümü önemsiz olmayan indis kümeleridir.
+\end{proof}
+

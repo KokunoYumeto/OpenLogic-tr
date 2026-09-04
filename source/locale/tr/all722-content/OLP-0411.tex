@@ -1,0 +1,105 @@
+% Generated from locale/tr/content/normal-modal-logic/syntax-and-semantics/substitution.tex; do not hand-edit.
+
+
+\olfileid[tr]{nml}{syn}{sub}
+
+\olsection{Eşzamanlı Yerine Koyma}
+
+!!a{formula}~$!A$'nın bir \emph{örneği}, $!A$ içindeki
+!!a{propositional variable}{}nin bütün geçişlerinin başka bir !!{formula} ile
+değiştirilmesiyle elde edilir. !!{formula}s{}in örneklerinden gerek geçerliliği
+gerek !!{derivability} kavramını tartışırken sık sık söz edeceğiz.
+Dolayısıyla bu kavramı kesin olarak tanımlamak yararlıdır.
+
+\begin{defn}\ollabel{def:subst-inst}
+  $!A$ bir kiplik !!{formula} olsun ve bütün !!{propositional variable}s
+  $p_1$, \dots, $p_n$ arasında bulunsun. $!D_1$, \dots, $!D_n$ de kiplik
+  !!{formula}s ise
+  $\SSubst{!A}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}}$ ifadesini,
+  $!A$ içinde her $p_i$ yerine $!D_i$'nin eşzamanlı olarak konulmasının
+  sonucu diye tanımlarız. Biçimsel olarak bu, $!A$ üzerinde tümevarımlı bir
+  tanımdır:
+  \begin{enumerate}
+    \tagitem{prvFalse}{\indcase{!A}{\lfalse}{%
+        $\SSubst{\indfrm}{\subst{!D_1}{p_1}, \dots,
+          \subst{!D_n}{p_n}}$, $\lfalse$'dır.}}{}
+    \tagitem{prvTrue}{\indcase{!A}{\ltrue}{%
+        $\SSubst{\indfrm}{\subst{!D_1}{p_1}, \dots,
+          \subst{!D_n}{p_n}}$, $\ltrue$'dur.}}{}
+    \item \indcase{!A}{q}{$i = 1$, \dots,~$n$ için $q \not\ident p_i$
+      olmak koşuluyla $\SSubst{\indfrm}{\subst{!D_1}{p_1}, \dots,
+        \subst{!D_n}{p_n}}$, $q$'dur.}
+    \item \indcase{!A}{p_i}{$\SSubst{\indfrm}{\subst{!D_1}{p_1},
+        \dots, \subst{!D_n}{p_n}}$, $!D_i$'dir.}
+    \tagitem{prvNot}{\indcase{!A}{\lnot !B}{%
+        $\SSubst{\indfrm}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}}$,
+        $\lnot \SSubst{!B}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}}$'dır.}}{}
+    \tagitem{prvAnd}{\indcase{!A}{(!B \land
+        !C)}{$\SSubst{\indfrm}{\subst{!D_1}{p_1}, \dots,
+          \subst{!D_n}{p_n}}$,
+        \[(\SSubst{!B}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}} \land
+          \SSubst{!C}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}})\]
+        ifadesidir.}}{}
+    \tagitem{prvOr}{\indcase{!A}{(!B \lor
+          !C)}{$\SSubst{\indfrm}{\subst{!D_1}{p_1}, \dots,
+          \subst{!D_n}{p_n}}$,
+        \[(\SSubst{!B}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}} \lor
+          \SSubst{!C}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}})\]
+        ifadesidir.}}{}
+    \tagitem{prvIf}{\indcase{!A}{(!B \lif
+          !C)}{$\SSubst{\indfrm}{\subst{!D_1}{p_1}, \dots,
+          \subst{!D_n}{p_n}}$,
+        \[(\SSubst{!B}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}} \lif
+          \SSubst{!C}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}})\]
+        ifadesidir.}}{}
+    \tagitem{prvIff}{\indcase{!A}{(!B \liff
+          !C)}{$\SSubst{\indfrm}{\subst{!D_1}{p_1}, \dots,
+          \subst{!D_n}{p_n}}$,
+        \[(\SSubst{!B}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}} \liff
+          \SSubst{!C}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}})\]
+        ifadesidir.}}{}
+    \tagitem{prvBox}{\indcase{!A}{\Box !B}{%
+        $\SSubst{\indfrm}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}}$,
+        $\Box
+        \SSubst{!B}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}}$'dır.}}{}
+    \tagitem{prvDiamond}{\indcase{!A}{\Diamond !B}{%
+        $\SSubst{\indfrm}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}}$,
+        $\Diamond
+        \SSubst{!B}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}}$'dır.}}{}
+  \end{enumerate}
+  $\SSubst{!A}{\subst{!D_1}{p_1}, \dots,
+    \subst{!D_n}{p_n}}$ ile verilen !!{formula}, $!A$'nın \emph{yerine
+    koyma örneği} olarak adlandırılır.
+\end{defn}
+
+\begin{ex}
+  $!A$'nın $p_1 \lif \Box(p_1 \land p_2)$, $!D_1$'in
+  $\Diamond(p_2 \lif p_3)$ ve $!D_2$'nin $\lnot\Box p_1$ olduğunu
+  varsayın. O zaman
+  $\SSubst{!A}{\subst{!D_1}{p_1}, \subst{!D_2}{p_2}}$ şöyledir:
+  \begin{align*}
+    \Diamond(p_2 \lif p_3) &
+    \lif \Box(\Diamond(p_2 \lif p_3) \land \lnot\Box p_1)
+    \intertext{oysa $\SSubst{!A}{\subst{!D_2}{p_1}, \subst{!D_1}{p_2}}$ şöyledir:}
+    \lnot\Box p_1 &
+    \lif \Box(\lnot\Box p_1 \land \Diamond(p_2 \lif p_3))
+    \intertext{Eşzamanlı yerine koymanın genellikle yinelenmiş yerine koymayla
+      aynı olmadığına dikkat edin. Örneğin yukarıdaki
+      $\SSubst{!A}{\subst{!D_1}{p_1}, \subst{!D_2}{p_2}}$ ile
+      $\Subst{(\Subst{!A}{!D_1}{p_1})}{!D_2}{p_2}$ ifadesini karşılaştırın;
+      ikincisi şudur:}
+    &\Subst{\Diamond(p_2 \lif p_3) \lif
+      \Box(\Diamond(p_2 \lif p_3) \land p_2)}{\lnot\Box p_1}{p_2},
+      \text{ yani}\\
+    \Diamond(\lnot\Box p_1 \lif p_3) &
+    \lif \Box(\Diamond(\lnot\Box p_1
+    \lif p_3) \land \lnot\Box p_1)\\
+    \intertext{ve $\Subst{(\Subst{!A}{!D_2}{p_2})}{!D_1}{p_1}$ ile karşılaştırın:}
+    &\Subst{p_1 \lif \Box(p_1 \land \lnot\Box p_1)}
+      {\Diamond(p_2 \lif p_3)}{p_1}, \text{ yani}\\
+    \Diamond(p_2 \lif p_3) &
+    \lif \Box(\Diamond(p_2
+    \lif p_3) \land \lnot\Box\Diamond(p_2 \lif p_3)).
+  \end{align*}
+\end{ex}
+

@@ -13,7 +13,7 @@ içerik yedeğine başvurmaz. Kaynak yetkisi şu Git kimliğidir:
 - Dil kimliği: Türkçe (`tr`; Zenodo kodu `tur`)
 - Lisans: Creative Commons Attribution 4.0 International
 
-Çeviri ve denetim, Floris'in yönlendirmesiyle “OpenAI 5.6 Sol, Ultra mode”
+Çeviri ve denetim, [maintainer]'in yönlendirmesiyle “OpenAI 5.6 Sol, Ultra mode”
 (“OpenAI's current flagship model for complex work”) tarafından yapılmıştır.
 İnsan ya da anadili Türkçe olan bir değerlendiricinin onayı yayın koşulu
 değildir ve böyle bir onay ileri sürülmez.

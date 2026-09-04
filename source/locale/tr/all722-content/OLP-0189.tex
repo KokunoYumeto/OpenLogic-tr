@@ -1,0 +1,220 @@
+% Generated from locale/tr/content/model-theory/basics/partial-iso.tex; do not hand-edit.
+
+
+\olfileid[tr]{mod}{bas}{pis}
+\section{Kısmi İzomorfizmalar}
+
+\begin{defn}
+  İki !!{structure}s~$\Struct M$ ve $\Struct N$ verilsin. $\Struct M$
+  yapısından $\Struct N$ yapısına bir \emph{kısmi izomorfizma},
+  girdilerini $\Domain M$ içinden, değerlerini $\Domain N$ içinden alan
+  ve kendi tanım kümesi üzerinde \olref[iso]{defn:isomorphism}
+  tanımındaki izomorfizma koşullarını sağlayan sonlu bir kısmi
+  fonksiyon~$p$'dir:
+  \begin{enumerate}
+  \item $p$ !!{injective};
+  \item her !!{constant}~$c$ için $p(\Assign{c}{M})$ tanımlıysa
+    $p(\Assign{c}{M})=\Assign{c}{N}$;
+  \item her $n$ yerli !!{predicate}~$P$ için $a_1,\dots,a_n$,
+    $p$'nin tanım kümesindeyse
+    $\langle a_1,\dots,a_n\rangle\in\Assign P M$ ancak ve ancak
+    $\langle p(a_1),\dots,p(a_n)\rangle\in\Assign P N$;
+  \item her $n$ yerli !!{function}~$f$ için $a_1,\dots,a_n$,
+    $p$'nin tanım kümesindeyse
+    $p(\Assign f M(a_1,\dots,a_n))=
+    \Assign f N(p(a_1),\dots,p(a_n))$.
+  \end{enumerate}
+  $p$'nin sonlu olması, $\dom p$ kümesinin sonlu olması demektir.
+\end{defn}
+
+Boş fonksiyon~$\emptyset$, herhangi iki !!{structure}s arasında her
+zaman bir kısmi izomorfizmadır.
+
+\begin{defn}\ollabel{defn:partialisom}
+  İki !!{structure}s~$\Struct M$ ve $\Struct N$ arasında aşağıdaki
+  \emph{ileri-geri} özelliğini sağlayan, boş olmayan bir kısmi
+  izomorfizmalar kümesi~$I$ varsa ve ancak varsa bunların \emph{kısmen
+  izomorf} olduğunu söyler ve $\Struct M\iso[p]\Struct N$ yazarız:
+  \begin{enumerate}
+  \item (\emph{İleri}) Her $p\in I$ ve $a\in\Domain M$ için
+    $p\subseteq q$ olan ve $a$'yı tanım kümesinde içeren bir $q\in I$
+    vardır;
+  \item (\emph{Geri}) Her $p\in I$ ve $b\in\Domain N$ için
+    $p\subseteq q$ olan ve $b$'yi görüntü kümesinde içeren bir $q\in I$
+    vardır.
+  \end{enumerate}
+\end{defn}
+
+\begin{thm}\ollabel{thm:p-isom1}
+  $\Struct M\iso[p]\Struct N$ ve $\Struct M$ ile $\Struct N$
+  !!{enumerable} ise $\Struct M\iso\Struct N$.
+\end{thm}
+
+\begin{proof}
+  $\Struct M$ ve $\Struct N$ !!{enumerable} olduğundan
+  $\Domain M=\{a_0,a_1,\ldots\}$ ve
+  $\Domain N=\{b_0,b_1,\ldots\}$ yazalım. Gelişigüzel bir $p_0\in I$
+  ile başlayıp artan bir
+  $p_0\subseteq p_1\subseteq p_2\subseteq\cdots$ kısmi izomorfizmalar
+  dizisini şöyle tanımlarız:
+  \begin{enumerate}
+  \item $n+1$ tekse, $n=2r$ yazıp ileri özelliğiyle
+    $p_n\subseteq p_{n+1}$ olan ve $a_r$'yi tanım kümesinde içeren bir
+    $p_{n+1}\in I$ bulun;
+  \item $n+1$ çiftse, $n+1=2r$ yazıp geri özelliğiyle
+    $p_n\subseteq p_{n+1}$ olan ve $b_r$'yi görüntü kümesinde içeren bir
+    $p_{n+1}\in I$ bulun.
+  \end{enumerate}
+Şimdi
+\[
+p=\bigcup_{n\geq0}p_n
+\]
+alırsak $p$, $\Struct M$ ile $\Struct N$ arasında bir izomorfizmadır.
+\end{proof}
+
+\begin{prob}
+  \olref[mod][bas][pis]{thm:p-isom1} içinde tanımlanan $p$'nin gerçekten
+  bir izomorfizma olduğunu ayrıntılı olarak gösterin.
+\end{prob}
+
+\begin{thm}\ollabel{thm:p-isom2}
+  $\Struct M$ ve $\Struct N$, salt bağıntısal !!a{language} için
+  !!{structure}s olsun (yani !!a{language} yalnız !!{predicate}s
+  içerip hiçbir !!{function}s veya sabit içermesin). O zaman
+  $\Struct M\iso[p]\Struct N$ ise
+  $\Struct M\elemequiv\Struct N$.
+\end{thm}
+
+\begin{proof}
+  !!{formula}s üzerinde tümevarımla şu gösterilir: $a_1,\dots,a_n$ ile
+  $b_1,\dots,b_n$ arasında her $a_i$'yi $b_i$'ye eşleyen bir kısmi
+  izomorfizma~$p$ varsa ve $s_1(x_i)=a_i$, $s_2(x_i)=b_i$
+  ($i=1,\dots,n$) ise $\Sat{M}{!A}[s_1]$ ancak ve ancak
+  $\Sat{N}{!A}[s_2]$. $n=0$ durumu
+  $\Struct M\elemequiv\Struct N$ sonucunu verir.
+\end{proof}
+
+\begin{rem}
+!!{function}s bulunuyorsa önceki sonuç yine doğrudur; fakat $p$'nin,
+$\Struct M$ yapısının $a_1,\dots,a_n$ tarafından üretilen alt
+!!{structure} ifadesi ile $\Struct N$ yapısının $b_1,\dots,b_n$
+tarafından üretilen alt !!{structure} ifadesi arasında oluşturduğu
+izomorfizmayı ele almak gerekir.
+\end{rem}
+
+Önceki sonuç, !!a{formula} içindeki iç içe niceleyicilerin sayısı ile
+ilgili kısmi izomorfizmaların kaç kez genişletilebildiği arasında bağ
+kurularak aşamalara ``ayrılabilir.''
+
+\begin{defn}
+  Her !!{formula}~$!A$ için $!A$'nın \emph{niceleyici derecesi},
+  $\QuantRank{!A}\in\Nat$, $!A$ içindeki iç içe niceleyicilerin en
+  yüksek sayısı olarak özyinelemeyle tanımlanır. İki
+  !!{structure}s~$\Struct M$ ve $\Struct N$, niceleyici derecesi en çok
+  $n$ olan bütün tümceler üzerinde uyuşuyorsa \emph{$n$-eşdeğerdir};
+  bunu $\Struct M\elemequiv[n]\Struct N$ ile gösteririz.
+\end{defn}
+
+\begin{prop}\ollabel{prop:qr-finite}
+  $\Lang L$, sonlu sayıda !!{predicate}s ve !!{constant}s içeren,
+  hiçbir !!{function}s içermeyen sonlu salt bağıntısal !!a{language}
+  olsun. O zaman her $n\in\Nat$ için $\Lang L$ !!{language} içindeki
+  niceleyici derecesi en çok $n$ olan birinci dereceden
+  !!{sentence}s, mantıksal eşdeğerlik altında yalnızca sonlu sayıdadır.
+\end{prop}
+
+\begin{proof}
+  $n$ üzerinde tümevarımla.
+\end{proof}
+
+\begin{defn}
+  !!a{structure}~$\Struct M$ verildiğinde $\Domain M^{<\omega}$,
+  $\Domain M$ üzerinde bütün sonlu dizilerin kümesi olsun. Sonlu eleman
+  dizileri için $\mathbf a,\mathbf b,\mathbf c,\ldots$ kullanacağız.
+  $\mathbf a\in\Domain M^{<\omega}$ ve $a\in\Domain M$ ise
+  $\mathbf aa$, $\mathbf a$ ile $a$'nın \emph{art arda eklenmesini}
+  gösterir.
+\end{defn}
+
+\begin{defn}
+  !!{structure}s~$\Struct M$ ve $\Struct N$ verildiğinde, eşit
+  uzunluktaki diziler arasında
+  $I_n\subseteq\Domain M^{<\omega}\times\Domain N^{<\omega}$
+  bağıntılarını $n$ üzerinde özyinelemeyle şöyle tanımlarız:
+   \begin{enumerate}
+   \item $I_0(\mathbf a,\mathbf b)$ ancak ve ancak $\mathbf a$ ile
+     $\mathbf b$, $\Struct M$ ve $\Struct N$ içinde aynı atomik
+     !!{formula}s ifadelerini sağlıyorsa; yani $s_1(x_i)=a_i$,
+     $s_2(x_i)=b_i$ ve bütün !!{variable}s $x_1,\dots,x_n$ arasında
+     bulunan $!A$ atomikse $\Sat{M}{!A}[s_1]$ ancak ve ancak
+     $\Sat{N}{!A}[s_2]$ ise.
+   \item $I_{n+1}(\mathbf a,\mathbf b)$ ancak ve ancak her
+     $a\in\Domain M$ için $I_n(\mathbf aa,\mathbf bb)$ olacak bir
+     $b\in\Domain N$ varsa ve bunun tersi de geçerliyse.
+   \end{enumerate}
+\end{defn}
+
+\begin{defn}
+  $\Struct M$ ile $\Struct N$ için
+  $I_n(\emptyseq,\emptyseq)$ geçerliyse
+  $\Struct M\approx_n\Struct N$ yazarız (burada $\emptyseq$ boş
+  dizidir).
+\end{defn}
+
+\begin{thm}\ollabel{thm:b-n-f}
+  $\Lang L$ salt bağıntısal !!a{language} olsun.
+  $I_n(\mathbf a,\mathbf b)$ ise $\QuantRank{!A}\leq n$ olan her
+  $!A$ için $\Sat{M}{!A}[\mathbf a]$ ancak ve ancak
+  $\Sat{N}{!A}[\mathbf b]$ olur (burada yine $s(x_i)=a_i$ olan herhangi
+  bir $s$, $!A$'yı sağlıyorsa $\mathbf a$ da $!A$'yı sağlar). Üstelik
+  $\Lang L$ sonluysa bunun tersi de geçerlidir.
+\end{thm}
+
+\begin{proof}
+  $I_n(\mathbf a,\mathbf b)$ bağıntısının $\mathbf a$ ile $\mathbf b$
+  dizilerinin niceleyici derecesi en çok $n$ olan aynı !!{formula}s
+  ifadelerini sağladığını gerektirdiği, $!A$ üzerinde kolay bir
+  tümevarımla gösterilir. Ters yön için $n$ üzerinde tümevarım yapıp,
+  her $n$ için bu niceleyici derecesinde eşdeğer olmayan en fazla sonlu
+  sayıda !!{formula}s bulunduğunu güvence altına alan
+  \olref{prop:qr-finite} önermesini kullanırız.
+
+  $n=0$ için $\mathbf a$ ile $\mathbf b$'nin aynı niceleyicisiz
+  !!{formula}s ifadelerini sağladığı varsayımı, aynı atomik formülleri
+  sağladıklarını; dolayısıyla $I_0(\mathbf a,\mathbf b)$ olduğunu verir.
+
+  $n+1$ durumu için $\mathbf a$ ile $\mathbf b$'nin niceleyici derecesi
+  en çok $n+1$ olan aynı !!{formula}s ifadelerini sağladığını
+  varsayalım. $I_{n+1}(\mathbf a,\mathbf b)$ göstermek için her
+  $a\in\Domain M$ için $I_n(\mathbf aa,\mathbf bb)$ olacak bir
+  $b\in\Domain N$ bulunduğunu göstermek yeterlidir. Tümevarım
+  varsayımı gereği, her $a\in\Domain M$ için $\mathbf aa$ ile
+  $\mathbf bb$'nin niceleyici derecesi en çok $n$ olan aynı
+  !!{formula}s ifadelerini sağlayacağı bir $b\in\Domain N$ bulunduğunu
+  göstermek yine yeterlidir.
+
+  $a\in\Domain M$ verildiğinde $!T^a_n$, $\Struct M$ içinde
+  $\mathbf aa$ tarafından sağlanan, derecesi en çok $n$ olan
+  $!B(x,\mathbf y)$ !!{formula}s kümesi olsun. Eşdeğerlik altında
+  $!T^a_n$ sonlu olduğundan, temsilcilerinin sonlu birleşimini tek bir
+  birinci dereceden !!{formula} olarak alabiliriz. O zaman $\mathbf a$,
+  niceleyici derecesi en çok $n+1$ olan
+  $\lexists[x][!T^a_n(x,\mathbf y)]$ formülünü sağlar. Varsayım gereği
+  $\mathbf b$ de $\Struct N$ içinde aynı !!{formula} ifadesini sağlar;
+  dolayısıyla $\mathbf bb$'nin $!T^a_n$ formülünü sağladığı bir
+  $b\in\Domain N$ vardır. Özellikle $\mathbf bb$, $\mathbf aa$ ile
+  niceleyici derecesi en çok $n$ olan aynı !!{formula}s ifadelerini
+  sağlar. Benzer biçimde, her $b\in\Domain N$ için $\mathbf aa$ ile
+  $\mathbf bb$'nin niceleyici derecesi en çok $n$ olan aynı
+  !!{formula}s ifadelerini sağladığı bir $a\in\Domain M$ bulunduğu
+  gösterilir; ispat tamamlanır.
+\end{proof}
+
+\begin{cor}\ollabel{cor:b-n-f}
+  $\Struct M$ ve $\Struct N$, sonlu bir !!{language} içindeki salt
+  bağıntısal !!{structure}s ise $\Struct M\approx_n\Struct N$ ancak ve
+  ancak $\Struct M\elemequiv[n]\Struct N$. Özellikle
+  $\Struct M\elemequiv\Struct N$ ancak ve ancak her $n$ için
+  $\Struct M\approx_n\Struct N$.
+\end{cor}
+

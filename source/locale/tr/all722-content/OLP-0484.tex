@@ -1,0 +1,79 @@
+% Generated from locale/tr/content/applied-modal-logic/epistemic-logic/language-epistemic-logic.tex; do not hand-edit.
+
+
+\olfileid[tr]{aml}{el}{lan}
+
+\olsection{Epistemik Mantığın Dili}
+
+\begin{defn}
+$G$ bir özne simgeleri kümesi olsun. Çok özneli epistemik mantığın temel dili
+şunları içerir:
+\begin{enumerate}
+  \tagitem{prvFalse}{!!{falsity} için önerme sabiti~$\lfalse$.}{}
+  \tagitem{prvTrue}{!!{truth} için önerme sabiti~$\ltrue$.}{}
+  \item !!{denumerable}s bir !!{propositional variable}s kümesi: $\Obj
+    p_0$, $\Obj p_1$, $\Obj p_2$, \dots
+  \item Önerme bağlaçları: \startycommalist
+  \iftag{prvNot}{\ycomma $\lnot$ (değilleme)}{}%
+  \iftag{prvAnd}{\ycomma $\land$ (tümel evetleme)}{}%
+  \iftag{prvOr}{\ycomma $\lor$ (tikel evetleme)}{}%
+  \iftag{prvIf}{\ycomma $\lif$ (!!{conditional})}{}%
+  \iftag{prvIff}{\ycomma $\liff$ (!!{biconditional})}{}.
+  \item Bilgi işleci $\Knows_a$; burada $a \in G$.
+\end{enumerate}
+\end{defn}
+
+Sistemimizde yalnızca tek bir öznenin bilgisiyle ilgileniyorsak $G$ kümesine
+ve tek tek öznelere yapılan göndermeleri kaldırabiliriz. Bu durumda yalnızca
+temel $\Knows$ işlecimiz bulunur.
+
+\begin{defn}
+Epistemik dilin \emph{!!^{formula}s{}i} tümevarımlı olarak şöyle tanımlanır:
+\begin{enumerate}
+\tagitem{prvFalse}{$\lfalse$ atomik bir !!{formula}{}dür.}{}
+
+\tagitem{prvTrue}{$\ltrue$ atomik bir !!{formula}{}dür.}{}
+
+\item Her önerme değişkeni $\Obj p_i$, (atomik) bir !!{formula}{}dür.
+
+\tagitem{prvNot}{$!A$ !!a{formula} ise $\lnot !A$ da
+  !!a{formula}{}dür.}{}
+
+\tagitem{prvAnd}{$!A$ ve $!B$ !!{formula}s ise $(!A \land
+  !B)$ de !!a{formula}{}dür.}{}
+
+\tagitem{prvOr}{$!A$ ve $!B$ !!{formula}s ise $(!A \lor !B)$
+  de !!a{formula}{}dür.}{}
+
+\tagitem{prvIf}{$!A$ ve $!B$ !!{formula}s ise $(!A \lif !B)$
+  de !!a{formula}{}dür.}{}
+
+\tagitem{prvIff}{$!A$ ve $!B$ !!{formula}s ise $(!A \liff !B)$
+  de !!a{formula}{}dür.}{}
+
+\item $!A$ !!a{formula} ve $a \in G$ ise $\Knows_a !A$ da
+  !!a{formula}{}dür.
+
+\tagitem{limitClause}{Başka hiçbir şey !!a{formula} değildir.}{}
+\end{enumerate}
+\end{defn}
+
+!!a{formula}~$!A$, $\Knows_a$ içermiyorsa ona \emph{modal içermeyen} deriz.
+
+\begin{defn}
+  $\Knows$ işleci bireysel bilgiyi simgelemek için kullanılırken, çoğu kez
+  ``herkes bilir'' diye okunan $\EKnows$ grup bilgisini simgeler. $G' \subseteq
+  G$ olduğunda $\EKnows_{G'} !A$ ifadesini
+  \[\bigwedge_{b \in G'} \Knows_b !A\]
+  ifadesinin kısaltması olarak tanımlarız.
+\end{defn}
+
+Daha da güçlü bir bilgi türünü, yani bir $G$ özne grubu arasındaki
+\emph{ortak bilgiyi} de tanımlayabiliriz. Bir bilgi parçasının bir özne grubu
+arasında ortak bilgi olması, o gruptaki öznelerin her bileşimi için hepsinin
+birbirlerinin birbirlerinin bildiğini \dots sonsuza dek bildikleri anlamına
+gelir. Bu, grup bilgisinden önemli ölçüde daha güçlüdür; !!a{formula}{}ün grup
+bilgisi olup ortak bilgi olmadığı bağıntısal modeller kurmak kolaydır.
+$\CKnows_G !A$ gösterimini ``$G$ grubunda $!A$ ortak bilgidir'' ifadesini
+simgelemek için kullanacağız.
+

@@ -1,0 +1,107 @@
+% Generated from locale/tr/content/counterfactuals/minimal-change-semantics/true-false.tex; do not hand-edit.
+
+
+\olfileid[tr]{con}{min}{tf}
+
+\olsection{Karşıolgusalların Doğruluğu ve Yanlışlığı}
+
+Bir karşıolgusal $!A\cif !B$, \olref{fig:true}'da gösterildiği gibi en
+yakın $!A$-dünyalarının tümü $!B$-dünyalarıysa (boşuna olmayan biçimde)
+doğrudur.
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[scale=.7]\small
+  \spheresystem{5}
+  \draw (0,0) node {$w$};
+  \propositionintersect{0}{4}{40}{3.5}
+  {\tikzset{proposition/.append={smooth,tension=1.4}}
+  \proposition[shift={(1.6,-1)}]{90}{1}{30}{4}}
+  \path (1.5,3) node[below] {$\formula{B}$};
+  \path (3,0) node {$\formula{A}$};
+\end{tikzpicture}
+\caption{Boşuna olmayan biçimde doğru karşıolgusal}
+\ollabel{fig:true}
+\end{center}
+\end{figure}
+$w$ çevresindeki küreler sisteminde $!A$'yı kabul eden hiçbir küre yoksa
+karşıolgusal $w$'de yine doğrudur. Bu durumda \emph{boşuna} doğrudur
+(bkz. \olref{fig:vacuous}).
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[scale=.7]\small
+  \spheresystem{5}
+  \draw (0,0) node {$w$};
+  \proposition{0}{6.5}{40}{3.5}
+  {\tikzset{proposition/.append={smooth,tension=1.4}}
+  \proposition[shift={(1.2,-1)}]{90}{1}{30}{4}}
+  \path (1.5,3) node[below] {$\formula{B}$};
+  \spherepos{0}{7}{node {$\formula{A}$}}
+\end{tikzpicture}
+\caption{Boşuna doğru karşıolgusal}
+\ollabel{fig:vacuous}
+\end{center}
+\end{figure}
+
+İki biçimde yanlış olabilir. Birincisi, en yakın $!A$-dünyalarının tümü
+$!B$-dünyaları değilken bazılarının $!B$-dünyası olmasıdır. Bu durumda
+$!A\cif\lnot !B$ de yanlıştır (bkz. \olref{fig:false}).
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[scale=.7]\small
+  \spheresystem{5}
+  \draw (0,0) node {$w$};
+  \propositionintersect{0}{4}{40}{3.5}
+  {\tikzset{proposition/.append={smooth,tension=1.4}}
+  \proposition[shift={(1.6,0)}]{90}{1}{30}{3}}
+  \path (1.5,3) node[below] {$\formula{B}$};
+  \path (3,0) node {$\formula{A}$};
+\end{tikzpicture}
+\caption{Yanlış karşıolgusal, yanlış karşıtı}
+\ollabel{fig:false}
+\end{center}
+\end{figure}
+En yakın $!A$-dünyaları $!B$-dünyalarıyla hiç örtüşmüyorsa
+$!A\cif !B$ yanlıştır. Fakat bu durumda en yakın bütün $!A$-dünyaları
+$\lnot !B$-dünyalarıdır; dolayısıyla $!A\cif\lnot !B$ doğrudur
+(bkz. \olref{fig:false-opposite}).
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[scale=.7]\small
+  \spheresystem{5}
+  \draw (0,0) node {$w$};
+  \propositionintersect{0}{4}{40}{3.5}
+  {\tikzset{proposition/.append={smooth,tension=1.4}}
+  \proposition[shift={(-1,0)}]{90}{1}{30}{3}}
+  \path (-1,3) node[below] {$\formula{B}$};
+  \path (3,0) node {$\formula{A}$};
+\end{tikzpicture}
+\caption{Yanlış karşıolgusal, doğru karşıtı}
+\ollabel{fig:false-opposite}
+\end{center}
+\end{figure}
+
+Sıkı koşuldan farklı olarak karşıolgusallar olumsal olabilir.
+\olref{fig:contingent}'deki küre modelini düşünün. $u$'ya en yakın
+$!A$-dünyalarının tümü $!B$-dünyaları olduğundan
+$\mSat{M}{!A\cif !B}[u]$. Fakat $v$'ye en yakın $!A$-dünyalarının bazıları
+$!B$-dünyası değildir; dolayısıyla $\mSat/{M}{!A\cif !B}[v]$.
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[scale=.6]\small
+  \spheresystem{7}
+  \spheresystem[shift={(0:3.1)},dashed]{4}
+  \propositionintersect{45}{4}{40}{4.5}
+  \begin{scope}
+    \clip \propositionplot{45}{4}{40}{4.5} ;
+    \spherelayer[shift={(0:3.1)}]{3}
+  \end{scope}
+  \proposition[shift={(1.4,-.5)}]{90}{1}{35}{5}
+  \path (0,0) node {$u$};
+  \path (0:3.1) node {$v$};
+  \spherepos{35}{9}{node {$\formula{A}$}}
+  \spherepos{80}{9}{node {$\formula{B}$}}
+\end{tikzpicture}
+\end{center}
+\caption{Olumsal karşıolgusal}
+\ollabel{fig:contingent}
+\end{figure}

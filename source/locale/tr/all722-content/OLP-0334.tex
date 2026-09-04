@@ -1,0 +1,66 @@
+% Generated from locale/tr/content/second-order-logic/metatheory/compactness.tex; do not hand-edit.
+
+
+\olfileid[tr]{sol}{met}{com}
+
+\olsection{İkinci Dereceden Mantık Tıkız Değildir}
+
+\begin{explain}
+Bir $\Gamma$ tümce kümesinin her sonlu alt kümesi sağlanabilirse bu kümeye
+\emph{sonlu sağlanabilir} diyelim. Birinci dereceden mantıkta, bir
+$\Gamma$ !!{sentence} kümesi sonlu sağlanabilir ise kendisi de
+sağlanabilir. Bu özelliğe \emph{tıkızlık} denir. Bunun mantıksal
+gerektirmeyi içeren eşdeğer bir biçimi vardır: $\Gamma\Entails !A$ ise bir
+sonlu $\Gamma_0\subseteq\Gamma$ alt kümesi için zaten
+$\Gamma_0\Entails !A$ olur. Bu biçimiyle özellik, tamlık teoreminin doğrudan
+bir sonucudur: $\Gamma\Entails !A$ ise tamlık gereği $\Gamma\Proves !A$.
+Fakat bir !!{derivation}, $\Gamma$'dan yalnızca sonlu sayıda !!{sentence}
+kullanabilir.
+
+Tıkızlık ikinci dereceden mantık için geçerli değildir. Sonlu sağlanabilir
+olduğu hâlde sağlanabilir olmayan ikinci dereceden !!{sentence} kümeleri ve
+hiçbir sonlu alt kümesi $!A$'yı gerektirmediği hâlde $!A$'yı gerektiren
+kümeler vardır.
+\end{explain}
+
+
+\begin{thm}
+\ollabel{thm:sol-undecidable}
+İkinci dereceden mantık tıkız değildir.
+\end{thm}
+
+\begin{proof}
+\[
+\fn{Inf} \ident \lexists[u][(\lforall[x][\lforall[y][(\eq[u(x)][u(y)]
+      \lif \eq[x][y])]] \land \lexists[y][\lforall[x][\eq/[y][u(x)]]])]
+\]
+ifadesinin !!a{structure} içinde ancak ve ancak evreni sonsuzsa
+sağlandığını anımsayın. $!A^{\ge n}$, evrende en az $n$
+!!{element} bulunduğunu ileri süren bir tümce olsun; örneğin
+\[
+!A^{\ge n} \ident \lexists[x_1][\dots\lexists[x_n][(\eq/[x_1][x_2]
+    \land \eq/[x_1][x_3] \land \dots \land \eq/[x_{n-1}][x_n])]].
+\]
+Şu !!{sentence} kümesini ele alalım:
+\[
+\Gamma = \{\lnot \fn{Inf}, !A^{\ge 1}, !A^{\ge 2}, !A^{\ge 3}, \dots\}.
+\]
+Bu küme sonlu sağlanabilir. Gerçekten her sonlu
+$\Gamma_0\subseteq\Gamma$ için şunu yapabiliriz: Bu alt küme, evrenin en az
+belirli sayıda öğeli olduğunu söyleyen tümcelerden hiçbirini içermiyorsa
+herhangi bir pozitif indis seçelim. Aksi hâlde, $!A^{\ge k}\in\Gamma_0$
+olacak, fakat $n>k$ için hiçbir $!A^{\ge n}\in\Gamma_0$ olmayacak biçimde
+bir $k$ vardır. $\Domain{M}$ tam $k$ tane !!{element} içeriyorsa
+$\Sat{M}{\Gamma_0}$. Fakat
+$\Gamma$ sağlanabilir değildir: $\Sat{M}{\lnot\fn{Inf}}$ ise
+$\Domain{M}$ sonludur; büyüklüğü $k$ olsun. O zaman
+$\Sat/{M}{!A^{\ge k+1}}$ olur.
+\end{proof}
+
+\begin{prob}
+$\Gamma\Entails !A$ olduğu hâlde her sonlu
+$\Gamma_0\subseteq\Gamma$ için $\Gamma_0\Entails/ !A$ olacak biçimde bir
+$\Gamma$ kümesi ve !!a{sentence} $!A$ örneği verin.
+\end{prob}
+
+

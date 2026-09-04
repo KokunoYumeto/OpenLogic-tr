@@ -1,0 +1,339 @@
+% Generated from locale/tr/content/proof-theory/normalization/reductions.tex; do not hand-edit.
+
+
+\olfileid[tr]{pt}{nor}{red}
+
+\olsection{İndirgeme Dönüştürmeleri}
+
+\Log{N1i} sistemindeki !!a{proof} içinde bir kesmenin uzunluğu $1$ ise
+bu kesme, tek bir !!{formula} oluşumundan oluşan bir kesittir ve söz
+konusu !!{formula} hem !!a{introduction} çıkarımının sonucu hem de
+!!a{elimination} çıkarımının büyük öncülüdür. Normalleştirme ispatında
+bu tür kesmeler, alt-!!{proof}---yani böyle bir
+!!{introduction}/!!{elimination} çiftiyle biten parça---yerine çıkarım
+çiftinin ortadan kaldırıldığı yeni bir !!{proof} konarak ``indirgenir''.
+Böyle bir değiştirme yeni
+kesmelere yol açabilir. Bununla birlikte, yeni kesmelerin derecesinin
+indirgenen kesmeninkinden düşük olduğuna kendimizi ikna edebiliriz.
+Dolayısıyla yeni !!{proof}, ya daha düşük bir kesme uzunluğuna sahiptir
+(çünkü uzunluğu $1$ olan bir maksimal kesme kaldırılmıştır) ya da
+!!{proof} için kesme derecesi azalmıştır (söz konusu maksimal kesme tek
+maksimal kesmeyse).
+
+Örneğin, ilgili çıkarımlar \Intro{\lif} ve \Elim{\lif}, $!A \ident !B
+\lif !C$ ise ve aşağıdaki gibi biten bir $\delta_1$ alt-!!{proof}
+varsa:
+\[
+\AxiomC{$\Discharge{!B}{x}$}
+\RightLabel{$\delta_2$}
+\DeduceC{$!C$}
+\DischargeRule{\Intro{\lif}}{x}
+\UnaryInfC{$!B \lif !C$}
+\AxiomC{}
+\RightLabel{$\delta_3$}
+\DeduceC{$!B$}
+\RightLabel{\Elim{\lif}}
+\BinaryInfC{$!C$}
+\DisplayProof
+\]
+Bu kesmeyi kaldırmak için $\delta$ içindeki $\delta_1$ alt ispatını
+aşağıdakiyle değiştiririz:
+\[
+\AxiomC{}
+\RightLabel{$\delta_3$}
+\DeduceC{$!B$}
+\RightLabel{$\Subst{\delta_2}{\delta_3}{!B^x}$}
+\DeduceC{$!C$}
+\DisplayProof
+\]
+$\Subst{\delta_2}{\delta_3}{!B^x}$ ile, $\delta_2$ içindeki $x$
+etiketli her $!B$ varsayımının yerine $\delta_3$ !!{proof} bütününün
+konmasıyla elde edilen !!{proof} kastediyoruz. Bu !!{proof} artık $x$
+etiketli, $!B$ biçiminde açık varsayımlara sahip değildir. Her zamanki
+gibi, aynı etiketli varsayımlar olarak iki farklı !!{formula}
+geçmediğini varsaydığımız için başka hiçbir varsayımı da $x$ ile
+etiketlenmiş değildir. Böylece yeni !!{proof}, $\delta_1$ ile aynı açık
+varsayımlara sahiptir; $\delta_2$ içinde varsayımları boşa çıkaran her
+çıkarım, $\Subst{\delta_2}{\delta_3}{!B^x}$ içinde aynı varsayımları
+boşa çıkarır ve $\delta_3$ içinde varsayımları boşa çıkaran her çıkarımın
+olasılıkla birden çok kopyası oluşarak $\Subst{\delta_2}{\delta_3}{!B^x}$
+içindeki karşılık gelen varsayımları boşa çıkarır.
+
+Bütünüyle $\delta_2$ ya da $\delta_3$ içinde veya $\delta$ içindeki
+$\delta_1$'in bütünüyle dışında kalan her kesme değişmeden kalır: Yine
+aynı !!{formula} biçimlerini içerir ve aynı çıkarımlardan geçer; dolayısıyla
+özellikle, $\delta$ içindeki karşılık gelen kesmeyle aynı dereceye ve
+uzunluğa sahiptir. Uzunluğu $1$ olan bir maksimal kesmeyi kaldırdık;
+böylece ya kesme uzunluğunu ya da ($\delta$ için kesme uzunluğu $1$ ise
+ve bu tek maksimal kesmeyse) kesme derecesini azalttık.
+
+Ancak iki şey olabilir:
+\begin{enumerate}
+  \item Bütün $!B^x$ varsayımlarını $\delta_3$ ile değiştirerek
+  $\delta_3$ içindeki bütün kesmeleri çoğalttık. Bunlardan bazıları
+  maksimal kesmeyse yeni !!{proof} için kesme uzunluğu, eski !!{proof}
+  için kesme uzunluğundan daha büyük olabilir. Bunun gerçekleşmemesini
+  garanti etmeliyiz. Bu nedenle indirgeme dönüştürmelerini yalnızca
+  \emph{en sağdaki} maksimal kesmelere, yani $\delta$ boyunca indirgenen
+  kesmenin sağında kalan hiçbir dalda maksimal kesme bulunmayacak
+  nitelikteki kesmelere uygularız. $\delta_3$ içinde bir kesme olsaydı
+  burada indirgenen kesmenin sağında kalırdı ve dolayısıyla en sağdaki
+  bir kesme üzerinde çalışıyor olmazdık. Her zaman en sağdaki kesmeleri
+  seçerek, !!{proof} için kesme uzunluğunu azalttığımızı ya da kesme
+  derecesini bile düşürdüğümüzü garanti ederiz.
+  \item $\delta_2$ içindeki bir $!B^x$ varsayımı !!a{elimination}
+  çıkarımının büyük öncülüyse ve $\delta_3$'ün son çıkarımı
+  \Elim{\lor}, \Elim{\lexists} ya da !!a{introduction} çıkarımıysa
+  $\delta_3$'ü böyle bir varsayım noktasında $\delta_2$'ye aşılayarak
+  yeni bir kesme üretmiş oluruz. $\delta_2$ içinde yalnızca varsayım
+  olan şey artık uzunluğu $1$ olan bir kesme (!!a{introduction}
+  çıkarımının sonucu ve !!a{elimination} çıkarımının büyük öncülü) ya
+  da bir kesme kesitinin son !!{formula} oluşumudur (!!a{elimination}
+  çıkarımının büyük öncülü ve \Elim{\lor} ya da \Elim{\lexists}
+  sonucu). $!B^x$, \Elim{\lor} ya da \Elim{\lexists} çıkarımının küçük
+  öncülüyse zaten bir kesitin ve belki bir kesme kesitinin ilk
+  !!{formula} oluşumuydu. Yeni !!{proof} içinde bu kesit artık daha uzun
+  olabilir. Ancak bu yeni kesmeyi ya da var olan kesme kesitini oluşturan
+  !!{formula}, $!B$'dir ve $\depth{!B} < \depth{!B \lif !C}$ olur.
+  Dolayısıyla kesmeler eklemiş ya da kesmelerin uzunluğunu artırmış
+  olabilsek de bunların hiçbiri maksimal kesme değildir. Böylece ya
+  kesme derecesini ya da aynı derecede kesmeler kalmışsa kesme
+  uzunluğunu azaltmış oluruz.
+\end{enumerate}
+
+Uzunluğu $1$ olan bir kesmeyi indirgeme işlemine \emph{indirgeme
+dönüştürmesi} (ya da \emph{dolambaç dönüştürmesi}) denir. Bazı kural
+çiftlerine ilişkin kalıplar \olref{tab:reduction-conversions}'da
+verilmiştir. (Kalanlar alıştırma olarak bırakılmıştır.)
+
+\begin{table}
+\begin{multline*}
+\bottomAlignProof
+\AxiomC{$\Discharge{!B}{x}$}
+\RightLabel{$\delta_2$}
+\shortDeduce
+\DeduceC{$!C$}
+\DischargeRule{\Intro{\lif}}{x}
+\UnaryInfC{$!B \lif !C$}
+\AxiomC{}
+\RightLabel{$\delta_3$}
+\shortDeduce
+\DeduceC{$!B$}
+\RightLabel{\Elim{\lif}}
+\BinaryInfC{$!C$}
+\DisplayProof
+\quad \longrightarrow\quad
+\shoveright{\bottomAlignProof
+\AxiomC{}
+\RightLabel{$\delta_3$}
+\shortDeduce
+\DeduceC{$!B$}
+\RightLabel{$\Subst{\delta_2}{\delta_3}{!B^x}$}
+\shortDeduce
+\DeduceC{$!C$}
+\DisplayProof}
+\\[4ex]
+\shoveleft{\bottomAlignProof
+\AxiomC{}
+\RightLabel{$\delta_2$}
+\shortDeduce
+\DeduceC{$!B$}
+\AxiomC{}
+\RightLabel{$\delta_3$}
+\shortDeduce
+\DeduceC{$!C$}
+\RightLabel{\Intro{\land}}
+\BinaryInfC{$!B \land !C$}
+\RightLabel{\Elim{\land}[1]}
+\UnaryInfC{$!B$}
+\DisplayProof
+\quad \longrightarrow\quad
+\bottomAlignProof
+\AxiomC{}
+\RightLabel{$\delta_2$}
+\shortDeduce
+\DeduceC{$!B$}
+\DisplayProof}\qquad
+\shoveright{\bottomAlignProof
+\AxiomC{}
+\RightLabel{$\delta_2$}
+\shortDeduce
+\DeduceC{$!B$}
+\AxiomC{}
+\RightLabel{$\delta_3$}
+\shortDeduce
+\DeduceC{$!C$}
+\RightLabel{\Intro{\land}}
+\BinaryInfC{$!B \land !C$}
+\RightLabel{\Elim{\land}[2]}
+\UnaryInfC{$!C$}
+\DisplayProof
+\quad \longrightarrow\quad
+\bottomAlignProof
+\AxiomC{}
+\RightLabel{$\delta_3$}
+\shortDeduce
+\DeduceC{$!C$}
+\DisplayProof}
+\\[4ex]
+\bottomAlignProof
+\AxiomC{}
+\RightLabel{$\delta_2$}
+\shortDeduce
+\DeduceC{$!B$}
+\RightLabel{\Intro{\lor}[1]}
+\UnaryInfC{$!B \lor !C$}
+\AxiomC{$\Discharge{!B}{x}$}
+\RightLabel{$\delta_3$}
+\shortDeduce
+\DeduceC{$!D$}
+\AxiomC{$\Discharge{!C}{y}$}
+\RightLabel{$\delta_4$}
+\shortDeduce
+\DeduceC{$!D$}
+\DischargeRule{\Elim{\lor}}{x\,y}
+\TrinaryInfC{$!D$}
+\DisplayProof
+\quad \longrightarrow\quad
+\shoveright{\bottomAlignProof
+\AxiomC{}
+\RightLabel{$\delta_2$}
+\shortDeduce
+\DeduceC{$!B$}
+\RightLabel{$\Subst{\delta_3}{\delta_2}{!B^x}$}
+\shortDeduce
+\DeduceC{$!D$}
+\DisplayProof}
+\\[2ex]
+\shoveleft{\bottomAlignProof
+\AxiomC{}
+\RightLabel{$\delta_2$}
+\shortDeduce
+\DeduceC{$!B(c)$}
+\RightLabel{\Intro{\lforall}}
+\UnaryInfC{$\lforall[x][!B(x)]$}
+\RightLabel{\Elim{\lforall}}
+\UnaryInfC{$!B(t)$}
+\DisplayProof
+\quad \longrightarrow\quad
+\bottomAlignProof
+\AxiomC{}
+\RightLabel{$\Subst{\delta_2}{t}{c}$}
+\shortDeduce
+\DeduceC{$!B(t)$}
+\DisplayProof}
+\\[4ex]
+\shoveright{\bottomAlignProof
+\AxiomC{}
+\RightLabel{$\delta_2$}
+\shortDeduce
+\DeduceC{$!B(t)$}
+\RightLabel{\Intro{\lexists}}
+\UnaryInfC{$\lexists[x][!B(x)]$}
+\AxiomC{$\Discharge{!B(c)}{x}$}
+\RightLabel{$\delta_3$}
+\shortDeduce
+\DeduceC{$!D$}
+\DischargeRule{\Elim{\lexists}}{x}
+\BinaryInfC{$!D$}
+\DisplayProof
+\quad \longrightarrow\quad
+\bottomAlignProof
+\AxiomC{}
+\RightLabel{$\delta_2$}
+\shortDeduce
+\DeduceC{$!B(t)$}
+\RightLabel{$\Subst{\Subst{\delta_3}{t}{c}}{\delta_2}{!B(t)^x}$}
+\shortDeduce
+\DeduceC{$!D$}
+\DisplayProof}
+\end{multline*}
+\caption{\Log{N1i} için bazı indirgeme dönüştürmeleri.}
+\ollabel{tab:reduction-conversions}
+\end{table}
+
+\begin{prob}
+Ardından \Elim{\lnot} gelen \Intro{\lnot} için indirgeme
+dönüştürmesini verin.
+\end{prob}
+
+Ele alınması gereken bir durum daha vardır. Kesme tanımı, kesmenin
+uzunluğunun $1$ olduğu ve $!A$'nın hem \FalseInt{} sonucu hem de
+!!a{elimination} çıkarımının büyük öncülü olduğu durumu içerir. Bu
+durum, $!A$'nın !!a{introduction} kuralının sonucu olduğu duruma benzer
+biçimde ele alınır. Örneğin aşağıdakini
+\[
+\bottomAlignProof
+\AxiomC{}
+\RightLabel{$\delta_2$}
+\DeduceC{$\lfalse$}
+\RightLabel{\FalseInt}
+\UnaryInfC{$!B \lif !C$}
+\AxiomC{}
+\RightLabel{$\delta_3$}
+\DeduceC{$!B$}
+\RightLabel{\Elim{\lif}}
+\BinaryInfC{$!C$}
+\DisplayProof
+\quad\text{şununla değiştirin:}\quad
+\bottomAlignProof
+\AxiomC{}
+\RightLabel{$\delta_2$}
+\DeduceC{$\lfalse$}
+\RightLabel{\FalseInt}
+\UnaryInfC{$!C$}
+\DisplayProof
+\]
+$!A \ident (!B \lor !C)$ ya da $!A \ident \lexists[x][!B(x)]$
+durumlarında biraz dikkatli olmalıyız. Örneğin aşağıdakini
+\[
+\bottomAlignProof
+\AxiomC{}
+\RightLabel{$\delta_2$}
+\DeduceC{$\lfalse$}
+\RightLabel{\FalseInt}
+\UnaryInfC{$!B \lor !C$}
+\AxiomC{$\Discharge{!B}{x}$}
+\RightLabel{$\delta_3$}
+\DeduceC{$!D$}
+\AxiomC{$\Discharge{!C}{y}$}
+\RightLabel{$\delta_4$}
+\DeduceC{$!D$}
+\DischargeRule{\Elim{\lor}}{x\,y}
+\TrinaryInfC{$!D$}
+\DisplayProof
+\quad\text{şununla değiştirirsek}\quad
+\bottomAlignProof
+\AxiomC{}
+\RightLabel{$\delta_2$}
+\DeduceC{$\lfalse$}
+\RightLabel{\FalseInt}
+\UnaryInfC{$!D$}
+\DisplayProof
+\]
+kesme !!{formula} olarak $!D$'yi taşıyan yeni bir kesme ortaya
+çıkarabiliriz ve $\depth{!D} < \depth{!B \lor !C}$ olacağının garantisi
+yoktur!{} Bu nedenle burada da \Intro{\lor}/\Elim{\lor} indirgemesinde
+olduğu gibi ilerlemeli ve şunlardan biriyle değiştirmeliyiz:
+\[
+\bottomAlignProof
+\AxiomC{}
+\RightLabel{$\delta_2$}
+\DeduceC{$\lfalse$}
+\RightLabel{\FalseInt}
+\UnaryInfC{$!B$}
+\RightLabel{$\delta_3$}
+\DeduceC{$!D$}
+\DisplayProof
+\quad\text{ya da}\quad
+\bottomAlignProof
+\AxiomC{}
+\RightLabel{$\delta_2$}
+\DeduceC{$\lfalse$}
+\RightLabel{\FalseInt}
+\UnaryInfC{$!C$}
+\RightLabel{$\delta_4$}
+\DeduceC{$!D$}
+\DisplayProof
+\]
+

@@ -1,0 +1,116 @@
+% Generated from locale/tr/content/first-order-logic/beyond/higher-order-logic.tex; do not hand-edit.
+
+
+\olfileid[tr]{fol}{byd}{hol}
+
+\olsection{Yüksek Dereceden Mantık}
+
+Birinci dereceden mantıktan ikinci dereceden mantığa geçmek, biçimsel dilin
+içinde birinci dereceden !!{domain}{}deki nesne kümelerinden söz etmemizi
+sağladı. Neden orada duralım? Örneğin üçüncü dereceden mantık, nesne
+kümelerinin kümelerini, hatta belki hem nesneleri hem de nesne kümelerini
+içeren kümeleri ele almamızı sağlamalıdır. Dördüncü dereceden mantık da bu
+tür nesnelerin kümelerinden söz etmemize olanak verir. Tahmin etmiş
+olabileceğiniz gibi bu düşünce istenildiği kadar yinelenebilir.
+
+Uygulamada yüksek dereceden mantık çoğu kez bağıntılar yerine fonksiyonlar
+cinsinden !!{formula}{}leştirilir. (Doğal özdeşleştirmeler hesaba katıldığında bu fark
+önemsizdir.) Bazı temel $A$, $B$, $C$,~\dots ``sıraları'' (bundan böyle bunlara
+``tipler'' diyeceğiz) verildiğinde, şu koşulu koyarak yenilerini
+oluşturabiliriz:
+\begin{quote}
+$\sigma$ ve $\tau$ sonlu tiplerse, $\sigma \to \tau$ da sonlu bir tiptir.
+\end{quote}
+Tipleri, !!{domain}{}imizde bulunmasını istediğimiz nesneleri sınıflandıran
+sözdizimsel ``etiketler'' olarak düşünün; $\sigma \to \tau$, $\sigma$~tipindeki
+nesneleri $\tau$~tipindeki nesnelere götüren fonksiyonlar olan nesneleri
+betimler. Örneğin ``doğru'' ve ``yanlış'' doğruluk değerlerinden oluşan bir
+$\Omega$ tipi ve doğal sayılardan oluşan bir $\Nat$ tipi isteyebiliriz. Bu
+durumda $\Nat \to \Omega$ tipindeki nesneler tekli bağıntılar ya da $\Nat$'ın
+alt kümeleri; $\Nat \to \Nat$ tipindeki nesneler doğal sayılardan doğal
+sayılara fonksiyonlar; $(\Nat \to \Nat) \to \Nat$ tipindeki nesnelerse
+fonksiyonları sayılara götüren yüksek tipli fonksiyonlar, yani
+``fonksiyoneller'' olarak düşünülebilir.
+
+İkinci dereceden mantıkta olduğu gibi yüksek dereceden mantık da ele almak
+istediğimiz her nesne tipi için bir sıranın bulunduğu çok sıralı bir mantık
+türü olarak düşünülebilir. Ancak yüksek tipli mantığın sözdizimini doğrudan
+temelden tanımlamak genellikle daha açıktır. Örneğin bir sonlu tipler kümesini
+tümevarımlı olarak şöyle tanımlayabiliriz:
+\begin{enumerate}
+\item $\Nat$ sonlu bir tiptir.
+\item $\sigma$ ve $\tau$ sonlu tiplerse, $\sigma \to \tau$ da sonlu bir
+  tiptir.
+\item $\sigma$ ve $\tau$ sonlu tiplerse, $\sigma \times \tau$ da sonlu bir
+  tiptir.
+\end{enumerate}
+Sezgisel olarak $\Nat$ doğal sayıların tipini, $\sigma \to \tau$ $\sigma$'dan
+$\tau$'ya fonksiyonların tipini, $\sigma \times \tau$ ise biri $\sigma$'dan,
+öteki $\tau$'dan olan nesne çiftlerinin tipini gösterir. Ardından terimler
+kümesini tümevarımlı olarak şöyle tanımlayabiliriz:
+\begin{enumerate}
+\item Her $\sigma$ tipi için $x$, $y$, $z$, \dots değişkenlerinden oluşan,
+  $\sigma$ tipinde bir dağarcık vardır.
+\item $\Obj 0$, $\Nat$ tipinde bir terimdir.
+\item $\Obj S$ (ardıl), $\Nat \to \Nat$ tipinde bir terimdir.
+\item $s$, $\sigma$ tipinde bir terim ve $t$, $\Nat \to (\sigma \to
+  \sigma)$ tipinde bir terimse, $\Obj{R}_{st}$, $\Nat \to \sigma$ tipinde
+  bir terimdir.
+\item $s$, $\tau \to \sigma$ tipinde ve $t$, $\tau$~tipinde bir terimse,
+  $s(t)$, $\sigma$ tipinde bir terimdir.
+\item $s$, $\sigma$~tipinde bir terim ve $x$, $\tau$~tipinde bir değişkense,
+  $\lambd[x][s]$, $\tau \to \sigma$ tipinde bir terimdir.
+\item $s$, $\sigma$~tipinde ve $t$, $\tau$~tipinde bir terimse,
+  $\tuple{s, t}$, $\sigma \times \tau$ tipinde bir terimdir.
+\item $s$, $\sigma \times \tau$~tipinde bir terimse, $p_1(s)$,
+  $\sigma$~tipinde ve $p_2(s)$, $\tau$~tipinde bir terimdir.
+\end{enumerate}
+Sezgisel olarak $\Obj{R}_{st}$, özyinelemeyle
+\begin{align*}
+\Obj{R}_{st}(0) & = s \\
+\Obj{R}_{st}(x+1) & = t(x, R_{st}(x)),
+\end{align*}
+biçiminde tanımlanan fonksiyonu; $\tuple{s, t}$, ilk bileşeni~$s$, ikinci
+bileşeni~$t$ olan çifti; $p_1(s)$ ve~$p_2(s)$ ise $s$'nin birinci ve ikinci
+elemanlarını (``izdüşümlerini'') gösterir. Son olarak $\lambd[x][s]$, $f$
+fonksiyonunu gösterir; bu fonksiyon
+\[
+f(x) = s
+\]
+eşitliğiyle herhangi bir~$x$ için tanımlanır; bu değişken $\tau$ tipindedir.
+Böylece (6).
+madde, terimleri
+kullanarak fonksiyon tanımlamamıza olanak veren bir kavrama biçimi sağlar.
+!!^{formula}s, aynı tipteki terimler arasındaki $\eq[s][t]$ !!{identity}
+önermelerinden, olağan önermesel bağlaçlardan ve yüksek tipli nicelemeden
+kurulur. Sistemin aksiyomları da yukarıda tanımlanan terimleri yöneten temel
+eşitliklerle, niceleyiciler ve !!{identity} içeren olağan mantık kurallarından
+oluşturulabilir.
+
+Sonlu tip sistemi bir doğruluk değerleri tipi $\Omega$ ile genişletilirse,
+onun kullanımını yöneten aksiyomlar da eklenmelidir. Aslında yeterince ustaca
+davranılırsa karmaşık !!{formula}s bütünüyle ortadan kaldırılıp yerlerine
+$\Omega$ tipinde terimler konabilir!{} Kanıt sistemi de buna uygun biçimde
+değiştirilebilir. Ortaya çıkan sistem özünde Alonzo Church'ün 1930'larda ortaya
+koyduğu \emph{basit tipler kuramı}dır.
+
+İkinci dereceden mantıkta olduğu gibi, yüksek tipli semantiğin de kullanılmak
+istenebilecek farklı sürümleri vardır. Tam sürümde $\sigma \to \tau$ tipindeki
+değişkenler, $\sigma$~tipindeki nesnelerden $\tau$~tipindeki nesnelere giden
+\emph{bütün} fonksiyonlar kümesi üzerinde değer alır. Beklenebileceği üzere bu
+semantik, tam ve etkin bir !!{derivation} sistemine izin vermeyecek kadar
+güçlüdür. Ancak daha zayıf bir semantik ele alınabilir; burada !!a{structure},
+$T_\tau$ eleman kümelerinden (her $\tau$ tipi için bir tane) ve uygulama,
+izdüşüm vb. için uygun işlemlerden oluşur. Ayrıntılar doğru biçimde yürütülürse
+yukarıda
+betimlenen türden !!{derivation} sistemleri için tamlık teoremleri elde
+edilebilir.
+
+Yüksek tipli mantık çekicidir; çünkü matematiğin büyük bir bölümünü doğal
+biçimde içine yerleştirebileceğimiz bir çerçeve sağlar: $\Nat$ ile başlayıp
+gerçek sayılar, sürekli fonksiyonlar vb. tanımlanabilir. Tiplerin açık
+``yapıcı'' yorumları bulunduğu için sezgici mantık bağlamında da özellikle
+çekicidir. Nitekim bu yapıcı yorumları çok güzel açıklığa kavuşturan ve birçok
+yönden klasik karşılıklarından daha ilginç olan yüksek tipli semantiğin yapıcı
+sürümleri (klasik mantık yerine sezgici mantığa dayanarak) geliştirilebilir.
+

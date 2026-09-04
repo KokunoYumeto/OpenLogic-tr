@@ -1,0 +1,88 @@
+% Generated from locale/tr/content/intuitionistic-logic/semantics/topological-semantics.tex; do not hand-edit.
+
+
+\olfileid[tr]{int}{sem}{top}
+
+\olsection{Topolojik Semantik}
+
+Sezgici mantığa bir semantik vermenin başka bir yolu, matematiksel topoloji
+kavramını kullanmaktır.
+
+\begin{defn}
+  $X$ bir küme olsun. $X$ \emph{üzerinde bir topoloji}, aşağıdaki özellikleri
+  sağlayan bir $\Top{O} \subseteq \Pow{X}$ kümesidir. $\Top{O}$'nun
+  !!{element}s{}ına topolojinin \emph{açık kümeleri} denir. $X$ kümesi ile
+  $\Top{O}$ birlikte bir \emph{topolojik uzay} diye adlandırılır.
+  \begin{enumerate}
+  \item Boş küme ile bütün uzay açıktır: $\emptyset$, $X \in \Top{O}$.
+  \item Açık kümeler sonlu kesişimler altında kapalıdır: $U$, $V \in \Top{O}$
+    ise $U \cap V \in \Top{O}$.
+  \item Açık kümeler keyfî birleşimler altında kapalıdır: $U_i \in \Top{O}$
+    ise ve bu tüm $i \in I$ için geçerliyse $\bigcup \Setabs{U_i}{i \in I}
+    \in \Top{O}$.
+  \end{enumerate}
+\end{defn}
+
+Açık kümeler topluluğu bağlamdan çıkarılabiliyorsa bir topoloji için $X$
+yazabiliriz; yine de $X$'e ancak açık kümeler verildikten sonra topoloji
+denebileceğine dikkat edin.
+
+\begin{defn}
+  Sezgici önerme mantığının bir \emph{topolojik modeli}, bir $\mModel{X} =
+  \tuple{X, \Top{O}, V}$ üçlüsüdür; burada $\Top{O}$,~$X$ üzerinde bir
+  topolojidir ve $V$, her önerme değişkenine $\Top{O}$ içinde bir açık küme
+  atayan fonksiyondur.
+
+  Bir topolojik model~$\mModel{X}$ verildiğinde $\Prop{X}{!A}$'yı tümevarımlı
+  olarak şöyle tanımlayabiliriz:
+  \begin{enumerate}
+  \item $\Prop{X}{\lfalse} = \emptyset$
+  \item $\Prop{X}{p} = V(p)$
+  \item $\Prop{X}{!A \land !B} = \Prop{X}{!A} \cap \Prop{X}{!B}$
+  \item $\Prop{X}{!A \lor !B} = \Prop{X}{!A} \cup \Prop{X}{!B}$
+  \item $\Prop{X}{!A \lif !B} = \Interior{(X \setminus \Prop{X}{!A}) \cup
+    \Prop{X}{!B}}$
+  \end{enumerate}
+  Burada $\Interior{V}$, bir $V \subseteq X$ kümesini onun \emph{iç
+  bölgesine}, yani içerdiği bütün açık kümelerin birleşimine gönderen
+  fonksiyondur. Başka bir deyişle,
+  \[
+  \Interior{V} = \bigcup \Setabs{U}{U \subseteq V \text{ ve } U \in \Top{O}}.
+  \]
+\end{defn}
+
+Her kümenin iç bölgesi, açık kümelerin birleşimi olduğu için daima açıktır.
+Dolayısıyla $\Prop{X}{!A}$ daima açık bir kümedir.
+
+Topolojik semantik son derece soyut olsa da onu güdüleyebilecek bazı düşünme
+yolları vardır. $X$'in !!{element}s{}ının ya da ``noktalarının'', ifadelerin
+değerlendirilebildiği noktalar olduğunu varsayın. $!A$'nın doğru olduğu tüm
+noktaların kümesi,~$!A$'nın dile getirdiği önermedir. Her nokta kümesi olası
+bir önerme değildir; yalnızca $\Top{O}$'nun !!{element}s{}ı böyledir. $!A
+\Entails !B$ ancak ve ancak $!B$,~$!A$'nın doğru olduğu her noktada doğruysa,
+yani $\Prop{X}{!A} \subseteq \Prop{X}{!B}$ ise geçerlidir; bu tüm~$X$'ler
+içindir.
+Saçma ifade~$\lfalse$ hiçbir zaman doğru değildir; dolayısıyla
+$\Prop{X}{\lfalse} = \emptyset$.
+
+$!B \land !C$, $!B \lor !C$ ve $!B \lif !C$'nin dile getirdiği önermeler,
+$!B$ ile~$!C$'nin dile getirdikleriyle nasıl ilişkili olmalıdır ki sezgici
+bakımdan geçerli yasalar sağlansın, yani $!A \Proves !B$ ancak ve ancak
+$\Prop{X}{!A} \subseteq \Prop{X}{!B}$ olsun? $\lfalse \Proves !A$ olmasını
+her $!A$ için isteriz; bu sağlanır, çünkü $\emptyset \subseteq U$ olur ve bu
+tüm $U$'lar için geçerlidir. $!B \land !C \Proves !B$ olduğundan $\Prop{X}{!B \land !C}
+\subseteq \Prop{X}{!B}$ olmasını ve benzer biçimde $\Prop{X}{!B \land !C}
+\subseteq \Prop{X}{!C}$ olmasını isteriz. $W \subseteq U$ ve $W \subseteq V$
+koşullarını sağlayan en büyük küme $U \cap V$'dir. Tersine, $!B \Proves !B
+\lor !C$ ve $!C \Proves !B \lor !C$; dolayısıyla $\Prop{X}{!B} \subseteq
+\Prop{X}{!B \lor !C}$ ve $\Prop{X}{!C} \subseteq \Prop{X}{!B \lor !C}$
+olmasını isteriz. En küçük~$W$ kümesi, $U \subseteq W$ ve $V \subseteq W$
+koşullarını sağlayan $U \cup V$ kümesidir.
+
+$\lif$ tanımı daha çetrefillidir: $!A \lif !B$,~$!A$ ile birleştirildiğinde
+$!B$'yi mantıksal olarak gerektiren en zayıf önermeyi dile getirir. $!A \lif
+!B$'nin $!A$ ile birleşince~$!B$'yi mantıksal olarak gerektirdiği, $(!A \lif
+!B) \land !A \Proves !B $ ifadesinden açıktır. Dolayısıyla $\Prop{X}{!A \lif
+!B}$, $\Prop{X}{!A \lif !B} \cap \Prop{X}{!A} \subseteq \Prop{X}{!B}$
+koşulunu sağlayan en büyük açık küme olmalıdır; tanımımız buradan çıkar.
+

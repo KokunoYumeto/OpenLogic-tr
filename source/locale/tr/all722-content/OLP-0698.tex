@@ -1,0 +1,249 @@
+% Generated from locale/tr/content/proof-theory/sequent-calculus/admissible-derivable.tex; do not hand-edit.
+
+
+\olfileid[tr]{pt}{seq}{adm}
+
+\olsection{Kabul Edilebilir ve Türetilebilir Kurallar}
+
+İspat kuramındaki birçok sonuç, belirli bir kural kullanılarak !!{prove}{}nan
+her şeyin o kural olmadan da !!{prove}{}nıp !!{prove}{}namayacağına ilişkin
+sonuçlarla ilgilidir ya da bunları kullanır. En iyi bilinen örnek kesme
+giderme teoremidir. Bu teorem, \Cut{} içeren bir sekant sisteminin
+kurallarıyla !!{prove}{}nabilen her sekantın \Cut{} olmadan da
+!!{prove}{}nabildiğini gösterir. Bu özellik tipi çok önemli olduğundan özel
+bir adı vardır.
+
+\begin{defn}
+Bir~$R$ kuralı, bu kuralla birlikte bir sekant sisteminde ispatlanabilen her
+sekant $R$ olmadan da ispatlanabiliyorsa o sistemde \emph{kabul edilebilirdir}.
+\end{defn}
+
+\begin{ex}\ollabel{ex:land-deriv}
+$\LeftR{\land}$ kuralı \Log{G1c} ve \Log{G3c}'de farklı biçimler alır.
+\Log{G1c}'de kuralın iki sürümü vardır: birinin öncülünde ana
+!!{formula}~$!A \land !B$'nin sol bağlaşığı~$!A$, ötekinin öncülünde sağ
+bağlaşığı~$!B$ bulunur:
+\[
+\Axiom$ !A, \Gamma \fCenter \Delta$
+\RightLabel{$\LeftR{\land}_1$}
+\UnaryInf$ !A \land !B, \Gamma \fCenter \Delta$
+\DisplayProof
+\qquad
+\Axiom$!B, \Gamma \fCenter \Delta$
+\RightLabel{$\LeftR{\land}_2$}
+\UnaryInf$!A \land !B, \Gamma \fCenter \Delta$
+\DisplayProof
+\]
+Buna karşılık \Log{G3c}'nin yalnızca bir kuralı vardır:
+\[
+\Axiom$ !A, !B, \Gamma \fCenter \Delta$
+\RightLabel{$\LeftR{\land}_3$}
+\UnaryInf$ !A \land !B, \Gamma \fCenter \Delta$
+\DisplayProof
+\]
+Şimdi ``\Log{G3c}'nin $\LeftR{\land}_3$ kuralı \Log{G1c}'de kabul
+edilebilir mi?'' diye sorabiliriz. Evet: $\LeftR{\land}_3$ kullanan her
+çıkarımı yalnız \Log{G1c}'nin kurallarıyla doğrudan simüle edebiliriz.
+$\LeftR{\land}_1$ ve $\LeftR{\land}_2$'ye ek olarak yapısal
+$\LeftR{\Contraction}$ kuralı da gerekir:
+\[
+\Axiom$!A, !B, \Gamma \fCenter \Delta$
+\RightLabel{$\LeftR{\land}_1$}
+\UnaryInf$!A \land !B, !B, \Gamma \fCenter \Delta$
+\RightLabel{$\LeftR{\land}_2$}
+\UnaryInf$!A \land !B, !A \land !B, \Gamma \fCenter \Delta$
+\RightLabel{\LeftR{\Contraction}}
+\UnaryInf$!A \land !B, \Gamma \fCenter \Delta$
+\DisplayProof
+\]
+\end{ex}
+
+Bir kuralı kullanan çıkarımları başka kurallarla simüle etmek, o kuralın kabul
+edilebilir olduğunu göstermenin bir yoludur. Ancak tek yol bu değildir;
+simüle edilemediği hâlde kabul edilebilir olan kurallar da vardır.
+Simüle edilebilen kurallara \emph{türetilebilir} denir.
+
+\begin{defn}
+Bir~$R$ kuralına
+\[
+\AxiomC{$S_1$}
+\AxiomC{$\dots$}
+\AxiomC{$S_n$}
+\RightLabel{$R$}
+\TrinaryInfC{$S$}
+\DisplayProof
+\]
+bir sistemde \emph{türetilebilir} denmesi için, sistemin kuralları ve
+aksiyomlarıyla birlikte $S_1$, \dots,~$S_n$ biçimindeki ek başlangıç
+sekantlarını kullanarak $S$ sekantının şematik bir !!a{proof}{}ı bulunmalıdır.
+\end{defn}
+
+\olref{ex:land-deriv} içindeki !!{proof}, $\LeftR{\land}_3$'ün
+\Log{G1c}'de türetilebilir bir kural olduğunu gösterir; çünkü bu !!{proof},
+$\LeftR{\land}_3$'ün öncüllerini başlangıç sekantları sayarak, yalnız
+\Log{G1c}'nin kurallarıyla kuralın sonucunun şematik bir !!a{proof}{}ıdır.
+(\Log{G1c}'nin hiçbir aksiyomunu kullanmamıştır.)
+
+\begin{prop}\ollabel{prop:lor-G3-adm}
+\Log{G3c}'nin $\LeftR{\land}$ ve $\RightR{\lor}$ kuralları \Log{G1c}'de
+türetilebilirdir.
+\end{prop}
+
+\begin{proof}
+  $\LeftR{\land}$ ispatı \olref{ex:land-deriv} içinde verilmiştir.
+  $\RightR{\lor}$ ispatı alıştırma olarak bırakılmıştır.
+\end{proof}
+
+\begin{prob}
+\Log{G3c}'nin $\RightR{\lor}$ kuralının \Log{G1c}'de türetilebilir
+olduğunu gösterin.
+\end{prob}
+
+\begin{prob}
+$\liff$'in tanımlı bir !!{operator} olduğunu varsayın: $!A \liff !B$,
+$(!A \lif !B) \land (!B \lif !A)$'nın kısaltmasıdır. Şu kuralların
+\begin{enumerate}
+\item \Axiom$\Gamma, !A, !B \fCenter \Delta$
+\Axiom$\Gamma \fCenter \Delta, !A, !B$
+\RightLabel{\LeftR{\liff}}
+\BinaryInf$!A \liff !B, \Gamma \fCenter \Delta$
+\DisplayProof
+\item
+\Axiom$!A, \Gamma \fCenter \Delta, !B$
+\Axiom$!B, \Gamma \fCenter \Delta, !A$
+\RightLabel{\RightR{\liff}}
+\BinaryInf$\Gamma \fCenter \Delta, !A \liff !B$
+\DisplayProof
+\end{enumerate}
+(a)~\Log{G1c} ve (b)~\Log{G3c}'de türetilebilir olduğunu gösterin.
+\end{prob}
+
+
+\begin{ex}\ollabel{ex:weak-adm}
+\Log{G1c}'nin $\RightR{\Weakening}$ kuralı
+\[
+\Axiom$ \Gamma \fCenter \Delta$
+\RightLabel{\RightR{\Weakening}}
+\UnaryInf$ \Gamma \fCenter \Delta, !A$
+\DisplayProof
+\]
+\Log{G3c}'de kabul edilebilirdir. İspatın düşüncesi basittir: \Log{G3c}'de
+$\Gamma \Sequent \Delta$ öncülünün bir !!a{proof}{}ı~$\pi$ bulunduğunu
+varsayın. $\pi$ içindeki her sekantın artbileşenine !!{formula}~$!A$'yı
+ekleyin. Aksiyomlar aksiyom olarak, doğru çıkarımlar da doğru çıkarım olarak
+kalır. Yeni !!{proof}{}ın son sekantı $\Gamma \Sequent \Delta, !A$'dır.
+
+Ancak $\RightR{\Weakening}$ kuralı \Log{G3c}'de türetilebilir değildir.
+Türetilebilir olduğunu, yani \Log{G3c}'nin aksiyom ve kurallarına olası ek
+başlangıç sekantı~$\Gamma \Sequent \Delta$ da katılarak $\Gamma \Sequent
+\Delta, !A$'nın bir !!a{proof}{}ının bulunabileceğini varsayalım.
+$\RightR{\Weakening}$'in türetilebilir olması için gerektiği gibi bu
+!!{proof} bütünüyle şematikse $\Gamma$ ile~$\Delta$ silinerek
+$\Sequent !A$'nın bir !!a{proof}{}ına dönüştürülebilir. Bu işlem ek başlangıç
+sekantı~$\Gamma \Sequent \Delta$'yı boş sekant~$\quad \Sequent \quad$'a
+dönüştürür. Boş sekant hiç !!{formula} içermediği, \Log{G3c}'nin bütün
+kurallarıysa öncüllerinde en az bir etkin !!{formula} gerektirdiği için boş
+sekant bu şematik !!{proof} içindeki hiçbir çıkarımın öncülü olamaz.
+Dolayısıyla !!{proof}, ancak ek $\Gamma \Sequent \Delta$ sekantını gerçekten
+başlangıç sekantı olarak kullanmıyorsa şematik olabilir. Başka bir deyişle,
+yalnız \Log{G3c}'nin aksiyom ve kurallarıyla $\Gamma \Sequent \Delta,
+!A$'nın şematik bir türetimi olur ve bu biçimdeki her sekantın \Log{G3c}'de
+bir !!a{proof}{}ı bulunduğu gösterilmiş olurdu. Fakat bu olanaksızdır; çünkü
+\Log{G3c} sağlamdır ve yalnız her !!{structure} içinde doğru olan sekantları
+!!{prove}{}yabilir. $\Gamma = \Delta = \emptyset$ ve $!A \ident \lfalse$
+alırsak \Log{G3c}'nin örneğin $\quad \Sequent \lfalse$ sekantını
+!!{prove}{}ması gerekirdi; oysa bunu yapamaz.
+\end{ex}
+
+Şimdi zayıflatmanın \Log{G3c}'de kabul edilebilir bir kural olduğuna ilişkin
+güzel bir tümevarımsal ispat verelim. Aslında sezgisel savın gösterdiği gibi
+biraz daha güçlü bir sonuç geçerlidir: $\pi$'nin her sekantının sağ yanına
+$!A$ eklemek !!{proof}{}ın yapısını değiştirmez; özellikle yüksekliği
+artırmaz. Bu önemli olduğu için ayrı bir tanımı hak eder.
+
+\begin{defn}
+Bir~$R$ kuralı
+\[
+\AxiomC{$S_1$}
+\AxiomC{$\dots$}
+\AxiomC{$S_n$}
+\RightLabel{$R$}
+\TrinaryInfC{$S$}
+\DisplayProof
+\]
+bir sistemde, $i = 1$, \dots,~$n$ için $\Proves[h_i] S_i$ olduğunda
+$m = \max(h_1, \dots, h_n)$ ile $\Proves[m] S$ oluyorsa
+\emph{!!{height} değerini koruyarak kabul edilebilir} (ya da
+\emph{!!{hp}-kabul edilebilir}) diye adlandırılır.
+\end{defn}
+
+Bir kuralın !!{height} değerini koruyarak kabul edilebilir olması için şu
+koşulun yeterli olduğuna dikkat edin: öncüller~$S_i$, !!{height} değeri
+$h_i = \pheight{\pi_i}$ olan !!{proof}s~$\pi_i$'ye sahip olduğunda sonucun,
+!!{height} değeri~$\pheight{\pi}$, $h_i$'lerin en büyüğünden fazla olmayan bir
+!!a{proof}{}ı~$\pi$ bulunsun. Özellikle tek öncül~$S_1$ varsa
+$\pheight{\pi} \le \pheight{\pi_1}$ olması yeterlidir.
+$\RightR{\Weakening}$ ve $\LeftR{\Weakening}$ durumunda gerçekte
+$\pheight{\pi} = \pheight{\pi_1}$ olur; ancak bu gerekli değildir.
+
+\begin{prop}\ollabel{prop:weak-G3c-adm}
+\Log{G1c}'nin $\RightR{\Weakening}$ ve $\LeftR{\Weakening}$ kuralları
+\Log{G3c}'de !!{height} değerini koruyarak kabul edilebilirdir.
+\end{prop}
+
+\begin{proof}
+  $\Log{G3c} \Proves \Gamma \Sequent \Delta$ yargısı,
+  $\pheight{\pi} = n$ olan bir !!a{proof}~$\pi$ ile geçerliyse,
+  $\Gamma \Sequent \Delta, !A$'nın $\pheight{\pi'} = n$ olan
+  bir \Log{G3c}-!!{proof}{}ı~$\pi'$ bulunduğunu göstermeliyiz. Bunu $n$
+  üzerinde tümevarımla ispatlıyoruz. $n=0$ ise $\pi$ yalnız $\Gamma
+  \Sequent \Delta$ aksiyomudur (yani atomik bir $!C$, hem $\Gamma$ hem de
+  $\Delta$ içinde geçer); $\Gamma \Sequent \Delta, !A$ da aksiyomdur.
+  $n = \pheight{\pi} >0$ ise !!{proof}~$\pi$'nin bir son çıkarımı vardır.
+  Kullanılan kurala göre durumları ayırırız. Yalnız bir örnek verelim: son
+  çıkarımın $\RightR{\land}$ olduğunu varsayın. O zaman $\Delta = \Delta',
+  !B \land !C$ ve son çıkarımın doğrudan alt-!!{proof}s{}ı $\pi_1$ ile
+  $\pi_2$ sırasıyla $\Gamma \Sequent \Delta', !B$ ve $\Gamma \Sequent
+  \Delta', !C$ son sekantlarına sahiptir. Başka bir deyişle $\pi$ şöyle
+  görünür:
+  \[
+  \AxiomC{}
+  \RightLabel{$\pi_1$}
+  \Deduce$\Gamma \fCenter \Delta', !B$
+  \AxiomC{}
+  \RightLabel{$\pi_2$}
+  \Deduce$\Gamma \fCenter \Delta', !C$
+  \RightLabel{\RightR{\land}}
+  \BinaryInf$\Gamma \fCenter \Delta', !B \land !C$
+  \DisplayProof
+  \]
+  Ayrıca $n = \max(\pheight{\pi_1}, \pheight{\pi_2}) + 1$'dir. Dolayısıyla
+  $\pheight{\pi_1} < n$ ve $\pheight{\pi_2} < n$ olur ve tümevarım
+  varsayımı uygulanır: $\Gamma \Sequent \Delta', !B, !A$ ve $\Gamma
+  \Sequent \Delta', !C, !A$'nın !!{proof}s{}ı $\pi_1'$ ile~$\pi_2'$ vardır.
+  $\RightR{\land}$ kuralını kullanarak $\Gamma \Sequent \Delta', !B
+  \land !C, !A$'nın bir !!a{proof}{}ı~$\pi'$yi elde ederiz:
+  \[
+  \AxiomC{}
+  \RightLabel{$\pi_1'$}
+  \Deduce$\Gamma \fCenter \Delta', !B, !A$
+  \AxiomC{}
+  \RightLabel{$\pi_2'$}
+  \Deduce$\Gamma \fCenter \Delta', !C, !A$
+  \RightLabel{\RightR{\land}}
+  \BinaryInf$\Gamma \fCenter \Delta', !B \land !C, !A$
+  \DisplayProof
+  \]
+  $\pheight{\pi'} = \max(\pheight{\pi_1'}, \pheight{\pi_2'}) + 1 =
+  \max(\pheight{\pi_1}, \pheight{\pi_2}) + 1 = \pheight{\pi}$ olur.
+  Sol zayıflatma durumu da simetriktir: aynı tümevarımda her sekantın
+  önbileşenine $!A$ eklenir ve yükseklik değeri değişmez.
+\end{proof}
+
+\olref{prop:weak-G3c-adm} son derece kullanışlıdır. Onun yinelenen
+uygulanışı için bir gösterim tanıtacağız: $\pi$, $\Gamma \Sequent \Delta$'nın
+bir !!a{proof}{}ı ise $\pi[\Pi \Sequent \Lambda]$, solda $\Pi$ içindeki bütün
+!!{formula}s ve sağda $\Lambda$ içindeki bütün !!{formula}s ile
+zayıflatmanın kabul edilebilirliğinin uygulanması sonucudur. Bu, $\Gamma,
+\Pi \Sequent \Delta, \Lambda$'nın bir !!a{proof}{}ıdır.
+

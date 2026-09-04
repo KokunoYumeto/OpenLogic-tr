@@ -1,0 +1,42 @@
+% Generated from locale/tr/content/first-order-logic/axiomatic-deduction/provability-quantifiers.tex; do not hand-edit.
+
+
+\olfileid[tr]{fol}{axd}{qpr}
+
+\olsection{\usetoken{S}{derivability} ve Niceleyiciler}
+
+\begin{explain}
+  Tamlık teoremi ayrıca, aksiyomatik türetimlerin bu bölümde $\Proves$
+  hakkında gösterilen olguları vermesini gerektirir.
+\end{explain}
+
+\begin{thm}
+\ollabel{thm:strong-generalization} $c$, $\Gamma$ veya $!A(x)$ içinde
+geçmeyen bir !!a{constant} ise ve $\Gamma \Proves !A(c)$ ise
+$\Gamma \Proves \lforall[x][!A(x)]$.
+\end{thm}
+
+\begin{proof}
+Tümdengelim teoremiyle $\Gamma \Proves \ltrue \lif !A(c)$. $c$, $\Gamma$,
+$\top$ ya da~$!A(x)$ içinde geçmediğinden $\Gamma \Proves
+\ltrue \lif \lforall[x][!A(x)]$ elde ederiz. \olref[prp]{ax:ltrue} ile
+$\Gamma \Proves \ltrue$ olur; ardından \olref[ded]{prop:mp} uygulanarak
+$\Gamma \Proves \lforall[x][!A(x)]$ sonucuna ulaşılır.
+\end{proof}
+
+\begin{prop}
+\ollabel{prop:provability-quantifiers}
+\begin{tagenumerate}{prvEx,prvAll}
+\tagitem{prvEx}{Her kapalı terim~$t$ için $!A(t) \Proves \lexists[x][!A(x)]$.}{}
+
+\tagitem{prvAll}{Her kapalı terim~$t$ için $\lforall[x][!A(x)] \Proves !A(t)$.}{}
+\end{tagenumerate}
+\end{prop}
+
+\begin{proof}
+\begin{tagenumerate}{prvEx,prvAll}
+\tagitem{prvEx}{\olref[qua]{ax:q2} ve tümdengelim teoremiyle.}{}
+\tagitem{prvAll}{\olref[qua]{ax:q1} ve tümdengelim teoremiyle.}{}
+\end{tagenumerate}
+\end{proof}
+

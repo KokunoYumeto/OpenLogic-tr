@@ -1,0 +1,92 @@
+% Generated from locale/tr/content/set-theory/choice/wellorderingproblem.tex; do not hand-edit.
+
+
+\olfileid[tr]{sth}{choice}{woproblem}
+\olsection{İyi Sıralama Sorunu}
+
+İyi Sıralama'yı kabul edip etmememize oldukça çok şeyin bağlı olduğu
+açıktır. Fakat bu ilke hakkındaki tartışma, ona denk bir ilkeye, Seçim
+Aksiyomu'na odaklanma eğilimindedir. Bu nedenle şimdi dikkatimizi ona
+çevireceğiz (ve denkliği ispatlayacağız).
+
+\citeyear{Cantor1883} yılında Cantor, İyi Sıralama Aksiyomu'nu
+desteklediğini belirterek onu ``bana temel görünen, sonuçları bakımından
+zengin ve genel geçerliliği bakımından özellikle dikkate değer bir düşünce
+yasası'' diye adlandırdı (aktaran \citeauthor{Potter2004}
+\citeyear[p.~243]{Potter2004}). Fakat Cantor sonunda bu ``Aksiyomun''
+ispata gereksinimi olduğuna ikna oldu. Matematik topluluğu da öyle.
+
+Sorun \citeyear{Zermelo1904} yılında Zermelo tarafından ``çözüldü''.
+Çözümünü açıklamak için bazı tanımlara ihtiyacımız var.
+
+\begin{defn}
+Bir $f$ fonksiyonu, her $x\in\dom{f}$ için $f(x)\in x$ ise ve ancak o
+zaman bir \emph{seçim fonksiyonudur}. $f$ bir seçim fonksiyonu ve
+$\dom{f}=A\setminus\{\emptyset\}$ ise ve ancak o zaman $f$'ye
+\emph{$A$ için bir seçim fonksiyonu} deriz.
+\end{defn}
+
+Sezgisel olarak $A$ için bir seçim fonksiyonu, her (boş olmayan)
+$x\in A$ kümesinden belirli bir $f(x)$ elemanını \emph{seçer}. Öyleyse
+Seçim Aksiyomu şudur:
+
+\begin{axiom}[Seçim]
+	Her kümenin bir seçim fonksiyonu vardır.
+\end{axiom}
+
+Zermelo, Seçim'in iyi sıralamayı gerektirdiğini ve tersini gösterdi:
+
+\begin{thm}[$\ZF$ içinde]\ollabel{thmwochoice}
+İyi Sıralama ile Seçim denktir.
+\end{thm}
+
+\begin{proof}
+\emph{Soldan sağa.} $A$ bir kümeler kümesi olsun. Birleşim Aksiyomu
+gereği $\bigcup A$ vardır; dolayısıyla İyi Sıralama gereği
+$\bigcup A$'yı iyi sıralayan bir $<$ bağıntısı vardır. Şimdi
+$f(x)=\text{$x$'in $<$-en küçük elemanı}$ olsun. Bu, $A$ için bir seçim
+fonksiyonudur.
+
+\emph{Sağdan sola.} $A$ sabit olsun. $A=\emptyset$ ise sonuç açıktır;
+bundan sonra $A\neq\emptyset$ varsayın. Seçim gereği
+$\Pow{A}\setminus\{\emptyset\}$ için bir $f$ seçim fonksiyonu vardır.
+Sonlu Ötesi Özyineleme'yi kullanarak bir fonksiyon tanımlayın:
+\begin{align*}
+	g(0) &= f(A)\\
+	g(\alpha) &=
+		\begin{cases}
+			\text{dur!{}} &\text{eğer }A = \funimage{g}{\alpha}\\
+			f(A \setminus \funimage{g}{\alpha}) & \text{aksi hâlde}\\	
+		\end{cases}
+\end{align*}
+``Dur!'' yönergesi, aksi hâlde daha uzun olacak bir tanımın yalnızca
+kısaltmasıdır. Yani $A=\funimage{g}{\alpha}$ ilk kez olduğunda bütün
+$\alpha\leq\delta$ için $g(\delta)=A$ olsun. İlk aşamada bunun yalnızca
+bir \emph{terim} tanımladığından emin olabiliriz (bkz.
+\olref[sth][spine][recursion]{transrecursionschema} sonrasındaki
+açıklamalar); fakat gerçekten gereksinim duyduğumuz fonksiyonu elde
+ettiğimizi göstereceğiz.
+
+$f$ bir seçim fonksiyonu olduğundan her $\alpha$ için (durmadan önce)
+$g(\alpha)=f(A\setminus\funimage{g}{\alpha})\in
+A\setminus\funimage{g}{\alpha}$; yani
+$g(\alpha)\notin\funimage{g}{\alpha}$ olur. Dolayısıyla
+$g(\alpha)=g(\beta)$ ise
+$g(\beta)\notin\funimage{g}{\alpha}$, yani $\beta\notin\alpha$ olur;
+benzer biçimde $\alpha\notin\beta$. Üçlü Karşılaştırma gereği
+$\alpha=\beta$. Öyleyse $g$, durmadan önce !!{injective}.
+
+Sonra gerçekten durduğumuzu, yani $A=g[\alpha]$ olan (en küçük) bir
+$\alpha$ sıra sayısının bulunduğunu gözlemleyin. Tersini varsayalım;
+o zaman $g$ !!{injective} olduğundan her $\alpha$ sıra sayısı için
+$\cardless{\alpha}{A}$ olurdu; bu ise \olref[hartogs]{HartogsLemma} ile
+çelişir. Dolayısıyla ayrıca $\ran{g\restriction\alpha}=A$ olur.
+
+Bu olgular bir araya getirildiğinde $g\restriction\alpha$, bir sıra
+sayısından $A$'ya giden bir !!a{bijection} olur. Artık
+$g\restriction\alpha$, $A$'yı iyi sıralamak için kullanılabilir.
+\end{proof}
+
+Dolayısıyla İyi Sıralama ve Seçim birlikte ayakta kalır ya da birlikte
+çöker. Fakat soru hâlâ duruyor: ayakta mı kalırlar, çökerler mi?
+

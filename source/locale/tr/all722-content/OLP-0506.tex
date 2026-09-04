@@ -1,0 +1,146 @@
+% Generated from locale/tr/content/intuitionistic-logic/soundness-completeness/lindenbaum.tex; do not hand-edit.
+
+
+\olfileid[tr]{int}{sc}{lin}
+
+\olsection{Lindenbaum Lemması}
+
+Sezgici mantığın tamlık teoremi, $\Gamma\Proves/ !A$ varsayılıp
+$\mSat{M}{\Gamma}$ ve $\mSat/{M}{!A}$ olan bir model kurularak ispatlanır.
+
+Klasik mantıkta !!{derivability} bağıntısı tutarlılık kavramına
+indirgenebilir; çünkü bir !!a{formula}~$!A$, ancak ve ancak kaynak küme
+$!A$'nın değillemesiyle birlikte tutarsızsa bu kümeden !!{derivable} olur;
+söz konusu küme !!{formula}s{}den oluşur. Sezgici mantıkta bu mümkün değildir.
+Sezgici mantıkta
+$\lnot !A$ tutarsızsa yalnızca $\Proves\lnot\lnot !A$ elde ederiz.
+$\lnot\lnot !A\lif !A$ genel olarak sezgici mantıkta geçerli olmadığından
+$\Proves !A$ sonucuna varamayız.
+
+Dolayısıyla $\mModel{M}$ modelini kurarken $!A$ bakımından
+!!{derivability} yokluğunu, yani bu !!{formula}{}ün türetilemezliğini
+izlememiz gerekecek. Bu nedenle, her tam
+$\Gamma^*\supseteq\Gamma$ kümesinde
+$\Gamma^*\Proves !A\lor\lnot !A$ olduğundan, $\mModel{M}$ modelini kurmak
+için klasik durumda olduğu gibi tam bir $\Gamma^*$ kümesi kullanamayacağız.
+
+Tam bir $\Gamma^*$ kümesi yerine asal formüller kümesi kavramını
+kullanacağız:
+
+\begin{defn}\ollabel{defn:prime}
+  Bir $\Gamma$ kümesindeki nesneler !!{formula}s olsun. Bu küme, ancak ve ancak
+  \begin{enumerate}
+  \item\ollabel{defn:prime1} $\Gamma$ tutarlıysa, yani
+    $\Gamma\Proves/\lfalse$ ise;
+  \item\ollabel{defn:prime2} $\Gamma\Proves !A$ olduğunda $!A\in\Gamma$ ise; ve
+  \item\ollabel{defn:prime3} $!A\lor !B\in\Gamma$ ise $!A\in\Gamma$ ya da
+    $!B\in\Gamma$ ise
+  \end{enumerate}
+  \emph{asaldır}.
+\end{defn}
+
+\begin{lem}[Lindenbaum Lemması]
+  \ollabel{lem:lindenbaum} $\Gamma\Proves/ !A$ ise asal olan ve
+  $\Gamma^*\Proves/ !A$ koşulunu sağlayan bir
+  $\Gamma^*\supseteq\Gamma$ vardır.
+\end{lem}
+
+\begin{proof}
+  $!B\lor !C$ biçimindeki bütün !!{formula}s
+  $!B_1\lor !C_1$, $!B_2\lor !C_2$, \dots{} diye numaralandırılsın. Her
+  $\Gamma_{n+1}$'in $\Gamma_n$'ye yeni bir !!{formula} eklenerek
+  tanımlandığı, artan bir !!{formula}s kümeleri dizisi $\Gamma_n$
+  tanımlayacağız. $\Gamma^*$, bütün $\Gamma_n$'lerin birleşimi olacaktır.
+  Yeni !!{formula}s, $\Gamma^*$'ın asal kalmasını ve hâlâ
+  $\Gamma^*\Proves/ !A$ olmasını sağlayacak biçimde seçilir. Bu, her adımda
+  şu koşulları sağlayan ilk $!B_i\lor !C_i$ ayrımını bulmamız gerektiği
+  anlamına gelir:
+  \begin{enumerate}
+  \item\ollabel{gamma-1} $\Gamma_n \Proves !B_i \lor !C_i$
+  \item\ollabel{gamma-2} $!B_i \notin \Gamma_n$ ve
+    $!C_i \notin \Gamma_n$.
+  \end{enumerate}
+  $\Gamma_n\cup\{!B_i\}\Proves/ !A$ ise $!B_i$'yi, aksi hâlde $!C_i$'yi
+  $\Gamma_n$'ye ekleriz. Bunun işe yaradığını göstermemiz gerekecek.
+  Şimdilik $i(n)$'yi \olref{gamma-1} ile \olref{gamma-2} koşullarını
+  sağlayan en küçük $i$ olarak tanımlayalım.
+
+  $\Gamma_0=\Gamma$ olsun ve
+  \[
+  \Gamma_{n+1} = \begin{cases}
+    \Gamma_n \cup \{!B_{i(n)}\} &
+    \text{$\Gamma_n \cup \{!B_{i(n)}\} \Proves/ !A$ ise} \\
+    \Gamma_n \cup \{!C_{i(n)}\} & \text{aksi hâlde.}
+    \end{cases}
+  \]
+  $i(n)$ tanımsızsa, yani $\Gamma_n\Proves !B\lor !C$ olduğunda her zaman
+  $!B\in\Gamma_n$ ya da $!C\in\Gamma_n$ oluyorsa
+  $\Gamma_{n+1}=\Gamma_n$ alırız. Şimdi
+  $\Gamma^*=\bigcup_{n=0}^{\infty}\Gamma_n$ olsun.
+
+  Önce her $n$ için $\Gamma_n\Proves/ !A$ olduğunu gösteriyoruz. $n$
+  üzerinde tümevarımla ilerleyelim. $n=0$ için iddia teoremin varsayımı,
+  yani $\Gamma\Proves/ !A$ gereği geçerlidir. $n>0$ için
+  $\Gamma_n\Proves/ !A$ ise $\Gamma_{n+1}\Proves/ !A$ olduğunu
+  göstermeliyiz. $i(n)$ tanımsızsa $\Gamma_{n+1}=\Gamma_n$ ve
+  ispatlanacak bir şey yoktur. Öyleyse $i(n)$ tanımlı olsun. Kısalık için
+  $i=i(n)$ yazalım.
+
+  İddianın karşıt-tersini ispatlayacağız. $\Gamma_{n+1}\Proves !A$
+  varsayın. Kuruluş gereği $\Gamma_n\cup\{!B_i\}\Proves/ !A$ ise
+  $\Gamma_{n+1}=\Gamma_n\cup\{!B_i\}$; aksi hâlde
+  $\Gamma_{n+1}=\Gamma_n\cup\{!C_i\}$ olur. Birinci durum açıkça olamaz;
+  çünkü o zaman $\Gamma_{n+1}\Proves/ !A$ olurdu. Dolayısıyla
+  $\Gamma_n\cup\{!B_i\}\Proves !A$ ve
+  $\Gamma_{n+1}=\Gamma_n\cup\{!C_i\}$ olur. $i(n)$ tanımı gereği
+  $\Gamma_n\Proves !B_i\lor !C_i$ vardır. Hem
+  $\Gamma_n\cup\{!B_i\}\Proves !A$ hem de
+  $\Gamma_n\cup\{!C_i\}=\Gamma_{n+1}\Proves !A$ vardır. Dolayısıyla
+  durumlara ayırarak $\Gamma_n\Proves !A$ elde edilir; göstermek
+  istediğimiz buydu.
+
+  $\Gamma^*\Proves !A$ olsaydı, $\Gamma'\Proves !A$ olan sonlu bir
+  $\Gamma'\subseteq\Gamma^*$ bulunurdu. $\Gamma'=\emptyset$ ise zaten
+  $\Gamma_0\Proves !A$ olurdu. Değilse $\Gamma'$ içindeki her $!D$ bir
+  $i$ için $\Gamma_i$ içinde bulunur. Bunların en büyüğü $n$ olsun.
+  $i\leq n$ ise $\Gamma_i\subseteq\Gamma_n$ olduğundan
+  $\Gamma'\subseteq\Gamma_n$ olur. Fakat o zaman
+  $\Gamma_n\Proves !A$ elde edilir; bu, yukarıda ispatladığımız
+  $\Gamma_n\Proves/ !A$ sonucuna aykırıdır.
+
+  Son olarak $\Gamma^*$'ın \olref{defn:prime1}, \olref{defn:prime2} ve
+  \olref{defn:prime3} koşullarını, yani \olref{defn:prime} tanımını
+  sağladığını gösteriyoruz.
+
+  Önce $\Gamma^*\Proves/ !A$ olduğundan $\Gamma^*$ tutarlıdır; böylece
+  \olref{defn:prime1} sağlanır.
+
+  Şimdi $\Gamma^*\Proves !B\lor !C$ ise ya $!B\in\Gamma^*$ ya da
+  $!C\in\Gamma^*$ olduğunu gösterelim. Bu, \olref{defn:prime3}'ü
+  ispatlar; çünkü $!B\lor !C\in\Gamma^*$ ise ayrıca
+  $\Gamma^*\Proves !B\lor !C$ olur. O hâlde
+  $\Gamma^*\Proves !B\lor !C$ iken $!B\notin\Gamma^*$ ve
+  $!C\notin\Gamma^*$ olduğunu varsayın. Bir $n$ için
+  $\Gamma_n\Proves !B\lor !C$ olur. $!B\lor !C$, bütün ayrımların
+  numaralandırmasında, diyelim ki $!B_j\lor !C_j$ olarak geçer.
+  $!B_j\lor !C_j$, $i(n)$ tanımındaki özellikleri sağlar: elimizde
+  $\Gamma_n\Proves !B_j\lor !C_j$ varken $!B_j\notin\Gamma_n$ ve
+  $!C_j\notin\Gamma_n$ olur. Her aşamada koşulları sağlayan daha küçük
+  indekslerden en az biri elenir (çünkü $!B_i$ ya da $!C_i$ eklenir);
+  dolayısıyla bir $m$ aşamasında $j=i(m)$ olur. Fakat o zaman ya
+  $!B\in\Gamma_{m+1}$ ya da $!C\in\Gamma_{m+1}$ olur; bu da
+  $!B\notin\Gamma^*$ ve $!C\notin\Gamma^*$ varsayımına aykırıdır.
+
+  Şimdi $\Gamma^*\Proves !B$ varsayın. O zaman
+  $\Gamma^*\Proves !B\lor !B$ olur. Az önce
+  $\Gamma^*\Proves !B\lor !B$ ise $!B\in\Gamma^*$ olduğunu ispatladık.
+  Dolayısıyla $\Gamma^*$, \olref{defn:prime2} koşulunu, yani
+  \olref{defn:prime} tanımının ilgili maddesini sağlar.
+\end{proof}
+
+\begin{prob}
+$\Gamma\Proves/\bot$ ise $\Gamma$'nın klasik mantıkta tutarlı olduğunu,
+yani $\Gamma$ içindeki bütün formülleri doğru yapan bir değerleme bulunduğunu
+gösterin.
+\end{prob}
+

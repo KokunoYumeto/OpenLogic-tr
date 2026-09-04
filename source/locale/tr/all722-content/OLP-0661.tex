@@ -1,0 +1,247 @@
+% Generated from locale/tr/content/proof-theory/cut-elimination/midsequent.tex; do not hand-edit.
+
+
+\olfileid[tr]{pt}{cut}{mid}
+
+\olsection{Orta Sekant Teoremi ve Herbrand Teoremi}
+
+Kesme-giderimi teoreminin önemli bir sonucu orta sekant teoremidir. Bu teorem,
+bir $\Gamma \Sequent \Delta$ sekantının !!a{proof}{}ı~$\pi$ varsa ve bu
+sekanttaki her !!{formula} önek biçimindeyse, $S$'nin üstündeki bütün çıkarımlar
+önermesel ve $S$'nin altındaki bütün çıkarımlar niceleyici çıkarımları olacak
+biçimde, (\emph{orta sekant} denen) $S \ident \Pi \Sequent \Lambda$ sekantını
+içeren bir $\pi'$ !!a{proof}{}ı bulunduğunu söyler. (Bir $!A$ !!^a{formula}{}ü
+\[
+\mathsf{Q}_1x_1\dots\mathsf{Q}_nx_n\,!B(x_1,\dots,x_n)
+\]
+biçimindeyse ve her $\mathsf{Q}_i$, $\lforall$ ya da~$\lexists$ ise
+\emph{önekli} (ya da \emph{önek biçiminde})dir.) Orta sekant teoreminin
+önemli bir sonucu da Herbrand teoremidir. Genel durumu betimlemek biraz
+güçtür; fakat çok genel olarak şu biçimi alır: birinci dereceden mantığın her
+!!{provable} $!A$ !!{sentence}{}si için, $!A$'yı !!{prove}{}maya yarayan
+bir $!A'$ önermesel totolojisi vardır. $!B$'nin niceleyicisiz
+olduğu $\lexists[x][!B(x)]$ biçimindeki !!{sentence}s için sürümü şöyledir:
+
+\begin{thm}[Herbrand Teoremi]
+$!B(x)$'in niceleyicisiz ve $\Proves \lexists[x][!B(x)]$ olduğunu varsayalım.
+O zaman $\Proves !B(t_1) \lor \dots \lor !B(t_n)$ olacak biçimde $t_1$,
+\dots, $t_n$ terimleri vardır.
+\end{thm}
+
+$!B(t_1) \lor \dots \lor !B(t_n)$ !!{formula}{}üne
+$\lexists[x][!B(x)]$'in bir \emph{Herbrand ayrışımı} denir. $!B$
+niceleyicisiz olduğundan bu ayrışım da niceleyicisizdir. Dolayısıyla
+!!{provable} ise kesmesiz bir ispatla !!{provable}{}dir ve bunun sonucu olarak
+yalnızca önermesel çıkarımlar kullanan !!a{proof}{}ı vardır. Öyleyse bir
+totolojidir.
+
+Herbrand Teoremi'nin güç kısmı, her !!{provable}
+$\lexists[x][!B(x)]$ !!{formula}{}ü için bir Herbrand ayrışımının var olduğunu
+göstermektir. Tersi, yani $\lexists[x][!B(x)]$ bir Herbrand ayrışımına sahipse
+ispatlanabilir olduğu kolaydır. Gerçekten Herbrand ayrışımı
+$\lexists[x][!B(x)]$'i gerektirir. Örneğin $n=2$ durumu için~\Log{G3c}'de bir
+!!a{proof} şöyledir:
+\[
+\Axiom$!B(t_1) \fCenter \lexists[x][!B(x)], !B(t_1), !B(t_2)$
+\Axiom$!B(t_2) \fCenter \lexists[x][!B(x)], !B(t_1), !B(t_2)$
+\RightLabel{\LeftR{\lor}}
+\BinaryInf$!B(t_1) \lor !B(t_2) \fCenter \lexists[x][!B(x)], !B(t_1), !B(t_2)$
+\RightLabel{\RightR{\lexists}}
+\UnaryInf$!B(t_1) \lor !B(t_2) \fCenter \lexists[x][!B(x)], !B(t_2)$
+\RightLabel{\RightR{\lexists}}
+\UnaryInf$!B(t_1) \lor !B(t_2) \fCenter \lexists[x][!B(x)]$
+\DisplayProof
+\]
+
+$\Sequent \lexists[x][!B(x)]$'in bir $\pi$ !!a{proof}{}ından Herbrand
+ayrışımını çıkarmak için, kesmesiz bir $\pi$ !!{proof}{}ındaki bütün
+$\RightR{\lexists}$ çıkarımlarının sonda bulunduğu durumu ele alın:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$ \fCenter \lexists[x][!B(x)], !B(t_1), \dots, !B(t_n)$
+\RightLabel{\RightR{\lexists}}
+\UnaryInf$ \fCenter \lexists[x][!B(x)], !B(t_2), \dots, !B(t_n)$
+\RightLabel{$(n-1) \times \RightR{\lexists}$}
+\Deduce$ \fCenter \lexists[x][!B(x)]$
+\DisplayProof
+\]
+Bunlar $\pi$ içinde $\lexists[x][!B(x)]$'in etkin olduğu bütün
+$\RightR{\lexists}$ çıkarımlarıysa $\pi_1$ içinde başka niceleyici çıkarımı
+yoktur. Çünkü $!B(x)$ başka niceleyici içermez ve son sekantın solunda hiçbir
+!!{formula} bulunmaz. Başka bir deyişle $ \fCenter \lexists[x][!B(x)],
+!B(t_1), \dots, !B(t_n)$, $\pi$'nin orta sekantıdır. Dahası, orta sekantın
+üstünde niceleyici çıkarımı bulunmadığından onun üstündeki bütün sekantlar
+$\lexists[x][!B(x)]$'i içerir ve bunlar ne etkin ne de ana formüldür. Böylece
+$\pi_1$ !!{proof}{}ından silinebilirler; $\fCenter !B(t_1), \dots, !B(t_n)$'nin
+bir !!a{proof}{}ını ve $\RightR{\lor}$'un $n-1$ uygulamasıyla Herbrand
+ayrışımı~$\Sequent !B(t_1) \lor \dots \lor !B(t_n)$'nin bir !!a{proof}{}ını
+elde ederiz.
+
+Sorun şudur: $\Sequent \lexists[x][!B(x)]$'in kesmesiz bir !!{proof}{}ında bile
+bütün \RightR{\lexists} çıkarımlarının sonda tek bir blok oluşturduğunu
+varsayamayız. Bu \RightR{\lexists} çıkarımları arasında bazı $!B(t_i)$'lerin
+ana formül olduğu çıkarımlar bulunabilir. Orta sekant teoremine bu nedenle
+ihtiyaç duyarız.
+
+\begin{thm}[Orta Sekant Teoremi]\ollabel{thm:midsequent} Bir $\Gamma
+  \Sequent \Delta$ sekantının \Log{G3c}-!!{proof}{}ı~$\pi$ varsa ve $\Gamma$
+  ile $\Delta$ içindeki bütün !!{formula}s önek biçimindeyse,
+  altında kalan bütün çıkarımlar niceleyici çıkarımları ve üstünde kalan bütün
+  çıkarımlar önermesel çıkarımlar olacak biçimde bir $\Pi \Sequent \Lambda$
+  sekantını içeren bir $\pi'$ !!a{proof}{}ı vardır.
+\end{thm}
+
+\begin{proof}
+  $\pi$ içindeki bir niceleyici çıkarımının \emph{derecesini}, altında kalan
+  önermesel çıkarımların sayısı; $\pi$'nin derecesi~$o(\pi)$'yi de bütün
+  niceleyici çıkarımlarının derecelerinin toplamı olarak tanımlayın.
+  $o(\pi) = 0$ ise hiçbir niceleyici çıkarımının altında önermesel bir çıkarım
+  yoktur ve işimiz bitmiştir: Bir niceleyici çıkarımı varsa, bütün niceleyici
+  çıkarımlarının tek öncülü olduğundan en üstte tek bir niceleyici çıkarımı
+  vardır; onun öncülü orta sekanttır. Niceleyici çıkarımı yoksa son sekantın
+  kendisini orta sekant olarak alırız.
+
+  $o(\pi) > 0$ ise derecesi $>0$ olan en alttaki niceleyici çıkarımlarından
+  birini seçin. Derecesi $>0$ olduğundan altında bir önermesel çıkarım
+  bulunmalıdır. Seçilen çıkarım en alttaki olduğundan sonucu bir niceleyici
+  çıkarımının öncülü olamaz: aksi hâlde ikinci, daha alttaki niceleyici
+  çıkarımının da altında bir önermesel çıkarım bulunurdu. Hangi niceleyici
+  çıkarımına ve onun altında hangi önermesel çıkarıma sahip olduğumuza göre
+  (pek çok!) durumu ayırırız. Son sekant yalnızca önek biçimindeki formüllerden
+  oluştuğundan niceleyici çıkarımının ana formülü, onu izleyen önermesel
+  çıkarımda etkin olamaz. Aksi hâlde o çıkarımın ana formülü, bir önermesel
+  bağlacın kapsamında bir niceleyici içerirdi. Alt-!!{formula} özelliği gereği
+  bunun, son sekanttaki !!{formula}s{}den !!a{formula}{}ün alt-formülü olması
+  gerekirdi.
+  Öyleyse niceleyici çıkarımının ana !!{formula}{}ü, daha alttaki önermesel
+  çıkarımın bağlamının bir !!a{element}{}ıdır.
+
+  İşte iki örnek:
+
+İlk olarak, $\LeftR{\lif}$'in sağ öncülünde biten bir $\RightR{\lforall}$
+bulunduğunu varsayalım. Bu durumda $\pi$'nin ilgili alt-!!{proof}{}ı,
+$\pi_1$ alt-!!{proof}{}ında şöyle biter:
+\[
+\AxiomC{}
+\RightLabel{$\pi_2$}
+\Deduce$\Gamma' \fCenter \Delta', \lforall[x][!A(x)], !B$
+\AxiomC{}
+\RightLabel{$\pi_3$}
+\Deduce$!C, \Gamma' \fCenter \Delta', !A(c)$
+\RightLabel{\RightR{\lforall}}
+\UnaryInf$!C, \Gamma' \fCenter \Delta', \lforall[x][!A(x)]$
+\RightLabel{\LeftR{\lif}}
+\BinaryInf$!B \lif !C, \Gamma' \fCenter \Delta', \lforall[x][!A(x)]$
+\DisplayProof
+\]
+$\pi$'nin düzenli olduğunu varsayabiliriz; dolayısıyla özdeğişken~$c$,
+$\pi_3$ dışında geçmez; özellikle $!B \lif !C$ içinde ya da $\pi_2$ içinde
+geçmez. Şimdi şu $\pi_1'$ ispatını ele alın:
+\[
+\AxiomC{}
+\RightLabel{$\pi_2'$}
+\Deduce$\Gamma' \fCenter \Delta', \lforall[x][!A(x)], !A(c), !B$
+\AxiomC{}
+\RightLabel{$\pi_3$}
+\Deduce$!C, \Gamma' \fCenter \Delta', \lforall[x][!A(x)], !A(c)$
+\RightLabel{\LeftR{\lif}}
+\BinaryInf$!B \lif !C, \Gamma' \fCenter \Delta', \lforall[x][!A(x)], !A(c)$
+\RightLabel{\RightR{\lforall}}
+\UnaryInf$!B \lif !C, \Gamma' \fCenter \Delta', \lforall[x][!A(x)], \lforall[x][!A(x)]$
+\DisplayProof
+\]
+burada $\pi_2'$, $\pi_2$'nin sağına $!A(c)$ ile zayıflatma uygulanarak elde
+edilmiştir. (Bu, hiçbir çıkarım, özellikle dereceyi etkileyebilecek bir
+niceleyici çıkarımı eklemez. $!A(c)$ içindeki hiçbir sabit $\pi_2$'de
+özdeğişken olarak kullanılmadığından $\pi_2$'deki herhangi bir özdeğişken
+koşulunu da bozmaz.) $c$, $!B \lif !C$ içinde geçmediğinden
+\RightR{\lforall} üzerindeki özdeğişken koşulu hâlâ sağlanır.
+
+$!B \lif !C, \Gamma' \fCenter \Delta', \lforall[x][!A(x)]$ sekantının bir
+$\pi_1''$ !!a{proof}{}ını elde etmek için büzülmenin kabul edilebilirliğine
+başvururuz. $\lforall[x][!A(x)]$ için $\RightR{\Contraction}$'ın kabul
+edilebilirliğinin ispatı ve bu ispatta kullanılan $\RightR{\lforall}$'ın
+tersinirliğinin ispatı hiçbir çıkarımın derecesini değiştirmemiştir: en fazla
+bazı çıkarımları silmiştir. Dolayısıyla $\pi_1''$ içinde $\pi_1$'dekinden daha
+fazla niceleyici çıkarımı yoktur ve $\pi_1''$ içindeki her niceleyici
+çıkarımının altında, $\pi_1$'de ona karşılık gelen çıkarımın altındakiyle aynı
+sayıda önermesel çıkarım vardır---son $\RightR{\lforall}$ dışında: $\pi$
+içinde altında bir $\LeftR{\lif}$ vardı; bunu $\pi_1''$ içinde onun üstüne
+taşıdık. $\pi$ içindeki $\pi_1$'i $\pi_1''$ ile değiştirin. Ortaya çıkan
+!!{proof}{}ın derecesi daha düşüktür; çünkü en azından $\RightR{\lforall}$
+çıkarımının derecesi (en az)~$1$ azalmıştır. Şimdi tümevarım varsayımını
+uygulayın.
+
+Niceleyici çıkarımının $\RightR{\lexists}$ olduğu durumlar daha da kolaydır;
+çünkü büzülmeye ihtiyaç yoktur ve hiçbir özdeğişken koşulundan kaygılanmak
+gerekmez. Örneğin $\RightR{\lexists}$'in, bu kez sol öncül olarak,
+$\RightR{\land}$ tarafından izlendiğini varsayalım. İlgili alt-!!{proof}
+$\pi_1$'dir:
+\[
+\AxiomC{}
+\RightLabel{$\pi_2$}
+\Deduce$\Gamma' \fCenter \Delta', \lexists[x][!A(x)], !A(t), !B$
+\RightLabel{\RightR{\lexists}}
+\UnaryInf$\Gamma' \fCenter \Delta', \lexists[x][!A(x)], !B$
+\AxiomC{}
+\RightLabel{$\pi_3$}
+\Deduce$\Gamma' \fCenter \Delta', \lexists[x][!A(x)], !C$
+\RightLabel{\RightR{\land}}
+\BinaryInf$\Gamma' \fCenter \Delta', \lexists[x][!A(x)], !B \land !C$
+\DisplayProof
+\]
+$\pi$ içindeki $\pi_1$'i şu $\pi_1'$ ile değiştirin:
+\[
+\AxiomC{}
+\RightLabel{$\pi_2$}
+\Deduce$\Gamma' \fCenter \Delta', \lexists[x][!A(x)], !A(t), !B$
+\AxiomC{}
+\RightLabel{$\pi_3'$}
+\Deduce$\Gamma' \fCenter \Delta', \lexists[x][!A(x)], !A(t), !C$
+\RightLabel{\RightR{\land}}
+\BinaryInf$\Gamma' \fCenter \Delta', \lexists[x][!A(x)], !A(t), !B \land !C$
+\RightLabel{\RightR{\lexists}}
+\UnaryInf$\Gamma' \fCenter \Delta', \lexists[x][!A(x)], !B \land !C$
+\DisplayProof
+\]
+burada $\pi_3'$, $\pi_3$'ün sağına $!A(t)$ ile zayıflatma uygulanarak elde
+edilmiştir. Bu zayıflatma yalnızca $\pi_3$ içindeki her sekantın sağına
+$!A(t)$ eklemeyi içerir; dolayısıyla hiçbir niceleyici çıkarımının derecesini
+değiştirmez. $\pi'$ ile $\pi$ içindeki niceleyici çıkarımlarının dereceleri,
+$\RightR{\land}$ ile yer değiştiren ve derecesi~$1$ azalan
+$\RightR{\lexists}$ çıkarımı dışında aynıdır. Tümevarım varsayımı uygulanır.
+\end{proof}
+
+\begin{prob}
+\olref{thm:midsequent} ispatında $\LeftR{\lexists}$'in $\RightR{\lif}$'in
+öncülünde bittiği ve $\LeftR{\lforall}$'ın $\LeftR{\lor}$'un sol öncülünde
+bittiği durumları betimleyin.
+\end{prob}
+
+\begin{proof}[Herbrand Teoremi'nin İspatı]
+$\pi$'nin $\Sequent \lexists[x][!A(x)]$ ile bittiğini varsayalım.
+\olref{thm:midsequent} gereği $\pi$'yi, şu biçimde olması gereken bir orta
+sekant~$S$ içeren bir $\pi'$ !!a{proof}{}ına dönüştürebiliriz:
+\[
+\Sequent \lexists[x][!A(x)], !A(t_1), \dots, !A(t_n).
+\]
+$S$'nin üstündeki bütün çıkarımlar önermesel olduğundan
+$\lexists[x][!A(x)]$, $S$'nin üstündeki bir çıkarımda ana formül olamaz. Atomik
+olmadığından bir aksiyomda da ana formül olamaz. $\lexists[x][!A(x)]$,
+$!A(t_1)$'in bir öz alt formülü olamayacağından ($!A(x)$'in niceleyicisiz
+olduğunu anımsayın) $S$'nin üstünde etkin de olamaz. Dolayısıyla $S$ ile biten
+alt-!!{proof} içinden $\lexists[x][!A(x)]$'in silinmesi, $\Sequent !A(t_1),
+\dots, !A(t_n)$'nin doğru bir !!{proof}{}ını verir; buradan $n-1$
+$\RightR{\lor}$ çıkarımıyla $\Sequent !A(t_1) \lor \dots \lor !A(t_n)$'nin
+bir !!a{proof}{}ı elde edilebilir.
+\end{proof}
+
+% \begin{prob}
+% Önce $\lexists[x][\lforall[y][(!A(x) \lif !A(y))]]$ için kesmesiz bir
+% $\Sequent \lexists[x][\lforall[y][(!A(x) \lif !A(y))]]$ !!{proof}{}ı bulun;
+% ardından (gerekirse) bir orta sekant bulmak üzere
+% \olref{thm:midsequent}'deki dönüşümü uygulayarak bu formülün bir Herbrand
+% ayrışımını bulun.
+% \end{prob}
+

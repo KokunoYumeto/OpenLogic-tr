@@ -1,0 +1,34 @@
+% Generated from locale/tr/content/incompleteness/theories-computability/computably-axiomatizable.tex; do not hand-edit.
+
+
+\olfileid[tr]{inc}{tcp}{cax}
+
+\olsection{\printtoken{S}{axiomatizable} Kuramlar}
+
+Bir $\Th{T}$ kuramına, hesaplanabilir bir $A$ aksiyomlar kümesine sahipse
+\emph{!!{axiomatizable}} denir. ($A$'nın $\Th{T}$ için bir aksiyomlar kümesi
+olduğunu söylemek, $T = \Setabs{!A}{A \Proves !A}$ demektir.) Doğal
+sayıların her “makul” aksiyomlaştırması bu özelliğe sahip olacaktır.
+Özellikle sonlu bir aksiyomlar kümesine sahip her kuram
+!!{axiomatizable}{}dir.
+
+\begin{lem}
+$\Th{T}$'nin !!{axiomatizable} olduğunu varsayın. O zaman $\Th{T}$,
+!!{computably
+enumerable}{}dir.
+\end{lem}
+
+\begin{proof}
+$A$, $\Th{T}$ için hesaplanabilir bir aksiyomlar kümesi olsun. $!A \in T$
+olup olmadığını belirlemek için aksiyomlardan $!A$ için !!a{derivation}
+aramak yeterlidir.
+
+Biraz başka türlü söylersek $!A$, $\Th{T}$ içindedir ancak ve ancak $A$
+içinde $!B_1$, \dots, $!B_k$ biçiminde sonlu bir aksiyomlar listesi ve
+birinci derece mantıkta
+$(!B_1 \land \dots \land !B_k) \lif !A$ için !!a{derivation} vardır.
+Fakat ikinci “\dots” kısmı hesaplanabilir olmak koşuluyla, “öyle bir \dots
+vardır ki \dots” biçiminde tanımı bulunan her kümenin !!{c.e.} olduğunu
+zaten biliyoruz.
+\end{proof}
+

@@ -1,0 +1,155 @@
+% Generated from locale/tr/content/first-order-logic/natural-deduction/proof-theoretic-notions.tex; do not hand-edit.
+
+
+\iftag{FOL}
+      {\olfileid[tr]{fol}{ntd}{ptn}}
+      {\olfileid[tr]{pl}{ntd}{ptn}}
+
+\olsection{İspat Kuramsal Kavramlar}
+
+\begin{editorial}
+Bu bölüm, doğal tümdengelim için ispatlanabilirlik bağıntısı ile tutarlılığın
+tanımlarını bir araya getirir.
+\end{editorial}
+
+\begin{explain}
+Bir dizi önemli semantik kavramı (geçerlilik, mantıksal gerektirme,
+sağlanabilirlik) tanımladığımız gibi şimdi bunlara karşılık gelen
+\emph{ispat kuramsal kavramları} tanımlıyoruz. Bunlar, !!{sentence}s ile
+!!{structure}s arasındaki sağlama bağıntısına değil, belirli
+!!{derivability} veya !!{nonderivability} durumlarına; yani birtakım
+!!{sentence}s ile diğerleri arasındaki türetim bağıntısına başvurularak
+tanımlanır. Bu kavramların çakıştığının keşfedilmesi
+önemliydi. Çakıştıkları iddiası \emph{sağlamlık} ve \emph{tamlık
+teoremlerinin} içeriğidir.
+\end{explain}
+
+
+\begin{defn}[Teoremler]
+!!{sentence}~$!A$, doğal tümdengelimde $!A$ için !!a{derivation} varsa ve bu
+türetimde bütün varsayımlar !!{discharged} ise \emph{teorem}dir.
+$!A$ teoremse
+$\Proves !A$, değilse $\Proves/ !A$ yazarız.
+\end{defn}
+
+\begin{defn}[!!^{derivability}]
+!!^a{sentence} $!A$ için \emph{!!{derivable}} terimini, kaynak bir
+!!{sentence}s kümesi~$\Gamma$ olduğunda şu koşulla kullanırız: sonucu $!A$
+olan bir !!{derivation} bulunmalı ve her varsayım ya !!{discharged} olmalı ya
+da $\Gamma$ içinde bulunmalıdır. Bunu $\Gamma \Proves !A$ ile gösteririz.
+$!A$, $\Gamma$'dan !!{derivable} değilse $\Gamma \Proves/ !A$ yazarız.
+\end{defn}
+
+\begin{defn}[Tutarlılık]
+!!{sentence}s kümesi~$\Gamma$, ancak ve ancak $\Gamma \Proves \lfalse$ ise
+\emph{tutarsızdır}. $\Gamma$ tutarsız değilse, yani $\Gamma \Proves/
+\lfalse$ ise ona \emph{tutarlı} deriz.
+\end{defn}
+
+\begin{prop}[Yansıma]
+\ollabel{prop:reflexivity}
+$!A \in \Gamma$ ise $\Gamma \Proves !A$ olur.
+\end{prop}
+
+\begin{proof}
+$!A$ varsayımı tek başına $!A$ için !!a{derivation} olur; buradaki her
+!!{undischarged} varsayım (yani $!A$) $\Gamma$ içindedir.
+\end{proof}
+  
+
+\begin{prop}[Monotonluk]
+\ollabel{prop:monotonicity}
+$\Gamma \subseteq \Delta$ ve $\Gamma \Proves !A$ ise $\Delta \Proves !A$
+olur.
+\end{prop}
+
+\begin{proof}
+$\Gamma$'dan $!A$ için her !!{derivation}, aynı zamanda $\Delta$'dan $!A$
+için !!a{derivation} olur.
+\end{proof}
+
+\begin{prop}[Geçişlilik]
+\ollabel{prop:transitivity}
+$\Gamma \Proves !A$ ve $\{!A\} \cup \Delta \Proves !B$ ise
+$\Gamma \cup \Delta \Proves !B$ olur.
+\end{prop}
+
+\begin{proof}
+$\Gamma \Proves !A$ ise $!A$ için !!a{derivation}~$\delta_0$ vardır; bunun
+bütün !!{undischarged} varsayımları $\Gamma$ içindedir.
+$\{!A\} \cup \Delta \Proves !B$ ise $!B$ için !!a{derivation}~$\delta_1$
+vardır; bunun bütün !!{undischarged} varsayımları $\{!A\} \cup \Delta$
+içindedir. Şimdi şunu ele alalım:
+\begin{prooftree}
+  \AxiomC{$\Delta, \Discharge{!A}{1}$}
+  \RightLabel{$\delta_1$}
+  \DeduceC{$!B$}
+  \DischargeRule{\Intro{\lif}}{1}
+  \UnaryInfC{$!A \lif !B$}
+  \AxiomC{$\Gamma$}
+  \RightLabel{$\delta_0$}
+  \DeduceC{$!A$}
+  \RightLabel{\Elim{\lif}}
+  \BinaryInfC{$!B$}
+\end{prooftree}
+Artık !!{undischarged} varsayımların hepsi $\Gamma \cup \Delta$ içindedir;
+dolayısıyla bu, $\Gamma \cup \Delta \Proves !B$ olduğunu gösterir.
+\end{proof}
+
+$\Gamma = \{!A_1, !A_2, \ldots, !A_k\}$ sonlu bir küme olduğunda
+$\Gamma \Proves !B$ yerine sadeleştirilmiş $!A_1,!A_2,\ldots,!A_k \Proves
+!B$ gösterimini kullanabiliriz. Özellikle $!A \Proves !B$,
+$\{!A\} \Proves !B$ demektir.
+
+$\Gamma \Proves !A$ ve $!A \Proves !B$ ise $\Gamma \Proves !B$ olduğuna
+dikkat edin. Ayrıca $!A_1, \dots, !A_n \Proves !B$ ve her~$i$ için
+$\Gamma \Proves !A_i$ ise $\Gamma \Proves !B$ olduğu da çıkar.
+
+\begin{prop}
+\ollabel{prop:incons}
+Aşağıdakiler eşdeğerdir.
+    \begin{enumerate}
+      \item \( \Gamma \) tutarsızdır.
+      \item Her !!{sentence}~\( {!A} \) için \( \Gamma \Proves {!A} \).
+      \item Bazı !!{sentence}~\( {!A} \) için hem \( \Gamma \Proves {!A} \)
+      hem de \( \Gamma \Proves \lnot {!A} \).
+    \end{enumerate}
+\end{prop}
+
+\begin{proof}
+Alıştırma.
+\end{proof}
+
+\tagprob{FOL}
+\begin{prob}
+\olref[fol][ntd][ptn]{prop:incons} önermesini ispatlayın.
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+\olref[pl][ntd][ptn]{prop:incons} önermesini ispatlayın.
+\end{prob}
+\tagendprob
+
+\begin{prop}[Kompaktlık]
+  \ollabel{prop:proves-compact}
+  \begin{enumerate}
+  \item $\Gamma \Proves !A$ ise $\Gamma_0 \Proves !A$ olacak biçimde sonlu
+    bir $\Gamma_0 \subseteq \Gamma$ alt kümesi vardır.
+  \item $\Gamma$'nın her sonlu alt kümesi tutarlıysa $\Gamma$ tutarlıdır.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+    \item $\Gamma \Proves !A$ ise $\Gamma$'dan $!A$ için
+      !!a{derivation}~$\delta$ vardır. $\Gamma_0$, $\delta$'nın
+      !!{undischarged} varsayımlarının kümesi olsun. Her !!{derivation} sonlu
+      olduğundan $\Gamma_0$ yalnızca sonlu sayıda !!{sentence}s içerebilir.
+      Dolayısıyla $\delta$, sonlu bir $\Gamma_0 \subseteq \Gamma$'dan
+      $!A$ için !!a{derivation} olur.
+    \item Bu, $!A \ident \lfalse$ özel durumu için (1)'in karşıt-tersidir.
+  \end{enumerate}
+\end{proof}
+

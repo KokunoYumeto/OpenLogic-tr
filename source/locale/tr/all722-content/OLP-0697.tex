@@ -1,0 +1,101 @@
+% Generated from locale/tr/content/proof-theory/propositions-as-types/types.tex; do not hand-edit.
+
+
+\olfileid[tr]{int}{pty}{typ}
+
+\olsection{Tipler}
+
+$(MN)$ gibi bir ispat terimi, hangi ispatın ispat terimi olduğunu tek
+başına biricik biçimde belirlemez. Bunun nedeni, serbest değişkenlerin, yani
+aksiyomların ispat terimlerinin karşılık gelen aksiyomlardaki !!{formula}s{}i
+belirtmemesidir. Ancak bunları bir $\Gamma$ bağlamında belirtirsek ispat
+\emph{biricik} biçimde belirlenir.
+
+\begin{defn}
+Bir ispat terimi~$N$ için \emph{bağlam}, $N$'nin her serbest değişkeni için
+tam olarak bir $x : !A$ çifti içeren bir $\Gamma$ kümesidir.
+\end{defn}
+
+Tanımın, $\Gamma$'nın \emph{yalnız} $N$'nin serbest değişkenleri için
+$x:!A$ içermesini gerektirmediğine dikkat edin. Dolayısıyla örneğin
+$\Gamma = \{x:!A, y:!B, z:!C\}$, $\pair{x}{y}$ için bir bağlamdır.
+
+\begin{defn}\ollabel{defn:type}
+  $\Gamma$'nın $N$ için bir bağlam olduğunu varsayın. $N$'nin
+  ($\Gamma$'ya göre) \emph{tipi} tümevarımsal olarak şöyle tanımlanır:
+  \begin{enumerate}
+  \item $x$'in tipi ancak ve ancak $x:!A \in \Gamma$ ise $!A$'dır.
+  \item $N$'nin $x:!A, \Gamma$'ya göre tipi~$!B$ ise
+  $\lambd[\typeof{x}{!A}][N]$'nin tipi $!A \lif !B$'dir.
+  \item $N$'nin tipi $!A \lif !B$ ve $M$'nin tipi~$!A$ ise $(NM)$'nin
+  tipi~$!B$'dir.
+  \item $N$'nin tipi $!A$ ve $M$'nin tipi~$!B$ ise $\pair{N}{M}$'nin
+  tipi $!A \land !B$'dir.
+  \item $N$'nin tipi~$!A_1 \land !A_2$ ise $\proj{i}{N}$'nin tipi~$!A_i$'dir.
+  \item $N$'nin tipi $!A$ ise $i=1$ olduğunda $\inj[!B]{i}{N}$'nin tipi
+  $!A \lor !B$; $i=2$ olduğunda $!B \lor !A$'dır.
+  \item $M$'nin tipi $!A \lor !B$, $N_1$'in $x:!A, \Gamma$'ya göre tipi
+  $!C$ ve $N_2$'nin $y:!B, \Gamma$'ya göre tipi~$!C$ ise
+  $\dcase{M}{x}{N_1}{y}{N_2}$'nin tipi~$!C$'dir.
+  \item $N$'nin tipi~$\lfalse$ ise $\abort{!A}{N}$'nin tipi~$!A$'dır.
+  \end{enumerate}
+\end{defn}
+
+\begin{prop}
+Her ispat terimi~$N$, kendisi için bir bağlam~$\Gamma$'ya göre en fazla
+bir tipe sahiptir; başka bir deyişle, iyi tiplenmiş her ispat teriminin tipi
+biriciktir.
+\end{prop}
+
+\begin{proof}
+  $N$ üzerinde tümevarımla.
+\end{proof}
+
+$N$'nin $\Gamma$'ya göre tipi~$!A$ ise $\Gamma \Sequent N : !A$ yazarız.
+\olref{defn:type} içindeki koşullar tanıdık gelmelidir: küçük bir farkla tam
+olarak \Log{tN2i}'nin kurallarıdır; bağlam~$\Gamma$ baştan sona aynıdır.
+Tanımı, \olref{tab:tN3ip} içinde verilen kurallarla bir \Log{tN3i} hesabı
+olarak kodlayabiliriz.
+
+\allmodulessubfile{OLP-0693}
+
+İspat terimleri, lambda kalkülüsünün bir sürümü olan \emph{çarpımlar,
+toplamlar ve boş tip içeren tipli lambda kalkülüsü}ndeki terimlerdir.
+Tiplenmemiş lambda kalkülüsü yalnız değişkenlerden, \emph{lambda
+soyutlamaları}~$\lambd[x][N]$ ve uygulama $(MN)$ ile kurulan terimlere
+sahiptir; tipli lambda soyutlaması $\lambd[\typeof{x}{!A}][N]$ içindeki
+~$!A$ açıklamasına sahip değildir. Lambda kalkülüsü Turing-tam bir hesaplama
+modelidir (yani her kısmi hesaplanabilir fonksiyon onda bir terimle temsil
+edilebilir). İspat terimleri ve tipleme kurallarının verdiği lambda
+kalkülüsü sürümü sınırlı bir hesaplama modelidir; ancak temel düşünceler
+aynıdır. Tip atamasıyla sınırlandırılmıştır: yalnız \emph{iyi tiplenmiş}
+terimler, yani (bir $\Gamma$ bağlamına göre) tipi bulunan ispat terimleri
+yasal terimlerdir. Örneğin $\lambd[x][(xx)]$, tiplenmemiş lambda
+kalkülüsünde yasal bir terimdir; ancak $\lambd[\typeof{x}{!A}][(xx)]$ hiçbir
+$!A$ için iyi tiplenmiş değildir. Çünkü tipleme kuralları, $(xx)$'in bir
+tipe sahip olabilmesi için ilk~$x$'in tipinin $!A \lif !B$, ikinci $x$'in
+tipinin~$!A$ olmasını gerektirir. $!A$, $!A \lif !B$'nin bir öz
+alt-!!{formula}{}ü olduğundan bu olanaksızdır.
+
+Tipleri sezgisel olarak, o tipteki bir terimin adlandırdığı şeyin tipi gibi
+düşünebiliriz. Dolayısıyla $!A \land !B$ tipindeki bir terim, ilk bileşeni
+$!A$, ikinci bileşeni~$!B$ tipinde olan bir çifti, yani $!A \times !B$
+çarpımının bir !!a{element}{}ını seçer. $!A \lif !B$ tipindeki bir terim,
+$!A$ tipindeki şeylerden $!B$ tipindeki şeylere giden bir fonksiyondur.
+$!A \lor !B$ tipindeki bir terim, $!A$ tipindeki ya da $!B$ tipindeki bir
+şey ile hangisi olduğuna ilişkin bilgiden oluşur. Bu, $!A$ ile $!B$
+kümelerinin $\{\tuple{i,x} : i = 1 \text{ veya } 2, i = 1 \text{ ise }
+x \in !A, i=2 \text{ ise } x \in !B\}$ olarak tanımlanan ayrık birleşimine
+benzer. $\lfalse$ tipi boş kümedir; yani bir terim bu tipe sahipse hiçbir
+şeyi adlandıramaz. Doğal tümdengelim (\Log{tN3i} dâhil) tutarlı olduğundan,
+açık varsayımlar bulunmadıkça~$\lfalse$'ın hiçbir !!a{proof}{}ı yoktur;
+dolayısıyla tipi~$\lfalse$ olan kapalı bir ispat terimi (serbest değişkensiz
+bir terim) yoktur.
+
+Tipli lambda kalkülüsünün işleçleri, uygulandıkları terimlerin belirli
+şeyleri adlandırması koşuluyla sezgisel olarak doğru tipte bir şeyi adlandıran
+terimler üretir. Örneğin ``$N_1 : !A$ ve $N_2 : !B$ ise
+$\pair{N_1}{N_2} : !A \land !B$'', $N_1$ tipi~$!A$ olan bir şeyi ve $N_2$
+tipi~$!B$ olan bir şeyi adlandırıyorsa $\pair{N_1}{N_2}$'nin tipi
+$!A \land !B$ olan bir şeyi adlandırdığını söyler.
+

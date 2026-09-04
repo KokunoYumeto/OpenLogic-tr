@@ -1,0 +1,157 @@
+% Generated from locale/tr/content/first-order-logic/completeness/maximally-consistent-sets.tex; do not hand-edit.
+
+
+\olfileid[tr]{fol}{com}{mcs}
+\olsection{Maksimal Tutarlı \usetoken{P}{sentence} Kümeleri}
+
+\begin{defn}[Maksimal tutarlı küme]
+\ollabel{mcs}
+Bir !!{sentence}s kümesi~$\Gamma$, ancak ve ancak
+\begin{enumerate}
+\item $\Gamma$ tutarlı ve
+\item $\Gamma \subsetneq \Gamma'$ ise $\Gamma'$ tutarsızsa
+\end{enumerate}
+\emph{maksimal tutarlı}dır.
+\end{defn}
+
+\begin{explain}
+Yukarıdakine denk alternatif bir tanım şöyledir: Bir tümceler kümesi
+$\Gamma$, ancak ve ancak
+\begin{enumerate}
+\item $\Gamma$ tutarlı ve
+\item $\Gamma \cup \{ !A \}$ tutarlıysa $!A \in \Gamma$ ise
+\end{enumerate}
+\emph{maksimal tutarlı}dır. Başka bir deyişle, $\Gamma$ içinde henüz
+bulunmayan !!{sentence}s{}i maksimal tutarlı $\Gamma$ kümesine, elde edilen
+daha büyük kümeyi tutarsızlaştırmadan eklemek olanaksızdır.
+\end{explain}
+
+\begin{explain}
+Maksimal tutarlı kümeler tamlık ispatında önemlidir; çünkü her tutarlı
+!!{sentence}s kümesi~$\Gamma$'nın bir maksimal tutarlı $\Gamma^*$ kümesinde
+bulunduğunu ve maksimal tutarlı bir kümenin her !!{sentence}~$!A$ için ya
+$!A$'yı ya da olumsuzu $\lnot !A$'yı içerdiğini güvence altına alabiliriz.
+Bu özellikle atomik !!{sentence}s için geçerlidir. Dolayısıyla !!{constant}s
+ile uygun biçimde genişletilmiş bir dildeki maksimal tutarlı kümeden,
+!!{predicate}s{}in yorumlarının hangi atomik !!{sentence}s{}in $\Gamma^*$ içinde
+bulunduğuna göre tanımlandığı !!a{structure} kurabiliriz. Daha sonra bu
+!!{structure}{}nın $\Gamma^*$ içindeki (ve dolayısıyla $\Gamma$ içindeki) bütün
+!!{sentence}s{}i doğru yaptığı gösterilebilir. Bu son olgunun ispatı,
+$\lnot !A \in \Gamma^*$ ancak ve ancak $!A \notin \Gamma^*$,
+$(!A \lor !B) \in \Gamma^*$ ancak ve ancak $!A \in \Gamma^*$ veya
+$!B \in \Gamma^*$ vb. olmasını gerektirir.
+\end{explain}
+
+\begin{prop}
+\ollabel{prop:mcs}
+$\Gamma$ maksimal tutarlı olsun. O zaman:
+\begin{enumerate}
+\item \ollabel{prop:mcs-prov-in} $\Gamma \Proves !A$ ise $!A \in
+  \Gamma$.
+
+\item \ollabel{prop:mcs-either-or} Her $!A$ için ya $!A \in
+  \Gamma$ ya da $\lnot !A \in \Gamma$.
+
+\tagitem{prvAnd}{\ollabel{prop:mcs-and} $(!A \land !B) \in \Gamma$
+  ancak ve ancak hem $!A \in \Gamma$ hem de $!B \in \Gamma$.}{}
+
+\tagitem{prvOr}{\ollabel{prop:mcs-or} $(!A \lor !B) \in \Gamma$ ancak
+  ve ancak $!A \in \Gamma$ veya $!B \in \Gamma$.}{}
+
+\tagitem{prvIf}{\ollabel{prop:mcs-if} $(!A \lif !B) \in \Gamma$ ancak
+  ve ancak $!A \notin \Gamma$ veya $!B \in \Gamma$.}{}
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+Aşağıdaki bütün maddelerde $\Gamma$'nın maksimal tutarlı olduğunu varsayalım.
+\begin{enumerate}
+\item $\Gamma \Proves !A$ ise $!A \in \Gamma$.
+
+$\Gamma \Proves !A$ olsun. Tersine $!A \notin \Gamma$ olduğunu varsayın.
+$\Gamma$ maksimal tutarlı olduğundan $\Gamma \cup \{!A\}$ tutarsızdır;
+dolayısıyla $\Gamma \cup \{!A\} \Proves \lfalse$. Şu sonuç uyarınca
+\tagrefs{prfSC/{fol:seq:prv:prop:provability-contr},prfND/{fol:ntd:prv:prop:provability-contr}},
+$\Gamma$ tutarsızdır. Bu, $\Gamma$'nın tutarlı olduğu varsayımıyla çelişir.
+O halde $!A \notin \Gamma$ olamaz ve $!A \in \Gamma$ olur.
+
+\item Her $!A$ için ya $!A \in \Gamma$ ya da $\lnot !A \in \Gamma$.
+
+Tersine, bir~$!A$ için hem $!A \notin \Gamma$ hem de
+$\lnot !A \notin \Gamma$ olduğunu varsayın. $\Gamma$ maksimal tutarlı
+olduğundan $\Gamma \cup \{!A\}$ ile $\Gamma \cup \{\lnot !A\}$ kümelerinin
+ikisi de tutarsızdır; dolayısıyla $\Gamma \cup \{!A\} \Proves \lfalse$ ve
+$\Gamma \cup \{\lnot !A\} \Proves \lfalse$. Şu sonuç uyarınca
+\tagrefs{prfSC/{fol:seq:prv:prop:provability-exhaustive},prfND/{fol:ntd:prv:prop:provability-exhaustive}},
+$\Gamma$ tutarsızdır; bu bir çelişkidir. Dolayısıyla böyle !!a{sentence}~$!A$
+olamaz ve her $!A$ için $!A \in \Gamma$ veya $\lnot !A \in \Gamma$ olur.
+
+\tagitem{defAnd}{}{%
+\iftag{probAnd}{Alıştırma.}{%
+$(!A \land !B) \in \Gamma$ ancak ve ancak hem $!A \in \Gamma$ hem de
+$!B \in \Gamma$:
+
+Soldan sağa yön için $(!A \land !B) \in \Gamma$ olsun. O zaman
+$\Gamma \Proves !A \land !B$. Şu sonuç uyarınca
+\cref{fol:seq:ppr:prop:provability-land-left,fol:ntd:ppr:prop:provability-land-left},
+$\Gamma \Proves !A$ ve $\Gamma \Proves !B$. \olref{prop:mcs-prov-in}
+uyarınca istendiği gibi $!A \in \Gamma$ ve $!B \in \Gamma$.
+
+Sağdan sola yön için $!A \in \Gamma$ ve $!B \in \Gamma$ olsun. O zaman
+$\Gamma \Proves !A$ ve $\Gamma \Proves !B$. Şu sonuç uyarınca
+\cref{fol:seq:ppr:prop:provability-land-right,fol:ntd:ppr:prop:provability-land-right},
+$\Gamma \Proves !A \land !B$. \olref{prop:mcs-prov-in} uyarınca
+$(!A \land !B) \in \Gamma$.}}
+
+\tagitem{defOr}{}{%
+\iftag{probOr}{Alıştırma.}{%
+$(!A \lor !B) \in \Gamma$ ancak ve ancak $!A \in \Gamma$ veya
+$!B \in \Gamma$.
+
+Soldan sağa yönün karşıt-tersi için $!A \notin \Gamma$ ve
+$!B \notin \Gamma$ olduğunu varsayın. $(!A \lor !B) \notin \Gamma$
+olduğunu göstermek istiyoruz. $\Gamma$ maksimal tutarlı olduğundan
+$\Gamma \cup \{!A\} \Proves \lfalse$ ve
+$\Gamma \cup \{!B\} \Proves \lfalse$. Şu sonuç uyarınca
+\cref{fol:seq:ppr:prop:provability-lor,fol:ntd:ppr:prop:provability-lor},
+$\Gamma \cup \{(!A \lor !B)\}$ tutarsızdır. Dolayısıyla istendiği gibi
+$(!A \lor !B) \notin \Gamma$.
+
+Sağdan sola yön için $!A \in \Gamma$ veya $!B \in \Gamma$ olsun. O zaman
+$\Gamma \Proves !A$ veya $\Gamma \Proves !B$. Şu sonuç uyarınca
+\cref{fol:seq:ppr:prop:provability-lor,fol:ntd:ppr:prop:provability-lor},
+$\Gamma \Proves !A \lor !B$. \olref{prop:mcs-prov-in} uyarınca
+$(!A \lor !B) \in \Gamma$.}}
+
+\tagitem{defIf}{}{%
+\iftag{probIf}{Alıştırma.}{%
+$(!A \lif !B) \in \Gamma$ ancak ve ancak $!A \notin \Gamma$ veya
+$!B \in \Gamma$:
+
+Soldan sağa yön için $(!A \lif !B) \in \Gamma$ olsun ve tersine
+$!A \in \Gamma$ ile $!B \notin \Gamma$ olduğunu varsayın. Bu varsayımlar
+altında $\Gamma \Proves !A \lif !B$ ve $\Gamma \Proves !A$. Şu sonuç
+uyarınca
+\cref{fol:seq:ppr:prop:provability-lif,fol:ntd:ppr:prop:provability-lif},
+$\Gamma \Proves !B$. Fakat \olref{prop:mcs-prov-in} uyarınca o zaman
+$!B \in \Gamma$ olur ve bu $!B \notin \Gamma$ varsayımıyla çelişir.
+
+Sağdan sola yön için önce $!A \notin \Gamma$ durumunu ele alın.
+\olref{prop:mcs-either-or} uyarınca $\lnot !A \in \Gamma$ ve dolayısıyla
+$\Gamma \Proves \lnot !A$. Şu sonuç uyarınca
+\cref{fol:seq:ppr:prop:provability-lif,fol:ntd:ppr:prop:provability-lif},
+$\Gamma \Proves !A \lif !B$. Yine \olref{prop:mcs-prov-in} uyarınca
+istendiği gibi $(!A \lif !B) \in \Gamma$ elde ederiz.
+
+Şimdi $!B \in \Gamma$ durumunu ele alın. O zaman $\Gamma \Proves !B$ ve
+şu sonuç uyarınca
+\cref{fol:seq:ppr:prop:provability-lif,fol:ntd:ppr:prop:provability-lif},
+$\Gamma \Proves !A \lif !B$. \olref{prop:mcs-prov-in} uyarınca
+$(!A \lif !B) \in \Gamma$.}}
+\end{enumerate}
+\end{proof}
+
+\begin{prob}
+\olref[fol][com][mcs]{prop:mcs} önermesinin ispatını tamamlayın.
+\end{prob}
+

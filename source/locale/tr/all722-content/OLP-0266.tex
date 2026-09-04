@@ -1,0 +1,141 @@
+% Generated from locale/tr/content/turing-machines/undecidability/enumerating-tms.tex; do not hand-edit.
+
+
+\olfileid[tr]{tur}{und}{enu}
+\olsection{Turing Makinelerinin Numaralandırılması}
+
+\begin{explain}
+Bütün Turing makineleri kümesinin !!{enumerable} olduğunu gösterebiliriz.
+Bu, her Turing makinesinin sonlu biçimde betimlenebilmesinden çıkar. Durumlar
+kümesiyle şerit söz dağarcığı sonlu kümelerdir. Geçiş fonksiyonu
+$Q\times\Sigma$'dan
+$Q\times\Sigma\times\{\TMleft,\TMright,\TMstay\}$'ye bir kısmi
+fonksiyondur; dolayısıyla o da tanımlı olduğu sonlu sayıdaki argüman çifti
+için değerleri listelenerek belirtilebilir.
+
+Buraya kadarı doğrudur, fakat ince bir ayrım vardır. Turing makinelerinin
+tanımı, durumlar kümesiyle şerit alfabesinin hangi nesneleri !!{element}
+olarak içerebileceğine hiçbir kısıtlama getirmedi. Dolayısıyla örneğin her
+gerçel sayı için, teknik olarak, o sayıyı durum olarak kullanan bir Turing
+makinesi vardır. Ancak Turing makinesinin \emph{davranışı}, hangi nesnelerin
+durum ve söz dağarcığı olarak kullanıldığından bağımsızdır.
+\olref{fig:variants} içindeki iki Turing makinesini ele alın.
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=none,draw=black,text=black]
+
+  \node[initial,state]         (A)              {$q_0$};
+  \node[state]         (B) [right of=A] {$q_1$};
+
+  \path (A) edge [bend left] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (B)
+        (B) edge [loop above] node {\TMtrans{\TMblank}{\TMblank}{\TMright}} (B)
+            edge [bend left] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (A);
+\end{tikzpicture}\\
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
+  semithick]
+\tikzstyle{every state}=[fill=none,draw=black,text=black]
+
+\node[initial,state]         (A)              {$s$};
+\node[state]         (B) [right of=A] {$h$};
+
+\path (A) edge [bend left] node {\TMtrans{A}{A}{\TMright}} (B)
+(B) edge [loop above] node {\TMtrans{\TMblank}{\TMblank}{\TMright}} (B)
+edge [bend left] node {\TMtrans{A}{A}{\TMright}} (A);
+\end{tikzpicture}
+\end{center}
+\caption{\emph{Çift Sayı} makinesinin çeşitlemeleri}
+\ollabel{fig:variants}
+\end{figure}
+Bu iki diyagram iki makineye karşılık gelir: Şerit alfabesi
+$\Sigma=\{\TMendtape,\TMblank,\TMstroke\}$ ve durumlar kümesi
+$\{q_0,q_1\}$ olan $M$ ile alfabesi
+$\Sigma'=\{\TMendtape,\TMblank,A\}$ ve durumları $\{s,h\}$ olan $M'$.
+Ancak bunun dışında yönergeleri aynıdır: $M$, $n$ tane $\TMstroke$ dizisinde
+ancak ve ancak $n$ çift ise; $M'$ ise $n$ tane $A$ dizisinde ancak ve ancak
+$n$ çift ise durur. Yalnızca $\TMstroke$ simgesini $A$, $q_0$ durumunu $s$
+ve $q_1$ durumunu $h$ olarak yeniden adlandırdık. Bu örnek genelleştirilebilir:
+Biri ötekinden simge ve durumların bu tür bir yeniden adlandırılmasıyla elde
+ediliyorsa Turing makinelerini aynı sayabiliriz. Aslında bir Turing
+makinesinin simge ve durumlarını doğrudan pozitif tam sayılar olarak
+düşünebiliriz: $\sigma_0$ yerine $1$, $\sigma_1$ yerine $2$ vb.;
+$\TMendtape$ simgesi $1$, $\TMblank$ simgesi $2$ vb. olsun. Böylece
+\emph{Çift Sayı} makinesi \olref{fig:standard-even} içinde gösterilen
+makineye dönüşür.
+\begin{figure}
+\[\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
+  semithick]
+\tikzstyle{every state}=[fill=none,draw=black,text=black]
+
+\node[initial,state]         (A)              {$1$};
+\node[state]         (B) [right of=A] {$2$};
+
+\path (A) edge [bend left] node {\TMtrans{3}{3}{\TMright}} (B)
+(B) edge [loop above] node {\TMtrans{2}{2}{\TMright}} (B)
+edge [bend left] node {\TMtrans{3}{3}{\TMright}} (A);
+\end{tikzpicture}
+\]
+\caption{Standart bir \emph{Çift Sayı} makinesi}
+\ollabel{fig:standard-even}
+\end{figure}
+Durumları ve simgeleri pozitif tam sayılar olan bir Turing makinesine
+\emph{standart} makine diyebilir ve bundan sonra yalnızca standart makineleri
+ele alabiliriz.\footnote{``Standart makine'' terminolojisi standart değildir.}
+
+Turing makineleri kümesinin !!{enumerable} olduğunu göstermek istiyorduk;
+yukarıdaki değerlendirmeler göz önüne alındığında standart Turing makineleri
+kümesinin !!{enumerable} olduğunu göstermek yeterlidir. Standart bir
+$M=\tuple{Q,\Sigma,q_0,\delta}$ Turing makinesi verildiğini varsayalım. Onu
+pozitif tam sayılardan oluşan sonlu bir dizgeyle nasıl betimleyebiliriz? Önce
+durumların sayısını, durumların kendilerini, simgelerin sayısını, simgelerin
+kendilerini ve başlangıç durumunu listeleriz. (Unutmayın, $M$ standart bir
+makine olduğundan bunların hepsi pozitif tam sayıdır.) Peki $\delta$ ne olacak?
+Olası argümanlar kümesi, yani $\tuple{q,\sigma}$ çiftleri, $Q$ ile $\Sigma$
+sonlu olduğu için sonludur. Dolayısıyla $\delta$'daki bilgi, burada
+$\delta(q,\sigma)=\tuple{q',\sigma',D}$ ve $d$ yön~$D$'yi kodlayan bir sayı
+(örneğin $\TMleft$ için $1$, $\TMright$ için $2$, $\TMstay$ için $3$) olmak
+üzere $\tuple{q,\sigma,q',\sigma',d}$ biçimindeki bütün $5$-lilerin sonlu
+listesidir.
+
+Böylece her standart Turing makinesi pozitif tam sayılardan oluşan sonlu bir
+listeyle, yani $s_M\in(\PosInt)^*$ dizisiyle betimlenebilir. Örneğin standart
+\emph{Çift Sayı} makinesi şu diziyle kodlanır:
+\[
+2, \underbrace{1, 2}_Q, 3, \overbrace{1, 2, 3}^\Sigma, 1, \underbrace{1, 3, 2, 3, 2}_{\delta(1,3) = \tuple{2,3,R}}, 
+\overbrace{2, 2, 2, 2, 2}^{\delta(2,2) = \tuple{2,2,R}},
+\underbrace{2, 3, 1, 3, 2}_{\delta(2,3) = \tuple{1,3,R}}.
+\]
+\end{explain}
+
+\begin{thm}
+$\Nat$'ten~$\Nat$'e Turing hesaplanabilir olmayan fonksiyonlar vardır.
+\end{thm}
+
+\begin{proof}
+Pozitif tam sayıların sonlu dizileri kümesi~$(\PosInt)^*$'ın !!{enumerable}
+olduğunu biliyoruz (\cref{sfr:siz:zigzag:prob:posint-star}). Dolayısıyla
+standart Turing makinelerinin betimleri kümesi, $(\PosInt)^*$'ın bir alt
+kümesi olarak, kendisi de sayılabilirdir. $\Nat$'ten~$\Nat$'e her Turing
+hesaplanabilir fonksiyon bir (aslında birçok) Turing makinesince hesaplanır.
+Durum ve simgelerini pozitif tam sayılarla yeniden adlandırarak (özellikle
+$\TMendtape$ simgesini $1$, $\TMblank$ simgesini $2$ ve $\TMstroke$ simgesini
+$3$ yaparak) her Turing hesaplanabilir fonksiyonun standart bir Turing
+makinesince hesaplandığını görebiliriz. Bu, $\Nat$'ten~$\Nat$'e bütün Turing
+hesaplanabilir fonksiyonlar kümesinin de sayılabilir olduğu anlamına gelir.
+
+Öte yandan $\Nat$'ten~$\Nat$'e bütün fonksiyonlar kümesi !!{enumerable}
+değildir (\cref{sfr:siz:red:prob:nat-nat}). Bütün fonksiyonlar bir Turing
+makinesince hesaplanabilir olsaydı onları hesaplayan bütün Turing makinesi
+betimlerini listeleyerek bütün fonksiyonlar kümesini numaralandırabilirdik.
+Dolayısıyla Turing hesaplanabilir olmayan bazı fonksiyonlar vardır.
+\end{proof}
+
+\begin{prob}
+  Durumların ve alfabe simgelerinin açıkça listelenmesini gerektirmeyen bir
+  Turing makinesi betimleme yolu düşünebilir misiniz? Kendi ``standart''
+  makine kavramınızı tanımlayabilirsiniz; ama her Turing makinesinin yeni
+  anlamınızdaki bir ``standart'' makine tarafından nasıl hesaplanabildiği
+  tarafından nasıl benzetilebildiği hakkında bir şey söyleyin.
+\end{prob}
+

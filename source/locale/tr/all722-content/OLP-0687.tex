@@ -1,0 +1,256 @@
+% Generated from locale/tr/content/proof-theory/propositions-as-types/normalization.tex; do not hand-edit.
+
+
+\olfileid[tr]{int}{pty}{nor}
+
+\olsection{Normalleştirme}
+
+Bu kısımda tipli ispat terimleri için \emph{$\beta$-normalleştirme}
+sonucunu ele alıyoruz. Tip olarak önerme karşılığından yararlanarak her ispat
+teriminin, aşağıda ölçülen üç $\beta$-indirgenen ailesi bakımından normal bir
+biçime indirgenebildiğini göstereceğiz; doğal tümdengelim !!{derivation}s için
+karşılık gelen $\beta$-indirgemeleri hakkındaki sonuç da bundan çıkacaktır.
+Yer değiştirme dönüşümlerini de kapsayan tam normalleştirme savı, bu ölçünün
+kapsamı dışındadır.
+
+Önce terimlerin karmaşıklığını ölçen bazı fonksiyonlar tanımlayalım.
+!!a{formula}s için \emph{uzunluk}~$\len{!A}$ şöyle tanımlanır:
+\begin{align*}
+  \len{p} &= 0\\
+  \len{!A \land !B} &= \len{!A} + \len{!B} + 1\\
+  \len{!A \lor !B} &= \len{!A} + \len{!B} + 1 \\
+  \len{!A \lif !B} &= \len{!A} + \len{!B} + 1.
+\end{align*}
+Bir indirgenen~$M$'nin karmaşıklığı, onun \emph{kesme
+  derecesi}~$\cutrank{M}$ ile ölçülür:
+\begin{align*}
+  \cutrank{(\lambd[\typeof{x}{!A}][\typeof{N}{!B}])Q} &=
+  \len{!A} + \len{!B} + 1 \\
+  \cutrank{\ande{i}{\andi{\typeof{M}{!A}}{\typeof{N}{!B}}}} &=
+  \len{!A} + \len{!B} + 1 \\
+  \cutrank{\ore{\ori{i}{!A_{i}}{\typeof{M}{!A_i}}}
+    {\typeof{x_1}{!A_1}}{\typeof{N_1}{!C}}
+    {\typeof{x_2}{!A_2}}{\typeof{N_2}{!C}}} &=
+  \len{!A_1} + \len{!A_2} + 1.
+\end{align*}
+Bir ispat teriminin $\beta$-karmaşıklığı, içerdiği en karmaşık
+$\beta$-indirgenenin kesme derecesidir; terim $\beta$-normalse bu değer~$0$'dır:
+\[
+  \maxrank{M} = \max \bigl(\{\cutrank{N} \mid N, M\text{'nin indirgenen
+    bir alt terimidir}\}\cup\{0\}\bigr).
+\]
+
+\begin{lem}\ollabel{lem:subst}
+  $\Subst{M}{\typeof{N}{!A}}{\typeof{x}{!A}}$ bir indirgenense ve $M
+  \not\ident x$ ise aşağıdaki durumlardan biri geçerlidir:
+  \begin{enumerate}
+  \item $M$'nin kendisi bir indirgenendir;
+  \item $M$, $\ande{i}{x}$ biçimindedir ve $N$, $\andi{P_1}{P_2}$
+    biçimindedir;
+  \item $M$, $\ore{i}{x_1}{P_1}{x_2}{P_2}$ biçimindedir ve $N$,
+    $\ori{i}{}{Q}$ biçimindedir;
+  \item $M$, $x Q$ biçimindedir ve $N$, $\lambd[x][P]$ biçimindedir.
+  \end{enumerate}
+  İlk durumda $\cutrank{\Subst{M}{N}{x}} = \cutrank{M}$; öteki
+  durumlarda $\cutrank{\Subst{M}{N}{x}} = \len{!A}$ olur.
+\end{lem}
+\begin{proof}
+  $M$ üzerinde tümevarımla.
+  \begin{enumerate}
+  \item $M$ tek bir $y$ değişkeniyse ve $y \not\ident x$ ise
+    $\Subst{y}{N}{x}$, $y$'dir; dolayısıyla indirgenen değildir.
+  \item $M$, $\andi{N_1}{N_2}$, $\lambd[x][N]$ ya da
+    $\ori{i}{!A}{N}$ biçimindeyse
+    $\Subst{M}{\typeof{N}{!A}}{\typeof{x}{!A}}$ da aynı biçimdedir ve
+    dolayısıyla indirgenen değildir.
+  \item $M$, $\ande{i}{P}$ biçimindeyse iki durumu ele alırız.
+    \begin{enumerate}
+      \item $P$, $\andi{P_1}{P_2}$ biçimindeyse $M \ident
+        \ande{i}{\andi{P_1}{P_2}}$ bir indirgenendir ve açıkça
+        \[
+        \Subst{M}{N}{x} \ident
+        \ande{i}{\andi{\Subst{P_1}{N}{x}}{\Subst{P_2}{N}{x}}}
+        \]
+        de bir indirgenendir. Kesme dereceleri eşittir.
+      \item $P$ tek bir değişkense yerine koymanın bir indirgenen üretmesi
+        için bu değişken $x$ olmalı, $N$ de $\andi{P_1}{P_2}$ biçiminde
+        olmalıdır. Şimdi
+        \[
+        \Subst{M}{N}{x} \ident \Subst{\ande{i}{x}}{\andi{P_1}{P_2}}{x}
+        \]
+        terimini ele alalım. Bu terim
+        $\ande{i}{\andi{P_1}{P_2}}$'dir ve kesme derecesi
+        $\len{!A}$'dır.
+    \end{enumerate}
+  \end{enumerate}
+  $\ore{N}{x_1}{N_1}{x_2}{N_2}$ ve $P Q$ durumları benzerdir.
+\end{proof}
+
+\begin{lem}
+  $M$, $M'$'ye büzülüyorsa ve $M$'nin indirgenen olan her öz alt
+  terimi~$N$ için $\cutrank{M} > \cutrank{N}$ ise
+  $\cutrank{M} > \maxrank{M'}$ olur.
+\end{lem}
+
+\begin{proof}
+  Durumlara göre ispatlayalım.
+  \begin{enumerate}
+  \item $M$, $\ande{i}{\andi{M_1}{M_2}}$ biçimindeyse $M'$, $M_i$'dir.
+    $M_i$'nin her alt terimi aynı zamanda $M$'nin öz alt terimi olduğundan
+    iddia geçerlidir.
+  \item $M$,
+    $(\lambd[\typeof{x}{!A}][N])\typeof{Q}{!A}$ biçimindeyse $M'$,
+    $\Subst{N}{\typeof{Q}{!A}}{\typeof{x}{!A}}$'dır. $M'$ içindeki bir
+    indirgeneni ele alalım. Ya $N$ içinde aynı kesme derecesine sahip
+    karşılık gelen bir indirgenen vardır ve varsayım gereği bu derece
+    $\cutrank{M}$'den küçüktür; ya da kesme derecesi $\len{!A}$'dır ve bu
+    da tanım gereği
+    $\cutrank{(\lambd[x^{!A}][N])Q}$'dan küçüktür.
+  \item $M$,
+    \[
+    \ore{\ori{i}{}{\typeof{N}{!A_i}}}
+        {\typeof{x_1}{!A_1}}{\typeof{N_1}{!C}}
+        {\typeof{x_2}{!A_2}}{\typeof{N_2}{!C}}
+    \]
+    biçimindeyse $M' \ident \Subst{N_i}{N}{\typeof{x_i}{!A_i}}$ olur.
+    $M'$ içindeki bir indirgeneni ele alalım. Ya $N_i$ içinde aynı kesme
+    derecesine sahip karşılık gelen bir indirgenen vardır ve varsayım gereği
+    bu derece $\cutrank{M}$'den küçüktür; ya da kesme derecesi
+    $\len{!A_i}$'dır ve bu da tanım gereği
+    $\cutrank{\ore{\ori{i}{}{\typeof{N}{!A_i}}}
+      {\typeof{x_1}{!A_1}}{\typeof{N_1}{!C}}
+      {\typeof{x_2}{!A_2}}{\typeof{N_2}{!C}}}$'dan küçüktür.
+  \end{enumerate}
+\end{proof}
+
+\begin{thm}
+  Bütün ispat terimleri, yukarıdaki üç $\beta$-indirgenen ailesi bakımından
+  normal bir biçime indirgenir; bütün !!{derivation}s da karşılık gelen
+  $\beta$-indirgemeler bakımından normal !!{derivation}s elde edilecek biçimde
+  indirgenir.
+\end{thm}
+
+\begin{proof}
+  İkinci iddia birinciden çıkar. Birinciyi, bir ispat terimi~$M$ için
+  $m=\maxrank{M}$ üzerinde güçlü tümevarımla ispatlayalım.
+  \begin{enumerate}
+  \item $m=0$ ise $M$ zaten bu anlamda $\beta$-normaldir.
+  \item Aksi durumda, $M$ içinde kesme derecesi~$m$ olan indirgenenlerin
+    sayısı~$n$ üzerinde tümevarım yaparız.
+    \begin{enumerate}
+    \item $n=1$ ise $m = \cutrank{N}$ olacak ve indirgenen olan her öz
+      alt terim~$P$ için $\cutrank{N} > \cutrank{P}$ olacak biçimde bir
+      indirgenen~$N$ seçin. Böyle bir indirgenen vardır; çünkü her terimin
+      yalnızca sonlu sayıda alt terimi bulunur.
+
+      $N$'nin indirgenmişini $N'$ ile gösterelim. Önceki lemma gereği
+      $\maxrank{N'} < \maxrank{N}$ olur. Böylece kesme derecesi~$m$ olan
+      indirgenenlerin sayısı sıfıra iner; dolayısıyla bütün terimin azami
+      kesme derecesi azalır ve $m$ için tümevarım varsayımını uygulayabiliriz.
+    \item Tümevarım adımı için $n>1$ varsayın. İşlem benzerdir: kesme
+      derecesi~$m$ olan ve aynı derecede indirgenen bir öz alt terim
+      içermeyen bir~$N$ seçip büzün. Bu kez $n$ yalnızca daha küçük pozitif
+      bir sayıya iner ve $m$ değişmez. $n$ için tümevarım varsayımını
+      uygularız.
+    \end{enumerate}
+  \end{enumerate}
+\end{proof}
+
+Tipli $\lambd$-terimlerinin $\beta$-normalleşmesi, böyle her terimin bir
+$\beta$-normal biçimi olduğu anlamına gelir. $\lambd$-terimlerini $\beta$-indirgemeyle
+normal biçimlerine getirmeyi bir hesaplamayı yürütmek, normal biçimi de
+hesaplamanın değeri olarak düşünürsek her tipli $\lambd$-terimi için sonunda
+duran ve bir değer üreten bir hesaplama yolu vardır. Ayrıca tip korunumu, değerin
+doğru tipte olmasını sağlar. Örneğin $N$'nin tipi $!A \lif !B$ ise (yani
+$N$, tipi~$!A$ olan argümanlar üzerinde çalışıp tipi~$!B$ olan değerler
+üretmesi gereken bir fonksiyonsa) ve onu tipi~$!A$ olan bir $M$ terimine
+(girdiye) uygularsak $(NM)$, bir $N'$ terimine (çıktıya) indirgenir ve bu
+çıktının tipi~$!B$ olmak zorundadır.
+
+Standart tipli $\lambd$-kalkülüsü için daha güçlü bir sonuç da geçerlidir:
+alt terimlere $\beta$-indirgemeleri uygulamanın yalnızca belirli bir yolunda
+değil, \emph{her} yolunda sonunda normal biçime ulaşılır. Bu özelliğe
+\emph{güçlü normalleştirme} denir. Kaynak metin bu güçlü sonucu burada
+ispatlamaz; aşağıdaki Church--Rosser tartışmasında onu açık bir varsayım olarak
+kullanır.
+
+Bir hesaplamayı yürütmenin farklı yollarının \emph{aynı} değeri ürettiğini
+nasıl biliriz? Şimdiye kadar tip korunumundan yalnızca bütün sonuçların aynı
+tipte olduğunu biliyoruz. Tipli $\lambd$-kalkülüsünün başka bir önemli
+özelliği daha vardır: sistem \emph{Church--Rosser özelliğine sahiptir}.
+$N \red N_1$ ve $N \red N_2$ ise $N_1 \red N'$ ve
+$N_2 \red N'$ olacak biçimde bir $N'$ terimi vardır. $N \red N'$ ifadesinin,
+$N'$'nin sıfır ya da daha çok $\redone$-indirgeme adımıyla $N$'den elde
+edildiği anlamına geldiğini anımsayın. $N_1$ normal biçimdeyse $N_1 \red N'$
+olacak tek $N'$ terimi, sıfır $\redone$-indirgeme adımıyla elde edilen
+$N_1$'in kendisidir. Dolayısıyla hem $N_1$ hem $N_2$ normal biçimdeyse
+$N_1=N'=N_2$ olur. Başka bir deyişle, $\red$ güçlü normalleştirici olduğu
+için bir terimi indirgemenin her yolu sonunda normal biçime ulaşır;
+$\red$ Church--Rosser özelliğine sahip olduğu için de her iki normal biçim
+eşittir. Böylece tipli $\lambd$-kalkülüsünde hesaplama her zaman sona erer ve
+hesaplamanın nasıl ilerlediğinden bağımsız olarak aynı değeri (normal biçimi)
+verir.
+
+Bir bağıntının Church--Rosser özelliğine sahip olduğunu ispatlamak genellikle
+güçtür. Ancak şu daha
+zayıf koşulu kolayca gösterebiliriz:
+
+\begin{prop}[Zayıf Church--Rosser özelliği (ispat taslağı)]
+$N \redone N_1$ ve $N \redone N_2$ ise $N_1 \red N'$ ve $N_2 \red N'$
+olacak biçimde bir $N'$ terimi vardır.
+\end{prop}
+
+\begin{proof}
+  Kaynak metnin taslağı şu durumları ayırır. $N_1$ ve $N_2$, sırasıyla $N$
+  içindeki indirgenen $M_1$ ve $M_2$'nin
+  indirgenmişleriyle değiştirilmesiyle elde edilir. $M_1$ ile $M_2$, $N$'nin
+  alt terimleridir. Aynı indirgenen seçilmişse $N_1=N_2$ olur ve sonuç
+  dolaysızdır. Aksi hâlde bunlar ya çakışmayan farklı konumlarda bulunur ya
+  da biri ötekinin alt terimidir. İlk durumu ele alalım: $N$, $N(M_1,M_2)$
+  biçimindedir. $M_1$'i indirgenmişi $M_1'$ ile değiştirmek
+  $N(M_1',M_2)$ olan $N_1$'i; $M_2$'yi indirgenmişi $M_2'$ ile değiştirmek
+  ise $N(M_1,M_2')$ olan $N_2$'yi verir. Her ikisi de
+  $N(M_1',M_2')$'ye indirgenir. Öteki durumda $M_2$'nin $M_1$'in alt terimi
+  olduğunu varsayın (ters durum simetriktir) ve $M_1$'in indirgenen biçimine
+  göre durumları ayırın. Örneğin
+  $M_1 \ident \proj{1}{\pair{O_1}{O_2}}$ ise $O_1$'e indirgenir. $M_2$,
+  $O_1$'in bir alt terimiyse $M_2$'yi indirgemek $O_1'$i verir. Böylece önce
+  $M_1$'i, ardından $M_2$'yi indirgemek $O_1'$e ulaşır. Öte yandan önce
+  $M_2$'yi indirgemek $\proj{1}{\pair{O_1'}{O_2}}$ terimini verir; bu terim
+  de $O_1'$e indirgenir. Öteki indirgenen biçimleri için de ayrı bir kritik
+  çift denetimi gerekir; kaynak metin bu sonlu denetimi ayrıntılandırmaz.
+\end{proof}
+
+\begin{lem}[Newman lemması]
+$\red$ güçlü normalleştiriciyse ve zayıf Church--Rosser özelliğine sahipse
+Church--Rosser özelliğine sahiptir.
+\end{lem}
+
+\begin{proof}
+  $\red$ güçlü normalleştirici olduğundan her indirgeme dizisi bir normal
+  biçimde sona erer. Bu koşul altında normal biçimlerin tekliği,
+  $\red$'in Church--Rosser özelliğine sahip olmasına denktir. Bir $N$
+  teriminin, şu indirgeme
+  dizileriyle elde edilen iki farklı $N'$ ve $N''$ normal biçimi bulunduğunu
+  varsayalım:
+  \begin{align*}
+  N &\redone N_1' \redone N_2' \redone \dots \redone N_k' = N'
+    \text{ ve}\\
+  N &\redone N_1'' \redone N_2'' \redone \dots \redone N_l'' = N''.
+  \end{align*}
+  (İndirgeme dizileri sıfır uzunluklu olamaz; yoksa $N$ zaten normal biçimde
+  olurdu.)
+
+  $N_1'=N_1''$ ise bu ortak terimin iki farklı normal biçimi ($N'$ ve
+  $N''$) vardır. $N_1'\neq N_1''$ ise zayıf Church--Rosser özelliği gereği
+  $N_1'\red N'''$ ve $N_1''\red N'''$ olacak biçimde bir $N'''$ vardır.
+  Güçlü normalleştirme gereği $N'''$ bir normal biçim~$P$'ye indirgenir.
+  $N'\neq N''$ olduğundan $P\neq N'$ ya da $P\neq N''$ olur. Dolayısıyla
+  $N_1'$ ile $N_1''$ terimlerinden en az birinin iki farklı normal biçimi
+  vardır. Böylece $N$'nin iki farklı normal biçimi varsa
+  $N\redone N_1$ olacak ve $N_1$'in de iki farklı normal biçimi bulunacak
+  bir $N_1$ teriminin var olduğunu gösterdik. Aynı akıl yürütmeyi sürdürerek
+  $N\redone N_1\redone N_2\redone\dots$ sonsuz dizisini elde ederiz. Ancak
+  bu, $\redone$ güçlü normalleştirici olduğu için olanaksızdır.
+\end{proof}
+

@@ -1,0 +1,302 @@
+% Generated from locale/tr/content/incompleteness/introduction/definitions.tex; do not hand-edit.
+
+
+\olfileid[tr]{inc}{int}{def}
+
+\olsection{Tanımlar}
+
+Hilbert'in matematiği biçimselleştirme ve böyle bir biçimselleştirmenin
+tutarlı ve tam olduğunu gösterme projesini yürütmek için yapılacak ilk iş
+bir dil, mantıksal çerçeve ve aksiyom sistemi seçmek olurdu. Amaçlarımız
+bakımından matematiğin birinci derece bir dilde biçimselleştirilebildiğini;
+yani birinci derece mantığın bağlaç ve niceleyicileriyle birlikte matematiksel
+iddiaları dile getirmemize olanak veren bir !!{constant}s,
+!!{function}s ve !!{predicate}s kümesi bulunduğunu varsayalım. Çoğu
+kimse böyle bir dilin varlığında uzlaşır: mantıksal olmayan tek simgenin
+$\in$ olduğu küme kuramı dili. Böylesine yalın bir dilin bu denli anlatım
+gücü taşıdığı ilk bakışta elbette hiç inandırıcı değildir; matematiğin hemen
+hemen tamamının bu son derece kıt söz dağarcığında dile getirilebileceğini
+kurmak büyük emek gerektirmiştir. Şimdilik işleri yalın tutmak üzere
+tartışmamızı aritmetikle, yani matematiğin yalnızca doğal sayılar~$\Nat$ ile
+uğraşan bölümüyle sınırlayalım. Aritmetik olgularını dile getirmenin doğal
+dili $\Lang L_A$'dır. $\Lang L_A$ tek bir iki yerli !!{predicate}~$<$,
+tek bir !!{constant}~$\Obj 0$, bir tek yerli !!{function}~$\prime$ ve iki
+iki yerli !!{function}~$+$ ile~$\times$ içerir.
+
+\begin{defn}
+Bir !!{sentence}s kümesi~$\Gamma$, gerektirme altında kapalıysa, yani
+$\Gamma = \Setabs{!A}{\Gamma \Entails !A}$ ise bir \emph{kuram}dır.
+\end{defn}
+
+Kuramları belirtmenin iki kolay yolu vardır. Bunlardan biri, doğru
+!!{sentence}s{}i bir !!{structure} içinde toplamak ve kuramı bu küme olarak
+vermektir. Örneğin, $\Lang L_A$ için mantıksal olmayan bütün simgelerin
+beklendiği gibi yorumlandığı bir !!{structure} ele alın; onun !!{domain}{}i
+$\Nat$ olsun.
+
+\begin{defn}\ollabel{def:standard-model}
+\emph{Aritmetiğin standart modeli}, aşağıdaki gibi tanımlanan
+!!{structure}~$\Struct N$'dir:
+\begin{enumerate}
+\item $\Domain N = \Nat$
+\item $\Assign{\Obj 0}{N} = 0$
+\item Her $n \in \Nat$ için $\Assign{\Obj \prime}{N}(n) = n + 1$
+\item Her $n, m \in \Nat$ için $\Assign{\Obj +}{N}(n, m) = n + m$
+\item Her $n, m \in \Nat$ için $\Assign{\Obj \times}{N}(n, m) = n\cdot m$
+\item $\Assign{\Obj <}{N} = \Setabs{\tuple{n, m}}{n \in \Nat, m \in
+  \Nat, n < m}$
+\end{enumerate}
+\end{defn}
+
+`$\times$' ile `$\cdot$' arasındaki ayrıma dikkat edin: $\times$ aritmetik
+dilinin bir simgesidir. Onu çarpmayı anımsatsın diye seçtik; ama $\times$
+çarpma işlemi değil, iki yerli bir fonksiyon simgesidir (resmî olarak
+$\Obj f^2_1$). Buna karşılık $\cdot$, bildiğimiz çarpma fonksiyonunun
+\emph{kendisidir}. $n \cdot m$ gibi bir şey gördüğünüzde $n$ ile $m$
+sayılarının çarpımını; $x \times y$ gibi bir şey gördüğünüzde ise aritmetik
+dilindeki bir terimi kastediyoruz. Standart modelde $\times$ fonksiyon
+simgesi, doğal sayılar üzerindeki $\cdot$ fonksiyonu olarak yorumlanır.
+Toplama için $+$ simgesini hem aritmetik dilinin fonksiyon simgesi hem de
+doğal sayılar üzerindeki toplama fonksiyonu olarak kullanırız. Burada
+kastedileni bağlamdan belirlemeniz gerekir.
+
+\begin{defn}
+\emph{Doğru aritmetik} kuramı, aritmetiğin standart modelinde sağlanan
+!!{sentence}s{}in kümesidir; yani
+\[
+\Th{TA} = \Setabs{!A}{\Sat{N}{!A}}.
+\]
+\end{defn}
+
+$\Th{TA}$ bir kuramdır; çünkü $\Th{TA} \Entails !A$ olduğunda $!A$,
+$\Th{TA}$'yı sağlayan her !!{structure} içinde sağlanır. $\Sat{N}{\Th{TA}}$
+olduğundan $\Sat{N}{!A}$ ve dolayısıyla $!A \in \Th{TA}$ elde ederiz.
+
+Bir $\Gamma$ kuramını belirtmenin öteki yolu, onu bir $\Gamma_0$ tümceler
+kümesinin gerektirdiği !!{sentence}s{}in kümesi olarak vermektir. Bu durumda
+$\Gamma$, $\Gamma_0$'ın gerektirme altındaki ``kapanışı''dır. Bir kuramı
+bu yolla belirtmek ancak $\Gamma_0$ açıkça verilmişse, örneğin
+$\Gamma_0$'ın !!{element}s{}ı listelenmişse ilginçtir. En azından
+$\Gamma_0$ karar verilebilir olmalıdır; yani !!a{sentence}{}nin
+$\Gamma_0$'ın bir elemanı sayılıp sayılmadığını belirleyen hesaplanabilir
+bir sınama bulunmalıdır. $\Gamma_0$ içindeki !!{sentence}s{}e $\Gamma$'nın
+\emph{aksiyomları}, $\Gamma$'ya da $\Gamma_0$ tarafından
+\emph{aksiyomlaştırılmış} deriz.
+
+\begin{defn}
+Bir $\Gamma$ kuramı ancak ve ancak
+\[
+\Gamma = \Setabs{!A}{\Gamma_0 \Entails !A}
+\]
+ise $\Gamma_0$ tarafından \emph{aksiyomlaştırılmıştır}.
+\end{defn}
+
+\begin{defn}
+Aşağıdaki tümceler tarafından aksiyomlaştırılan $\Th{Q}$ kuramı
+``Robinson $\Th{Q}$'su'' diye bilinir ve çok yalın bir aritmetik kuramıdır.
+\begin{align*}
+& \lforall[x][\lforall[y][(\eq[x'][y'] \lif \eq[x][y])]] \tag{$!Q_1$}\\
+& \lforall[x][\eq/[\Obj 0][x']] \tag{$!Q_2$}\\
+& \lforall[x][(\eq[x][\Obj 0] \lor \lexists[y][\eq[x][y']])] \tag{$!Q_3$}\\
+& \lforall[x][\eq[(x + \Obj 0)][x]] \tag{$!Q_4$}\\
+& \lforall[x][\lforall[y][\eq[(x + y')][(x + y)']]] \tag{$!Q_5$}\\
+& \lforall[x][\eq[(x \times \Obj 0)][\Obj 0]] \tag{$!Q_6$}\\
+& \lforall[x][\lforall[y][\eq[(x \times y')][((x \times y) + x)]]] \tag{$!Q_7$}\\
+& \lforall[x][\lforall[y][(x < y \liff \lexists[z][\eq[(z' + x)][y]])]] \tag{$!Q_8$}
+\end{align*}
+$\{!Q_1, \dots, !Q_8\}$ !!{sentence}s{}i kümesi $\Th{Q}$'nun
+aksiyomlarıdır; dolayısıyla $\Th{Q}$ bunların gerektirdiği bütün
+!!{sentence}s{}den oluşur:
+\[
+\Th{Q} = \Setabs{!A}{\{!Q_1, \dots, !Q_8\} \Entails !A}.
+\]
+\end{defn}
+
+\begin{defn}
+$!A(x)$, $\Lang L_A$ içinde serbest değişkenleri $x$ ve $y_1$, \dots,
+$y_n$ olan !!a{formula} olsun. O zaman
+\[
+\lforall[y_1][\dots\lforall[y_n][((!A(\Obj 0) \land \lforall[x][(!A(x)
+\lif !A(x'))]) \lif \lforall[x][!A(x)])]]
+\]
+biçimindeki her !!{sentence}, \emph{tümevarım şemasının} bir örneğidir.
+
+\emph{Peano aritmetiği}~$\Th{PA}$, $\Th{Q}$'nun aksiyomları ile tümevarım
+şemasının bütün örneklerinin birlikte aksiyomlaştırdığı kuramdır.
+\end{defn}
+
+\begin{explain}
+Tümevarım şemasının her örneği $\Struct{N}$ içinde doğrudur. Bunu görmenin
+en kolay yolu, $!A$ !!{formula}{}ünün yalnızca tek bir serbest
+!!{variable}{}i~$x$ olduğunu varsaymaktır. Bu durumda $!A(x)$,
+$\Struct{N}$ içinde $\Nat$'ın bir $X_{!A}$ altkümesini tanımlar.
+$X_{!A}$, $s(x) = n$ iken $\Sat{N}{!A(x)}[s]$ olan bütün $n \in \Nat$
+sayılarının kümesidir. Tümevarım şemasının karşılık gelen örneği
+\[
+((!A(\Obj 0) \land \lforall[x][(!A(x) \lif !A(x'))]) \lif 
+  \lforall[x][!A(x)]).
+\]
+olur. Bunun önceli $\Struct{N}$ içinde doğruysa $0 \in X_{!A}$'dır ve
+$n \in X_{!A}$ olduğunda $n+1$ de öyledir. $0 \in X_{!A}$
+olduğundan $1 \in X_{!A}$ elde ederiz. $1 \in X_{!A}$ ile $2 \in X_{!A}$
+elde ederiz. Böyle devam eder. Dolayısıyla her $n \in \Nat$ için
+$n \in X_{!A}$'dır. Bu ise $\lforall[x][!A(x)]$'in $\Struct{N}$ içinde
+sağlandığı anlamına gelir.
+\end{explain}
+
+Hem $\Th{Q}$ hem de $\Th{PA}$ aksiyomlaştırılmış kuramlardır. Büyük soru,
+bunların ne kadar güçlü olduğudur. Örneğin $\Th{PA}$, $\Nat$ hakkındaki
+$\Lang L_A$ içinde dile getirilebilen bütün doğruları ispatlayabilir mi?
+Daha özel olarak $\Th{PA}$'nın aksiyomları $\Lang L_A$ içinde kurulabilen
+bütün soruları karara bağlar mı?
+
+Bunu sormanın başka bir yolu şudur: $\Th{PA} = \Th{TA}$ mıdır? $\Th{TA}$
+$\Nat$ hakkındaki bütün doğruları açıkça ispatlar (yani içerir) ve
+$\Lang L_A$ içinde kurulabilen bütün soruları karara bağlar; çünkü $!A$,
+$\Lang L_A$ içinde !!a{sentence} ise ya $\Sat{N}{!A}$ ya da
+$\Sat{N}{\lnot !A}$ olur ve dolayısıyla ya $\Th{TA} \Entails !A$ ya da
+$\Th{TA} \Entails \lnot !A$ olur. Böyle bir kurama \emph{!!{complete}}
+deyin.
+
+\begin{defn}
+Bir $\Gamma$ kuramı \emph{!!{complete}}dır ancak ve ancak kendi dilindeki
+her !!{sentence}~$!A$ için ya $\Gamma \Entails !A$ ya da
+$\Gamma \Entails \lnot !A$ olur.
+\end{defn}
+
+\begin{explain}
+Tamlık Teoremi uyarınca $\Gamma \Entails !A$ ancak ve ancak
+$\Gamma \Proves !A$ olduğundan, $\Gamma$ ancak ve ancak dilindeki her
+!!{sentence}~$!A$ için ya $\Gamma \Proves !A$ ya da
+$\Gamma \Proves \lnot !A$ ise tamdır.
+\end{explain}
+
+Sormaya yöneldiğimiz başka bir soru şudur: !!a{sentence}{}nin $\Th{TA}$,
+$\Th{PA}$, hatta yalnızca $\Th{Q}$ içinde olup olmadığını sınamak için
+kullanabileceğimiz hesaplamalı bir yordam var mıdır? Bir kümenin (örneğin
+bir !!{sentence}s kümesinin) ne zaman !!{decidable} olduğunu tanımlayarak
+bunu daha kesin kılabiliriz.
+
+\begin{defn}
+Bir $X$ kümesi, $x$ girdisinde $x \in X$ ise $1$, değilse $0$ döndüren
+hesaplamalı bir yordam varsa ancak ve ancak \emph{!!{decidable}} sayılır.
+\end{defn}
+
+Öyleyse sorumuz şuna dönüşür: $\Th{TA}$ ($\Th{PA}$, $\Th{Q}$)
+!!{decidable} mıdır?
+
+Bu soruların hepsinin yanıtı hayır olacaktır. Bu kuramların hiçbiri karar
+verilebilir değildir. Ancak bu olgu bu belirli kuramlara özgü değildir.
+Gerçekte belli koşulları sağlayan \emph{her} kuram aynı sonuçlara tabidir.
+$\Th{Q}$ ve $\Th{PA}$'nın sağladığı bu koşullardan biri, bunların
+!!a{decidable} aksiyomlar kümesiyle aksiyomlaştırılmış olmalarıdır.
+
+\begin{defn}
+Bir kuram \emph{!!{axiomatizable}} olarak adlandırılır, eğer
+!!a{decidable} aksiyomlar kümesiyle aksiyomlaştırılmışsa.
+\end{defn}
+
+\begin{ex}
+Sonlu bir !!{sentence}s kümesiyle aksiyomlaştırılan her kuram
+!!{axiomatizable} olur; çünkü her sonlu küme !!{decidable} olur. Örneğin
+$\Th{Q}$ bu nedenle !!{axiomatizable} bir kuramdır.
+
+$\Th{PA}$ gibi şematik olarak aksiyomlaştırılmış kuramlar da
+!!{axiomatizable} olur. Çünkü $!B$'nin $\Th{PA}$'nın aksiyomları arasında
+olup olmadığını sınamak, yani $!B$, $\Th{PA}$'nın bir aksiyomuysa
+$\Char{X}(!B)=1$, değilse $=0$ olan $\Char{X}$ fonksiyonunu hesaplamak için
+şunları yapabiliriz: Önce $!B$'nin $\Th{Q}$ aksiyomlarından biri olup
+olmadığını denetleyin. Öyleyse yanıt ``evet''tir ve
+$\Char{X}(!B)=1$'dir. Değilse tümevarım şemasının bir örneği olup olmadığını
+sınayın. Bu sistemli biçimde yapılabilir; bu durumda belki en kolay şu yolla
+yapılabildiği görülür: Tümevarım şemasının her örneği birtakım evrensel
+niceleyicilerle, ardından bir koşullu olan alt-!!{formula} ile başlar.
+Bu koşullunun ardılı $\lforall[x][!A(x, y_1, \dots, y_n)]$'dir; burada
+$x$ ile $y_1$, \dots, $y_n$, $!A$'nın bütün serbest değişkenleridir ve
+$!B$'nin başındaki niceleyiciler $y_1$, \dots, $y_n$ değişkenlerini bağlar.
+Bu $!A$'yı çıkardıktan ve serbest değişkenlerinin baştaki evrensel
+niceleyicilerle ve $\lforall[x]$ ile bağlanan değişkenlere uyduğunu
+denetledikten sonra koşullunun öncelinin
+\[
+!A(\Obj 0, y_1, \dots, y_n) \land \lforall[x][(!A(x, y_1, \dots, y_n)
+\lif !A(x', y_1, \dots, y_n))]
+\]
+ile eşleşip eşleşmediğini denetleriz. Yine, eşleşiyorsa $!B$ tümevarım
+şemasının bir örneğidir; eşleşmiyorsa $!B$ böyle bir örnek değildir.
+\end{ex}
+
+Bu soruyu ve hangi kuramların tam veya karar verilebilir olduğu yönündeki
+daha genel soruyu yanıtlarken aşağıdaki tanımı da ele almak yararlı
+olacaktır. Bir $X$ kümesinin !!{enumerable} olduğunu ancak ve ancak boşsa
+yahut !!a{surjective} $f \colon \Nat \to X$ fonksiyonu varsa söylemiştik.
+Böyle bir fonksiyona $X$'in bir sayımı denir.
+
+\begin{defn}
+Bir $X$ kümesine ancak ve ancak boşsa yahut hesaplanabilir bir sayımı varsa
+\emph{!!{computably enumerable}} (kısaca !!{c.e.}) denir.
+\end{defn}
+
+Kuramların eksiklik teoremlerine tabi olması için !!{axiomatizability}
+koşulunun yanında bir başka koşul, hesaplanabilir fonksiyonlar ve !!{decidable}
+bağıntılar hakkındaki temel olguları ispatlayacak kadar güçlü olmalarıdır.
+``Temel olgular'' ile hesaplanabilir fonksiyonların her argümandaki
+değerlerini dile getiren !!{sentence}s{}i kastediyoruz. ``Yeterince güçlü''
+ile de söz konusu kuramların bu tümceleri teoremleri arasında saymasını
+kastediyoruz. Örneğin tipik bir hesaplanabilir fonksiyonu, toplamayı ele
+alın. $+$'nın $2$ ve $3$ argümanlarındaki değeri $5$'tir, yani $2+3=5$.
+Aritmetik dilinde $+$'nın $2$ ve $3$ argümanlarındaki değerinin $5$
+olduğunu dile getiren bir tümce şudur: $(\num{2}+\num{3})=\num{5}$.
+Örneğin $\Th{Q}$ bu tümceyi ispatlar. Daha genel olarak her hesaplanabilir
+$f(x_1,x_2)$ fonksiyonu için, $f(n_1,n_2)=m$ olduğunda
+$\Th{Q}\Proves !A_f(\num{n_1},\num{n_2},\num{m})$ olacak biçimde
+$\Lang{L_A}$ içinde !!a{formula}~$!A_f(x_1,x_2,y)$ bulunmasını isteriz.
+Böylece $\Th{Q}$, $f$'nin $n_1$, $n_2$ argümanlarındaki değerinin $m$
+olduğunu ispatlar. Gerçekte biraz daha fazlasını, başka hiçbir sayının
+$f$'nin $n_1$, $n_2$ argümanlarındaki değeri olmadığını ispatlamasını isteriz.
+Aynısı !!{decidable} bağıntılar için de geçerlidir. Bu, aşağıdaki iki tanımda
+kesinleştirilir.
+
+\begin{defn}
+Bir !!{formula}~$!A(x_1, \dots, x_k, y)$, ancak ve ancak
+$f(n_1,\dots,n_k)=m$ olduğunda
+\begin{enumerate}
+\item $\Gamma \Proves !A(\num{n_1}, \dots, \num{n_k}, \num{m})$ ve
+\item $\Gamma \Proves \lforall[y](!A(\num{n_1}, \dots, \num{n_k},
+y) \lif y = \num{m})$
+\end{enumerate}
+oluyorsa $f\colon \Nat^k \to \Nat$ fonksiyonunu $\Gamma$ içinde
+\emph{!!{represents} eder}.
+\end{defn}
+
+\begin{defn}
+Bir !!{formula}~$!A(x_1, \dots, x_k)$ ancak ve ancak
+\begin{enumerate}
+\item $R(n_1, \dots, n_k)$ olduğunda $\Gamma \Proves !A(\num{n_1},
+\dots, \num{n_k})$ ve
+\item $R(n_1, \dots, n_k)$ olmadığında $\Gamma \Proves \lnot
+!A(\num{n_1}, \dots, \num{n_k})$
+\end{enumerate}
+oluyorsa $R \subseteq \Nat^k$ bağıntısını \emph{!!{represents} eder}.
+\end{defn}
+
+Bir kuram, bütün hesaplanabilir fonksiyonları !!{represents} ediyor ve bütün
+!!{decidable} bağıntıları da temsil ediyorsa eksiklik teoremlerinin
+uygulanmasına ``yeterince güçlü''dür. $\Th{Q}$ ve onun genişlemeleri bu koşulu sağlar;
+ama bunu kurmamız biraz zaman alacaktır. Bu, $\Th{Q}$'nun ne tür şeyleri
+ispatlayabildiği hakkında önemsiz olmayan bir olgudur ve $\Th{Q}$'nun bütün
+bu olguları ispatlamak için kullanacağımız yalnızca birkaç aksiyomu bulunduğu
+için gösterilmesi zordur. Bununla birlikte $\Th{Q}$ çok zayıf bir kuramdır.
+Dolayısıyla $\Th{Q}$'nun bütün hesaplanabilir fonksiyonları temsil ettiğini
+ispatlamak güç olsa da ilginç kuramların çoğu $\Th{Q}$'dan daha güçlüdür;
+yani $\Th{Q}$'nun ispatladığından fazlasını ispatlar. $\Th{Q}$ bir şeyi
+ispatlarsa daha güçlü her kuram da onu ispatlar; $\Th{Q}$ bütün
+hesaplanabilir fonksiyonları temsil ettiğine göre daha güçlü her kuram da
+eder. Bu, birçok ilginç kuramın eksiklik teoremlerinin bu koşulunu karşıladığı
+anlamına gelir. Böylece zorlu emeğimiz karşılığını bulacaktır; çünkü
+eksiklik teoremlerinin geniş bir kuram sınıfına uygulandığını gösterir.
+Elbette ``bütün matematiği'' biçimselleştirmeyi amaçlayan her kuram,
+$\Th{Q}$'nun ispatladığı her şeyi ispatlamalıdır; çünkü en azından temel
+hesaplamaların sonuçlarını yakalayabilmelidir. Dolayısıyla ``bütün
+matematiğin'' kuramı olmaya aday her kuram, eksiklik teoremlerinin
+uygulanacağı bir kuram olacaktır.
+

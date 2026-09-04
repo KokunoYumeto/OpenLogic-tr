@@ -1,0 +1,101 @@
+% Generated from locale/tr/content/first-order-logic/natural-deduction/derivations.tex; do not hand-edit.
+
+
+\iftag{FOL}
+      {\olfileid[tr]{fol}{ntd}{der}}
+      {\olfileid[tr]{pl}{ntd}{der}}
+
+\olsection{\usetoken{P}{derivation}}
+
+\begin{explain}
+Varsayımın ne olduğunu açıkladık ve çıkarım kurallarını verdik. Doğal
+tümdengelimde !!^{derivation}s bunlardan tümevarımsal olarak oluşturulur: her
+!!{derivation}, ya tek başına bir varsayımdır ya da ardından doğru bir
+çıkarım gelen bir, iki veya üç !!{derivation}s içerir.
+\end{explain}
+
+\begin{defn}[!!^{derivation}]
+\Article{derivation} \emph{!!{derivation}}, varsayımlar~$\Gamma$'dan
+!!a{sentence}~$!A$'ya ulaşan, aşağıdaki koşulları sağlayan ve !!{sentence}s
+içeren sonlu bir ağaçtır:
+\begin{enumerate}
+\item Ağacın en üstündeki !!{sentence}s ya $\Gamma$'dadır ya da ağaçtaki bir
+  çıkarım tarafından !!{discharged} olarak işaretlenmiştir.
+\item Ağacın en altındaki !!{sentence}, $!A$'dır.
+\item Ağacın en altındaki tümce~$!A$ dışında ağaçtaki her !!{sentence},
+  o !!{sentence} için sonucu doğrudan altında duran doğru bir çıkarım kuralı
+  uygulamasının öncülüdür.
+\end{enumerate}
+Bu durumda !!{derivation} bakımından $!A$'ya \emph{sonuç}, $\Gamma$'ya da
+!!{undischarged} varsayımlar deriz.
+
+$\Gamma$'dan $!A$ için !!a{derivation} varsa $!A$'nın $\Gamma$'dan
+\emph{!!{derivable}} olduğunu söyleriz; simgesel olarak $\Gamma \Proves
+!A$ yazarız. !!a{derivation} $!A$ için bulunuyor ve buradaki her varsayım
+!!{discharged} ise $\Proves !A$ yazarız.
+\end{defn}
+
+\begin{ex}
+Her varsayım tek başına !!a{derivation} olarak alınabilir. Örneğin $!A$ tek
+başına !!a{derivation} olur; aynı şey $!B$ için de geçerlidir. Bunlardan,
+örneğin $\Intro{\land}$ kuralını uygulayarak yeni bir !!{derivation} elde
+edebiliriz:
+\begin{prooftree}
+\AxiomC{$!A$}
+\AxiomC{$!B$}
+\RightLabel{\Intro{\land}}
+\BinaryInfC{$!A \land !B$}
+\end{prooftree}
+Bu kurallar genel olacak şekilde tasarlanmıştır: kuraldaki $!A$ ve~$!B$'yi
+herhangi bir !!{sentence}s ile, örneğin $!C$ ve~$!D$ ile değiştirebiliriz.
+O zaman sonuç $!C \land !D$ olur; dolayısıyla
+\begin{prooftree}
+\AxiomC{$!C$}
+\AxiomC{$!D$}
+\RightLabel{\Intro{\land}}
+\BinaryInfC{$!C \land !D$}
+\end{prooftree}
+doğru bir !!{derivation} olur. Elbette varsayımları yer değiştirip $!D$'yi
+$!A$'nın, $!C$'yi de $!B$'nin yerine koyabiliriz. Böylece
+\begin{prooftree}
+\AxiomC{$!D$}
+\AxiomC{$!C$}
+\RightLabel{\Intro{\land}}
+\BinaryInfC{$!D \land !C$}
+\end{prooftree}
+de doğru bir !!{derivation} olur.
+
+Şimdi başka bir kuralı, örneğin bir koşul sonucu çıkarmamızı ve o koşulun
+önbileşeniyle özdeş herhangi bir varsayım bakımından !!{discharge} olanağı veren
+$\Intro{\lif}$ kuralını uygulayabiliriz. Dolayısıyla aşağıdakilerin ikisi de
+doğru !!{derivation}s olur:
+\begin{prooftree}
+\AxiomC{$\Discharge{!C}{1}$}
+\AxiomC{$!D$}
+\RightLabel{\Intro{\land}}
+\BinaryInfC{$!C \land !D$}
+\DischargeRule{\Intro{\lif}}{1}
+\UnaryInfC{$!C \lif (!C \land !D)$}
+\DisplayProof\bottomAlignProof
+\AxiomC{$!C$}
+\AxiomC{$\Discharge{!D}{1}$}
+\RightLabel{\Intro{\land}}
+\BinaryInfC{$!C \land !D$}
+\DischargeRule{\Intro{\lif}}{1}
+\UnaryInfC{$!D \lif (!C \land !D)$}
+\end{prooftree}
+Bunlar sırasıyla $!D \Proves !C \lif (!C \land !D)$ ve
+$!C \Proves !D \lif (!C \land !D)$ olduğunu gösterir.
+
+Varsayımları kapatmanın bir zorunluluk değil, izin olduğunu unutmayın:
+varsayımları kapatmak zorunda değiliz. Özellikle, varsayımlar
+!!{derivation} içinde bulunmasa bile bir kuralı uygulayabiliriz. Örneğin
+aşağıda !!{discharged} olacak bir $!A$ varsayımı bulunmamasına rağmen bu
+uygulama kurallara uygundur:
+\begin{prooftree}
+  \AxiomC{$!B$}
+  \DischargeRule{\Intro{\lif}}{1}
+  \UnaryInfC{$!A \lif !B$}
+\end{prooftree}
+\end{ex}
+

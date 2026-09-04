@@ -1,0 +1,61 @@
+% Generated from locale/tr/content/incompleteness/theories-computability/interpretability.tex; do not hand-edit.
+
+
+\olfileid[tr]{inc}{tcp}{itp}
+
+\olsection{$\Th{Q}$'nun Yorumlanabildiği Kuramlar Karar Verilemezdir}
+
+Bu sonuçları daha da güçlendirebiliriz. Gayriresmî olarak bir
+$\Lang{L_1}$ dilinin başka bir $\Lang{L_2}$ dilindeki yorumu,
+$\Lang{L_1}$'in evrenini, bağıntı simgelerini ve fonksiyon simgelerini
+$\Lang{L_2}$ içindeki !!{formula}s{}le tanımlamayı içerir. Burada buna zaman
+ayırmayacak olsak da bu tanım kesinleştirilebilir.
+
+\begin{thm}
+  $\Th{T}$, aritmetik dilinin yorumlanabildiği bir dildeki kuram olsun ve
+  bu yorum $\Th{T}$'yi $\Th{Q}$'nun yorumuyla tutarlı kılsın. O zaman
+  $\Th{T}$ karar verilebilir değildir. $\Th{T}$, $\Th{Q}$ aksiyomlarının
+  yorumunu ispatlıyorsa $\Th{T}$'nin hiçbir tutarlı genişletmesi karar
+  verilebilir değildir.
+\end{thm}
+
+İspat, son teoremin ispatındaki küçük bir değişiklikten ibarettir; bir karşı
+örnek kullanılarak $\Th{Q}$ ile $\Th{\bar Q}$ birbirinden ayrılabilirdi.
+Seçim aksiyomuyla Zermelo--Fraenkel küme kuramı olan
+$\Th{ZFC}$, olağan matematiğin büyük bir bölümünü yürütmeye yetecek kadar
+güçlü bir aksiyomatik temel olarak alınabilir. $\Th{ZFC}$ içinde doğal
+sayılar tanımlanabilir ve bu yorum aracılığıyla $\Th{Q}$ aksiyomları
+doğrudur. Dolayısıyla
+
+\begin{cor}
+$\Th{ZFC}$'nin karar verilebilir hiçbir genişletmesi yoktur.
+\end{cor}
+
+\begin{cor}
+$\Th{ZFC}$'nin tam, tutarlı, hesaplanabilir biçimde !!{axiomatizable} hiçbir
+genişletmesi yoktur.
+\end{cor}
+
+$\Th{ZFC}$ dilinde yalnızca tek bir ikili bağıntı, $\in$, vardır. (Aslında
+eşitliğe bile gerek yoktur.) Dolayısıyla
+
+\begin{cor}
+İkili bir bağıntı simgesine sahip her dil için birinci derece mantık karar
+verilebilir değildir.
+\end{cor}
+
+Bu sonuç, iki tekli fonksiyon simgesine sahip her dile de uzanır; çünkü bu
+simgelerle ikili bir bağıntı simgesi benzetilebilir. Az önce belirtilen
+sonuçların sınırları kesindir: yalnızca \emph{tekli} bağıntı simgeleri ve en
+çok bir \emph{tekli} fonksiyon simgesi içeren bir dil için birinci derece
+mantığın karar verilebilir olduğu ortaya çıkar.
+
+Bir küçük bilgi daha: Standart modelde doğru olan ve $\Obj 0$, $'$, $+$,
+$\times$, $<$ simgelerini içeren dildeki tümceler kümesinin karar verilemez
+olduğunu biliyoruz. Aslında $<$ öteki simgeler cinsinden, ardından $+$ da
+$\times$ ve $'$ cinsinden tanımlanabilir. Dolayısıyla $\Obj 0$, $'$,
+$\times$ dilindeki doğru tümceler kümesi karar verilemezdir. Öte yandan
+Presburger, $\Obj 0$, $'$, $+$ dilinde aritmetikte doğru olan tümceler
+kümesinin karar verilebilir olduğunu göstermiştir. Bununla birlikte bu
+yordam hesaplama açısından uygulanabilir değildir.
+

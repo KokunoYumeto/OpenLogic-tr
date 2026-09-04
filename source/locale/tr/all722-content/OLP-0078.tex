@@ -1,0 +1,122 @@
+% Generated from locale/tr/content/first-order-logic/sequent-calculus/provability-consistency.tex; do not hand-edit.
+
+
+\iftag{FOL}
+      {\olfileid[tr]{fol}{seq}{prv}}
+      {\olfileid[tr]{pl}{seq}{prv}}
+
+\olsection{\usetoken{S}{derivability} ve Tutarlılık}
+
+Şimdi !!{derivability} bağıntısının bir dizi özelliğini ortaya koyacağız. Bu
+özelliklerin her biri kendi başına ilginçtir ve tamlık teoreminin ispatında rol
+oynayacaktır.
+
+\begin{prop}\ollabel{prop:provability-contr}
+  $\Gamma \Proves !A$ ve $\Gamma\cup\{!A\}$ tutarsızsa $\Gamma$ tutarsızdır.
+\end{prop}
+
+\begin{proof}
+Sonlu $\Gamma_0,\Gamma_1\subseteq\Gamma$ kümeleri vardır ve $\Log{LK}$ içinde
+$\Gamma_0\Sequent !A$ ile $!A,\Gamma_1\Sequent\quad$ sekantlarının ikisini de
+!!{derive}s mümkündür. $\Gamma_0\Sequent !A$ sekantının $\Log{LK}$-!!{derivation}{}i $\pi_0$,
+$!A,\Gamma_1\Sequent\quad$ sekantının $\Log{LK}$-!!{derivation}{}i ise $\pi_1$
+olsun. O zaman aşağıdakini !!{derive} mümkündür:
+\begin{prooftree}
+\AxiomC{}
+\RightLabel{$\pi_0$}
+\Deduce$ \Gamma_0 \fCenter !A $
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$!A, \Gamma_1 \fCenter $
+\RightLabel{\Cut}
+\BinaryInf$ \Gamma_0,\Gamma_1 \fCenter $
+\end{prooftree}
+
+$\Gamma_0\subseteq\Gamma$ ve $\Gamma_1\subseteq\Gamma$ olduğundan
+$\Gamma_0\cup\Gamma_1\subseteq\Gamma$; dolayısıyla $\Gamma$ tutarsızdır.
+\end{proof}
+
+\begin{prop}
+\ollabel{prop:prov-incons}
+$\Gamma \Proves !A$ ancak ve ancak $\Gamma\cup\{\lnot !A\}$ tutarsızsa
+geçerlidir.
+\end{prop}
+
+\begin{proof}
+Önce $\Gamma\Proves !A$ olduğunu varsayalım; yani sonlu bir
+$\Gamma_0\subseteq\Gamma$ için $\Gamma_0\Sequent !A$ sekantının
+!!a{derivation}{}i $\pi_0$ vardır. Bir $\LeftR{\lnot}$ kuralı ekleyerek
+$\lnot !A,\Gamma_0\Sequent\quad$ sekantının !!a{derivation}{}ini elde ederiz;
+yani $\Gamma\cup\{\lnot !A\}$ tutarsızdır.
+
+$\Gamma\cup\{\lnot !A\}$ tutarsızsa sonlu bir $\Gamma_1\subseteq\Gamma$
+için $\lnot !A,\Gamma_1\Sequent\quad$ sekantının !!a{derivation}{}i $\pi_1$
+vardır. Aşağıdaki, $\Gamma_1\Sequent !A$ sekantının !!a{derivation}{}idir:
+\begin{prooftree}
+  \Axiom$!A \fCenter !A$
+  \RightLabel{\RightR{\lnot}}
+  \UnaryInf$\fCenter !A, \lnot !A$
+  \AxiomC{}
+  \RightLabel{$\pi_1$}
+  \Deduce$\lnot !A, \Gamma_1 \fCenter$
+  \RightLabel{\Cut}
+  \BinaryInf$\Gamma_1 \fCenter !A$
+\end{prooftree}
+\end{proof}
+
+\begin{prob}
+$\Gamma\Proves\lnot !A$ olmasının $\Gamma\cup\{!A\}$ kümesinin tutarsız
+olmasına denk olduğunu ispatlayın.
+\end{prob}
+
+\begin{prop}\ollabel{prop:explicit-inc}
+  $\Gamma\Proves !A$ ve $\lnot !A\in\Gamma$ ise $\Gamma$ tutarsızdır.
+\end{prop}
+
+\begin{proof}
+  $\Gamma\Proves !A$ ve $\lnot !A\in\Gamma$ olduğunu varsayalım. Sonlu bir
+  $\Gamma_0\subseteq\Gamma$ için $\Gamma_0\Sequent !A$ sekantının
+  !!a{derivation}{}i $\pi$ vardır.
+$\lnot !A,\Gamma_0\Sequent\quad$ sekantı da !!{derivable}{}dir:
+  \begin{prooftree}
+    \AxiomC{}
+    \RightLabel{$\pi$}
+    \Deduce$\Gamma_0 \fCenter !A$
+    \Axiom$!A \fCenter !A$
+    \RightLabel{\LeftR{\lnot}}
+    \UnaryInf$\lnot !A, !A \fCenter$
+    \RightLabel{\LeftR{\Exchange}}
+    \UnaryInf$!A, \lnot !A \fCenter$
+    \RightLabel{\Cut}
+    \BinaryInf$\Gamma_0, \lnot !A \fCenter$
+  \end{prooftree}
+  $\lnot !A\in\Gamma$ ve $\Gamma_0\subseteq\Gamma$ olduğundan bu,
+  $\Gamma$'nın tutarsız olduğunu gösterir.
+\end{proof}
+
+\begin{prop}\ollabel{prop:provability-exhaustive}
+  $\Gamma\cup\{!A\}$ ile $\Gamma\cup\{\lnot !A\}$ kümelerinin ikisi de
+  tutarsızsa $\Gamma$ tutarsızdır.
+\end{prop}
+
+\begin{proof}
+Sonlu $\Gamma_0\subseteq\Gamma$ ve $\Gamma_1\subseteq\Gamma$ kümeleri ile
+sırasıyla $!A,\Gamma_0\Sequent\quad$ ve $\lnot !A,\Gamma_1\Sequent\quad$
+sekantlarının $\Log{LK}$-!!{derivation}s $\pi_0$ ve $\pi_1$ vardır. O zaman
+aşağıdakini !!{derive} mümkündür:
+\begin{prooftree}
+\AxiomC{}
+\RightLabel{$\pi_0$}
+\Deduce$ !A, \Gamma_0 \fCenter $
+\RightLabel{\RightR{\lnot}}
+\UnaryInf$ \Gamma_0 \fCenter \lnot !A$
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$\lnot !A, \Gamma_1 \fCenter  $
+\RightLabel{\Cut}
+\BinaryInf$ \Gamma_0, \Gamma_1 \fCenter $
+\end{prooftree}
+$\Gamma_0\subseteq\Gamma$ ve $\Gamma_1\subseteq\Gamma$ olduğundan
+$\Gamma_0\cup\Gamma_1\subseteq\Gamma$. Dolayısıyla $\Gamma$ tutarsızdır.
+\end{proof}
+

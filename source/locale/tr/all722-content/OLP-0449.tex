@@ -1,0 +1,222 @@
+% Generated from locale/tr/content/normal-modal-logic/completeness/frame-completeness.tex; do not hand-edit.
+
+
+\olfileid[tr]{nml}{com}{fra}
+
+\olsection{Çerçeve Tamlığı}
+
+$\Log{K}$ için tamlık teoremi, belirli bir mantığın kanonik modelinin
+karşılık gelen çerçeve özelliğine sahip olduğunu gösterdiğimizde başka modal
+sistemlere genişletilebilir.
+
+\begin{thm}\ollabel{thm:completeframeprops}
+  Bir normal modal mantık $\Sigma$, \olref{tab:correspondencetable}
+  tablosunun solundaki !!{formula}s{}den birini içeriyorsa, $\Sigma$'nın
+  kanonik modeli sağdaki karşılık gelen özelliğe sahiptir.
+\end{thm}
+
+\begin{table}[htp]
+  \centering
+    \begin{tabular}{| l || l |}
+      \hline
+      \emph{$\Sigma$ şunu içeriyorsa \dots} & \emph{\dots $\Sigma$'nın kanonik
+        modeli şu özelliktedir:} \\
+      \hline \hline
+      \Ax{D}:\;\; $\Box!A \lif \Diamond !A$ & \quad seri; \\
+      \hline
+      \Ax{T}:\;\; $\Box!A \lif !A$ &\quad yansımalı;\\
+      \hline
+      \Ax{B}: \;\;$!A \lif \Box\Diamond!A$ &\quad simetrik; \\
+      \hline
+      \Ax{4}: \;\; $\Box!A \lif \Box\Box!A$ & \quad geçişli; \\
+      \hline
+      \Ax{5}: \;\; $\Diamond !A \lif \Box\Diamond!A$& \quad Öklidyen.\\
+      \hline
+    \end{tabular}
+    \caption{Temel karşılıklılık olguları.}
+    \ollabel{tab:correspondencetable}
+\end{table}
+
+\begin{proof}
+  Bunları sırayla ele alalım.
+
+  $\Sigma$'nın \Ax{D}'yi içerdiğini ve $\Delta\in W^\Sigma$ olduğunu
+  varsayalım. $R^\Sigma\Delta\Delta'$ olacak bir $\Delta'$ bulunduğunu
+  göstermeliyiz. $\Box^{-1}\Delta$'nın $\Sigma$-tutarlı olduğunu göstermek
+  yeterlidir; çünkü o zaman Lindenbaum Lemmasıyla
+  $\Delta'\supseteq\Box^{-1}\Delta$ olan tam $\Sigma$-tutarlı bir $\Delta'$
+  vardır ve $R^\Sigma$'nın tanımı
+  \iftag{prvBox}{}{ile \olref[mod]{lem:box-iff-diamond} gereğince }
+  $R^\Sigma\Delta\Delta'$. Çelişki elde etmek üzere
+  $\Box^{-1}\Delta$'nın $\Sigma$-tutarlı \emph{olmadığını}, yani
+  $\Box^{-1}\Delta\Proves[\Sigma]\lfalse$ olduğunu varsayalım.
+  \olref[mod]{lem:box2} gereğince
+  $\Delta\Proves[\Sigma]\Box\lfalse$; $\Sigma$ \Ax{D}'yi içerdiğinden
+  ayrıca $\Delta\Proves[\Sigma]\Diamond\lfalse$. Fakat $\Sigma$ normal
+  olduğundan $\Sigma\Proves\lnot\Diamond\lfalse$
+  (\olref[prf][nor]{prop:notDiamondBot}); dolayısıyla
+  $\Delta\Proves[\Sigma]\lnot\Diamond\lfalse$ da olur ve bu
+  $\Delta$'nın tutarlılığına aykırıdır.
+
+  Şimdi $\Sigma$'nın \Ax{T}'yi içerdiğini ve $\Delta\in W^\Sigma$
+  olduğunu varsayalım. $R^\Sigma\Delta\Delta$, yani
+  \iftag{prvBox}{}{\olref[mod]{lem:box-iff-diamond} gereğince }
+  $\Box^{-1}\Delta\subseteq\Delta$ olduğunu göstermek istiyoruz.
+  $\Box!A\in\Delta$ ise \Ax{T} gereğince $!A\in\Delta$; istenen budur.
+
+  Şimdi $\Sigma$'nın \Ax{B}'yi içerdiğini ve $\Delta,\Delta'\in W^\Sigma$
+  için $R^\Sigma\Delta\Delta'$ olduğunu varsayalım.
+  $R^\Sigma\Delta'\Delta$, yani
+  \iftag{prvBox}{$\Box^{-1}\Delta'\subseteq\Delta$ olduğunu göstermeliyiz.
+    \olref[mod]{lem:box-iff-diamond} gereğince bu şuna denktir:}{}
+  $\Diamond\Delta\subseteq\Delta'$. $!A\in\Delta$ olsun. \Ax{B}
+  gereğince $\Box\Diamond!A\in\Delta$. $R^\Sigma\Delta\Delta'$
+  varsayımı \iftag{prvBox}{}{ve \olref[mod]{lem:box-iff-diamond}}
+  gereğince $\Box^{-1}\Delta\subseteq\Delta'$; dolayısıyla
+  $\Diamond!A\in\Delta'$.
+
+  Şimdi $\Sigma$'nın \Ax{4}'ü içerdiğini ve
+  $R^\Sigma\Delta_1\Delta_2$ ile $R^\Sigma\Delta_2\Delta_3$ olduğunu
+  varsayalım. $R^\Sigma\Delta_1\Delta_3$ göstermeliyiz. Varsayımdan
+  \iftag{prvBox}{}{ve \olref[mod]{lem:box-iff-diamond} gereğince} hem
+  $\Box^{-1}\Delta_1\subseteq\Delta_2$ hem
+  $\Box^{-1}\Delta_2\subseteq\Delta_3$. $R^\Sigma\Delta_1\Delta_3$
+  göstermek için $\Box^{-1}\Delta_1\subseteq\Delta_3$ göstermek yeterlidir.
+  $!B\in\Box^{-1}\Delta_1$, yani $\Box!B\in\Delta_1$ olsun. \Ax{4}
+  gereğince $\Box\Box!B\in\Delta_1$; varsayım önce
+  $\Box!B\in\Delta_2$, sonra $!B\in\Delta_3$ verir.
+
+  Son olarak $\Sigma$'nın \Ax{5}'i içerdiğini ve
+  $R^\Sigma\Delta_1\Delta_2$ ile $R^\Sigma\Delta_1\Delta_3$ olduğunu
+  varsayalım. $R^\Sigma\Delta_2\Delta_3$ göstermeliyiz. İlk varsayım
+  \iftag{prvBox}{}{\olref[mod]{lem:box-iff-diamond} gereğince }
+  $\Box^{-1}\Delta_1\subseteq\Delta_2$ verir; ikinci varsayım
+  \iftag{prvBox}{\olref[mod]{lem:box-iff-diamond} gereğince }{}
+  $\Diamond\Delta_3\subseteq\Delta_1$ ifadesine denktir.
+  $R^\Sigma\Delta_2\Delta_3$ göstermek için
+  \iftag{prvBox}{\olref[mod]{lem:box-iff-diamond} gereğince }{}
+  $\Diamond\Delta_3\subseteq\Delta_2$ göstermeliyiz.
+  $\Diamond!A\in\Diamond\Delta_3$, yani $!A\in\Delta_3$ olsun. İkinci
+  varsayımdan $\Diamond!A\in\Delta_1$; \Ax{5} gereğince
+  $\Box\Diamond!A\in\Delta_1$. İlk varsayım da
+  $\Diamond!A\in\Delta_2$ verir.
+\end{proof}
+
+Sonuç olarak çeşitli sistemler için tamlık sonuçları elde ederiz. Örneğin
+$\Log{S5}=\Log{KT5}=\Log{KTB4}$'ün bütün yansımalı Öklidyen modeller
+sınıfına göre tam olduğunu biliyoruz; bu sınıf bütün yansımalı, simetrik ve
+geçişli modeller sınıfıyla aynıdır.
+
+\begin{thm}\ollabel{thm:generaldet}
+  $\mClass{C}_\Ax{D}$, $\mClass{C}_\Ax{T}$,
+  $\mClass{C}_\Ax{B}$, $\mClass{C}_\Ax{4}$ ve
+  $\mClass{C}_\Ax{5}$ sırasıyla bütün seri, yansımalı, simetrik, geçişli ve
+  Öklidyen modeller sınıfı olsun. \Ax{D}, \Ax{T}, \Ax{B}, \Ax{4} ve
+  \Ax{5} arasından alınan herhangi $!A_1,\dots,!A_n$ şemaları için
+  $\Log{K}!A_1\dots !A_n$ sistemi
+  $\mClass{C}=\mClass{C}_{!A_1}\cap\dots\cap\mClass{C}_{!A_n}$ modeller
+  sınıfı tarafından belirlenir.
+\end{thm}
+
+\begin{prop}
+  $\Sigma$ normal bir modal mantık olsun. O zaman:
+  \begin{enumerate}
+  \item\ollabel{prop:anotherfive-a}%
+    $\Sigma$, $\Diamond!A\lif\Box!A$ şemasını içeriyorsa kanonik modeli
+    kısmen fonksiyoneldir.
+  \item $\Sigma$, $\Diamond!A\liff\Box!A$ şemasını içeriyorsa kanonik
+    modeli fonksiyoneldir.
+  \item $\Sigma$, $\Box\Box!A\lif\Box!A$ şemasını içeriyorsa kanonik
+    modeli zayıf yoğundur.
+  \end{enumerate}
+  (Bu çerçeve özelliklerinin tanımları için
+  \olref[frd][acc]{tab:anotherfive} tablosuna bakın.)
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+  \item $\Sigma$'nın $\Diamond!A\lif\Box!A$ şemasını içerdiğini
+    varsayalım. $R^\Sigma$'nın kısmen fonksiyonel olduğunu göstermek için
+    gelişigüzel $\Delta_1,\Delta_2,\Delta_3\in W^\Sigma$ için
+    $R^\Sigma\Delta_1\Delta_2$ ve $R^\Sigma\Delta_1\Delta_3$ olduğunda
+    $\Delta_2=\Delta_3$ olduğunu ispatlamalıyız. İlk bağıntıdan
+    $\Box^{-1}\Delta_1\subseteq\Delta_2$, ikinciden
+    $\Box^{-1}\Delta_1\subseteq\Delta_3$
+    \iftag{prvBox}{}{(ikisi de \olref[mod]{lem:box-iff-diamond}
+      gereğince)} elde edilir. $\Delta_2=\Delta_3$ özdeşliği,
+    $\Delta_2\subseteq\Delta_3$ ve $\Delta_3\subseteq\Delta_2$
+    kapsamalarını kurarsak çıkar. İlk kapsama için $!A\in\Delta_2$ olsun;
+    o zaman $\Diamond!A\in\Delta_1$ ve şema ile $\Delta_1$'in türetim
+    altında kapalılığı gereğince $\Box!A\in\Delta_1$. Buradan
+    $R^\Sigma\Delta_1\Delta_3$ varsayımıyla $!A\in\Delta_3$ çıkar.
+    İkinci kapsama benzerdir.
+
+  \item Bu, \olref{prop:anotherfive-a} kısmı ile
+    \olref{thm:completeframeprops} içindeki serilik ispatından hemen çıkar.
+
+  \item $\Sigma$'nın $\Box\Box!A\lif\Box!A$ şemasını içerdiğini ve
+    $R^\Sigma\Delta_1\Delta_2$ olduğunu varsayalım. $R^\Sigma$'nın zayıf
+    yoğun olduğunu göstermek için hem $R^\Sigma\Delta_1\Delta_3$ hem
+    $R^\Sigma\Delta_3\Delta_2$ olacak tam $\Sigma$-tutarlı bir $\Delta_3$
+    bulunduğunu göstermeliyiz. Şöyle tanımlayalım:
+    \[
+    \Gamma=\Box^{-1}\Delta_1\cup\Diamond\Delta_2.
+    \]
+    $\Gamma$'nın $\Sigma$-tutarlı olduğunu göstermek yeterlidir; çünkü o
+    zaman Lindenbaum Lemmasıyla $\Box^{-1}\Delta_1\subseteq\Delta_3$ ve
+    $\Diamond\Delta_2\subseteq\Delta_3$ olacak tam $\Sigma$-tutarlı bir
+    $\Delta_3$'e genişletilebilir. Bunlar sırasıyla
+    $R^\Sigma\Delta_1\Delta_3$
+    \iftag{prvBox}{}{(\olref[mod]{lem:box-iff-diamond} gereğince)} ve
+    $R^\Sigma\Delta_3\Delta_2$
+    \iftag{prvBox}{(\olref[mod]{lem:box-iff-diamond} gereğince)}{} demektir.
+
+    Çelişki elde etmek üzere $\Gamma$'nın tutarsız olduğunu varsayalım.
+    O zaman !!{formula}s $\Box!A_1,\dots,\Box!A_n\in\Delta_1$ ve
+    $!B_1,\dots,!B_m\in\Delta_2$ bulunur ve
+    \[!A_1,\dots,!A_n,\Diamond!B_1,\dots,\Diamond!B_m
+      \Proves[\Sigma]\lfalse.\]
+    $\Diamond(!B_1\land\dots\land !B_m)\to
+    (\Diamond!B_1\land\dots\land\Diamond!B_m)$ her normal modal mantıkta
+    !!{derivable} olduğundan, $\Delta_2$'nin tutarlılığıyla çelişecek biçimde
+    şöyle akıl yürütürüz:
+    \begin{align*}
+      !A_1, \dots, !A_n, & \Diamond!B_1, \dots,
+      \Diamond!B_m \Proves[\Sigma] \lfalse \\
+      !A_1, \dots,!A_n & \Proves[\Sigma] (\Diamond!B_1 \land
+      \dots \land \Diamond!B_m) \lif \lfalse\\
+      & \qquad\text{tümdengelim teoremi}\\
+      & \qquad\text{\olref[prf][prp]{prop:derivabilityfacts}\olref[prf][prp]{prop:derivabilityfacts-deduction} ve \Taut{} ile} \\
+      !A_1, \dots,!A_n & \Proves[\Sigma]
+      \Diamond(!B_1 \land \dots \land !B_m) \lif \lfalse\\
+      & \qquad \text{$\Sigma$ normal olduğundan} \\
+      !A_1, \dots,!A_n & \Proves[\Sigma]
+      \lnot\Diamond (!B_1 \land \dots \land !B_m)\\
+      & \qquad\text{\PL{} ile} \\
+      !A_1, \dots,!A_n & \Proves[\Sigma]
+      \Box\lnot (!B_1 \land \dots \land !B_m)\\
+      & \qquad\text{$\lnot\Diamond$ yerine $\Box\lnot$} \\
+      \Box!A_1, \dots,\Box!A_n
+      & \Proves[\Sigma] \Box\Box \lnot (!B_1 \land \dots \land !B_m)\\
+      & \qquad\text{\olref[mod]{lem:box1} ile} \\
+      \Box!A_1, \dots,\Box!A_n
+      & \Proves[\Sigma]
+      \Box\lnot (!B_1 \land \dots \land !B_m)\\
+      &\qquad\text{$\Box\Box!A\lif\Box!A$ şemasıyla} \\
+      \Delta_1 & \Proves[\Sigma]
+      \Box\lnot (!B_1 \land \dots \land !B_m)\\
+      &\qquad\text{tekdüzelik,
+      \olref[prf][prp]{prop:derivabilityfacts}\olref[prf][prp]{prop:derivabilityfacts-monotonicity} ile} \\
+      & \Box\lnot (!B_1 \land \dots \land !B_m) \in \Delta_1\\
+      &\qquad\text{türetim altında kapalılıkla}; \\
+      & \lnot (!B_1 \land \dots \land !B_m) \in \Delta_2\\
+      &\qquad \text{$R^\Sigma\Delta_1\Delta_2$ olduğundan.}
+    \end{align*}
+  \end{enumerate}
+\end{proof}
+
+Bu örnekler, her modal mantık sistemi $\Sigma$'nın, $\Sigma$'nın bütün
+teoremlerinin geçerli olduğu her çerçevede geçerli olan her formülü
+ispatlaması anlamında \emph{tam} olduğunu düşündürebilir. Ne yazık ki bu
+anlamda tam olmayan birçok sistem vardır.
+

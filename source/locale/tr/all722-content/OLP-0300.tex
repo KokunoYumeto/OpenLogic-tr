@@ -1,0 +1,281 @@
+% Generated from locale/tr/content/incompleteness/representability-in-q/sigma1-completeness.tex; do not hand-edit.
+
+
+\olfileid[tr]{inc}{inp}{s1c}
+\olsection{\texorpdfstring{$\Sigma_1$}{Sigma-1} tamlığı}
+
+$\Th{Q}$ ve onun tutarlı, aksiyomlaştırılabilir genişlemeleri eksik olsa da
+$\Th{Q}$'nun sayısallar hakkında birçok temel olguyu ispatladığını gördük.
+Aslında bu sonuç epey genişletilebilir. $\Th{Q}$ içinde ispatlanabilenlerin
+kapsamını anlamak için $\Delta_0$, $\Sigma_1$ ve $\Pi_1$ !!{formula}s{}i
+kavramlarını tanıtıyoruz. Kabaca bir $\Sigma_1$ !!{formula}{}ü, $!B$ yalnızca
+önerme bağlaçları ve sınırlı niceleyiciler kullanılarak kurulmak üzere
+$\lexists[x][!B(x)]$ biçimindedir. $!A$, $\Struct{N}$ içinde doğru olan bir
+$\Sigma_1$ !!{sentence}{}si ise $\Th{Q} \Proves !A$ olduğunu göstereceğiz
+(\olref{thm:sigma1-completeness}).
+
+\begin{defn}
+\ollabel{defn:bd-quant}
+Bir \emph{sınırlı varlıksal !!{formula}}, $t$ herhangi bir terim olmak üzere
+$\lexists[x][(x<t\land !A(x))]$ biçimindedir; bunu uzlaşımsal olarak
+$\bexists{x<t}{!A(x)}$ diye yazarız.
+%
+Bir \emph{sınırlı evrensel !!{formula}}, $t$ herhangi bir terim olmak üzere
+$\lforall[x][(x<t\lif !A(x))]$ biçimindedir; bunu uzlaşımsal olarak
+$\bforall{x<t}{!A(x)}$ diye yazarız.
+\end{defn}
+
+\begin{defn}
+\ollabel{defn:delta0-sigma1-pi1-frm}
+Bir !!{formula} $!B$, atomik !!{formula}s{}den yalnızca önerme bağlaçları ve
+sınırlı niceleme kullanılarak kurulmuşsa $\Delta_0$'dır.
+%
+Bir !!{formula} $!A$, $!B$ bir $\Delta_0$ formülü olmak üzere
+$!A\ident\lexists[x][!B(x)]$ ise $\Sigma_1$'dir.
+%
+Bir !!{formula} $!A$, $!B$ bir $\Delta_0$ formülü olmak üzere
+$!A\ident\lforall[x][!B(x)]$ ise $\Pi_1$'dir.
+\end{defn}
+
+\begin{lem}
+\ollabel{lem:q-proves-clterm-id} $t$, $\Value{t}{N}=n$ olan kapalı bir terim
+olsun. O zaman $\Th{Q} \Proves \eq[t][\num n]$ olur.
+\end{lem}
+
+\begin{proof}
+Bunu $t$'nin karmaşıklığı üzerinde tümevarımla ispatlarız. Başlangıç
+durumunda $\Value{\Obj 0}{N}=0$ olur ve $\num 0\ident\Obj 0$ olduğundan
+$\Th{Q} \Proves \eq[\Obj 0][\num 0]$ elde edilir.
+%
+Tümevarım durumu için $t_1$ ve $t_2$,
+$\Value{t_1}{N}=n_1$, $\Value{t_2}{N}=n_2$,
+$\Th{Q} \Proves \eq[t_1][\num n_1]$ ve
+$\Th{Q} \Proves \eq[t_2][\num n_2]$ olan terimler olsun.
+
+O zaman $\Value{(t_1')}{N}=n_1+1$ olur. Tümevarım varsayımına ve
+!!{formula} $\eq[\num{n_1}'][\num{n_1}']$'ye birinci derece özdeşlik
+kurallarını uygulayarak $\Th{Q} \Proves \eq[t_1'][{\num n_1}']$ elde
+ederiz; sayısalların tanımı uyarınca da
+$\Th{Q} \Proves \eq[t_1'][\num{n_1+1}]$ olur.
+
+Toplamlar için
+\[
+      \Value{(t_1 + t_2)}{N}
+    = \Value{t_1}{N} + \Value{t_2}{N}
+    = n_1 + n_2.
+\]
+Tümevarım varsayımı ve özdeşlik kuralları uyarınca
+$\Th{Q} \Proves \eq[t_1+t_2][\num{n_1}+t_2]$ ve özdeşlik kurallarının
+ikinci kez uygulanmasıyla
+$\Th{Q} \Proves \eq[t_1+t_2][\num{n_1}+\num{n_2}]$ olur.
+\olref[inc][req][bre]{lem:q-proves-add} uyarınca
+$\Th{Q} \Proves \eq[\num{n_1}+\num{n_2}][\num{n_1+n_2}]$ olduğundan
+$\Th{Q} \Proves \eq[t_1+t_2][\num{n_1+n_2}]$ elde edilir.
+
+Benzer akıl yürütme \olref[inc][req][bre]{lem:q-proves-mult} kullanılarak
+$\times$ için de işler.
+%
+Bu, aritmetiğin kapalı terimlerinin bütününü tükettiğinden
+$\Value{t}{N}=n$ olan her kapalı $t$ terimi için
+$\Th{Q} \Proves \eq[t][\num n]$ sonucuna ulaşırız.
+\end{proof}
+
+\begin{prob}
+\olref{lem:q-proves-clterm-id}'in $\times$ içeren bölümünü ayrıntılı olarak
+ispatlayın.
+\end{prob}
+
+\begin{lem}
+\ollabel{lem:atomic-completeness}
+$t_1$ ile $t_2$ kapalı terimler olsun. O zaman
+\begin{enumerate}
+\item $\Value{t_1}{N}=\Value{t_2}{N}$ ise
+    $\Th{Q} \Proves \eq[t_1][t_2]$ olur.
+\item $\Value{t_1}{N}\neq\Value{t_2}{N}$ ise
+    $\Th{Q} \Proves \eq/[t_1][t_2]$ olur.
+\item $\Value{t_1}{N}<\Value{t_2}{N}$ ise
+    $\Th{Q} \Proves t_1<t_2$ olur.
+\item $\Value{t_2}{N}\leq\Value{t_1}{N}$ ise
+    $\Th{Q} \Proves \lnot(t_1<t_2)$ olur.
+\end{enumerate}
+\end{lem}
+
+\begin{proof}
+$t_1$ ve $t_2$ terimleri verildiğinde $n=\Value{t_1}{N}$ ve
+$m=\Value{t_2}{N}$ değerlerini sabitleyelim.
+
+$!A\ident t_1=t_2$ olduğunu varsayın. \olref{lem:q-proves-clterm-id}
+uyarınca $\Th{Q} \Proves \eq[t_1][\num n]$ ve
+$\Th{Q} \Proves \eq[t_2][\num n]$ olur. $n=m$ ise
+$\Th{Q} \Proves \eq[\num n][\num m]$ ve dolayısıyla özdeşliğin geçişliliği
+uyarınca $\Th{Q} \Proves \eq[t_1][t_2]$ olur. $n\neq m$ ise
+$\Th{Q} \Proves \eq/[\num n][\num m]$ ve yine özdeşliğin geçişliliği
+uyarınca $\Th{Q} \Proves \eq/[t_1][t_2]$ olur.
+
+Şimdi $!A\ident t_1<t_2$ olsun. Her iki durumda da bütün $x,y$ için
+$x<y\liff\lexists[z][\eq[z'+x][y]]$ diyen $!Q_8$ aksiyomuna dayanırız.
+
+$\Sat{N}{t_1<t_2}$ olduğunu varsayın. O zaman $n+k+1=m$ olacak bir
+$k\in\Nat$ vardır. \olref{lem:q-proves-clterm-id} uyarınca
+$\Th{Q} \Proves \eq[t_1][\num n]$ ve
+$\Th{Q} \Proves \eq[t_2][\num m]$ olur; bu lemmanın ilk bölümü uyarınca da
+$\Th{Q} \Proves \eq[\num n+{\num k}'][\num m]$ olur. Özdeşliğin
+geçişliliğinden $\Th{Q} \Proves \eq[{\num k}'+t_1][t_2]$ ve dolayısıyla
+$\Th{Q} \Proves \lexists[z][\eq[z'+t_1][t_2]]$ çıkar. $!Q_8$'in sağdan
+sola yönü uyarınca $\Th{Q} \Proves t_1<t_2$ olur.
+
+Bunun yerine $\Sat/{N}{t_1<t_2}$, yani $m\leq n$ olduğunu varsayın.
+%
+$\Th{Q}$ içinde çalışıp $t_1<t_2$ olduğunu varsayıyoruz. $!Q_8$'in soldan
+sağa yönü uyarınca $\eq[z'+t_1][t_2]$ olacak bir $z$ vardır.
+$\Th{Q} \Proves \eq[t_1][\num n]$ ve
+$\Th{Q} \Proves \eq[t_2][\num m]$ olduğundan
+$\eq[z'+\num n][\num m]$ olur.
+%
+$!Q_5$ kullanılarak $m$ üzerinde dışsal bir tümevarımla
+$\eq[z'+\num{n-m}][\Obj 0]$ elde edilir.
+% [tr source emendation] Upstream prints a negated equality and cites Q_3;
+% the derived equality contradicts the no-successor-is-zero axiom Q_2.
+$m=n$ ise $\eq[z'][\Obj 0]$ olur ve bu $!Q_2$ aracılığıyla çelişki verir.
+$m<n$ ise yine $!Q_5$ uyarınca
+$\eq[(z'+\num{n-m-1})'][\Obj 0]$ olur ve bu da $!Q_2$ aracılığıyla çelişki
+verir. Dolayısıyla $\Th{Q} \Proves \lnot(t_1<t_2)$ olur.
+\end{proof}
+
+\begin{lem}
+\ollabel{lem:bounded-quant-equiv}
+$!A$ !!a{formula}, $t$ kapalı bir terim ve $k=\Value{t}{N}$ olsun. O zaman
+\begin{enumerate}
+\item $\Th{Q} \Proves \bforall{x<t}{!A(x)}$ ancak ve ancak $\Th{Q} \Proves
+    !A(\num 0) \land \dots \land !A(\num{k-1})$ olur.
+\item $\Th{Q} \Proves \bexists{x<t}{!A(x)}$ ancak ve ancak $\Th{Q} \Proves
+    !A(\num 0) \lor \dots \lor !A(\num{k-1})$ olur.
+\end{enumerate}
+\end{lem}
+
+\begin{proof}
+    Sınırlı evrensel niceleyici durumunu ispatlayalım.
+    $\Value{t}{N}=0$ ise denkliğin sol tarafı $\Th{Q}$ içinde
+    ispatlanabilir; çünkü \olref[inc][req][min]{lem:less-zero} uyarınca
+    hiçbir $x<\num 0$ yoktur. Benzer biçimde boş bir birleşimi doğrudan
+    $\ltrue$ sayabiliriz; bu da $\Th{Q}$ içinde ispatlanabilir.
+    % [tr source emendation] Upstream says “empty disjunction” here, but the
+    % bounded-universal expansion is the empty conjunction, with value true.
+    %
+    Bu nedenle bir $k$ doğal sayısı için $\Value{t}{N}=k+1$ olduğunu
+    varsayalım. \olref{lem:q-proves-clterm-id} uyarınca
+    $\bforall{x<\num{k+1}}{!A(x)}$ biçimindeki !!a{formula} ile
+    çalıştığımızı varsayabiliriz.
+
+    $\Th{Q} \Proves \bforall{x<\num{k+1}}{!A(x)}$ olduğunu varsayın ve
+    $n\leq k$ olsun. \olref{lem:atomic-completeness} uyarınca
+    $\Th{Q} \Proves \num n<\num{k+1}$ olduğundan mantık yoluyla
+    $\Th{Q} \Proves !A(\num n)$ çıkar. Bu olguyu her $n\leq k$ için
+    $k+1$ kez uygulayarak, istendiği gibi
+    $\Th{Q} \Proves !A(\num 0)\land\dots\land !A(\num k)$ elde ederiz.
+
+    Öteki yön için $\Th{Q} \Proves
+    !A(\num 0)\land\dots\land !A(\num k)$ olduğunu varsayın. $\Th{Q}$
+    içinde çalışarak $x<\num{k+1}$ olduğunu varsayın.
+    \olref[inc][req][min]{lem:less-nsucc} uyarınca
+    $x=\num 0\lor\dots\lor x=\num k$ olur; böylece mantık yoluyla $!A(x)$
+    ve dolayısıyla evrensel iddia $\bforall{x<\num{k+1}}{!A(x)}$ çıkar.
+
+    Sınırlı varlıksal olarak nicelenmiş !!{formula}s için denkliğin ispatı
+    benzerdir.
+\end{proof}
+
+\begin{prob}
+\olref{lem:bounded-quant-equiv}'deki varlıksal durumu ayrıntılı olarak
+ispatlayın.
+\end{prob}
+
+\begin{lem}
+\ollabel{lem:delta0-completeness}
+$!A$, $\Struct{N}$ içinde doğru olan bir $\Delta_0$ !!{sentence}{}si ise
+$\Th{Q} \Proves !A$ olur.
+\end{lem}
+
+\begin{proof}
+Bunu !!{formula} karmaşıklığı üzerinde tümevarımla ispatlarız.
+%
+Başlangıç durumu \olref{lem:atomic-completeness} tarafından verilir;
+dolayısıyla tümevarım adımına geçeriz. Yalınlık için değilleme durumunu,
+değillemenin uygulandığı !!{formula}{}ün yapısına göre alt durumlara ayırırız.
+
+\begin{enumerate}
+\item $(!A\land !B)$, $\Struct{N}$ içinde doğru olsun; böylece $!A$ ile
+$!B$, $\Struct{N}$ içinde doğrudur. Tümevarım varsayımı uyarınca
+$\Th{Q} \Proves !A$ ve $\Th{Q} \Proves !B$ olur; dolayısıyla mantık
+uyarınca $\Th{Q} \Proves (!A\land !B)$ elde edilir.
+%
+\item $\lnot(!A\land !B)$, $\Struct{N}$ içinde doğru olsun; böylece
+$\lnot !A$ veya $\lnot !B$, $\Struct{N}$ içinde doğrudur. Genelliği
+yitirmeden ilkinin doğru olduğunu varsayın. Tümevarım varsayımı uyarınca
+$\Th{Q} \Proves \lnot !A$ ve dolayısıyla mantık uyarınca
+$\Th{Q} \Proves \lnot(!A\land !B)$ olur.
+%
+\item $(!A\lor !B)$, $\Struct{N}$ içinde doğru olsun; böylece ya $!A$,
+$\Struct{N}$ içinde ya da $!B$, $\Struct{N}$ içinde doğrudur. Genelliği yitirmeden ilkinin geçerli
+olduğunu varsayın. Tümevarım varsayımı uyarınca $\Th{Q} \Proves !A$ ve
+dolayısıyla mantık uyarınca $\Th{Q} \Proves (!A\lor !B)$ olur.
+%
+\item $\lnot(!A\lor !B)$, $\Struct{N}$ içinde doğru olsun; böylece
+$\lnot !A$ ile $\lnot !B$, $\Struct{N}$ içinde doğrudur. Tümevarım
+varsayımı uyarınca $\Th{Q} \Proves \lnot !A$ ve
+$\Th{Q} \Proves \lnot !B$ olur. Bunun sonucu olarak mantık uyarınca
+$\Th{Q} \Proves \lnot(!A\lor !B)$ elde edilir.
+%
+\item $\bforall{x<t}{!A(x)}$, $\Struct{N}$ içinde doğru olsun; burada $t$
+kapalı bir terim ve $k=\Value{t}{N}$'dir. Her $n<\Value{t}{N}$ için
+$!A(\num n)$, $\Struct{N}$ içinde doğruysa tümevarım varsayımı ve mantık
+uyarınca $\Th{Q} \Proves !A(\num 0)\land\dots\land !A(\num{k-1})$ olur.
+\olref{lem:bounded-quant-equiv} uyarınca
+$\Th{Q} \Proves \bforall{x<t}{!A(x)}$ çıkar.
+%
+\item $\bexists{x<t}{!A(x)}$ biçiminde !!a{sentence} bulunan sınırlı
+varlıksal niceleyici durumu, sınırlı evrensel niceleyici durumuna benzerdir.
+%
+\item $\lnot\bforall{x<t}{!A(x)}$, $\Struct{N}$ içinde doğru olsun; burada
+$t$ kapalı bir terimdir. Bu !!{sentence}, $\Th{Q}$ içinde denkliği
+türetilebilen $\bexists{x<t}{\lnot !A(x)}$ !!{sentence}{}sine denktir;
+dolayısıyla sınırlı varlıksal niceleyiciler için kullanılan akıl yürütmeyi
+uygulayabiliriz.
+%
+\item Benzer biçimde $\lnot\bexists{x<t}!A(x)$, $\Struct{N}$ içinde doğru
+olsun; burada $t$ kapalı bir terimdir. Bu !!{sentence}, $\Th{Q}$ içinde
+$\bforall{x<t}{\lnot !A(x)}$'e denktir; dolayısıyla sınırlı evrensel
+niceleyiciler için kullanılan akıl yürütmeyi uygulayabiliriz.
+%
+\item Son olarak $\lnot !A$, $\Struct{N}$ içinde doğru olsun. Geriye yalnızca
+$!A$'nın atomik olduğu ve bir $\Delta_0$ !!{sentence}{}si $!B$ için
+$\lnot !A\ident\lnot\lnot !B$ olduğu durumlar kalır. $!A$ atomikse
+\olref{lem:atomic-completeness} uyarınca $\Th{Q} \Proves \lnot !A$ olur.
+$\lnot !A\ident\lnot\lnot !B$ ise mantık uyarınca bu, $\Th{Q}$ içinde
+$!B$'ye ispatlanabilir biçimde denktir; bu tümce $\Struct{N}$ içinde
+doğrudur, çünkü $\lnot !A$, $\Struct{N}$ içinde doğrudur. Dolayısıyla tümevarım varsayımı
+uyarınca $\Th{Q} \Proves \lnot !A$ elde ederiz.
+\end{enumerate}
+\end{proof}
+
+\begin{prob}
+\olref{lem:delta0-completeness}'deki varlıksal durumu ayrıntılı olarak
+ispatlayın.
+\end{prob}
+
+\begin{thm}
+\ollabel{thm:sigma1-completeness}
+$!A$, $\Struct{N}$ içinde doğru olan bir $\Sigma_1$ !!{sentence}{}si ise
+$\Th{Q} \Proves !A$ olur.
+\end{thm}
+
+\begin{proof}
+$\lexists{x}!A(x)$, $\Struct{N}$ içinde doğru olan bir $\Sigma_1$
+!!{sentence}{}si ise $s(x)=n$ ve $\Sat{N}{!A(x)}[s]$ olacak bir $n$ doğal
+sayısı ve bir $s$ değişken ataması vardır. Sağlama bağıntısı hakkındaki
+standart olgulardan $\Sat{N}{!A(\num n)}$ çıkar. Fakat $!A(\num n)$ bir
+$\Delta_0$ !!{formula} olduğundan \olref{lem:delta0-completeness} uyarınca
+$\Th{Q} \Proves !A(\num n)$ ve dolayısıyla mantık uyarınca
+$\Th{Q} \Proves \lexists[x][!A(x)]$ elde ederiz.
+\end{proof}
+

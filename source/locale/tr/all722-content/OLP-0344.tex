@@ -1,0 +1,61 @@
+% Generated from locale/tr/content/lambda-calculus/introduction/syntax.tex; do not hand-edit.
+
+
+\olfileid[tr]{lam}{int}{syn}
+\olsection{Lambda Kalkülüsünün Sözdizimi}
+
+$x$, $y$, $z$,~\dots değişken dizisiyle ve $a$, $b$, $c$,~\dots sabit
+simgeleriyle başlarız. Terimler kümesi tümevarımlı olarak şöyle tanımlanır:
+\begin{enumerate}
+\item Her değişken bir terimdir.
+\item Her sabit bir terimdir.
+\item $M$ ve $N$ terimse $(MN)$ de terimdir.
+\item $M$ bir terim ve $x$ bir değişkense $(\lambd[x][M])$ de terimdir.
+\end{enumerate}
+$(MN)$ biçimindeki terimlere \emph{uygulamalar}, $(\lambd[x][M])$
+biçimindekilere \emph{soyutlamalar} denir.
+
+Hiç sabit içermeyen sisteme \emph{salt} lambda kalkülüsü denir. Çoğunlukla
+salt $\lambd$-kalkülüsünde çalışacağımızdan bütün küçük harfler değişkenleri
+gösterecektir. $\lambd$-kalkülüsünün terimlerini göstermek için büyük harfler
+($M$, $N$ vb.) kullanırız.
+
+Birkaç gösterim uzlaşımına uyacağız:
+
+\begin{conv}
+\begin{enumerate}
+\item Parantezler yazılmadığında uygulama soldan sağa gerçekleşir. Örneğin
+  $M$, $N$, $P$ ve $Q$ terimse $MNPQ$, $(((MN)P)Q)$'nun kısaltmasıdır.
+\item Yine parantezler yazılmadığında lambda soyutlamasına mümkün olan en
+  geniş kapsam verilir. Örneğin $\lambd[x][MNP]$,
+  $(\lambd[x][((MN)P)])$ olarak okunur.
+\item Bir lambda birden çok değişkeni soyutlamak için kullanılabilir.
+  Örneğin $\lambd[xyz][M]$,
+  $\lambd[x][\lambd[y][\lambd[z][M]]]$'nin kısaltmasıdır.
+\end{enumerate}
+\end{conv}
+
+Örneğin
+\[
+\lambd[xy][xxyx \lambd[z][xz]]
+\]
+şunun kısaltmasıdır:
+\[
+\lambd[x][\lambd[y][((((xx)y)x)(\lambd[z][(xz)]))]].
+\]
+Bu uzlaşımları ezberlemelisiniz. Başta sizi çıldırtacaklardır; ama zamanla
+alışacak ve bir süre sonra parantez yığınıyla uğraşmaktan daha az
+çıldırtıcı olduklarını göreceksiniz.
+
+Yalnızca bağlı değişkenlerin adları bakımından farklı olan iki terime
+$\alpha$-eşdeğer denir; örneğin $\lambd[x][x]$ ile $\lambd[y][y]$.
+Bunları ``aynı'' terim saymak elverişlidir; başka bir deyişle $M$ ile $N$
+aynıdır dediğimizde ``bağlı değişkenlerin yeniden adlandırılmasına kadar''
+aynı olduklarını da kastederiz. Bir $\lambd$'nın kapsamında bulunan
+değişkenlere ``bağlı'', diğerlerine ``serbest'' denir. Önceki örnekte serbest
+değişken yoktur; fakat
+\[
+(\lambd[z][yz])x
+\]
+ifadesinde $y$ ile $x$ serbest, $z$ bağlıdır.
+

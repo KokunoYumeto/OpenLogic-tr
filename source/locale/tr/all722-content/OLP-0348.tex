@@ -1,0 +1,48 @@
+% Generated from locale/tr/content/lambda-calculus/introduction/lambda-definability.tex; do not hand-edit.
+
+
+\olfileid[tr]{lam}{int}{rep}
+\olsection{Aritmetik Fonksiyonların \usetoken{S}{lambda definable} Olması}
+
+Lambda kalkülüsü nasıl bir hesaplama modeli olabilir? Başta bu ifadeye nasıl
+anlam verileceği bile açık değildir. Doğal sayılar üzerindeki
+hesaplanabilirlikten söz etmek için bu sayılara uygun bir temsil bulmalıyız.
+Şaşırtıcı derecede iyi çalışan bir temsil aşağıdadır.
+
+\begin{defn}
+Her $n$ doğal sayısı için \emph{Church sayısı} $\num{n}$, toplam $n$ tane
+$x$ bulunan $\lambd[x][\lambd[y][(x(x(x(\dots x(y))))]]$ lambda terimi
+olarak tanımlansın.
+\end{defn}
+
+$\num{n}$ terimleri ``yineleyicilerdir'': $f$ girdisinde $\num{n}$, $y$'yi
+$f^n(y)$'ye götüren fonksiyonu döndürür. Her sayının normal olduğuna dikkat
+edin. Artık bir lambda teriminin doğal sayılar üzerindeki bir fonksiyonu
+``hesaplamasının'' ne demek olduğunu söyleyebiliriz.
+
+\begin{defn}
+$f(x_0,\dots,x_{k-1})$, $\Nat$'tan $\Nat$'a giden $n$-li kısmi bir fonksiyon
+olsun. Bir $F$ $\lambd$-terimi her $n_0$, \dots, $n_{k-1}$ doğal sayı dizisi
+için, $f(n_0,\dots,n_{k-1})$ tanımlı olduğunda
+\[
+F\, \num{n_0}\, \num{n_1} \dots \num{n_{k-1}} \red \num{f(n_0, n_1, \dots,
+  n_{k-1})},
+\]
+tanımsız olduğunda ise $F\,\num{n_0}\,\num{n_1}\dots\num{n_{k-1}}$ normal
+biçime sahip değilse, $F$'nin $f$'yi \emph{!!{lambda define}s} olduğunu
+söyleriz.
+\end{defn}
+
+\begin{thm}
+\ollabel{thm:lambda-def}
+Bir $f$ fonksiyonu ancak ve ancak bir lambda terimi tarafından
+!!{lambda defined} ise kısmi hesaplanabilir bir fonksiyondur.
+\end{thm}
+
+\begin{explain}
+Bu teorem oldukça çarpıcıdır. Bir hesaplama modeli olarak lambda kalkülüsü
+çok yalın bir kalkülüstür; yalnızca lambda soyutlaması ve uygulama işlemleri
+vardır!{} Yine de bu kıt kaynaklarla her hesaplama yordamını gerçekleştirmek
+mümkündür.
+\end{explain}
+

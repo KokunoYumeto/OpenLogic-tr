@@ -1,0 +1,58 @@
+% Generated from locale/tr/content/set-theory/choice/justifications.tex; do not hand-edit.
+
+
+\olfileid[tr]{sth}{choice}{justifications}
+\olsection{Seçim Hakkında İçsel Değerlendirmeler}
+
+Öyleyse daha geniş soru, İyi Sıralama'nın ya da Seçim'in ya da gerçekten
+bütün kümelerin büyüklükleri bakımından karşılaştırılabilirliğinin---hangisi
+olduğu fark etmez---gerekçelendirilip gerekçelendirilemeyeceğidir.
+
+İşte bir \emph{içsel} gerekçelendirme girişimi.
+\olref[z][story]{sec} içinde hiyerarşi hakkında birkaç ilke sunduk.
+Bunlardan biri yeniden belirtilmeye değerdir:
+\begin{enumerate}
+	\item[] \stagesacc. Her $S$ aşaması ve $S$ aşamasından \emph{önce}
+	oluşturulmuş herhangi kümeler için: $S$ aşamasında elemanları tam olarak
+	bu kümeler olan bir küme oluşturulur. $S$ aşamasında başka hiçbir şey
+	oluşturulmaz.
+\end{enumerate}
+Gerçekten birçok yazar, Seçim Aksiyomu'nun (buna benzer) bu ilke
+aracılığıyla gerekçelendirilebileceğini öne sürmüştür. Bu yaklaşıma kısaca
+bir açıklama getireceğiz.
+
+Seçim'e \emph{bir başka} denk sunan basit ve küçük bir sonuçla başlayacağız:
+
+\begin{thm}[$\ZF$ içinde]\ollabel{choiceset}
+Seçim şu ilkeye denktir. $A$'nın !!{element}s ayrık ve boş değilse her
+$x\in A$ için $C\cap x$ tek elemanlı bir küme olacak bir $C$ vardır. (Böyle bir
+$C$'ye $A$ için bir {seçim kümesi} deriz.)
+\end{thm}
+
+Bu sonucun ispatı dolaysızdır ve okura alıştırma olarak bırakılmıştır.
+
+\begin{prob}
+\olref[sth][choice][justifications]{choiceset} sonucunu ispatlayın.
+Zorlanırsanız \cite[pp.~242--3]{Potter2004} içinde bir ispat bulabilirsiniz.
+\end{prob}
+
+Temel nokta, $A$ için bir seçim kümesinin yalnızca $A$ için bir seçim
+fonksiyonunun görüntü kümesi olmasıdır. Dolayısıyla Seçim'i gerekçelendirmek
+için seçim kümelerinin varlığı cinsinden denk formülasyonunu
+gerekçelendirmeyi deneyebiliriz. Şimdi tam olarak bunu yapacağız.
+
+$A$'nın !!{element}s ayrık ve boş olmasın. \stageshier{} gereği
+(bkz. \olref[z][story]{sec}) $A$ bir $S$ aşamasında oluşturulur.
+$\bigcup A$'nın bütün !!{element}s $S$ aşamasından önce kullanılabilir
+olduğuna dikkat edin. Şimdi \stagesacc{} gereği $S$'den önce oluşturulmuş
+\emph{herhangi} kümeler için elemanları tam olarak bu kümeler olan bir küme
+oluşturulur. Başka bir deyişle önceden kullanılabilir kümelerden oluşan
+her \emph{olanaklı} koleksiyon $S$ aşamasında var olacaktır. Fakat $A$ için
+bir seçim kümesi hâline getirilebilecek nesneleri seçmek kesinlikle
+\emph{olanaklıdır}; bu yalnızca $\bigcup A$'nın çok belirli bir altkümesidir.
+Dolayısıyla gerektiği gibi böyle bir seçim kümesi vardır.
+
+Bu, Seçim'i içsel gerekçelerle gerekçelendirmeye yönelik \emph{çok} hızlı
+bir girişimdir. Fakat düşünceyi daha ileri götürmek için Potter'ın
+(\citeyear[\S14.8]{Potter2004}) zarif geliştirimini okumalısınız.
+

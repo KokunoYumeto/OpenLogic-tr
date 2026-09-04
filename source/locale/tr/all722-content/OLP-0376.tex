@@ -1,0 +1,48 @@
+% Generated from locale/tr/content/lambda-calculus/lambda-definability/pairs.tex; do not hand-edit.
+
+
+\olfileid[tr]{lam}{ldf}{pai}
+\olsection{Çiftler ve Öncül}
+
+\begin{defn}
+$M$ ile $N$'nin çifti ($\tuple{M,N}$ ile gösterilir) şöyle tanımlanır:
+\[
+\tuple{M,N} \ident \lambd[f][fMN].
+\]
+\end{defn}
+
+Sezgisel olarak bu, bir fonksiyon alıp onu çiftin iki elemanına uygulayan bir
+fonksiyondur. Bu düşünceye uygun olarak iki terim alıp bunları içeren çifti
+döndüren kurucu şöyledir:
+\[
+  \fn{Pair} \ident \lambd[mn][\lambd[f][fmn]].
+\]
+Bir çift verildiğinde elemanlarını geri elde etmek isteriz. Bunun için bir
+çifti argüman olarak alıp birinci ya da ikinci elemanını döndüren iki erişim
+fonksiyonu gerekir:
+\begin{align*}
+  \fn{Fst} & \ident \lambd[p][p(\lambd[mn][m])]\\
+  \fn{Snd} & \ident \lambd[p][p(\lambd[mn][n])].
+\end{align*}
+
+\begin{prob}
+  $\fn{Fst}$ ve $\fn{Snd}$ erişim fonksiyonlarının neden çalıştığını
+  açıklayın.
+\end{prob}
+
+Çiftleri kullanarak öncül fonksiyonunu !!{lambda define} edebiliriz:
+\[
+  \fn{Pred} \ident \lambd[n][\fn{Fst}(n (\lambd[p][\tuple{\fn{Snd}\, {p}, \fn{Succ}(\fn{Snd}\, {p})}]) \tuple{\num 0, \num 0})].
+\]
+$\num n f x$ teriminin $f^n(x)$'e indirgendiğini hatırlayın. Burada $f$, bir
+$p$ çifti alıp $p$'nin ikinci bileşeni ile bu bileşenin ardılını içeren yeni
+bir çift döndüren fonksiyondur; $x$ ise $\tuple{\num0,\num0}$ çiftidir.
+Dolayısıyla sonuç $n=0$ için $\tuple{\num0,\num0}$, diğer durumlarda
+$\tuple{\num{n-1},\num n}$ olur. $\fn{Pred}$ daha sonra sonucun birinci
+bileşenini döndürür.
+
+Çıkarma, $\fn{Pred}$ fonksiyonunun $a$'ya $b$ kez uygulanmasıyla tanımlanır:
+\[
+\fn{Sub} \ident \lambd[ab][b \fn{Pred}\, a].
+\]
+

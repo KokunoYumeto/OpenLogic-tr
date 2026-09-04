@@ -1,0 +1,45 @@
+% Generated from locale/tr/content/incompleteness/theories-computability/oconsis-ext-of-q-undec.tex; do not hand-edit.
+
+
+\olfileid[tr]{inc}{tcp}{oqn}
+
+\olsection{$\Th{Q}$'nun $\omega$-Tutarlı Genişletmeleri Karar Verilemezdir}
+
+\begin{explain}
+$\Th{Q}$'nun hesaplanabilir biçimde numaralandırılabilir kümeler arasında
+tam olduğunun ispatı, $\Th{Q}$ içinde ispatlanabilen her tümcenin doğal
+sayılar bakımından “doğru” olmasına dayanıyordu. Sıradaki tanım ile teorem,
+yukarıdaki ispatta “doğruluk”un tam olarak hangi yönlerine gerek
+duyulduğunu belirleyerek bu teoremi güçlendirir. Bununla birlikte bu teorem
+üzerinde fazla durmayın; çünkü çok geçmeden onu daha da güçlendireceğiz. Bu
+sonuca esasen tarihsel nedenlerle yer veriyoruz: G\"odel'in özgün makalesi
+$\omega$-tutarlılık kavramını kullanmış, fakat kısa süre sonra sonuç
+$\omega$-tutarlılık yerine olağan tutarlılık konularak güçlendirilmiştir.
+\end{explain}
+
+\begin{defn}
+\ollabel{thm:oconsis-q}
+Bir $\Th{T}$ kuramına, şu koşul sağlanıyorsa $\omega$-tutarlı denir:
+$\lexists[x][!A(x)]$ herhangi bir tümceyken $\Th{T}$,
+$\lnot !A(\num 0)$, $\lnot !A(\num 1)$, $\lnot !A(\num 2)$, \dots
+tümcelerini ispatlıyorsa $\Th{T}$, $\lexists[x][!A(x)]$'yi ispatlamaz.
+\end{defn}
+
+\begin{thm}
+  $\Th{T}$, $\Th{Q}$'yu içeren herhangi bir $\omega$-tutarlı kuram olsun.
+  O zaman $\Th{T}$ karar verilebilir değildir.
+\end{thm}
+
+\begin{proof}
+$\Th{T}$, $\Th{Q}$'yu içeriyorsa $\Th{T}$ hesaplanabilir fonksiyonları ve
+bağıntıları temsil eder. Önceki ispatı yalnızca biraz değiştirmemiz gerekir.
+Yukarıdaki gibi $x \in K$ ise $\Th{T}$,
+$\lexists[s][!A_T(\num x,\num x, s)]$'yi ispatlar. Tersine $\Th{T}$'nin
+$\lexists[s][!A_T(\num x, \num x, s)]$'yi ispatladığını varsayın. O zaman
+$x$, $K$ içinde olmalıdır: değilse $x$ makinesinin $x$ girdisi üzerinde
+duran hiçbir hesaplaması yoktur; $!A_T$, Kleene'in $T$ bağıntısını temsil
+ettiğinden $\Th{T}$, $\lnot !A_T(\num x, \num x, \num 0)$,
+$\lnot !A_T(\num x, \num x, \num 1)$, \dots tümcelerini ispatlar; bu da
+$\Th{T}$'yi $\omega$-tutarsız yapar.
+\end{proof}
+

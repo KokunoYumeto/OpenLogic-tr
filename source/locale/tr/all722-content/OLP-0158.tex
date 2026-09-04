@@ -1,0 +1,123 @@
+% Generated from locale/tr/content/first-order-logic/syntax-and-semantics/substitution.tex; do not hand-edit.
+
+
+\olfileid[tr]{fol}{syn}{sub}
+
+\olsection{Yerine Koyma}
+
+\begin{defn}[Terimde yerine koyma]
+$s$'deki her $x$ oluşumu yerine $t$ \emph{koymanın} sonucu olan
+$\Subst{s}{t}{x}$'i özyinelemeli olarak tanımlarız:
+\begin{enumerate}
+\item \indcase{s}{c}{$\Subst{\indfrm}{t}{x}$ yalnızca $s$'dir.}
+
+\item \indcase{s}{y}{$y$ bir değişken ve $y \not\ident x$ olmak
+  koşuluyla $\Subst{\indfrm}{t}{x}$ yine yalnızca~$s$'dir.}
+
+\item \indcase{s}{x}{$\Subst{\indfrm}{t}{x}$, $t$'dir.}
+
+\item\indcase{s}{\Atom{f}{t_1, \dots, t_n}}{$\Subst{\indfrmp}{t}{x}$,
+  $\Atom{f}{\Subst{t_1}{t}{x}, \dots, \Subst{t_n}{t}{x}}$'dir.}
+\end{enumerate}
+\end{defn}
+
+\begin{defn}
+$!A$ içindeki serbest $x$ oluşumlarının hiçbiri, $t$'deki bir değişkeni
+bağlayan bir niceleyicinin kapsamında değilse $t$ terimi, $!A$ içinde
+$x$ için \emph{!!{free for}} sayılır.
+\end{defn}
+
+\begin{ex} ~
+\begin{enumerate}
+\item $\Obj v_8$, $\lexists[\Obj
+  v_3]\Atom{\Obj A^2_4}{\Obj v_3,\Obj v_1}$ içinde $\Obj v_1$ için yerine
+  koymaya elverişlidir.
+
+\item $\Obj f^2_1(\Obj v_1, \Obj v_2)$, $\lforall[\Obj
+  v_2]\Atom{\Obj A^2_4}{\Obj v_0,\Obj v_2}$ içinde $\Obj v_0$ için
+  \emph{yerine koymaya elverişli değildir}.
+\end{enumerate}
+\end{ex}
+
+\begin{defn}[Bir !!a{formula} içinde yerine koyma]
+$!A$ bir !!a{formula}, $x$ bir !!a{variable} ve $t$, $!A$ içinde
+$x$ için !!{free for} bir terimse, $\Subst{!A}{t}{x}$, $!A$ içindeki
+bütün serbest $x$ oluşumları yerine $t$ koymanın sonucudur.
+\begin{enumerate}
+\tagitem{prvFalse}{\indcase{!A}{\lfalse}{$\Subst{\indfrm}{t}{x}$,
+    $\lfalse$'dur.}}{}
+
+\tagitem{prvTrue}{\indcase{!A}{\ltrue}{$\Subst{\indfrm}{t}{x}$,
+    $\ltrue$'dur.}}{}
+
+\item \indcase{!A}{\Atom{P}{t_1,\dots,
+    t_n}}{$\Subst{\indfrm}{t}{x}$,
+    $\Atom{P}{\Subst{t_1}{t}{x}, \dots, \Subst{t_n}{t}{x}}$'dir.}
+
+\item \indcase{!A}{\eq[t_1][t_2]}{$\Subst{\indfrmp}{t}{x}$,
+  $\Subst{t_1}{t}{x} = \Subst{t_2}{t}{x}$'dir.}
+
+\tagitem{prvNot}{\indcase{!A}{\lnot !B}{$\Subst{\indfrmp}{t}{x}$,
+    $\lnot \Subst{!B}{t}{x}$'dir.}}{}
+
+\tagitem{prvAnd}{\indcase{!A}{(!B \land
+    !C)}{$\Subst{\indfrmp}{t}{x}$,
+    $(\Subst{!B}{t}{x} \land \Subst{!C}{t}{x})$'dir.}}{}
+
+\tagitem{prvOr}{\indcase{!A}{(!B \lor
+    !C)}{$\Subst{\indfrmp}{t}{x}$,
+    $(\Subst{!B}{t}{x} \lor \Subst{!C}{t}{x})$'dir.}}{}
+
+\tagitem{prvIf}{\indcase{!A}{(!B \lif
+    !C)}{$\Subst{\indfrmp}{t}{x}$,
+    $(\Subst{!B}{t}{x} \lif \Subst{!C}{t}{x})$'dir.}}{}
+
+\tagitem{prvIff}{\indcase{!A}{(!B \liff
+    !C)}{$\Subst{\indfrmp}{t}{x}$,
+    $(\Subst{!B}{t}{x} \liff \Subst{!C}{t}{x})$'dir.}}{}
+
+\tagitem{prvAll}{
+\indcase{!A}{\lforall[y][!B]}{$y$, $x$'ten farklı bir değişken olmak
+    koşuluyla $\Subst{\indfrmp}{t}{x}$,
+    $\lforall[y][\Subst{!B}{t}{x}]$'dir; aksi durumda
+    $\Subst{\indfrmp}{t}{x}$ yalnızca $\indfrm$'dir.}}{}
+
+\tagitem{prvEx}{
+\indcase{!A}{\lexists[y][!B]}{$y$, $x$'ten farklı bir değişken olmak
+    koşuluyla $\Subst{\indfrmp}{t}{x}$,
+    $\lexists[y][\Subst{!B}{t}{x}]$'dir; aksi durumda
+    $\Subst{\indfrmp}{t}{x}$ yalnızca $\indfrm$'dir.}}{}
+\end{enumerate}
+\end{defn}
+
+\begin{explain}
+Yerine koymanın etkisiz kalabileceğine dikkat edin: $x$, $!A$ içinde
+hiç geçmiyorsa $\Subst{!A}{t}{x}$ yalnızca~$!A$'dır.
+
+$t$'nin $!A$ içinde $x$ için !!{free for} olması kısıtlaması aşağıdaki
+gibi durumları dışlamak için gereklidir. $!A \ident \lexists[y][x < y]$
+ve $t \ident y$ ise $\Subst{!A}{t}{x}$, $\lexists[y][y < y]$ olurdu. Bu
+durumda serbest $y$ değişkeni, yerine koyma sırasında $\lexists[y]$
+niceleyicisi tarafından ``yakalanır''; bu ise istenmez. Örneğin
+$\lforall[x][!B]$ doğru olduğunda $\Subst{!B}{t}{x}$'in de doğru
+olmasını isteriz. Ama $\lforall[x][\lexists[y][x < y]]$'yi ele alalım
+(burada $!B$, $\lexists[y][x < y]$'dir). Bu, örneğin doğal sayılar
+hakkında doğru olan bir tümcedir: her $x$ sayısı için kendisinden büyük
+bir $y$ sayısı vardır. $y$'ye $x$ yerine konabilecek bir terim olarak
+izin verseydik, yanlış olan $\Subst{!B}{y}{x} \ident \lexists[y][y < y]$
+ifadesini elde ederdik. $t$'deki serbest değişkenlerden hiçbirinin
+$!A$'daki bir niceleyici tarafından bağlanmamasını şart koşarak bunu
+önleriz.
+\end{explain}
+
+Hantal gösterimlerden kaçınmak için sık sık şu uzlaşımı kullanırız:
+$!A$ bir !!a{formula} ise ve !!{variable}~$x$ onda serbest geçebiliyorsa,
+bunu belirtmek için~$!A(x)$ de yazarız. Hangi $!A$ ile~$x$'i
+kastettiğimiz açıksa ve $t$ bir terimse ($!A(x)$ içinde $x$ için yerine
+koymaya elverişli olduğu varsayılır), $\Subst{!A}{t}{x}$ yerine kısaca
+$!A(t)$ yazarız. Örneğin ``$!A(t)$'ye $\lforall[x][!A(x)]$'in bir
+örneği deriz'' diyebiliriz. Bununla kastımız şudur: $!A$ herhangi bir
+!!{formula}, $x$ bir !!a{variable} ve $t$, $!A$ içinde $x$ için yerine
+koymaya elverişli bir terimse $\Subst{!A}{t}{x}$,
+$\lforall[x][!A]$'in bir örneğidir.
+

@@ -1,0 +1,70 @@
+% Generated from locale/tr/content/turing-machines/machines-computations/variants.tex; do not hand-edit.
+
+
+\olfileid[tr]{tur}{mac}{var}
+\olsection{Turing Makinesi Çeşitlemeleri}
+
+Aslında Turing makinelerini tanımlamanın birçok olası yolu vardır; bizimki
+bunlardan yalnızca biridir. Tanımımız bazı bakımlardan ötekilerden daha
+serbesttir. Keyfî sonlu alfabelere izin veriyoruz; daha kısıtlı bir tanım
+yalnızca $\TMstroke$ ve~$\TMblank$ olmak üzere iki şerit simgesine izin
+verebilir. Makinenin şeride bir simge yazıp aynı anda hareket etmesine izin
+veriyoruz; başka tanımlar ya yazmaya ya da hareket etmeye izin verir.
+Makinenin şerit kafasını oynatmadan yazmasına izin veriyoruz; başka tanımlar
+$\TMstay$ ``yönergesini'' içermez. Tanımımız başka bakımlardan daha
+kısıtlayıcıdır. Şeridin yalnızca bir yönde sonsuz olduğunu varsaydık; başka
+tanımlar şeridin hem sola hem sağa sonsuz olmasına izin verir. Hatta herhangi
+sayıda ayrı şeride ya da sonsuz bir kareler ızgarasına bile izin verilebilir.
+Turing makinesinin yönerge kümesini bir geçiş fonksiyonuyla gösteriyoruz;
+başka tanımlar, makinenin belirli bir durumda birden fazla olası yönergeye
+sahip olduğu bir geçiş bağıntısı kullanır.
+
+Tanımın bu son gevşetilişi özellikle ilginçtir. Bizim tanımımızda makine
+$q$ durumunda $\sigma$ simgesini okurken $\delta(q,\sigma)$ yeni simgeyi,
+durumu ve şerit kafası konumunu belirler. Ancak yönerge kümesinin mevcut
+durum-simge çiftleri $\tuple{q,\sigma}$ ile yeni durum-simge-yön üçlüleri
+$\tuple{q',\sigma',D}$ arasında bir bağıntı olmasına izin verirsek Turing
+makinesinin eylemi biricik biçimde belirlenmeyebilir: Yönerge bağıntısı hem
+$\tuple{q,\sigma,q',\sigma',D}$ hem de
+$\tuple{q,\sigma,q'',\sigma'',D'}$ içerebilir. Bu durumda
+\emph{belirlenimsiz} bir Turing makinemiz vardır. Bu makineler hesaplama
+karmaşıklığı kuramında önemli bir rol oynar.
+
+Bir Turing makinesinin ne zaman durduğuna ilişkin de farklı uzlaşımlar vardır:
+Biz geçiş fonksiyonu tanımsız olduğunda durduğunu söyleriz; başka tanımlar
+makinenin özel olarak belirlenmiş bir durma durumunda olmasını gerektirir.
+Belirli bir durma durumu istemenin Turing makinelerinin hesaplayabileceklerini
+etkileyen bir kısıtlama olmadığını \olref[hal]{sec} içinde açıkladık. Turing
+makinelerimizin şeritleri yalnızca bir yönde sonsuz olduğundan bir Turing
+makinesinin bir yönergeyi gerektiği gibi yerine getiremeyeceği durumlar vardır:
+En soldaki kareyi okuyup sola gitmesi gerekiyorsa. Tanımımıza göre ``şeritten
+düşmek'' yerine yerinde kalır; ama böyle olduğunda duracak biçimde de
+tanımlayabilirdik. Bu tanım da eşdeğerdir: $0$. kareden sola gitmeye
+çalıştığında duran bir Turing makinesinin davranışını, her
+$\delta(q,\TMendtape)=\tuple{q',\sigma,\TMleft}$ geçişini silerek
+benzetebiliriz; böylece makine $\TMendtape$ üzerinde sola gitmeye çalışmak
+yerine durur.\footnote{Bu çözüm \emph{tam olarak} işlemez; çünkü
+$\TMendtape$ simgesini $0$. kare dışındaki karelere yazmamızı ve oralarda
+okumamızı hiçbir şey engellemez (bkz.~\olref[una]{ex:mover}). Böyle bir amaç
+için kullanılacak ikinci bir~$\TMendtape'$ simgesi ekleyerek bunu aşabiliriz.}
+
+Sayıları (dolayısıyla bir Turing makinesinin hesapladığı girdi-çıktı
+fonksiyonunu) göstermenin de farklı yolları vardır: Biz tekli gösterimi
+kullanıyoruz, fakat ikili gösterim de kullanılabilir. Bunun için $\TMblank$
+ve~$\TMendtape$ simgelerine ek olarak iki simge gerekir.
+
+İşte ilginç bir olgu: Bu çeşitlemelerin hiçbiri hangi fonksiyonların Turing
+hesaplanabilir olduğunu değiştirmez. \emph{Bir fonksiyon bir tanıma göre
+Turing hesaplanabilir ise bütün bu tanımlara göre Turing hesaplanabilirdir.}
+
+Bunu doğrulamanın ayrıntılarına girmeyeceğiz. Yalnızca bir örnek verelim:
+Her iki yönde sonsuz bir şeride ya da birden fazla şeride izin vermek ek
+hesaplama gücü kazandırmaz. Kabaca nedeni, tek yönlü sonsuz tek şeritli bir
+Turing makinesinin çoklu ya da iki yönlü sonsuz şeritleri benzetebilmesidir.
+Örneğin ek durumlar ve yönergeler kullanarak çok şeritli ya da iki yönlü
+sonsuz şeritli bir makinenin programını tek yönlü sonsuz tek şeritli bir
+makineye ``çevirebiliriz''. Çevrilmiş makine çift numaralı kareleri $1$.
+şeridin kareleri (ya da iki yönlü sonsuz bir şeridin ``pozitif'' kareleri),
+tek numaralı kareleri ise $2$. şeridin kareleri (ya da ``negatif'' kareler)
+için kullanabilir.
+

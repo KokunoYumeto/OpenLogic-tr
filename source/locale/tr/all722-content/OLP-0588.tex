@@ -1,0 +1,145 @@
+% Generated from locale/tr/content/set-theory/card-arithmetic/simp.tex; do not hand-edit.
+
+\olfileid[tr]{sth}{card-arithmetic}{simp}
+
+\olsection{Toplama ve Çarpmanın Sadeleştirilmesi}
+
+Sonlu ötesi kardinal toplaması ve çarpmasının \emph{son derece} kolay
+olduğu ortaya çıkar. Bu, kardinal sayıların (belirli) sıra sayıları
+olmasından, dolayısıyla iyi sıralanmasından ve belirli bir biçimde
+işlenebilmesinden kaynaklanır. Ne var ki bunu göstermek \emph{o kadar da}
+kolay değildir. Başlangıçta biraz incelikli bir tanıma ihtiyacımız var:
+
+\begin{defn}
+Sıra sayısı çiftleri üzerinde bir \emph{kanonik sıralama} $\canonord$
+tanımlarız: $\tuple{\alpha_1, \alpha_2} \canonord
+\tuple{\beta_1, \beta_2}$ ancak ve ancak aşağıdakilerden biri geçerliyse:
+\begin{enumerate}
+	\item $\max(\alpha_1, \alpha_2) < \max(\beta_1, \beta_2)$; ya da
+	\item $\max(\alpha_1, \alpha_2) = \max(\beta_1, \beta_2)$ ve
+	$\alpha_1 < \beta_1$; ya da
+	\item $\max(\alpha_1, \alpha_2) = \max(\beta_1, \beta_2)$ ve
+	$\alpha_1 = \beta_1$ ve $\alpha_2 < \beta_2$.
+\end{enumerate}
+\end{defn}
+
+\begin{lem}
+Her $\alpha$ sıra sayısı için $\tuple{\alpha \times \alpha, \canonord}$
+bir iyi sıralamadır.
+\end{lem}
+
+\begin{proof}
+$\canonord$ bağıntısının $\alpha\times\alpha$ üzerinde bağlantılı olduğu
+açıktır. Ne $\tuple{\alpha_1,\alpha_2}$ ne de
+$\tuple{\beta_1,\beta_2}$ ötekinden $\canonord$ bakımından küçük olsun.
+O zaman $\max(\alpha_1,\alpha_2)=\max(\beta_1,\beta_2)$,
+$\alpha_1=\beta_1$ ve $\alpha_2=\beta_2$ olur; dolayısıyla
+$\tuple{\alpha_1,\alpha_2}=\tuple{\beta_1,\beta_2}$.
+
+İyi sıralamayı göstermek için boş olmayan bir
+$X\subseteq\alpha\times\alpha$ alın. $\alpha$ bir sıra sayısı olduğundan,
+bir $\delta$, $\Setabs{\max(\gamma_1, \gamma_2)}{\tuple{\gamma_1,
+\gamma_2} \in X}$ kümesinin en küçük elemanıdır. Şimdi
+$\Setabs{\tuple{\gamma_1,\gamma_2} \in X}{\max(\gamma_1, \gamma_2) =
+\delta}$ kümesindeki ilk bileşeni en küçük olanlar dışındaki bütün
+çiftleri atın; kalanların arasında ikinci bileşeni en küçük olan çift,
+$X$'in $\canonord$-en küçük elemanıdır.
+\end{proof}
+\noindent
+Şimdi küçük ve basit bir gözlem:
+
+\begin{prop}\ollabel{simplecardproduct}
+$\cardeq{\alpha}{\beta}$ ise
+$\cardeq{\alpha \times \alpha}{\beta \times \beta}$.
+\end{prop}
+
+\begin{proof}
+$f\colon\alpha\to\beta$ fonksiyonunun indüklediği
+$\tuple{\gamma_1,\gamma_2}\mapsto
+\tuple{f(\gamma_1),f(\gamma_2)}$ eşlemesini alın.
+\end{proof}
+\noindent
+Şimdi bütün bunları temel bir lemayı ispatlamak için kullanacağız:
+\begin{lem}\ollabel{alphatimesalpha}
+Her sonsuz $\alpha$ sıra sayısı için
+$\cardeq{\alpha}{\alpha\times\alpha}$.
+\end{lem}
+
+\begin{proof}
+Olmayana ergiyle bunun yanlış olduğu en küçük sonsuz sıra sayısı $\alpha$
+olsun. \olref[sfr][siz][zigzag]{natsquaredenumerable},
+$\cardeq{\omega}{\omega\times\omega}$ olduğunu gösterir; dolayısıyla
+$\omega\in\alpha$. Üstelik $\alpha$ bir kardinal sayıdır: olmayana
+ergiyle olmadığını varsayın. O zaman $\card{\alpha}\in\alpha$ olur;
+varsayım gereği
+$\cardeq{\card{\alpha}}{\card{\alpha}\times\card{\alpha}}$ ve tanım
+gereği $\cardeq{\card{\alpha}}{\alpha}$ olur; dolayısıyla
+\olref{simplecardproduct} gereği
+$\cardeq{\alpha}{\alpha\times\alpha}$ elde edilir.
+
+Şimdi her $\tuple{\gamma_1,\gamma_2}\in\alpha\times\alpha$ için şu
+kesiti ele alın:
+\begin{align*}
+	\text{Seg}(\gamma_1, \gamma_2) &= \Setabs{\tuple{\delta_1, \delta_2} \in \alpha \times \alpha}{\tuple{\delta_1, \delta_2} \canonord \tuple{\gamma_1, \gamma_2}}
+\end{align*}
+$\gamma=\max(\gamma_1,\gamma_2)$ olsun. O zaman
+$\tuple{\gamma_1,\gamma_2}\canonord
+\tuple{\gamma+1,\gamma+1}$ olduğuna dikkat edin. Dolayısıyla $\gamma$
+sonsuz olduğunda:
+\begin{align*}
+	\text{Seg}(\gamma_1, \gamma_2) &
+	\precsim ((\gamma \ordplus 1)\ordtimes (\gamma \ordplus 1))\\
+	&\approx (\gamma \ordtimes \gamma)
+	\text{, \olref[ord-arithmetic][using-addition]{ordinfinitycharacter} ve
+	\olref{simplecardproduct} gereği}\\
+	&\approx \gamma \text{, tümevarım varsayımı gereği}\\
+	& \prec \alpha\text{, çünkü $\alpha$ bir kardinal sayıdır}
+\end{align*}
+olur. Böylece $\ordtype{\alpha\times\alpha,\canonord}\leq\alpha$ ve
+dolayısıyla $\cardle{\alpha\times\alpha}{\alpha}$ olur. Elbette
+$\cardle{\alpha}{\alpha\times\alpha}$ olduğundan sonuç
+Schröder--Bernstein ile çıkar.
+\end{proof}
+
+Nihayet sadeleştirme sonucumuza geliyoruz:
+
+\begin{thm}\ollabel{cardplustimesmax}
+$\cardfont{a},\cardfont{b}$ sonsuz kardinal sayılarsa:
+\[
+	\cardfont{a}
+\cardtimes \cardfont{b} = \cardfont{a} \cardplus \cardfont{b} =
+\text{max}(\cardfont{a}, \cardfont{b}).
+\]
+\end{thm}
+
+\begin{proof}
+Genelliği kaybetmeden $\cardfont{a}=\max(\cardfont{a},\cardfont{b})$
+varsayın. O zaman \olref{alphatimesalpha} uygulanarak
+$\cardfont{a}\cardtimes\cardfont{a}=\cardfont{a}\leq\cardfont{a}
+\cardplus\cardfont{b}\leq\cardfont{a}\cardplus\cardfont{a}\leq
+\cardfont{a}\cardtimes\cardfont{a}$ elde edilir.
+\end{proof}\noindent
+Benzer biçimde $\cardfont{a}$ sonsuzsa, her biri
+$\leq\cardfont{a}$ büyüklüğündeki $\cardfont{a}$ tane kümenin birleşimi
+$\leq\cardfont{a}$ büyüklüğündedir:
+
+\begin{prop}\ollabel{kappaunionkappasize}
+$\cardfont{a}$ sonsuz bir kardinal sayı olsun. Her
+$\beta\in\cardfont{a}$ sıra sayısı için $X_\beta$,
+$\card{X_\beta}\leq\cardfont{a}$ olan bir küme olsun. O zaman
+$\card{\bigcup_{\beta \in \cardfont{a}} X_\beta}\leq\cardfont{a}$.
+\end{prop}
+
+\begin{proof}
+Her $\beta\in\cardfont{a}$ için bir $f_\beta\colon
+X_\beta\to\cardfont{a}$ !!a{injection} sabitleyin.\footnote{Bunlar nasıl
+``sabitlenir''? Bkz. \olref[sth][choice][countablechoice]{sec}.}
+$v\in X_\beta$ ve hiçbir $\gamma\in\beta$ için $v\notin X_\gamma$
+olmamak üzere $g(v)=\tuple{\beta,f_\beta(v)}$ ile bir
+$g\colon\bigcup_{\beta \in \cardfont{a}}X_\beta\to
+\cardfont{a}\times\cardfont{a}$ !!a{injection} tanımlayın. Şimdi
+\olref{cardplustimesmax} gereği
+$\bigcup_{\beta \in \cardfont{a}} X_\beta \preceq
+\cardfont{a}\times\cardfont{a}\approx\cardfont{a}$.
+\end{proof}
+

@@ -1,0 +1,279 @@
+% Generated from locale/tr/content/set-theory/choice/vitali.tex; do not hand-edit.
+
+
+\olfileid[tr]{sth}{choice}{vitali}
+\olsection{Ek: Vitali Paradoksu}
+
+Banach--Tarski kuruluşunun kabul edilebilir olup olmadığı konusunda gerçek
+bir fikir edinmek için \emph{ispatını} incelemeliyiz. Ne yazık ki bu,
+burada sunabileceğimizden çok daha fazla cebir gerektirir. Bununla birlikte
+şu sonuca odaklanarak Banach--Tarski ispatına biraz ışık tutabilecek kısa
+açıklamalar sunabiliriz:\footnote{Çok daha kapsamlı bir inceleme için
+\cite{Weston2003} ya da \cite{Wagon2016} kaynaklarına bakın.}
+
+\begin{thm}[Vitali Paradoksu ($\ZFC$ içinde)]\ollabel{vitaliparadox}
+Her çember sayılabilir çoklukta parçaya ayrılabilir ve bu parçalar
+(döndürme ve öteleme yoluyla) yeniden bir araya getirilerek o çemberin iki
+kopyası oluşturulabilir.
+\end{thm}
+
+Vitali Paradoksu'nu ispatlamak Banach--Tarski Paradoksu'nu ispatlamaktan
+çok daha kolaydır. Ona ``Vitali Paradoksu'' dedik; çünkü Vitali'nin
+ölçülemeyen bir küme veren \citeyear{Vitali1905} tarihli kuruluşundan
+çıkar. Fakat Vitali Paradoksu ile Banach--Tarski Paradoksu ispatlarının
+küme teorisiyle ilgili yönleri birbirine çok benzer. Sonuçlar arasındaki
+temel fark yalnızca şudur: Banach--Tarski \emph{sonlu} bir ayrıştırmayı,
+Vitali Paradoksu ise \emph{sayılabilir sonsuz} bir ayrıştırmayı ele alır.
+\citet{Weston2003} şöyle der: Vitali Paradoksu ``kesinlikle Banach--Tarski
+paradoksu kadar çarpıcı değildir, fakat geometrik paradoksların `basit'
+durumlarda bile ortaya çıkabileceğini gösterir.''
+
+Vitali Paradoksu iki boyutlu bir şekil olan çemberle ilgilidir. Dolayısıyla
+$\Real^2$ düzleminde çalışacağız. $\rotationsgroup$, noktaları başlangıç
+noktası çevresinde $[0,2\pi)$ arasındaki \emph{rasyonel} radyan değerleri
+kadar (saat yönünde) döndüren dönüşümlerin kümesi olsun. İşte
+$\rotationsgroup$ hakkında bazı cebirsel olgular (sonucun ifadesini
+anlamazsanız ispat anlamını açıklayacaktır):
+
+\begin{lem}\ollabel{rotationsgroupabelian}
+$\rotationsgroup$, fonksiyon bileşkesi altında değişmeli bir {grup}
+oluşturur.
+\end{lem}
+
+\begin{proof}
+$0$ radyanlık döndürme için $0_{\rotationsgroup}$ yazalım. Bu,
+$\rotationsgroup$ için birim elemandır; çünkü her
+$\rho\in\rotationsgroup$ için
+$\comp{0_{\rotationsgroup}}{\rho}=\comp{\rho}{0_{\rotationsgroup}}=
+\rho$ olur.
+
+Her elemanın bir tersi vardır. $\rho\in\rotationsgroup$, $r$ radyan
+döndürüyorsa $r=0$ olduğunda $\rho^{-1}$ de $0$ radyan, aksi hâlde
+$2\pi-r$ radyan döndürür; böylece $\rho^{-1}\in\rotationsgroup$ ve
+$\rho\circ\rho^{-1}=0_\rotationsgroup$ olur.
+
+Bileşke birleşmelidir: her
+$\rho,\sigma,\tau\in\rotationsgroup$ için
+$\comp{\rho}{(\comp{\sigma}{\tau})}=
+\comp{(\comp{\rho}{\sigma})}{\tau}$.
+
+Bileşke değişmelidir: her $\rho,\sigma\in\rotationsgroup$ için
+$\comp{\rho}{\sigma}=\comp{\sigma}{\rho}$.
+\end{proof}
+
+Gerçekten $\rotationsgroup$ grubumuzu iki yarıya ayırıp bütün grubu geri
+elde etmek için bu yarıların herhangi birini kullanabiliriz:
+
+\begin{lem}\ollabel{disjointgroup}
+$\rotationsgroup$ için her ikisi de birer taban olan iki ayrık
+$\rotationsgroup_{1}$ ve $\rotationsgroup_{2}$ kümesine ayrılmış bir
+parçalanış vardır.
+\end{lem}
+
+\begin{proof}
+$\rotationsgroup_{1}$, $[0,\pi)$ aralığındaki rasyonel radyan değerleri
+kadar döndürmelerden oluşsun;
+$\rotationsgroup_2=\rotationsgroup\setminus\rotationsgroup_1$ olsun.
+Temel cebir gereği
+$\Setabs{\comp{\rho}{\rho}}{\rho\in\rotationsgroup_1}=
+\rotationsgroup$. $\rotationsgroup_2$ için de benzer bir sonuç elde edilir.
+\end{proof}
+
+Gruplar hakkındaki bu olguyu \olref{vitaliparadox} sonucunu kurmak için
+kullanacağız. $\onesphere$ birim çember, yani düzlemin başlangıç noktasına
+tam olarak $1$ birim uzaklıktaki noktalar kümesi, başka bir deyişle
+$\Setabs{\tuple{r,s}\in\Real^2}{\sqrt{r^2+s^2}=1}$ olsun. $\onesphere$
+üzerinde şu bağıntıyı ele alarak $\onesphere$'ı parçalara ayıracağız:
+\[
+	r \sim s \emph{ ancak ve ancak }(\exists \rho \in \rotationsgroup)\rho(r) = s.
+\]
+Yani $\onesphere$'ın iki noktası, ancak ve ancak başlangıç noktası
+çevresinde rasyonel değerli bir döndürmeyle birinden ötekine
+ulaşabiliyorsak bu bağıntıyla bağlantılıdır. Şaşırtıcı olmayan biçimde:
+
+\begin{lem}
+$\sim$ bir denklik bağıntısıdır.
+\end{lem}
+
+\begin{proof}
+\olref{rotationsgroupabelian} kullanılarak sıradandır.
+\end{proof}
+
+Şimdi Seçim'i kullanarak $\onesphere$'ın $\sim$ altındaki her denklik
+sınıfından tam bir eleman içeren bir $C$ kümesi elde ederiz. Yani denklik
+sınıfları kümesi üzerinde bir $f$ seçim fonksiyonu ele alırız,\footnote{
+$\rotationsgroup$ !!{enumerable} olduğundan $E$'nin her !!{element}
+!!{enumerable}. $\onesphere$ !!{nonenumerable} olduğundan
+\olref{vitalicover} ve
+\olref[card-arithmetic][simp]{kappaunionkappasize} sonuçları, $E$'nin
+!!{nonenumerable} olduğunu gerektirir. Dolayısıyla bu, \emph{sayılamaz}
+Seçim'in bir kullanımıdır.}
+\[
+	E = \Setabs{\equivrep{r}{\sim}}{r \in \onesphere},
+\]
+ve $C=\ran{f}$ olsun. Her $\rho\in\rotationsgroup$ döndürmesi için
+$\funimage{\rho}{C}$ kümesi, $\rho$ döndürmesinin $C$'deki her noktaya
+uygulanmasıyla elde edilen noktalardan oluşur. Sıradaki iki sonuç bu
+kümelerin çemberi bütünüyle ve örtüşmeden kapladığını gösterir:
+
+\begin{lem}\ollabel{vitalicover}
+$\onesphere = \bigcup_{\rho \in \rotationsgroup} \funimage{\rho}{C}$.
+\end{lem}
+
+\begin{proof}
+$s\in\onesphere$ sabit olsun. $r\in\equivrep{s}{\sim}$, yani
+$r\sim s$, yani bir $\rho\in\rotationsgroup$ için $\rho(r)=s$ olan bir
+$r\in C$ vardır.
+\end{proof}
+
+\begin{lem}\ollabel{vitalinooverlap}
+$\rho_1\neq\rho_2$ ise
+$\funimage{\rho_1}{C}\cap\funimage{\rho_2}{C}=\emptyset$.
+\end{lem}
+
+\begin{proof}
+$s\in\funimage{\rho_1}{C}\cap\funimage{\rho_2}{C}$ varsayın. Öyleyse
+bir $r_1,r_2\in C$ için
+$s=\rho_1(r_1)=\rho_2(r_2)$ olur. Dolayısıyla
+$\rho^{-1}_2(\rho_1(r_1))=r_2$ ve
+$\comp{\rho_1}{\rho^{-1}_2}\in\rotationsgroup$; böylece
+$r_1\sim r_2$ olur. $C$, $\sim$ altındaki her denklik sınıfından tam bir
+eleman seçtiğinden $r_1=r_2$. Dolayısıyla
+$s=\rho_1(r_1)=\rho_2(r_1)$ ve böylece $\rho_1=\rho_2$.
+\end{proof}
+
+Şimdi önceki cebirsel olgularımızı çemberimize uyguluyoruz:
+
+\begin{lem}\ollabel{pseudobanachtarski}
+$\onesphere$'ın iki ayrık $D_1$ ve $D_2$ kümesine ayrılmış öyle bir
+parçalanışı vardır ki $D_1$, döndürülerek $\onesphere$'ın bir kopyasını
+oluşturabilecek sayılabilir çoklukta kümeye parçalanabilir (ve aynı şey
+$D_2$ için de geçerlidir).
+\end{lem}
+
+\begin{proof}
+\olref{disjointgroup} içindeki $\rotationsgroup_1$ ve
+$\rotationsgroup_2$ kümelerini kullanarak şunları tanımlayın:
+\begin{align*}
+	D_{1} &= \bigcup_{\rho \in \rotationsgroup_1} \funimage{\rho}{C} &
+	D_{2} &= \bigcup_{\rho \in \rotationsgroup_2} \funimage{\rho}{C}
+\end{align*}
+Bu, \olref{vitalicover} gereği $\onesphere$'ın bir parçalanışıdır ve
+\olref{vitalinooverlap} gereği $D_1$ ile $D_2$ ayrıktır. Kuruluş gereği
+$D_1$, her $\rho\in\rotationsgroup_1$ için $\funimage{\rho}{C}$ olmak
+üzere sayılabilir çoklukta kümeye parçalanabilir. Bunlar döndürülerek
+$\onesphere$'ın bir kopyasını oluşturabilir; çünkü
+\olref{disjointgroup} ve \olref{vitalicover} gereği
+$\onesphere=\bigcup_{\rho\in\rotationsgroup}\funimage{\rho}{C}=
+\bigcup_{\rho\in\rotationsgroup_1}
+\funimage{(\comp{\rho}{\rho})}{C}$ olur. Aynı uslamlama $D_2$'ye de
+uygulanır.
+\end{proof}\noindent
+Bu, Vitali Paradoksu'nu doğrudan gerektirir. Çünkü $\onesphere$'ı
+sayılabilir çoklukta parçaya (çeşitli $\funimage{\rho}{C}$ kümelerine)
+ayırıp bunları rijit biçimde hareket ettirerek ($D_1$'in her parçasını
+yalnızca döndürerek, $D_2$'nin her parçasını ise önce öteleyip sonra
+döndürerek) $\onesphere$'dan \emph{iki} $\onesphere$ kopyası üretebiliriz.
+
+İspat stratejisini özetleyelim. Düzlemdeki döndürmeler grubu hakkında bazı
+cebirsel olgularla başladık. Bu grubu $\onesphere$'ı denklik sınıflarına
+ayırmak için kullandık. Sonra her sınıftan elemanlar seçmek için Seçim'i
+kullanarak bir ``paradoksa'' ulaştık.
+
+Banach--Tarski'yi ispatlamak için tam olarak aynı stratejiyi kullanırız.
+Temel fark, Banach--Tarski'yi ispatlamak için kullanılan cebirsel olguların
+Vitali Paradoksu'nu ispatlamak için kullanılanlardan önemli ölçüde daha
+karmaşık olmasıdır. Fakat bu cebirsel olguların Seçim'le hiçbir ilgisi
+yoktur. Bunları kısaca özetleyeceğiz.
+
+Banach--Tarski'yi ispatlamak için \olref{disjointgroup} sonucunun bir
+benzerini kurarak başlarız: her \emph{serbest grup}, sezgisel olarak
+``hareket ettirerek'' bütün grubun iki kopyasını geri elde edebileceğimiz
+dört parçaya ayrılabilir.\footnote{\emph{Dört} parça kullanabilmemiz
+\cite{Robinson1947} sonucudur. Güncel bir ispat için
+\citet[Theorem 5.2]{Wagon2016} eserine bakın. Grubun parçalarını
+``hareket ettirme'' betimlemesinde \citet[p.~3]{Weston2003} eserini
+izliyoruz.} Sonra $\Real^3$'ün başlangıç noktası çevresindeki iki belirli
+döndürmeyi kullanarak serbest bir döndürmeler grubu $F$ üretebileceğimizi
+gösteririz.\footnote{Bkz. \citet[Theorem 2.1]{Wagon2016}.} (Henüz Seçim
+yok.) Şimdi kürenin yüzeyindeki noktaları, ancak ve ancak biri ötekinden
+$F$ içindeki bir döndürmeyle elde edilebiliyorsa ``benzer'' sayarız. Sonra
+``benzer'' noktaların her denklik sınıfından tam bir nokta seçmek için
+\emph{Seçim'i kullanırız}. $F$'yi bölüşümüzü kürenin yüzeyine
+\olref{pseudobanachtarski} içindeki gibi uygulayıp yüzeyi dört parçaya
+ayırır ve bunları ``hareket ettirerek'' küre yüzeyinin iki kopyasını elde
+ederiz. Böylece \citep{Hausdorff1914} kurulur:
+
+\begin{thm}[Hausdorff Paradoksu ($\ZFC$ içinde)]
+Her kürenin yüzeyi sonlu sayıda parçaya ayrılabilir ve bu parçalar
+(döndürme ve öteleme yoluyla) yeniden bir araya getirilerek o kürenin iki
+ayrık kopyası oluşturulabilir.
+\end{thm}
+
+Tam Banach--Tarski Teoremi'ni (yalnızca kürenin yüzeyiyle değil, içiyle de
+ilgilenen teoremi) elde etmek için birkaç ek cebirsel hile gerekir. Fakat
+açıkçası bu yalnızca cebir pastasının süsüdür. Weston bu nedenle şöyle
+yazar:
+\begin{quote}
+  [\ldots] serbest gruplar hakkındaki sonuç, Banach--Tarski paradoksunun
+  ispatındaki \emph{temel adımdır}. Bu bakış açısından Banach--Tarski
+  paradoksu, $\Real^3$ hakkındaki bir ifade olmaktan çok [$\Real^3$'teki
+  öteleme ve döndürmeler] grubunun karmaşıklığı hakkındaki bir ifadedir.
+  \cite[p.~16]{Weston2003}
+\end{quote}
+Yani \emph{sonlu} bir ayrıştırma (Banach--Tarski'deki gibi) mı yoksa
+\emph{sayılabilir sonsuz} bir ayrıştırma (Vitali Paradoksu'ndaki gibi) mı
+sunabileceğimiz, iki boyutta ya da üç boyutta çalışmak hakkındaki belirli
+grup kuramsal olgulara dayanır.
+
+Kabul etmek gerekir ki bu son gözlem \olref[banach]{sec} sonundaki şakayı
+biraz bozar. ``Banach--Tarski'' iki boyutlu olduğundan parçalarını yeniden
+düzenleyip ``Banach--Tarski Banach--Tarski'' oluşturmak istiyorsak
+sayılabilir \emph{sonsuzlukta} parçaya ayrılmalıdır. Şakayı düzeltmek için
+üç boyutta yazmak gerekir. Bunu okura alıştırma olarak bırakıyoruz.
+
+Son bir yorum. \olref[banach]{sec} içinde elde edilen küre ``parçalarının''
+\emph{ölçülebilir} olamayacağını, gözde canlandırılamayan ``sonsuz
+saçılımlar'' olmaları gerektiğini belirttik. Seçim'i
+\olref{pseudobanachtarski} sonucunu elde etmek için kullanışımızda da aynı
+şey geçerlidir. Bütün bunlar açıklanmaya değer.
+
+Yine biraz arka planın taslağını çizmeliyiz (fakat bu \emph{yalnızca} bir
+taslaktır; \emph{ölçü} hakkındaki bir ders kitabı maddesine başvurmak
+isteyebilirsiniz). Bir $X$ kümesi için ölçü tanımlamak, $X$ üzerindeki bir
+``$\sigma$-cebiri'' içinde bulunan her $E$ için bir
+$\mu(E)\in\Real$ değeri atamaktır. Ayrıntılar önemli değildir; şu kadar ki
+$\mu$ fonksiyonu sayılabilir toplamsallık ilkesine uymalıdır: ayrık
+kümelerin sayılabilir bir birleşiminin ölçüsü onların ayrı ayrı ölçülerinin
+toplamıdır; yani $X_n$'ler ayrık olduğunda
+$\mu(\bigcup_{n < \omega} X_n) = \sum_{n < \omega}\mu(X_n)$ olur. Bir
+kümenin ``ölçülemez'' olduğunu söylemek, ona uygun biçimde hiçbir ölçü
+atanamayacağını söylemektir. Şimdi önceki $\rotationsgroup$ grubumuzu
+kullanarak:
+
+\begin{cor}[Vitali]
+$\mu(\onesphere)=1$ olan ve $X$ ile $Y$ eşse
+$\mu(X)=\mu(Y)$ koşulunu sağlayan bir $\mu$ ölçüsü olsun. O zaman her
+$\rho\in\rotationsgroup$ için $\funimage{\rho}{C}$ ölçülemezdir.
+\end{cor}
+
+\begin{proof}
+Olmayana ergiyle tersini varsayın. Öyleyse bir
+$\sigma\in\rotationsgroup$ ve bir $r\in\Real$ için
+$\mu(\funimage{\sigma}{C})=r$ olsun. Her
+$\rho\in\rotationsgroup$ için $\funimage{\rho}{C}$ ve
+$\funimage{\sigma}{C}$ eştir; dolayısıyla her
+$\rho\in\rotationsgroup$ için $\mu(\funimage{\rho}{C})=r$ olur.
+\olref{vitalicover} ve \olref{vitalinooverlap} gereği
+$\onesphere=\bigcup_{\rho\in\rotationsgroup}\funimage{\rho}{C}$,
+ikişer ikişer ayrık kümelerin sayılabilir bir birleşimidir. Öyleyse
+sayılabilir toplamsallık, $\mu(\onesphere)=1$ değerinin her
+$\funimage{\rho}{C}$ kümesinin ölçülerinin toplamı olmasını gerektirir;
+yani:
+\[
+	1 = \mu(\onesphere) = \sum_{\rho \in \rotationsgroup}\mu(\funimage{\rho}{C}) = \sum_{\rho \in \rotationsgroup}r
+\]
+Fakat $r=0$ ise $\sum_{\rho\in\rotationsgroup}r=0$ ve $r>0$ ise
+$\sum_{\rho\in\rotationsgroup}r=\infty$ olur.
+\end{proof}
+

@@ -1,0 +1,86 @@
+% Generated from locale/tr/content/first-order-logic/axiomatic-deduction/provability-consistency.tex; do not hand-edit.
+
+
+\iftag{FOL}
+      {\olfileid[tr]{fol}{axd}{prv}}
+      {\olfileid[tr]{pl}{axd}{prv}}
+
+\olsection{\usetoken{S}{derivability} ve Tutarlılık}
+
+Şimdi !!{derivability} bağıntısının çeşitli özelliklerini göstereceğiz. Bunlar
+başlı başına ilginçtir ve her biri tamlık teoreminin ispatında rol oynar.
+
+\begin{prop}\ollabel{prop:provability-contr}
+  $\Gamma \Proves !A$ ve $\Gamma \cup \{!A\}$ tutarsızsa $\Gamma$
+  tutarsızdır.
+\end{prop}
+
+\begin{proof}
+  $\Gamma \cup \{!A\}$ tutarsızsa $\Gamma \cup \{!A\} \Proves \lfalse$.
+  \olref[ptn]{prop:reflexivity} uyarınca her $!B \in \Gamma$ için
+  $\Gamma \Proves !B$ olur. Varsayım gereği ayrıca $\Gamma \Proves !A$;
+  dolayısıyla her $!B \in \Gamma \cup \{!A\}$ için $\Gamma \Proves !B$.
+  \olref[ptn]{prop:transitivity} ile $\Gamma \Proves \lfalse$ elde edilir;
+  yani $\Gamma$ tutarsızdır.
+\end{proof}
+
+\begin{prop}
+\ollabel{prop:prov-incons}
+$\Gamma \Proves !A$ ancak ve ancak $\Gamma \cup \{\lnot !A\}$ tutarsızsa
+geçerlidir.
+\end{prop}
+
+\begin{proof}
+Önce $\Gamma \Proves !A$ olsun. \olref[ptn]{prop:monotonicity} ile
+$\Gamma \cup \{\lnot !A\} \Proves !A$; \olref[ptn]{prop:reflexivity} ile
+$\Gamma \cup \{\lnot !A\} \Proves \lnot !A$ olur. Ayrıca
+\olref[prp]{ax:lnot2} uyarınca $\Proves \lnot !A \lif (!A \lif \lfalse)$.
+\olref[ded]{prop:mp}'nin iki uygulaması $\Gamma \cup \{\lnot !A\}
+\Proves \lfalse$ sonucunu verir.
+
+Şimdi $\Gamma \cup \{\lnot !A\}$ tutarsız, yani $\Gamma \cup \{\lnot
+!A\} \Proves \lfalse$ olsun. Tümdengelim teoremiyle $\Gamma \Proves
+\lnot !A \lif \lfalse$. \olref[prp]{ax:lfalse2} uyarınca
+$\Gamma \Proves (\lnot !A \lif \lfalse) \lif \lnot\lnot !A$; dolayısıyla
+\olref[ded]{prop:mp} ile $\Gamma \Proves \lnot\lnot !A$. Son olarak
+$\Gamma \Proves \lnot\lnot !A \lif !A$ olduğundan
+(\olref[prp]{ax:dne}), \olref[ded]{prop:mp} bir kez daha uygulanarak
+$\Gamma \Proves !A$ elde edilir.
+\end{proof}
+
+\begin{prob}
+$\Gamma \Proves \lnot !A$ olmasının, $\Gamma \cup \{!A\}$ kümesinin
+tutarsız olmasına denk olduğunu ispatlayın.
+\end{prob}
+
+\begin{prop}\ollabel{prop:explicit-inc}
+  $\Gamma \Proves !A$ ve $\lnot !A \in \Gamma$ ise $\Gamma$ tutarsızdır.
+\end{prop}
+
+\begin{proof}
+  \olref[prp]{ax:lnot2} ile $\Gamma \Proves \lnot !A \lif
+  (!A \lif \lfalse)$. \olref[ded]{prop:mp}'nin iki uygulamasıyla
+  $\Gamma \Proves \lfalse$.
+\end{proof}
+
+\begin{prop}\ollabel{prop:provability-exhaustive}
+  $\Gamma \cup \{!A\}$ ve $\Gamma \cup \{\lnot !A\}$ kümelerinin ikisi de
+  tutarsızsa $\Gamma$ tutarsızdır.
+\end{prop}
+
+\begin{proof}
+Alıştırma.
+\end{proof}
+
+\tagprob{FOL}
+\begin{prob}
+  \olref[fol][axd][prv]{prop:provability-exhaustive} önermesini ispatlayın.
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+  \olref[pl][axd][prv]{prop:provability-exhaustive} önermesini ispatlayın.
+\end{prob}
+\tagendprob
+

@@ -1,0 +1,235 @@
+% Generated from locale/tr/content/normal-modal-logic/completeness/modalities-ccs.tex; do not hand-edit.
+
+
+\olfileid[tr]{nml}{com}{mod}
+
+\olsection{Kiplikler ve Tam Tutarlı Kümeler}
+
+\begin{explain}
+Dünyalar kümesi bir normal modal mantık $\Sigma$ içindeki tam
+$\Sigma$-tutarlı $\Delta$ kümelerinden oluşan bir $\mModel{M^\Sigma}$
+modeli kurduğumuzda, bu ``dünyalar'' arasında bir $R^\Sigma$
+erişilebilirlik bağıntısı da tanımlamalıyız. Erişilebilirlik bağıntısı (ve
+$V^\Sigma$ ataması), $\mSat{M^\Sigma}{!A}[\Delta]$ ancak ve ancak
+$!A\in\Delta$ olacak biçimde tanımlansın istiyoruz. Bunu nasıl yapmalıyız?
+
+Erişilebilirlik bağıntısı tanımlandığında, bir dünyadaki doğruluğun tanımı
+\iftag{prvBox}{$R^\Sigma\Delta\Delta'$ olan bütün $\Delta'$ için
+  $\mSat{M^\Sigma}{!A}[\Delta']$ ancak ve ancak
+  $\mSat{M^\Sigma}{\Box!A}[\Delta]$ olduğunu}{$R^\Sigma\Delta\Delta'$
+  olan en az bir $\Delta'$ için $\mSat{M^\Sigma}{!A}[\Delta']$ ancak ve
+  ancak $\mSat{M^\Sigma}{\Diamond!A}[\Delta]$ olduğunu} güvence altına
+alır. $\mSat{M^\Sigma}{!A}[\Delta]$ ancak ve ancak $!A\in\Delta$
+olduğunun ispatı, bunun özellikle bir kiplik işleciyle başlayan !!{formula}s
+için de doğru olmasını gerektirir; yani
+\iftag{prvBox}{$\mSat{M^\Sigma}{\Box!A}[\Delta]$ ancak ve ancak
+  $\Box!A\in\Delta$}{$\mSat{M^\Sigma}{\Diamond!A}[\Delta]$ ancak ve ancak
+  $\Diamond!A\in\Delta$}. Bu gerekliliği
+\iftag{prvBox}{$\Box !A$}{$\Diamond !A$} için bir dünyadaki doğruluk
+tanımıyla birleştirirsek şunu elde ederiz:
+\[
+\iftag{prvBox}{%
+  \Box!A \in \Delta \text{ ancak ve ancak } !A \in \Delta' \text{, }
+    R^\Sigma\Delta\Delta' \text{ olan bütün } \Delta' \text{ için}}{%
+  \Diamond!A \in \Delta \text{ ancak ve ancak } !A \in \Delta' \text{, }
+    R^\Sigma\Delta\Delta' \text{ olan en az bir } \Delta' \text{ için}}
+\]
+\iftag{prvBox}{Soldan sağa yönü ele alın: $\Box!A\in\Delta$ ise her $!A$
+  ve $R^\Sigma\Delta\Delta'$ olan her $\Delta'$ için $!A\in\Delta'$
+  olduğunu söyler. $R^\Sigma\Delta\Delta'$ ancak ve ancak
+  $\Delta$ içindeki bütün $\Box!A$ formülleri için $!A\in\Delta'$ olacak
+  biçimde tanımlanırsa bu geçerli olur. ``Ancak ve ancak''ın sağındaki
+  koşulu daha kısa olarak
+  $\Setabs{!A}{\Box!A\in\Delta}\subseteq\Delta'$ yazabiliriz.}{Sağdan
+  sola yönü ele alın: $!A\in\Delta'$ ise, her $!A$ ve
+  $R^\Sigma\Delta\Delta'$ olan her $\Delta'$ için
+  $\Diamond!A\in\Delta$ olduğunu söyler. $\Delta'$ içindeki bütün $!A$
+  formülleri için $\Diamond!A\in\Delta$ olduğunda
+  $R^\Sigma\Delta\Delta'$ geçerli olacak biçimde tanımlarsak bu sonuç
+  geçerli olur. ``Ancak ve ancak''ın sağındaki koşulu daha kısa olarak
+  $\Setabs{\Diamond!A}{!A\in\Delta'}\subseteq\Delta$ yazabiliriz.}
+
+Soru şudur: $R^\Sigma$'nın bu tanımı gerçekten
+\iftag{prvBox}{$\Box!A\in\Delta$ ancak ve ancak
+  $\mSat{M^\Sigma}{\Box!A}[\Delta]$ olmasını güvence altına alır mı?
+  \iftag{prvDiamond}{Ayrıca şunu güvence altına alır mı:}{}{}}{}
+\iftag{prvDiamond}{$\Diamond!A\in\Delta$ ancak ve ancak
+  $\mSat{M^\Sigma}{\Diamond!A}[\Delta]$?}{} Sonraki birkaç sonuç bunu
+kuracaktır.
+\end{explain}
+
+\begin{defn}
+  $\Gamma$ bir !!{formula}s kümesiyse
+  \begin{align*}
+    \Box\Gamma & = \Setabs{\Box !B}{!B \in \Gamma}\\
+    \Diamond\Gamma & = \Setabs{\Diamond !B}{!B \in \Gamma}\\
+    \intertext{ve}
+    \Box^{-1}\Gamma & = \Setabs{!B}{\Box !B \in \Gamma}\\
+    \Diamond^{-1}\Gamma & = \Setabs{!B}{\Diamond !B \in \Gamma}\\
+  \end{align*}
+  olsun.
+\end{defn}
+
+Başka bir deyişle $\Box\Gamma$, $\Gamma$ içindeki her !!{formula}{}ün önüne
+$\Box$ konmuş hâlidir; $\Box^{-1}\Gamma$ ise $\Gamma$ içindeki bütün
+$\Box$'lı !!{formula}s{}in baştaki $\Box$'ları kaldırılmış hâlidir. Bu tanım
+tek başına çok önemli değildir; fakat gösterimi epeyce sadeleştirecektir.
+
+$\Box\Box^{-1}\Gamma\subseteq\Gamma$ olduğuna dikkat edin:
+\[
+\Box\Box^{-1}\Gamma = \Setabs{\Box!B}{\Box!B \in \Gamma}
+\]
+yani bu, $\Gamma$ içinde $\Box$ ile başlayan bütün !!{formula}s{}in kümesidir.
+
+\begin{lem}\ollabel{lem:box1}
+  $\Gamma\Proves[\Sigma]!A$ ise
+  $\Box\Gamma\Proves[\Sigma]\Box!A$.
+\end{lem}
+
+\begin{proof}
+  $\Gamma\Proves[\Sigma]!A$ ise $!B_1,\dots,!B_k\in\Gamma$ bulunur ve
+  $\Sigma\Proves !B_1\lif(!B_2\lif\cdots(!B_k\lif !A)\cdots)$ olur.
+  $\Sigma$ normal olduğundan \RK{} kuralıyla
+  $\Sigma\Proves\Box!B_1\lif(\Box!B_2\lif\cdots(\Box!B_k\lif
+  \Box!A)\cdots)$; açıkça $\Box!B_1,\dots,\Box!B_k\in\Box\Gamma$.
+  Dolayısıyla tanım gereği $\Box\Gamma\Proves[\Sigma]\Box!A$.
+\end{proof}
+
+\begin{lem}\ollabel{lem:box2}
+  $\Box^{-1}\Gamma\Proves[\Sigma]!A$ ise
+  $\Gamma\Proves[\Sigma]\Box!A$.
+\end{lem}
+
+\begin{proof}
+  $\Box^{-1}\Gamma\Proves[\Sigma]!A$ olsun. \olref{lem:box1} gereğince
+  $\Box\Box^{-1}\Gamma\Proves[\Sigma]\Box!A$. Fakat
+  $\Box\Box^{-1}\Gamma\subseteq\Gamma$ olduğundan tekdüzelik gereğince
+  $\Gamma\Proves[\Sigma]\Box!A$.
+\end{proof}
+
+\iftag{prvBox}{%
+% Box is primitive
+
+\begin{prop}\ollabel{prop:box}
+  $\Gamma$ tam $\Sigma$-tutarlıysa, $\Box!A\in\Gamma$ olması,
+  $\Box^{-1}\Gamma\subseteq\Delta$ olan her tam $\Sigma$-tutarlı
+  $\Delta$ için $!A\in\Delta$ olmasına denktir.
+\end{prop}
+
+\begin{proof}
+  $\Gamma$ tam $\Sigma$-tutarlı olsun. ``Yalnızca eğer'' yönü kolaydır:
+  $\Box!A\in\Gamma$ ve $\Box^{-1}\Gamma\subseteq\Delta$ olsun.
+  $\Box!A\in\Gamma$ olduğundan $!A\in\Box^{-1}\Gamma\subseteq\Delta$;
+  dolayısıyla $!A\in\Delta$.
+
+  ``Eğer'' yönü için karşıt-tersi ispatlayalım. $\Box!A\notin\Gamma$ olsun.
+  $\Gamma$ tam $\Sigma$-tutarlı olduğundan türetim altında kapalıdır;
+  dolayısıyla $\Gamma\Proves/[\Sigma]\Box!A$. \olref{lem:box2} gereğince
+  $\Box^{-1}\Gamma\Proves/[\Sigma]!A$. Bundan
+  \olref[prf][con]{prop:consistencyfacts}\olref[prf][con]{prop:consistencyfacts-b}
+  gereğince $\Box^{-1}\Gamma\cup\{\lnot!A\}$ $\Sigma$-tutarlıdır.
+  Lindenbaum Lemmasıyla, $\Box^{-1}\Gamma\cup\{\lnot!A\}\subseteq\Delta$
+  olacak bir tam $\Sigma$-tutarlı $\Delta$ vardır. Tutarlılık gereğince
+  $!A\notin\Delta$.
+\end{proof}
+}{%
+% Box is not primitive, only Diamond is
+
+\begin{prop}\ollabel{prop:diamond}
+  $\Gamma$ tam $\Sigma$-tutarlıysa, $\Diamond!A\in\Gamma$ olması,
+  $\Diamond\Delta\subseteq\Gamma$ ve $!A\in\Delta$ olacak tam
+  $\Sigma$-tutarlı bir $\Delta$ bulunmasına denktir.
+\end{prop}
+
+\begin{proof}
+  $\Gamma$ tam $\Sigma$-tutarlı olsun. Sağdan sola yön kolaydır:
+  $\Diamond\Delta\subseteq\Gamma$ ve $!A\in\Delta$ olan tam
+  $\Sigma$-tutarlı bir $\Delta$ alalım. O zaman
+  $\Diamond!A\in\Diamond\Delta\subseteq\Gamma$.
+
+  Soldan sağa yön için $\Diamond!A\in\Gamma$ varsayalım. $!A\in\Delta$ ve
+  $\Diamond\Delta\subseteq\Gamma$ olan tam $\Sigma$-tutarlı bir $\Delta$
+  bulunduğunu göstermeliyiz. $\Diamond!A\in\Gamma$ ve $\Gamma$
+  $\Sigma$-tutarlı olduğundan $\Box\lnot!A\notin\Gamma$. $\Gamma$ tam
+  $\Sigma$-tutarlı ve türetim altında kapalı olduğundan
+  $\Gamma\Proves/[\Sigma]\Box\lnot!A$. \olref{lem:box2} gereğince
+  $\Box^{-1}\Gamma\Proves/[\Sigma]\lnot!A$. Bundan
+  \olref[prf][con]{prop:consistencyfacts}\olref[prf][con]{prop:consistencyfacts-b}
+  gereğince $\Box^{-1}\Gamma\cup\{!A\}$ $\Sigma$-tutarlıdır. Lindenbaum
+  Lemmasıyla $\Box^{-1}\Gamma\cup\{!A\}\subseteq\Delta$ olacak bir tam
+  $\Sigma$-tutarlı $\Delta$ vardır. Açıkça $!A\in\Delta$. Şimdi
+  $\Diamond\Delta\subseteq\Gamma$ olduğunu gösterelim. Olmadığını
+  varsayalım: bazı $!B\in\Delta$ için $\Diamond!B\notin\Gamma$. O zaman
+  $\Gamma$ tam $\Sigma$-tutarlı olduğundan $\Box\lnot!B\in\Gamma$.
+  Dolayısıyla $\lnot!B\in\Box^{-1}\Gamma\subseteq\Delta$ olurdu ve bu da
+  $\Delta$'yı tutarsız yapardı.
+\end{proof}
+}
+
+\begin{lem}\ollabel{lem:box-iff-diamond}
+  $\Gamma$ ve $\Delta$ tam $\Sigma$-tutarlı olsun. O zaman
+  $\Box^{-1}\Gamma\subseteq\Delta$ ancak ve ancak
+  $\Diamond\Delta\subseteq\Gamma$.
+\end{lem}
+
+\begin{proof}
+  ``Yalnızca eğer'' yönü: $\Box^{-1}\Gamma\subseteq\Delta$ varsayalım ve
+  $\Diamond!A\in\Diamond\Delta$ (yani $!A\in\Delta$) olsun.
+  $\Diamond!A\in\Gamma$ olduğunu göstermek için
+  $\Box\lnot!A\notin\Gamma$ olduğunu göstermek yeterlidir; çünkü o zaman
+  azamilik gereğince $\lnot\Box\lnot!A\in\Gamma$. Eğer
+  $\Box\lnot!A\in\Gamma$ olsaydı varsayım gereğince
+  $\lnot!A\in\Delta$ olur ve bu $!A\in\Delta$ olduğundan $\Delta$'nın
+  tutarlılığına aykırı düşerdi. Dolayısıyla istenildiği gibi
+  $\Box\lnot!A\notin\Gamma$.
+
+  ``Eğer'' yönü: $\Diamond\Delta\subseteq\Gamma$ varsayalım. Karşıt-ters
+  yönde, $!A\notin\Delta$ varsayımından $\Box!A\notin\Gamma$ sonucunu
+  gösterelim. $!A\notin\Delta$ ise azamilik gereğince
+  $\lnot!A\in\Delta$; varsayımdan $\Diamond\lnot!A\in\Gamma$. Normal
+  modal mantıkta $\Diamond\lnot!A$, $\lnot\Box!A$'ya denktir; ikincisi
+  $\Gamma$ içindeyse tutarlılık gereğince $\Box!A\notin\Gamma$.
+\end{proof}
+
+\iftag{prvBox}{%
+  \iftag{prvDiamond}{%
+% Box and Diamond are both primitive; prove prop:diamond
+
+\begin{prop}\ollabel{prop:diamond}
+  $\Gamma$ tam $\Sigma$-tutarlıysa, $\Diamond!A\in\Gamma$ olması,
+  $\Diamond\Delta\subseteq\Gamma$ ve $!A\in\Delta$ olacak tam
+  $\Sigma$-tutarlı bir $\Delta$ bulunmasına denktir.
+\end{prop}
+
+\begin{proof}
+$\Gamma$ tam $\Sigma$-tutarlı olsun. \Dual{} ve kapalılık gereğince
+$\Diamond!A\in\Gamma$ ancak ve ancak $\lnot\Box\lnot!A\in\Gamma$.
+$\Gamma$ tam $\Sigma$-tutarlı olduğundan
+\olref[ccs]{prop:ccs-properties}\olref[ccs]{prop:ccs-lnot} gereğince
+$\lnot\Box\lnot!A\in\Gamma$ ancak ve ancak
+$\Box\lnot!A\notin\Gamma$. \olref{prop:box} gereğince
+$\Box\lnot!A\notin\Gamma$ olması,
+$\Box^{-1}\Gamma\subseteq\Delta$ ve $\lnot!A\notin\Delta$ olacak tam
+$\Sigma$-tutarlı bir $\Delta$ bulunmasına denktir. Böyle bir $\Delta$ ele
+alalım. \olref{lem:box-iff-diamond} gereğince
+$\Box^{-1}\Gamma\subseteq\Delta$ ancak ve ancak
+$\Diamond\Delta\subseteq\Gamma$. Ayrıca
+\olref[ccs]{prop:ccs-properties}\olref[ccs]{prop:ccs-lnot} gereğince
+$\lnot!A\notin\Delta$ ancak ve ancak $!A\in\Delta$. Dolayısıyla
+$\Diamond!A\in\Gamma$ olması, $\Diamond\Delta\subseteq\Gamma$ ve
+$!A\in\Delta$ olacak tam $\Sigma$-tutarlı bir $\Delta$ bulunmasına denktir.
+\end{proof}
+
+}{}}{}
+
+\begin{prob}
+  $\Gamma$ tam $\Sigma$-tutarlıysa
+  \iftag{prvBox}{$\Diamond!A\in\Gamma$ olmasının,
+    $\Box^{-1}\Gamma\subseteq\Delta$ ve $!A\in\Delta$ olacak bir tam
+    $\Sigma$-tutarlı $\Delta$ bulunmasına denk olduğunu}{$\Box!A\in\Gamma$
+    olmasının, $\Box^{-1}\Gamma\subseteq\Delta$ olan her tam
+    $\Sigma$-tutarlı $\Delta$ için $!A\in\Delta$ olmasına denk olduğunu}
+  gösterin. Bunu \emph{\olref[nml][com][mod]{lem:box-iff-diamond} lemmasını
+  kullanmadan} yapın.
+\end{prob}
+

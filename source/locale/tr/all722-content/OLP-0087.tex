@@ -1,0 +1,109 @@
+% Generated from locale/tr/content/first-order-logic/natural-deduction/quantifier-rules.tex; do not hand-edit.
+
+
+\olfileid[tr]{fol}{ntd}{qrl}
+
+\olsection{Niceleyici Kuralları}
+
+\subsection{$\lforall$ Kuralları}
+
+\begin{defish}
+\AxiomC{$!A(a)$}
+\RightLabel{\Intro{\lforall}}
+\UnaryInfC{$\lforall[x][\Atom{!A}{x}]$}
+\DisplayProof
+\hfill
+\AxiomC{$\lforall[x][\Atom{!A}{x}]$}
+\RightLabel{\Elim{\lforall}}
+\UnaryInfC{$!A(t)$}
+\DisplayProof
+\end{defish}
+
+$\lforall$ kurallarında $t$, kapalı bir terimdir (hiçbir değişken içermeyen
+bir terim); $a$ ise !!a{constant} olarak seçilir. Bu sabit,
+sonuç~$\lforall[x][!A(x)]$ içinde ya da öncül~$!A(a)$ bakımından
+!!{undischarged} kalıp bu öncülle biten !!{derivation} içinde yer alan
+herhangi bir varsayımda geçmez. $a$'ya \Intro{\lforall}
+çıkarımının \emph{özdeğişkeni} deriz.\footnote{Yukarıdaki kuralda $a$ bir
+sabit olduğu hâlde ``özdeğişken'' terimini kullanıyoruz. Bunun tarihsel
+nedenleri vardır.}
+
+\subsection{$\lexists$ Kuralları}
+
+\begin{defish}
+\AxiomC{$\Atom{!A}{t}$}
+\RightLabel{\Intro{\lexists}}
+\UnaryInfC{$\lexists[x][\Atom{!A}{x}]$}
+\DisplayProof
+\hfill
+\AxiomC{$\lexists[x][\Atom{!A}{x}]$}
+\AxiomC{[$\Atom{!A}{a}$]$^n$}
+\DeduceC{$!C$}
+\DischargeRule{\Elim{\lexists}}{n}
+\BinaryInfC{$!C$}
+\DisplayProof
+\end{defish}
+
+Burada da $t$ kapalı bir terimdir; $a$ ise !!a{constant} olarak seçilir. Bu
+sabit öncül $\lexists[x][!A(x)]$ içinde, sonuç~$!C$ içinde veya
+!!{undischarged} kalıp iki öncülle biten !!{derivation}s içinde yer alan
+herhangi bir varsayımda ($!A(a)$ varsayımları dışında) geçmez. $a$'ya
+\Elim{\lexists} çıkarımının
+\emph{özdeğişkeni} deriz.
+
+Bir özdeğişkenin, \Intro{\lforall} veya \Elim{\lexists} çıkarımında yukarıda
+belirtilen yasaklı sonuç ya da ana öncül formüllerinde geçmemesi; ayrıca
+!!{undischarged} kalan varsayımlarla öncüllere götüren !!{derivation}s içinde
+yer almaması koşuluna
+\emph{özdeğişken koşulu} denir.
+
+\begin{explain}
+$!A$ bir !!a{formula} olduğunda ve !!{variable}~$x$ bu formülde serbest
+geçtiğinde, bunu
+$!A(x)$ yazarak belirttiğimizi hatırlayın. Aynı bağlamda $!A(t)$,
+$\Subst{!A}{t}{x}$ ifadesinin kısaltmasıdır. Dolayısıyla
+$\Intro\lexists$ kuralını şöyle de yazabilirdik:
+\begin{prooftree}
+\AxiomC{$\Subst{!A}{t}{x}$}
+\RightLabel{\Intro{\lexists}}
+\UnaryInfC{$\lexists[x][!A]$}
+\end{prooftree}
+$t$'nin $!A$ içinde zaten geçebileceğine dikkat edin; örneğin $!A$,
+$\Atom{\Obj P}{t,x}$ olabilir. Bu nedenle $\Atom{\Obj P}{t,t}$'den
+$\lexists[x][\Atom{\Obj P}{t,x}]$ çıkarmak, $\Intro\lexists$ kuralının
+doğru bir uygulamasıdır: öncüldeki $t$ geçişlerinin birini veya birkaçını,
+ama zorunlu olarak hepsini değil, bağlı !!{variable}~$x$ ile
+``değiştirebilirsiniz''. Ne var ki $\Intro\lforall$ ve~$\Elim\lexists$
+kurallarındaki özdeğişken koşulları, !!{constant}~$a$'nın $!A$ içinde
+geçmemesini gerektirir. Bu yüzden $\Atom{\Obj P}{a,a}$'dan
+$\Intro\lforall$ kullanarak $\lforall[x][\Atom{\Obj P}{a,x}]$ sonucunu
+doğru biçimde çıkaramazsınız.
+\end{explain}
+
+\begin{explain}
+\Intro{\lexists} ve \Elim{\lforall} kurallarında başka hiçbir kısıtlama yoktur;
+$t$ terimi herhangi bir kapalı terim olabilir, dolayısıyla ek bir koşulu gözetmemiz
+gerekmez. Buna karşılık \Elim{\lexists} ve \Intro{\lforall} kurallarında
+özdeğişken koşulu, !!{constant}~$a$'nın sonuçta veya herhangi bir
+!!{undischarged} varsayımda hiçbir yerde geçmemesini gerektirir. Bu koşul,
+sistemin sağlam olmasını güvence altına alır: sistemin !!{derive}s
+eylemleriyle ulaştığı !!{sentence}s yalnızca mantıksal olarak çıktıkları
+!!{undischarged} varsayımlara dayanabilir. Bu koşul
+olmasaydı aşağıdaki çıkarıma izin
+verilirdi:
+\begin{prooftree}
+  \AxiomC{$\lexists[x][!A(x)]$}
+  \AxiomC{$\Discharge{!A(a)}{1}$}
+  \RightLabel{*\Intro{\lforall}}
+  \UnaryInfC{$\lforall[x][!A(x)]$}
+  \RightLabel{\Elim{\lexists}}
+  \BinaryInfC{$\lforall[x][!A(x)]$}
+\end{prooftree}
+Oysa $\lexists[x][!A(x)] \Entails/ \lforall[x][!A(x)]$.
+
+Niceleyicilerin giderme kuralları, !!{variable}s yerine yalnızca kapalı
+terimlerin konmasına izin verdiği için türetilebilen her !!{formula}, bir
+!!{sentence}s kümesinden çıkıyorsa kendisi de !!a{sentence} olur.
+\end{explain}
+
+

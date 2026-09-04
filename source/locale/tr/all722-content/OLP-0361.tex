@@ -1,0 +1,176 @@
+% Generated from locale/tr/content/lambda-calculus/syntax/substitution.tex; do not hand-edit.
+
+
+\olfileid[tr]{lam}{syn}{sub}
+\olsection{Yerine Koyma}
+
+\begin{explain}
+Serbest değişkenler ortam değişkenlerine yapılan göndermelerdir; dolayısıyla
+serbest bir değişkenin yerine belirli bir değer kullanmak anlamlıdır. Örneğin
+$\lambd[x][f x]$ içindeki $f$'yi özdeşlik fonksiyonu $\lambd[y][y]$ gibi
+belirli bir terimle değiştirmek isteyebiliriz. Sonuç
+$\lambd[x][(\lambd[y][y]) x]$ olur. Serbest değişkenleri lambda terimleriyle
+değiştirme işlemine yerine koyma denir.
+\end{explain}
+
+\begin{defn}[Yerine koyma] \ollabel{defn:substitution}
+  Bir $M$ terimindeki $x$ değişkeninin yerine $N$ terimini
+  \emph{koyma} işlemi $\Subst{M}{N}{x}$, tümevarımlı olarak şöyle tanımlanır:
+  \begin{enumerate}
+    \item $\Subst{x}{N}{x} = N$. \ollabel{defn:substitution-1}
+    \item $x \neq y$ ise $\Subst{y}{N}{x}  = y$.
+      \ollabel{defn:substitution-2}
+    \item $\Subst{PQ}{N}{x}  = (\Subst{P}{N}{x}) (\Subst{Q}{N}{x})$.
+      \ollabel{def:substitution-3}
+    \item $x \neq y$ ve $y \notin \FV{N}$ ise
+      $\Subst{(\lambd[y][P])}{N}{x} =
+      \lambd[y][\Subst{P}{N}{x}]$; aksi durumda tanımsızdır.
+      \ollabel{defn:substitution-4}
+  \end{enumerate}
+\end{defn}
+
+\begin{explain}
+\olref{defn:substitution}\olref{defn:substitution-4} içinde $x\neq y$
+koşulunu isteriz; çünkü $M$ içindeki $x$ değişkeninin \emph{bağlı}
+geçişlerini $N$ ile değiştirmek istemeyiz. Örneğin
+$\Subst{\lambd[x][x]}{y}{x}$ yerine koymasını hesaplarsak sonuç
+$\lambd[x][y]$ değil, doğrudan $\lambd[x][x]$ olmalıdır.
+
+$\lambd[y][P]$ içindeki $x$ yerine $N$ koyarken $y\notin\FV{N}$ koşulunu da
+isteriz. Örneğin $\lambd[y][x]$ içinde $x$ yerine $y$ koyamayız; yani
+$\Subst{\lambd[y][x]}{y}{x}$ tanımsızdır. Aksi hâlde sonuç, bir argüman alıp
+onu doğrudan döndüren fonksiyonu gösteren $\lambd[y][y]$ olurdu. Oysa
+$\lambd[y][x]$, her zaman $x$ terimini, daha doğrusu $x$'in gönderme yaptığı
+değeri, döndüren bir fonksiyonu gösterir. Gerçekte istediğimiz sonuç, bir
+argüman alıp onu kullanmadan atan ve ortam değişkeni $y$'yi döndüren bir
+fonksiyondur. Bunu doğru yapmak için önce bağlı $y$ değişkenini
+``yeniden adlandırmamız'' gerekir.
+\end{explain}
+
+\begin{prob}
+  Aşağıdaki yerine koymaların sonucu nedir?
+  \begin{enumerate}
+  \item $\Subst{\lambd[y][x(\lambd[w][vwx])]}{(uv)}{x}$
+  \item $\Subst{\lambd[y][x(\lambd[x][x])]}{(\lambd[y][xy])}{x}$
+  \item $\Subst{y(\lambd[v][xv])}{(\lambd[y][vy])}{x}$
+  \end{enumerate}
+\end{prob}
+
+\begin{thm} \ollabel{thm:notinfv}
+  $x \notin \FV{M}$ ise, sol taraf tanımlı olmak koşuluyla
+  $\FV{\Subst{M}{N}{x}} = \FV{M}$ olur.
+\end{thm}
+
+\begin{proof}
+  $M$'nin kuruluşu üzerinde tümevarımla.
+  \begin{enumerate}
+  \item $M$ bir değişkendir: alıştırma.
+  \item $M$, $(PQ)$ biçimindedir: alıştırma.
+  \item $M$, $\lambd[y][P]$ biçiminde olsun. 
+    $\Subst{\lambd[y][P]}{N}{x}$ tanımlı olduğundan
+    $\lambd[y][\Subst{P}{N}{x}]$ olmak zorundadır. Dolayısıyla
+    $\Subst{P}{N}{x}$ tanımlıdır; ayrıca $x\neq y$ ve
+    $x\notin\FV{P}$ olur. O hâlde:
+    \begin{multline*}
+      \FV{\Subst{\lambd[y][P]}{N}{x}} = \\
+    \begin{aligned}
+      & = \FV{\lambd[y][\Subst{P}{N}{x}]} &&
+      \text{\olref{defn:substitution-4} gereği}\\
+      & = \FV{\Subst{P}{N}{x}} \setminus \{y\} &&
+      \text{\olref[fv]{def:fv}\olref[fv]{def:fv2} gereği}\\
+      & = \FV{P} \setminus \{y\} && \text{tümevarım varsayımı gereği} \\
+      & = \FV{\lambd[y][P]} &&
+      \text{\olref[fv]{def:fv}\olref[fv]{def:fv2} gereği.}
+    \end{aligned}
+    \end{multline*}
+  \end{enumerate}
+\end{proof}
+
+\begin{prob}
+  \olref[lam][syn][sub]{thm:notinfv} teoreminin ispatını tamamlayın.
+\end{prob}
+
+\begin{thm} \ollabel{thm:infv}
+  $x \in \FV{M}$ ise, sol taraf tanımlı olmak koşuluyla
+  $\FV{\Subst{M}{N}{x}} = (\FV{M} \setminus \{x\}) \cup \FV{N}$ olur.
+\end{thm}
+
+\begin{proof}
+  $M$'nin kuruluşu üzerinde tümevarımla.
+  \begin{enumerate}
+  \item $M$ bir değişkendir: alıştırma.
+  \item $M$, $PQ$ biçimindedir. $\Subst{(PQ)}{N}{x}$ tanımlı olduğundan,
+    her iki yerine koyma da tanımlı olmak üzere
+    $(\Subst{P}{N}{x})(\Subst{Q}{N}{x})$ olmak zorundadır. Ayrıca
+    $x\in\FV{PQ}$ olduğundan $x\in\FV{P}$ ya da $x\in\FV{Q}$, belki de
+    her ikisi birden, geçerlidir. Gerisi alıştırma olarak bırakılmıştır.
+  \item $M$, $\lambd[y][P]$ biçiminde olsun.
+    $\Subst{\lambd[y][P]}{N}{x}$ tanımlı olduğundan
+    $\lambd[y][\Subst{P}{N}{x}]$ olmak zorundadır; burada
+    $\Subst{P}{N}{x}$ tanımlı, $x\neq y$ ve $y\notin\FV{N}$'dir.
+    $x\in\FV{\lambd[y][P]}$ olduğundan $x\in\FV{P}$ de geçerlidir. Şimdi:
+    \begin{multline*}
+      \FV{\Subst{(\lambd[y][P])}{N}{x}} = \\
+      \begin{aligned}
+      & = \FV{\lambd[y][\Subst{P}{N}{x}]} \\
+      & = \FV{\Subst{P}{N}{x}} \setminus \{y\} \\
+      & = ((\FV{P} \setminus \{x\}) \cup \FV{N}) \setminus \{y\}
+       && \text{tümevarım varsayımı gereği} \\
+      & = (\FV{P} \setminus \{x, y\}) \cup \FV{N}
+       && \text{$y \notin \FV{N}$ olduğundan} \\
+      & = (\FV{\lambd[y][P]} \setminus \{x\}) \cup \FV{N}.
+      \end{aligned}
+      \end{multline*}
+  \end{enumerate}
+\end{proof}
+
+\begin{prob}
+  \olref[lam][syn][sub]{thm:infv} teoreminin ispatını tamamlayın.
+\end{prob}
+
+\begin{thm}\ollabel{thm:clr}
+  Sağ taraf tanımlı ve $x\notin\FV{N}$ ise
+  $x \notin \FV{\Subst{M}{N}{x}}$ olur.
+\end{thm}
+
+\begin{proof}
+  Alıştırma.
+\end{proof}
+
+\begin{prob}
+  \olref[lam][syn][sub]{thm:clr} teoremini ispatlayın.
+\end{prob}
+
+
+\begin{thm}\ollabel{thm:inv}
+  $\Subst{M}{y}{x}$ tanımlı ve $y \notin \FV{M}$ ise
+  $\Subst{\Subst{M}{y}{x}}{x}{y} = M$ olur.
+\end{thm}
+
+\begin{proof}
+  $M$'nin kuruluşu üzerinde tümevarımla.
+  \begin{enumerate}
+  \item $M$, bir $z$ değişkenidir: alıştırma.
+  \item $M$, $(PQ)$ biçimindedir. O zaman:
+    \begin{align*}
+      \Subst{\Subst{(PQ)}{y}{x}}{x}{y}
+      &=\Subst{((\Subst{P}{y}{x})(\Subst{Q}{y}{x}))}{x}{y} \\
+      &= (\Subst{\Subst{P}{y}{x}}{x}{y})(\Subst{\Subst{Q}{y}{x}}{x}{y}) \\
+      &= (PQ) \text{ tümevarım varsayımı gereği.}
+    \end{align*}
+  \item $M$, $\lambd[z][N]$ biçimindedir.
+    $\Subst{\lambd[z][N]}{y}{x}$ tanımlı olduğundan $z\neq x$ ve
+    $z\neq y$ olduğunu biliriz. Dolayısıyla:
+    \begin{align*}
+      \Subst{\Subst{(\lambd[z][N])}{y}{x}}{x}{y}
+      & = \Subst{(\lambd[z][\Subst{N}{y}{x}])}{x}{y} \\
+      & = \lambd[z][\Subst{\Subst{N}{y}{x}}{x}{y}] \\
+      &= \lambd[z][N] \text{ tümevarım varsayımı gereği.}
+    \end{align*}
+  \end{enumerate}
+\end{proof}
+
+\begin{prob}
+  \olref[lam][syn][sub]{thm:inv} teoreminin ispatını tamamlayın.
+\end{prob}
+

@@ -1,0 +1,233 @@
+% Generated from locale/tr/content/many-valued-logic/three-valued-logics/lukasiewicz.tex; do not hand-edit.
+
+
+\olfileid[tr]{mvl}{thr}{luk}
+
+\olsection{\L ukasiewicz Mantığı}
+
+Çok değerli mantığa ilişkin yayımlanmış ve ayrıntılı biçimde geliştirilmiş
+ilk önerilerden biri, 1921'de Polonyalı filozof Jan \L ukasiewicz tarafından
+ortaya konmuştur. \L ukasiewicz'i Aristoteles'in deniz savaşı problemi
+güdülemişti: \emph{Bugün}, “Yarın bir deniz savaşı olacak” tümcesi ne doğru
+ne de yanlış görünür; doğruluk değeri henüz belirlenmemiştir. \L ukasiewicz
+bu tür “geleceğe ilişkin olumsal” tümceler için üçüncü bir doğruluk değeri
+getirmeyi önerdi.
+\begin{quote}
+Önümüzdeki yılın belirli bir anında, örneğin 21 Aralık günü öğleyin
+Varşova'da bulunmamın şu anda ne olumlu ne de olumsuz biçimde belirlenmiş
+olduğunu çelişkiye düşmeden varsayabilirim. Dolayısıyla o anda Varşova'da
+bulunmam mümkündür, fakat zorunlu değildir. Bu varsayım altında “Önümüzdeki
+yıl 21 Aralık günü öğleyin Varşova'da olacağım” önermesi şu anda ne doğru ne
+de yanlış olabilir. Çünkü şimdi doğru olsaydı gelecekte Varşova'da bulunmam
+zorunlu olurdu ki bu varsayımla çelişir. Öte yandan şimdi yanlış olsaydı
+gelecekte Varşova'da bulunmam olanaksız olurdu ki bu da varsayımla çelişir.
+Bu nedenle ele alınan önerme şu anda ne doğrudur ne de yanlıştır ve “0” ya da
+yanlışlık ile “1” ya da doğruluktan farklı üçüncü bir değere sahip olmalıdır.
+Bu değeri “$\frac{1}{2}$” ile gösterebiliriz. O, “mümkün olan”ı temsil eder
+ve “doğru” ile “yanlış”ın yanına üçüncü bir değer olarak katılır.
+\end{quote}
+\L ukasiewicz'in üçüncü doğruluk değeri için $\Undef$ kullanacağız.
+\footnote{\L ukasiewicz burada “mümkün”ü günümüzde alışılmadık olan bir
+anlamda, yani mümkün fakat zorunlu değil anlamında kullanır.}
+
+Bu yorumda $\lnot$, $\land$ ve $\lor$ bağlaçlarının doğruluk fonksiyonlarını
+belirlemek kolaydır: geleceğe ilişkin olumsal bir tümcenin değillemesi de
+geleceğe ilişkin olumsal bir tümcedir; dolayısıyla
+$\tf{\lnot}(\Undef) = \Undef$. Bir tümel evetlemenin bir bileşeni
+belirlenmemiş, öteki ise doğruysa tümel evetleme de belirlenmemiştir; sonuçta
+geleceğe ilişkin olumsal bileşenin nasıl sonuçlanacağına bağlı olarak
+tümel evetleme doğru da yanlış da çıkabilir. Öyleyse
+\[
+    \tf{\land}(\True, \Undef) =
+\tf{\land}(\Undef, \True) =
+\Undef.
+\]
+Öteki bileşen yanlışsa tümel evetleme doğru çıkamaz; dolayısıyla
+\[\tf{\land}(\False, \Undef) =
+\tf{\land}(\Undef, \False) = \False.\]
+Öteki değerler (argümanlar belirlenmiş doğruluk değerleri $\True$ ya da
+$\False$ ise) klasik mantıktaki gibidir.
+
+Koşulluda durum biraz daha güçtür. $q$'nun geleceğe ilişkin olumsal bir
+önerme olduğunu varsayın. $p$ yanlışsa $q$ nasıl sonuçlanırsa sonuçlansın
+$p \lif q$ doğru olacaktır; öyleyse
+$\tf{\lif}(\False, \Undef) = \True$ koymalıyız. $p$ doğruysa $q$ ne olursa
+olsun $q \lif p$ doğru olacaktır; dolayısıyla
+$\tf{\lif}(\Undef, \True) = \True$. $p$ doğruysa $p \lif q$ doğru da yanlış
+da çıkabilir; öyleyse $\tf{\lif}(\True, \Undef) = \Undef$. Benzer biçimde
+$p$ yanlışsa $q \lif p$ doğru da yanlış da çıkabilir; dolayısıyla
+$\tf{\lif}(\Undef, \False) = \Undef$. Geriye hem $p$'nin hem de $q$'nun
+geleceğe ilişkin olumsal olduğu durum kalır. Güdülenmeye dayanarak bu durumda
+aslında $\Undef$ değeri vermeliyiz. Ancak bu, $!A \lif !A$'yı bir totoloji
+\emph{olmaktan çıkarırdı}. \L ukasiewicz, $!A \lor \lnot !A$ ve
+$\lnot(!A \land \lnot !A)$'dan vazgeçmekte sakınca görmemiş, fakat
+$!A \lif !A$'dan vazgeçmeyi kabul etmemiştir. Bu nedenle
+$\tf{\lif}(\Undef, \Undef) = \True$ koşulunu koymuştur.
+
+\begin{defn}\ollabel{def:lukasiewicz}
+Üç değerli \L ukasiewicz mantığı şu matrisle tanımlanır:
+\begin{enumerate}
+  \item $\lnot$, $\land$, $\lor$, $\lif$ bağlaçlarını içeren standart
+  önerme dili $\Lang L_0$.
+  \item Doğruluk değerleri kümesi $V = \{\True, \Undef, \False\}$.
+  \item Tek belirlenmiş değer $\True$'dur; yani $V^+ = \{\True\}$.
+  \item Doğruluk fonksiyonları aşağıdaki tablolarla verilir:
+  \begin{center}
+    \begin{tabular}{c|c} 
+      $\tf{\lnot}$ & \\ 
+      \hline  
+      $\True$ & $\False$ \\ 
+      $\Undef$ & $\Undef$ \\
+      $\False$ & $\True$ 
+    \end{tabular}
+    \quad
+    \begin{tabular}{c|ccc} 
+      $\tf{\land}[\LogLuk[3]]$ & $\True$ & $\Undef$ & $\False$ \\ 
+      \hline 
+      $\True$ & $\True$ & $\Undef$ & $\False$ \\ 
+      $\Undef$ & $\Undef$ & $\Undef$ & $\False$\\ 
+      $\False$ & $\False$ & $\False$ & $\False$ 
+    \end{tabular}
+    \\[2ex]
+    \begin{tabular}{c|ccc} 
+      $\tf{\lor}[\LogLuk[3]]$ & $\True$ & $\Undef$ & $\False$ \\ 
+      \hline 
+      $\True$ & $\True$ & $\True$ & $\True$ \\ 
+      $\Undef$ & $\True$ & $\Undef$ & $\Undef$ \\
+      $\False$ & $\True$ & $\Undef$ & $\False$ 
+    \end{tabular}
+    \quad
+    \begin{tabular}{c|ccc} 
+      $\tf{\lif}[\LogLuk[3]]$ & $\True$ & $\Undef$ & $\False$ \\ 
+      \hline 
+      $\True$ & $\True$ & $\Undef$ & $\False$ \\ 
+      $\Undef$ & $\True$ & $\True$ & $\Undef$  \\ 
+      $\False$ & $\True$ & $\True$ & $\True$ 
+    \end{tabular}
+  \end{center} 
+\end{enumerate}
+\end{defn}
+
+Kolayca görülebileceği gibi yalnızca $\lnot$, $\land$ ve $\lor$ içeren
+herhangi bir !!{formula}~$!A$, bütün !!{propositional variable}s{}ne
+$\Undef$ atanırsa $\Undef$ doğruluk değerini alır. Dolayısıyla örneğin klasik
+totolojiler $p \lor \lnot p$ ve $\lnot(p \land \lnot p)$,
+$\pAssign v(p) = \Undef$ olduğunda her zaman
+$\pValue{v}(!A) = \Undef$ olduğu için $\LogLuk[3]$ içinde totoloji değildir.
+
+$\pAssign v(p) = \True$ ya da $\False$ olan !!{valuation}s{}de
+$\pValue v(!A)$, klasik doğruluk değeriyle çakışır.
+
+\begin{prop}
+  $!A$ içindeki bütün $p$'ler için
+  $\pAssign v(p) \in \{\True, \False\}$ ise
+  $\pValue v(!A)[\LogLuk[3]] = \pValue v(!A)[\LogCL]$.
+\end{prop}
+
+\begin{prob}\label{mvl:thr:luk:prob:luk-iff} $\LogLuk[3]$ içinde
+  $\pValue v(!A \liff !B) = \pValue v((!A \lif !B) \land (!B \lif
+  !A))$ olarak tanımladığımızı varsayın. $\liff$ hangi doğruluk tablosuna
+  sahip olur?
+\end{prob}
+
+Birçok klasik totoloji, örneğin $\lnot p \lif (p \lif q)$, aynı zamanda
+\LogLuk[3] içinde de totolojidir. Klasik mantıkta olduğu gibi bunu doğruluk
+tablolarıyla doğrulayabiliriz:
+\begin{center}
+\begin{tabular}{cc|cccccc}
+  $p$ & $q$ & $\lnot$ & $p$ & $\lif$ & $\smash{(}p$ & $\lif$ & $q\smash{)}$ \\ \hline
+  \True & \True & \False & \True & \True & \True & \True & \True \\
+  \True & \Undef & \False & \True & \True & \True & \Undef & \Undef \\
+  \True & \False & \False & \True & \True & \True & \False & \False \\
+  \Undef & \True & \Undef & \Undef & \True & \Undef & \True & \True \\
+  \Undef & \Undef & \Undef & \Undef & \True & \Undef & \True & \Undef \\
+  \Undef & \False & \Undef & \Undef & \True & \Undef & \Undef & \False \\
+  \False & \True & \True & \False & \True & \False & \True & \True \\
+  \False & \Undef & \True & \False & \True & \False & \True & \Undef \\
+  \False & \False & \True & \False & \True & \False & \True & \False \\  
+\end{tabular}
+\end{center}
+
+\begin{prob}
+  Aşağıdakilerin \LogLuk[3] içinde totoloji olduğunu gösterin:
+  \begin{enumerate}
+    \item $p \lif (q \lif p)$
+    \item\label{mvl:thr:luk:prob:luk-taut-2} $\lnot(p \land q) \liff (\lnot p \lor \lnot q)$
+    \item\label{mvl:thr:luk:prob:luk-taut-3} $\lnot(p \lor q) \liff (\lnot p \land \lnot q)$
+  \end{enumerate}
+  (\olref[mvl][thr][luk]{prob:luk-taut-2} ve
+  \olref[mvl][thr][luk]{prob:luk-taut-3} içinde $!A \liff !B$'yi
+  $(!A \lif !B) \land (!B \lif !A)$'nın bir kısaltması olarak alın ya da
+  \olref[mvl][thr][luk]{prob:luk-iff} için verdiğiniz çözüme başvurun.)
+\end{prob}
+
+\begin{prob}
+  Aşağıdaki klasik totolojilerin \LogLuk[3] içinde totoloji olmadığını
+  gösterin:
+  \begin{enumerate}
+    \item $(\lnot p \land p) \lif q$
+    \item $((p \lif q) \lif p) \lif p$
+    \item $(p \lif (p \lif q)) \lif (p \lif q)$
+  \end{enumerate}
+\end{prob}
+
+Bu nedenle bütün klasik totolojiler $\LogLuk[3]$'te totoloji olmasa bile her
+!!{valuation} altında en azından ya $\True$ ya da $\Undef$ değerini almaları
+gerektiği düşünülebilir. Oysa durum böyle değildir. Bunun bir karşı örneği
+\[
+  \lnot(p \lif \lnot p) \lor \lnot(\lnot p \lif p)
+\]
+formülüdür; bu formül $p$, $\Undef$ olduğunda $\False$ olur.
+
+\begin{prob}
+  Aşağıdaki bağıntılardan hangileri \L ukasiewicz mantığında geçerlidir? Her
+  biri için bir doğruluk tablosu verin.
+  \begin{enumerate}
+    \item $p, p \lif q \Entails q$
+    \item $\lnot\lnot p \Entails p$
+    \item $p \land q \Entails p$
+    \item $p \Entails p \land p$
+    \item $p \Entails p \lor q$
+  \end{enumerate}
+\end{prob}
+
+\L ukasiewicz, bir-konumlu $\Diamond !A$ (“$!A$ mümkündür”) bağlacıyla ona
+karşılık gelen $\Box !A$ (“$!A$ zorunludur”) bağlacını ekleyerek üç değerli
+sistemine dayalı bir olanak mantığı kurmayı umuyordu:
+\begin{center}
+  \begin{tabular}{c|c} 
+    $\tf{\Diamond}$ & \\ 
+    \hline  
+    $\True$ & $\True$ \\ 
+    $\Undef$ & $\True$ \\
+    $\False$ & $\False$ 
+  \end{tabular}
+  \quad
+  \begin{tabular}{c|c} 
+    $\tf{\Box}$ & \\ 
+    \hline  
+    $\True$ & $\True$ \\ 
+    $\Undef$ & $\False$ \\
+    $\False$ & $\False$ 
+  \end{tabular}
+\end{center}
+Başka bir deyişle $p$ ancak ve ancak yanlış olduğu henüz belirlenmemişse
+mümkündür; ancak ve ancak doğru olduğu zaten belirlenmişse zorunludur.
+
+\begin{prob}
+  $\Box p \liff \lnot\Diamond \lnot p$ ile $\Diamond p \liff
+  \lnot \Box \lnot p$'nin, $\Box$ ve $\Diamond$ doğruluk tablolarıyla
+  genişletilmiş \LogLuk[3] içinde totoloji olduğunu gösterin.
+\end{prob}
+
+Ancak önerilen bu kiplik mantığının eksiklikleri kısa sürede ortaya çıktı:
+Koşullar nasıl sonuçlanırsa sonuçlansın $p \land \lnot p$ hiçbir zaman doğru
+olamaz. Dolayısıyla şimdi belirlenmemiş (ve bu nedenle değeri de
+belirlenmemiş) olsa bile olanaksız sayılmalıdır; yani
+$\lnot \Diamond(p \land \lnot p)$ bir totoloji olmalıdır. Oysa
+$\pAssign v(p) = \Undef$ ise
+$\pValue v(\lnot \Diamond(p \land \lnot p)) = \False$ olur.
+\L ukasiewicz, olanaklılık ve zorunluluk gibi kiplik ayrımlarını barındırmak
+için iki doğruluk değerinin yetmeyeceği konusunda haklı olsa da üçüncü bir
+doğruluk değeri getirmek de yeterli değildir.
+

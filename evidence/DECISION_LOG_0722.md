@@ -33,7 +33,7 @@ Date: 2026-08-14
    successful compilation, extracted-text scans, all-page render inspection,
    and immutable hashes are the release gates.
 2. Human or native-language review is neither required nor claimed.
-3. Work is credited as performed at Floris's direction by “OpenAI 5.6 Sol,
+3. Work is credited as performed at [maintainer]'s direction by “OpenAI 5.6 Sol,
    Ultra mode” (“OpenAI's current flagship model for complex work”).
 4. The standalone repository path is the living Turkish publication mirror.
    Git commit/tag/release and Zenodo submission/readback are separate actions

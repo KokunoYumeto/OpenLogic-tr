@@ -1,0 +1,338 @@
+% Generated from locale/tr/content/proof-theory/cut-elimination/ce-largest.tex; do not hand-edit.
+
+
+\olfileid[tr]{pt}{cut}{inv}
+
+\olsection{En Büyük Kesmelerin Kaldırılması}
+
+\olref[seq][inv]{lem:G3c-invert}'in ispatı, \Log{G3c}'nin bir mantıksal
+kuralın (\RightR{\lexists} ile \LeftR{\lforall} dışında) sonucunu
+!!{prove}{}dığında, kuralın öncüllerinin her birini de !!{prove}{}dığını ve
+bunu ispatın !!{height}~değerini artırmadan yaptığını göstermişti. Daha iyisini
+yapabilir ve bunun
+$\Log{G3c} + \CutCS$ için de geçerli olduğunu gösterebiliriz.
+
+Daha önce olduğu gibi, bir \CutCS{} çıkarımının \emph{kesme derecesini},
+kesme !!{formula}{}ünün derinliği olarak alırız.
+
+\begin{lem}\ollabel{lem:inv-G3c-cut}
+$\Log{G3c} + \CutCS$, \RightR{\lexists} ya da \LeftR{\lforall} dışındaki
+bir mantıksal kural~$R$'nin sonucunu !!{prove}{}makta ve bunun için
+!!a{proof}~$\pi$ kullanıyorsa, her öncülü de !!{prove}{}r: bunu
+!!{proof}~$\pi'$ ile (ya da kuralın bir veya iki öncülü olmasına göre
+!!{proof}s~$\pi'$, $\pi''$ ile) yapar.
+Ayrıca (a)~$\pheight{\pi'}\le\pheight{\pi}$ (ve
+$\pheight{\pi''}\le\pheight{\pi}$) ve (b)~\CutCS{} çıkarımlarının sayısı
+ile dereceleri,~$\pi'$ içinde (ve $\pi''$ içinde)~$\pi$ içindekilerle
+aynıdır.
+\end{lem}
+
+\begin{proof}
+\cref{pt:seq:inv:lem:G3c-invert,pt:seq:inv:lem:invert-quant}
+ispatlarının incelenmesiyle. O ispat,~$\pheight{\pi}$ üzerine tümevarımla
+yapılmıştı. Taban durumunda bir aksiyomu başka bir aksiyomla değiştirdik.
+Dolayısıyla (a) ve~(b) koşulları önemsiz biçimde sağlanır. Eğer~$\pi$'nin
+son kuralı~$R$ ise, onun dolaysız alt-!!{proof}s{}ı istediğimiz
+!!{proof}s~$\pi_i$'dir ve hem (a) hem~(b) sağlanır. Öteki bütün durumlarda,
+tümevarım varsayımını~$\pi$'nin dolaysız alt-!!{proof}s{}ına, yani son
+çıkarım~$R$'nin öncülüne (öncüllerine) götürenlere uyguladık ve ardından
+sonuçlara aynı $R$ kuralını uyguladık. Yeni ispatın dolaysız
+alt-!!{proof}s{}ı için (a) ve~(b) koşulları geçerlidir; dolayısıyla tüm ispat
+için de (a) ve~(b) geçerlidir. Son çıkarımın~\CutCS{} olduğu durumu
+doğrulamak kalır. Bunu yine yalnızca tek bir örnek için yapıyoruz: $\pi$'nin
+\LeftR{\land}'ın $!B \land !C, \Gamma \Sequent \Delta$ sonucunun
+!!a{proof}{}ı olduğunu ve~\CutCS{} ile bittiğini varsayalım:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$!B \land !C, \Gamma \fCenter \Delta, !A$
+\AxiomC{}
+\RightLabel{$\pi_2$}
+\Deduce$!A, !B \land !C, \Gamma \fCenter \Delta$
+\RightLabel{\CutCS}
+\BinaryInf$!B \land !C, \Gamma \fCenter \Delta$
+\DisplayProof
+\]
+Tümevarım varsayımı, (aynı zamanda $\LeftR{\land}$ sonuç örneklerinin
+!!{proof}s{}ı olan) $\pi_1$ ile~$\pi_2$'ye uygulanır ve sırasıyla $!B, !C,
+\Gamma \fCenter \Delta, !A$ ile $!A, !B, !C, \Gamma \fCenter \Delta$'nın
+!!{proof}s{}ı olan $\pi_1'$ ile~$\pi_2'$'yi verir. Bunları \CutCS{} kullanarak
+birleştirip~$\pi'$'yü elde ederiz:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$!B, !C, \Gamma \fCenter \Delta, !A$
+\AxiomC{}
+\RightLabel{$\pi_2'$}
+\Deduce$!A, !B, !C, \Gamma \fCenter \Delta$
+\RightLabel{\CutCS}
+\BinaryInf$!B, !C, \Gamma \fCenter \Delta$
+\DisplayProof
+\]
+Açıkça (a) ve~(b) sağlanır.
+\end{proof}
+
+\CutCS{} yerine \Cut{} kullansaydık bunun işlemeyeceğine dikkat edin;
+çünkü o zaman son !!{proof}{}ın sonucu, öncülde iki $!B, !C, \Gamma$ kopyası
+ve ardılda iki $\Delta$ kopyası içerirdi. Büzülmenin kabul edilebilirliğine
+başvurmamız gerekirdi; ancak \olref[seq][inv]{prop:G3c-cont-adm}'in ispatı
+tersinirlik lemmasını kullanır. Böylece bir döngü içinde akıl yürütmüş
+olurduk.
+
+Kesme-giderimine alternatif bir ispat vermek için
+\cref{pt:cut:inv:lem:inv-G3c-cut}'i kullanabiliriz. Bu ispatta \CutCS{}
+çıkarımlarının en üst oluşumlarını art arda kaldırmak yerine, maksimal
+dereceli \CutCS{} çıkarımlarının oluşumlarını kaldırırız. Yani $\Log{G3c} +
+\CutCS$ içinde !!a{proof}~$\pi$ ile başlar ve onun herhangi bir yerindeki
+bir kesmeyi kaldırırız (onu daha küçük dereceli kesmelerle değiştirebiliriz)
+---sonra hiç kesme kalmayana dek bunu sürdürürüz. Tek koşul, ele aldığımız
+kesmenin üstünde aynı veya daha yüksek dereceli hiçbir kesmenin
+bulunmamasıdır.
+
+\begin{lem}\ollabel{lem:max-cut-red-G3c} $\pi$, $\Log{G3c}+\CutCS$ içinde,
+derecesi~$n$ olan bir~\CutCS{} çıkarımıyla biten ve bunun dışında yalnızca
+~$\Log{G3c}$ kurallarını ve derecesi $<n$ olan \CutCS{} çıkarımlarını
+kullanan !!a{proof} ise, aynı son-sekantın~$\Log{G3c} + \CutCS$ içinde bütün
+\CutCS{} çıkarımlarının derecesinin~$<n$ olduğu bir ispatı~$\pi'$ vardır.
+\end{lem}
+
+\begin{proof}
+!!{proof}~$\pi$ şöyle biter:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$\Gamma \fCenter \Delta, !A$
+\AxiomC{}
+\RightLabel{$\pi_2$}
+\Deduce$!A, \Gamma \fCenter \Delta$
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta$
+\DisplayProof
+\]
+~$!A$'nın biçimine göre durumları ayırırız.
+
+$!A$'nın atomik olduğunu varsayalım. $\pi_1$ ile $\pi_2$ içindeki bütün
+\CutCS{} çıkarımlarının derecesinin $< \depth{!A} = 0$ olması koşulu
+gereğince, $\pi_1$ ya da~$\pi_2$ içinde hiçbir \CutCS{} çıkarımı
+bulunamayacağına dikkat edin. $\Gamma \Sequent \Delta$'nın kesmesiz bir
+ispatı olduğunu $\pheight{\pi_2}$ üzerine tümevarımla gösteririz.
+$\pheight{\pi_2} = 0$ ise $!A, \Gamma \Sequent \Delta$ bir aksiyomdur.
+$!A$ esas değilse, hem~$\Gamma$'nın hem $\Delta$'nın !!a{element}{}ı olan
+atomik bir $!C$ vardır ve $\Gamma \Sequent \Delta$'nın kendisi bir
+aksiyomdur. $!A$ esas ise $\Delta = \Delta', !A$'dır. Bu durumda $\pi_1$,
+$\Gamma \Sequent \Delta', !A, !A$ ile biter. Büzülmenin kabul
+edilebilirliğini veren \olref[seq][inv]{prop:G3c-cont-adm}'i uygulayarak
+$\Gamma \Sequent \Delta', !A$'nın kesmesiz bir ispatını elde ederiz.
+$\pheight{\pi_2} > 0$ ise bir $R$ kuralıyla biter. Bu kuralın bir öncülünü
+alın: öncül $!A, \Gamma', \Pi \Sequent \Delta', \Lambda$ biçimindedir;
+burada $\Pi$ ile $\Lambda$, $R$'nin etkin !!{formula}s{}idir.
+~$\pi_1$'e ve $\pi_2$'nin ilgili dolaysız alt-ispatına uygulanan
+\olref[seq][adm]{prop:weak-G3c-adm}, $\Gamma, \Gamma', \Pi \Sequent
+\Delta, \Delta', \Lambda, !A$ ile $!A, \Gamma, \Gamma', \Pi \Sequent
+\Delta, \Delta', \Lambda$'nın !!{proof}s{}ını verir ve tümevarım varsayımı
+bunlara uygulanır. Böylece $R$'nin her öncülü için $\Gamma, \Gamma', \Pi
+\Sequent \Delta, \Delta', \Lambda$'nın !!a{proof}{}ını elde ederiz. $R$'yi
+uygulamak $\Gamma, \Gamma \Sequent \Delta, \Delta$'yı verir ve
+\olref[seq][inv]{prop:G3c-cont-adm}, $\Gamma \Sequent \Delta$'nın kesmesiz
+ispatını sağlar.
+
+$!A$ atomik değilse, !!{main
+operator} bakımından durumları ayırırız.
+Her durumda \olref{lem:inv-G3c-cut}'i uygulayarak, esas formülü $!A$ olan
+sol ve sağ kuralların öncüllerinin !!{proof}s{}ını elde ederiz. Ardından
+\olref[top]{lem:cut-adm-G3c} ispatının E durumundaki gibi ilerleriz.
+\begin{enumerate}
+  \item $!A \ident \lnot !B$. !!{proof}s $\pi_1$ ile $\pi_2$, $\Gamma
+  \Sequent \Delta, \lnot !B$ ve $\lnot !B, \Gamma \Sequent \Delta$ ile
+  biter. \olref{lem:inv-G3c-cut} gereğince $!B, \Gamma \Sequent \Delta$
+  ile $\Gamma \Sequent \Delta, !B$'nin !!{proof}s{}ı olan $\pi_1'$ ile
+  $\pi_2'$ vardır. !!{proof}~$\pi'$ şudur:
+  \[
+  \AxiomC{}
+  \RightLabel{$\pi_2'$}
+  \Deduce$\Gamma \fCenter \Delta, !B$
+  \AxiomC{}
+  \RightLabel{$\pi_1'$}
+  \Deduce$!B, \Gamma \fCenter \Delta$
+  \RightLabel{\CutCS}
+  \BinaryInf$\Gamma \fCenter \Delta$
+  \DisplayProof
+  \]
+  \item $!A \ident (!B \lor !C)$. !!{proof}s $\pi_1$ ile $\pi_2$,
+  $\Gamma \Sequent \Delta, !B \lor !C$ ve $!B \lor !C, \Gamma \Sequent
+  \Delta$ ile biter. \olref{lem:inv-G3c-cut} gereğince (~$\pi_1$'e
+  uygulanan \RightR{\lor} tersinimi), $\Gamma \Sequent \Delta, !B,
+  !C$'nin !!a{proof}{}ı $\pi_1'$ vardır. \olref{lem:inv-G3c-cut} gereğince
+  (~$\pi_2$'ye uygulanan \LeftR{\lor} tersinimi), $!B, \Gamma \Sequent
+  \Delta$'nın !!a{proof}{}ı $\pi_2'$ ile $!C, \Gamma \Sequent \Delta$'nın
+  !!a{proof}{}ı $\pi_2''$ vardır. $\pi_2''$'ye
+  \olref[seq][adm]{prop:weak-G3c-adm}'i uygulayarak $!C, \Gamma \Sequent
+  \Delta, !B$'nin !!a{proof}{}ı~$\pi_2'''$'yü de elde ederiz.
+  !!{proof}~$\pi'$ şudur:
+  \[
+  \AxiomC{}
+  \RightLabel{$\pi_1'$}
+  \Deduce$\Gamma \fCenter \Delta, !B, !C$
+  \AxiomC{}
+  \RightLabel{$\pi_2'''$}
+  \Deduce$!C, \Gamma \fCenter \Delta, !B$
+  \RightLabel{\CutCS}
+  \BinaryInf$\Gamma \fCenter \Delta, !B$
+  \AxiomC{}
+  \RightLabel{$\pi_2'$}
+  \Deduce$!B, \Gamma \fCenter \Delta$
+  \RightLabel{\CutCS}
+  \BinaryInf$\Gamma \fCenter \Delta$
+  \DisplayProof
+  \]
+  \item $!A \ident (!B \land !C)$. Alıştırma.
+  \item $!A \ident (!B \lif !C)$. !!{proof}s $\pi_1$ ile $\pi_2$,
+  $\Gamma \Sequent \Delta, !B \lif !C$ ve $!B \lif !C, \Gamma \Sequent
+  \Delta$ ile biter. \olref{lem:inv-G3c-cut} gereğince (~$\pi_1$'e
+  uygulanan \RightR{\lif} tersinimi), $!B, \Gamma \Sequent \Delta,
+  !C$'nin !!a{proof}{}ı $\pi_1'$ vardır. \olref{lem:inv-G3c-cut} gereğince
+  (~$\pi_2$'ye uygulanan \LeftR{\lif} tersinimi), $\Gamma \Sequent
+  \Delta, !B$'nin !!a{proof}{}ı $\pi_2'$ ile $!C, \Gamma \Sequent
+  \Delta$'nın !!a{proof}{}ı $\pi_2''$ vardır. $\pi_2''$'ye
+  \olref[seq][adm]{prop:weak-G3c-adm}'i uygulayarak $!C, !B, \Gamma \Sequent
+  \Delta$'nın !!a{proof}{}ı~$\pi_2'''$'yü de elde ederiz.
+  !!{proof}~$\pi'$ şudur:
+  \[
+  \AxiomC{}
+  \RightLabel{$\pi_2'$}
+  \Deduce$\Gamma \fCenter \Delta, !B$
+  \AxiomC{}
+  \RightLabel{$\pi_1'$}
+  \Deduce$!B, \Gamma \fCenter \Delta, !C$
+  \AxiomC{}
+  \RightLabel{$\pi_2'''$}
+  \Deduce$!C, !B, \Gamma \fCenter \Delta$
+  \RightLabel{\CutCS}
+  \BinaryInf$!B, \Gamma \fCenter \Delta$
+  \RightLabel{\CutCS}
+  \BinaryInf$\Gamma \fCenter \Delta$
+  \DisplayProof
+  \]
+  \item $!A \ident \lforall[x][!B(x)]$. !!{proof}s $\pi_1$ ile
+  $\pi_2$, $\Gamma \Sequent \Delta, \lforall[x][!B(x)]$ ve
+  $\lforall[x][!B(x)], \Gamma \Sequent \Delta$ ile biter.
+  \olref{lem:inv-G3c-cut} gereğince $\Gamma \Sequent \Delta, !B(c)$'nin
+  !!a{proof}{}ı~$\pi_1'$ vardır.
+
+  Şimdi !!{proof}~$\pi_2$'yi ele alın. Bu ispat
+  $\lforall[x][!B(x)], \Gamma \Sequent \Delta$ ile biter. ~$\pi_2$'nin
+  son-sekantından yukarı doğru giderek, bir sekantın solunda bulunan ve
+  $\pi_2$'nin son-sekantındaki $\lforall[x][!B(x)]$ oluşumuna ``götüren''
+  her $\lforall[x][!B(x)]$ oluşumunu işaretleyin; yani:
+  (a)~$\pi_2$'nin son-sekantındaki $\lforall[x][!B(x)]$'i işaretleyin.
+  (b)~$\lforall[x][!B(x)]$ bir kuralın sonucunun bağlamında oluşuyor ve
+  işaretliyse, kuralın öncülündeki (öncüllerindeki) karşılık gelen oluşumu
+  işaretleyin. (c)~$\lforall[x][!B(x)]$, bir \LeftR{\lforall} kuralının
+  sonucunda esas olup işaretliyse, öncüldeki karşılık gelen etkin
+  $\lforall[x][!B(x)]$ ile $!B(t)$ oluşumlarını işaretleyin.
+  
+  Şimdi bu işaretli $\lforall[x][!B(x)]$ oluşumlarının tümünü ele alın.
+  Bunların hiçbiri \LeftR{\lforall} dışında bir kuralda etkin değildir
+  (yalnızca \LeftR{\lforall}'ın etkin !!{formula}{}ü işaretlenir).
+  $\pi_2$ içindeki bütün işaretli $\lforall[x][!B(x)]$ oluşumlarını silin.
+  Bu doğru bir !!{proof} ise, işaretli $\lforall[x][!B(x)]$ oluşumları hiçbir
+  zaman etkin olmamıştır; hepsi doğrudan aksiyomlardan gelmiştir.
+  !!{proof},~$\Gamma \Sequent \Delta$ ile biter ve $\pi$'yi onunla
+  değiştirebiliriz. Maksimal dereceli bir kesmeyi kaldırmış oluruz.
+
+  Aksi durumda elimizdeki doğru bir ispat değildir; çünkü bazı
+  \LeftR{\lforall} çıkarımlarında etkin olan !!{formula}s
+  $\lforall[x][!B(x)]$'i silmişizdir. Bunları şu biçimdeki ``çıkarımlara''
+  dönüştürmüşüzdür:
+  \[
+  \AxiomC{}
+  \RightLabel{$\pi_t$}
+  \Deduce$!B(t), \Pi \fCenter \Lambda$
+  \RightLabel{\LeftR{\lforall}}
+  \UnaryInf$\Pi \fCenter \Lambda$
+  \DisplayProof
+  \]
+  Bu tür en üst ``çıkarımların'' her birini şununla değiştirin:
+  \[
+  \AxiomC{}
+  \RightLabel{$\Subst{\pi_1'}{t}{c}[\Pi \Sequent \Lambda]$}
+  \Deduce$\Gamma, \Pi \fCenter \Delta, \Lambda, !B(t)$
+  \AxiomC{}
+  \RightLabel{$\pi_t[\Gamma \Sequent \Delta]$}
+  \Deduce$!B(t), \Gamma, \Pi \fCenter \Delta, \Lambda$
+  \RightLabel{\CutCS}
+  \BinaryInf$\Gamma, \Pi \fCenter \Delta, \Lambda$
+  \DisplayProof
+  \]
+  ve onun altındaki her sekantın soluna $\Gamma$'yı, sağına $\Delta$'yı
+  ekleyin. Öncülünde işaretli bir $!B(t)$ bulunan bütün \LeftR{\lforall}
+  ``çıkarımları'', bir $!B(t)$ üzerindeki \CutCS{} çıkarımıyla değiştirilene
+  dek tekrarlayın. Ortaya çıkan !!{proof}{}ın (artık doğru bir !!{proof}{}tır)
+  son-sekantı $\Gamma, \dots, \Gamma \Sequent \Delta, \dots, \Delta$
+  biçimindedir. Büzülmenin kabul edilebilirliğini uygulayıp bunu $\Gamma
+  \Sequent \Delta$'nın !!a{proof}{}ına dönüştürün ve $\pi$'yi onunla
+  değiştirin. $\lforall[x][!B(x)]$ üzerindeki bir kesmeyi $!B(t)$ üzerindeki
+  (muhtemelen çok sayıda) kesmeyle değiştirmiş oluruz; ancak bunların hepsi
+  daha düşük derecelidir. $\pi_1$ ya da $\pi_2$ içinde zaten bulunan bütün
+  kesmeler korunur; fakat onların da hepsi daha düşük derecelidir.
+\end{enumerate}
+\end{proof}
+
+\begin{prob}
+\olref{lem:max-cut-red-G3c} ispatında $!A \ident (!B \land !C)$ olan durumu
+doğrulayın. Yani yalnızca derecesi $<\depth{!B \land !C}$ olan kesmeler
+içeren $\pi_1$ ile $\pi_2$'den oluşan ve
+\[
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$\Gamma \fCenter \Delta, !B \land !C$
+\AxiomC{}
+\RightLabel{$\pi_2$}
+\Deduce$!B \land !C, \Gamma \fCenter \Delta$
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta$
+\DisplayProof
+\]
+ile biten !!a{proof}~$\pi$ varsa, yalnızca derecesi $<\depth{!B \land !C}$
+olan kesmeler içeren bir $\Gamma \Sequent \Delta$ !!a{proof}{}ı~$\pi'$
+bulunduğunu gösterin.
+\end{prob}
+
+% \begin{prob}
+% \olref{lem:inv-G3c-cut} ispatında $!A \ident \lexists[x][!B(x)]$ olan
+% durumu doğrulayın.
+% \end{prob}
+
+
+\olref{lem:max-cut-red-G3c}, !!a{proof} içindeki en yüksek dereceli bir
+\CutCS{} çıkarımını daha düşük dereceli \CutCS{} çıkarımlarıyla
+değiştirebileceğimizi saptar. Bu lemmayı, herhangi bir sayıdaki \CutCS{}
+çıkarımını !!a{proof}{}tan, maksimal~\CutCS{} ile biten en üst
+alt-!!{proof}s{}ına art arda uygulayarak kaldırabileceğimizi göstermek için
+yine kullanabiliriz.
+
+\begin{thm}\ollabel{thm:cut-elim-G3c-largest}
+$\Log{G3c} + \CutCS$ içindeki her !!{proof} $\pi$,~\Log{G3c} içinde bir
+ispata dönüştürülebilir.
+\end{thm}
+
+\begin{proof}
+  Önce~$\pi$ içindeki maksimal dereceli bütün kesmelerin
+  kaldırılabileceğini ispatlarız. $d$,~$\pi$ içinde oluşan kesmelerin
+  maksimal derecesi ve $n$, derecesi~$d$ olan kesmelerin sayısı olsun.
+  İspat~$n$ üzerine tümevarımladır. $n=0$ ise ispatlanacak bir şey yoktur.
+  $n>0$ ise derecesi~$d$ olan en üst bir kesme seçin ve onunla biten
+  alt-!!{proof}{}ı $\pi_1$ olarak alın. \olref{lem:max-cut-red-G3c} gereğince,
+  aynı son-sekantın bütün kesmelerinin derecesi $<d$ olan
+  !!a{proof}{}ı~$\pi_1'$ vardır. ~ $\pi$ içindeki $\pi_1$'i $\pi_1'$ ile
+  değiştirin. Bunun sonucunda derecesi~$d$ olan $n-1$ kesme içeren
+  !!a{proof} elde edilir ve tümevarım varsayımı uygulanır.
+
+  Şimdi sonuç~$d$ üzerine tümevarımla çıkar. $d=0$ ise bütün kesmeler
+  atomiktir ve önceki sonuç gereğince hepsi kaldırılabilir. $d>0$ ise
+  önceki sonuç, derecesi $d$ olan bütün kesmelerin derecesi~$<d$ olan
+  kesmelerle değiştirildiği bir ispat verir. $d$,~$\pi$ içindeki kesmelerin
+  maksimal derecesi olduğundan, böylece kesmelerin maksimal derecesinin
+  $<d$ olduğu bir ispatımız vardır ve tümevarım varsayımı uygulanır.
+\end{proof}
+

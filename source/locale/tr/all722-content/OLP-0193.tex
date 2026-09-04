@@ -1,0 +1,173 @@
+% Generated from locale/tr/content/model-theory/models-of-arithmetic/standard-models.tex; do not hand-edit.
+
+
+\olfileid[tr]{mod}{mar}{stm}
+\olsection{Aritmetiğin Standart Modelleri}
+
+Aritmetik dili~$\Lang{L_A}$ açıkça sayılar, özellikle doğal sayılar
+hakkında olmak üzere tasarlanmıştır. Bu nedenle ``standart''
+model~$\Struct N$ özeldir: Üzerinde konuşmak istediğimiz model odur.
+Fakat mantıkta çoğu kez yalnızca yapısal özelliklerle ilgileniriz ve
+izomorf olan herhangi iki !!{structure}s bu özellikleri paylaşır.
+Dolayısıyla biraz daha geniş davranıp $\Struct N$ ile izomorf her
+!!{structure} ifadesini ``standart'' sayabiliriz.
+
+\begin{defn}
+$\Lang{L_A}$ için bir !!{structure}, $\Struct N$ ile izomorfsa
+\emph{standarttır}.
+\end{defn}
+
+\begin{prop}
+\ollabel{prop:standard-domain} !!a{structure}~$\Struct M$ standartsa
+evreni standart sayı terimlerinin değerleri kümesidir; yani
+\[
+\Domain M=\Setabs{\Value{\num n}{M}}{n\in\Nat}.
+\]
+\end{prop}
+
+\begin{proof}
+Her $\Value{\num n}{M}$ değerinin $\Domain M$ içinde olduğu açıktır.
+Yalnızca her $x\in\Domain M$ için $x=\Value{\num n}{M}$ olacak bir
+$n$ bulunduğunu göstermeliyiz. $\Struct M$ standart olduğundan
+$\Struct N$ ile izomorftur. $g\colon\Nat\to\Domain M$ bir izomorfizma
+olsun. O zaman
+$g(n)=g(\Value{\num n}{N})=\Value{\num n}{M}$. $g$ !!{surjective}
+olduğundan her $x\in\Domain M$ için $g(n)=x$ olacak bir $n\in\Nat$
+vardır.
+\end{proof}
+
+\begin{explain}
+$\Lang{L_A}$ için bir $\Struct M$ yapısı standartsa !!{domain}
+içindeki bütün elemanlar standart $\num0,\num1,\num2,\dots$ sayı
+terimleriyle, yani $\Obj0,\Obj0',\Obj0'',\dots$ terimleriyle
+adlandırılabilir. Elbette bu, $\Domain M$ kümesinin !!{element}s
+gerçekten sayılardır demek değildir; yalnızca onları $\Domain N$
+içindeki sayıları seçtiğimiz biçimde seçebildiğimiz anlamına gelir.
+\end{explain}
+
+\begin{prob}
+\olref[mod][mar][stm]{prop:standard-domain} önermesinin tersinin yanlış
+olduğunu gösterin; yani
+$\Domain M=\Setabs{\Value{\num n}{M}}{n\in\Nat}$ olduğu halde
+$\Struct N$ ile izomorf olmayan !!a{structure}~$\Struct M$ örneği verin.
+\end{prob}
+
+\begin{prop}
+\ollabel{prop:thq-standard}
+$\Sat{M}{\Th Q}$ ve
+$\Domain M=\Setabs{\Value{\num n}{M}}{n\in\Nat}$ ise $\Struct M$
+standarttır.
+\end{prop}
+
+\begin{proof}
+$\Struct M$ yapısının $\Struct N$ ile izomorf olduğunu göstermeliyiz.
+$g(n)=\Value{\num n}{M}$ ile tanımlanan
+$g\colon\Nat\to\Domain M$ fonksiyonunu ele alalım. Varsayım gereği
+$g$ !!{surjective}. Ayrıca !!{injective}: $n\neq m$ olduğunda
+$\Th Q\Proves\eq/[\num n][\num m]$. $\Sat{M}{\Th Q}$ olduğundan
+$n\neq m$ ise $\Sat{M}{\eq/[\num n][\num m]}$. Dolayısıyla
+$\Value{\num n}{M}\neq\Value{\num m}{M}$, yani $g(n)\neq g(m)$.
+
+$g$'nin bir izomorfizma olduğunu da doğrulamalıyız.
+\begin{enumerate}
+\item $\Assign{\Obj0}{N}=0$ olduğundan
+  $g(\Assign{\Obj0}{N})=g(0)$. $g$ tanımı gereği
+  $g(0)=\Value{\num0}{M}$. Fakat $\num0$, $\Obj0$ teriminin
+  kendisidir ve !!a{constant} olan bir terimin değeri, !!{structure}
+  tarafından bu !!{constant} ifadesine atanan nesnedir; yani
+  $\Value{\Obj0}{M}=\Assign{\Obj0}{M}$. Böylece gerektiği gibi
+  $g(\Assign{\Obj0}{N})=\Assign{\Obj0}{M}$.
+\item $\Struct N$ içindeki $\prime$, $\Nat$ üzerindeki ardıl fonksiyonu
+  olduğundan $g(\Assign{\prime}{N}(n))=g(n+1)$. $g$ tanımı gereği
+  $g(n+1)=\Value{\num{n+1}}{M}$. Ancak $\num{n+1}$ ile $\num n'$
+  aynı terimdir; dolayısıyla
+  $\Value{\num{n+1}}{M}=\Value{\num n'}{M}$. Değer fonksiyonunun
+  tanımı gereği bu,
+  $\Assign{\prime}{M}(\Value{\num n}{M})$ değeridir.
+  $\Value{\num n}{M}=g(n)$ olduğundan
+  $g(\Assign{\prime}{N}(n))=\Assign{\prime}{M}(g(n))$.
+\item $\Struct N$ içindeki $+$, $\Nat$ üzerindeki toplama fonksiyonu
+  olduğundan $g(\Assign{+}{N}(n,m))=g(n+m)$. $g$ tanımı gereği
+  $g(n+m)=\Value{\num{n+m}}{M}$. Fakat
+  $\Th Q\Proves\num{n+m}=(\num n+\num m)$; dolayısıyla
+  $\Value{\num{n+m}}{M}=\Value{\num n+\num m}{M}$. Değer
+  fonksiyonunun tanımı gereği bu,
+  $\Assign{+}{M}(\Value{\num n}{M},\Value{\num m}{M})$ değeridir.
+  $\Value{\num n}{M}=g(n)$ ve $\Value{\num m}{M}=g(m)$ olduğundan
+  $g(\Assign{+}{N}(n,m))=\Assign{+}{M}(g(n),g(m))$.
+\item $g(\Assign{\times}{N}(n,m))=
+  \Assign{\times}{M}(g(n),g(m))$: Alıştırma.
+\item $\tuple{n,m}\in\Assign{<}{N}$ ancak ve ancak $n<m$. $n<m$ ise
+  $\Th Q\Proves\num n<\num m$ ve $\Sat{M}{\num n<\num m}$.
+  Dolayısıyla
+  $\tuple{\Value{\num n}{M},\Value{\num m}{M}}\in\Assign{<}{M}$,
+  yani $\tuple{g(n),g(m)}\in\Assign{<}{M}$. $n\not<m$ ise
+  $\Th Q\Proves\lnot\num n<\num m$ ve dolayısıyla
+  $\Sat/{M}{\num n<\num m}$. Böylece
+  $\tuple{g(n),g(m)}\notin\Assign{<}{M}$. Birlikte,
+  $\tuple{n,m}\in\Assign{<}{N}$ ancak ve ancak
+  $\tuple{g(n),g(m)}\in\Assign{<}{M}$ elde edilir.
+\end{enumerate}
+\end{proof}
+
+\begin{explain}
+$g$, $\Nat$ kümesinden $\Lang{L_A}$ için başka herhangi bir
+!!{structure}~$\Struct M$ evrenine bir eşleme tanımlamanın en açık
+yoludur; çünkü her böyle $\Struct M$, $\num0,\num1,\num2,\dots$
+tarafından adlandırılan !!{element}s içerir. Dolayısıyla $\Struct M$,
+$\num n$ terimleri hakkındaki en azından bazı temel önermeleri
+$\Struct N$ ile aynı biçimde doğru kılıyorsa ve $g$ de bire bir örtense
+$g$'nin bir izomorfizmaya dönüşmesi şaşırtıcı değildir. Hatta
+$\Domain M$, $\num n$ terimlerinin adlandırdıkları dışında hiçbir
+!!{element}s içermiyorsa tek izomorfizma odur.
+\end{explain}
+
+\begin{prop}
+\ollabel{prop:thq-unique-iso} $\Struct M$ standartsa
+\olref{prop:thq-standard} ispatındaki $g$, $\Struct N$ yapısından
+$\Struct M$ yapısına tek izomorfizmadır.
+\end{prop}
+
+\begin{proof}
+$h\colon\Nat\to\Domain M$, $\Struct N$ ile $\Struct M$ arasında bir
+izomorfizma olsun. $n$ üzerinde tümevarımla $g=h$ olduğunu gösterelim.
+$n=0$ ise $g$ tanımı gereği $g(0)=\Assign{\Obj0}{M}$. $h$ bir
+izomorfizma olduğundan
+$h(0)=h(\Assign{\Obj0}{N})=\Assign{\Obj0}{M}$; dolayısıyla
+$g(0)=h(0)$.
+
+Şimdi $n+1$ durumunu ele alalım:
+\begin{align*}
+  g(n+1) & = \Value{\num{n+1}}{M} && \text{$g$ tanımı gereği}\\
+  & = \Value{\num n'}{M} && \text{$\num{n+1}\ident\num n'$ olduğundan}\\
+  & = \Assign{\prime}{M}(\Value{\num n}{M})
+    && \text{$\Value{t'}{M}$ tanımı gereği}\\
+  & = \Assign{\prime}{M}(g(n)) && \text{$g$ tanımı gereği}\\
+  & = \Assign{\prime}{M}(h(n)) && \text{tümevarım varsayımı gereği}\\
+  & = h(\Assign{\prime}{N}(n)) && \text{$h$ izomorfizma olduğundan}\\
+  & = h(n+1).
+\end{align*}
+\end{proof}
+
+\begin{explain}
+Her !!{denumerable} $M$ kümesi için $\Nat$ ile $M$ arasında
+!!a{bijection} bulunduğundan, böyle her $M$ kümesi bir standart
+$\Struct M$ modelinin !!{domain} olmaya adaydır. Aslında
+$z\in M$ nesnesini ve uygun bir $s$ fonksiyonunu sırasıyla
+$\Assign{\Obj0}{M}$ ile $\Assign{\prime}{M}$ olarak seçtiğinizde
+$+$, $\times$ ve $<$ yorumları zaten belirlenir. Standart bir modelde
+$\Assign{\prime}{M}$ olmaya yalnız hem !!{injective} hem !!{surjective}
+olan $s\colon M\to M\setminus\{z\}$ fonksiyonları uygundur. $s$'nin
+görüntü kümesi $z$'yi içeremez; aksi halde
+$\lforall[x][\eq/[\Obj0][x']]$ yanlış olurdu. Bu !!{sentence},
+$\Struct N$ içinde doğrudur ve dolayısıyla $\Struct M$ de onu doğru
+kılmalıdır. $\Struct N$ içindeki ardıl fonksiyonu
+$\Assign{\prime}{N}$ !!{injective} olduğundan ve bu olgu $\Struct N$
+içinde doğru !!a{sentence} ile ifade edildiğinden $s$ de !!{injective}
+olmalıdır. Ayrıca !!{surjective} olmalıdır; yoksa
+$M\setminus\{z\}$ içinde $s$'nin görüntü kümesinde bulunmayan bir $x$
+olur, yani $\lforall[x][(\eq[x][\Obj0]\lor
+\lexists[y][\eq[y'][x]])]$ !!{sentence} ifadesi $\Struct M$ içinde
+yanlış olurdu; oysa $\Struct N$ içinde doğrudur.
+\end{explain}
+

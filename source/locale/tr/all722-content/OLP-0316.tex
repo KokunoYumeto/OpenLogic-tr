@@ -1,0 +1,138 @@
+% Generated from locale/tr/content/incompleteness/incompleteness-provability/rosser-thm.tex; do not hand-edit.
+
+
+\olfileid[tr]{inc}{inp}{ros}
+
+\olsection{Rosser Teoremi}
+
+G\"odel'in ispatını, ``$\omega$-tutarlı'' yerine yalnızca ``tutarlı''
+koyarak daha güçlü bir sonuç elde edecek biçimde değiştirebilir miyiz?
+Rosser'ın bulduğu bir hile sayesinde yanıt ``evet''tir. Rosser'ın hilesi,
+$\OProv[\Th{T}](y)$ yerine ``değiştirilmiş'' bir !!{derivability} yüklemi
+$\ORProv_T(y)$ kullanmaktır.
+
+\begin{thm}
+\ollabel{thm:rosser}
+$\Th{T}$, $\Th{Q}$'yu genişleten herhangi bir tutarlı, !!{axiomatizable}
+kuram olsun. O zaman $\Th{T}$ tam değildir.
+\end{thm}
+
+\begin{proof}
+$\OProv[\Th{T}](y)$'nin $\lexists[x][\OPrf[\Th{T}](x,y)]$ olarak
+tanımlandığını anımsayın; burada $\OPrf[\Th{T}](x,y)$, ancak ve ancak $x$ bir
+!!a{derivation}{}in G\"odel sayısı ve bu türetimin sonundaki !!{sentence}'nin
+G\"odel sayısı $y$ ise geçerli olan karar verilebilir bağıntıyı temsil eder. $x$ ile $y$
+arasında, $x$ ancak ve ancak G\"odel sayısı $y$ olan tümcenin bir
+\emph{çürütmesinin} G\"odel sayısıysa geçerli olan bağıntı da karar
+verilebilirdir. $\fn{not}(x)$ şu işi yapan ilkel özyinelemeli fonksiyon olsun:
+$x$, bir $!A$ formülünün koduysa $\fn{not}(x)$, $\lnot !A$'nın bir kodudur.
+O zaman $\Refut[\Th{T}](x,y)$ ancak ve ancak
+$\Prf[\Th{T}](x,\fn{not}(y))$ ise geçerlidir. Bunu
+$\ORefut[\Th{T}](x,y)$ temsil etsin. Bu durumda $\Th{T} \Proves \lnot !A$
+ve $\delta$ buna karşılık gelen !!{derivation} ise
+$\Th{Q} \Proves \ORefut[\Th{T}](\gn{\delta},\gn{!A})$ olur.
+$\ORProv[\Th{T}](y)$'yi şöyle tanımlarız:
+\[
+\lexists[x][(\OPrf[\Th{T}](x,y) \land \lforall[z][(z < x \lif \lnot
+  \ORefut[\Th{T}](z,y))])].
+\]
+Kabaca $\ORProv[\Th{T}](y)$, ``$\Th{T}$ içinde $y$'nin bir ispatı vardır ve
+$y$'nin daha kısa bir çürütmesi yoktur'' der. $\Th{T}$'nin tutarlı olduğu
+varsayılırsa $\ORProv[\Th{T}](y)$ ile $\OProv[\Th{T}](y)$ aynı sayılar için
+doğrudur. Fakat $\Th{T}$ içinde \emph{ispatlanabilirlik} açısından (artık
+doğruluk ile ispatlanabilirliğin farklı olduğunu biliyoruz!) bu ikisinin
+özellikleri farklıdır. $\Th{T}$ \emph{tu}tarsızsa ikisi aynı sayılar için
+geçerli \emph{değildir}!{} ($\ORProv[\Th{T}](y)$ çoğu zaman ``$y$, Rosser
+anlamında ispatlanabilirdir'' diye okunur. Oysa az önce gördüğümüz gibi Rosser
+ispatlanabilirliği özel bir ispatlanabilirlik türü değildir---tutarsız
+kuramlarda ispatlanabilir olup Rosser anlamında ispatlanabilir olmayan
+!!{sentence}s vardır---ve bu ifade kafa karıştırabilir. Karışıklığı önlemek
+için onu bunun yerine ``$y$ şmovlanabilirdir'' diye okuyabilirsiniz.)
+
+Sabit nokta lemması uyarınca
+\begin{equation}
+  \Th{Q} \Proves !R_\Th{T} \liff \lnot \ORProv[\Th{T}](\gn{!R_\Th{T}}).
+  \ollabel{RT}
+\end{equation}
+olacak biçimde bir $!R_\Th{T}$ formülü vardır.
+\olref[1in]{thm:first-incompleteness} ispatından farklı olarak burada,
+$\Th{T}$ tutarlıysa $\Th{T}$'nin $!R_\Th{T}$'yi !!{derive} etmediğini ve
+$\Th{T}$'nin $\lnot !R_\Th{T}$'yi de !!{derive} etmediğini ileri sürüyoruz. (Başka deyişle
+$\omega$-tutarlılık varsayımına gerek yoktur.)
+
+Önce $\Th{T} \Proves/ !R_{\Th{T}}$ olduğunu gösterelim. Tersini varsayın;
+% [tr source emendation] Upstream writes bare $T$ here; the theory notation
+% used throughout the section is $\Th{T}$.
+bu durumda $!R_{\Th{T}}$'nin $\Th{T}$'den !!a{derivation}{}i vardır ve bunun
+G\"odel sayısı $n$ olsun. O zaman $\OPrf[\Th{T}]$, $\Prf[\Th{T}]$'yi
+$\Th{Q}$ içinde temsil ettiğinden
+$\Th{Q} \Proves \OPrf[\Th{T}](\num{n},\gn{!R_{\Th{T}}})$ olur. Ayrıca
+$\Th{T}$ tutarlı olduğundan her $k<n$ için $k$, $\lnot !R_{\Th{T}}$'nin
+!!a{derivation}{}inin G\"odel sayısı değildir. Dolayısıyla her $k<n$ için
+$\Th{Q} \Proves \lnot \ORefut[\Th{T}](\num{k},\gn{!R_{\Th{T}}})$ olur.
+\olref[req][min]{lem:less-nsucc} uyarınca
+$\Th{Q} \Proves \lforall[z][(z < \num{n} \lif \lnot \ORefut[\Th{T}](z,
+  \gn{!R_{\Th{T}}}))]$ olur. Öyleyse
+\[
+\Th{Q} \Proves \lexists[x][(\OPrf[\Th{T}](x,\gn{!R_{\Th{T}}}) \land \lforall[z][(z
+    < x \lif \lnot \ORefut[\Th{T}](z,\gn{!R_{\Th{T}}}))])],
+\]
+fakat bu tam olarak $\ORProv[\Th{T}](\gn{!R_{\Th{T}}})$'dir. \olref{RT}
+uyarınca $\Th{Q} \Proves \lnot !R_{\Th{T}}$ olur. $\Th{T}$, $\Th{Q}$'yu
+genişlettiğinden $\Th{T} \Proves \lnot !R_{\Th{T}}$ de olur.
+$\Th{T} \Proves !R_{\Th{T}}$ olduğunu varsaydığımız için $\Th{T}$ tutarsız
+olurdu; bu da teoremin varsayımına aykırıdır.
+
+Şimdi $\Th{T} \Proves/ \lnot !R_{\Th{T}}$ olduğunu gösterelim. Yine tersini
+varsayın ve $n$, $\lnot !R_{\Th{T}}$'nin !!a{derivation}{}inin G\"odel sayısı
+olsun. O zaman $\Refut[\Th{T}](n,\Gn{!R_{\Th{T}}})$ geçerlidir;
+$\ORefut[\Th{T}]$, $\Refut[\Th{T}]$'yi $\Th{Q}$ içinde temsil ettiğinden
+$\Th{Q} \Proves \ORefut[\Th{T}](\num{n},\gn{!R_{\Th{T}}})$ olur. Bu durumda
+$\Th{T}$'nin $!R_{\Th{T}}$'yi de !!{derive} ederek tutarsız olacağını yine
+göstereceğiz. Çünkü
+\begin{align*}
+\Th{Q} & \Proves !R_{\Th{T}} \liff \lnot \ORProv[\Th{T}](\gn{!R_{\Th{T}}}), 
+\intertext{ve $\Th{T}$, $\Th{Q}$'yu genişlettiğinden, şunu göstermek yeterlidir:}
+\Th{Q} & \Proves \lnot \ORProv[\Th{T}](\gn{!R_{\Th{T}}}).
+\end{align*}
+$\lnot \ORProv[\Th{T}](\gn{!R_{\Th{T}}})$ !!{sentence}, yani
+\begin{align*}
+  \lnot & \lexists[x][(\OPrf[\Th{T}](x,\gn{!R_{\Th{T}}}) \land
+    \lforall[z][(z < x \lif \lnot \ORefut[\Th{T}](z,\gn{!R_{\Th{T}}}))])],
+  \intertext{mantıksal olarak şuna denktir:}
+  & \lforall[x][(\OPrf[\Th{T}](x,\gn{!R_{\Th{T}}}) \lif
+    \lexists[z][(z < x \land \ORefut[\Th{T}](z,\gn{!R_{\Th{T}}}))])].
+\end{align*}
+Mantığı ve $\Th{Q}$'nun !!{derive} ettiği olguları kullanarak gayriresmî
+biçimde akıl yürütelim. $x$ keyfî olsun ve
+$\OPrf[\Th{T}](x,\gn{!R_{\Th{T}}})$ olduğunu varsayın. Zaten
+$\Th{T} \Proves/ !R_{\Th{T}}$ olduğunu biliyoruz; dolayısıyla her $k$ için
+$\Th{Q} \Proves \lnot \OPrf[\Th{T}](\num{k},\gn{!R_{\Th{T}}})$ olur. Bundan
+her $k$ için $\eq/[x][\num{k}]$ çıkar. Özellikle (a)
+$\eq/[x][\num{n}]$ olur. Ayrıca
+$\lnot(\eq[x][\num{0}] \lor \eq[x][\num{1}] \lor \dots \lor
+\eq[x][\num{n-1}])$ vardır ve bu nedenle \olref[req][min]{lem:less-nsucc}
+uyarınca (b) $\lnot(x<\num{n})$ olur. \olref[req][min]{lem:trichotomy}
+uyarınca $\num{n}<x$ olur. $\Th{Q} \Proves
+\ORefut[\Th{T}](\num{n},\gn{!R_{\Th{T}}})$ olduğundan
+$\num{n}<x \land \ORefut[\Th{T}](\num{n},\gn{!R_{\Th{T}}})$ ve bundan da
+$\lexists[z][(z<x \land \ORefut[\Th{T}](z,\gn{!R_{\Th{T}}}))]$ elde
+edilir. $x$ keyfî olduğundan, gerektiği gibi
+\[
+\lforall[x][(\OPrf[\Th{T}](x,\gn{!R_{\Th{T}}}) \lif
+  \lexists[z][(z < x \land \ORefut[\Th{T}](z,\gn{!R_{\Th{T}}}))])].
+\]
+sonucunu elde ederiz.
+\end{proof}
+
+\begin{prob}
+$A$ ve $B$ doğal sayı kümelerine, $A \subseteq X$ ve
+$B \subseteq \Complement{X}$ olacak biçimde hiçbir !!{decidable} $X$ kümesi
+yoksa \emph{hesaplanabilir biçimde ayrılmaz} denir ($\Complement{X}$,
+$X$'in tümleyeni $\Nat \setminus X$'tir). $\Th{T}$, $\Th{Q}$'nun tutarlı,
+!!{axiomatizable} bir genişletmesi olsun. $A$, $\Th{T}$ içinde ispatlanabilir
+!!{sentence}s{}in G\"odel sayıları kümesi; $B$ ise $\Th{T}$ içinde
+çürütülebilir tümcelerin G\"odel sayıları kümesi olsun. $A$ ile $B$'nin
+hesaplanabilir biçimde ayrılmaz olduğunu ispatlayın.
+\end{prob}
+

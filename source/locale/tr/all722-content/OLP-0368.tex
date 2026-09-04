@@ -1,0 +1,77 @@
+% Generated from locale/tr/content/lambda-calculus/church-rosser/definitions-and-properties.tex; do not hand-edit.
+
+
+\olfileid[tr]{lam}{cr}{dap}
+
+\olsection{Tanım ve Özellikler}
+
+Bu bölümde Church--Rosser özelliğini ve bu özelliğe ilişkin bazı yaygın
+sonuçları tanıtıyoruz.
+
+\begin{defn}[Church--Rosser özelliği, CR] Terimler üzerindeki bir
+  $\xredone$ bağıntısı, $M\xredone P$ ve $M\xredone Q$ olduğunda
+  $P\xredone N$ ve $Q\xredone N$ olacak biçimde bir $N$ her zaman varsa
+  \emph{Church--Rosser özelliğini} sağlar.
+\end{defn}
+
+Lambda hesabını, normal biçimdeki terimlerin ``değerler'', terimler
+üzerindeki indirgenebilirlik bağıntısının ise ``hesap kuralları'' olduğu bir
+hesaplama modeli olarak görebiliriz. Church--Rosser özelliği, bir hesaplamayı
+sürdürmenin birden çok yolu bulunduğunda bile ifadenin yalnızca tek bir son
+değeri olduğunu söyler.
+
+Temel cebirden bir örnek alalım. $4\times(1+2)+3$ ifadesi birden çok yoldan
+hesaplanabilir: önce $1+2$ ifadesini $3$'e indirgersek $4\times3+3$;
+dağılma özelliğini önce $4\times(1+2)$ ifadesine uygularsak
+$4\times1+4\times2+3$ elde edilir. Bununla birlikte her ikisi de daha sonra
+$12+3$ ifadesine indirgenebilir.
+
+$\xredone$ bağıntısını $\beta$-indirgeme olarak alırsak Church--Rosser
+özelliğinin şu sonucunu kolayca görürüz: bir terimin normal biçimi varsa bu
+biçim tektir. Gerçekten $M$'nin, ikisi de normal biçimde olan $P$ ve $Q$'ya
+indirgenebildiğini varsayalım. Church--Rosser özelliğine göre hem $P$ hem de
+$Q$'nun indirgenebildiği bir $N$ vardır. $P$ ve $Q$ normal biçimde olduğundan
+bunların $N$'ye indirgenmesi ancak önemsiz indirgeme olabilir; yani $P$, $Q$
+ve $N$ özdeştir. Bu sonuç bir terimin \emph{normal biçiminden} tekil olarak
+söz etmemizi haklı çıkarır.
+
+Lambda hesabını bir hesaplama modeli olarak gördüğümüzde bir terimin normal
+biçimi, o terimle başlayan hesaplamanın ``nihai sonucu'' sayılabilir.
+Yukarıdaki sonuç, $4\times(1+2)+3$ hesabının tek sonucu olan $15$ gibi, bir
+hesaplamanın varsa yalnızca tek bir nihai sonucu bulunduğu anlamına gelir.
+
+\begin{thm} \ollabel{thm:str}
+  Bir $\xredone$ bağıntısı Church--Rosser özelliğini sağlıyor ve $\xred$,
+  $\xredone$ bağıntısını içeren en küçük geçişli bağıntıysa $\xred$ de
+  Church--Rosser özelliğini sağlar.
+\end{thm}
+
+\begin{proof}
+  Şunları varsayalım:
+  \begin{align*}
+    M & \xredone P_1 \xredone \dots \xredone P_m \text{ ve}\\
+    M & \xredone Q_1 \xredone \dots \xredone Q_n.
+  \end{align*}
+  Teoremi yüksekliği $m+1$, genişliği $n+1$ olan bir $N$ terimler ızgarası
+  kurarak ispatlayacağız. $i$'inci satır ile $j$'inci sütundaki terimi
+  $N_{i,j}$ ile gösterelim.
+
+  $N$ ızgarasını $N_{i,j}\xredone N_{i+1,j}$ ve
+  $N_{i,j}\xredone N_{i,j+1}$ olacak biçimde kurarız. Tanım şöyledir:
+  \begin{align*}
+    N_{0,0} &= M \\
+    N_{i,0} &= P_i && \text{$1\le i\le m$ ise} \\
+    N_{0,j} &= Q_j && \text{$1\le j\le n$ ise} \\
+  \intertext{ve diğer durumlarda:}
+    N_{i,j} &= R.
+  \end{align*}
+  Burada $R$, $N_{i-1,j}\xredone R$ ve $N_{i,j-1}\xredone R$ olacak
+  biçimde bir terimdir. $\xredone$ Church--Rosser özelliğini sağladığından
+  böyle bir terim her zaman vardır.
+
+  Şimdi $N_{m,0}\xredone\dots\xredone N_{m,n}$ ve
+  $N_{0,n}\xredone\dots\xredone N_{m,n}$ elde edilir. $N_{m,0}$ teriminin
+  $P$, $N_{0,n}$ teriminin de $Q$ olduğuna dikkat edin. Sonuç $\xred$
+  bağıntısının tanımından çıkar.
+\end{proof}
+

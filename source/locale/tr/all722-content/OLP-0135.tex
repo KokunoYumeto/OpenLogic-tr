@@ -1,0 +1,204 @@
+% Generated from locale/tr/content/first-order-logic/completeness/compactness.tex; do not hand-edit.
+
+
+\iftag{FOL}
+      {\olfileid[tr]{fol}{com}{com}}
+      {\olfileid[tr]{pl}{com}{com}}
+
+\olsection{Tıkızlık Teoremi}
+
+Tamlık teoreminin önemli sonuçlarından biri tıkızlık teoremidir.
+Tıkızlık teoremi, bir !!{sentence}s kümesinin her \emph{sonlu} alt
+kümesi sağlanabilir ise bütün kümenin---kendisi sonsuz olsa
+bile---sağlanabilir olduğunu söyler. Bu hiç de apaçık değildir. İlk
+bakışta, çelişkinin deyim yerindeyse yalnızca sonsuz sayıdaki tümceden
+doğduğu çelişkili sonsuz !!{sentence}s kümelerinin var olmasını
+engelleyen hiçbir şey görünmez. Tıkızlık teoremi bu olasılığın dışarıda
+bırakılabileceğini söyler: Her sonlu alt kümesi sağlanabilir olan
+sağlanamaz hiçbir sonsuz !!{sentence}s kümesi yoktur. Tamlık teoremi
+gibi bunun da mantıksal gerektirmeyle ilgili bir biçimi vardır: sonsuz
+bir !!{sentence}s kümesi bir şeyi mantıksal olarak gerektiriyorsa bunu
+zaten sonlu bir alt kümesi gerektirir.
+
+\begin{defn}
+  Bir !!{formula}s kümesi~$\Gamma$, her sonlu
+  $\Gamma_0\subseteq\Gamma$ sağlanabilir ise ve ancak bu durumda
+  \emph{sonlu olarak sağlanabilir}dir.
+\end{defn}
+
+\begin{thm}[Tıkızlık Teoremi]
+\ollabel{thm:compactness}
+Her tümceler kümesi~$\Gamma$ ve her~$!A$ tümcesi için aşağıdakiler
+geçerlidir:
+\begin{enumerate}
+  \item $\Gamma\Entails !A$ ancak ve ancak $\Gamma_0\Entails !A$
+    olacak biçimde sonlu bir $\Gamma_0\subseteq\Gamma$ varsa.
+  \item $\Gamma$ sağlanabilirdir ancak ve ancak sonlu olarak
+    sağlanabilir ise.
+\end{enumerate}
+\end{thm}
+
+\begin{proof}
+(2)'yi ispatlayalım. $\Gamma$ sağlanabilirse, her $!A\in\Gamma$ için
+$\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$ olacak biçimde
+  \iftag{FOL}{!!a{structure}~$\Struct{M}$}{!!a{valuation}~$\pAssign{v}$}
+  vardır. Bu $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ elbette~$\Gamma$'nın
+her sonlu alt kümesini de sağlar; dolayısıyla $\Gamma$ sonlu olarak
+sağlanabilirdir.
+
+Şimdi $\Gamma$'nın sonlu olarak sağlanabilir olduğunu varsayalım.
+O zaman her sonlu $\Gamma_0\subseteq\Gamma$ sağlanabilirdir. Sağlamlık
+uyarınca
+(\iftag{FOL}{%
+  \tagrefs{prfAX/{fol:axd:sou:cor:consistency-soundness},
+    prfSC/{fol:seq:sou:cor:consistency-soundness},
+    prfND/{fol:ntd:sou:cor:consistency-soundness},
+    prfTab/{fol:tab:sou:cor:consistency-soundness}}}{%
+  \tagrefs{prfAX/{pl:axd:sou:cor:consistency-soundness},
+    prfSC/{pl:seq:sou:cor:consistency-soundness},
+    prfND/{pl:ntd:sou:cor:consistency-soundness},
+    prfTab/{pl:tab:sou:cor:consistency-soundness}}})
+her sonlu alt küme tutarlıdır. Ardından
+\iftag{FOL}{%
+  \tagrefs{prfAX/{fol:axd:ptn:prop:proves-compact},
+    prfSC/{fol:seq:ptn:prop:proves-compact},
+    prfND/{fol:ntd:ptn:prop:proves-compact},
+    prfTab/{fol:tab:ptn:prop:proves-compact}}}{%
+  \tagrefs{prfAX/{pl:axd:ptn:prop:proves-compact},
+    prfSC/{pl:seq:ptn:prop:proves-compact},
+    prfND/{pl:ntd:ptn:prop:proves-compact},
+    prfTab/{pl:tab:ptn:prop:proves-compact}}}
+uyarınca $\Gamma$'nın kendisi de tutarlı olmalıdır. Tamlık
+(\olref[cth]{thm:completeness}) uyarınca $\Gamma$ tutarlı olduğundan
+sağlanabilirdir.
+\end{proof}
+
+\tagprob{FOL}
+\begin{prob}
+\olref[fol][com][com]{thm:compactness} teoreminin (1). maddesini
+ispatlayın.
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+\olref[pl][com][com]{thm:compactness} teoreminin (1). maddesini
+ispatlayın.
+\end{prob}
+\tagendprob
+
+\iftag{FOL}{%
+\begin{ex}
+Bir~$\Gamma$ kuramının her~$\Struct{M}$ modelinde her~$t$ terimi elbette
+$\Domain{M}$ içindeki !!a{element} öğesini gösterir. Tersinin de doğru
+olduğunu, yani $\Domain{M}$ içindeki her !!{element} öğesinin bir terim
+tarafından gösterildiğini güvence altına alabilir miyiz? Başka bir
+deyişle, bütün modelleri örtülmüş olan~$\Gamma$ kuramları var mıdır?
+Tıkızlık teoremi, $\Gamma$'nın sonsuz modelleri varsa bunun mümkün
+olmadığını gösterir. Şöyle görelim: $\Struct{M}$,~$\Gamma$'nın sonsuz
+bir modeli ve $c$,~$\Gamma$ dilinde bulunmayan !!a{constant} olsun.
+$\Delta$,~$\Gamma$'nın $\Lang L$ dilindeki her~$t$ terimi için bütün
+$\eq/[c][t]$ tümcelerinin kümesi olsun; yani
+  \[
+  \Delta = \Setabs{\eq/[c][t]}{t \in \Trm[L]}.
+  \]
+$\Gamma\cup\Delta$ kümesinin sonlu bir alt kümesi, $\Gamma'\subseteq
+\Gamma$ ve $\Delta'\subseteq\Delta$ olmak üzere
+$\Gamma'\cup\Delta'$ biçiminde yazılabilir. $\Delta'$ sonlu olduğundan
+yalnızca sonlu sayıda terim içerebilir. $a\in\Domain{M}$ olsun ve $a$,
+$\Domain{M}$ içinde bunların hiçbirinin göstermediği !!a{element} olsun;
+!!{structure}~$\Struct{M'}$ yapısını, $\Struct{M}$ ile aynı fakat ayrıca
+$\Assign{c}{M'}=a$ olacak
+biçimde tanımlayalım. $\Delta'$ içinde geçen bütün~$t$ terimleri için
+$a\neq\Value{t}{M}$ olduğundan $\Sat{M'}{\Delta'}$. Ayrıca
+$\Sat{M}{\Gamma}$, $\Gamma'\subseteq\Gamma$ ve $c$,~$\Gamma$ içinde
+geçmediğinden $\Sat{M'}{\Gamma'}$. Böylece $\Gamma\cup\Delta$'nın her
+sonlu $\Gamma'\cup\Delta'$ alt kümesi için
+$\Sat{M'}{\Gamma'\cup\Delta'}$ olur. Demek ki $\Gamma\cup\Delta$'nın
+her sonlu alt kümesi sağlanabilirdir. Tıkızlık gereği
+$\Gamma\cup\Delta$'nın kendisi de sağlanabilirdir. Dolayısıyla
+$\Sat{M}{\Gamma\cup\Delta}$ olan modeller vardır. Böyle her~$\Struct{M}$,
+$\Gamma$'nın bir modelidir fakat örtülmüş değildir; çünkü~$\Lang L$
+dilinin bütün~$t$ terimleri için
+$\Value{c}{M}\neq\Value{t}{M}$.
+\end{ex}
+
+\begin{ex}
+!!a{language}~$\Lang L$; !!{predicate}~$<$, !!{constant}s~$\Obj{0}$ ve
+$\Obj{1}$ ile !!{function}s~$+$, $\times$ ve~$-$ simgelerini içersin.
+$\Gamma$, bütün !!{sentence}s ifadelerinin kümesi olsun: bu ifadeler
+bu !!{language} içinde olup evreni~$\Rat$ ve yorumları olağan olan
+!!{structure}~$\Struct{Q}$ içinde doğrudur. $\Gamma$, rasyonel sayılar
+hakkında doğru olan bütün~$\Lang L$ !!{sentence}s ifadelerinin kümesidir.
+Elbette~$\Rat$ içinde (hatta~$\Real$ içinde), $0$'dan
+büyük fakat her $k\in\PosInt$ için $1/k$'dan küçük hiçbir~$r$ sayısı
+yoktur. Böyle bir sayı var olsaydı \emph{sonsuz küçük} olurdu: sıfırdan
+farklı ama sonsuz ölçüde küçük. Tıkızlık teoremi,~$\Gamma$'nın sonsuz
+küçüklerin var olduğu modellerinin bulunduğunu göstermek için
+kullanılabilir. Dilimizde bölme için !!a{function} yoktur (sıfıra bölme
+tanımsızdır ve !!{function}s tümel fonksiyonlarla yorumlanmalıdır).
+Bununla birlikte $r<1/k$ olduğunu yine de ifade edebiliriz; çünkü bu,
+ancak ve ancak $r\cdot k<1$ ise geçerlidir. $c$ yeni bir !!{constant}
+olsun ve $\Delta$ şu küme olsun:
+\[
+\{\Obj{0}<c\}\cup
+\Setabs{c\times\num{k}<\Obj{1}}{k\in\PosInt}
+\]
+(burada $\num{k}=(\Obj{1}+(\Obj{1}+\dots+(\Obj{1}+\Obj{1})\dots))$
+ve ifadede $k$ tane~$\Obj{1}$ vardır). $\Delta$'nın herhangi bir sonlu
+$\Delta_0$ alt kümesi için öyle bir~$K$ vardır ki $\Delta_0$ içindeki
+bütün $c\times\num{k}<\Obj{1}$ !!{sentence}s ifadelerinde $k<K$ olur.
+$\Struct{Q}$ yapısını $\Assign{c}{Q'}=1/K$ olacak biçimde
+$\Struct{Q'}$ yapısına genişletirsek her sonlu $\Gamma_0\subseteq
+\Gamma$ için $\Sat{Q'}{\Gamma_0\cup\Delta_0}$ olur. Dolayısıyla
+$\Gamma\cup\Delta$ sonlu olarak sağlanabilirdir (Alıştırma: bunu
+ayrıntılı olarak ispatlayın). Tıkızlık gereği $\Gamma\cup\Delta$
+sağlanabilirdir. $\Gamma\cup\Delta$'nın her~$\Struct{S}$ modeli,
+$\Assign{c}{S}$ sonsuz küçük öğesini içerir.
+\end{ex}
+}{}
+
+\tagprob{FOL}
+\begin{prob}
+Aritmetiğin standart modeli~$\Struct{N}$ içinde her $\num{n}<x$
+formülünü sağlayan hiçbir $k\in\Domain{N}$ !!{element} öğesi yoktur
+(burada $\num{n}$, $n$ tane $\prime$ içeren
+$\Obj{0}^{\prime\dots\prime}$ ifadesidir). Tıkızlık teoremini kullanarak,
+aritmetik dilinde standart~$\Struct{N}$ modelinde doğru olan bütün
+!!{sentence}s ifadelerinin !!a{structure}~$\Struct{N'}$ içinde de doğru
+olduğunu; bu yapının her $\num{n}<x$ formülünü \emph{sağlayan}
+!!a{element} içerdiğini gösterin.
+\end{prob}
+\tagendprob
+
+\iftag{FOL}{
+\begin{ex}
+!!{identity} içeren birinci dereceden mantığın, !!{domain} boyutunun
+belirli bir alt sınırı olması gerektiğini ifade edebildiğini biliyoruz:
+``en az $n$ farklı nesne vardır'' diyen $!A_{\ge n}$ tümcesi yalnızca
+$\Domain{M}$ içinde en az~$n$ nesne bulunan yapılarda doğrudur. Bu yüzden
+  \[
+  \Delta=\Setabs{!A_{\ge n}}{n\ge1}
+  \]
+alırsak $\Delta$'nın her modeli sonsuz olmalıdır. Böylece bir kurama
+$\Delta$ ekleyerek onun yalnızca sonsuz modellere sahip olmasını
+güvence altına alabiliriz: $\Gamma\cup\Delta$'nın modelleri tam olarak
+$\Gamma$'nın sonsuz modelleridir.
+
+Demek ki birinci dereceden mantık sonsuzluğu ifade edebilir. Fakat
+tıkızlık teoremi sonluluğu ifade edemediğini gösterir. Aksine, bir
+$\Lambda$ tümceler kümesinin tam olarak sonlu !!{structure}s içinde
+sağlandığını varsayalım. O zaman $\Delta\cup\Lambda$ sonlu olarak
+sağlanabilirdir. Neden? $\Delta'\subseteq\Delta$ ve
+$\Lambda'\subseteq\Lambda$ olmak üzere sonlu bir
+$\Delta'\cup\Lambda'\subseteq\Delta\cup\Lambda$ alalım.
+$\Delta'$ boşsa $n=1$ alalım; değilse
+$!A_{\ge n}\in\Delta'$ olacak biçimdeki en büyük sayıya~$n$ diyelim.
+Bütün sonlu yapılarda sağlanan~$\Lambda$, sonlu fakat $\ge n$
+!!{element}s içeren bir~$\Struct{M}$ modeline sahiptir. O zaman
+$\Sat{M}{\Delta'\cup\Lambda'}$. Tıkızlık gereği
+$\Delta\cup\Lambda$'nın sonsuz bir modeli vardır; bu,~$\Lambda$'nın
+yalnızca sonlu !!{structure}s içinde sağlandığı varsayımıyla çelişir.
+\end{ex}
+}{}
+

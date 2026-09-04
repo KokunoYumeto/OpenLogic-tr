@@ -1,0 +1,163 @@
+% Generated from locale/tr/content/set-theory/card-arithmetic/fix.tex; do not hand-edit.
+
+
+\olfileid[tr]{sth}{card-arithmetic}{fix}
+\olsection{$\aleph$-Sabit Noktaları}
+
+\olref[spine][]{chap} içinde Yerine Koyma'nın gerekçelendirilmesi
+gerektiğini; çünkü hiyerarşiyi epey yüksek olmaya zorladığını öne sürdük.
+Artık biraz kardinal aritmetiği yaptığımıza göre hiyerarşinin yüksekliğine
+ilişkin küçük bir örnek verebiliriz.
+
+Açıkça $0<\aleph_0$, $1<\aleph_1$, $2<\aleph_2$\ldots olur ve gerçekten
+büyüklük farkı her adımda yalnızca \emph{artar}. Bu yüzden her $\kappa$
+sıra sayısı için $\kappa<\aleph_\kappa$ olduğunu öne sürmek çekicidir.
+
+Fakat $\ZFC$ kabul edildiğinde bu varsayım \emph{yanlıştır}. Gerçekten
+$\kappa=\aleph_\kappa$ olan $\kappa$ kardinal sayılarının, yani
+\emph{$\aleph$-sabit noktalarının} bulunduğunu ispatlayabiliriz.
+
+\begin{prop}\ollabel{alephfixed}
+Bir $\aleph$-sabit noktası vardır.
+\end{prop}
+
+\begin{proof}
+Özyineleme kullanarak şunları tanımlayın:
+\begin{align*}
+	\kappa_0 &= 0\\
+	\kappa_{n+1} &= \aleph_{\kappa_n}\\
+	\kappa&= \bigcup_{n < \omega}\kappa_n
+\end{align*}
+Şimdi $\kappa$, \olref[cardinals][classing]{unioncardinalscardinal}
+gereği bir kardinal sayıdır. Üstelik:
+\[
+	\kappa= \bigcup_{n < \omega} \kappa_{n+1} =
+	\bigcup_{n < \omega}\aleph_{\kappa_n} =
+	\bigcup_{\alpha < \kappa}\aleph_\alpha = \aleph_\kappa
+\]
+% By construction, $\kappa$ is the least cardinal greater than each
+% $\kappa_n$. So $\aleph_\kappa$ is the least cardinal greater than
+% each $\aleph_{\kappa_n}$, and hence greater than each
+% $\kappa_{n+1}$. But equally $\kappa$ is the least cardinal greater
+% than each $\kappa_{n+1} = \aleph_{\kappa_n}$. So $\kappa=
+% \aleph_\kappa$.
+\end{proof}
+
+Boolos bir zamanlar tam da az önce kurduğumuz $\aleph$-sabit noktası
+hakkında bir makale yazdı. Makalesinin başında $\kappa$'nın varlığını
+belirttikten sonra şöyle dedi:
+\begin{quote}
+	[$\kappa$], küme teorisiyle daha önce karşılaşmamış kişilerin ölçülerine
+	göre \emph{epey büyük} bir sayıdır; bana öyle görünüyor ki, o kadar
+	büyüktür ki iddialarından biri en az $\kappa$ tane nesne bulunduğu olan
+	her teorinin doğruluğunu sorgulamayı gerektirir.
+	\citep[p.~257]{Boolos2000}
+\end{quote}
+Makalesini sonunda şu soruyla bitirdi:
+\begin{quote}
+	[öykünün] başında durum her ne olmuş olursa olsun, buraya kadar
+	geldiğimizde çarkların boşuna döndüğünden ve artık gerçekte olan herhangi
+	bir şeyin betimlemesini dinlemediğimizden kuşkulanıyor muyuz?
+	\citep[p.~268]{Boolos2000}
+\end{quote}
+Gerçekten ``gerçekte olan herhangi bir şeyi'' aşmışsak suçlayacağımız yer
+doğrudan Yerine Koyma olmalıdır. Çünkü ispatımızın işlemesine izin veren bu
+aksiyomdur. Öyleyse Boolos'un birkaç on yıl önce Yerine Koyma'nın ``hiçbir
+istenmeyen'' sonucu olmadığı yönündeki iddiasını yeniden değerlendirmesi
+gerekeceği varsayılır (bkz. \olref[replacement][extrinsic]{sec}).
+
+Fakat $\kappa$'nın varlığı o kadar kötü müdür? Burada Russell'ın
+\emph{Tristram Shandy paradoksunu} ele almak yararlı olabilir. Tristram
+Shandy yaşamını günlüğünde belgeler, fakat tek bir günü kaydetmesi bir yıl
+sürer. Tristram geçen her yılla daha da geride kalır: bir yıl sonra yalnızca
+bir günü kaydetmiş, 364 günü kaydetmeden yaşamıştır; iki yıl sonra yalnızca
+iki günü kaydetmiş, 728 günü kaydetmeden yaşamıştır; üç yıl sonra yalnızca
+üç günü kaydetmiş, 1092 günü kaydetmeden yaşamıştır
+\dots\footnote{Artık yılları göz ardı ediyoruz.} Yine de Tristram
+\emph{ölümsüzse} her günü kaydetmeyi başarır; çünkü yaşamının $n$inci
+yılında $n$inci günü kaydedecektir. Dolayısıyla ``zamanın sonunda''
+Tristram'ın eksiksiz bir günlüğü olacaktır.
+
+Öyleyse şu düşüncenin bundan farkı nedir: $\alpha$, $\aleph_\alpha$'dan
+küçüktür---hatta gittikçe umutsuzlaşan biçimde daha küçüktür---ta ki
+$\kappa$'ya kadar; bu noktada arayı kapatırız ve
+$\kappa=\aleph_\kappa$ olur?
+
+Bunu bir yana bırakıp $\ZFC$'yi kabul ettiğimizi varsayarak sabit nokta
+kuruluşlarına ilişkin biraz daha eğlenceyle bitirelim. Sıradaki üç sonuç,
+sezgisel olarak hiyerarşinin yüksek olduğu kadar geniş olduğu (önemsiz
+olmayan) bir nokta bulunduğunu kurar:
+
+\begin{prop}\ollabel{bethfixed}
+Bir $\beth$-sabit noktası, yani $\kappa=\beth_\kappa$ olan bir $\kappa$
+vardır.
+\end{prop}
+
+\begin{proof}
+\olref{alephfixed} içindeki gibi, ``$\aleph$'' yerine ``$\beth$''
+kullanın.
+\end{proof}
+
+\begin{prop}\ollabel{stagesize}
+$\card{V_{\omega+\alpha}}=\beth_\alpha$. Eğer
+$\omega\ordtimes\omega\leq\alpha$ ise
+$\card{V_\alpha}=\beth_\alpha$.
+\end{prop}
+
+\begin{proof}
+İlk iddia basit bir sonlu ötesi tümevarımla çıkar. İkinci iddia ise
+$\omega\ordtimes\omega\leq\alpha$ olduğunda
+$\omega+\alpha=\alpha$ olmasından çıkar. Bunu kurmak için
+\olref[ord-arithmetic][]{chap} içindeki sıra sayısı aritmetiği olgularını
+kullanırız. Önce
+$\omega\ordtimes\omega=\omega\ordtimes(1\ordplus\omega)=
+(\omega\ordtimes1)\ordplus(\omega\ordtimes\omega)=
+\omega\ordplus(\omega\ordtimes\omega)$ olduğuna dikkat edin. Şimdi
+$\omega\ordtimes\omega\leq\alpha$, yani bir $\beta$ için
+$\alpha=(\omega\ordtimes\omega)\ordplus\beta$ ise
+$\omega\ordplus\alpha=\omega\ordplus
+((\omega\ordtimes\omega)\ordplus\beta)=
+(\omega\ordplus(\omega\ordtimes\omega))\ordplus\beta=
+(\omega\ordtimes\omega)\ordplus\beta=\alpha$ olur.
+\end{proof}
+
+\begin{cor}
+$\card{V_\kappa}=\kappa$ olan bir $\kappa$ vardır.
+\end{cor}
+
+\begin{proof}
+$\kappa$, \olref{bethfixed} tarafından verilen bir $\beth$-sabit noktası
+olsun. Açıkça $\omega\ordtimes\omega<\kappa$. Dolayısıyla
+\olref{stagesize} gereği
+$\card{V_\kappa}=\beth_\kappa=\kappa$ olur.
+\end{proof}
+
+$V_\kappa$'nın altında kaç aşama varsa $V_\kappa$'nın o kadar
+!!{element}s vardır. Öyleyse sezgisel olarak $V_\kappa$ yüksek olduğu kadar
+geniştir. Bu, Tristram Shandy'yi çok andırır: \emph{kuvvet kümeleri} alarak bir
+aşamadan ötekine geçer, böylece hiyerarşimizi her adımda \emph{çok} daha
+büyük yaparız. Fakat ``sonunda'', yani $\kappa$ aşamasında, hiyerarşinin
+genişliği yüksekliğine yetişir.
+
+Şu sorulabilir: \emph{Hiyerarşinin genişliği yüksekliğiyle ne sıklıkta
+eşleşir?} Yanıt şudur: \emph{Sıra sayıları ne kadar sıksa o kadar sık.}
+Fakat bunun biraz açıklanması gerekir.
+
+Bir $\tau$ terimini şöyle tanımlarız. Her $A$ için:
+\begin{align*}
+	\tau_0(A) & \defis \card{A}\\
+	\tau_{n+1}(A) & \defis \beth_{\tau_n(A)}\\
+	\tau(A) & \defis \bigcup_{n < \omega}\tau_n(A)
+\intertext{Her $A$ için $\tau(A)$, \olref{bethfixed} içindeki gibi bir
+$\beth$-sabit noktasıdır ve açıkça $\card{A}<\tau(A)$ olur. Şimdi şu
+özyinelemeli tanımı ele alın:}
+	W_0 &\defis 0\\
+	W_{\alpha + 1} & \defis \tau(W_\alpha)\\
+	W_\alpha & \defis \bigcup_{\beta < \alpha} W_\beta
+	\text{, $\alpha$ bir limit olduğunda}
+\end{align*}
+Kuruluş bütün sıra sayıları için tanımlıdır. Öyleyse sezgisel olarak $W$,
+sıra sayılarından $\beth$-sabit noktalarına giden bir
+``!!a{injection}''dur. Ve tam önceki gibi her $\alpha$ için
+$V_{W_\alpha}$ yüksek olduğu kadar geniştir.
+

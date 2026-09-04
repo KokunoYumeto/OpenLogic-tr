@@ -1,0 +1,106 @@
+% Generated from locale/tr/content/turing-machines/machines-computations/introduction.tex; do not hand-edit.
+
+
+\olfileid[tr]{tur}{mac}{int}
+\olsection{Giriş}
+
+Örneğin $\Nat$'den $\Nat$'ye giden bir fonksiyonun
+\emph{hesaplanabilir} olması ne demektir? İlk ve en bilinen yanıtlardan biri,
+bir fonksiyonun bir Turing makinesiyle hesaplanabiliyorsa hesaplanabilir
+olduğudur. Bu kavram Alan Turing tarafından 1936'da ortaya kondu. Turing
+makineleri bir \emph{hesaplama modeli} örneğidir: ``hesaplama yordamı''
+düşüncesini matematiksel bakımdan kesin biçimde tanımlarlar. Bunun tam olarak
+ne anlama geldiği tartışmalı olsa da Turing makinelerinin hesaplama
+yordamlarını belirtmenin yollarından biri olduğu geniş ölçüde kabul edilir.
+``Turing makinesi'' terimi hareketli parçaları olan fiziksel bir makine
+imgesini çağrıştırsa da tam anlamıyla bir Turing makinesi salt matematiksel
+bir yapıdır ve bu niteliğiyle hesaplama yordamı düşüncesini idealleştirir.
+Örneğin bir Turing makinesinin zaman ya da bellek gereksinimlerine hiçbir
+sınır koymayız: Hesap için evrendeki atom sayısından daha çok depolama alanı
+ya da adım gerekse bile Turing makinesi bir şeyi hesaplayabilir.
+
+\begin{explain}
+Bir Turing makinesini, özel türden hayalî bir düzenek için program olarak
+düşünmek belki en iyisidir. Bu düzenek bir \emph{şerit} ile bir
+\emph{okuma-yazma kafası}ndan oluşur. Bizim Turing makinesi sürümümüzde şerit
+bir yönde, sağa doğru sonsuzdur ve her biri sonlu bir \emph{alfabe}den bir
+simge içerebilen \emph{karelere} bölünmüştür. Böyle alfabeler istenen sayıda
+farklı simge içerebilir; fakat biz çoğunlukla üç simgeyle yetineceğiz:
+$\TMendtape$, $\TMblank$ ve $\TMstroke$. Düzenek başlatıldığında şerit,
+$\TMendtape$ içeren en soldaki kare ile \emph{girdi}yi içeren sonlu sayıda
+kare dışında boştur; yani her kare $\TMblank$ simgesini içerir. Düzenek her
+anda sonlu sayıdaki \emph{durum}dan birindedir. Başlangıçta kafa en soldaki
+kareyi tarar ve belirtilmiş bir \emph{başlangıç durumu}ndadır. Düzeneğin her
+çalışma adımında o sırada taranan karenin içeriği, düzeneğin durumu ve Turing
+makinesi programı bundan sonra ne olacağını belirler. Turing makinesi programı,
+girdi olarak bir $q$ durumu ile bir $\sigma$ simgesi alıp
+$\tuple{q',\sigma',D}$ üçlüsünü çıktı olarak veren kısmi bir fonksiyondur.
+Düzenek $q$ durumundayken $\sigma$ simgesini okuduğunda bulunduğu karedeki
+simgeyi $\sigma'$ ile değiştirir; $D$ sırasıyla $\TMleft$, $\TMright$ ya da
+$\TMstay$ olduğuna göre kafa sola, sağa gider ya da yerinde kalır; düzenek
+de $q'$ durumuna geçer.
+
+Örneğin \olref{fig:tm} içindeki durumu ele alalım.
+\begin{figure}
+  \olasset{\olpath/assets/diagrams/turing-machine.tikz}
+  \caption{Programını çalıştıran bir Turing makinesi.}
+  \ollabel{fig:tm}
+\end{figure}
+Turing makinesi şeridinin görünen kısmında en soldaki karede şerit sonu
+simgesi $\TMendtape$, ardından üç $1$, bir $0$ ve dört $1$ daha vardır.
+Kafa soldan üçüncü kareyi okumaktadır; bu kare $1$ içerir ve makine
+$q_1$ durumundadır. ``Makine $q_1$ durumunda bir $1$ okuyor'' deriz. Turing
+makinesi programı $\tuple{q_1,1}$ girdisi için
+$\tuple{q_2,0,\TMstay}$ üçlüsünü döndürürse makine üçüncü karedeki $1$'i
+$0$ ile değiştirir, okuma-yazma kafasını yerinde bırakır ve $q_2$ durumuna
+geçer. Program ardından $\tuple{q_2,0}$ girdisi için
+$\tuple{q_3,0,\TMright}$ döndürürse makine $0$'ın üzerine yine $0$ yazar,
+yani kafanın altındaki şerit içeriğini fiilen değiştirmez; bir kare sağa
+gider ve $q_3$ durumuna geçer. Böyle sürer.
+
+Makine, bir $q_n$ durumu ile $\sigma$ simgesi için
+$\tuple{q_n,\sigma}$ yönergesi bulunmadığında, yani geçiş fonksiyonu bu
+girdide tanımsız olduğunda \emph{durur}. Başka bir deyişle makinenin yerine
+getireceği bir yönerge yoktur ve o noktada çalışmayı bırakır. Durma bazen
+özel bir $h$ durma durumuyla temsil edilir. Bu daha sonra ayrıntılı olarak
+gösterilecektir.
+\end{explain}
+
+\begin{digress}
+Turing'in ``Hesaplanabilir sayılar üzerine'' makalesinin güzelliği, yalnızca
+biçimsel bir tanım değil, tanımın sezgisel hesaplanabilirlik kavramını
+yakaladığına ilişkin bir sav da sunmasıdır. Tanımdan, bir Turing makinesiyle
+hesaplanabilen her fonksiyonun sezgisel anlamda hesaplanabilir olduğu açık
+olmalıdır. Turing tersinin de, yani doğal olarak hesaplanabilir sayacağımız
+her fonksiyonun böyle bir makineyle hesaplanabileceğinin doğru olduğuna
+ilişkin üç tür sav verir. Turing'in sözleriyle bunlar şunlardır:
+\begin{enumerate}
+\item Sezgiye doğrudan başvuru.
+\item İki tanımın eşdeğerliğinin ispatı (yeni tanım sezgisel bakımdan daha
+  çekiciyse).
+\item Hesaplanabilir büyük sayı sınıflarına örnekler verme.
+\end{enumerate}
+Amacımız hesaplanabilirlik kavramını ``ilkece'', yani zaman ve uzayın
+uygulamadaki sınırlarını hesaba katmadan tanımlamaktır. Elbette en geniş
+hesaplanabilirlik tanımı yerleştirildikten sonra sınırlı kaynaklarla hesaplama
+incelenebilir; bu, ``hesaplama karmaşıklığı'' denen alanın özünü oluşturur.
+\end{digress}
+
+\begin{history}
+Alan Turing, Turing makinelerini 1936'da icat etti. O sıradaki ilgisi birinci
+dereceden mantığın karar verilebilirliği olsa da makalesi bilgisayar tasarımının
+temelleri üzerine kesin bir çalışma diye nitelenmiştir. Turing makalede
+hesaplanabilir gerçel sayılara, yani ondalık açılımları hesaplanabilir olan
+gerçel sayılara odaklanır; fakat kavramlarının doğal sayılar üzerindeki
+hesaplanabilir fonksiyonlara vb. uyarlanmasının zor olmadığını belirtir.
+Bunun, çalışan ilk genel amaçlı bilgisayarın 1941'de Alman Konrad Zuse
+tarafından ailesinin oturma odasında yapılmasından tam beş yıl; Turing ile
+meslektaşlarının Bletchley Park'ta şifre çözen Colossus'u yapmasından (1943)
+yedi yıl; Amerikan ENIAC'ından (1945) dokuz yıl; ilk İngiliz genel amaçlı
+bilgisayarı Manchester Small-Scale Experimental Machine'in Manchester'da
+yapılmasından (1948) on iki yıl ve Amerikalıların BINAC'ı ilk sınamasından
+(1949) on üç yıl önce olduğuna dikkat edin. Manchester SSEM, saklı programlı
+ilk bilgisayar olma özelliğini taşır; önceki makinelerin her yeni görev için
+elle yeniden kablolanması gerekiyordu.
+\end{history}
+

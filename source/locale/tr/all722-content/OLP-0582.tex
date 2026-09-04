@@ -1,0 +1,126 @@
+% Generated from locale/tr/content/set-theory/cardinals/cardsasords.tex; do not hand-edit.
+
+
+\olfileid[tr]{sth}{cardinals}{cardsasords}
+\olsection{Sıra Sayıları Olarak Kardinal Sayılar}
+
+Aslında kardinal sayılar teorimiz sıra sayıları teorimizi (utanmadan)
+kullanacaktır. Yani kardinal sayıları yalnızca belirli sıra sayıları olarak
+tanımlayacağız. Özellikle şu tanımı sunacağız:
+
+\begin{defn}\ollabel{defcardinalasordinal}
+$A$ iyi sıralanabiliyorsa $\card{A}$, $\cardeq{A}{\gamma}$ koşulunu
+sağlayan en küçük $\gamma$ sıra sayısıdır. Her $\gamma$ sıra sayısı için
+$\gamma=\card{\gamma}$ ise $\gamma$'ya bir \emph{kardinal sayı} deriz.
+\end{defn}
+
+Az önce ``$A$ iyi sıralanabilir'' ifadesini kullandık. Matematikte neredeyse
+her zaman olduğu gibi buradaki kiplik ifadesi, bir varlık iddiasının
+gayriresmî anlatımıdır: ``$A$ iyi sıralanabilir'' demek yalnızca ``$A$'yı
+iyi sıralayan bir bağıntı vardır'' demektir.
+
+Fakat \olref{defcardinalasordinal} tanımında bir engel vardır. \emph{Her}
+kümenin bir büyüklüğü, yani her $A$ için $\card{A}$ bulunmasını isteriz.
+Oysa verdiğimiz tanım bir koşulluyla başlar: ``$A$ iyi
+sıralanabiliyorsa\ldots''. İyi sıralanamayan bir $A$ kümesi varsa tanımımız
+$\card{A}$ nesnesini tanımlayamayacaktır.
+
+Dolayısıyla \olref{defcardinalasordinal} tanımını kullanmak için her kümenin
+iyi sıralanabileceğine ilişkin bir güvence gerekir. Ne yazık ki bu güvence
+$\ZF$ içinde yoktur. Öyleyse \olref{defcardinalasordinal} tanımını
+kullanmak istiyorsak şu türden yeni bir aksiyom eklemekten başka seçeneğimiz
+yoktur:
+\begin{axiom}[İyi Sıralama]
+Her küme iyi sıralanabilir.
+\end{axiom}
+İyi Sıralama Aksiyomu'nun kabul edilebilir olup olmadığını
+\olref[choice][]{chap} içinde tartışacağız. Fakat bundan sonra aksiyomu
+serbestçe kullanacağız. Bununla kardinal sayıların
+(\olref{defcardinalasordinal} içinde tanımlandığı anlamda) var olduğunu ve
+iyi davrandığını ispatlamak oldukça kolaydır:
+
+\begin{lem}\ollabel{lem:CardinalsExist}
+Her $A$ kümesi için:
+\begin{enumerate}
+	\item\ollabel{cardaexists} $\card{A}$ vardır ve biriciktir;
+	\item\ollabel{cardaapprox} $\cardeq{\card{A}}{A}$;
+	\item\ollabel{cardaidem} $\card{A}$ bir kardinal sayıdır; yani
+	$\card{A}=\card{\card{A}}$.
+\end{enumerate}
+\end{lem}
+
+\begin{proof}
+$A$ sabit olsun. İyi Sıralama gereği bir $\tuple{A,R}$ iyi sıralaması
+vardır. \olref[ordinals][ordtype]{thmOrdinalRepresentation} gereği
+$\tuple{A,R}$ biricik bir $\beta$ sıra sayısıyla izomorftur. Dolayısıyla
+$\cardeq{A}{\beta}$ olur. Sonlu Ötesi Tümevarım gereği
+$\cardeq{A}{\gamma}$ olan biricik en küçük $\gamma$ sıra sayısı vardır.
+Öyleyse $\card{A}=\gamma$ olur ve \olref{cardaexists} ile
+\olref{cardaapprox} kurulur. \olref{cardaidem} için $\delta\in\gamma$ ise
+$\gamma$'nın seçimi gereği $\cardless{\delta}{A}$ olduğunu gözlemleyin.
+Eş güçlülük bir denklik bağıntısı olduğundan
+(\olref[sfr][siz][equ]{equinumerosityisequi})
+$\cardless{\delta}{\gamma}$ da olur. Dolayısıyla
+$\gamma=\card{\gamma}$.
+%So, for reductio, suppose that there is some ordinal $\delta \in \gamma$ such that $\cardeq{\gamma}{\delta}$. Then, $\cardeq{\cardeq{A}{\gamma}}{\delta}$ so that $\cardeq{A}{\delta}$ by \olref[sfr][set][equ]{equinumerosityisequi}, which contradicts the choice of $\gamma$ as the least ordinal such that $\cardeq{A}{\gamma}$. 
+\end{proof}
+
+Sonraki sonuç Cantor İlkesi'ni ve daha fazlasını güvence altına alır.
+(Kardinal sayıların sıralamalarını sıra sayılarından devraldığına dikkat
+edin; yani $\cardfont{a}<\cardfont{b}$ ancak ve ancak
+$\cardfont{a}\in\cardfont{b}$ olur. Bunu formüle ederken kardinal sayı
+olduğunu bildiğimiz nesneler için Fraktur harfleri kullanacağız. Bu oldukça
+standarttır. Yaygın bir alternatif, kardinal sayılar sıra sayıları olduğundan
+Yunan alfabesinin ortalarından $\kappa,\lambda$ gibi harfler seçmektir.):
+\begin{lem}\ollabel{lem:CardinalsBehaveRight}
+Her $A$ ve $B$ kümesi için:
+\begin{align*}
+	\cardeq{A}{B} &\text{ ancak ve ancak } \card{A} = \card{B}\\
+	\cardle{A}{B} &\text{ ancak ve ancak } \card{A} \leq \card{B}\\
+	\cardless{A}{B}&\text{ ancak ve ancak } \card{A} < \card{B}.
+\end{align*}
+\end{lem}
+
+\begin{proof}
+İkinci iddianın soldan sağa yönünü ispatlayacağız (öteki durumlar benzerdir
+ve alıştırma olarak bırakılmıştır). Şu diyagramı ele alın:
+\begin{center}
+	\begin{tikzpicture}
+	\node (nodea) {$A$};
+	\node[right = 6em of nodea] (nodeb) {$B$};
+	\node[below = 2em of nodea] (nodecarda) {$\card{A}$};
+	\node[below = 2em of nodeb] (nodecardb) {$\card{B}$};
+	\draw[->] (nodea)--(nodeb);
+	\draw[<->] (nodea)--(nodecarda);
+	\draw[<->] (nodeb)--(nodecardb);
+	\draw[->, dashed] (nodecarda)--(nodecardb);
+\end{tikzpicture}
+\end{center}
+Çift başlı oklar, varlıkları \olref{lem:CardinalsExist} tarafından güvence
+altına alınan !!{bijection}s gösterir. $\cardle{A}{B}$ varsayımı altında
+bir !!a{injection} $A\to B$ vardır. Okları $\card{A}$'dan $A$'ya,
+$B$'ye ve $\card{B}$'ye kadar izlediğimizde bir !!a{injection}
+$\card{A}\to\card{B}$ (kesikli ok) elde ederiz.
+\end{proof}\noindent
+\olref{lem:CardinalsBehaveRight} sonucunu Schröder--Bernstein'ı yeniden
+ispatlamak için de kullanabiliriz. İddia, $\cardle{A}{B}$ ve
+$\cardle{B}{A}$ ise $\cardeq{A}{B}$ olduğudur. Bunu
+\olref[sfr][siz][sb]{thm:schroder-bernstein} olarak ifade etmiş, fakat ilk
+kez \olref[sfr][infinite][card-sb]{sec} içinde biraz çabayla
+ispatlamıştık. Şimdi şuna bakalım:
+
+\begin{proof}[Schröder--Bernstein'ın Yeniden İspatı]
+$\cardle{A}{B}$ ve $\cardle{B}{A}$ ise
+\olref{lem:CardinalsBehaveRight} gereği $\card{A}\leq\card{B}$ ve
+$\card{B}\leq\card{A}$ olur. Üçlü Karşılaştırma ve
+\olref{lem:CardinalsBehaveRight} gereği $\card{A}=\card{B}$ ve
+$\cardeq{A}{B}$ elde edilir.
+\end{proof}
+\noindent
+Bu çok basit bir ispat olsa da örtük olarak hem Yerine Koyma'ya
+(\olref[ordinals][ordtype]{thmOrdinalRepresentation} sonucunu elde etmek
+için) hem İyi Sıralama'ya (\olref{lem:CardinalsBehaveRight} sonucunu
+güvence altına almak için) dayanır. Buna karşılık
+\olref[sfr][infinite][card-sb]{sec} ispatı çok daha bağımsızdır (hatta
+$\Zminus$ içinde yürütülebilir).
+

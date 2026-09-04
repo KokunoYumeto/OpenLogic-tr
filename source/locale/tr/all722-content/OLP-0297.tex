@@ -1,0 +1,52 @@
+% Generated from locale/tr/content/incompleteness/representability-in-q/comp-representable.tex; do not hand-edit.
+
+
+\olfileid[tr]{inc}{req}{crq}
+\olsection{Hesaplanabilir Fonksiyonlar $\Th{Q}$ İçinde Temsil Edilebilir}
+
+\begin{thm}
+Her hesaplanabilir fonksiyon $\Th{Q}$ içinde temsil edilebilir.
+\end{thm}
+
+\begin{proof}
+Kesinlik sağlamak ve Church--Turing Tezi'ni kullanmak üzere bir fonksiyonun
+ancak ve ancak genel özyinelemeliyse hesaplanabilir olduğunu söyleyelim.
+Genel özyinelemeli fonksiyonlar, sıfır fonksiyonu~$\Zero$, ardıl
+fonksiyonu~$\Succ$ ve izdüşüm fonksiyonu~$\Proj{n}{i}$'den bileşke, ilkel
+özyineleme ve düzenli minimizasyon kullanılarak tanımlanabilen
+fonksiyonlardır. \olref[pri]{lem:prim-rec} uyarınca $f$ ile $g$'den
+tanımlanabilen her $h$ fonksiyonu; $f$, $g$, $\Zero$, $\Succ$,
+$\Proj{n}{i}$, $\Add$, $\Mult$ ve $\Char{=}$'den bileşke ve düzenli
+minimizasyon kullanılarak da tanımlanabilir. Dolayısıyla bir fonksiyon ancak
+ve ancak $\Zero$, $\Succ$, $\Proj{n}{i}$, $\Add$, $\Mult$ ve $\Char{=}$'den
+bileşke ve düzenli minimizasyon kullanılarak tanımlanabiliyorsa genel
+özyinelemelidir.
+
+Ayrıca söz konusu temel fonksiyonların $\Th{Q}$ içinde temsil edilebilir
+olduğunu
+(\cref{inc:req:bre:prop:rep-zero,inc:req:bre:prop:rep-succ,inc:req:bre:prop:rep-proj,inc:req:bre:prop:rep-id,inc:req:bre:prop:rep-add,inc:req:bre:prop:rep-mult})
+ve temsil edilebilir fonksiyonlardan bileşke veya düzenli minimizasyonla
+tanımlanan her fonksiyonun
+(\olref[cmp]{prop:rep-composition},
+\olref[min]{prop:rep-minimization}) yine temsil edilebilir olduğunu gösterdik.
+Demek ki her genel özyinelemeli fonksiyon $\Th{Q}$ içinde temsil edilebilir.
+\end{proof}
+
+\begin{explain}
+Hesaplanabilir fonksiyonlar kümesinin, $\Th{Q}$ içinde temsil edilebilen
+fonksiyonlar kümesi olarak nitelenebildiğini gösterdik. Aslında ispat daha
+geneldir. Temsil edilebilirlik tanımından, $\Th{Q}$'yu genişleten (ya da
+$\Th{Q}$'nun yorumlanabildiği) her kuramın hesaplanabilir fonksiyonları temsil
+edebildiğini görmek zor değildir. Fakat tersine, !!{derivation} kavramının
+hesaplanabilir olduğu her !!{derivation} sisteminde temsil edilebilir her
+fonksiyon hesaplanabilirdir. Dolayısıyla örneğin hesaplanabilir fonksiyonlar
+kümesi, Peano aritmetiğinde, hatta Zermelo--Fraenkel küme kuramında temsil
+edilebilen fonksiyonlar kümesi olarak nitelenebilir. G\"odel'in belirttiği
+gibi bu biraz şaşırtıcıdır. İspatlanabilirlik söz konusu olduğunda soruların
+ele alınan kurama çok duyarlı olduğunu göreceğiz; kabaca aksiyomlar ne kadar
+güçlüyse o kadar çok şey ispatlayabilirsiniz. Fakat çok çeşitli aksiyomatik
+kuramlarda temsil edilebilir fonksiyonlar tam olarak hesaplanabilir
+fonksiyonlardır; daha güçlü kuramlar aksiyomlaştırılabilir kaldıkları sürece
+daha çok fonksiyon temsil etmez.
+\end{explain}
+

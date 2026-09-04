@@ -1,0 +1,161 @@
+% Generated from locale/tr/content/normal-modal-logic/axioms-systems/derived-rules.tex; do not hand-edit.
+
+
+\olfileid[tr]{nml}{prf}{der}
+
+\olsection{Türetilmiş Kurallar}
+
+!!{derivation}s bulmak ve yazmak açıkça zor, külfetli ve yinelemelidir.
+Örneğin çoğu kez $!A \lif !B$'den $\Box !A \lif \Box !B$'ye geçmek, yani
+\RK{} kuralını uygulamak isteriz. Bunun için \Nec{} uygulanmalı, sonra
+\Ax{K}'nin uygun örneği kaydedilmeli ve ardından \MP{} uygulanmalıdır.
+$!A \lif !B$ ile $!B \lif !C$'den $!A \lif !C$'ye geçmek için de (uzun)
+totolojik örnek
+\[
+(!A \lif !B) \lif ((!B \lif !C) \lif (!A \lif !C))
+\]
+kaydedilip \MP{} iki kez uygulanmalıdır. Çoğu kez bir alt-!!{formula} yerine
+ona denk olduğunu bildiğimiz bir formül koymak isteriz; örneğin
+\iftag{prvDiamond}{$\Diamond !A$ yerine $\lnot\Box\lnot !A$}{$\Box !A$
+yerine $\lnot\Diamond\lnot !A$} ya da $\lnot\lnot !A$ yerine $!A$ koymak
+isteriz. Bu yüzden gerçek !!{derivation} metnini yazmak yerine ara adımların neden
+!!{derivable} olduğunu kaydetmek daha elverişlidir. Bu amaçla
+!!{derivability} hakkında bazı olguları bir araya getirelim.
+
+\begin{prop}
+  $\Log{K} \Proves !A_1$, \dots, $\Log{K} \Proves !A_n$ ise ve $!B$,
+  $!A_1$, \dots, $!A_n$'den önerme mantığı aracılığıyla çıkıyorsa
+  $\Log{K} \Proves !B$ olur.
+\end{prop}
+
+\begin{proof}
+  $!B$, $!A_1$, \dots,~$!A_n$'den önerme mantığı aracılığıyla çıkıyorsa
+  \[
+  !A_1 \lif (!A_2 \lif \cdots (!A_n \lif !B)\dots)
+  \]
+  bir totolojik örnektir. \MP{}'yi $n$ kez uygulamak $!B$ için bir
+  !!{derivation} verir.
+\end{proof}
+
+Bu önermenin kullanımını \PL{} ile göstereceğiz.
+
+\begin{prop}
+  $\Log{K} \Proves !A_1 \lif (!A_2 \lif \cdots (!A_{n-1} \lif
+  !A_n)\dots)$ ise $\Log{K} \Proves \Box !A_1 \lif (\Box !A_2 \lif
+  \cdots (\Box !A_{n-1} \lif \Box !A_n)\dots)$ olur.
+\end{prop}
+
+\begin{proof}
+  $n$ üzerinde, \olref[nor]{prop:rk} ispatındaki gibi tümevarımla.
+\end{proof}
+
+Bu önermenin kullanımını \RK{} ile göstereceğiz. Şimdi bu sonuçların
+!!{derivability} sonuçlarını daha kolay ortaya koymaya nasıl yardım ettiğini
+örnekleyelim.
+
+\begin{prop}
+  $\Log{K} \Proves (\Box!A \land \Box!B) \lif \Box (!A \land !B)$
+\end{prop}
+
+\begin{proof}
+  \begin{derivation}
+    1. & $\Log{K} \Proves !A \lif (!B \lif (!A \land !B))$ & \Taut \\
+    2. & $\Log{K} \Proves \Box!A \lif (\Box !B \lif \Box(!A \land !B)))$ & \RK, 1\\
+    3. & $\Log{K} \Proves (\Box!A \land \Box!B) \lif \Box(!A \land !B)$ & \PL, 2
+  \end{derivation}
+\end{proof}
+
+\begin{prop}\ollabel{prop:rewriting}
+  $\Log{K} \Proves !A \liff !B$ ve $\Log{K} \Proves
+  \Subst{!C}{!A}{q}$ ise $\Log{K} \Proves \Subst{!C}{!B}{q}$ olur.
+  % [tr source emendation] Upstream drops the formula marker in the final
+  % substitution argument (`B`); the proposition requires `!B`.
+\end{prop}
+
+\begin{proof}
+  Alıştırma.
+\end{proof}
+
+\begin{prob}
+  \olref[nml][prf][der]{prop:rewriting}'i, $!C$'nin karmaşıklığı üzerinde
+  tümevarımla, $\Log{K} \Proves !A \liff !B$ ise
+  $\Log{K} \Proves \Subst{!C}{!A}{q} \liff \Subst{!C}{!B}{q}$ olduğunu
+  ispatlayarak gösterin.
+\end{prob}
+
+Bu önerme özellikle $\Diamond$'ı $\Box$'a (ya da tersine) dönüştürmek veya
+!!a{formula} içindeki çift değillemeleri kaldırmak istediğimizde kullanışlıdır.
+Aşağıda $!C(!A)$ !!a{formula} ifadesini $!C(!B)$ olarak yeniden yazdığımızda
+\olref{prop:rewriting} uygulamalarını ``$!A$ yerine $!B$'' ile göstereceğiz.
+% [tr source emendation] Upstream calls the displayed C(A)-to-C(B) step
+% “A for B,” but its derivation and worked example require “B for A.”
+Başka deyişle ``$!A$ yerine $!B$'' şunun kısaltmasıdır:
+  \begin{derivation}
+    & $\Proves !C(!A)$ \\
+    & $\Proves !A \liff !B$\\
+    & $\Proves !C(!B)$ & \olref{prop:rewriting} uyarınca
+  \end{derivation}
+Örneğin:
+
+\begin{prop}
+  $\Log{K} \Proves \lnot\Box p \lif \Diamond \lnot p$
+\end{prop}
+
+\begin{proof}
+  \iftag{prvDiamond}{% Diamond is primitive
+  \begin{derivation}
+    1. & $\Log{K} \Proves \Diamond \lnot p \liff \lnot\Box\lnot\lnot p$ &
+    \Dual\\
+    2. & $\Log{K} \Proves \lnot \Box \lnot\lnot p \lif \Diamond \lnot p$ & \PL, 1\\
+    3. & $\Log{K} \Proves \lnot\Box p \lif \Diamond \lnot p$ & $\lnot\lnot p$ yerine $p$\\
+  \end{derivation}
+  }{% Diamond is defined
+  \begin{derivation}
+    1. & $\Log{K} \Proves \lnot \Box \lnot\lnot p \lif \Diamond \lnot p$ & \Taut\\
+    2. & $\Log{K} \Proves \lnot\Box p \lif \Diamond \lnot p$ & $\lnot\lnot p$ yerine $p$\\
+  \end{derivation}
+  1. satırdaki formül, $q$ yerine $\Box\lnot\lnot p$ koyularak elde edilen
+  $\lnot q \lif \lnot q$ örneğidir. $\Diamond$, $\lnot\Box\lnot$ olarak
+  tanımlandığından $\Diamond\lnot p$ ile $\lnot\Box\lnot\lnot p$ özdeştir.}
+\end{proof}
+
+Yukarıdaki !!{derivation} içinde son adım olan ``$\lnot\lnot p$ yerine $p$'' şu
+uzun ifadenin kısaltmasıdır:
+  \begin{derivation}
+    & $\Log{K} \Proves \lnot \Box \lnot\lnot p \lif \Diamond \lnot
+    p$\\
+    & $\Log{K} \Proves \lnot\lnot p \liff p$ & \Taut\\
+    & $\Log{K} \Proves \lnot\Box p \lif \Diamond \lnot p$ & \olref{prop:rewriting} uyarınca
+  \end{derivation}
+\olref{prop:rewriting}'deki $!C(q)$, $!A$ ve $!B$ rollerini burada sırasıyla
+$\lnot \Box q \lif \Diamond \lnot p$, $\lnot\lnot p$ ve $p$ oynar.
+
+!!a{formula}, $\lnot\Diamond !A$ biçiminde bir alt-!!{formula} içerdiğinde,
+$\Log{K} \Proves \lnot\Diamond !A \liff \Box\lnot !A$ olduğundan
+\olref{prop:rewriting}'i kullanarak bunun yerine $\Box\lnot !A$ koyabiliriz.
+Bunu ve benzeri değiştirmeleri yalnızca ``$\lnot\Diamond$ yerine
+$\Box\lnot$'' diye göstereceğiz.
+
+Aşağıdaki önerme, !!{derivability} sonuçlarını şematik olarak ortaya
+koyabileceğimizi gerekçelendirir. Örneğin önceki önerme yalnızca
+$\Log{K} \Proves \lnot\Box p \lif \Diamond \lnot p$ sonucunu değil, keyfî
+$!A$ için $\Log{K} \Proves \lnot\Box !A \lif \Diamond \lnot !A$ sonucunu da
+ortaya koyar.
+
+\begin{prop}
+  $!A$, $!B$'nin bir yerine koyma örneğiyse ve $\Log{K} \Proves !B$ ise
+  $\Log{K} \Proves !A$ olur.
+\end{prop}
+
+\begin{proof}
+  $!B$ için verilen !!{derivation} uzunluğu üzerinde tümevarımla, bir yerine
+  koymayı bütün !!{derivation} boyunca uygulamanın yine doğru bir !!{derivation}
+  verdiğini doğrulamak zahmetli fakat sıradandır. Özellikle totolojik
+  örneklerin yerine koyma örnekleri yine totolojik örneklerdir;
+  \iftag{prvDiamond}{\Dual{} ve~}{}\Ax{K} örneklerinin yerine koyma örnekleri
+  yine \iftag{prvDiamond}{\Dual{} ve~}{}\Ax{K} örnekleridir; hem öncül ya da
+  öncüllerde hem sonuçta !!{formula}s kullanılarak !!{propositional variable}s
+  değiştirildiğinde \MP{} ve \Nec{} uygulamaları doğru kalır.
+\end{proof}
+
+

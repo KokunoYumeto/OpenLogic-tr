@@ -1,0 +1,63 @@
+% Generated from locale/tr/content/counterfactuals/minimal-change-semantics/antecedent-strengthening.tex; do not hand-edit.
+
+
+\olfileid[tr]{cnt}{min}{agg}
+
+\olsection{Önbileşeni Güçlendirme}
+
+``Önbileşeni güçlendirme'', $!A\lif !C\Entails(!A\land !B)\lif !C$
+çıkarımını ifade eder. Maddi koşul için geçerli, karşıolgusallar için
+geçersizdir. Bu kibriti çaksaydım yanacağının doğru olduğunu varsayalım.
+(Yani kibritte ya da kibrit kutusunun yüzeyinde bir sorun yoktur, kibriti
+kırmayacağımdır vb.) Fakat bu kibriti uzay boşluğunda çaksaydım yanacağı
+doğru değildir. Dolayısıyla şu çıkarım geçersizdir:
+\begin{quote}
+  Kibrit çakılsaydı yanardı.
+
+  Öyleyse kibrit uzay boşluğunda çakılsaydı yanardı.
+\end{quote}
+
+Lewis--Stalnaker koşul açıklaması bunu açıklar: Kibriti uzay boşluğunda
+çaktığım en yakın dünya, yalnızca kibriti çaktığım en yakın dünyaya göre
+gerçek dünyadan çok daha uzaktır. Bu nedenle kibrit ikinci dünyada yansa da
+birincisinde yanmaz. Olması gereken de budur.
+
+\begin{ex}
+  Küre semantiği bu çıkarımı geçersiz kılar; yani
+  $p\cif r\Entails/(p\land q)\cif r$. $W=\{w,w_1,w_2\}$,
+  $O_w=\{\{w\},\{w,w_1\},\{w,w_1,w_2\}\}$,
+  $V(p)=\{w_1,w_2\}$, $V(q)=\{w_2\}$ ve $V(r)=\{w_1\}$ olan
+  $\mModel{M}=\tuple{W,O,V}$ modelini ele alalım. $p$'yi kabul eden
+  $S=\{w,w_1\}$ küresi vardır ve $p\lif r$ bu kürenin bütün dünyalarında
+  doğrudur; dolayısıyla $\mSat{M}{p\cif r}[w]$. Ayrıca $p\land q$'yu kabul
+  eden $S'=\{w,w_1,w_2\}$ küresi vardır, fakat
+  $\mSat/{M}{(p\land q)\lif r}[w_2]$; dolayısıyla
+  $\mSat/{M}{(p\land q)\cif r}[w]$
+  (bkz. \olref{fig:antecedent-strengthening}).
+
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[layerwidth=1.5,scale=.6]\tiny
+  \spheresystem{3}
+  \propositionintersect{-10}{3}{30}{5}
+  \begin{scope}
+    \clip plot[smooth,tension=1] coordinates
+          {(0,4.5) (30:.95) (4.5,-3.5)} -- (4.5,4.5) ;
+    \spherefill{2}
+  \end{scope}
+  \draw[proposition] plot[dashed,smooth,tension=1] coordinates
+          {(0,4.5) (30:.95) (4.5,-3.5)} ;
+  \proposition{30}{2}{30}{5}
+  \path (0,0) node[world] {$w$};
+  \spherepos{30}{2}{node[world] {$w_1$}}
+  \spherepos{-10}{3}{node[world] {$w_2$}}
+  \spherepos{-10}{4}{node {$q$}}
+  \spherepos{30}{4}{node {$r$}}
+  \draw (1,4.5) node[below] {$p$};
+\end{tikzpicture}
+\caption{Önbileşeni güçlendirmeye karşı örnek}
+\ollabel{fig:antecedent-strengthening}
+\end{center}
+\end{figure}
+\end{ex}
+

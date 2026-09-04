@@ -1,0 +1,228 @@
+% Generated from locale/tr/content/normal-modal-logic/filtrations/examples-of-filtrations.tex; do not hand-edit.
+
+
+\olfileid[tr]{nml}{fil}{exf}
+
+\olsection{Süzme Örnekleri}
+
+Henüz herhangi bir süzmenin var olduğunu göstermedik. Oysa her
+$\mModel{M}$ modeli için $\Gamma$ üzerinden $\mModel{M}$'nin pek çok
+süzmesi vardır. Bunlardan özellikle ikisini belirleriz: en ince ve en kaba
+süzmeleri. Aynı modelin süzmeleri erişilebilirlik bağıntıları bakımından
+  farklılaşır (\olref[fil]{defn:filtration}, $W^*$ ile~$V^*$'nin ne olması
+gerektiğini doğrudan belirler). En ince süzmede bağıntılı dünya sayısı
+olabildiğince az, en kaba süzmede ise olabildiğince çoktur.
+
+\begin{defn}
+  $\Gamma$ alt formüller altında kapalı olduğunda, bir $\mModel{M}$
+  modelinin \emph{en ince} süzmesi $\mModel{M^*}$ şöyle tanımlanır:
+  \[
+  R^*[u][v] \quad \text{ancak ve ancak} \quad \exists u'\in [u] \;
+  \exists v' \in [v] : Ru'v'.
+  \]
+\end{defn}
+
+\begin{prop}\ollabel{prop:finest}
+  En ince süzme $\mModel{M^*}$ gerçekten de bir süzmedir.
+\end{prop}
+
+\begin{proof}
+  Bu biçimde tanımlanan $R^*$'nin
+  \olref[fil]{defn:filtration}\olref[fil]{defn:filtration-R} koşullarını
+  sağladığını denetlememiz gerekir. Üç koşulu sırasıyla inceleyelim.
+
+  $Ruv$ ise $u \in [u]$ ve $v \in [v]$ olduğundan $R^*[u][v]$ de
+  geçerlidir; dolayısıyla \olref[fil]{defn:filtration-R1} sağlanır.
+
+  \iftag{prvBox}{\iftag{probBox}{
+      \olref[fil]{defn:filtration-R2} koşulunun doğrulanmasını alıştırma
+      olarak bırakıyoruz.}{
+        \olref[fil]{defn:filtration-R2} için $\Box!A \in \Gamma$,
+        $R^*[u][v]$ ve $\mSat{M}{\Box!A}[u]$ olsun. $R^*$ tanımına göre
+        $u' \equiv u$ ve $v' \equiv v$ olacak biçimde $Ru'v'$ olan
+        bir dünya çifti vardır. $u$ ile $u'$, $\Gamma$ üzerinde aynı doğruluk
+        değerlerini verdiğinden $\mSat{M}{\Box!A}[u']$ da geçerlidir;
+        buradan $\mSat{M}{!A}[v']$ çıkar. $\Gamma$ alt-!!{formula}s altında
+        kapalı olduğundan $v$ ile $v'$, $!A$ üzerinde de aynı sonucu verir;
+        dolayısıyla istendiği gibi $\mSat{M}{!A}[v]$.}}{}
+
+  \iftag{prvDiamond}{\iftag{probDiamond}{
+      \olref[fil]{defn:filtration-R3} koşulunun doğrulanmasını alıştırma
+      olarak bırakıyoruz.}{
+        \olref[fil]{defn:filtration-R3} için $\Diamond!A \in \Gamma$,
+        $R^*[u][v]$ ve $\mSat{M}{!A}[v]$ olsun. $R^*$ tanımına göre
+        $u' \equiv u$ ve $v' \equiv v$ olacak biçimde $Ru'v'$ olan
+        bir dünya çifti vardır. $v$ ile $v'$, $\Gamma$ üzerinde aynı doğruluk
+        değerlerini verdiğinden ve $\Gamma$ alt-!!{formula}s altında kapalı
+        olduğundan $\mSat{M}{!A}[v']$ da geçerlidir; dolayısıyla
+        $\mSat{M}{\Diamond !A}[u']$. $u$ ile $u'$ da $\Gamma$ üzerinde
+        aynı sonucu verdiğinden $\mSat{M}{\Diamond !A}[u]$.}}{}
+\end{proof}
+
+\begin{probtag}{probBox,probDiamond}
+  \olref[nml][fil][exf]{prop:finest} önermesinin ispatını tamamlayın.
+\end{probtag}
+
+\begin{defn}
+  $\Gamma$ alt formüller altında kapalı olduğunda, bir $\mModel{M}$
+  modelinin \emph{en kaba} süzmesi~$\mModel{M^*}$, $R^*[u][v]$ ancak ve
+  ancak
+  \iftag{notprvBox,notprvDiamond}{aşağıdaki koşul
+    sağlandığında}{aşağıdaki koşulların \emph{ikisi de} sağlandığında}
+  geçerli olacak biçimde tanımlanır:
+  \begin{tagenumerate}{prvBox,prvDiamond}
+  \tagitem{prvBox}{\ollabel{defn:coarsest-Box}$\Box!A \in \Gamma$
+    ve $\mSat{M}{\Box!A}[u]$ ise
+    $\mSat{M}{!A}[v]$\iftag{prvDiamond}{;}{.}}{}
+  \tagitem{prvDiamond}{\ollabel{defn:coarsest-Diamond}$\Diamond!A
+    \in \Gamma$ ve $\mSat{M}{!A}[v]$ ise
+    $\mSat{M}{\Diamond!A}[u]$.}{}
+  \end{tagenumerate}
+\end{defn}
+
+\begin{prop}
+  En kaba süzme $\mModel{M^*}$ gerçekten de bir süzmedir.
+\end{prop}
+
+\begin{proof}
+  $R^*$'nin tanımı gereğince geriye yalnızca $Ruv$'nin $R^*[u][v]$'yi
+  gerektirdiğini doğrulamak kalır. Öyleyse $Ruv$ olsun.
+  \iftag{prvBox}{$\Box!A \in \Gamma$ ve
+    $\mSat{M}{\Box!A}[u]$ olduğunu varsayalım; o zaman açıkça
+    $\mSat{M}{!A}[v]$\iftag{prvDiamond}{ ve
+      \olref{defn:coarsest-Box} sağlanır}{.}}{}
+  \iftag{prvDiamond}{$\Diamond!A \in \Gamma$ ve
+    $\mSat{M}{!A}[v]$ olduğunu varsayalım. $Ruv$ olduğundan
+    $\mSat{M}{\Diamond!A}[u]$\iftag{prvBox}{ ve
+      \olref{defn:coarsest-Diamond} sağlanır}{}.}{}
+\end{proof}
+
+\begin{ex}
+  $W = \PosInt$, $Rnm$ ancak ve ancak $m = n + 1$ ve
+  $V(p) = \Setabs{2n}{n \in \Nat}$ olsun. $\mModel{M} = \tuple{W, R, V}$
+  modeli \olref{fig:ex-filtration}'de gösterilmiştir. Dünyalar $1$, $2$,
+  vb.'dir; her dünya tam olarak bir başka dünyaya---ardılına---erişebilir
+  ve $p$ tam olarak çift sayılarda doğrudur.
+
+  \begin{figure}
+    \centering
+    \begin{tikzpicture}[modal]
+      \node[world] (1) [label=below:\mFalse{p}] {$1$};
+      \node[world] (2) [label=below:\mTrue{p}, right=of 1] {$2$};
+      \node[world] (3) [label=below:\mFalse{p}, right=of 2] {$3$};
+      \node[world] (4) [label=below:\mTrue{p}, right=of 3] {$4$};
+      \node[phantom] (5) [right=of 4] {};
+      \draw[->] (1) to (2);
+      \draw[->] (2) to (3);
+      \draw[->] (3) to (4);
+      \draw[dotted] (4) to (5);
+    \end{tikzpicture}
+
+    \begin{tikzpicture}[modal]
+      \node[world] (1) [label=below:\mFalse{p}] {$[1]$};
+      \node[world] (2) [label=below:\mTrue{p}, right=of 1] {$[2]$};
+      \draw[->,bend left] (1) to (2);
+      \draw[->,bend left] (2) to (1);
+
+      \node[world] (3) [label=below:\mFalse{p},right=of 2] {$[1]$};
+      \node[world] (4) [label=below:\mTrue{p}, right=of 3] {$[2]$};
+      \draw[->,bend left] (3) to (4);
+      \draw[->,bend left] (4) to (3);
+      \draw[->,reflexive above] (4) to (4);
+    \end{tikzpicture}
+    \caption{Sonsuz bir model ve süzmeleri.}
+    \ollabel{fig:ex-filtration}
+  \end{figure}
+
+  Şimdi $\Gamma$, $\Box p \lif p$'nin alt-!!{formula}s{}inin kümesi, yani
+  $\{p, \Box p, \Box p \lif p\}$ olsun. $p$ tam olarak çift sayılarda,
+  $\Box p$ ise tam olarak tek sayılarda doğrudur; dolayısıyla
+  $\Box p \lif p$ tam olarak çift sayılarda doğrudur. Başka bir deyişle,
+  her tek sayı $\Box p$'yi doğru, fakat $p$ ile $\Box p \lif p$'yi yanlış
+  yapar; her çift sayıysa $p$ ile $\Box p \lif p$'yi doğru, fakat
+  $\Box p$'yi yanlış yapar. Böylece $W^* = \{ [1], [2] \}$; burada
+  $[1] = \{1, 3, 5, \dots\}$ ve $[2] = \{2, 4, 6, \dots\}$.
+  $2 \in V(p)$ olduğundan $[2] \in V^*(p)$; $1 \notin V(p)$ olduğundan
+  $[1] \notin V^*(p)$. Öyleyse $V^*(p) = \{[2]\}$.
+
+  $W^*$ üzerine kurulan her süzmenin erişilebilirlik bağıntısı
+  $\tuple{[1], [2]}, \tuple{[2],[1]}$ ikililerini içermelidir:
+  $R12$ olduğundan
+  \olref[fil]{defn:filtration}\olref[fil]{defn:filtration-R1} gereğince
+  $R^*[1][2]$ olmalıdır; $R23$ olduğundan $R^*[2][3]$ olmalıdır ve
+  $[3]=[1]$. Buna karşılık $\tuple{[1],[1]}$ ikilisini içeremez: içerseydi
+  $R^*[1][1]$, $\mSat{M}{\Box p}[1]$ ve $\mSat/{M}{p}[1]$ birlikte
+  geçerli olur, bu da \olref[fil]{defn:filtration-R2} ile çelişirdi.
+  $R^*[2][2]$'yi ne gerektiren ne de dışlayan bir koşul vardır. Dolayısıyla
+  $\mModel{M}$'nin aşağıdaki iki erişilebilirlik bağıntısına karşılık gelen
+  iki olası süzmesi vardır:
+  \[
+  \{\tuple{[1],[2]}, \tuple{[2],[1]}\} \text{ ve }
+  \{\tuple{[1],[2]}, \tuple{[2],[1]}, \tuple{[2],[2]}\}.
+  \]
+  Her iki durumda da $[1]$'de $p$ ile $\Box p \lif p$ yanlış,
+  $\Box p$ doğru; $[2]$'de $p$ ile $\Box p \lif p$ doğru,
+  $\Box p$ yanlıştır.
+\end{ex}
+
+
+\begin{prob}
+  $W = \Setabs{0\sigma}{\sigma \in \Bin^*}$, yani $0$ ile başlayan
+  $0$ ve~$1$ dizilerinin kümesi olsun. Ayrıca $R\sigma\sigma'$ ancak ve
+  ancak $\sigma' = \sigma 0$ ya da $\sigma' = \sigma 1$ olsun ve
+  $V(p) = \Setabs{\sigma 0}{\sigma \in \Bin^*}$ ile
+  $V(q) = \Setabs{\sigma 1}{\sigma \in \Bin^* \setminus \{1\}}$
+  olarak tanımlansın. Bu durumda $\mModel{M} = \tuple{W, R, V}$ modelini
+  düşünün. Modelin bir resmi şöyledir:
+  \begin{center}
+    \begin{tikzpicture}[modal,
+        node distance=2cm
+      ]
+
+      \node[world] (0) [label={below:\mTrue{p}\\\mFalse{q}},font=\tiny] {$0$};
+      \node[world] (00) [label={below:\mTrue{p}\\\mFalse{q}},
+        above right=of 0,font=\tiny] {$00$};
+      \node[world] (000) [label={below:\mTrue{p}\\\mFalse{q}},
+        right=of 00, yshift=.8cm, font=\tiny] {$000$};
+      \node[phantom] (0000) [right=of 000, yshift=.5cm] {};
+      \node[phantom] (0001) [right=of 000, yshift=-.5cm] {};
+      \node[world] (001) [label={below:\mFalse{p}\\\mTrue{q}},
+        right=of 00, yshift=-.8cm, font=\tiny] {$001$};
+      \node[phantom](0010) [right=of 001, yshift=.5cm] {};
+      \node[phantom](0011) [right=of 001, yshift=-.5cm] {};
+      \node[world] (01) [label={below:\mFalse{p}\\\mTrue{q}},
+        below right=of 0,font=\tiny] {$01$};
+      \node[world] (010) [label={below:\mTrue{p}\\\mFalse{q}},
+        right=of 01, yshift=.8cm,font=\tiny] {$010$};
+      \node[phantom] (0100) [right=of 010, yshift=.5cm] {};
+      \node[phantom] (0101) [right=of 010, yshift=-.5cm] {};
+      \node[world] (011) [label={below:\mFalse{p}\\\mTrue{q}},
+        right=of 01, yshift=-.8cm,font=\tiny] {$011$};
+      \node[phantom] (0110) [right=of 011, yshift=.5cm] {};
+      \node[phantom] (0111) [right=of 011, yshift=-.5cm] {};
+
+      \draw[->] (0) to (00);
+      \draw[->] (0) to (01);
+      \draw[->] (00) to (000);
+      \draw[dotted] (000) to (0000);
+      \draw[dotted] (000) to (0001);
+      \draw[->] (00) to (001);
+      \draw[dotted] (001) to (0010);
+      \draw[dotted] (001) to (0011);
+      \draw[->] (01) to (010);
+      \draw[dotted] (010) to (0100);
+      \draw[dotted] (010) to (0101);
+      \draw[->] (01) to (011);
+      \draw[dotted] (011) to (0110);
+      \draw[dotted] (011) to (0111);
+    \end{tikzpicture}
+  \end{center}
+  Her~$w$ için
+  $\mSat/{M}{\Box(p \lor q) \lif (\Box p \lor \Box q)}[w]$.
+
+  $\Gamma$, $\Box(p \lor q) \lif (\Box p \lor \Box q)$'nun
+  alt-!!{formula}s{}inin kümesi olsun. $W^*$ ile~$V^*$ nedir?
+  $\mModel{M}$'nin en ince süzmesinin erişilebilirlik bağıntısı nedir?
+  Peki en kaba süzmesinin?
+\end{prob}
+

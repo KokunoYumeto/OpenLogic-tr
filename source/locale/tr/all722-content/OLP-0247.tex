@@ -1,0 +1,52 @@
+% Generated from locale/tr/content/computability/computability-theory/total.tex; do not hand-edit.
+
+
+\olfileid[tr]{cmp}{thy}{tot}
+\olsection{Tümellik Karar Verilemezdir}
+
+Bir şeyin hesaplanamaz olduğunu göstermek için $s$-$m$-$n$ teoremini
+kullanmanın bir başka örneğini ele alalım. $\fn{Tot}$, tümel hesaplanabilir
+fonksiyonların indisleri kümesi olsun:
+\[
+  \fn{Tot}=\Setabs{x}{\text{her $y$ için }\cfind{x}(y)\fdefined}.
+\]
+
+\begin{prop}
+\ollabel{prop:total}
+$\fn{Tot}$ hesaplanabilir değildir.
+\end{prop}
+
+\begin{proof}
+$\fn{Tot}$'un hesaplanabilir olmadığını görmek için $K$'nin ona
+indirgenebilir olduğunu göstermek yeterlidir. $h(x,y)$ fonksiyonu
+\[
+  h(x,y)\simeq\begin{cases}
+    0 & \text{$x\in K$ ise}\\
+    \fundefined & \text{aksi durumda}
+  \end{cases}
+\]
+ile tanımlansın. $h(x,y)$ fonksiyonunun $y$'ye hiç bağlı olmadığına dikkat
+edin. $h$'nin kısmi hesaplanabilir olduğunu görmek zor değildir: $x,y$
+girdisinde önce $\cfind{x}$ fonksiyonunu $x$ girdisinde benzetiriz; bu hesap
+durursa $h(x,y)$, $0$ çıktısını verip durur. Dolayısıyla $\Zero$ sabit sıfır
+fonksiyonu olmak üzere $h(x,y)$ yalnızca
+$\Zero(\umin{s}{T(x,x,s)})$'dir.
+
+$s$-$m$-$n$ teoremi uyarınca her $x$ ile $y$ için
+\[
+  \cfind{k(x)}(y)=\begin{cases}
+    0 & \text{$x\in K$ ise}\\
+    \fundefined & \text{aksi durumda}
+  \end{cases}
+\]
+olacak ilkel özyinelemeli bir $k(x)$ fonksiyonu vardır. Böylece
+$\cfind{k(x)}$, $x\in K$ ise tümel, aksi durumda tanımsızdır. Dolayısıyla
+$k$, $K$'nin $\fn{Tot}$'a bir indirgemesidir.
+\end{proof}
+
+\begin{digress}
+Aslında $\fn{Tot}$ hesaplanabilir biçimde numaralandırılabilir bile değildir;
+karmaşıklığı ``aritmetik hiyerarşi''de daha yukarıdadır. Fakat burada bu
+güçlendirmeyle ilgilenmeyeceğiz.
+\end{digress}
+

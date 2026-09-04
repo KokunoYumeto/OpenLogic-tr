@@ -1,0 +1,77 @@
+% Generated from locale/tr/content/set-theory/ordinals/replacement.tex; do not hand-edit.
+
+
+\olfileid[tr]{sth}{ordinals}{replacement}
+\olsection{Yerine Koyma}
+
+\olref[sth][ordinals][vn]{sec} içinde sıra sayılarını, iyi sıralamaların
+kanonik temsilcileri olan sıra tipleri gibi ele alabileceğimizi öne sürerek
+onların tanıtılmasını gerekçelendirdik. Bunun işlemesi için \emph{her iyi
+sıralamanın bir sıra sayısıyla izomorf olduğunu} ispatlamamız gerekir. Bu,
+$\tuple{A,<}$ iyi sıralaması için $\ordtype{A,<}$ ifadesini
+$\tuple{A,<}\isomorphic\alpha$ koşulunu sağlayan $\alpha$ sıra sayısı
+olarak tanımlamamıza izin verir.
+
+Ne yazık ki istenen sonucu yalnızca şimdiye dek ortaya koyduğumuz
+aksiyomlarla ispatlayamayız. (Nedenini
+\olref[replacement][strength]{sec} içinde göreceğiz; şimdilik önemli olan
+ispatlayamadığımızdır.) Yeni bir fikre ihtiyacımız var; işte o fikir:
+
+\begin{axiom}[Yerine Koyma Şeması]
+Her $\phi(x,y)$ formülü için aşağıdaki bir aksiyomdur:
+\begin{quote}
+	her $A$ için $(\forall x \in A)\lexists![y][\phi(x,y)]$ ise
+	$\Setabs{y}{(\exists x \in A)\phi(x,y)}$ kümesi vardır.
+\end{quote}
+\end{axiom}
+\noindent
+Ayırma gibi bu da bir şemadır: sonsuz sayıdaki farklı $\phi$'nin her biri
+için bir aksiyom olmak üzere sonsuz sayıda aksiyom verir. Eşdeğer biçimde
+(ve genellikle) şöyle yazılır:
+
+\begin{defish}
+``$B$'' içermeyen her $\phi(x,y)$ formülü için aşağıdaki bir aksiyomdur:
+\[
+\forall A[(\forall x \in A)\lexists![y][\phi(x,y)] \lif \exists B\forall y (y \in B \liff (\exists x \in A)\phi(x,y))]
+\]
+\end{defish}
+
+İlk karşılaşmada bu oldukça dolaşık bir formüldür. Yerine Koyma'nın şu
+hızlı sonucu, üzerinde çalıştığımız sezgisel fikri muhtemelen daha
+\emph{açık} biçimde ifade eder:\footnote{Bir terim, serbest değişkenleri
+nasıl tamamlanırsa tamamlansın, tam bir nesneyi belirleyen ifadedir.
+Örneğin ``$\emptyset$'' boş kümeyi; ``$\{x\}$'', $x$ ne olursa olsun,
+$x$'in tek elemanlı kümesini; ``$x\cup y$'' ise $x$ ile $y$ ne olursa
+olsun bunların birleşimini belirleyen bir terimdir.}
+
+\begin{cor}
+Her $\tau(x)$ terimi ve her $A$ kümesi için şu küme vardır:
+\[
+	\Setabs{\tau(x)}{x \in A} = \Setabs{y}{(\exists x \in A)y = \tau(x)}.
+\]
+\end{cor}
+
+\begin{proof}
+$\tau$ bir \emph{terim} olduğundan
+$\forall x\lexists![y][\tau(x)=y]$ olur. Hele hele
+$(\forall x\in A)\lexists![y][\tau(x)=y]$ olur. Dolayısıyla Yerine Koyma
+gereği $\Setabs{y}{(\exists x\in A)\tau(x)=y}$ kümesi vardır.
+\end{proof}
+\noindent
+Bu, ``Yerine Koyma''nın aksiyom için iyi bir ad olduğunu düşündürür: bir
+$A$ kümesi verildiğinde $A$'nın her elemanını $\tau$ altındaki görüntüsüyle
+değiştirerek yeni bir $\Setabs{\tau(x)}{x\in A}$ kümesi oluşturabilirsiniz.
+Nitekim bir kümenin bir fonksiyon altındaki görüntüsü gösterimini izleyerek
+$\Setabs{\tau(x)}{x\in A}$ için $\funimage{\tau}{A}$ yazabiliriz.
+
+Ancak kritik olarak $\tau$ bir \emph{terimdir}. Bu, terimin
+\olref[sfr][fun][rel]{sec} anlamında, yani belirli bir sıralı ikililer
+kümesi olan bir \emph{fonksiyon} (adı) olmasını gerektirmez. Sonuçta $f$ bu
+anlamda bir fonksiyonsa
+$\funimage{f}{A}=\Setabs{f(x)}{x\in A}$ kümesi yalnızca $\ran{f}$'nin
+belirli bir alt kümesidir; bunun varlığı zaten yalnızca $\Zminus$
+aksiyomlarıyla güvence altındadır.\footnote{Yalnızca
+$\Setabs{y \in \bigcup \bigcup f}{(\exists x \in A)y = f(x)}$ kümesini
+ele alın.} Buna karşılık Yerine Koyma, aksiyomlarımıza \emph{güçlü} bir
+eklemedir; bunu \olref[sth][replacement][]{chap} içinde göreceğiz.
+

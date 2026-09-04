@@ -1,0 +1,431 @@
+% Generated from locale/tr/content/first-order-logic/syntax-and-semantics/satisfaction.tex; do not hand-edit.
+
+
+\olfileid[tr]{fol}{syn}{sat}
+
+\olsection{\article{formula} \printtoken{S}{formula} İfadelerinin
+  \article{structure} \printtoken{S}{structure} İçinde Sağlanması}
+
+\begin{explain}
+Bir yanda terimler ve !!{formula}s gibi ifadeleri, öte yanda
+!!{structure}s ifadelerini birbirine bağlayan temel kavramlar, bir
+terimin \emph{!!{value}} ile !!a{formula} ifadesinin \emph{sağlanması}
+kavramlarıdır. Gayriresmî olarak bir terimin !!{value}, bir !!{element}
+öğesidir: Terim yalnızca bir sabitse bu öğe !!a{structure} tarafından
+sabite atanan !!{value} değeridir ve bu !!{structure} içindedir; terim
+!!{function}s
+kullanılarak kurulmuşsa !!{value}, terimdeki sabitlerin !!{value}s
+öğelerinden ve fonksiyon simgelerine atanmış fonksiyonlardan hesaplanır.
+!!^a{formula}, !!a{structure} içinde, yüklemlere verilen yorum
+!!{formula} ifadesini o !!{structure} evreninde doğru kılıyorsa
+\emph{sağlanır}. Bu sağlama kavramı tümevarımlı olarak belirtilir:
+!!{structure} tanımı atomik !!{formula}s ifadelerinin ne zaman
+sağlandığını doğrudan söyler; karmaşık !!{formula} ifadesinin ne zaman
+sağlandığını ise ana bağlaca ya da niceleyiciye ve dolaysız
+!!{subformula}s ifadelerinin sağlanıp sağlanmamasına göre tanımlarız.
+
+Niceleyiciler söz konusu olduğunda durum biraz inceliklidir; çünkü
+niceleyicili bir ifadenin dolaysız !!{subformula} ifadesinde serbest
+!!{formula} bileşeni olarak bir !!{variable} bulunur ve !!{structure}s
+bunların !!{value}s öğelerini, yani !!{variable}s ifadelerinin
+değerlerini belirtmez. Bu güçlüğü aşmak için
+\emph{değişken atamaları} da kullanır ve sağlamayı yalnızca
+!!a{structure} bakımından değil, !!a{structure} ile !!a{variable}
+ataması bakımından tanımlarız.
+\end{explain}
+
+\begin{defn}[Değişken Ataması]
+!!a{structure}~$\Struct{M}$ için \emph{değişken ataması}~$s$, her
+!!{variable} ifadesini~$\Domain M$ kümesinin !!a{element} öğesine
+gönderen bir fonksiyondur; yani $s\colon \Var \to \Domain M$.
+\end{defn}
+
+\begin{explain}
+!!^a{structure}, !!a{value} değerini her !!{constant} ifadesine;
+değişken ataması da her değişkene atar. Ancak bunlardan kurulan
+terimlerin de !!{element}s öğelerini !!{domain} içinde adlandırmasını isteriz.
+Bunun için terimlerin !!{value} değerini tümevarımlı olarak tanımlarız.
+!!{constant}s ve değişkenlerin değeri, doğrudan !!{structure} ya da
+değişken atamasının belirttiği değerdir; daha karmaşık terimlerin değeri
+ise !!{structure} ifadesinin !!{function}s ifadelerine atadığı
+fonksiyonlar kullanılarak özyinelemeli biçimde hesaplanır.
+\end{explain}
+
+\begin{defn}[Terimlerin !!^{value}]
+$t$,~$\Lang L$ dilinin bir terimi, $\Struct M$,~$\Lang L$ için
+!!{structure} ve $s$,~$\Struct M$ için !!a{variable} atamasıysa
+\emph{!!{value}}~$\Value{t}{M}[s]$ aşağıdaki gibi tanımlanır:
+\begin{enumerate}
+\item \indcase{t}{c}{$\Value{\indfrm}{M}[s] = \Assign{\indcomplex}{M}$.}
+\item \indcase{t}{x}{$\Value{\indfrm}{M}[s] = s(\indcomplex)$.}
+\item \indcase{t}{\Atom{f}{t_1, \ldots, t_n}}{
+\[
+\Value{\indfrm}{M}[s] = \Assign{f}{M}(\Value{t_1}{M}[s], \ldots,
+\Value{t_n}{M}[s]).
+\]}
+\end{enumerate}
+\end{defn}
+
+\begin{defn}[$x$-Varyantı]
+$s$,~!!a{variable} ataması ve bu atama !!a{structure}~$\Struct M$
+içinse,
+$\Struct M$ için~$s$'den en çok~$x$'e atadığı değer bakımından ayrılan
+her !!{variable} ataması~$s'$,~$s$'nin \emph{$x$-varyantı} diye
+adlandırılır. $s'$,~$s$'nin bir $x$-varyantıysa
+$\varAssign{s'}{s}{x}$ yazarız.
+\end{defn}
+
+\begin{explain}
+Bir atama~$s$'nin $x$-varyantının,~$x$'e farklı bir şey atamak
+\emph{zorunda} olmadığına dikkat edin. Aslında her atama kendisinin
+bir $x$-varyantı sayılır.
+\end{explain}
+
+\begin{defn}
+  $s$,~!!a{variable} ataması ve bu atama !!a{structure}~$\Struct M$ için
+  $m \in \Domain{M}$ ise $\Subst{s}{m}{x}$ ataması, aşağıdaki değişken
+  ataması olarak tanımlanır:
+  \[\Subst{s}{m}{x}(y) = \begin{cases}
+    m & \text{$y \ident x$ ise}\\
+    s(y) & \text{aksi halde}.
+  \end{cases}\]
+\end{defn}
+
+Başka bir deyişle $\Subst{s}{m}{x}$,~$x$'e evrenin
+!!{element}~$m$ öğesini atayan ve~$x$ dışındaki !!{variable}s
+ifadelerine~$s$ ile aynı şeyleri atayan,~$s$'nin belirli bir
+$x$-varyantıdır.
+
+\begin{defn}[Sağlama]
+\ollabel{defn:satisfaction}
+!!a{formula}~$!A$ ifadesinin !!a{structure}~$\Struct M$ içinde
+!!a{variable} ataması~$s$'ye göre sağlanması, simgesel olarak
+$\Sat{M}{!A}[s]$, aşağıdaki gibi özyinelemeli olarak tanımlanır.
+(``$\Sat{M}{!A}[s]$ değil'' demek için $\Sat/{M}{!A}[s]$ yazarız.)
+\begin{enumerate}
+\tagitem{prvFalse}{%
+  \indcase{!A}{\lfalse}{$\Sat/{M}{\indfrm}[s]$.}}{}
+
+\tagitem{prvTrue}{%
+  \indcase{!A}{\ltrue}{$\Sat{M}{\indfrm}[s]$.}}{}
+
+\item \indcase{!A}{\Atom{R}{t_1, \dots, t_n}}{$\Sat{M}{\indfrm}[s]$
+  ancak ve ancak $\langle \Value{t_1}{M}[s], \dots,
+  \Value{t_n}{M}[s] \rangle \in \Assign{R}{M}$.}
+
+\item \indcase{!A}{\eq[t_1][t_2]}{$\Sat{M}{\indfrm}[s]$ ancak ve ancak
+  $\Value{t_1}{M}[s] = \Value{t_2}{M}[s]$.}
+
+\tagitem{prvNot}{%
+  \indcase{!A}{\lnot !B}{$\Sat{M}{\indfrm}[s]$ ancak ve ancak
+    $\Sat/{M}{!B}[s]$.}}{}
+
+\tagitem{prvAnd}{%
+  \indcase{!A}{(!B \land !C)}{$\Sat{M}{\indfrm}[s]$ ancak ve ancak
+    $\Sat{M}{!B}[s]$ ve $\Sat{M}{!C}[s]$.}}{}
+
+\tagitem{prvOr}{%
+  \indcase{!A}{(!B \lor !C)}{$\Sat{M}{\indfrm}[s]$ ancak ve ancak
+    $\Sat{M}{!B}[s]$ ya da $\Sat{M}{!C}[s]$ (veya her ikisi).}}{}
+
+\tagitem{prvIf}{%
+  \indcase{!A}{(!B \lif !C)}{$\Sat{M}{\indfrm}[s]$ ancak ve ancak
+    $\Sat/{M}{!B}[s]$ ya da $\Sat{M}{!C}[s]$ (veya her ikisi).}}{}
+
+\tagitem{prvIff}{%
+  \indcase{!A}{(!B \liff !C)}{$\Sat{M}{\indfrm}[s]$ ancak ve ancak ya
+    hem $\Sat{M}{!B}[s]$ hem $\Sat{M}{!C}[s]$, ya da ne
+    $\Sat{M}{!B}[s]$ ne de $\Sat{M}{!C}[s]$.}}{}
+
+\tagitem{prvAll}{%
+  \indcase{!A}{\lforall[x][!B]}{$\Sat{M}{\indfrm}[s]$ ancak ve ancak her
+    !!{element}~$m \in \Domain M$ için
+    $\Sat{M}{!B}[\Subst{s}{m}{x}]$.}}{}
+
+\tagitem{prvEx}{%
+  \indcase{!A}{\lexists[x][!B]}{$\Sat{M}{\indfrm}[s]$ ancak ve ancak en
+  az bir !!{element}~$m \in \Domain M$ için
+  $\Sat{M}{!B}[\Subst{s}{m}{x}]$.}}{}
+\end{enumerate}
+\end{defn}
+
+\begin{explain}
+Değişken atamaları son
+\iftag{notprvEx,notprvAll}{maddede}{iki maddede} önemlidir.\iftag{prvAll}{
+$\lforall[x][!B(x)]$ ifadesinin sağlanmasını ``her $m \in \Domain{M}$
+için $\Sat{M}{!B(m)}$'' diye tanımlayamayız.}{}\iftag{prvEx}{
+$\lexists[x][!B(x)]$ ifadesinin sağlanmasını ``en az bir $m \in
+\Domain{M}$ için $\Sat{M}{!B(m)}$'' diye tanımlayamayız.}{} Bunun nedeni,
+$m \in \Domain M$ ise~$m$'nin dilin bir simgesi olmaması, dolayısıyla
+$!B(m)$ ifadesinin !!a{formula} olmamasıdır (yani
+$\Subst{!B}{m}{x}$ tanımsızdır). Ayrıca !!{constant}s ya da terimlerin
+her !!{element} öğesini adlandıracak biçimde elimizde olduğunu
+varsayamayız; çünkü !!{structure}s tanımında bunu gerektiren hiçbir şey
+yoktur. Standart dilde !!{constant}s kümesi !!{denumerable} olduğundan,
+$\Domain{M}$ !!{enumerable} değilse her nesneyi adlandırmaya yetecek
+kadar !!{constant}s bile yoktur.
+
+Bu sorunu !!{variable} atamalarını kullanarak çözeriz; bunlar
+değişkenleri evrenin !!{element}s öğelerine doğrudan bağlamamızı sağlar.
+O halde örneğin
+\iftag{prvEx}{$\lexists[x][!B(x)]$}{$\lforall[x][!B(x)]$} ifadesinin
+~$\Struct M$ içinde sağlanmasını, \iftag{prvEx}{en az bir
+$m \in \Domain{M}$ için}{her $m \in \Domain{M}$ için
+$\Sat{M}{!B(m)}$} diye açıklamak yerine; bu ifadenin~$\Struct M$ içinde
+~$s$'ye \emph{göre} sağlanmasını, $!B(x)$ ifadesinin
+$\Subst{s}{m}{x}$'e göre \iftag{prvEx}{en az bir}{her}
+$m \in \Domain M$ için sağlanmasıyla açıklarız.
+\end{explain}
+
+\begin{ex}
+$a$ ve $b$ birer !!{constant}, $f$ iki-li !!{function}, $R$ ise iki-li
+!!{predicate} olmak üzere $\Lang{L} = \{a, b, f, R\}$ olsun. Aşağıdaki
+gibi tanımlanan !!{structure}~$\Struct{M}$ yapısını ele alalım:
+\begin{enumerate}
+\item $\Domain M = \{1, 2, 3, 4\}$
+\item $\Assign{a}{M} = 1$
+\item $\Assign{b}{M} = 2$
+\item $x+y \le 3$ ise $\Assign{f}{M}(x, y) = x+y$, aksi halde $= 3$.
+\item $\Assign{R}{M} = \{\tuple{1, 1}, \tuple{1, 2}, \tuple{2, 3}, \tuple{2, 4}\}$
+\end{enumerate}
+Her !!{variable} ifadesine $1 \in \Domain{M}$ atayan $s(x) = 1$
+fonksiyonu,~$\Struct{M}$ için bir değişken atamasıdır.
+
+O halde
+\begin{align*}
+\Value{f(a,b)}{M}[s] & = \Assign{f}{M}(\Value{a}{M}[s], \Value{b}{M}[s]).
+\intertext{$a$ ve $b$ birer !!{constant} olduğundan $\Value{a}{M}[s]
+  = \Assign{a}{M} = 1$ ve $\Value{b}{M}[s] = \Assign{b}{M} = 2$. Dolayısıyla}
+\Value{f(a,b)}{M}[s] & = \Assign{f}{M}(1, 2) = 1+2 = 3.
+\intertext{$f(f(a,b),a)$ teriminin değerini hesaplamak için şunu ele almalıyız:}
+\Value{f(f(a,b),a)}{M}[s] & = \Assign{f}{M}(\Value{f(a, b)}{M}[s],
+\Value{a}{M}[s]) = \Assign{f}{M}(3, 1) = 3,
+\intertext{çünkü $3+1 > 3$. $s(x) = 1$ ve $\Value{x}{M}[s] =
+  s(x)$ olduğundan ayrıca}
+\Value{f(f(a,b),x)}{M}[s] & = \Assign{f}{M}(\Value{f(a, b)}{M}[s],
+\Value{x}{M}[s]) = \Assign{f}{M}(3, 1) = 3,
+\end{align*}
+
+Atomik !!{formula}~$R(t_1, t_2)$, argümanlarının değerlerinin
+oluşturduğu sıralı ikili, yani $\tuple{\Value{t_1}{M}[s],
+  \Value{t_2}{M}[s]}$,~$\Assign{R}{M}$ kümesinin !!a{element} öğesiyse
+sağlanır. Örneğin $\tuple{\Value{b}{M}, \Value{f(a,b)}{M}} =
+\tuple{2, 3} \in \Assign{R}{M}$ olduğundan
+$\Sat{M}{R(b,f(a,b))}[s]$; fakat $\tuple{1, 3} \notin
+\Assign{R}{M}$ olduğundan $\Sat/{M}{R(x, f(a,b))}[s]$.
+
+Atomik olmayan formül~$!A$'nın sağlanıp sağlanmadığını
+belirlemek için tümevarımlı tanımda ana bağlaca karşılık gelen maddeyi
+uygularız. Örneğin $R(a, a) \lif (R(b, x) \lor R(x, b))$ ifadesinin
+ana bağlacı~$\lif$ olduğundan
+\begin{align*}
+  & \Sat{M}{R(a, a) \lif (R(b, x) \lor R(x, b))}[s] \text{ ancak ve ancak }\\
+  & \qquad
+  \Sat/{M}{R(a,a)}[s] \text{ ya da } \Sat{M}{R(b, x) \lor R(x, b)}[s]
+  \intertext{$\Sat{M}{R(a,a)}[s]$ olduğundan ($\tuple{1,1} \in
+    \Assign{R}{M}$), henüz sonucu belirleyemeyiz; önce
+    $\Sat{M}{R(b, x) \lor R(x, b)}[s]$ olup olmadığına bakmalıyız:}
+  & \Sat{M}{R(b, x) \lor R(x, b)}[s] \text{ ancak ve ancak }\\
+  & \qquad \Sat{M}{R(b,x)}[s] \text{ ya da } \Sat{M}{R(x, b)}[s]
+  \intertext{Bu da doğrudur; çünkü $\Sat{M}{R(x, b)}[s]$
+    ($\tuple{1,2} \in \Assign{R}{M}$).}
+\end{align*}
+
+~$s$'nin $x$-varyantının,~$s$'den en çok~$x$'e yaptığı atama
+bakımından ayrılan bir değişken ataması olduğunu hatırlayın.
+~$\Domain{M}$ kümesinin her !!{element} öğesi için~$s$'nin bir
+$x$-varyantı vardır:
+\begin{align*}
+  s_1 & = \Subst{s}{1}{x}, &
+  s_2 & = \Subst{s}{2}{x},\\
+  s_3 & = \Subst{s}{3}{x}, &
+  s_4 & = \Subst{s}{4}{x}.
+\end{align*}
+Örneğin $s_2(x) = 2$ ve~$x$ dışındaki bütün değişkenler~$y$ için
+$s_2(y) = s(y) = 1$. $\Domain{M} = \{1, 2, 3, 4\}$ olduğundan bunlar
+~$\Struct{M}$ yapısı için~$s$'nin bütün $x$-varyantlarıdır. Özellikle
+$s_1 = s$ olduğuna dikkat edin (~$s$, her zaman kendisinin bir
+$x$-varyantıdır).
+
+\iftag{prvEx}{Varoluşsal niceleyicili !!{formula}
+$\lexists[x][!A(x)]$ ifadesinin sağlanıp sağlanmadığını belirlemek için,
+en az bir $m \in \Domain M$ için
+$\Sat{M}{!A(x)}[\Subst{s}{m}{x}]$ olup olmadığını belirlemeliyiz.
+Dolayısıyla
+  \[
+  \Sat{M}{\lexists[x][(R(b,x) \lor R(x,b))]}[s],
+  \]
+çünkü $\Sat{M}{R(b,x) \lor R(x, b)}[\Subst{s}{1}{x}]$
+($\Subst{s}{3}{x}$ de aynı işi görürdü). Fakat
+  \[
+  \Sat/{M}{\lexists[x][(R(b,x) \land R(x,b))]}[s]
+  \]
+çünkü hangi $m \in \Domain{M}$ öğesini seçersek seçelim
+$\Sat/{M}{R(b,x) \land R(x,b)}[\Subst{s}{m}{x}]$.}{}
+
+\iftag{prvAll}{Tümel niceleyicili !!{formula}
+$\lforall[x][!A(x)]$ ifadesinin sağlanıp sağlanmadığını belirlemek için,
+her $m \in \Domain M$ için $\Sat{M}{!A(x)}[\Subst{s}{m}{x}]$ olup
+olmadığını belirlemeliyiz. Dolayısıyla
+  \[
+  \Sat{M}{\lforall[x][(R(x,a) \lif R(a,x))]}[s],
+  \]
+çünkü her $m \in \Domain M$ için
+$\Sat{M}{R(x,a) \lif R(a,x)}[\Subst{s}{m}{x}]$. $m = 1$ için
+$\Sat{M}{R(a,x)}[\Subst{s}{1}{x}]$ olduğundan sonuç bileşeni doğrudur;
+$m = 2$, $3$ ve~$4$ için $\Sat/{M}{R(x,a)}[\Subst{s}{m}{x}]$
+olduğundan öncül bileşeni yanlıştır. Fakat
+  \[
+  \Sat/{M}{\lforall[x][(R(a,x) \lif R(x,a))]}[s]
+  \]
+çünkü $\Sat/{M}{R(a,x) \lif R(x,a)}[\Subst{s}{2}{x}]$
+($\Sat{M}{R(a, x)}[\Subst{s}{2}{x}]$ ve $\Sat/{M}{R(x,
+  a)}[\Subst{s}{2}{x}]$).}{}
+
+\iftag{defEx}{Varoluşsal niceleyicili !!{formula}
+$\lexists[x][!A(x)]$ ifadesinin sağlanıp sağlanmadığını belirlemek için,
+$\Sat{M}{\lnot \lforall[x][\lnot !A(x)]}[s]$ olup olmadığını
+belirlemeliyiz. Örneğin
+  \[
+  \Sat{M}{\lexists[x][(R(b,x) \lor R(x,b))]}[s].
+  \]
+Önce $\Sat{M}{R(b,x) \lor R(x, b)}[\Subst{s}{1}{x}]$
+($\Subst{s}{3}{x}$ de aynı işi görürdü). Dolayısıyla
+$\Sat/{M}{\lnot(R(b,x) \lor R(x,b))}[\Subst{s}{1}{x}]$; buradan
+$\Sat/{M}{\lforall[x][\lnot(R(b,x) \lor R(x,b))]}[s]$ ve dolayısıyla
+$\Sat{M}{\lnot\lforall[x][\lnot(R(b,x) \lor R(x,b))]}[s]$ elde
+edilir. Öte yandan
+  \[
+  \Sat/{M}{\lexists[x][(R(b,x) \land R(x,b))]}[s].
+  \]
+Çünkü hiçbir $m \in \Domain M$ için
+$\Sat{M}{R(b,x) \land R(x,b)}[\Subst{s}{m}{x}]$ olmadığından
+$\Sat{M}{\lforall[x][\lnot(R(b,x) \land R(x,b))]}[s]$. Bu örneklerden
+tahmin edebileceğiniz gibi $\Sat{M}{\lexists[x][!A(x)]}[s]$ ancak ve
+ancak en az bir $m \in \Domain M$ için
+$\Sat{M}{!A(x)}[\Subst{s}{m}{x}]$.}{}
+
+\iftag{defAll}{Tümel niceleyicili !!{formula}
+$\lforall[x][!A(x)]$ ifadesinin sağlanıp sağlanmadığını belirlemek için,
+$\Sat{M}{\lnot\lexists[x][\lnot !A(x)]}[s]$ olup olmadığını
+belirlemeliyiz. Örneğin
+  \[
+  \Sat{M}{\lforall[x][(R(x,a) \lif R(a,x))]}[s],
+  \]
+Önce her $m \in \Domain M$ için
+$\Sat{M}{R(x,a) \lif R(a,x)}[\Subst{s}{m}{x}]$
+($\Sat{M}{R(a,x)}[\Subst{s}{1}{x}]$ ve $m = 2$, $3$ ya da~$4$ için
+$\Sat/{M}{R(a,x)}[\Subst{s}{m}{x}]$). Dolayısıyla
+$\Sat{M}{\lnot(R(x,a) \lif R(a,x))}[\Subst{s}{m}{x}]$ olacak hiçbir
+$m \in \Domain M$ yoktur ve bu nedenle
+$\Sat/{M}{\lexists[x][\lnot(R(x,a) \lif R(a,x))]}[s]$. Sonuç olarak
+$\Sat{M}{\lnot\lexists[x][\lnot(R(x,a) \lif R(a,x))]}[s]$. Öte yandan
+  \[
+  \Sat/{M}{\lforall[x][(R(a,x) \lif R(x,a))]}[s],
+  \]
+çünkü $\Sat/{M}{R(a,x) \lif R(x,a)}[\Subst{s}{2}{x}]$ ve dolayısıyla
+$\Sat{M}{\lexists[x][\lnot(R(a,x) \lif R(x,a))]}[s]$. Bu örneklerden
+tahmin edebileceğiniz gibi $\Sat{M}{\lforall[x][!A(x)]}[s]$ ancak ve
+ancak her $m \in \Domain M$ için
+$\Sat{M}{!A(x)}[\Subst{s}{m}{x}]$.}{}
+
+Daha karmaşık bir durum olarak
+\[
+\lforall[x][(R(a,x) \lif \lexists[y][R(x,y)])]
+\]
+ifadesini ele alalım. $\Sat/{M}{R(a,x)}[\Subst{s}{3}{x}]$ ve
+$\Sat/{M}{R(a,x)}[\Subst{s}{4}{x}]$ olduğundan, koşulun sonuç
+bileşeniyle ilgilenmemiz gereken durumlar yalnızca $m = 1$ ve
+$m = 2$'dir. $\Sat{M}{\lexists[y][R(x,y)]}[\Subst{s}{1}{x}]$ doğru
+mudur? En az bir $n \in \Domain M$ için
+$\Sat{M}{R(x,y)}[\Subst{\Subst{s}{1}{x}}{n}{y}]$ ise doğrudur. Gerçekten
+$n = 1$ alırsak $\Subst{\Subst{s}{1}{x}}{n}{y} = \Subst{s}{1}{y} =
+s$. $s(x) = 1$, $s(y) = 1$ ve $\tuple{1,1} \in \Assign{R}{M}$
+olduğundan yanıt evettir.
+
+$\Sat{M}{\lexists[y][R(x,y)]}[\Subst{s}{2}{x}]$ olup olmadığını
+belirlemek için $\Subst{\Subst{s}{2}{x}}{n}{y}$ biçimindeki
+!!{variable} atamalarına bakmalıyız. Burada $n = 1$ için bu atama,
+~$s_2 = \Subst{s}{2}{x}$ olur ve $R(x,y)$ ifadesini sağlamaz
+($s_2(x) = 2$, $s_2(y) = 1$ ve $\tuple{2,1}\notin \Assign{R}{M}$).
+Ancak $\Subst{\Subst{s}{2}{x}}{3}{y} = \Subst{s_2}{3}{y}$ atamasını
+ele alalım. $\tuple{2,3} \in \Assign{R}{M}$ olduğundan
+$\Sat{M}{R(x,y)}[\Subst{s_2}{3}{y}]$ ve dolayısıyla
+$\Sat{M}{\lexists[y][R(x,y)]}[s_2]$.
+
+O halde her $m \in \Domain M$ için ya
+$\Sat/{M}{R(a,x)}[\Subst{s}{m}{x}]$ ($m = 3$, $4$ ise) ya da
+$\Sat{M}{\lexists[y][R(x,y)]}[\Subst{s}{m}{x}]$ ($m = 1$, $2$ ise);
+dolayısıyla
+\[
+\Sat{M}{\lforall[x][(R(a,x) \lif \lexists[y][R(x,y)])]}[s].
+\]
+Öte yandan
+\[
+\Sat/{M}{\lexists[x][(R(a,x) \land \lforall[y][R(x,y)])]}[s].
+\]
+$\Sat{M}{R(a,x)}[\Subst{s}{m}{x}]$ yalnızca $m = 1$ ve $m = 2$ için
+doğrudur. Ancak~$m$'nin bu iki değeri için de, sırası geldiğinde
+$n = 4$ olmak üzere, $\Sat/{M}{R(x,y)}[\Subst{\Subst{s}{m}{x}}{n}{y}]$
+olacak bir $n \in \Domain M$ vardır; dolayısıyla $m = 1$ ve $m = 2$
+için $\Sat/{M}{\lforall[y][R(x,y)]}[\Subst{s}{m}{x}]$. Sonuç olarak
+$\Sat{M}{R(a,x) \land \lforall[y][R(x,y)]}[\Subst{s}{m}{x}]$ olacak
+hiçbir $m \in \Domain M$ yoktur.
+\end{ex}
+
+\iftag{defEx}{%
+\begin{prop}\ollabel{prop:sat-ex}
+$\Sat{M}{\lexists[x][!B(x)]}[s]$ ancak ve ancak~$s$'nin
+$\Sat{M}{!B(x)}[s']$ olacak bir $x$-varyantı~$s'$ vardır.
+\end{prop}
+
+\begin{proof}
+  Alıştırma.
+\end{proof}
+}{}
+
+\tagprob{defEx}
+\begin{prob}
+  \olref[fol][syn][sat]{prop:sat-ex} önermesini ispatlayın.
+\end{prob}
+\tagendprob
+
+\iftag{defAll}{%
+\begin{prop}\ollabel{prop:sat-all}
+$\Sat{M}{\lforall[x][!B(x)]}[s]$ ancak ve ancak~$s$'nin her
+$x$-varyantı~$s'$ için $\Sat{M}{!B(x)}[s']$.
+\end{prop}
+
+\begin{proof}
+  Alıştırma.
+\end{proof}
+}{}
+
+\tagprob{defAll}
+\begin{prob}
+  \olref[fol][syn][sat]{prop:sat-all} önermesini ispatlayın.
+\end{prob}
+\tagendprob
+
+\begin{prob}
+Bir !!{constant}, bir bir-li !!{function} ve bir iki-li !!{predicate}
+içeren $\Lang L = \{c, f, A\}$ dili ile aşağıdaki gibi verilen
+!!{structure}~$\Struct{M}$ yapısını ele alalım:
+\begin{enumerate}
+\item $\Domain M = \{1, 2, 3\}$
+\item $\Assign{c}{M} = 3$
+\item $\Assign{f}{M}(1) = 2, \Assign{f}{M}(2) = 3, \Assign{f}{M}(3) = 2$
+\item $\Assign{A}{M} = \{\tuple{1, 2}, \tuple{2, 3}, \tuple{3, 3}\}$
+\end{enumerate}
+(a) Bütün !!{variable}s~$v$ için $s(v) = 1$ olsun. Aşağıdakinin doğru
+olup olmadığını belirleyin:
+\[
+\Sat{M}{\lexists[x][(A(f(z), c) \lif \lforall[y][(A(y, x) \lor A(f(y),
+      x))])]}[s]
+\]
+Nedenini açıklayın.
+
+(b) Farklı bir yapı ve !!{variable} ataması verin; !!{formula} bu yapı
+ve atamaya göre sağlanmasın.
+\end{prob}
+

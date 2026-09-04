@@ -1,0 +1,61 @@
+% Generated from locale/tr/content/set-theory/z/powerset.tex; do not hand-edit.
+
+
+\olfileid[tr]{sth}{z}{power}
+\olsection{Kuvvet Kümeleri}
+
+Bir başka aksiyomla devam edeceğiz:
+
+\begin{axiom}[Kuvvet Kümeleri]
+Her $A$ kümesi için $\Pow{A} = \Setabs{x}{x \subseteq A}$ kümesi vardır.
+\[
+	\forall A \exists P \forall x(x \in P \liff (\forall z \in x)z \in A)
+\]
+\end{axiom}
+
+Bunun gerekçesi oldukça açıktır. $A$'nın $S$ aşamasında oluşturulduğunu
+varsayın. O zaman $A$'nın bütün elemanları $S$'den önce kullanılabilirdi
+(\stagesacc{} gereği). Dolayısıyla, Ayırma için verdiğimiz gerekçedeki gibi,
+$A$'nın her alt kümesi en geç $S$ aşamasında oluşturulmuştur. Böylece
+bunların hepsi $S$'den sonraki herhangi bir aşamada tek bir küme hâlinde
+oluşturulmak üzere kullanılabilir. $S$ son aşama olmadığı için
+(\stagessucc{} gereği) böyle bir aşama bulunduğunu biliyoruz. Demek ki
+$\Pow{A}$ vardır.
+
+Kuvvet Kümeleri'nin güzel bir sonucu şudur:
+
+\begin{prop}\label{thm:Products}
+Her $A,B$ kümesi için bunların Kartezyen çarpımı $A \times B$ vardır.
+\end{prop}
+
+\begin{proof}
+$\Pow{\Pow{A \cup B}}$ kümesi, Kuvvet Kümeleri ve
+\olref[sth][z][pairs]{prop:pairsconsequences} gereği vardır. Dolayısıyla
+Ayırma gereği şu küme vardır:
+\[
+	C = \Setabs{z \in \Pow{\Pow{A \cup B}}}{(\exists x \in A)(\exists y \in B) z = \tuple{x, y}}.
+\]
+Şimdi her $x \in A$ ve $y \in B$ için $\tuple{x,y}$ kümesi
+\olref[sth][z][pairs]{prop:pairsconsequences} gereği vardır. Ayrıca
+$x,y \in A \cup B$ olduğundan $\{x\}, \{x,y\} \in \Pow{A \cup B}$ ve
+$\tuple{x,y} \in \Pow{\Pow{A \cup B}}$ olur. Öyleyse $A \times B=C$.
+\end{proof}
+
+Bu ispatta Kuvvet Kümesi, Ayırma ile etkileşir; bunda şaşılacak bir şey
+yoktur. Ayırma olmasaydı Kuvvet Kümeleri pek \emph{güçlü} bir ilke
+olmazdı. Sonuçta bir kümenin hangi alt kümelerinin var olduğunu Ayırma
+söyler ve böylece her Kuvvet Kümesi'nin ne kadar ``şişkin'' olduğunu
+belirler.
+
+\begin{prob}
+Her $A,B$ kümesi için (i) tanım kümesi $A$, görüntü kümesi $B$ olan bütün
+bağıntıların kümesinin ve (ii) $A$'dan $B$'ye bütün fonksiyonların kümesinin
+var olduğunu gösterin.
+\end{prob}
+
+\begin{prob}
+$A$ bir küme, $\sim$ de $A$ üzerinde bir denklik bağıntısı olsun. $A$'nın
+$\sim$ altındaki denklik sınıfları kümesinin, yani
+$\equivclass{A}{\sim}$'in var olduğunu ispatlayın.
+\end{prob}
+

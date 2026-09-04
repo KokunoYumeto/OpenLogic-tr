@@ -1,0 +1,118 @@
+% Generated from locale/tr/content/lambda-calculus/syntax/beta.tex; do not hand-edit.
+
+
+\olfileid[tr]{lam}{int}{bet}
+\olsection{$\beta$-indirgeme}
+
+$(\lambd[m][(\lambd[y][y]) m])$ terimini gördüğümüzde bunun
+$\lambd[m][m]$ ile bağlantılı olduğunu, ikinci terimin birincinin
+``sadeleştirilmesiyle'' elde edildiğini düşünmek doğaldır.
+\emph{$\beta$-indirgeme} kavramı bu sezgiyi biçimsel olarak karşılar.
+
+\begin{defn}[$\beta$-daraltma, $\bredone$] \ollabel{defn:betacontr}
+  \emph{$\beta$-daraltma} ($\bredone$), terimler üzerinde aşağıdaki koşulu
+  sağlayan en küçük bağdaşır bağıntıdır:
+  \[
+    (\lambd[x][N])Q \bredone \Subst{N}{Q}{x}
+  \]
+  $P\bredone Q$ ise $P$'nin $Q$'ya \emph{$\beta$-daraltıldığını} söyleriz.
+  $(\lambd[x][N])Q$ biçimindeki terime \emph{indirgenebilir ifade} ya da
+  \emph{redex} denir.
+\end{defn}
+
+\begin{prob} \ollabel{prob:def}
+  Bağlı değişkeni değiştirme için
+  \olref[lam][syn][alp]{defn:aconvone} içinde yaptığımız gibi,
+  $\beta$-daraltmanın eşdeğer tümevarımlı tanımını açıkça yazın.
+\end{prob}
+
+\begin{defn}[$\beta$-indirgeme, $\bred$] \ollabel{defn:betared}
+  \emph{$\beta$-indirgeme} ($\bred$), $\bredone$ bağıntısını içeren,
+  terimler üzerindeki en küçük yansımalı ve geçişli bağıntıdır. $P\bred Q$
+  ise $P$'nin $Q$'ya $\beta$-indirgenmiş olduğunu söyleriz.
+\end{defn}
+
+Bağlam açık olduğunda $\bredone$ yerine $\redone$, $\bred$ yerine $\red$
+yazacağız.
+
+Gayriresmî olarak $M\bred N$ ancak ve ancak $M$, sıfır ya da daha çok
+$\beta$-daraltma adımıyla $N$'ye dönüştürülebiliyorsa geçerlidir.
+
+\begin{defn}[$\beta$-normal]
+Daha fazla $\beta$-daraltılamayan terime \emph{$\beta$-normal} denir.
+\end{defn}
+
+$M\bred N$ ve $N$ $\beta$-normalse $N$'ye $M$'nin bir \emph{normal biçimi}
+denir. Bir terimin normal biçiminin tek olup olmadığı sorulabilir; ileride
+göreceğimiz gibi yanıt evettir.
+
+Bazı örnekleri ele alalım.
+\begin{enumerate}
+\item Şunlar geçerlidir:
+\begin{align*}
+(\lambd[x][xxy]) \lambd[z][z] & \redone (\lambd[z][z])(\lambd[z][z]) y \\
+& \redone (\lambd[z][z]) y \\
+& \redone y.
+\end{align*}
+\item Bir terimi ``sadeleştirmek'' onu gerçekte daha karmaşık kılabilir:
+\begin{align*}
+(\lambd[x][xxy])(\lambd[x][xxy]) & \redone (\lambd[x][xxy])(\lambd[x][xxy])y \\
+& \redone (\lambd[x][xxy])(\lambd[x][xxy])yy \\
+& \redone \dots
+\end{align*}
+\item Bir terimi değişmeden de bırakabilir:
+\[
+(\lambd[x][xx])(\lambd[x][xx]) \redone (\lambd[x][xx])(\lambd[x][xx]).
+\]
+\item Bazı terimler birden çok yoldan indirgenebilir. Örneğin en dıştaki
+uygulama daraltılırsa
+\[
+(\lambd[x][(\lambd[y][yx]) z]) v \redone (\lambd[y][yv]) z;
+\]
+en içteki daraltılırsa
+\[
+(\lambd[x][(\lambd[y][yx]) z]) v \redone (\lambd[x][zx]) v
+\]
+elde edilir. Bununla birlikte bu durumda her iki terimin de aynı $zv$
+terimine indirgenmeye devam ettiğine dikkat edin.
+\end{enumerate}
+
+Son örnekteki ortak sonuç rastlantı değildir; lambda hesabının
+Church--Rosser özelliği olarak bilinen derin ve önemli bir niteliğini gösterir.
+
+\begin{digress}
+  Genel olarak bir terimi $\beta$-indirgemek için birden çok yol vardır; bu
+  nedenle çeşitli indirgeme stratejileri geliştirilmiştir. En yaygını
+  \emph{doğal stratejidir}. Doğal strateji her zaman konumu terimdeki başlangıç
+  noktasıyla belirlenen \emph{en soldaki} redexi daraltır. Bu stratejinin
+  yararlı özelliği şudur: bir terim herhangi bir stratejiyle normal biçime
+  indirgenebiliyorsa, ancak ve ancak doğal stratejiyle normal biçime
+  indirgenebilir. Aksi belirtilmedikçe ileride doğal stratejiyi kullanacağız.
+\end{digress}
+
+\begin{defn}[$\beta$-denkliği, $\equal$]
+  \emph{$\beta$-denkliği} ($\equal$) aşağıdaki gibi tümevarımlı tanımlanan
+  bağıntıdır:
+  \begin{enumerate}
+  \item $M \equal M$.
+  \item $M \equal N$ ise $N \equal M$.
+  \item $M \equal N$, $N \equal O$ ise $M \equal O$.
+  \item $M \equal N$ ise $PM \equal PN$.
+  \item $M \equal N$ ise $MQ \equal NQ$.
+  \item $M \equal N$ ise $\lambd[x][M] \equal \lambd[x][N]$.
+  \item $(\lambd[x][N])Q \equal \Subst{N}{Q}{x}$.
+  \end{enumerate}
+\end{defn}
+
+İlk üç kural bağıntıyı bir denklik bağıntısı, sonraki üçü bağdaşır kılar; son
+kural ise bağıntının $\beta$-daraltmayı içermesini sağlar.
+
+Gayriresmî olarak iki terim, biri diğerine sıfır ya da daha çok
+$\beta$-daraltma veya ``ters $\beta$-daraltma'' adımıyla dönüştürülebiliyorsa
+ve ancak o zaman $\beta$-denktir. Ters $\beta$-daraltma, $N$, $M$'ye
+$\beta$-daralıyorsa ve ancak o zaman $M$'nin $N$'ye ters
+$\beta$-daralacağı biçimde tanımlanır.
+
+Yukarıdaki kurallara başka kurallar da ekleyeceğiz ve genişletilmiş denklik
+bağıntısını, $X$ eklenen kural olmak üzere, $\equal[X]$ ile göstereceğiz.
+

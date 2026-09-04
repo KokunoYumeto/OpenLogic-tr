@@ -1,0 +1,94 @@
+% Generated from locale/tr/content/normal-modal-logic/axioms-systems/logics-proofs.tex; do not hand-edit.
+
+
+\olfileid[tr]{nml}{prf}{prf}
+
+\olsection{\usetoken{P}{derivation} ve Modal Sistemler}
+
+Önce normal modal mantıklar için !!a{derivation} kavramını tanımlayalım.
+Kabaca bir !!a{derivation}, !!{formula}s içeren bir dizidir; dizideki her
+!!{element} ya birtakım \emph{aksiyomlardan} birinin (yerine koyma) örneğidir
+ya da birkaç çıkarım kuralından biriyle önceki !!{element}s kullanılarak elde edilir. Normal modal
+mantıklar için totolojilerin bütün örnekleri
+\iftag{prvDiamond}{, \Ax{K} ve \Dual{}}{ ve \Ax{K}} aksiyom sayılır.
+Bunun sonucunda en küçük normal modal mantık olan $\Log{K}$ modal sistemi
+elde edilir. Bununla birlikte başka sistemler elde etmek için ek aksiyomlar
+katmak isteyebiliriz. Kurallar her zaman modus ponens \MP{} ile
+zorunlulaştırma \Nec{} kurallarıdır.
+
+\begin{defn}
+  Bir $\Log{K}!A_1\dots !A_n$ modal sistemi ve !!a{formula}~$!B$
+  verildiğinde, $!B$ için $\Log{K}!A_1\dots !A_n$ içinde
+  \emph{!!{derivable}} deriz; bunun
+  koşulu, $!C_k=!B$ olan !!{formula}s $!C_1,\dots,!C_k$ bulunması ve her
+  $!C_i$'nin ya bir totoloji örneği, ya $\Ax{K}$'nin,
+  \iftag{prvDiamond}{$\Dual$'ın,}{} $!A_1,\dots,!A_n$'den birinin bir
+  örneği; ya da önceki !!{formula}s kullanılarak \MP{} veya \Nec{} kurallarıyla çıkan
+  bir formül olmasıdır. Bu durumda
+  $\Log{K}!A_1\dots !A_n\Proves !B$ yazarız.
+\end{defn}
+
+Aşağıdaki önerme, $!B$ için bir $\Sigma$-!!{derivation} sergileyerek
+$!B\in\Sigma$ olduğunu göstermemizi sağlar.
+
+\begin{prop}
+  $\Log{K}!A_1\dots !A_n=
+  \Setabs{!B}{\Log{K}!A_1\dots !A_n\Proves !B}$.
+\end{prop}
+
+\begin{proof}
+  !!{derivation}s açısından uzunluk üzerinde tümevarım kullanarak
+  \[
+  \Setabs{!B}{\Log{K}!A_1\dots !A_n\Proves !B}
+  \subseteq\Log{K}!A_1\dots !A_n
+  \]
+  olduğunu gösterelim.
+
+  $!B$ için !!{derivation} uzunluğu $1$ ise tek bir !!{formula} içerir.
+  Bu !!{formula}, önceki formüllerden \MP{} ya da \Nec{} ile çıkamaz;
+  dolayısıyla bir totoloji örneği, \Ax{K}'nin,
+  \iftag{prvDiamond}{$\Dual$'ın,}{} ya da $!A_1,\dots,!A_n$'den birinin
+  örneği olmalıdır. $\Log{K}!A_1\dots !A_n$ bunları da içerdiğinden
+  $!B\in\Log{K}!A_1\dots !A_n$.
+
+  $!B$ için !!{derivation} uzunluğu $>1$ ise, $!B$ ayrıca \MP{} ya da
+  \Nec{} ile, !!{formula}s kullanılarak elde edilmiş olabilir; bunlar
+  !!{derivation} içindeki son satırda yer almaz. $!B$, $!C$ ve
+  $!C\lif !B$'den \MP{} ile çıkıyorsa tümevarım varsayımından $!C$ ile
+  $!C\lif !B\in\Log{K}!A_1\dots !A_n$.
+  Her modal mantık modus ponens altında kapalı olduğundan
+  $!B\in\Log{K}!A_1\dots !A_n$. $!B\equiv\Box !C$, $!C$'den \Nec{} ile
+  çıkıyorsa tümevarım varsayımından $!C\in\Log{K}!A_1\dots !A_n$.
+  Her normal modal mantık \Nec{} altında kapalı olduğundan
+  $!B\in\Log{K}!A_1\dots !A_n$.
+
+  Ters kapsama, $\Sigma=\Setabs{!B}{\Log{K}!A_1\dots !A_n\Proves !B}$
+  kümesinin $!A_1,\dots,!A_n$'nin bütün örneklerini içeren normal bir modal
+  mantık olduğunu göstererek ve $\Log{K}!A_1\dots !A_n$'nin tanım gereği
+  böyle en küçük mantık olduğunu gözlemleyerek elde edilir.
+  \begin{enumerate}
+    \item Her $!B$ totolojisi bir totoloji örneğidir; dolayısıyla
+      $\Log{K}!A_1\dots !A_n\Proves !B$ ve $\Sigma$ bütün totolojileri
+      içerir.
+    \item $\Log{K}!A_1\dots !A_n\Proves !C$ ve
+      $\Log{K}!A_1\dots !A_n\Proves !C\lif !B$ ise
+      $\Log{K}!A_1\dots !A_n\Proves !B$: $!C$ ile $!C\lif !B$ için birer
+      !!{derivation} alıp bunları birleştirin ve $!B$ satırını ekleyin.
+      Son satır \MP{} ile gerekçelendirilir. Böylece $\Sigma$ modus ponens
+      altında kapalıdır.
+    \item $!B$ için !!a{derivation} varsa $!B$'nin her yerine koyma
+      örneği için de !!a{derivation} bulunur: yerine koymayı her !!{formula}
+      üzerinde, bütün !!{derivation} boyunca uygulayın. (Alıştırma: !!{derivation}s açısından
+      uzunluk üzerinde tümevarımla sonucun yine doğru bir !!{derivation}
+      olduğunu ispatlayın.) Dolayısıyla $\Sigma$ düzgün yerine koyma altında
+      kapalıdır. (Böylece $\Sigma$'nın bir modal mantığın bütün koşullarını
+      sağladığını gösterdik.)
+    \item $\Log{K}!A_1\dots !A_n\Proves\Ax{K}$ olduğundan $K\in\Sigma$.
+    \tagitem{prvDiamond}{$\Log{K}!A_1\dots !A_n\Proves\Dual$ olduğundan
+      $\Dual\in\Sigma$.}{}
+    \item $\Log{K}!A_1\dots !A_n\Proves !C$ ise ek $\Box !C$ satırı
+      \Nec{} ile gerekçelendirilir. Dolayısıyla $\Sigma$, \Nec{} altında
+      kapalıdır. Böylece $\Sigma$ normaldir.
+  \end{enumerate}
+\end{proof}
+

@@ -1,0 +1,101 @@
+% Generated from locale/tr/content/first-order-logic/sequent-calculus/proving-things-quant.tex; do not hand-edit.
+
+
+\olfileid[tr]{fol}{seq}{prq}
+
+\olsection{Niceleyiciler İçeren \usetoken{P}{derivation}}
+
+\begin{ex}
+$\lexists[x][\lnot !A(x)] \Sequent \lnot \lforall[x][!A(x)]$ sekantının
+bir $\Log{LK}$-!!{derivation}{}ini verin.
+
+Niceleyicilerle çalışırken özdeğişken koşulunu ihlal etmemeye dikkat etmemiz
+gerekir ve bu bazen belirli çıkarımları uygulama sıramızla oynamamızı
+gerektirir. Genel olarak özdeğişken koşuluna bağlı kuralları önce ele almaya
+çalışmak yararlıdır (tamamlanmış ispatta bunlar daha aşağıda bulunur). Ayrıca
+ileriye bakıp başlangıç sekantının nasıl görüneceğini kestirmeye çalışmak da
+iyi bir fikirdir. Bizim örneğimizde başlangıç sekantı $!A(a) \Sequent !A(a)$
+gibi bir şey olmalıdır. Bu, niceleyici kurallarını ``tersine'' uygularken hem
+$\lforall$ hem de $\lexists$ kuralı için aynı terimi---$a$ diyeceğimiz
+terimi---seçmemiz gerektiği anlamına gelir. Her kural için farklı bir terim
+seçseydik $!A(a) \Sequent !A(b)$ gibi, elbette türetilemeyen bir sekant elde
+ederdik.
+
+Her zamanki gibi şu ifadeyi yazarak başlayalım:
+\begin{prooftree}
+\AxiomC{}
+\UnaryInf$\lexists[x][\lnot !A(x)] \fCenter \lnot \lforall[x][!A(x)]$
+\end{prooftree}
+\LeftR{\exists} veya \RightR{\lnot} kuralını uygulayabiliriz.
+\LeftR{\exists} kuralı özdeğişken koşuluna bağlı olduğundan onu geciktirmeden
+ele almak iyi bir fikirdir; dolayısıyla önce bu kuralı
+uygulayalım.
+\begin{prooftree}
+\AxiomC{}
+\UnaryInf$ \lnot !A(a) \fCenter \lnot \lforall[x][!A(x)]$
+\RightLabel{\LeftR{\lexists}}
+\UnaryInf$ \lexists[x][\lnot !A(x)] \fCenter \lnot \lforall[x][!A(x)]$
+\end{prooftree}
+\LeftR{\lnot} ve \RightR{\lnot} kurallarını geriye doğru uygulayınca
+şunu elde ederiz:
+\begin{prooftree}
+\AxiomC{}
+\UnaryInf$\lforall[x][!A(x)] \fCenter !A(a)$
+\RightLabel{\LeftR{\lnot}}
+\UnaryInf$\lnot !A(a), \lforall[x][!A(x)] \fCenter $
+\RightLabel{\LeftR{\Exchange}}
+\UnaryInf$\lforall[x][!A(x)], \lnot !A(a) \fCenter $
+\RightLabel{\RightR{\lnot}}
+\UnaryInf$ \lnot !A(a) \fCenter \lnot \lforall[x] !A(x)$
+\RightLabel{\LeftR{\lexists}}
+\UnaryInf$ \lexists[x] \lnot !A(x) \fCenter \lnot \lforall[x] !A(x)$
+\end{prooftree}
+Bu noktada tek seçeneğimiz \LeftR{\forall} kuralını uygulamaktır. Bu kural
+özdeğişken kısıtlamasına bağlı olmadığından sorun yoktur. Bir başlangıç sekantı
+($!A(a) \Sequent !A(a)$ biçiminde) elde etmeye çalıştığımızı hatırlayın;
+dolayısıyla kuralı uygularken $!A$'nın argümanı olarak $a$'yı seçmeliyiz.
+\begin{prooftree}
+\Axiom$!A(a) \fCenter !A(a)$
+\RightLabel{\LeftR{\lforall}}
+\UnaryInf$\lforall[x][!A(x)] \fCenter !A(a)$
+\RightLabel{\LeftR{\lnot}}
+\UnaryInf$\lnot !A(a), \lforall[x][!A(x)] \fCenter $
+\RightLabel{\LeftR{\Exchange}}
+\UnaryInf$\lforall[x][!A(x)], \lnot !A(a) \fCenter $
+\RightLabel{\RightR{\lnot}}
+\UnaryInf$ \lnot !A(a) \fCenter \lnot \lforall[x][!A(x)]$
+\RightLabel{\LeftR{\lexists}}
+\UnaryInf$ \lexists[x][ \lnot !A(x)] \fCenter \lnot \lforall[x][!A(x)]$
+\end{prooftree}
+Özellikle niceleyicilerle çalışırken özdeğişken koşulunun ihlal edilmediğini
+bu noktada iki kez denetlemek önemlidir. Özdeğişken koşuluna bağlı olarak
+uyguladığımız tek kural \LeftR{\exists} olduğundan ve özdeğişken $a$ bu
+kuralın alt sekantında (son sekantta) bulunmadığından bu doğru bir
+!!{derivation}{}dir.
+\end{ex}
+
+\begin{prob}
+Aşağıdaki sekantlar için !!{derivation}s verin:
+\begin{enumerate}
+\item $\Sequent (\lforall[x][!A(x)] \land \lforall[y][!B(y)]) \lif
+\lforall[z][(!A(z) \land !B(z))]$.
+\item $\Sequent (\lexists[x][!A(x)] \lor \lexists[y][!B(y)]) \lif
+\lexists[z][(!A(z) \lor !B(z))]$.
+\item $\lforall[x][(!A(x) \lif !B)] \Sequent \lexists[y][!A(y)] \lif !B$.
+\item $\lforall[x][\lnot !A(x)] \Sequent \lnot\lexists[x][!A(x)]$.
+\item $\Sequent \lnot\lexists[x][!A(x)] \lif \lforall[x][\lnot !A(x)]$.
+\item $\Sequent \lnot\lexists[x][\lforall[y][((!A(x,y) \lif \lnot
+!A(y,y)) \land (\lnot !A(y,y) \lif !A(x,y)))]]$.
+\end{enumerate}
+\end{prob}
+
+\begin{prob}
+Aşağıdaki sekantlar için !!{derivation}s verin:
+\begin{enumerate}
+\item $\Sequent \lnot\lforall[x][!A(x)] \lif \lexists[x][\lnot!A(x)]$.
+\item $(\lforall[x][!A(x)] \lif !B) \Sequent \lexists[y][(!A(y) \lif !B)]$.
+\item $\Sequent \lexists[x][(!A(x) \lif \lforall[y][!A(y)])]$.
+\end{enumerate}
+(Bunların tümü $\RightR{\Contraction}$ kuralını gerektirir.)
+\end{prob}
+

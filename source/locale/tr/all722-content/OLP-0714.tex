@@ -1,0 +1,115 @@
+% Generated from locale/tr/content/propositional-logic/syntax-and-semantics/completeness.tex; do not hand-edit.
+
+
+\olfileid[tr]{pl}{prp}{com}
+
+\olsection{Önerme Mantığının Tamlığı}
+
+\begin{defn}
+\ollabel{def:MaxCon}
+Bir !!{formula}s kümesi $\Gamma$, tutarlıysa ve $\Gamma \subseteq \Delta$
+olan her tutarlı $\Delta$ kümesi için $\Gamma = \Delta$ oluyorsa
+\emph{maksimal tutarlı}dır.
+\end{defn}
+
+\begin{lem}[Doğruluk Lemması]
+  \ollabel{lem:truth}
+$\Gamma$ maksimal tutarlı olsun. O zaman:
+\begin{enumerate}
+\item \ollabel{lem:truth-1} $!A \in \Gamma$ ancak ve ancak $\lnot !A
+  \notin \Gamma$;
+\item \ollabel{lem:truth-2} $\Gamma \Proves !A$ ancak ve ancak $!A \in \Gamma$;
+\item \ollabel{lem:truth-3} $!A \lif !B \in \Gamma$ ancak ve ancak
+  $!A \notin \Gamma$ veya $!B \in \Gamma$.
+\end{enumerate}
+\end{lem}
+
+\begin{proof}
+\begin{enumerate}
+\item Önce $!A \in \Gamma$ olsun. $\lnot !A \in \Gamma$ da olsaydı
+  $\Gamma$ tutarsız olurdu; dolayısıyla $\lnot !A \notin \Gamma$.
+  Tersine $\lnot !A \notin \Gamma$ olsun. $!A \notin \Gamma$ da olsaydı
+  ne $!A$ ne de $\lnot !A$, $\Gamma$ içinde bulunurdu. Bu durumda
+  \olref[pl][axd][prv]{prop:provability-exhaustive} uyarınca $\Gamma\cup\{!A\}$ ile
+  $\Gamma \cup \{\lnot !A\}$ kümelerinden biri tutarlı olurdu; bu da
+  $\Gamma$'nın maksimal oluşuyla çelişirdi. Öyleyse $!A \in \Gamma$.
+\item $!A \in \Gamma$ ise elbette $\Gamma \Proves !A$. Tersine,
+  $\Gamma \Proves !A$ olsun. $!A \notin \Gamma$ ise
+  \olref{lem:truth-1} uyarınca $\lnot !A \in \Gamma$ olur. Böylece hem
+  $\Gamma \Proves !A$ hem de $\Gamma \Proves \lnot !A$ elde edilir; bu
+  bir çelişkidir.
+\item Alıştırma.
+\end{enumerate}
+\end{proof}
+
+\olref{lem:truth}\olref{lem:truth-2} maddesinin soldan sağa yönü,
+$\Gamma$'nın \emph{tümdengelimsel olarak kapalı} olduğunu, yani her~$!A$
+için $\Gamma \Proves !A$ ise $!A \in \Gamma$ olduğunu gösterir.
+
+\begin{prob}
+  \olref{lem:truth} önermesinin ispatını tamamlayın.
+\end{prob}
+
+\begin{thm}[Tamlık]
+\ollabel{thm:completeness}
+$\Gamma$ tutarlıysa sağlanabilirdir.
+\end{thm}
+
+\begin{proof}
+$!A_0$, $!A_1$,~\dots, dilin bütün !!{formula}s{}ini eksiksiz sıralayan bir
+liste olsun. Aşağıdaki biçimde artan bir $\Gamma_0$, $\Gamma_1$,~\dots
+!!{formula}s kümeleri dizisini özyinelemeli olarak tanımlayalım:
+\begin{align*}
+\Gamma_0 & = \Gamma\\
+\Gamma_{n+1} &  =
+\begin{cases}
+  \Gamma_n \cup \{!A_n\} & \text{$\Gamma_n \cup \{!A_n\}$ tutarlıysa;}\\
+  \Gamma_n \cup \{\lnot !A_n\} & \text{aksi halde}.
+\end{cases}
+\end{align*}
+Ardından şunu tanımlayalım:
+\[
+\Gamma^* = \bigcup_{0\le n}\Gamma_n.
+\]
+İspat şimdi sırasıyla aşağıdaki olguların gösterilmesiyle ilerler:
+\begin{enumerate}
+\item Her $n$ için $\Gamma_n$ kümesi tutarlıdır ($n$ üzerinde
+  \olref[pl][axd][prv]{prop:provability-exhaustive} kullanılarak tümevarımla);
+\item $\Gamma^*$ tutarlıdır;
+\item $\Gamma^*$ maksimaldir.
+\end{enumerate}
+Sonra $v(p_i) = \True$ ancak ve ancak $p_i \in \Gamma^*$ olacak biçimde bir
+$v$ değerlemesi tanımlayın. $!A$ üzerinde tümevarımla, daha karmaşık
+!!{sentence}s için de $\Gamma^*$ üyeliğinin $v$'ye göre doğrulukla çakıştığı,
+yani $\overline{v}(!A) = \True$ ancak ve ancak $!A \in \Gamma^*$ olduğu
+gösterilir. Özellikle $v$, $\Gamma^*$'ı sağlar; $\Gamma \subseteq \Gamma^*$
+olduğundan $\Gamma$ da istendiği gibi sağlanabilirdir.
+\end{proof}
+
+\begin{cor}
+$\Gamma \Entails !A$ ise $\Gamma \Proves !A$.
+\end{cor}
+
+\begin{proof}
+$\Gamma\Proves/ !A$ ise \olref[pl][axd][prv]{prop:prov-incons} uyarınca
+$\Gamma \cup \{\lnot !A\}$ tutarlıdır. O halde tamlık teoremine göre
+$\Gamma \cup \{\lnot !A\}$ sağlanabilirdir ve $\Gamma \Entails/ !A$.
+\end{proof}
+
+\begin{prop}[Tıkızlık Teoremi]
+\ollabel{prop:compactness}
+$\Gamma$ ancak ve ancak $\Gamma$'nın her \emph{sonlu} $\Gamma_0$ altkümesi
+sağlanabilirse sağlanabilirdir.
+\end{prop}
+
+\begin{proof}
+$\Gamma$ ancak ve ancak tutarsızsa sağlanamazdır; bu da ancak ve ancak
+$\Gamma$'nın sonlu bir $\Gamma_0$ altkümesi tutarsızsa, yani ancak ve ancak
+$\Gamma$'nın sonlu bir $\Gamma_0$ altkümesi sağlanamazsa geçerlidir.
+\end{proof}
+
+\begin{cor}
+$\Gamma \Entails !A$ ancak ve ancak $\Gamma$'nın sonlu bir $\Gamma_0$
+altkümesi için $\Gamma_0 \Entails !A$.
+\end{cor}
+

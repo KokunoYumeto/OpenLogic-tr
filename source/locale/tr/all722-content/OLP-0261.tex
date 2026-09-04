@@ -1,0 +1,161 @@
+% Generated from locale/tr/content/turing-machines/machines-computations/combining-machines.tex; do not hand-edit.
+
+
+\olfileid[tr]{tur}{mac}{cmb}
+\olsection{Turing Makinelerinin Birleştirilmesi}
+
+\begin{explain}
+Şimdiye dek gördüğümüz Turing makinesi örnekleri oldukça basitti. Oysa çağdaş
+bir programlama diliyle çözülebilen her problem Turing makineleriyle de
+çözülebilir. Daha karmaşık Turing makineleri kurabilmek için makineleri
+birleştirebileceğimize kendimizi inandırmamız önemlidir; böylece bir süreci
+daha basit parçalara ayırarak daha karmaşık problemleri çözen makineler
+kurabiliriz. Karmaşık bir problemi bileşenlerine ayırmanın doğal bir yolunu
+bulabilirsek problemi birkaç aşamada ele alabilir, birkaç basit Turing
+makinesi oluşturup bunları problemi çözen tek bir makinede birleştirebiliriz.
+Bu nokta, sonraki bölümde Durma Problemi ele alınırken özellikle önemlidir.
+
+$M=\tuple{Q,\Sigma,q_0,\delta}$ ile
+$M'=\tuple{Q',\Sigma',q_0',\delta'}$ Turing makinelerini nasıl birleştiririz?
+$M$ durduktan sonraki şerit konfigürasyonunu, $M'$ makinesinin bir
+çalışmasının girdi konfigürasyonu olarak kullanırız. Bunu yapan tek bir
+$M\frown M'$ Turing makinesi elde etmek için şunları yapın:
+\begin{enumerate}
+    \item $M$ ile $M'$ ortak hiçbir duruma sahip olmayacak
+    ($Q\cap Q'=\emptyset$) biçimde $M'$'nin bütün $Q'$ durumlarını yeniden
+    numaralandırın (ya da yeniden etiketleyin).
+    \item $M\frown M'$ makinesinin durumları $Q\cup Q'$ olsun.
+    \item Şerit alfabesi $\Sigma\cup\Sigma'$ olsun.
+    \item Başlangıç durumu $q_0$ olsun.
+    \item Geçiş fonksiyonu aşağıdaki $\delta''$ fonksiyonu olsun:
+    \[\delta''(q,\sigma) =
+    \begin{cases}
+      \delta(q,\sigma) & \text{$q \in Q$ ve $\delta(q,\sigma)$ tanımlıysa}\\
+      \delta'(q,\sigma) & \text{$q \in Q'$ ise}\\
+      \tuple{q_0', \sigma, \TMstay} & \text{$q \in Q$ ve
+      $\delta(q,\sigma)$ tanımsızsa}
+    \end{cases}\]
+\end{enumerate}
+Ortaya çıkan makine $q\in Q$ durumundayken $M$'nin, $q\in Q'$ durumundayken
+$M'$'nin yönergelerini kullanır. $q\in Q$ durumundayken $M$'nin geçişinin
+olmadığı bir $\sigma$ simgesini taradığında (yani $M$ duracakken) $M'$'nin
+başlangıç durumuna geçer ve şeridin içeriğiyle kafa konumunu değiştirmez.
+
+$M$ makinesi disiplinli değilse $M$ durduğunda şerit kafasının nerede
+olduğunu bilmediğimize, dolayısıyla $M$'nin durma konfigürasyonunda kafanın
+$1$. kareyi taramak zorunda olmadığına dikkat edin. Makineleri birleştirirken
+bunu göz önünde bulundurmak önemlidir.
+\end{explain}
+
+\begin{ex}
+\emph{Makinelerin Birleştirilmesi:} Uzunlukları $n$ ve~$m$ olan iki
+$\TMstroke$ bloğundan oluşan girdide başlatıldığında şeritte $2(m+n)$ tane
+$\TMstroke$ simgesinden oluşan tek bir blokla duran bir makine tasarlayacağız.
+Bu makineyi kurmak için zaten bildiğimiz iki makineyi, toplama makinesiyle iki
+katına çıkarıcıyı birleştirebiliriz. Önce toplama makinesinin durum diyagramını
+çizelim.
+\[
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=none,draw=black,text=black]
+
+  \node[initial,state] (A)              {$q_0$};
+  \node[state]         (B) [right of=A] {$q_1$};
+  \node[state]         (C) [right of=B] {$q_2$};
+
+  \path (A) edge node {\TMtrans{\TMblank}{\TMstroke}{\TMstay}} (B)
+            edge [loop above] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (B)
+        (B) edge [loop above] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (B)
+            edge node {\TMtrans{\TMblank}{\TMblank}{\TMleft}} (C)
+        (C) edge [loop above] node {\TMtrans{\TMstroke}{\TMblank}{\TMstay}} (C);
+\end{tikzpicture}
+\]
+$q_2$ durumunda durmak yerine çıktıyı iki katına çıkarmak için çalışmayı
+sürdürmek istiyoruz. İki katına çıkarıcı makinenin girdideki ilk çizgiyi
+sildiğini ve ayrı bir çıktıya iki çizgi yazdığını anımsayın. Şerit kafasının
+toplama makinesi çıktısının ilk çizgisini okuduğundan emin olmak için bir
+yönerge ekleyelim.
+\[
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=none,draw=black,text=black]
+
+  \node[initial,state] (A)              {$q_0$};
+  \node[state]         (B) [right of=A] {$q_1$};
+  \node[state]         (C) [right of=B] {$q_2$};
+  \node[state]         (D) [below left of=C] {$q_3$};
+  \node[state]         (E) [below left of=D] {$q_4$};
+
+  \path (A) edge node {\TMtrans{\TMblank}{\TMstroke}{\TMstay}} (B)
+            edge [loop above] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (B)
+        (B) edge [loop above] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (B)
+            edge node {\TMtrans{\TMblank}{\TMblank}{\TMleft}} (C)
+        (C) edge node {\TMtrans{\TMstroke}{\TMblank}{\TMleft}} (D)
+        (D) edge [loop left] node {\TMtrans{\TMstroke}{\TMstroke}{\TMleft}} (D)
+            edge node[left, xshift=-2mm] {\TMtrans{\TMendtape}{\TMendtape}{\TMright}} (E);
+\end{tikzpicture}
+\]
+Artık girdiyi iki katına çıkarmak kolaydır: Yapmamız gereken tek şey iki
+katına çıkarıcı makineyi $q_4$ durumuna bağlamaktır. Bunun için iki katına
+çıkarıcı makinenin durumlarını $q_0$ yerine $q_4$'ten başlayacak biçimde
+yeniden adlandırmalıyız; böylece iki başlangıç durumumuz olmaz. Son diyagram
+\olref{fig:combined} içindeki gibi görünmelidir.
+\begin{figure}
+\[
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=none,draw=black,text=black]
+  \node[initial,state] (A)              {$q_0$};
+  \node[state]         (B) [right of=A] {$q_1$};
+  \node[state]         (C) [right of=B] {$q_2$};
+  \node[state]         (D) [below left of=C] {$q_3$};
+  \node[state]         (E) [below left of=D] {$q_4$};
+  \node[state]         (2) [right of=E] {$q_5$};
+  \node[state]         (3) [right of=2] {$q_6$};
+  \node[state]         (4) [below of=3] {$q_7$};
+  \node[state]         (5) [left of=4]  {$q_8$};
+  \node[state]         (6) [left of=5]  {$q_9$};
+
+  \path (A) edge node {\TMtrans{\TMblank}{\TMstroke}{\TMstay}} (B)
+            edge [loop above] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (B)
+        (B) edge [loop above] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (B)
+            edge node {\TMtrans{\TMblank}{\TMblank}{\TMleft}} (C)
+        (C) edge node {\TMtrans{\TMstroke}{\TMblank}{\TMleft}} (D)
+        (D) edge [loop left] node {\TMtrans{\TMstroke}{\TMstroke}{\TMleft}} (D)
+            edge node[left, xshift=-2mm] {\TMtrans{\TMendtape}{\TMendtape}{\TMright}} (E)
+    (E) edge node {\TMtrans{\TMstroke}{\TMblank}{\TMright}} (2)
+    (2) edge [loop above] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (2)
+      edge node {\TMtrans{\TMblank}{\TMblank}{\TMright}} (3)
+    (3) edge [loop above] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (3)
+        edge node {\TMtrans{\TMblank}{\TMstroke}{\TMright}} (4)
+    (4) edge [loop below] node {\TMtrans{\TMblank}{\TMstroke}{\TMleft}} (4)
+        edge node {\TMtrans{\TMstroke}{\TMstroke}{\TMleft}} (5)
+    (5) edge [loop below]  node {\TMtrans{\TMstroke}{\TMstroke}{\TMleft}} (5)
+        edge              node {\TMtrans{\TMblank}{\TMblank}{\TMleft}} (6)
+    (6) edge [loop below] node {\TMtrans{\TMstroke}{\TMstroke}{\TMleft}} (6)
+        edge              node {\TMtrans{\TMblank}{\TMblank}{\TMright}} (E);
+\end{tikzpicture}
+\]
+\caption{Toplama ve iki katına çıkarma makinelerinin birleştirilmesi}
+\ollabel{fig:combined}
+\end{figure}
+\end{ex}
+
+\begin{prop}
+    $M$ ve $M'$ disiplinli olup sırasıyla $f\colon\Nat^k\to\Nat$ ve
+    $f'\colon\Nat\to\Nat$ fonksiyonlarını hesaplıyorsa $M\frown M'$ de
+    disiplinlidir ve $\comp{f}{f'}$ fonksiyonunu hesaplar.
+\end{prop}
+
+\begin{proof}
+    $M$ disiplinli olduğundan $f(n_1,\dots,n_k)=m$ çıktısıyla durduğunda kafa
+    $1$. kareyi tarar. Şimdi $M'$'nin başlangıç durumuna girersek makine yine
+    $1$. kareyi tararken $f'(m)$ çıktısıyla durur.
+    \olref[dis]{defn:disciplined} tanımındaki öteki koşullar da sağlanır.
+\end{proof}
+
+\begin{prob}
+    \cref{tur:mac:dis:prob:disc-succ} içindeki $M$ makinesini alıp
+    $M\frown M$'yi kurarak $f(x)=x+2$ hesaplayan disiplinli bir Turing
+    makinesi verin.
+\end{prob}

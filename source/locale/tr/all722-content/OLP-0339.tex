@@ -1,0 +1,59 @@
+% Generated from locale/tr/content/second-order-logic/sol-and-set-theory/cardinalities.tex; do not hand-edit.
+
+
+\olfileid[tr]{sol}{set}{crd}
+
+\olsection{Kümelerin Kardinaliteleri}
+
+\begin{explain}
+Tanım kümesinin sonlu ya da sonsuz, !!{enumerable} ya da !!{nonenumerable}
+olduğunu ifade edebildiğimiz gibi, $\Domain{M}$'nin bir alt kümesinin sonlu
+ya da sonsuz, !!{enumerable} ya da !!{nonenumerable} olma özelliğini de
+tanımlayabiliriz.
+\end{explain}
+
+\begin{prop}
+$\fn{Inf}(X)\ident$
+\begin{multline*}
+\lexists[u][(\lforall[x][\lforall[y][(\eq[u(x)][u(y)] \lif 
+      \eq[x][y])]] \land {} \\\\lexists[y][(X(y) \land \lforall[x][(X(x)
+      \lif \eq/[y][u(x)])]])]
+\end{multline*}
+formülü, bir değişken ataması $s$ bakımından ancak ve ancak $s(X)$ sonsuzsa
+sağlanır.
+\end{prop}
+
+\begin{prop}
+$\fn{Count}(X)\ident$
+\begin{multline*}
+\lexists[z][\lexists[u][(X(z) \land 
+    \lforall[x][(X(x) \lif X(u(x)))] \land {} \\ \lforall[Y][((Y(z) \land
+      \lforall[x][(Y(x) \lif Y(u(x)))]) \lif X = Y])]])
+\end{multline*}
+formülü, bir değişken ataması $s$ bakımından ancak ve ancak $s(X)$
+!!{enumerable} ise sağlanır.
+\end{prop}
+
+Cantor Teoreminden !!{nonenumerable} kümeler bulunduğunu, hatta sonsuz
+büyüklüklerin sonsuz sayıda farklı düzeyi olduğunu biliyoruz. Küme teorisi,
+küme büyüklüklerinin bütün bir aritmetiğini geliştirir ve kümelere sonsuz
+kardinal sayılar atar. Doğal sayılar, sonlu kümelerin büyüklüklerini ölçen
+kardinal sayılardır. !!{denumerable} kümelerin kardinalitesi, $\aleph_0$
+(``alef-sıfır'') denen ilk sonsuz kardinalitedir. Sonraki sonsuz büyüklük
+$\aleph_1$'dir. Bu, bir kümenin sayılabilir (yani $\aleph_0$ büyüklüğünde)
+olmadan sahip olabileceği en küçük büyüklüktür. ``$X$, $\aleph_0$
+büyüklüğündedir'' ifadesini
+$\fn{Aleph}_0(X)\liff\fn{Inf}(X)\land\fn{Count}(X)$ olarak tanımlayabiliriz.
+$X$, ancak ve ancak bütün alt kümeleri sonlu ya da $\aleph_0$ büyüklüğünde,
+ama kendisi $\aleph_0$ büyüklüğünde değilse $\aleph_1$ büyüklüğündedir.
+Dolayısıyla bunu
+$\fn{Aleph_1}(X)\ident\lforall[Y][(Y\subseteq X\lif
+(\lnot\fn{Inf}(Y)\lor\fn{Aleph}_0(Y)))]\land\lnot\fn{Aleph}_0(X)$
+formülüyle ifade edebiliriz. $\aleph_2$ büyüklüğünde olma benzer biçimde
+tanımlanır ve bu böyle sürer.
+
+Özel önem taşıyan bir büyüklük, kontinuumun kardinalitesi denen büyüklüktür.
+Bu, $\Pow{\Nat}$'ın, eşdeğer olarak da $\Real$'in büyüklüğüdür. Bir kümenin
+kontinuum büyüklüğünde olduğu da ikinci dereceden mantıkta ifade edilebilir,
+fakat biraz daha çok çalışma gerektirir.
+

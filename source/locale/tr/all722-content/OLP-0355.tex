@@ -1,0 +1,61 @@
+% Generated from locale/tr/content/lambda-calculus/introduction/minimization.tex; do not hand-edit.
+
+
+\olfileid[tr]{lam}{int}{min}
+\olsection{\usetoken{S}{lambda definable} Fonksiyonlar Minimizasyon Altında Kapalıdır}
+
+\begin{lem}
+$f(x,y)$'nin !!{lambda definable} olduğunu varsayın. $g$,
+\[
+g(x) \simeq \umin{y}{f(x,y)}
+\]
+ile tanımlansın. O zaman $g$ !!{lambda definable}.
+\end{lem}
+
+\begin{proof}
+Düşünce kabaca şöyledir. $x$ verildiğinde, $n$'den başlayarak bir $y$ arayan
+$h_x(n)$ fonksiyonunu tanımlamak için sabit nokta lambda terimi $Y$'yi
+kullanacağız; o zaman $g(x)$ yalnızca $h_x(0)$'dır. $h_x$ fonksiyonu bir
+sabit nokta denkleminin çözümü olarak ifade edilebilir:
+\[
+h_x(n) \simeq
+\begin{cases}
+n & \text{$f(x,n) = 0$ ise} \\
+h_x(n+1) & \text{değilse.}
+\end{cases}
+\]
+
+Ayrıntılar şöyledir. $f$ ilkel özyinelemeli olduğundan bir $F$ terimi
+tarafından !!{lambda defined}. Ayrıca $D(M,N,\bar{0})\red M$ ve
+$D(M,N,\bar{1})\red N$ olacak biçimde bir $D$ lambda terimimiz olduğunu
+anımsayın. Şimdilik $x$'i sabitleyerek $h_x$'i !!{lambda define} etmek için
+$x$'e bağlı, şu koşulu taşıyan bir $H$ terimi bulmak isteriz:
+\[
+H(\num{n}) \equiv D(\num{n}, H(S(\num{n})), F(x, \num{n})).
+\]
+Bunu sabit nokta terimi $Y$ ile yapabiliriz. Önce $U$,
+\[
+\lambd[h][\lambd[z][D(z,(h(Sz)),F(x,z))]]
+\]
+terimi olsun, ardından $H$, $YU$ terimi olsun. $H$ içindeki tek serbest
+değişkenin $x$ olduğuna dikkat edin. $H$'nin yukarıdaki denklemi sağladığını
+gösterelim.
+
+$Y$'nin tanımı gereği
+\[
+H = YU \equiv U(YU) = U(H).
+\]
+Özellikle her $n$ doğal sayısı için
+\begin{align*}
+H(\num{n}) & \equiv U(H, \num{n}) \\
+& \red D(\num{n}, H(S(\num{n})), F(x, \num{n})),
+\end{align*}
+istendiği gibi. Son satırda $x$ yerine $\num{m}$ koyarsanız, ifade
+$F(\num{m},\num{n})$, $\num{0}$'a indirgeniyorsa $\num{n}$'ye; başka
+herhangi bir sayıya indirgeniyorsa $H(S(\num{n}))$'ye indirgenir.
+
+İspatı bitirmek için $G$, $\lambd[x][H(\num 0)]$ olsun. O zaman $G$, $g$'yi
+!!{lambda define}s; başka bir deyişle her $m$ için $G(\num m)$, $g(m)$
+tanımlıysa $\overline{g(m)}$'ye indirgenir, değilse normal biçimi yoktur.
+\end{proof}
+

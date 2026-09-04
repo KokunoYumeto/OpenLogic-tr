@@ -1,0 +1,25 @@
+% Generated from locale/tr/content/set-theory/z/union.tex; do not hand-edit.
+
+
+\olfileid[tr]{sth}{z}{union}
+\olsection{Birleşim}
+
+\olref[sth][z][sep]{prop:intersectionsexist} bize kesişimleri verdi.
+Fakat gelişigüzel birleşimlerin var olmasını istiyorsak başka bir aksiyom
+koymalıyız:
+
+\begin{axiom}[Birleşim] Her $A$ kümesi için
+$\bigcup A=\Setabs{x}{(\exists b\in A)x\in b}$ kümesi vardır.
+\[
+  \forall A \exists U \forall x(x \in U \liff (\exists b \in A)x \in b)
+\]
+\end{axiom}
+
+Bu aksiyom da birikimli-yinelemeli anlayışla gerekçelendirilir. $A$ bir küme
+olsun; dolayısıyla (\stageshier{} gereğince) bazı $S$ evresinde
+oluşturulmuştur. $A$'nın her elemanı (\stagesacc{} gereğince) $S$'den
+\emph{önce} oluşturulmuştur; benzer biçimde akıl yürütürsek $A$'nın her
+elemanının her elemanı da $S$'den önce oluşturulmuştur. Böylece bu kümelerin
+\emph{tümü}, $S$ evresinde bir küme hâline getirilmek üzere $S$'den önce
+mevcuttur. Bu küme de tam olarak $\bigcup A$'dır.
+

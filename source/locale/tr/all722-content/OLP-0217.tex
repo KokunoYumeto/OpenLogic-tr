@@ -1,0 +1,159 @@
+% Generated from locale/tr/content/computability/recursive-functions/pr-relations.tex; do not hand-edit.
+
+
+\olfileid[tr]{cmp}{rec}{prr}
+\olsection{İlkel Özyinelemeli Bağıntılar}
+
+\begin{defn}
+Bir $R(\vec x)$ bağıntısına, karakteristik fonksiyonu
+\[
+\Char{R}(\vec x)=\left\{
+  \begin{array}{ll}
+    1 & \mbox{$R(\vec x)$ ise}\\
+    0 & \mbox{aksi durumda}
+  \end{array}
+\right.
+\]
+ilkel özyinelemeliyse \emph{ilkel özyinelemeli} denir.
+\end{defn}
+
+Başka bir deyişle ilkel özyinelemeli bir $R(\vec x)$ bağıntısından söz
+edildiğinde, her girdide $1$ veya $0$ döndüren ilkel özyinelemeli bir
+$\Char{R}$ fonksiyonu için $\Char{R}(\vec x)=1$ biçimindeki bir bağıntı
+kastedilir. Örneğin ancak ve ancak $x=0$ iken geçerli olan
+$\fn{IsZero}(x)$ bağıntısı, ilkel özyinelemeyle
+\begin{align*}
+  \Char{\fn{IsZero}}(0) & = 1,\\
+  \Char{\fn{IsZero}}(x+1) & = 0
+\end{align*}
+olarak tanımlanan $\Char{\fn{IsZero}}$ fonksiyonuna karşılık gelir.
+
+Bağıntıların başka ilkel özyinelemeli fonksiyonlarla bileşkesinin
+alınabileceği açıktır. Dolayısıyla aşağıdakiler de ilkel özyinelemelidir:
+\begin{enumerate}
+\item $\fn{IsZero}(\lvert x-y\rvert)$ ile tanımlanan eşitlik bağıntısı
+  $x=y$.
+\item $\fn{IsZero}(x\tsub y)$ ile tanımlanan küçük-eşit bağıntısı
+  $x\leq y$.
+\end{enumerate}
+
+\begin{prop}
+  İlkel özyinelemeli bağıntılar kümesi Boole işlemleri altında kapalıdır.
+  Yani $P(\vec x)$ ile $Q(\vec x)$ ilkel özyinelemeliyse aşağıdakiler de
+  ilkel özyinelemelidir:
+  \begin{enumerate}
+  \item $\lnot P(\vec x)$
+  \item $P(\vec x)\land Q(\vec x)$
+  \item $P(\vec x)\lor Q(\vec x)$
+  \item $P(\vec x)\lif Q(\vec x)$.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  $P(\vec x)$ ile $Q(\vec x)$ ilkel özyinelemeli, yani karakteristik
+  fonksiyonları $\Char{P}$ ile $\Char{Q}$ ilkel özyinelemeli olsun.
+  $\lnot P(\vec x)$ ve ötekilerin karakteristik fonksiyonlarının da ilkel
+  özyinelemeli olduğunu göstermeliyiz.
+  \[
+    \Char{\lnot P}(\vec x)=\begin{cases}
+      0 & \text{$\Char{P}(\vec x)=1$ ise}\\
+      1 & \text{aksi durumda.}
+    \end{cases}
+  \]
+  $\Char{\lnot P}(\vec x)$ fonksiyonunu
+  $1\tsub\Char{P}(\vec x)$ olarak tanımlayabiliriz.
+  \[
+    \Char{P\land Q}(\vec x)=\begin{cases}
+      1 & \text{$\Char{P}(\vec x)=\Char{Q}(\vec x)=1$ ise}\\
+      0 & \text{aksi durumda.}
+    \end{cases}
+  \]
+  $\Char{P\land Q}(\vec x)$ fonksiyonunu
+  $\Char{P}(\vec x)\cdot\Char{Q}(\vec x)$ ya da
+  $\fn{min}(\Char{P}(\vec x),\Char{Q}(\vec x))$ olarak tanımlayabiliriz.
+  Benzer biçimde
+  \begin{align*}
+    \Char{P\lor Q}(\vec x) & =
+      \fn{max}(\Char{P}(\vec x),\Char{Q}(\vec x)) \text{ ve}\\
+    \Char{P\lif Q}(\vec x) & =
+      \fn{max}(1\tsub\Char{P}(\vec x),\Char{Q}(\vec x)).
+  \end{align*}
+\end{proof}
+
+\begin{prop}
+  İlkel özyinelemeli bağıntılar kümesi sınırlı niceleme altında kapalıdır.
+  Yani $R(\vec x,z)$ ilkel özyinelemeliyse
+  \begin{align*}
+    & \bforall{z<y}{R(\vec x,z)} \text{ ve}\\
+    & \bexists{z<y}{R(\vec x,z)}
+  \end{align*}
+  bağıntıları da ilkel özyinelemelidir.
+  $\bforall{z<y}{R(\vec x,z)}$, $y$'den küçük her $z$ için
+  $R(\vec x,z)$ geçerli olduğunda ve ancak o zaman $\vec x$ ile $y$ için
+  geçerlidir; $\bexists{z<y}{R(\vec x,z)}$ için de benzer tanım geçerlidir.
+\end{prop}
+
+\begin{proof}
+  Kararlaştırma gereği $\bforall{z<0}{R(\vec x,z)}$ doğrudur; çünkü $0$'dan
+  küçük hiçbir $z$ yoktur. $\bexists{z<0}{R(\vec x,z)}$ ise yanlıştır.
+  Sınırlı tümel niceleyici sonlu bir çarpım ya da yinelenmiş minimum gibi
+  davranır. Yani
+  $P(\vec x,y)\defiff\bforall{z<y}{R(\vec x,z)}$ ise
+  $\Char{P}(\vec x,y)$ şöyle tanımlanabilir:
+  \begin{align*}
+    \Char{P}(\vec x,0) & = 1\\
+    \Char{P}(\vec x,y+1) & =
+      \fn{min}(\Char{P}(\vec x,y),\Char{R}(\vec x,y)).
+  \end{align*}
+  Sınırlı varlıksal niceleme de benzer biçimde $\fn{max}$ kullanılarak
+  tanımlanabilir. Alternatif olarak
+  $\bexists{z<y}{R(\vec x,z)}\liff
+  \lnot\bforall{z<y}{\lnot R(\vec x,z)}$ eşdeğerliğiyle sınırlı tümel
+  nicelemeden tanımlanabilir. Örneğin
+  $\bexists{x\leq y}{\dots x\dots}$ biçimindeki bir sınırlı niceleyicinin
+  $\bexists{x<y+1}{\dots x\dots}$ ile eşdeğer olduğuna dikkat edin.
+\end{proof}
+
+\begin{prob}
+  Üç yerli $x\equiv y\mod n$ bağıntısının ($n$ modülüne göre denklik)
+  ilkel özyinelemeli olduğunu gösterin.
+\end{prob}
+
+Bir başka yararlı ilkel özyinelemeli fonksiyon da
+\begin{align*}
+  \fn{cond}(x,y,z) & = \begin{cases}
+    y & \text{$x=0$ ise}\\
+    z & \text{aksi durumda}
+  \end{cases}
+  \intertext{ile verilen koşullu fonksiyondur. Bu fonksiyon özyinelemeyle}
+  \fn{cond}(0,y,z) & = y,\\
+  \fn{cond}(x+1,y,z) & = z
+\end{align*}
+olarak tanımlanır. Bu fonksiyon, ilkel özyinelemeli bağıntılara göre
+durumlara ayrılarak yapılan ilkel özyinelemeli fonksiyon tanımlarını
+gerekçelendirmek için kullanılabilir.
+
+\begin{prop}
+$g_0(\vec x),\dots,g_m(\vec x)$ ilkel özyinelemeli fonksiyonlar ve
+$R_0(\vec x),\dots,R_{m-1}(\vec x)$ ilkel özyinelemeli bağıntılar olsun.
+Şu biçimde tanımlanan $f$ fonksiyonu da ilkel özyinelemelidir:
+\[
+  f(\vec x)=\begin{cases}
+    g_0(\vec x) & \text{$R_0(\vec x)$ ise}\\
+    g_1(\vec x) & \text{$R_1(\vec x)$ ve $\lnot R_0(\vec x)$ ise}\\
+    \vdots & \\
+    g_{m-1}(\vec x) & \text{$R_{m-1}(\vec x)$ geçerli ve önceki
+      koşulların hiçbiri geçerli değilse}\\
+    g_m(\vec x) & \mbox{aksi durumda.}
+  \end{cases}
+\]
+\end{prop}
+
+\begin{proof}
+  $m=1$ iken bu, yalnızca
+  \[
+    f(\vec x)=\fn{cond}(\Char{\lnot R_0}(\vec x),g_0(\vec x),g_1(\vec x))
+  \]
+  ile tanımlanan fonksiyondur. $m>1$ için bu biçimdeki tanımların bileşkesi
+  alınır.
+\end{proof}

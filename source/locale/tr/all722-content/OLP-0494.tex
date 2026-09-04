@@ -1,0 +1,66 @@
+% Generated from locale/tr/content/intuitionistic-logic/introduction/syntax.tex; do not hand-edit.
+
+
+\olfileid[tr]{int}{int}{syn}
+
+\olsection{Sezgici Mantığın Sözdizimi}
+
+Sezgici mantığın sözdizimi, önerme mantığınınkiyle aynıdır. Klasik önerme
+mantığında bağlaçları başka bağlaçlar aracılığıyla tanımlamak mümkündür;
+örneğin $!A \lif !B$, $\lnot !A \lor !B$ olarak ya da $!A \lor !B$,
+$\lnot(\lnot !A \land \lnot !B)$ olarak tanımlanabilir. Bu nedenle klasik
+mantık sunumları, bazı bağlaçları çoğu kez bu tanımların kısaltmaları olarak
+tanıtır. Sezgici mantıkta iki istisna dışında durum böyle değildir: $\lnot !A$,
+$!A \lif \lfalse$ ifadesinin kısaltması olarak tanımlanabilir ve çoğu kez de
+öyle tanımlanır. Elbette bu durumda $\lfalse$'ın kendisi tanımlanmamalıdır!{}
+Ayrıca $!A \liff !B$, klasik mantıkta olduğu gibi $(!A \lif !B) \land (!B
+\lif !A)$ olarak tanımlanabilir.
+
+Önermesel sezgici mantığın !!^{formula}s{}i, \emph{!!{propositional variable}s}
+ile önerme sabiti~$\lfalse$'tan \emph{mantıksal bağlaçlar} kullanılarak
+kurulur. Elimizde şunlar vardır:
+
+\begin{enumerate}
+\item !!^a{denumerable} !!{propositional variable} kümesi~$\PVar$: $\Obj p_0$,
+  $\Obj p_1$, \dots
+\item !!{falsity} için önerme sabiti~$\lfalse$.
+\item Mantıksal bağlaçlar: $\land$ (ve bağlacı), $\lor$ (veya bağlacı),
+  $\lif$ (koşul).
+\item Noktalama işaretleri: (, ) ve virgül.
+\end{enumerate}
+
+\begin{defn}[Formül]
+\ollabel{defn:formulas} $\Frm[L_0]$ kümesi, önermesel sezgici mantığın
+\emph{!!{formula}s{}den} oluşur ve tümevarımlı olarak şöyle tanımlanır:
+\begin{enumerate}
+\item $\lfalse$ atomik !!{formula}{}dür.
+
+\item Her !!{propositional variable}~$\Obj p_i$ atomik !!{formula}{}dür.
+
+\item $!A$ ve $!B$ birer !!{formula} ise $(!A \land !B)$ de
+  !!a{formula}{}dür.
+
+\item $!A$ ve $!B$ birer !!{formula} ise $(!A \lor !B)$ de
+  !!a{formula}{}dür.
+
+\item $!A$ ve $!B$ birer !!{formula} ise $(!A \lif !B)$ de
+  !!a{formula}{}dür.
+
+\tagitem{limitClause}{Başka hiçbir şey !!a{formula} değildir.}{}
+\end{enumerate}
+\end{defn}
+
+Yukarıda tanıtılan ilkel bağlaçlara ek olarak şu \emph{tanımlı} simgeleri de
+kullanırız: $\lnot$ (değilleme) ve $\liff$ (!!{biconditional}). Tanımlı
+işleçler kullanılarak kurulan formüller şöyle anlaşılmalıdır:
+\begin{enumerate}
+\item $\lnot !A$, $!A \lif \lfalse$ ifadesinin kısaltmasıdır.
+
+\item $!A \liff !B$, $(!A \lif !B) \land (!B \lif !A)$ ifadesinin
+  kısaltmasıdır.
+\end{enumerate}
+
+$\lnot$ resmen bir kısaltma olarak ele alınsa da tanımlarda kimi zaman~$\lnot$
+için ilkelmiş gibi açık kurallar ve koşullar vereceğiz. Bunu daha çok alıştırma
+soruları yazabilmek için yapacağız.
+

@@ -1,0 +1,149 @@
+% Generated from locale/tr/content/normal-modal-logic/completeness/truth-lemma.tex; do not hand-edit.
+
+
+\olfileid[tr]{nml}{com}{tru}
+
+\olsection{Doğruluk Lemması}
+
+Kanonik model $\mModel{M^\Sigma}$, $\mSat{M^\Sigma}{!A}[\Delta]$ ancak ve
+ancak $!A\in\Delta$ olacak biçimde tanımlanmıştır. !!{propositional
+variable}s için $V^\Sigma$'nın tanımı bunu doğrudan verir. Ancak denkliğin
+bütün !!{formula}s için geçerli olduğunu doğrulamalıyız. Bunu tümevarımla
+yaparız. Tümevarım adımı, önerme işleçlerini içeren !!{formula}s için
+(burada \olref[ccs]{prop:ccs-properties} kullanılır) ve modal işleçler için
+(burada \olref[mod]{sec} sonuçları kullanılır)
+denkliği ispatlamayı içerir.
+
+\begin{prop}[Doğruluk Lemması]
+  \ollabel{prop:truthlemma}
+  Her !!{formula} $!A$ için $\mSat{M^\Sigma}{!A}[\Delta]$ ancak ve ancak
+  $!A\in\Delta$.
+\end{prop}
+
+\begin{proof}
+  $!A$ üzerinde tümevarımla.
+  \begin{enumerate}
+    \tagitem{prvFalse}{\indcase{!A}{\lfalse}{
+        \olref[syn][trw]{defn:mmodels} gereğince
+        $\mSat/{M^\Sigma}{\lfalse}[\Delta]$ ve
+        \olref[ccs]{prop:ccs-properties}\olref[ccs]{prop:ccs-lfalse}
+        gereğince $\lfalse\notin\Delta$.}}{}
+
+    \tagitem{prvTrue}{\indcase{!A}{\ltrue}{
+        \olref[syn][trw]{defn:mmodels} gereğince
+        $\mSat{M^\Sigma}{\ltrue}[\Delta]$ ve
+        \olref[ccs]{prop:ccs-properties}\olref[ccs]{prop:ccs-ltrue}
+        gereğince $\ltrue\in\Delta$.}}{}
+
+    \item \indcase{!A}{p}{\olref[syn][trw]{defn:mmodels} gereğince
+      $\mSat{M^\Sigma}{p}[\Delta]$ ancak ve ancak
+      $\Delta\in V^\Sigma(p)$. Ayrıca $V^\Sigma$'nın tanımı gereğince
+      $\Delta\in V^\Sigma(p)$ ancak ve ancak $p\in\Delta$.}
+
+    \tagitem{prvNot}{\indcase{!A}{\lnot !B}{%
+        \iftag{probNot}{Alıştırma.}{$\mSat{M^\Sigma}{\lnot !B}[\Delta]$
+          ancak ve ancak $\mSat/{M^\Sigma}{!B}[\Delta]$
+          (\olref[syn][trw]{defn:mmodels}) ancak ve ancak
+          $!B\notin\Delta$ (tümevarım varsayımıyla) ancak ve ancak
+          $\lnot!B\in\Delta$
+          (\olref[ccs]{prop:ccs-properties}\olref[ccs]{prop:ccs-lnot}).}}}{}
+
+    \tagitem{prvAnd}{\indcase{!A}{!B \land !C}{%
+        \iftag{probAnd}{Alıştırma.}{$\mSat{M^\Sigma}{!B\land !C}[\Delta]$
+          ancak ve ancak $\mSat{M^\Sigma}{!B}[\Delta]$ ve
+          $\mSat{M^\Sigma}{!C}[\Delta]$
+          (\olref[syn][trw]{defn:mmodels}) ancak ve ancak
+          $!B\in\Delta$ ve $!C\in\Delta$ (tümevarım varsayımıyla) ancak
+          ve ancak $!B\land !C\in\Delta$
+          (\olref[ccs]{prop:ccs-properties}\olref[ccs]{prop:ccs-land}).}}}{}
+
+    \tagitem{prvOr}{\indcase{!A}{!B \lor !C}{%
+        \iftag{probOr}{Alıştırma.}{$\mSat{M^\Sigma}{!B\lor !C}[\Delta]$
+          ancak ve ancak $\mSat{M^\Sigma}{!B}[\Delta]$ ya da
+          $\mSat{M^\Sigma}{!C}[\Delta]$
+          (\olref[syn][trw]{defn:mmodels}) ancak ve ancak
+          $!B\in\Delta$ ya da $!C\in\Delta$ (tümevarım varsayımıyla) ancak
+          ve ancak $!B\lor !C\in\Delta$
+          (\olref[ccs]{prop:ccs-properties}\olref[ccs]{prop:ccs-lor}).}}}{}
+
+    \tagitem{prvIf}{\indcase{!A}{!B \lif !C}{%
+        \iftag{probIf}{Alıştırma.}{$\mSat{M^\Sigma}{!B\lif !C}[\Delta]$
+          ancak ve ancak $\mSat/{M^\Sigma}{!B}[\Delta]$ ya da
+          $\mSat{M^\Sigma}{!C}[\Delta]$
+          (\olref[syn][trw]{defn:mmodels}) ancak ve ancak
+          $!B\notin\Delta$ ya da $!C\in\Delta$ (tümevarım varsayımıyla)
+          ancak ve ancak $!B\lif !C\in\Delta$
+          (\olref[ccs]{prop:ccs-properties}\olref[ccs]{prop:ccs-lif}).}}}{}
+
+    \tagitem{prvIff}{\indcase{!A}{!B \liff !C}{%
+        \iftag{probIff}{Alıştırma.}{$\mSat{M^\Sigma}{!B\liff !C}[\Delta]$
+          ancak ve ancak ya $\mSat{M^\Sigma}{!B}[\Delta]$ ve
+          $\mSat{M^\Sigma}{!C}[\Delta]$ ya da
+          $\mSat/{M^\Sigma}{!B}[\Delta]$ ve
+          $\mSat/{M^\Sigma}{!C}[\Delta]$
+          (\olref[syn][trw]{defn:mmodels}) ancak ve ancak ya
+          $!B\in\Delta$ ve $!C\in\Delta$ ya da
+          $!B\notin\Delta$ ve $!C\notin\Delta$ (tümevarım varsayımıyla)
+          ancak ve ancak $!B\liff !C\in\Delta$
+          (\olref[ccs]{prop:ccs-properties}\olref[ccs]{prop:ccs-liff}).}}}{}
+
+    \tagitem{prvBox}{\indcase{!A}{\Box !B}{%
+        \iftag{probBox}{Alıştırma.}{Önce
+          $\mSat{M^\Sigma}{\Box!B}[\Delta]$ olduğunu varsayalım.
+          \olref[syn][trw]{defn:mmodels} gereğince
+          $R^\Sigma\Delta\Delta'$ olan her $\Delta'$ için
+          $\mSat{M^\Sigma}{!B}[\Delta']$. Tümevarım varsayımıyla,
+          $R^\Sigma\Delta\Delta'$ olan her $\Delta'$ için
+          $!B\in\Delta'$. $R^\Sigma$'nın tanımı gereğince,
+          $\Box^{-1}\Delta\subseteq\Delta'$ olan her $\Delta'$ için
+          $!B\in\Delta'$. \olref[mod]{prop:box} gereğince
+          $\Box!B\in\Delta$.
+
+          Şimdi $\Box!B\in\Delta$ varsayalım. $\Delta'\in W^\Sigma$ ve
+          $R^\Sigma\Delta\Delta'$, yani
+          $\Box^{-1}\Delta\subseteq\Delta'$ olsun. $\Box!B\in\Delta$
+          olduğundan $!B\in\Box^{-1}\Delta$ ve dolayısıyla
+          $!B\in\Delta'$. Tümevarım varsayımıyla
+          $\mSat{M^\Sigma}{!B}[\Delta']$. $\Delta'$, $R^\Sigma
+          \Delta\Delta'$ koşuluyla gelişigüzel olduğundan bu koşulu sağlayan
+          bütün $\Delta'\in W^\Sigma$ için
+          $\mSat{M^\Sigma}{!B}[\Delta']$. Böylece
+          \olref[syn][trw]{defn:mmodels} gereğince
+          $\mSat{M^\Sigma}{\Box!B}[\Delta]$.}}}{}
+
+    \tagitem{prvDiamond}{\indcase{!A}{\Diamond !B}{%
+        \iftag{probDiamond}{Alıştırma.}{Önce
+          $\mSat{M^\Sigma}{\Diamond!B}[\Delta]$ varsayalım.
+          \olref[syn][trw]{defn:mmodels} gereğince
+          $R^\Sigma\Delta\Delta'$ ve $\mSat{M^\Sigma}{!B}[\Delta']$
+          olan bazı $\Delta'$ vardır. Tümevarım varsayımıyla,
+          $R^\Sigma\Delta\Delta'$ ve $!B\in\Delta'$ olan bazı $\Delta'$
+          vardır. $R^\Sigma$'nın tanımı gereğince,
+          \iftag{prvBox}{$\Box^{-1}\Delta\subseteq\Delta'$ ve
+            $!B\in\Delta'$ olan bazı $\Delta'$ vardır.
+            \olref[mod]{lem:box-iff-diamond} gereğince}{}
+          $\Diamond\Delta'\subseteq\Delta$ ve $!B\in\Delta'$ olan bazı
+          $\Delta'$ vardır. $!B\in\Delta'$ olduğundan
+          $\Diamond!B\in\Diamond\Delta'$ ve dolayısıyla
+          $\Diamond!B\in\Delta$.
+
+          Şimdi $\Diamond!B\in\Delta$ varsayalım.
+          \olref[mod]{prop:diamond} gereğince
+          $\Diamond\Delta'\subseteq\Delta$ ve $!B\in\Delta'$ olan bir tam
+          $\Sigma$-tutarlı $\Delta'\in W^\Sigma$ vardır.
+          \iftag{prvBox}{\olref[mod]{lem:box-iff-diamond} gereğince
+            $\Box^{-1}\Delta\subseteq\Delta'$ ve $!B\in\Delta'$ olan bir
+            $\Delta'\in W^\Sigma$ vardır.}{} $R^\Sigma$'nın tanımı
+          gereğince $R^\Sigma\Delta\Delta'$. Böylece
+          $R^\Sigma\Delta\Delta'$ ve $!B\in\Delta'$ olan bir
+          $\Delta'\in W^\Sigma$ vardır. Tümevarım varsayımıyla
+          $\mSat{M^\Sigma}{!B}[\Delta']$; dolayısıyla
+          \olref[syn][trw]{defn:mmodels} gereğince
+          $\mSat{M^\Sigma}{\Diamond!B}[\Delta]$.}}}{}
+  \end{enumerate}
+\end{proof}
+
+\begin{probtag}{probFalse,probTrue,probNot,probAnd,probOr,probIf,probIff,probBox,probDiamond}
+  \olref[nml][com][tru]{prop:truthlemma} önermesinin ispatını tamamlayın.
+\end{probtag}
+

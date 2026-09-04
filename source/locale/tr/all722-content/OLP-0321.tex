@@ -1,0 +1,107 @@
+% Generated from locale/tr/content/incompleteness/incompleteness-provability/tarski-thm.tex; do not hand-edit.
+
+
+\olfileid[tr]{inc}{inp}{tar}
+
+\olsection{Doğruluğun Tanımlanamazlığı}
+
+\emph{Tanımlanabilirlik} kavramı, aritmetik dili için biçimsel bir anlambilime
+sahip olmaya dayanır. Aritmetik dilindeki bir formüller ve tümceler kümesini
+betimledik. ``Amaçlanan yorum'', böyle tümceleri doğal sayılar hakkında
+önermelerde bulunuyormuş gibi okumaktır ve böyle bir önerme doğru ya da yanlış
+olabilir. $\Struct{N}$, evreni $\Nat$ olan ve aritmetik dilindeki simgelerin
+standart yorumlandığı !!{structure} olsun. O zaman $\Sat{N}{!A}$, ``$!A$
+standart yorumda doğrudur'' anlamına gelir.
+
+\begin{defn}
+Doğal sayıların bir $R(x_1,\dots,x_k)$ bağıntısı, ancak ve ancak aritmetik
+dilinde, her $n_1,\dots,n_k$ için $R(n_1,\dots,n_k)$ ancak ve ancak
+$\Sat{N}{!A(\num n_1,\dots,\num n_k)}$ ise geçerli olacak biçimde bir
+$!A(x_1,\dots,x_k)$ formülü varsa $\Struct{N}$ içinde \emph{tanımlanabilir}dir.
+\end{defn}
+
+Başka türlü söylersek bir bağıntı $\Struct{N}$ içinde ancak ve ancak
+$\Th{TA}$ kuramında temsil edilebilirse tanımlanabilirdir; burada
+$\Th{TA} = \Setabs{!A}{\Sat{N}{!A}}$, aritmetiğin doğru tümceleri kümesidir.
+(Bu size hemen açık gelmiyorsa tanımlara dönüp bunun böyle olduğuna kendinizi
+ikna etmelisiniz.)
+
+\begin{lem}
+Her hesaplanabilir bağıntı $\Struct{N}$ içinde tanımlanabilirdir.
+\end{lem}
+
+\begin{proof}
+$\Th{Q}$ içinde bir bağıntıyı temsil eden formülün $\Struct{N}$ içinde aynı
+bağıntıyı tanımladığını denetlemek kolaydır.
+\end{proof}
+
+Şimdi tersinin de doğru olup olmadığını sorabiliriz. Yani $\Struct{N}$ içinde
+tanımlanabilir her bağıntı hesaplanabilir midir? Yanıt hayırdır. Örneğin:
+
+\begin{lem}
+Durma bağıntısı $\Struct{N}$ içinde tanımlanabilirdir.
+\end{lem}
+
+\begin{proof}
+Kleene normal biçim teoreminin, her kısmi hesaplanabilir $f$ fonksiyonu için,
+bütün $x \in \Nat$ değerlerinde $f(x)=U(\umin{s}{T(e,x,s)})$ olacak biçimde
+bir $e$ indisi bulunduğunu söylediğini anımsayın; burada $U$ ile $T$ ilkel
+özyinelemeli ve dolayısıyla totaldir. Öyleyse $f(x)$ ancak ve ancak
+(yani hesaplama ancak ve ancak duruyorsa) $T(e,x,s)$'nin geçerli olduğu bir
+$s$ varsa tanımlıdır.
+
+Şimdi $H$ durma bağıntısı, yani
+\[
+H = \Setabs{\tuple{e,x}}{\lexists[s][T(e, x, s)]}.
+\]
+olsun. $!D_T$, $T$'yi $\Struct{N}$ içinde tanımlasın. O zaman
+\[
+H = \Setabs{\tuple{e,x}}{\Sat{N}{\lexists[s][!D_T(\num e, \num x, s)]}},
+\]
+olur; dolayısıyla $\lexists[s][!D_T(z,x,s)]$, $H$'yi $\Struct{N}$ içinde
+tanımlar.
+\end{proof}
+
+\begin{prob}
+$Q(n) \defiff n \in \Setabs{\Gn{!A}}{\Th{Q} \Proves !A}$ bağıntısının
+aritmetikte tanımlanabilir olduğunu gösterin.
+\end{prob}
+
+Peki $\Th{TA}$'nın kendisi? Aritmetikte tanımlanabilir midir? Başka deyişle
+$\Setabs{\Gn{!A}}{\Sat{N}{!A}}$ kümesi aritmetikte tanımlanabilir midir?
+Tarski teoremi bu soruyu olumsuz yanıtlar.
+
+\begin{thm}
+\ollabel{thm:tarski}
+Aritmetiğin doğru !!{sentence}s kümesi aritmetikte tanımlanabilir değildir.
+\end{thm}
+
+\begin{proof} 
+$!D(x)$'in bu kümeyi tanımladığını, yani $\Sat{N}{!A}$ ancak ve ancak
+$\Sat{N}{!D(\gn{!A})}$ ise geçerli olduğunu varsayın. Sabit nokta lemması
+uyarınca $\Th{Q} \Proves !A \liff \lnot !D(\gn{!A})$ ve dolayısıyla
+$\Sat{N}{!A \liff \lnot !D(\gn{!A})}$ olacak biçimde bir $!A$ formülü vardır.
+Fakat o zaman $\Sat{N}{!A}$ ancak ve ancak
+$\Sat{N}{\lnot !D(\gn{!A})}$ ise geçerlidir; bu ise $!D(y)$'nin aritmetiğin
+doğru önermeleri kümesini tanımladığı varsayımıyla çelişir.
+\end{proof}
+
+Tarski bu çözümlemeyi daha genel bir felsefi doğruluk kavramına uyguladı.
+Herhangi bir $L$ dili verildiğinde Tarski'ye göre $L$ için yeterli bir doğruluk kavramı, her
+$X$ tümcesi için şunu sağlamalıdır:
+\begin{quote}
+`$X$', ancak ve ancak $X$ ise doğrudur.
+\end{quote}
+Tarski'nin İngilizce için sıkça alıntılanan örneği şu tümcedir:
+\begin{quote}
+`Kar beyazdır', ancak ve ancak kar beyazsa doğrudur.
+\end{quote}
+Ancak köşegen fonksiyonunu temsil edecek kadar güçlü herhangi bir dil ve
+herhangi bir dilsel $T(x)$ yüklemi için ``$X$ ancak ve ancak
+$T(\text{`$X$'})$ değilse'' koşulunu sağlayan bir $X$ tümcesi kurabiliriz.
+Bir doğruluk yükleminin bazı tümceleri hem doğru hem yanlış ilan etmesini
+istemediğimizden Tarski, bir dildeki bütün tümceler için doğruluk yükleminin,
+bir biçimde dilin sınırlarının dışına çıkmadan belirtilemeyeceği sonucuna
+vardı. Başka deyişle bir dilin doğruluk yüklemi o dilin kendisinde
+tanımlanamaz.
+

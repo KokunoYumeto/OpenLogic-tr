@@ -1,0 +1,44 @@
+% Generated from locale/tr/content/lambda-calculus/syntax/terms.tex; do not hand-edit.
+
+
+\olfileid[tr]{lam}{syn}{trm}
+\olsection{Terimler}
+
+Lambda hesabının terimleri, sonsuz bir $\Obj{v_0}$, $\Obj{v_1}$, \dots{}
+değişken dağarcığından, ``$\lambd$'' simgesinden ve parantezlerden
+tümevarımlı olarak kurulur. Değişkenleri $x$, $y$, $z$, \dots{}; terimleri
+ise $M$, $N$, $P$, \dots{} ile göstereceğiz.
+
+\begin{defn}[Terimler] \ollabel{defn:term}
+Lambda hesabının \emph{terimler} kümesi tümevarımlı olarak şöyle tanımlanır:
+\begin{enumerate}
+  \item \ollabel{defn:term-var} $x$ bir değişkense $x$ bir terimdir.
+  \item \ollabel{defn:term-abs} $x$ bir değişken ve $M$ bir terimse
+    $(\lambd[x][M])$ bir terimdir.
+  \item \ollabel{defn:term-app} Hem $M$ hem de $N$ birer terimse $(MN)$ bir
+    terimdir.
+\end{enumerate}
+\end{defn}
+
+Bir $(\lambd[x][M])$ terimi \olref{defn:term-abs} uyarınca oluşturulmuşsa
+bunun bir \emph{soyutlama} sonucunda elde edildiğini söyleriz; $\lambd[x]$
+içindeki $x$'e de \emph{!!{parameter}} denir. \olref{defn:term-app} uyarınca
+oluşturulan bir $(MN)$ terimi ise bir \emph{uygulama} sonucudur.
+
+Yukarıda tanımlanan terimler bütünüyle parantezlenmiştir. Bu gösterim,
+$(\lambd[x][((\lambd[x][x])(\lambd[x][(xx)]))])$ teriminin gösterdiği gibi
+oldukça hantal olabilir. Parantezlerden kaçınmak için bazı uzlaşımlar
+getireceğiz. Bununla birlikte resmî tanım, bir terimin \olref{defn:term}
+uyarınca nasıl kurulduğunu belirlemeyi kolaylaştırır. Örneğin
+$(\lambd[x][((\lambd[x][x])(\lambd[x][(xx)]))])$ terimini oluşturmanın son
+adımı, !!{parameter} $x$ olan bir soyutlama olmak zorundadır. Bu terim,
+iki terimin uygulaması olan
+$((\lambd[x][x])(\lambd[x][(xx)]))$ teriminden soyutlamayla elde edilir.
+Bu iki terimin her biri de birer soyutlama sonucudur ve çözümleme bu biçimde
+sürer.
+
+\begin{prob}
+$(\lambd[g][(\lambd[x][(g (x x))])
+  (\lambd[x][(g (x x))])])$ teriminin nasıl oluşturulduğunu açıklayın.
+\end{prob}
+

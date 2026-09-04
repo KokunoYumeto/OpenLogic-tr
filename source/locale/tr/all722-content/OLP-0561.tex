@@ -1,0 +1,109 @@
+% Generated from locale/tr/content/set-theory/spine/stagesbasics.tex; do not hand-edit.
+
+
+\olfileid[tr]{sth}{spine}{Valphabasic}
+\olsection{Aşamaların Temel Özellikleri}
+
+$V_\alpha$'ların tanımının temellendirmedeki önemini ortaya çıkarmak için
+onlara ilişkin birkaç temel sonuç sunacağız. Bir tanımla başlayalım:
+\footnote{``Kuvvetli'' için standart bir terminoloji yoktur; bu,
+\citet{ButtonLT1} tarafından kullanılan addır.}
+\begin{defn}
+	$A$ kümesi, $\forall x((\exists y \in A)x \subseteq y \lif x \in A)$
+	ise \emph{kuvvetlidir}.
+\end{defn}
+\begin{lem}\ollabel{Valphabasicprops}
+Her $\alpha$ sıra sayısı için:
+\begin{enumerate}
+	\item\ollabel{Valphatrans} Her $V_\alpha$ geçişlidir.
+	\item\ollabel{Valphapotent} Her $V_\alpha$ kuvvetlidir.
+	\item\ollabel{Valphacum} $\gamma \in \alpha$ ise $V_\gamma
+	\in V_\alpha$ olur (ve dolayısıyla \olref{Valphatrans} gereği ayrıca
+	$V_\gamma\subseteq V_\alpha$ olur).
+\end{enumerate}
+\end{lem}
+
+\begin{proof}
+Bunu (eşzamanlı) sonlu ötesi tümevarımla ispatlayacağız. Tümevarım için
+\olref{Valphatrans}--\olref{Valphacum} sonuçlarının her $\beta<\alpha$
+sıra sayısı için geçerli olduğunu varsayın.
+
+$\alpha=\emptyset$ durumu açıktır.
+
+$\alpha=\ordsucc{\beta}$ olsun. \olref{Valphacum} sonucunu göstermek için
+$\gamma\in\alpha$ ise varsayım gereği $V_\gamma\subseteq V_\beta$ ve
+dolayısıyla $V_\gamma\in\Pow{V_\beta}=V_\alpha$ olur.
+\olref{Valphapotent} sonucunu göstermek için
+$A\subseteq B\in V_\alpha$, yani $A\subseteq B\subseteq V_\beta$
+olduğunu varsayın; o zaman $A\subseteq V_\beta$ ve dolayısıyla
+$A\in V_\alpha$ olur. \olref{Valphatrans} sonucunu göstermek için
+$x\in A\in V_\alpha$ ise $A\subseteq V_\beta$ ve dolayısıyla
+$x\in V_\beta$ olduğunu gözlemleyin. Varsayım gereği $V_\beta$ geçişli
+olduğundan $x\subseteq V_\beta$ ve böylece $x\in V_\alpha$ olur.
+
+$\alpha$ bir limit sıra sayısı olsun. \olref{Valphacum} sonucunu göstermek
+için $\gamma\in\alpha$ ise
+$\gamma\in\ordsucc{\gamma}\in\alpha$ olur; dolayısıyla varsayım gereği
+$V_\gamma\in V_{\ordsucc{\gamma}}$ ve böylece
+$V_\gamma\in\bigcup_{\beta\in\alpha}V_\beta=V_\alpha$ olur.
+\olref{Valphatrans} ile \olref{Valphapotent} için yalnızca geçişli
+(sırasıyla kuvvetli) kümelerin birleşiminin geçişli (sırasıyla kuvvetli)
+olduğunu gözlemleyin.
+\end{proof}
+
+\begin{lem}\ollabel{Valphanotref}
+Her $\alpha$ sıra sayısı için $V_\alpha\notin V_\alpha$.
+\end{lem}
+
+\begin{proof}
+Sonlu ötesi tümevarımla. Açıktır ki
+$V_\emptyset\notin V_\emptyset$.
+
+$V_{\ordsucc{\alpha}}\in V_{\ordsucc{\alpha}}=\Pow{V_\alpha}$ ise
+$V_{\ordsucc{\alpha}}\subseteq V_\alpha$ olur; ayrıca
+\olref{Valphabasicprops} gereği
+$V_\alpha\in V_{\ordsucc{\alpha}}$ olduğundan $V_\alpha\in V_\alpha$
+elde edilir. Karşıt-ters olarak $V_\alpha\notin V_\alpha$ ise
+$V_{\ordsucc{\alpha}}\notin V_{\ordsucc{\alpha}}$ olur.
+
+$\alpha$ bir limit ve
+$V_\alpha\in V_\alpha=\bigcup_{\beta\in\alpha}V_\beta$ ise bir
+$\beta\in\alpha$ için $V_\alpha\in V_\beta$ olur. Fakat o zaman ayrıca
+$V_\beta\in V_\alpha$ olur; böylece
+\olref{Valphabasicprops} iki kez kullanıldığında
+$V_\beta\in V_\beta$ elde edilir. Karşıt-ters olarak bütün
+$\beta\in\alpha$ için $V_\beta\notin V_\beta$ ise
+$V_\alpha\notin V_\alpha$ olur.
+\end{proof}
+
+\begin{cor}
+Her $\alpha,\beta$ sıra sayısı için $\alpha\in\beta$ ancak ve ancak
+$V_\alpha\in V_\beta$.
+\end{cor}
+
+\begin{proof}
+\Olref{Valphabasicprops} bir yönü verir. Tersine
+$V_\alpha\in V_\beta$ olduğunu varsayın. \olref{Valphanotref} gereği
+$\alpha\neq\beta$ olur. Ayrıca $\beta\notin\alpha$'dır; yoksa
+$V_\beta\in V_\alpha$ ve dolayısıyla
+\olref{Valphabasicprops} iki kez kullanıldığında
+$V_\beta\in V_\beta$ olurdu; bu da \olref{Valphanotref} ile çelişir.
+Öyleyse Üçlü Karşılaştırma gereği $\alpha\in\beta$ olur.
+\end{proof}
+\noindent
+Bütün bunlar her $V_\alpha$'yı hiyerarşinin $\alpha$'ıncı aşaması olarak
+düşünmemizi sağlar. Nedenini görelim.
+
+Sıra sayıları kullanmamız yineleme kavramını izlediğinden, $V_\alpha$'ların
+\emph{yinelemeli} bir süreçte oluşturulduğunu düşünebiliriz. Ayrıca bir
+aşama ötekinden önce oluşturulmuşsa, yani $V_\beta\in V_\alpha$, yani
+$\beta\in\alpha$ ise, $V_\beta\subseteq V_\alpha$ olduğundan oluşturma
+sürecimiz \emph{birikimlidir}. Son olarak gerçekten de daha önceki herhangi
+bir aşamada kullanılabilir olan kümelerin \emph{bütün} olası topluluklarını
+oluştururuz; çünkü her ardıl aşama $V_{\ordsucc{\alpha}}$, önceli
+$V_\alpha$'nın kuvvet kümesidir.
+
+Kısacası $\ZFminus$ ile birikimli-yinelemeli küme hiyerarşisi görüşümüzü
+dile getirme işini \emph{neredeyse} tamamladık. (Elbette Yerine Koyma'yı
+hâlâ gerekçelendirmemiz gerekir.)
+

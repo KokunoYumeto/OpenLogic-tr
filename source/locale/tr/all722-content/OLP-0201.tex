@@ -1,0 +1,184 @@
+% Generated from locale/tr/content/model-theory/interpolation/interpolation-proof.tex; do not hand-edit.
+
+
+\olfileid[tr]{mod}{int}{prf}
+
+\olsection{Craig Aradeğerleme Teoremi}
+
+\begin{thm}[Craig aradeğerleme teoremi]
+\ollabel{thm:interpol}
+$\Entails !A\lif !B$ ise $\Entails !A\lif !C$ ve
+$\Entails !C\lif !B$ olacak bir !!a{sentence}~$!C$ vardır; ayrıca
+$!C$ içindeki her !!{constant}, !!{function} ve !!{predicate}
+($\eq$ dışında) hem $!A$ hem $!B$ içinde geçer. !!{sentence}~$!C$
+ifadesine $!A$ ile $!B$'nin bir \emph{aradeğerleyeni} denir.
+\end{thm}
+
+\begin{proof}
+$\Lang L_1$, $!A$'nın; $\Lang L_2$, $!B$'nin dili olsun ve
+$\Lang L_0=\Lang L_1\cap\Lang L_2$ alalım. Her
+$i\in\{0,1,2\}$ için $\Lang L'_i$, $\Lang L_i$ diline sonsuz sayıda
+yeni !!{constant}s~$\Obj c_0,\Obj c_1,\Obj c_2,\dots$ eklenerek elde
+edilsin.
+
+$!A$ sağlanamazsa $\lexists[x][\eq/[x][x]]$ bir aradeğerleyendir.
+$\lnot !B$ sağlanamazsa (dolayısıyla $!B$ geçerliyse)
+$\lexists[x][\eq[x][x]]$ bir aradeğerleyendir. Bu yüzden $!A$ ile
+$\lnot !B$'nin her ikisinin de sağlanabilir olduğunu varsayabiliriz.
+
+Aradeğerleme teoreminin karşıt tersini ispatlamak için $!A$ ile $!B$
+için hiçbir aradeğerleyen bulunmadığını varsayalım. Başka bir deyişle
+$\{!A\}$ ile $\{\lnot !B\}$ kümeleri $\Lang L_0$ içinde ayrılamaz
+olsun.
+
+Amacımız $(\{!A\},\{\lnot !B\})$ çiftini maksimal ayrılamaz bir
+$(\Gamma^*,\Delta^*)$ çiftine genişletmektir. $!A_0,!A_1,!A_2,\dots$,
+$\Lang L_1$ dilinin; $!B_0,!B_1,!B_2,\dots$ ise $\Lang L_2$ dilinin
+!!{sentence}s ifadelerini numaralandırsın. $n\geq0$ için artan iki
+!!{sentence}s kümeleri dizisi $(\Gamma_n,\Delta_n)$ tanımlayalım.
+$\Gamma_0=\{!A\}$ ve $\Delta_0=\{\lnot !B\}$ alınsın.
+$(\Gamma_n,\Delta_n)$ tanımlandıysa $\Gamma_{n+1}$ ve
+$\Delta_{n+1}$ şöyle tanımlansın:
+\begin{enumerate}
+\item $\Gamma_n\cup\{!A_n\}$ ile $\Delta_n$, $\Lang L'_0$ içinde
+  ayrılamazsa $!A_n$'yi $\Gamma_{n+1}$ içine koyun. Ayrıca $!A_n$,
+  varoluşsal !!{formula}~$\lexists[x][!S]$ ise $\Gamma_n$,
+  $\Delta_n$, $!A_n$ veya $!B_n$ içinde geçmeyen yeni bir
+  !!{constant}~$c$ seçip $\Subst{!S}{c}{x}$ ifadesini
+  $\Gamma_{n+1}$ içine koyun.
+\item $\Gamma_{n+1}$ ile $\Delta_n\cup\{!B_n\}$, $\Lang L'_0$
+  içinde ayrılamazsa $!B_n$'yi $\Delta_{n+1}$ içine koyun. Ayrıca
+  $!B_n$, varoluşsal !!{formula}~$\lexists[x][!S]$ ise
+  $\Gamma_{n+1}$, $\Delta_n$, $!A_n$ veya $!B_n$ içinde geçmeyen yeni
+  bir !!{constant}~$c$ seçip $\Subst{!S}{c}{x}$ ifadesini
+  $\Delta_{n+1}$ içine koyun.
+\end{enumerate}
+Son olarak
+\begin{align*}
+  \Gamma^* & = \bigcup_{n\ge 0} \Gamma_n, &
+  \Delta^* & = \bigcup_{n\ge 0} \Delta_n
+\end{align*}
+tanımlayalım. Şimdi $n$ üzerinde eşzamanlı tümevarımla şunları
+ispatlayabiliriz:
+\begin{enumerate}
+\item\ollabel{part-a} $\Gamma_n$ ile $\Delta_n$, $\Lang L'_0$ içinde
+  ayrılamazdır;
+\item\ollabel{part-b} $\Gamma_{n+1}$ ile $\Delta_n$, $\Lang L'_0$
+  içinde ayrılamazdır.
+\end{enumerate}
+\olref{part-a} için temel durum \olref[sep]{lem:sep1} ile verilir.
+\olref{part-b} için üç durumu ayırmalıyız:
+\begin{enumerate}
+\item $\Gamma_0\cup\{!A_0\}$ ile $\Delta_0$ ayrılabilirse
+  $\Gamma_1=\Gamma_0$ ve \olref{part-b}, \olref{part-a} ile aynıdır;
+\item $\Gamma_1=\Gamma_0\cup\{!A_0\}$ ise kuruluş gereği
+  $\Gamma_1$ ile $\Delta_0$ ayrılamazdır;
+\item $!A_0$ varoluşsal ve
+  $\Gamma_1=\Gamma_0\cup\{\lexists[x][!S],\Subst{!S}{c}{x}\}$ ise,
+  kuruluş gereği $\Gamma_0\cup\{\lexists[x][!S]\}$ ile $\Delta_0$
+  ayrılamazdır. \olref[sep]{lem:sep2} gereği
+  $\Gamma_0\cup\{\lexists[x][!S],\Subst{!S}{c}{x}\}$ ile
+  $\Delta_0$ da ayrılamazdır.
+\end{enumerate}
+Bu, yukarıdaki \olref{part-a} ve \olref{part-b} için tümevarım temelini
+tamamlar. Şimdi tümevarım adımına geçelim. \olref{part-a} için
+$\Delta_{n+1}=\Delta_n\cup\{!B_n\}$ ise $\Gamma_{n+1}$ ile
+$\Delta_{n+1}$ kuruluş gereği ayrılamazdır ($!B_n$ varoluşsal olsa
+bile \olref[sep]{lem:sep2} gereği). $\Delta_{n+1}=\Delta_n$ ise
+($\Gamma_{n+1}$ ile $\Delta_n\cup\{!B_n\}$ ayrılabildiği için)
+\olref{part-b} tümevarım varsayımını kullanırız. \olref{part-b} için
+$\Gamma_{n+2}=\Gamma_{n+1}\cup\{!A_{n+1}\}$ ise $\Gamma_{n+2}$ ile
+$\Delta_{n+1}$ kuruluş gereği ayrılamazdır ($!A_{n+1}$ varoluşsal
+olsa bile \olref[sep]{lem:sep2} gereği); $\Gamma_{n+2}=\Gamma_{n+1}$
+ise az önce ispatlanan \olref{part-a} tümevarım adımını kullanırız.
+Böylece \olref{part-a} ve \olref{part-b} üzerindeki tümevarım biter.
+
+Buradan $\Gamma^*$ ile $\Delta^*$'nın ayrılamaz olduğu çıkar. Aksi
+halde bir ayırma tümcesi için gereken sonlu öncüller bazı
+$\Gamma_n,\Delta_n$ içinde bulunur ve \olref{part-a} ile çelişirdi.
+Özellikle $\Gamma^*$ ile $\Delta^*$ tutarlıdır: Birincisi veya ikincisi
+tutarsız olsaydı sırasıyla $\lexists[x][\eq/[x][x]]$ veya
+$\lforall[x][\eq[x][x]]$ tarafından ayrılırlardı.
+
+Şimdi $\Gamma^*$'ın $\Lang L'_1$ içinde, benzer biçimde $\Delta^*$'ın
+$\Lang L'_2$ içinde maksimal tutarlı olduğunu gösterelim. Birincisi
+için bazı $n\geq0$ bakımından $!A_n\notin\Gamma^*$ ve
+$\lnot !A_n\notin\Gamma^*$ varsayalım. $!A_n\notin\Gamma^*$ ise
+$\Gamma_n\cup\{!A_n\}$ ile $\Delta_n$ ayrılabilir ve
+$!C\in\Lang L'_0$ olacak biçimde
+\begin{align*}
+  \Gamma^* & \Entails !A_n \lif !C, &
+  \Delta^* & \Entails \lnot !C
+\end{align*}
+olur. Benzer biçimde $\lnot !A_n\notin\Gamma^*$ ise
+$!C'\in\Lang L'_0$ vardır ve
+\begin{align*}
+  \Gamma^* & \Entails \lnot !A_n \lif !C', &
+  \Delta^* & \Entails \lnot !C'.
+\end{align*}
+Önermeler mantığı gereği $\Gamma^*\Entails !C\lor !C'$ ve
+$\Delta^*\Entails\lnot(!C\lor !C')$; dolayısıyla $!C\lor !C'$,
+$\Gamma^*$ ile $\Delta^*$'yı ayırır. Benzer bir sav $\Delta^*$'ın
+maksimal olduğunu gösterir.
+
+Son olarak $\Gamma^*\cap\Delta^*$'nın $\Lang L'_0$ içinde maksimal
+tutarlı olduğunu gösterelim. Tutarlı kümelerin kesişimi olduğundan
+tutarlı olduğu açıktır. Maksimalliği göstermek için
+$!S\in\Lang L'_0$ alın. $\Gamma^*$,
+$\Lang{L'_1}\supseteq\Lang{L'_0}$ içinde; $\Delta^*$ da
+$\Lang{L'_2}\supseteq\Lang{L'_0}$ içinde maksimaldir. Bu nedenle
+$!S\in\Gamma^*$ ya da $\lnot !S\in\Gamma^*$ ve
+$!S\in\Delta^*$ ya da $\lnot !S\in\Delta^*$. Eğer
+$!S\in\Gamma^*$ ve $\lnot !S\in\Delta^*$ ise $!S$ bu iki kümeyi
+ayırır; $\lnot !S\in\Gamma^*$ ve $!S\in\Delta^*$ ise $\lnot !S$
+ayırır. Dolayısıyla ya $!S\in\Gamma^*\cap\Delta^*$ ya da
+$\lnot !S\in\Gamma^*\cap\Delta^*$; böylece kesişim maksimaldir.
+
+$\Gamma^*$ maksimal tutarlı olduğundan, tamlık teoreminin ispatındaki
+gibi (\olref[fol][com][cth]{thm:completeness}), !!{domain}~$\Domain{M'_1}$
+tam ve yalnızca !!{constant}s yorumlayan $\Assign c{M'_1}$
+elemanlarından oluşan bir $\Struct{M'_1}$ modeli vardır. Benzer biçimde
+$\Delta^*$'ın, !!{domain}~$\Domain{M'_2}$ sabit yorumları
+$\Assign c{M'_2}$ ile verilen bir $\Struct{M'_2}$ modeli vardır.
+
+$\Struct{M_1}$, $\Struct{M'_1}$ yapısından
+$\Lang L'_1\setminus\Lang L'_0$ içindeki !!{constant}s, !!{function}s
+ve !!{predicate}s yorumları atılarak; $\Struct{M_2}$ de benzer biçimde
+elde edilsin. O zaman
+$h(\Assign c{M'_1})=\Assign c{M'_2}$ ile tanımlanan
+$h\colon M_1\to M_2$, $\Lang L'_0$ içinde bir izomorfizmadır; çünkü
+gösterildiği üzere $\Gamma^*\cap\Delta^*$ bu dilde maksimal tutarlıdır.
+Gerçekten her $\Lang L'_0$-!!{sentence} ya hem $\Gamma^*$ hem
+$\Delta^*$ içinde bulunur ya da hiçbirinde bulunmaz. Dolayısıyla
+$\Assign c{M'_1}\in\Assign P{M'_1}$ ancak ve ancak
+$\Atom P c\in\Gamma^*$, ancak ve ancak $\Atom P c\in\Delta^*$, ancak
+ve ancak $\Assign c{M'_2}\in\Assign P{M'_2}$. İzomorfizmanın öteki
+koşulları da benzer biçimde gösterilir.
+
+Şimdi !!{language}~$\Lang L_1\cup\Lang L_2$ için bir $\Struct M$
+modelini şöyle tanımlayalım:
+\begin{enumerate}
+\item !!{domain}~$\Domain M$, tam olarak $\Domain{M_2}$, yani bütün
+  $\Assign c{M'_2}$ elemanlarının kümesidir;
+\item !!a{predicate}~$P$, $\Lang L_2\setminus\Lang L_1$ içindeyse
+  $\Assign P M=\Assign P{M'_2}$;
+\item bir $P$ yüklemi $\Lang L_1\setminus\Lang L_2$ içindeyse
+  $\Assign P M=h(\Assign P{M'_1})$; yani
+  $\tuple{\Assign{c_1}{M'_2},\dots,\Assign{c_n}{M'_2}}\in\Assign P M$
+  ancak ve ancak
+  $\tuple{\Assign{c_1}{M'_1},\dots,\Assign{c_n}{M'_1}}\in\Assign P{M'_1}$;
+\item !!a{predicate}~$P$, $\Lang L_0$ içindeyse
+  $\Assign P M=\Assign P{M'_2}=h(\Assign P{M'_1})$;
+\item $\Lang L_1\cup\Lang L_2$ dilinin !!^{function}s, !!{constant}s
+  dâhil, benzer biçimde ele alınır.
+\end{enumerate}
+
+Son olarak !!{formula}s üzerinde tümevarımla $\Struct M$ yapısının
+$\Lang L'_1$ dilindeki bütün !!{formula}s bakımından $\Struct{M'_1}$
+ile, $\Lang L'_2$ dilindekiler bakımından $\Struct{M'_2}$ ile
+uyuştuğu gösterilir. Özellikle
+$\Sat{M}{\Gamma^*\cup\Delta^*}$; buradan $\Sat{M}{!A}$ ve
+$\Sat{M}{\lnot !B}$, dolayısıyla $\not\Entails !A\lif !B$ çıkar.
+Bu, Craig aradeğerleme teoreminin ispatını tamamlar.
+\end{proof}
+

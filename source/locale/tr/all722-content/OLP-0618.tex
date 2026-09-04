@@ -1,0 +1,106 @@
+% Generated from locale/tr/content/methods/induction/structural-induction.tex; do not hand-edit.
+
+
+\olfileid[tr]{mth}{ind}{sti}
+
+\olsection{Yapısal Tümevarım}
+
+Şimdiye kadar tümevarımı bütün doğal sayılar hakkındaki sonuçları
+belirlemek için kullandık. Fakat buna karşılık gelen bir ilke,
+tümevarımsal olarak tanımlanmış bir kümenin bütün !!{element}s
+hakkındaki sonuçları doğrudan kanıtlamak için kullanılabilir. Buna çoğu
+kez \emph{yapısal} tümevarım denir; çünkü tümevarımsal olarak tanımlanan
+nesnelerin yapısına dayanır.
+
+Genellikle bir tümevarımsal tanım, (a)~kümenin ``başlangıçtaki''
+!!{element}s listesinden ve (b)~eski !!{element}s arasından yenilerini üreten
+işlemlerin bir listesinden oluşur. Örneğin düzgün terimler söz konusu
+olduğunda başlangıç nesneleri harflerdir. Yalnızca bir işlemimiz vardır:
+\begin{align*}
+  o(s_1, s_2) = & [s_1 \circ s_2]
+\end{align*}
+Doğal sayıların~$\Nat$ kendilerinin bile tümevarımsal bir tanımla
+verildiğini düşünebilirsiniz: başlangıç nesnesi~$0$, işlem ise ardıl
+fonksiyonu~$x + 1$'dir.
+
+Tümevarımsal olarak tanımlanmış bir kümenin bütün elemanları hakkında
+bir şeyi, yani kümedeki her !!{element} için bir $P$ özelliğinin geçerli
+olduğunu kanıtlamak için şunları yapmalıyız:
+\begin{enumerate}
+\item Başlangıç nesnelerinin~$P$'ye sahip olduğunu kanıtlamak.
+\item Her~$o$ işlemi için, girdiler $P$'ye sahipse sonucun da sahip
+  olduğunu kanıtlamak.
+\end{enumerate}
+Örneğin bütün düzgün terimler hakkında bir şeyi kanıtlamak için, onun
+bütün harfler hakkında doğru olduğunu ve $s_1$ ile $s_2$ hakkında ayrı
+ayrı doğru olması koşuluyla $[s_1 \circ s_2]$ hakkında da doğru olduğunu
+kanıtlardık.
+
+\begin{prop}
+  Herhangi bir düzgün~$t$ terimindeki $[$ sayısı $]$ sayısına eşittir.
+\end{prop}
+
+\begin{proof}
+Yapısal tümevarım kullanırız. Düzgün terimler, başlangıç nesneleri
+harfler ve eski düzgün terimlerden yenilerini kuran işlem $o$ olmak
+üzere, tümevarımsal olarak tanımlanmıştır.
+\begin{enumerate}
+\item İddia her harf için doğrudur; çünkü tek başına bir harfteki $[$
+  sayısı~$0$, içindeki $]$ sayısı da~$0$'dır.
+\item $s_1$'deki $[$ sayısının $]$ sayısına eşit olduğunu ve aynı şeyin
+  $s_2$ için doğru olduğunu varsayın. $o(s_1, s_2)$'de, yani $[s_1
+  \circ s_2]$'de bulunan $[$ sayısı, $s_1$ ile $s_2$'deki $[$
+  sayılarının toplamına bir eklenmiş hâlidir. $o(s_1, s_2)$'deki $]$
+  sayısı, $s_1$ ile $s_2$'deki $]$ sayılarının toplamına bir eklenmiş
+  hâlidir. Dolayısıyla $o(s_1, s_2)$'deki $[$ sayısı, $o(s_1,s_2)$'deki
+  $]$ sayısına eşittir.
+\end{enumerate}
+\end{proof}
+
+\begin{prob}
+  Hiçbir düzgün terimin~$]$ ile başlamadığını yapısal tümevarımla
+  kanıtlayın.
+\end{prob}
+
+Yapısal tümevarımla başka bir kanıt verelim: bir simgeler dizisi~$t$'nin
+öz başlangıç parçası, soldan okunduğunda $t$ ile simge simge uyuşan,
+ancak $t$'den daha kısa olan herhangi bir~$s$ dizisidir. Örneğin $[a
+\circ {}$, $[a \circ b]$'nin bir öz başlangıç parçasıdır; fakat $[b
+\circ {}$ (ikinci simgede uyuşmazlar) ve $[a \circ b]$ (aynı
+uzunluktadırlar) değildir.
+
+\begin{prop}\ollabel{prop:initial}
+  Bir düzgün~$t$ teriminin her öz başlangıç parçası, $]$ sayısından
+  daha fazla sayıda $[$ içerir.
+\end{prop}
+
+\begin{proof}
+  ~$t$ üzerinde tümevarımla:
+  \begin{enumerate}
+  \item $t$ tek başına bir harftir: O zaman $t$'nin hiçbir öz başlangıç
+    parçası yoktur.
+  \item Bazı düzgün $s_1$ ve~$s_2$ terimleri için $t = [s_1 \circ
+    s_2]$ olsun. $r$, $t$'nin bir öz başlangıç parçasıysa birkaç olasılık
+    vardır:
+    \begin{enumerate}
+    \item $r$ yalnızca $[$'dir: O zaman $r$, sahip olduğu $]$ sayısından
+      bir fazla $[$ içerir.
+    \item $r$,~$s_1$'in bir öz başlangıç parçası olan $r_1$ için
+      $[r_1$'dir: $s_1$ bir düzgün terim olduğundan, tümevarım hipotezi
+      gereği $r_1$, $]$'den daha fazla $[$ içerir; aynı şey $[r_1$ için
+      de doğrudur.
+    \item $r$, $[s_1$ ya da $[s_1 \circ {}$'dur: Önceki sonuca göre
+      ~$s_1$'deki $[$ ve $]$ sayıları eşittir; dolayısıyla $[s_1$ ya da
+      $[s_1 \circ {}$ içindeki $[$ sayısı,~$]$ sayısından bir fazladır.
+    \item $r$,~$s_2$'nin bir öz başlangıç parçası olan $r_2$ için
+      $[s_1 \circ r_2$'dir: Tümevarım hipotezi gereği $r_2$, $]$'den daha
+      fazla $[$ içerir. Önceki sonuca göre~$s_1$'deki $[$ ile $]$
+      sayıları eşittir. Öyleyse $[s_1 \circ r_2$ içindeki $[$ sayısı,
+      ~$]$ sayısından büyüktür.
+    \item $r$, $[s_1 \circ s_2$'dir: Önceki sonuca göre $s_1$'deki $[$
+      ve $]$ sayıları eşittir; aynı şey~$s_2$ için de geçerlidir. Öyleyse
+      $[s_1 \circ s_2$ içinde,~$]$ sayısından bir fazla $[$ vardır.
+    \end{enumerate}
+  \end{enumerate}
+\end{proof}
+

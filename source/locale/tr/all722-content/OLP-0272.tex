@@ -1,0 +1,84 @@
+% Generated from locale/tr/content/turing-machines/undecidability/unsolvability-decision-problem.tex; do not hand-edit.
+
+
+\olfileid[tr]{tur}{und}{uns} 
+\olsection{Karar Problemi Çözülemezdir}
+
+\begin{thm}
+\ollabel{thm:decision-prob}
+Karar problemi çözülemezdir: Öyle bir Turing makinesi~$D$ yoktur ki birinci
+dereceden mantığın !!a{sentence}~$!B$ şeridinde girdi olarak verildiğinde
+$D$ sonunda dursun ve ancak ve ancak $!B$ geçerliyse $1$, aksi durumda $0$
+çıktısını versin.
+\end{thm}
+
+\begin{proof}
+Karar probleminin çözülebilir, yani bir $D$ Turing makinesinin var olduğunu
+varsayalım. O zaman durma problemini şöyle çözebilirdik. Girdi olarak $M_e$
+Turing makinesinin $e$ numarasıyla $w$ girdisi verildiğinde karşılık gelen
+!!{sentence}~$!T(M_e,w)\lif !E(M_e,w)$'yi hesaplayıp şeritteki en soldaki
+kareyi tararken duran bir $E$ Turing makinesi kurarız. $E\concat D$ makinesi,
+$e$ ile $w$ girdisi verildiğinde önce $!T(M_e,w)\lif !E(M_e,w)$'yi hesaplar,
+sonra karar problemi makinesi $D$'yi bu girdide çalıştırırdı. $D$ ancak ve
+ancak $!T(M_e,w)\lif !E(M_e,w)$ geçerliyse $1$, aksi durumda $0$ çıktısıyla
+durur. \olref[ver]{lem:halt-if-valid} ile
+\olref[ver]{lem:valid-if-halt} gereği $!T(M_e,w)\lif !E(M_e,w)$ ancak ve
+ancak $M_e$, $w$ girdisinde durursa geçerlidir. Böylece $E\concat D$, $e$ ve
+$w$ girdisi verildiğinde ancak ve ancak $M_e$, $w$ girdisinde durursa $1$,
+aksi durumda $0$ çıktısıyla dururdu. Başka bir deyişle $E\concat D$ durma
+problemini çözerdi. Ancak \olref[hal]{thm:halting-problem} gereği böyle bir
+Turing makinesinin bulunamayacağını biliyoruz.
+\end{proof}
+
+\begin{cor}\ollabel{cor:undecidable-sat}%
+Birinci dereceden mantığın keyfî bir !!{sentence}{}nin doyurulabilir olup
+olmadığı karar verilemezdir.
+\end{cor}
+
+\begin{proof}
+  Doyurulabilirliğe bir $S$ Turing makinesince karar verilebildiğini
+  varsayalım. O zaman karar problemini şöyle çözebilirdik: Girdi olarak
+  !!a{sentence}~$B$ verildiğinde $!B$'yi bir kare sağa taşıyın. $1$. kareye
+  dönüp $\lnot$ simgesini yazın.
+
+  Şimdi $S$ Turing makinesini çalıştırın. Makine sonunda şeritte ya $1$
+  ($\lnot !B$ doyurulabilir ise) ya da $0$ ($\lnot !B$ doyurulamaz ise)
+  çıktısıyla durur. $1$. karede bir~$\TMstroke$ varsa onu silin; $1$. kare
+  boşsa bir~$\TMstroke$ yazıp durun.
+
+  Bu Turing makinesi her zaman durur ve ancak ve ancak $\lnot !B$
+  doyurulamazsa $1$, aksi durumda $0$ çıktısını verir. $!B$ ancak ve ancak
+  $\lnot !B$ doyurulamazsa geçerli olduğundan makine ancak ve ancak $!B$
+  geçerliyse $1$, aksi durumda $0$ çıktısını verir; yani karar problemini
+  çözerdi.
+\end{proof}
+
+\begin{explain}
+Dolayısıyla ``$!B$, birinci dereceden mantığın geçerli bir !!{sentence} midir?''
+sorusuna her zaman doğru bir ``evet'' ya da ``hayır'' yanıtı veren hiçbir
+Turing makinesi yoktur. Bununla birlikte her zaman doğru bir ``evet'' yanıtı
+veren, ama yanıt ``hayır'' ise yalnızca durmayan bir Turing makinesi
+\emph{vardır}. Bu, birinci dereceden mantığın sağlamlık ve tamlık teoremleriyle
+!!{derivation}s etkili biçimde numaralandırılabilmesi olgularından çıkar.
+\end{explain}
+
+\begin{thm}
+  \ollabel{thm:valid-ce}%
+  Birinci dereceden !!{sentence}s geçerliliği yarı karar verilebilirdir:
+  Bir $E$ Turing makinesi vardır: Birinci dereceden mantığın
+  !!a{sentence}~$!B$ şeridinde girdi olarak
+  verildiğinde $E$ ancak ve ancak $!B$ geçerliyse sonunda durup $1$ çıktısını
+  verir; aksi durumda durmaz.
+\end{thm}
+
+\begin{proof}
+  Birinci dereceden mantığın bütün olası !!{derivation}s etkili bir
+  algoritmayla birbiri ardına üretilebilir. $E$ makinesi bunu yapar ve
+  $\Proves !B$ olduğunu gösteren !!a{derivation} bulduğunda $1$ çıktısıyla
+  durur. Sağlamlık teoremine göre $E$, $1$ çıktısıyla durursa bunun nedeni
+  $\Entails !B$ olmasıdır. Tamlık teoremine göre $\Entails !B$ ise
+  $\Proves !B$ olduğunu gösteren !!a{derivation} vardır. $E$ bütün olası
+  !!{derivation}s sistematik olarak ürettiğinden sonunda $\Proves !B$
+  olduğunu gösteren birini bulacak ve $1$ çıktısıyla duracaktır.
+\end{proof}
+

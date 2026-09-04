@@ -1,0 +1,87 @@
+% Generated from locale/tr/content/history/set-theory/infinitesimals.tex; do not hand-edit.
+
+
+\olfileid[tr]{his}{set}{infinitesimals}
+\olsection{Sonsuz Küçükler ve Türev Alma}
+
+Newton ile Leibniz kalkülüsü 17. yüzyılın sonunda (birbirlerinden bağımsız
+olarak) keşfettiler. Kalkülüsün özellikle önemli bir uygulaması \emph{türev
+alma} idi. Kabaca söylersek türev alma, bir fonksiyonun belirli bir noktadaki
+``değişim hızı'' ya da eğimi için bir kavram vermeyi amaçlar.
+
+Fikri canlı biçimde gösterecek bir yol şudur. Aşağıda siyahla çizilmiş
+$f(x) = \nicefrac{x^2}{4} + \nicefrac{1}{2}$ fonksiyonunu ele alın:
+\begin{center}
+	\begin{tikzpicture}[scale=1]
+	\draw[->, gray] (-1,0) -- (4.25,0) node[right] {$x$};
+	\draw[->, gray] (0,-0.25) -- (0,5.25) node[above] {$f(x)$};
+	
+	\foreach \x/\xtext in {1/1, 2/2, 3/3, 4/4}
+	\draw[shift={(\x,0)}, gray] (0pt,2pt) -- (0pt,-2pt) node[below] {$\xtext$};
+	
+	\foreach \y/\ytext in {1/1, 2/2, 3/3, 4/4, 5/5}
+	\draw[shift={(0,\y)}, gray] (2pt,0pt) -- (-2pt,0pt) node[left] {$\ytext$};
+	
+	\draw[oldiagcolorC] (0.5, 9/16) -- (3.5, 57/16) -- (3.5, 9/16)--cycle;
+	\draw[oldiagcolorD] (.5, 9/16) -- (2.5, 33/16) -- (2.5, 9/16) -- cycle;
+	\draw[oldiagcolorE] (.5, 9/16) -- (1.5, 17/16) -- (1.5, 9/16) -- cycle;
+	\draw[thick] (-1,.75) parabola bend (0,0.5) (4,4.5);
+	\end{tikzpicture}
+\end{center}
+Fonksiyonun $c = \nicefrac{1}{2}$ noktasındaki eğimini bulmak istediğimizi
+varsayalım. İşe, hipotenüsü o noktadaki eğime yaklaşan bir üçgen, örneğin
+yukarıdaki kırmızı üçgeni çizerek başlarız. Üçgenimizin taban uzunluğu
+$\beta$ olduğunda yüksekliği $f(\nicefrac{1}{2}+\beta) -
+f(\nicefrac{1}{2})$ olur; dolayısıyla hipotenüsün eğimi şudur:
+\[
+\frac{f(\nicefrac{1}{2}+\beta) - f(\nicefrac{1}{2})}{\beta}.
+\]
+Öyleyse taban uzunluğu~$3$ olan !!{colorC} üçgenimizin eğimi tam olarak~$1$'dir.
+Daha küçük bir üçgenin, taban uzunluğu~$2$ olan !!{colorD} üçgenin hipotenüsü
+daha iyi bir yaklaşım verir; eğimi $\nicefrac{3}{4}$'tür. Daha da küçük,
+taban uzunluğu~$1$ olan !!{colorE} üçgen daha da iyi bir yaklaşım verir;
+eğimi $\nicefrac{1}{2}$'dir.
+
+Giderek küçülen üçgenler giderek daha iyi yaklaşımlar verir. Bu nedenle şöyle
+bir şey söyleyebiliriz: \emph{sonsuz küçük} taban uzunluğuna sahip bir
+üçgenin hipotenüsü bize $c = \nicefrac{1}{2}$ noktasındaki eğimin kendisini
+verir. Böylece $f$ fonksiyonunun $c$ noktasındaki (birinci) türevi için şu
+formülü elde ederiz:
+\[
+{f'}(c) = \frac{f(c+\beta) - f(c)}{\beta} \text{; burada $\beta$ sonsuz küçüktür.}
+\]
+Newton ile Leibniz'in söyledikleri de kabaca buydu.
+
+Ne var ki bunu söylediklerine göre onlara şunu sormalıyız: \emph{sonsuz
+küçük} nedir? Ciddi bir ikilem doğar. $\beta = 0$ ise $f'$ iyi tanımlı
+değildir; çünkü $0$'a bölme içerir. Ama $\beta > 0$ ise eğimin kendisini değil,
+yalnızca eğime bir \emph{yaklaşımı} elde ederiz.
+
+Bu, geçmişe bugünün ölçütlerini dayatan bir kaygı değildir. Berkeley,
+Newton'ın izleyicilerini şöyle eleştirir:
+\begin{quote}
+İşaretlerin herhangi bir şeyi de hiçbir şeyi de gösterebileceğini kabul
+ediyorum: dolayısıyla özgün $c + \beta$ gösteriminde $\beta$ ya bir artışı ya
+da hiçliği gösterebilirdi. Fakat ona bunlardan hangisini göstertecekseniz o
+anlamla tutarlı biçimde akıl yürütmeli, çift anlam üzerinden ilerlememelisiniz:
+bunu yapmak açık bir safsata olurdu. (\citealt[\S{}XIII]{Berkeley1734},
+değişkenler önceki metne uyacak biçimde değiştirilmiştir)
+\end{quote}
+Sonsuz küçükler kalkülüsünü Berkeley'e karşı savunmak için, ``sonsuz
+küçükler''den söz etmenin yalnızca mecaz olduğu yanıtı verilebilir. \emph{Çok
+küçük} bir üçgen aldığımız sürece teğete \emph{yeterince iyi} bir yaklaşım
+elde edeceğimiz söylenebilir. Berkeley'in buna da bir yanıtı vardı: bu,
+mühendislik için yeterince iyi olsa bile matematiğin \emph{konumunu} sarsar;
+çünkü
+\begin{quote}
+bize \emph{in rebus mathematicis errores qu\`{a}m minimi non sunt
+contemnendi} denir. [Matematik söz konusu olduğunda en küçük hatalar bile göz
+ardı edilmemelidir.] \citep[\S{}IX]{Berkeley1734}
+\end{quote}
+İtalik bölüm, Newton'ın kendi \emph{Quadrature of Curves} (1704) eserinden
+neredeyse sözcüğü sözcüğüne bir alıntıdır.
+
+Berkeley'in felsefi itirazları son derece keskindir. Yine de kalkülüs çok büyük
+başarı kazanmış bir girişimdi ve matematikçiler yanlışa düşmeden onu
+kullanmayı sürdürdüler.
+

@@ -1,0 +1,37 @@
+% Generated from locale/tr/content/normal-modal-logic/filtrations/finite.tex; do not hand-edit.
+
+
+\olfileid[tr]{nml}{fil}{fin}
+
+\olsection{Süzmeler Sonludur}
+
+Alt !!{formula}s altında kapalı herhangi bir $\Gamma$ kümesi için süzmeleri
+tanımladık. Tanımın kendisi süzmelerin sonlu olduğunu güvence altına almaz.
+Gerçekten $\Gamma$ sonsuz olduğunda (örneğin bütün !!{formula}s{}in kümesiyse)
+süzme de sonsuz olabilir. Buna karşılık $\Gamma$ sonluysa (örneğin verilmiş
+bir $!A$ !!{formula}{}ünün alt !!{formula}s kümesiyse), $\Gamma$ üzerinden
+her süzme de sonludur.
+
+\begin{prop}\ollabel{prop:filt-are-finite}
+  $\Gamma$ sonluysa, bir $\mModel{M}$ modelinin $\Gamma$ üzerinden her
+  $\mModel{M^*}$ süzmesi de sonludur.
+\end{prop}
+
+\begin{proof}
+  $W^*$'ın büyüklüğü $\equiv$ denklik bağıntısına göre farklı $[w]$
+  sınıflarının sayısıdır. Böyle bir sınıftaki herhangi iki $u$ ve $v$ dünyası,
+  yani $u\equiv v$ olan herhangi $u$ ve $v$, $\Gamma$ içindeki bütün $!A$
+  !!{formula}s{}i konusunda uyuşur: $!A\in\Gamma$ iken $!A$ ya hem $u$'da
+  hem $v$'de doğrudur ya da ikisinde de doğru değildir. Dolayısıyla her
+  $[w]$ sınıfı $\Gamma$'nın bir alt kümesine, yani $!A\in\Gamma$ olup
+  $[w]$ dünyalarında $!A$'nın doğru olduğu bütün formüllerin kümesine karşılık
+  gelir. İki farklı
+  $[u]$ ve $[v]$ sınıfı $\Gamma$'nın aynı alt kümesine karşılık gelemez.
+  Çünkü $u$'da doğru !!{formula}s kümesi ile $v$'de doğru !!{formula}s
+  kümesi aynıysa $u$ ile $v$, $\Gamma$ içindeki bütün formüllerde uyuşur;
+  yani $u\equiv v$ ve dolayısıyla $[u]=[v]$. Böylece $W^*$'tan
+  $\Pow{\Gamma}$'ya !!a{injective} fonksiyon vardır ve
+  $\card{W^*}\leq\card{\Pow{\Gamma}}$. $\Gamma$ $n$ tümce içeriyorsa
+  $W^*$'ın kardinalitesi en çok $2^n$'dir.
+\end{proof}
+

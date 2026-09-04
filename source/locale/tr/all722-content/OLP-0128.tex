@@ -1,0 +1,164 @@
+% Generated from locale/tr/content/first-order-logic/completeness/outline.tex; do not hand-edit.
+
+
+\iftag{FOL}
+      {\olfileid[tr]{fol}{com}{out}}
+      {\olfileid[tr]{pl}{com}{out}}
+
+\olsection{İspatın Ana Hatları}
+
+Tamlık teoreminin ispatı biraz karmaşıktır ve ilk okumada yolunu
+kaybetmek kolaydır. Bu nedenle önce ispatın ana hatlarını verelim. İlk
+adım, ispata giden bir yol görmemizi sağlayan bir bakış açısı
+değişikliğidir. Tamlık, ``$\Gamma \Entails !A$ olduğunda $\Gamma
+\Proves !A$ olur'' biçiminde düşünüldüğünde bir fikir bulmak bile zor
+olabilir: $\Gamma \Proves !A$ olduğunu göstermek için !!a{derivation}
+bulmamız gerekir ve $\Gamma \Entails !A$ varsayımı bu konuda bize
+hiç yardımcı olacakmış gibi görünmez. Bazı ispat sistemlerinde doğrudan
+!!a{derivation} kurmak mümkündür; bizse biraz farklı bir yol izleyeceğiz.
+Gerekli bakış açısı değişikliği şudur: tamlık, ``$\Gamma$ tutarlıysa
+sağlanabilirdir'' biçiminde de ifade edilebilir. Belki~$\Gamma$'daki
+bilgiyi, onun tutarlı olduğu varsayımıyla birlikte kullanarak
+\iftag{FOL}{!!a{structure}}{!!a{valuation}} kurabiliriz; bu,
+$\Gamma$'daki her \iftag{FOL}{!!{sentence}}{!!{formula}} ifadesini doğru
+kılar. Sonuçta nasıl bir
+\iftag{FOL}{!!{structure}}{!!{valuation}} aradığımızı biliyoruz:
+$\Gamma$'nın betimlediği bir tane!
+
+$\Gamma$ yalnızca \iftag{FOL}{atomik !!{sentence}s}{!!{propositional variable}s}
+içeriyorsa ona bir model kurmak kolaydır.\iftag{FOL}{
+  Atomik !!{sentence}s ifadelerinin hepsinin
+  $\Atom{P}{a_1,\dots,a_n}$ biçiminde ve $a_i$ ifadelerinin
+  !!{constant}s olduğunu varsayalım.}{} Yapmamız gereken tek şey
+\iftag{FOL}{%
+  !!a{domain}~$\Domain{M}$ ile~$P$ için öyle bir yorum bulmaktır ki
+  $\Sat{M}{\Atom{P}{a_1,\ldots,a_n}}$ olsun. Bu hiç de zor değildir:
+  $\Domain{M}=\Nat$, $\Assign{\Obj c_i}{M}=i$ olsun ve
+  $\Atom{P}{a_1,\ldots,a_n}\in\Gamma$ olan her durumda $\tuple{k_1,
+    \dots,k_n}$ n-lisini $\Assign{P}{M}$ içine koyalım; burada $k_i$,
+  $a_i$ sabit simgesinin indisidir (yani $a_i \ident \Obj c_{k_i}$).}{%
+  her $p\in\Gamma$ için $\pSat{v}{p}$ olacak bir
+  !!a{valuation}~$\pAssign{v}$ bulmaktır. $\pAssign{v}(p)=\True$ ancak
+  ve ancak $p\in\Gamma$ ise olsun.}
+
+Şimdi $\Gamma$'nın atomik bir~$!B$ için $\lnot !B$ !!{formula}
+ifadesini içerdiğini varsayalım. $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$
+kuruluşunun $\lnot !B$ ifadesini doğru kılmamızı engellemesinden
+kaygılanabiliriz. Fakat burada~$\Gamma$'nın tutarlılığı devreye girer:
+$\lnot !B\in\Gamma$ ise $!B\notin\Gamma$ olmalıdır; aksi halde
+$\Gamma$ tutarsız olurdu. $!B\notin\Gamma$ olduğunda
+$\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ kuruluşumuza göre
+$\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!B}$, dolayısıyla
+$\iftag{FOL}{\Sat{M}}{\pSat{v}}{\lnot !B}$ olur. Buraya kadar sorun yok.
+
+$\Gamma$ karmaşık, atomik olmayan formüller içeriyorsa ne olur?
+Örneğin $!A\land !B$ içerdiğini varsayalım. Bunu doğru kılmak için hem
+$!A$ hem de $!B$~$\Gamma$'daymış gibi ilerlemeliyiz. $!A\lor !B\in
+\Gamma$ ise bunlardan en az birini doğru kılmamız, yani en az biri
+$\Gamma$'daymış gibi ilerlememiz gerekir.
+
+Bu gözlemler şu fikri akla getirir:~$\Gamma$'ya ek !!{formula}s
+ekleyelim; bunlar (a)~ortaya çıkan kümeyi tutarlı tutacak,
+(b)~olası her atomik !!{sentence}~$!A$ için ortaya çıkan
+kümenin ya $!A$'yı ya da $\lnot !A$'yı içermesini sağlayacak ve
+(c)~küme $!A\land !B$ içerdiğinde hem $!A$ hem $!B$'yi, $!A\lor !B$
+içerdiğinde bunlardan en az birini, vb. içerecektir. Bunu (gerekirse
+sonsuza dek) sürdürürüz.
+Eklenen bütün !!{formula}s kümesine~$\Gamma^*$ diyelim. Yukarıdaki
+kuruluşumuz bize öyle bir
+\iftag{FOL}{!!a{structure}~$\Struct{M}$}{!!a{valuation}~$\pAssign{v}$}
+verir ki bunun~$\Gamma^*$'daki bütün tümceleri sağladığını tümevarımla
+ispatlayabiliriz. $\Gamma\subseteq\Gamma^*$ olduğundan, yapı ya da
+değerleme~$\Gamma$'daki bütün tümceleri de sağlar. (a) ile~(b)'yi
+güvence altına almanın yeterli olduğu ortaya çıkacaktır. (b) koşulunu
+sağlayan bir tümceler kümesine \emph{tam} denir. Dolayısıyla görevimiz,
+tutarlı~$\Gamma$ kümesini tutarlı ve tam bir~$\Gamma^*$ kümesine
+genişletmektir.
+
+\iftag{FOL}{%
+Bu planda bir güçlük vardır: $\lexists[x][!A(x)]\in\Gamma$ ise bir
+!!{constant}~$c$ seçip süreç içinde $!A(c)$ ekleyebilmeyi umarız. Fakat
+bunu her zaman yapabileceğimizi nereden biliyoruz? Dilimizde yalnızca
+birkaç !!{constant}s bulunabilir ve bunların her biri için $\lnot
+!A(c)\in\Gamma$ olabilir. $!A(c)$ ifadesini de ekleyemeyiz; çünkü bu,
+kümeyi tutarsız kılar ve~$\Struct{M}$ yapısının $!A(c)$ mi yoksa
+$\lnot !A(c)$ mi doğru kılması gerektiğini bilemeyiz. Dahası, $\Gamma$
+hiçbir sabit simgesi bulunmayan bir dildeki tümcelerden oluşabilir
+(örneğin küme kuramının dilinde).
+
+Bu sorunun çözümü, başlangıçta sonsuz sayıda sabit ve bunları
+niceleyicilere doğru biçimde bağlayan tümceler eklemektir. (Elbette
+bunun bir tutarsızlık doğuramayacağını doğrulamamız gerekir.)
+
+İlk kuruluşumuz, atomik tümcelerde yalnızca !!{constant}s varsa iyi
+çalışır. Ancak dilde !!{function}s da bulunabilir. Bu durumda her şeyin
+çalışmasını sağlamak için bu !!{function}s simgelerine~$\Nat$ üzerinde
+doğru fonksiyonları atamak zor olabilir. Bu nedenle başka bir hile
+kullanırız: $\Obj c_i$ simgesini yorumlamak için $i$'yi kullanmak yerine
+!!{constant}s kümesinin kendisini evren olarak alırız. Böylece
+$\Struct M$ her !!{constant} simgesini kendisine atayabilir:
+$\Assign{\Obj c_i}{M}=\Obj c_i$. Hatta neden sonuna kadar gitmeyelim?
+$\Domain{M}$ dilin bütün \emph{terimleri} olsun. Bu durumda
+!!{function}s simgelerine, argümanları ve değerleri terimler olan
+fonksiyonlar atamanın apaçık bir yolu vardır:
+!!{function}~$\Obj f^n_i$ simgesine,
+girdi olarak verilen $n$ tane $t_1$, \dots,~$t_n$ teriminden
+$\Obj f^n_i(t_1,\dots,t_n)$ terimini üreten fonksiyonu atarız.
+
+Yapbozun son parçası~$\eq$ ile ne yapacağımızdır. !!{predicate}~$\eq$
+sabit bir yoruma sahiptir: $\Sat{M}{\eq[t][t']}$ ancak ve ancak
+$\Value{t}{M}=\Value{t'}{M}$ ise. Bir~$t$ teriminin !!{value} olarak
+kendisini verecek biçimde kurarsak bu !!{structure}, $t$ ile $t'$ aynı
+terim olmadıkça $\eq[t][t']$ biçimindeki \emph{hiçbir} tümceyi doğru
+kılmaz. Bu elbette bir sorundur; çünkü !!{function}s içeren bir dildeki
+hemen her ilginç kuramda, $t$ ile $t'$ aynı terim olmadığı halde
+$\eq[t][t']$ biçiminde teoremler bulunur (örneğin aritmetik kuramlarında
+$\eq[(\Obj 0+\Obj 0)][\Obj 0]$). Sorunu çözmek için~$\Struct M$
+yapısının evrenini değiştiririz: $\Domain{M}$ içindeki nesneler olarak
+terimler yerine terim kümeleri kullanırız; her küme,~$\Gamma$'daki
+tümcelerin eşit olmasını gerektirdiği bütün terimleri içerir. Örneğin
+$\Gamma$ bir aritmetik kuramıysa bu kümelerden biri $\Obj 0$,
+$(\Obj 0+\Obj 0)$, $(\Obj 0\times\Obj 0)$ vb. terimleri içerir.
+$\Obj 0$ simgesine bu kümeyi atayacağız ve bu kümenin, içindeki bütün
+terimlerin---örneğin $(\Obj 0+\Obj 0)$ teriminin de---değeri olduğu
+ortaya çıkacaktır. Böylece $\eq[(\Obj 0+\Obj 0)][\Obj 0]$ tümcesi bu
+gözden geçirilmiş !!{structure} içinde doğru olacaktır.}{}
+
+İzleyeceğimiz yol şudur. Önce !!{complete} tutarlı kümelerin
+özelliklerini inceleriz. Özellikle !!a{complete} tutarlı kümenin
+$!A\land !B$ ifadesini ancak ve ancak hem $!A$ hem de~$!B$'yi
+içerdiğinde; $!A\lor !B$ ifadesini ancak ve ancak bunlardan en az birini
+içerdiğinde içerdiğini vb. ispatlarız (\olref[ccs]{prop:ccs}).
+\iftag{FOL}{Ardından ``doygun'' tümce kümelerini tanımlayıp inceleriz.
+  Doygun bir küme, niceleyicili her !!{sentence} ifadesini onun
+  örnekleriyle bağlayan koşullu ifadeleri içerir
+  (\olref[hen]{defn:henkin-exp}). Her tutarlı~$\Gamma$ kümesinin her
+  zaman doygun bir~$\Gamma'$ kümesine genişletilebildiğini gösteririz
+  (\olref[hen]{lem:henkin}). Bir küme tutarlı, doygun ve !!{complete}
+  ise ayrıca \iftag{prvEx}{$\lexists[x][!A(x)]$ ifadesini ancak ve ancak
+    bir kapalı~$t$ terimi için $!A(t)$ ifadesini içerdiğinde}{}
+  \iftag{defEx,defAll}{}{ ve }\iftag{prvAll}{$\lforall[x][!A(x)]$
+    ifadesini ancak ve ancak bütün kapalı~$t$ terimleri için $!A(t)$
+    ifadesini içerdiğinde}{} içerme özelliğine sahiptir
+  (\olref[hen]{prop:saturated-instances}).}{}
+Sonra \iftag{FOL}{doygun}{} tutarlı
+$\iftag{FOL}{\Gamma'}{\Gamma}$ kümesini
+\iftag{FOL}{doygun, tutarlı ve}{tutarlı ve} !!{complete} bir
+$\Gamma^*$ kümesine genişletebileceğimizi gösteririz
+(\olref[lin]{lem:lindenbaum}).
+\iftag{FOL}{terim modelimiz~$\Struct M(\Gamma^*)$}{!!{valuation}
+  ifademiz~$\pAssign v(\Gamma^*)$} bu~$\Gamma^*$ kümesinden
+tanımlanacaktır. \iftag{FOL}{Terim modelinin evreni kapalı terimler
+  kümesidir ve !!{predicate}s simgelerinin yorumu,~$\Gamma^*$ içindeki
+  atomik !!{sentence}s tarafından}{Değerleme,~$\Gamma^*$ içindeki
+  !!{propositional variable}s tarafından} belirlenir
+(\olref[mod]{defn:termmodel}). \iftag{FOL}{Doygun,}{} tam ve tutarlı
+kümelerin özelliklerini kullanarak
+$\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{!A}$ ancak ve ancak
+$!A\in\Gamma^*$ olduğunu (\olref[mod]{lem:truth}) ve özellikle
+$\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{\Gamma}$ olduğunu
+gösteririz. \iftag{FOL}{Son olarak~$\Gamma$ kümesi~$\eq$ de içeriyorsa
+  terim modelinin nasıl tanımlanacağını ele alırız
+  (\olref[ide]{defn:term-model-factor}) ve modelin~$\Gamma^*$ kümesini
+  sağladığını gösteririz (\olref[ide]{lem:truth}).}{}
+

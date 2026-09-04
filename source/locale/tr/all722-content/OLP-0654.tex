@@ -1,0 +1,56 @@
+% Generated from locale/tr/content/normal-modal-logic/syntax-and-semantics/normal-modal-logics.tex; do not hand-edit.
+
+
+\olfileid[tr]{nml}{syn}{nor}
+
+\olsection{Normal Kiplik Mantıkları}
+
+Bir kiplik mantığı, uygun biçimde iyi davranan herhangi bir !!{formula}s
+kümesi olarak görülebilir. Hem ilginç yorumları ve uygulamaları bulunduğu,
+fakat esas olarak kuramsal bakımdan iyi anlaşıldıkları için özellikle önem
+taşıyan bazı kiplik mantıkları vardır. Bunlara normal kiplik mantıkları denir.
+
+\begin{defn}\ollabel{defn:modal-logic}
+Bir \emph{kiplik mantığı}~$\Log L$, temel kiplik dilinin aşağıdaki koşulları
+sağlayan bir !!{formula}s kümesidir:
+\begin{enumerate}
+\item Bütün önermesel totolojileri içerir,
+\item düzgün yerine koyma altında kapalıdır ve
+\item modus ponens altında kapalıdır; yani $!A$ ve $(!A \lif
+  !B) \in \Log L$ olduğunda $!B \in \Log L$ de olur.
+\end{enumerate}
+\end{defn}
+
+\begin{ex}
+Pek ilginç olmadıkları kabul edilse de bu tanımı sağlayan ve dolayısıyla
+kiplik mantığı sayılan bazı !!{formula}s kümeleri şunlardır:
+\begin{enumerate}
+\item bütün totolojilerin kümesi,
+\item bütün !!{formula}s kümesi (tutarsız kiplik mantığı).
+\end{enumerate}
+\end{ex}
+
+\begin{defn}\label{defn:normal-modal-logic}
+Bir kiplik mantığı~$\Log L$ ancak ve ancak aşağıdaki koşulları sağlıyorsa
+\emph{normal}dir:
+\begin{enumerate}
+\item Aşağıdaki iki şemayı da içerir:
+\begin{align}
+\tag{K} \Box(p \lif q) & \lif (\Box p \lif \Box q) \\
+\tag{Dual} \Diamond p & \liff \lnot \Box \lnot p
+\end{align}
+\item Zorunlulaştırma altında kapalıdır; yani $!A \in
+  \Log L$ olduğunda $\Box !A \in \Log L$ de olur.
+\end{enumerate}
+\end{defn}
+
+Kiplik mantıklarını tanımlamanın iki temel yoluyla karşılaşacağız. Bunlardan
+biri, belirli !!{derivation} sistemlerinde türetilebilen !!{formula}s kümesi
+olarak, ispat kuramsal yoldur. Diğeri ise belirli model sınıflarında geçerli
+olan !!{formula}s kümeleri olarak, model kuramsal yoldur. Bu, olağan önerme
+mantığındaki (hatta birinci dereceden mantıktaki) durumu yansıtır. Burada da
+bir !!{formula}s kümesini iki ayrı yoldan belirleyebiliriz: örneğin bütün
+doğruluk-değeri atamalarında doğru olan totolojilerin kümesi ve bir
+!!{derivation} sistemindeki bütün !!{derivable} !!{formula}s kümesi olarak.
+Normal kiplik mantıklarında bu iki yönlü belirleme, bağıntısal modeller ve
+aksiyomatik (Hilbert tipi) ispat sistemleri kullanılarak yapılabilir.

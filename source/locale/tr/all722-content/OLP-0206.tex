@@ -1,0 +1,112 @@
+% Generated from locale/tr/content/model-theory/lindstrom/ls-property.tex; do not hand-edit.
+
+
+\olfileid[tr]{mod}{lin}{lsp}
+
+\olsection{Tıkızlık ve L\"owenheim--Skolem Özellikleri}
+
+Şimdi tıkızlık ile L\"owenheim--Skolem özelliğinin soyut mantıklara doğal
+genişletmelerini vereceğiz.
+
+\begin{defn}
+Bir $\tuple{L,\models_L}$ soyut mantığı, $L(\Lang{L})$-!!{sentence}s
+öğelerinden oluşan her $\Gamma$ kümesinin her sonlu
+$\Gamma_0\subseteq\Gamma$ alt kümesi sağlanabilir olduğunda $\Gamma$ da
+sağlanabilir oluyorsa \emph{Tıkızlık Özelliği}ne sahiptir.
+\end{defn}
+
+\begin{defn}
+Her sağlanabilir $\Gamma$ kümesinin !!a{enumerable} modeli varsa
+$\tuple{L,\models_L}$ \emph{Aşağı L\"owenheim--Skolem özelliği}ne sahiptir.
+\end{defn}
+
+\olref[bas][pis]{defn:partialisom} bölümündeki kısmi izomorfizm kavramı
+tümüyle ``cebirsel''dir: Kavram, dilin !!{sentence}s öğelerine başvurmadan,
+yalnızca !!{language}~$\Lang{L}$ tarafından !!{structure}s için sağlanan
+sabitler kullanılarak verilir. Bu nedenle soyut mantıklara da
+uygulanır. Birinci dereceden mantık için
+\olref[bas][pis]{thm:p-isom2}, kısmen izomorf iki !!{structure}s yapısının
+temel eşdeğer olduğunu söyler. Bu ispat soyut mantıklara taşınamaz; çünkü
+keyfî $!E\in L(\Lang{L})$ için !!{formula}s üzerinde tümevarım bulunmayabilir.
+Bununla birlikte L\"owenheim--Skolem özelliği geçerliyse teorem yine doğrudur.
+
+\begin{thm}
+\ollabel{thm:abstract-p-isom}
+$\tuple{L,\models_L}$, L\"owenheim--Skolem özelliğine sahip normal bir
+mantık olsun. O zaman kısmen izomorf olan her iki !!{structure}s,
+$\tuple{L,\models_L}$ içinde temel eşdeğerdir.
+\end{thm}
+
+\begin{proof}
+$\Struct{M}\simeq_p\Struct{N}$ olduğunu, fakat bazı $!E$ için
+$\Struct{M}\models_L !E$ ve $\Struct{N}\not\models_L !E$ olduğunu varsayalım.
+İzomorfizm Özelliği sayesinde $\Domain{M}$ ile $\Domain{N}$ evrenlerinin
+ayrık olduğunu; Genişleme Özelliği sayesinde de $!E\in L(\Lang{L})$ olacak
+biçimde !!{language}~$\Lang{L}$ dilinin sonlu olduğunu varsayabiliriz.
+$\mathcal I$, $\Struct{M}$ ile $\Struct{N}$ arasındaki kısmi izomorfizmlerden
+oluşan bir küme olsun. Ayrıca genelliği kaybetmeden, $p\in\mathcal I$ ve
+$q\subseteq p$ ise $q\in\mathcal I$ olduğunu varsayalım.
+
+$\Domain{M}^{<\omega}$, $\Domain{M}$ evreninin !!{element}s öğelerinden oluşan
+sonlu diziler kümesidir. $S$, $\Domain{M}^{<\omega}$ üzerinde birleştirmeyi
+temsil eden üçlü bağıntı olsun: $\mathbf a,\mathbf b,\mathbf c\in
+\Domain{M}^{<\omega}$ için $S(\mathbf a,\mathbf b,\mathbf c)$ ancak ve ancak
+$\mathbf c$, $\mathbf a$ ile $\mathbf b$ dizilerinin art arda eklenmesiyle
+elde edilirse geçerlidir. $T$ de şu üçlü bağıntı olsun: $b\in M$ ve
+$\mathbf a,\mathbf c\in\Domain{M}^{<\omega}$ için
+$T(\mathbf a,b,\mathbf c)$, ancak ve ancak
+$\mathbf a=a_1,\dots,a_n$ ve $\mathbf c=a_1,\dots,a_n,b$ ise geçerlidir.
+Yeni üç yerli !!{predicate}s $P$ ve $Q$ seçelim. Evreni
+$\Domain{M}\cup\Domain{M}^{<\omega}$ olan, $\Struct{M}$ yapısını alt yapı
+olarak içeren ve $P$ ile $Q$ simgelerini sırasıyla $S$ ile $T$ birleştirme
+bağıntıları olarak yorumlayan $\Struct{M}^*$ !!{structure} yapısını kuralım.
+Böylece $\Struct{M}^*$, !!{language} $\Lang{L}\cup\{P,Q\}$ içindedir.
+
+$\Domain{N}^{<\omega}$, $S'$, $T'$, $P'$, $Q'$ ve $\Struct{N}^*$ benzer
+biçimde tanımlansın. Varsayıma göre $\Struct{M}\simeq_p\Struct{N}$ olduğundan,
+$\Domain{M}^{<\omega}$ ile $\Domain{N}^{<\omega}$ arasında şöyle bir $I$
+bağıntısı vardır: $I(\mathbf a,\mathbf b)$ ancak ve ancak $\mathbf a$ ile
+$\mathbf b$ izomorfsa ve \olref[bas][pis]{defn:partialisom} bölümündeki
+ileri-geri koşulunu sağlıyorsa geçerlidir. Şimdi bir $\Struct{K}$
+!!{structure} kuralım. Bu yapının !!{domain}, $\Struct{M}^*$ ile
+$\Struct{N}^*$ yapılarının !!{domain}s birleşimi olsun ve bu iki yapıyı
+alt!!{structure}s olarak içersin. !!{language} diline, $I$ bağıntısını
+yorumlayan yeni bir ikili !!{predicate}~$R$ ile ayrıca !!{predicate}s
+ekleyelim; bu son yüklemler $\Domain{M}^*$ ve $\Domain{N}^*$ !!{domain}s
+öğelerini belirlesin.
+
+\begin{figure}[h]
+  \centering
+  \begin{tikzpicture}[node distance=2cm, auto, thick, >=stealth']
+    \draw [rounded corners] (0,0) -- (8,0) -- (8,4) -- (0,4) -- cycle;
+    \draw (2,2) circle (0.5cm);
+    \draw (2,2) circle (1.25cm);
+    \draw (6,2) circle (0.5cm);
+    \draw (6,2) circle (1.25cm);
+    \path node at (0.75,3.5) {\large $\Struct{K}$};
+    \path node at (2,2) {\large $\Struct{M}$};
+    \path node at (6,2) {\large $\Struct{N}$};
+    \path node at (3.5,1) {\large $\Struct{M}^*$};
+    \path node at (7.5,1) {\large $\Struct{N}^*$};
+    \node (Idom) at (2.8,2) {};
+    \node (Irng) at (5.2,2) {};
+    \draw[<->, bend left] (Idom) to node {\large $I$} (Irng);
+  \end{tikzpicture}
+  \caption{İçinde kısmi izomorfizmin bulunduğu !!{structure}~$\Struct{K}$.}
+\end{figure}
+
+Temel gözlem şudur: !!{language} dili içinde, !!{structure}~$\Struct{K}$
+yapısında $\Struct{M}\models_L !E$ ve $\Struct{N}\not\models_L !E$
+olduğunu söyleyen ve $\Struct{K}$ içinde doğru olan bir birinci dereceden
+!!{sentence} $!D_1$ vardır; bunun için Göreleleştirme Özelliği kullanılır.
+Ayrıca $\Struct{M}\simeq_p\Struct{N}$ bağıntısının kısmi izomorfizm $I$
+aracılığıyla geçerli olduğunu söyleyen, $\Struct{K}$ içinde doğru bir
+birinci dereceden !!{sentence} $!D_2$ vardır. L\"owenheim--Skolem Özelliği
+uyarınca $!D_1$ ile $!D_2$, !!a{enumerable} model $\Struct{K}_0$ içinde
+birlikte doğrudur. Bu model, $\Struct{M}_0\models_L !E$ ve
+$\Struct{N}_0\not\models_L !E$ olacak biçimde kısmen izomorf alt yapılar
+$\Struct{M}_0$ ile $\Struct{N}_0$ içerir. Oysa !!{enumerable} ve kısmen
+izomorf !!{structure}s, \olref[bas][pis]{thm:p-isom1} uyarınca gerçekten
+izomorftur. Bu, normal soyut mantıkların İzomorfizm Özelliğiyle çelişir.
+\end{proof}
+

@@ -1,0 +1,106 @@
+% Generated from locale/tr/content/methods/proofs/reading-proofs.tex; do not hand-edit.
+
+
+\olfileid[tr]{mth}{prf}{rea}
+\olsection{Kanıtları Okumak}
+
+Ders kitaplarında ve makalelerde bulduğunuz kanıtlar, şimdiye dek
+örneklerimize kattığımız bütün ayrıntıları çok ender verir. Yazarlar
+çoğu kez durumları ayırdıklarına ya da dolaylı kanıt verdiklerine dikkat
+çekmez, hatta bir tanım kullandıklarını belirtmezler. Bu nedenle bir
+ders kitabındaki kanıtı okurken onu anlayabilmek için bu ayrıntıları
+çoğu zaman kendiniz tamamlamalısınız. Bunu yapmak, bir kanıtta
+gerçekleştirmeniz gereken çeşitli hamlelere alışmak için de iyi bir
+uygulamadır. Bir örneğe bakalım.
+
+\begin{prop}[Soğurma]
+Bütün $A$, $B$ kümeleri için
+\[
+A \cap (A \cup B) = A
+\]
+\end{prop}
+
+\begin{proof}
+$z \in A \cap (A \cup B)$ ise $z \in A$; dolayısıyla $A \cap (A \cup
+B) \subseteq A$. Şimdi $z \in A$ olduğunu varsayalım. O zaman $z \in
+A \cup B$ de geçerlidir ve dolayısıyla $z \in A \cap (A \cup B)$ de
+geçerlidir.
+\end{proof}
+
+Yukarıdaki soğurma yasası kanıtı çok yoğundur. Kullanılan tanımlardan
+söz edilmez, bir şeyi kanıtlamadan önce ``şunu kanıtlamalıyız'' denmez
+vb. Kanıtı açalım. Kanıtlanan önerme, herhangi $A$ ve $B$ kümeleri
+hakkında genel bir iddiadır; kanıtta $A$ ya da $B$ geçtiğinde bunlar
+keyfî kümelerin değişkenleridir. Kanıtın ortaya koyduğu genel iddialar,
+kümelerin özdeşliğini kanıtlamak için gereken şeydir: yani özdeşliğin
+sol tarafındaki her !!{element}, sağ tarafta bir !!a{element} olarak bulunur ve
+bunun tersi de geçerlidir.
+
+\begin{quote}
+``$z \in A \cap (A \cup B)$ ise $z \in A$; dolayısıyla $A \cap (A \cup
+B) \subseteq A$.''
+\end{quote}
+
+Bu, özdeşlik kanıtının ilk yarısıdır: keyfî bir~$z$ sol tarafta bir
+!!a{element} olarak bulunuyorsa sağ tarafta da bir !!a{element} olarak bulunduğunu, yani $A
+  \cap (A \cup B) \subseteq A$ olduğunu belirler. $z \in A \cap (A \cup
+  B)$ olduğunu varsayın. $z$'nin iki kümenin kesişiminde bir !!{element}
+  olması, ancak ve ancak her iki kümede de bir !!{element} olmasına denk
+  olduğundan, $z \in A$ ve aynı zamanda $z \in A \cup B$ sonucuna varabiliriz. Özellikle $z \in
+A$'dır; göstermek istediğimiz de buydu. İlk yarı için yapılması gereken
+yalnızca bu olduğundan, kanıtın geri kalanının ikinci yarının kanıtı,
+yani $A \subseteq A \cap (A \cup B)$'nin bir kanıtı olması gerektiğini
+biliyoruz.
+
+\begin{quote}
+``Şimdi $z \in A$ olduğunu varsayalım. O zaman $z \in A \cup B$ de
+geçerlidir ve dolayısıyla $z \in A \cap (A \cup B)$ de geçerlidir.''
+\end{quote}
+
+$z \in A$ olduğunu varsayarak başlarız; çünkü her~$z$ için $z \in A$
+ise $z \in A \cap (A \cup B)$ olduğunu gösteriyoruz. $z \in A
+\cap (A \cup B)$ olduğunu göstermek için, ``$\cap$'' tanımı gereği (i)
+$z \in A$ ve ayrıca (ii) $z \in A \cup B$ olduğunu göstermeliyiz.
+Burada (i) zaten varsayımımızdır; dolayısıyla kanıtlanacak başka bir
+şey yoktur ve kanıtın bunu yeniden anmamasının nedeni budur. (ii) için,
+$z$'nin bir küme birleşiminde !!a{element} olarak bulunmasının ancak ve ancak bu
+kümelerden en az birinde !!{element} olarak bulunmasıyla geçerli olduğunu
+hatırlayın. $z \in A$ ve $A \cup B$, $A$ ile $B$'nin birleşimi olduğuna
+göre burada durum budur. Öyleyse $z \in A \cup B$. Hem (i) $z \in A$
+hem de (ii) $z \in A \cup B$ olduğunu gösterdik; dolayısıyla ``$\cap$''
+tanımı gereği $z \in A \cap (A \cup B)$. Kanıt bu tanımlardan söz etmez;
+okurun onları zaten içselleştirdiği varsayılır. İçselleştirmediyseniz,
+geri dönüp ne olduklarını kendinize hatırlatmalısınız. Ardından $z \in
+A$'dan neden $z \in A \cup B$'nin ve $z \in A$ ile $z \in A \cup B$'den
+neden $z \in A \cap (A \cup B)$'nin çıktığını da görmelisiniz.
+
+Yukarıdaki kanıtın, her şeyin açıkça yazıldığı başka bir biçimi şöyledir:
+\begin{proof}{}
+[Kümeler için $=$ tanımı gereği $A \cap (A \cup B) = A$'yı kanıtlamak
+  üzere (a) $A \cap (A \cup B) \subseteq A$ ve (b) $A \subseteq A \cap
+  (A \cup B)$ olduğunu göstermeliyiz. (a): $\subseteq$ tanımı gereği $z
+  \in A \cap (A \cup B)$ ise $z \in A$ olduğunu göstermeliyiz.] $z \in
+A \cap (A \cup B)$ ise $z \in A$ [$\cap$ tanımı gereği $z \in A \cap
+  (A \cup B)$, ancak ve ancak $z \in A$ ve $z \in A \cup B$ ise
+  geçerli olduğundan]; dolayısıyla $A \cap (A \cup B) \subseteq A$.
+[(b): $\subseteq$ tanımı gereği $z \in A$ ise $z \in A \cap (A \cup
+  B)$ olduğunu göstermeliyiz.] Şimdi [(1)] $z \in A$ olduğunu
+varsayalım. O zaman [(2)] $z \in A \cup B$ de geçerlidir [(1)'e göre
+  $z \in A$ ya da $z \in B$ olduğundan; bu da $\cup$ tanımı gereği $z
+  \in A \cup B$ demektir] ve dolayısıyla $z \in A \cap (A \cup B)$ de
+geçerlidir [$\cap$ tanımı $z \in A$'yı, yani (1)'i ve $z \in A \cup B$'yi,
+  yani (2)'yi gerektirdiğinden].
+\end{proof}
+
+\begin{prob}
+$A \cup (A \cap B) = A$'nın aşağıdaki kanıtını genişletin: kullanılan
+bütün çıkarım kalıplarını, her adımın varsayımlardan ya da daha önce
+belirlenmiş iddialardan neden çıktığını ve hangi tanımlara nerede
+başvurmak gerektiğini belirtin.
+\begin{proof}
+  $z \in A \cup (A \cap B)$ ise $z \in A$ ya da $z \in A \cap B$. $z
+  \in A \cap B$ ise $z \in A$. Her $z \in A$ aynı zamanda $\in A \cup
+  (A \cap B)$'dir.
+\end{proof}
+\end{prob}
+

@@ -1,0 +1,44 @@
+% Generated from locale/tr/content/first-order-logic/introduction/substitution.tex; do not hand-edit.
+
+
+\olfileid[tr]{fol}{int}{sub}
+
+\olsection{Yerine Koyma}
+
+Her şeyin birbirine nasıl bağlandığını ve sözdizim ile semantiğin
+geliştirilmesinin daha sonraki ileri incelemelerimize nasıl temel
+hazırladığını göstermek için bir örneği ele alalım. !!{derivation}
+sistemlerimiz $\lforall[\Obj v_0][\Atom{\Obj P}{\Obj v_0}]$
+ifadesinden $\Atom{\Obj P}{\Obj a}$ ifadesini !!{derive} olanağı
+vermelidir. Belki bunu bir çıkarım kuralı olarak bile ifade etmek
+isteriz. Fakat bunun için kuralı en genel terimlerle; yalnızca
+$\Obj P$, $\Obj a$ ve $\Obj v_0$ için değil, herhangi bir
+!!{formula}~$!A$, herhangi bir~$t$ terimi ve !!{variable}~$x$ için
+ifade edebilmeliyiz. (!!{constant}s ifadelerinin terim olduğunu
+hatırlayın; ayrıca !!{constant}s ve !!{function}s kullanılarak kurulan
+daha karmaşık terimleri de ele alacağız.) Dolayısıyla ``ne zaman
+$\lforall[x][!A(x)]$ ifadesini !!{derive} ederseniz,~$\lforall[x]$
+bölümünü kaldırıp~$x$ yerine~$t$ koyma sonucunda elde edilen~$!A(t)$
+ifadesini çıkarmakta haklısınız'' gibi bir şey söyleyebilmek isteriz.
+Fakat ``$x$ yerine~$t$ koymak'' tam olarak ne demektir? $!A(x)$ ile
+$!A(t)$ arasındaki ilişki nedir? Bu her zaman çalışır mı?
+
+Bunu kesinleştirmek için \emph{yerine koyma} işlemini tanımlarız.
+Yerine koyma aslında güçtür; çünkü~$!A$ içindeki bütün~$x$ ifadelerini
+öylece~$t$ ile değiştiremeyiz ve her~$t$, herhangi bir~$x$ yerine
+konamaz. Bunu yine tümevarımlı tanımlarla ele alacağız. Fakat tanım
+yapıldıktan sonra ``$\lforall[x][!A(x)]$ ifadesinden~$!A(t)$ çıkar''
+çıkarım kuralı kesin bir tanım olur. Dahası bunun iyi bir çıkarım
+kuralı olduğunu, yani $\lforall[x][!A(x)]$ ifadesinin~$!A(t)$
+ifadesini mantıksal olarak gerektirdiğini gösterebileceğiz. Ancak bunu
+ispatlamak için ilk bakışta ``bunu neden yapıyoruz?'' diye sormanıza
+yol açabilecek başka bir şeyi daha ispatlamalıyız.
+$\lforall[x][!A(x)]$ ifadesinin~$!A(t)$'yi mantıksal olarak
+gerektirmesi, $\Sat M{!A(t)}$ olup olmamasının yalnızca~$t$ teriminin
+değerine bağlı olması olgusuna dayanır. Başka bir deyişle $m$,
+$\Domain M$ içindeki~$t$ teriminin gösterdiği !!{element} olsun; o
+zaman $\Sat M{!A(t)}[s]$ ancak ve ancak
+$\Sat M{!A(x)}[\Subst{s}{m}{x}]$ ise. Bu,~$t$ !!{variable}s içerse
+bile geçerlidir; fakat sonucu tam olarak nasıl ifade ettiğimize dikkat
+etmemiz gerekecektir.
+

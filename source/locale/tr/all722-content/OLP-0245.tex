@@ -1,0 +1,56 @@
+% Generated from locale/tr/content/computability/computability-theory/complete-ce-sets.tex; do not hand-edit.
+
+
+\olfileid[tr]{cmp}{thy}{cce}
+\olsection{Tam Hesaplanabilir Biçimde Numaralandırılabilir Kümeler}
+
+\begin{defn}
+Bir $A$ kümesi aşağıdaki koşulları sağlıyorsa çok-bir indirgenebilirlik
+altında \emph{tam !!{computably enumerable} küme}dir:
+\begin{enumerate}
+\item $A$ hesaplanabilir biçimde numaralandırılabilir ve
+\item hesaplanabilir biçimde numaralandırılabilir her başka $B$ kümesi için
+  $B\leq_m A$.
+\end{enumerate}
+\end{defn}
+
+Başka bir deyişle tam hesaplanabilir biçimde numaralandırılabilir kümeler,
+olası ``en zor'' hesaplanabilir biçimde numaralandırılabilir kümelerdir.
+\emph{Her} hesaplanabilir biçimde numaralandırılabilir küme hakkındaki
+soruların yanıtlanmasını sağlarlar.
+
+\begin{thm}
+$K$, $K_0$ ve $K_1$ kümelerinin tümü tam hesaplanabilir biçimde
+numaralandırılabilir kümelerdir.
+\end{thm}
+
+\begin{proof}
+$K_0$'ın tam olduğunu görmek için $B$ herhangi bir hesaplanabilir biçimde
+numaralandırılabilir küme olsun. O zaman bazı $e$ indisi için
+\[
+  B=W_e=\Setabs{x}{\cfind{e}(x)\fdefined}
+\]
+olur. $f(x)=\tuple{e,x}$ olsun. Her doğal sayı $x$ için $x\in B$ ancak ve
+ancak $f(x)\in K_0$ olur. Başka bir deyişle $f$, $B$'yi $K_0$'a indirger.
+
+$K_1$'in tam olduğunu görmek için \olref[k1]{prop:k1} ispatında $K_0$'ı
+$K_1$'e indirgediğimize dikkat edin. Dolayısıyla
+\olref[ppr]{prop:trans-red} uyarınca hesaplanabilir biçimde
+numaralandırılabilir her küme $K_1$'e de indirgenebilir.
+
+$K$ de benzer biçimde $K_0$'a indirgenebilir.
+\end{proof}
+
+\begin{prob}
+$K$'nin $K_0$'a bir indirgemesini verin.
+\end{prob}
+
+\begin{digress}
+Şimdiye kadar ele aldığımız hesaplanabilir biçimde numaralandırılabilir
+kümelerin ya hesaplanabilir ya da tam olduğu ortaya çıktı. Bu garip
+görünmelidir. Ne hesaplanabilir ne de tam olan hesaplanabilir biçimde
+numaralandırılabilir kümeler var mıdır? Yanıt evettir; fakat bu sonuç ancak
+1950'lerin ortalarında Friedberg ile Muchnik tarafından birbirlerinden
+bağımsız olarak elde edilmiştir.
+\end{digress}
+

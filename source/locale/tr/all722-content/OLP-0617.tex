@@ -1,0 +1,147 @@
+% Generated from locale/tr/content/methods/induction/inductive-definitions.tex; do not hand-edit.
+
+
+\olfileid[tr]{mth}{ind}{idf}
+
+\olsection{Tümevarımsal Tanımlar}
+
+Mantıkta nesne türlerini çok sık \emph{tümevarımsal olarak} tanımlarız;
+yani tanımlanacak türden bir nesne sayılmanın kurallarını belirler ve bu
+kurallarla o türden eski nesnelerden o türden yeni nesnelerin nasıl elde
+edileceğini açıklarız. Örneğin bir dilin terimleri ve !!{formula}s gibi
+özel simge dizisi türlerini çoğu kez tümevarımla tanımlarız. Basit bir
+örnek olarak, $\mathrm{a}$, $\mathrm{b}$, $\mathrm{c}$, $\mathrm{d}$ harflerinden,
+~$\circ$ simgesinden ve $[$ ile $]$ köşeli parantezlerinden oluşan
+``$[[\mathrm{c} \circ \mathrm{d}][$'', ``$[\mathrm{a}[]\circ]$'',
+``$\mathrm{a}$'' ya da ``$[[\mathrm{a} \circ \mathrm{b}]\circ
+\mathrm{d}]$'' gibi dizileri ele alın. İlk iki dizide bir şeylerin
+``yanlış'' olduğunu muhtemelen hissedersiniz: ilkinde köşeli parantezler
+hiç ``dengelenmez'' ve ``$\circ$''un, kendileri anlamlı olan ifadeleri
+``bağlaması'' gerektiğini düşünebilirsiniz. Üçüncü ve dördüncü dizi daha
+iyi görünür: her ``$[$'' için onu kapatan bir ``$]$'' vardır (herhangi
+biri varsa) ve her $\circ$ için iki yanında, bir çift köşeli parantezle
+çevrelenmiş ``düzgün'' ifadeler bulabiliriz.
+
+Neyin ``düzgün terim'' sayıldığını kesin olarak belirtmek istiyoruz.
+Öncelikle her harf tek başına düzgündür. Tek başına bir harften ibaret
+olmayan her şey, $s$ ile $t$'nin kendileri düzgün olmak üzere ``$[t
+\circ s]$'' biçiminde olmalıdır. Tersine $t$ ile $s$ düzgünse aralarına
+bir $\circ$ koyup onları bir çift köşeli parantezle çevreleyerek yeni
+bir düzgün terim oluşturabiliriz. Bu işlemleri, düzgün terimler
+kümesini \emph{tanımlamak} için kullanabiliriz. Bu bir \emph{tümevarımsal
+  tanım}dır.
+
+\begin{defn}[Düzgün terimler]
+  \emph{Düzgün terimler} kümesi tümevarımsal olarak şöyle tanımlanır:
+  \begin{enumerate}
+  \item Her $\mathrm{a}$, $\mathrm{b}$, $\mathrm{c}$, $\mathrm{d}$
+    harfi bir düzgün terimdir.
+  \item $s_1$ ile $s_2$ düzgün terimlerse $[s_1 \circ s_2]$ de düzgün
+    bir terimdir.
+  \item Başka hiçbir şey düzgün terim değildir.
+  \end{enumerate}
+\end{defn}
+
+Bu tanım, bir şeyin ancak ve ancak (1) ve~(2) koşullarına göre sonlu
+sayıda adımda kurulabiliyorsa düzgün terim sayıldığını söyler. İlk
+adımda yalnızca tek başına harflerden oluşan bütün düzgün terimleri
+kurarız:
+\[
+\mathrm{a}, \mathrm{b}, \mathrm{c}, \mathrm{d}
+\]
+İkinci adımda (2)'yi kurduğumuz terimlere uygularız. İki harfin bütün
+bileşimleri için şunları elde ederiz:
+\[
+[\mathrm{a} \circ \mathrm{a}], [\mathrm{a} \circ \mathrm{b}],
+[\mathrm{b} \circ \mathrm{a}], \dots, [\mathrm{d} \circ \mathrm{d}]
+\]
+Üçüncü adımda (2)'yi şimdiye dek kurduğumuz herhangi iki düzgün terime
+yeniden uygularız. $[\mathrm{a} \circ [\mathrm{a} \circ \mathrm{a}]]$
+gibi yeni bir düzgün terim---burada $t$, 1.~adımdaki $\mathrm{a}$ ve
+$s$, 2.~adımdaki $[\mathrm{a} \circ \mathrm{a}]$'dır---ve $[[\mathrm{b}
+\circ \mathrm{c}] \circ [\mathrm{d} \circ \mathrm{b}]]$ terimini elde
+ederiz; ikincisi 2.~adımdaki $[\mathrm{b} \circ \mathrm{c}]$ ile
+$[\mathrm{d} \circ \mathrm{b}]$ terimlerinden kurulmuştur.
+Bu böyle sürer. (3). madde, bu yolla kurulmamış herhangi bir şeyin
+düzgün terimler kümesine sızmasını engeller.
+
+``Düzgün'' gelen her simge dizisinin bu tanıma göre düzgün olduğunu
+henüz kanıtlamadığımıza dikkat edin. Bununla birlikte kurabildiğimiz
+her şeyin gerçekten ``düzgün'' geldiği açık olmalıdır: köşeli
+parantezler dengelidir ve $\circ$, kendileri düzgün olan parçaları
+bağlar.
+
+Tümevarımsal tanımların temel özelliği şudur: bütün düzgün terimler
+hakkında bir şey kanıtlamak istiyorsanız tanım, ele almanız gereken
+durumları size söyler. Örneğin $t$'nin bir düzgün terim olduğu
+söylenirse, tümevarımsal tanım $t$'nin nasıl görünebileceğini söyler:
+$t$ bir harf olabilir ya da bazı düzgün $s_1$ ve~$s_2$ terimleri için
+$[s_1 \circ s_2]$ olabilir. (3). madde gereği tek olasılıklar bunlardır.
+
+Tümevarımsal olarak tanımlanmış bir kümenin bütünü hakkındaki iddiaları
+kanıtlarken tümevarımın kuvvetli biçimi özellikle önem kazanır. Örneğin
+uzunluğu~$n$ olan her düzgün terimdeki $[$ sayısının~$< n/2$ olduğunu
+kanıtlamak istediğimizi düşünün. Bu, bütün~$n$'ler hakkında bir iddia
+olarak görülebilir: her $n$ için, uzunluğu~$n$ olan herhangi bir düzgün
+terimdeki $[$ sayısı $< n/2$'dir.
+
+\begin{prop}
+  Herhangi bir $n$ için, uzunluğu~$n$ olan bir düzgün terimdeki $[$
+  sayısı $< n/2$'dir.
+\end{prop}
+
+\begin{proof}
+Bu sonucu (kuvvetli) tümevarımla kanıtlamak için aşağıdaki koşullu
+iddianın doğru olduğunu göstermeliyiz:
+\begin{quote}
+  Her $l < k$ için, uzunluğu~$l$ olan herhangi bir düzgün terimde $<
+  l/2$ tane $[$ varsa, uzunluğu~$k$ olan herhangi bir düzgün terimde
+  $< k/2$ tane $[$ vardır.
+\end{quote}
+Bu koşulluyu göstermek için önbileşeninin doğru olduğunu varsayalım;
+yani herhangi bir $l<k$ için, uzunluğu~$l$ olan düzgün terimlerin $<
+l/2$ tane $[$ içerdiğini varsayalım. Bu varsayıma tümevarım hipotezi
+deriz. Aynı şeyin uzunluğu~$k$ olan düzgün terimler için doğru olduğunu
+göstermek istiyoruz.
+
+Öyleyse $t$, uzunluğu~$k$ olan bir düzgün terim olsun. Düzgün terimler
+tümevarımsal olarak tanımlandığından iki durumumuz vardır: (1)~$t$ tek
+başına bir harftir ya da (2)~$t$, bazı düzgün $s_1$ ve~$s_2$ terimleri
+için $[s_1 \circ s_2]$'dir.
+\begin{enumerate}
+\item $t$ bir harftir. O zaman $k = 1$ ve $t$'deki $[$ sayısı~$0$'dır.
+$0 < 1/2$ olduğundan iddia geçerlidir.
+\item $t$, bazı düzgün $s_1$ ve~$s_2$ terimleri için $[s_1 \circ
+  s_2]$'dir. $l_1$,~$s_1$'in; $l_2$ de~$s_2$'nin uzunluğu olsun.
+  O zaman $t$'nin uzunluğu~$k$, $l_1+l_2+3$'tür ($s_1$ ve $s_2$'nin
+  uzunluklarına üç $[$, $\circ$, $]$ simgesi eklenir).
+  $l_1+l_2+3$ her zaman $l_1$'den büyük olduğundan $l_1 < k$.
+  Benzer biçimde $l_2 < k$. Bu, tümevarım hipotezinin $s_1$ ve~$s_2$
+  terimlerine uygulanabileceği anlamına gelir: $s_1$'deki $[$ sayısı
+  $m_1$, $< l_1/2$'dir;~$s_2$'deki $[$ sayısı $m_2$ ise $< l_2/2$'dir.
+
+  $t$'deki $[$ sayısı,~$s_1$'deki $[$ sayısı ile~$s_2$'deki $[$
+  sayısına~$1$ eklenmiş hâlidir; yani $m_1 + m_2 + 1$'dir. $m_1 <
+  l_1/2$ ve $m_2 < l_2/2$ olduğundan şunu elde ederiz:
+  \[
+  m_1 + m_2 + 1 < \frac{l_1}{2} + \frac{l_2}{2} + 1 = \frac{l_1+l_2+2}{2} < \frac{l_1+l_2+3}{2} = k/2.
+  \]
+\end{enumerate}
+Her durumda, $t$'deki $[$ sayısının (tümevarım hipotezine dayanarak)
+$< k/2$ olduğunu gösterdik. Kuvvetli tümevarımla önerme çıkar.
+\end{proof}
+
+\begin{prob}
+  Süperdüzgün terimler kümesini şöyle tanımlayın:
+  \begin{enumerate}
+  \item Her $\mathrm{a}$, $\mathrm{b}$, $\mathrm{c}$, $\mathrm{d}$
+    harfi bir süperdüzgün terimdir.
+  \item $s$ bir süperdüzgün terimse $[s]$ de öyledir.
+  \item $s_1$ ve $s_2$ süperdüzgün terimlerse $[s_1 \circ s_2]$ de
+    bir süperdüzgün terimdir.
+  \item Başka hiçbir şey süperdüzgün terim değildir.
+  \end{enumerate}
+  Uzunluğu~$n$ olan bir süperdüzgün~$t$ terimindeki $[$ sayısının
+  $\le n/2 +1$ olduğunu gösterin.
+\end{prob}
+

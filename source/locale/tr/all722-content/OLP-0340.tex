@@ -1,0 +1,155 @@
+% Generated from locale/tr/content/second-order-logic/sol-and-set-theory/power-of-continuum.tex; do not hand-edit.
+
+
+\olfileid[tr]{sol}{set}{pow}
+
+\olsection{Kontinuumun Kuvveti}
+
+\begin{explain}
+İkinci dereceden mantıkta !!{domain}{}in alt kümeleri üzerinde niceleme
+yapabiliriz, fakat !!{domain}{}in alt kümelerinden oluşan kümeler üzerinde
+yapamayız. Bunu doğrudan yapmak için \emph{üçüncü dereceden} mantık
+gerekirdi. Örneğin bir kümenin kuvvet kümesinden kümenin kendisine giden
+!!{injective} bir fonksiyon bulunmadığını söyleyen Cantor Teoremini ifade etmek
+isteseydik, onu ``her $X$ kümesi ve her $P$ kümesi için, $P$, $X$'in kuvvet
+kümesiyse $\cardle{P}{X}$ değildir'' biçiminde formüle etmeyi deneyebilirdik.
+$P$'nin $X$'in kuvvet kümesi olduğunu söylemek de $P$'nin !!{element}s{}ının
+tam olarak $X$'in bütün alt kümeleri olduğunu, yani
+$\lforall[Y][(P(Y)\liff Y\subseteq X)]$ gibi bir şeyi biçimselleştirmeyi
+gerektirirdi. Sorun $P(Y)$ ifadesindedir: bu, ikinci dereceden mantığın
+!!a{formula}{}ü değildir; çünkü $P$ gibi tek konumlu bağıntı değişkenlerinin
+argümanları yalnızca terimler olabilir.
+
+Bununla birlikte tanım kümesi yeterince büyükse, kümelerden oluşan kümeler
+üzerinde nicelemeyi \emph{benzetebiliriz}. Düşünce, iki konumlu $R$
+bağıntılarının bazı !!{element}s{}ı (bunlar !!{domain} içindedir) başka
+!!{element}s ile (onlar da !!{domain} içindedir) ilişkilendirmesi olgusundan
+yararlanmaktır. Böyle bir $R$ verildiğinde bir $x$'in $R$-bağıntılı olduğu
+bütün !!{element}s{}ı toplayabiliriz:
+$\Setabs{y\in\Domain{M}}{R(x,y)}$, $x$ tarafından ``kodlanan'' kümedir.
+Tersine $Z\subseteq\Pow{\Domain{M}}$, $\Domain{M}$'nin alt kümelerinden oluşan
+bir koleksiyonsa ve $\Domain{M}$'de en az $Z$ içindeki kümeler kadar
+!!{element} varsa, her $Y\in Z$'nin bir $x$ tarafından $R$ kullanılarak
+kodlandığı bir $R\subseteq\Domain{M}^2$ bağıntısı da vardır.
+\end{explain}
+
+\begin{defn}
+$R\subseteq\Domain{M}^2$ ise $x$, $\Setabs{y\in\Domain{M}}{R(x,y)}$ kümesini
+\emph{$R$ ile kodlar}.
+\end{defn}
+
+!!a{element} $x\in\Domain{M}$ bir $Z\subseteq\Domain{M}$ kümesini $R$ ile
+kodluyorsa, bir $Y\subseteq\Domain{M}$ kümesi de kümelerden oluşan bir
+kümeyi, yani $Y$'nin !!{element}s{}ı tarafından kodlanan kümeleri kodlar.
+Dolayısıyla bir $Y$ kümesi $\Pow{X}$'i $R$ ile kodlayabilir. Bunu ancak ve
+ancak her $Z\subseteq X$ için bir $x\in Y$, $Z$'yi $R$ ile kodluyorsa ve her
+$x\in Y$, bir $Z\subseteq X$ kümesini $R$ ile kodluyorsa yapar.
+
+\begin{prop}
+!!{formula}
+  \[
+  \fn{Codes}(x, R, Z) \ident \lforall[y][(Z(y) \liff
+    R(x, y))]
+  \]
+$s(x)$'in $s(Z)$'yi $s(R)$ ile kodladığını ifade eder. Şu
+!!{formula} ise
+\begin{multline*}
+  \fn{Pow}(Y, R, X) \ident \\
+  \lforall[Z][(Z \subseteq X \lif \lexists[x][(Y(x) \land
+    \fn{Codes}(x, R, Z))])] \land {} \\ \lforall[x][(Y(x) \lif
+  \lforall[Z][(\fn{Codes}(x, R, Z) \lif Z \subseteq X)]])
+\end{multline*}
+$s(Y)$'nin $s(X)$'in kuvvet kümesini $s(R)$ ile kodladığını, yani $s(Y)$'nin
+elemanlarının $s(X)$'in tam olarak bütün alt kümelerini $s(R)$ ile
+kodladığını ifade eder.
+\end{prop}
+
+\begin{explain}
+Bu yöntemle alt kümelerin kendileri yerine alt kümelerin kodları üzerinde
+niceleme yaparak kuvvet kümesi hakkındaki ifadeleri dile getirebiliriz.
+Örneğin Cantor Teoremi artık, $X$'in kuvvet kümesini kodlayan herhangi bir
+bağıntının tanım kümesinden $X$'in kendisine giden !!{injective} bir fonksiyon
+bulunmadığı söylenerek ifade edilebilir.
+\end{explain}
+
+\begin{prop}
+Şu tümce geçerlidir:
+\begin{multline*}
+  \lforall[X][\lforall[Y][\lforall[R][(\fn{Pow}(Y, R, X) \lif \\
+      \lnot \lexists[u][(\lforall[x][\lforall[y][(\eq[u(x)][u(y)] \lif
+            \eq[x][y])]] \land {}\\
+        \lforall[x][(Y(x) \lif X(u(x)))])])]]].
+\end{multline*}
+\end{prop}
+
+\begin{explain}
+!!a{denumerable} kümenin kuvvet kümesi !!{nonenumerable}{}dır ve dolayısıyla
+kardinalitesi her !!{denumerable} kümeninkinden, yani $\aleph_0$'dan
+büyüktür. $\Pow{\Nat}$'ın büyüklüğüne ``kontinuumun kuvveti'' denir; çünkü
+bu, gerçel sayı doğrusu $\Real$ üzerindeki noktaların büyüklüğüyle aynıdır.
+!!{domain}, !!a{denumerable} kümenin kuvvet kümesini kodlayacak kadar
+büyükse, bir kümenin kontinuum büyüklüğünde olduğunu, $\aleph_0$
+büyüklüğündeki bir $X$ kümesinin kuvvet kümesini kodlayan herhangi bir $Y$
+kümesiyle eş güçlü olduğunu söyleyerek ifade edebiliriz. (Tanım kümesi yeterince
+büyük değilse, yani $\Real$ ile eş güçlü hiçbir alt küme içermiyorsa,
+$\Pow{X}$'i kodlayan bir bağıntı da olamaz.)
+\end{explain}
+
+\begin{prop}
+$\cardle{\Real}{\Domain{M}}$ ise şu !!{formula}
+\begin{multline*}
+\fn{Cont}(Y) \ident 
+\lexists[X][\lexists[R][((\fn{Aleph}_0(X) \land
+      \fn{Pow}(Y, R, X)) \land \\ 
+      \lforall[x][\lforall[y][((Y(x) \land {} 
+      Y(y) \land \lforall[z][R(x,z) \liff R(y,z)]) \lif \eq[x][y])]])]]
+\end{multline*}
+$\cardeq{s(Y)}{\Real}$ olduğunu ifade eder.
+\end{prop}
+
+\begin{proof}
+  $\fn{Pow}(Y,R,X)$, $s(Y)$'nin $s(X)$'in kuvvet kümesini $s(R)$ ile
+  kodladığını ifade eder; $\fn{Aleph}_0(X)$ ise $s(X)$'in sayılabilir
+  olduğunu söyler. Dolayısıyla $s(Y)$ en az kontinuumun kuvveti kadar
+  büyüktür; gerçi daha da büyük olabilir ($s(Y)$'nin birden çok elemanı
+  $X$'in aynı alt kümesini kodlarsa). Son bileşen bunu dışlar: $s(Y)$'nin
+  elemanları ile $s(X)$'in alt kümeleri arasında $s(R)$ aracılığıyla kurulan
+  ilişkinin !!{injective} olmasını gerektirir.
+\end{proof}
+
+\begin{prop}
+$\cardeq{\Domain{M}}{\Real}$ ancak ve ancak
+\begin{multline*}
+  \Sat{M}{\lexists[X][\lexists[Y][\lexists[R][(\fn{Aleph}_0(X) \land \fn{Pow}(Y, R, X) \land \\
+          \lexists[u][(\lforall[x][\lforall[y][(\eq[u(x)][u(y)] \lif \eq[x][y])]] \land {} \\\\lforall[y][(Y(y) \lif \lexists[x][\eq[y][u(x)]])])])]]]}.
+        \end{multline*}
+  \end{prop}
+
+\begin{explain}
+Kontinuum Hipotezi, kontinuumun büyüklüğünün ilk !!{nonenumerable}
+kardinalite olduğunu, yani $\Pow{\Nat}$'ın $\aleph_1$ büyüklüğünde olduğunu
+söyler.
+\end{explain}
+
+\begin{prop}
+Kontinuum Hipotezi ancak ve ancak
+\[\fn{CH} \ident
+\lforall[X][(\fn{Aleph}_1(X) \liff \fn{Cont}(X))]\]
+geçerliyse doğrudur.
+\end{prop}
+
+Kontinuum Hipotezi yanlışsa $\lnot\fn{CH}$'nin geçerli olduğu doğru değildir.
+!!a{enumerable} tanım kümesinde $\aleph_1$ büyüklüğünde alt kümeler de,
+kontinuum büyüklüğünde alt kümeler de yoktur; dolayısıyla $\fn{CH}$
+!!a{enumerable} tanım kümesinde her zaman doğrudur. Bununla birlikte,
+Kontinuum Hipotezi ancak ve ancak yanlış olduğunda geçerli olan farklı bir
+tümce verebiliriz:
+
+\begin{prop}
+Kontinuum Hipotezi ancak ve ancak
+\[\fn{NCH} \ident
+\lforall[X][(\fn{Cont}(X) \lif \lexists[Y][(Y \subseteq X \land \lnot
+    \fn{Count}(Y) \land \lnot \cardeq{X}{Y})])]\]
+geçerliyse yanlıştır.
+\end{prop}
+

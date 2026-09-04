@@ -1,0 +1,61 @@
+% Generated from locale/tr/content/model-theory/basics/theory-of-m.tex; do not hand-edit.
+
+
+\olfileid[tr]{mod}{bas}{thm}
+
+\section{Bir \printtoken{S}{structure} Kuramı}
+
+Her !!{structure}~$\Struct M$ bazı !!{sentence}s ifadelerini doğru,
+bazılarını yanlış kılar. Doğru kıldığı bütün !!{sentence}s kümesine
+onun \emph{kuramı} denir. Bu küme gerçekten de bir kuramdır; çünkü
+mantıksal olarak gerektirdiği her şey, $\Struct M$ dâhil bütün
+modellerinde doğru olmak zorundadır.
+
+\begin{defn}
+  !!a{structure}~$\Struct M$ verildiğinde $\Struct M$ yapısının
+  \emph{kuramı}, $\Struct M$ içinde doğru olan !!{sentence}s
+  kümesi~$\Theory M$'dir; yani
+  $\Theory M=\Setabs{!A}{\Sat{M}{!A}}$.
+\end{defn}
+
+``Kuram'' sözcüğünü, türetim bakımından kapalı olsun ya da olmasın,
+amaçlanan bir yorumu bulunan !!{sentence}s kümeleri için de gayriresmî
+olarak kullanırız.
+
+\begin{prop}
+Her $\Struct M$ için $\Theory M$ tamdır.
+\end{prop}
+
+\begin{proof}
+Her !!{sentence}~$!A$ için ya $\Sat{M}{!A}$ ya da
+$\Sat{M}{\lnot !A}$; dolayısıyla ya $!A\in\Theory M$ ya da
+$\lnot !A\in\Theory M$.
+\end{proof}
+
+\begin{prop}\ollabel{prop:equiv}
+  $\Theory M$ içindeki her $!A$ için $\Struct N\models !A$ ise
+  $\Struct M\elemequiv\Struct N$.
+\end{prop}
+
+\begin{proof}
+$\Theory M$ içindeki bütün $!A$ için $\Sat{N}{!A}$ olduğundan
+$\Theory M\subseteq\Theory N$. $\Sat{N}{!A}$ ise
+$\Sat/{N}{\lnot !A}$, dolayısıyla $\lnot !A\notin\Theory M$.
+$\Theory M$ tam olduğundan $!A\in\Theory M$. Böylece
+$\Theory N\subseteq\Theory M$ ve $\Struct M\elemequiv\Struct N$.
+\end{proof}
+
+\begin{rem}\ollabel{remark:R}
+  Evreni gerçel sayılar kümesi~$\Real$ olan ve yalnızca gerçeller
+  üzerindeki $<$ bağıntısı olarak yorumlanan iki yerli bir
+  !!{predicate} içeren !!{language} içindeki
+  $\Struct R=\langle\Real,<\rangle$ !!{structure} ifadesini ele alalım.
+  $\Struct R$ açıkça !!{nonenumerable}; fakat $\Theory R$ elbette
+  tutarlı olduğundan Löwenheim--Skolem teoremi gereği, örneğin
+  $\Struct S$ diyeceğimiz !!a{enumerable} modele sahiptir ve
+  \olref{prop:equiv} gereği $\Struct R\equiv\Struct S$. Üstelik
+  $\Struct R$ ile $\Struct S$ izomorf olmadığından bu,
+  \olref[iso]{thm:isom} teoreminin tersinin genel olarak geçersiz
+  olduğunu gösterir.
+\end{rem}
+

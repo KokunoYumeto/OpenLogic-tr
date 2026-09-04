@@ -1,0 +1,68 @@
+% Generated from locale/tr/content/intuitionistic-logic/semantics/semantic-notions.tex; do not hand-edit.
+
+
+\olfileid[tr]{int}{sem}{sem}
+
+\olsection{Semantik Kavramlar}
+
+\begin{defn}
+  $!A$'ya \emph{$\mModel{M} = \tuple{W,R,V}$ modelinde doğru}, $
+  \mSat{M}{!A}$, deriz ancak ve ancak $\mSat{M}{!A}[w]$ ise; bu her $w \in W$
+  için geçerlidir. $!A$, tüm modellerde doğruysa \emph{geçerlidir}; bunu
+  $\Entails !A$ diye yazarız. !!{formula}s{}den oluşan bir~$\Gamma$ kümesinin
+  $!A$'yı \emph{mantıksal olarak gerektirdiğini}, $\Gamma \Entails !A$,
+  söyleriz ancak ve ancak her model~$\mModel{M}$ ve her~$w$ için,
+  $\mSat{M}{\Gamma}[w]$ olması $\mSat{M}{!A}[w]$ olmasını gerektiriyorsa.
+\end{defn}
+
+\begin{prop}\ollabel{prop:sat-entails}
+  \begin{enumerate}
+  \item\ollabel{prop:sat-entails1} $\mSat{M}{\Gamma}[w]$ ve
+    $\Gamma \Entails !A$ ise $\mSat{M}{!A}[w]$.
+  \item\ollabel{prop:sat-entails2} $\mSat{M}{\Gamma}$ ve $\Gamma
+    \Entails !A$ ise $\mSat{M}{!A}$.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+  \item $\mSat{M}{\Gamma}[w]$ olduğunu varsayın. $\Gamma \Entails !A$
+    olduğundan, mantıksal gerektirme tanımı doğrudan $\mSat{M}{!A}[w]$ verir.
+  \item $\mSat{M}{\Gamma}$ olduğunu varsayın. Her $w \in W$ için
+    $\mSat{M}{\Gamma}[w]$ olur; \olref{prop:sat-entails1} uyarınca
+    $\mSat{M}{!A}[w]$ olur. Dolayısıyla $\mSat{M}{!A}$.
+  \end{enumerate}
+\end{proof}
+
+
+\begin{defn}\ollabel{defn:restrict}
+  $\mModel{M}$ bir bağıntısal model ve $w \in W$ olsun. \emph{Kısıtlama}
+  $\mModel{M}_w=\tuple{W_w, R_w, V_w}$,~$\mModel{M}$'nin~$w$'ye kısıtlanmasıyla
+  şöyle verilir:
+  \begin{align*}
+    W_w & = \Setabs{u \in W}{Rwu},\\
+    R_w  & = R \cap (W_w)^2, \text{ ve}\\
+    V_w(p) & = V(p) \cap W_w.
+  \end{align*}
+\end{defn}
+
+\begin{prop}\ollabel{prop:restrict}
+  $\mSat{M}{!A}[w]$ ancak ve ancak $\mSat{M_w}{!A}$.
+\end{prop}
+
+\begin{prob}
+  \olref[int][sem][sem]{prop:restrict} önermesini ispatlayın.
+\end{prob}
+
+\begin{prop}
+  Her model~$\mModel{M}$ için $\mSat{M}{\Gamma}$ ise
+  $\mSat{M}{!A}$ olduğunu varsayın. O zaman $\Gamma \Entails !A$.
+\end{prop}
+
+\begin{proof}
+  $\mSat{M}{\Gamma}[w]$ olduğunu varsayın. \olref{prop:restrict} önermesini
+  her~$!B \in \Gamma$'ya uygulayınca $\mSat{M_w}{\Gamma}$ elde ederiz.
+  Varsayım gereği $\mSat{M_w}{!A}$ olur. \olref{prop:restrict} önermesini
+  yeniden kullanınca $\mSat{M}{!A}[w]$ elde ederiz.
+\end{proof}
+

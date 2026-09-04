@@ -1,0 +1,168 @@
+% Generated from locale/tr/content/set-theory/ordinals/iso.tex; do not hand-edit.
+
+
+\olfileid[tr]{sth}{ordinals}{iso}
+\olsection{Sıra İzomorfizmleri}
+
+İyi sıralamanın \emph{ne kadar} sağlam olduğunu açıklamak için önce iyi
+sıralamaları karşılaştırma yöntemini tanıtacağız.
+
+\begin{defn}
+Bir \emph{iyi sıralama}, $<$ bağıntısının $A$'yı iyi sıraladığı
+$\tuple{A,<}$ ikilisidir. $\tuple{A,<}$ ve $\tuple{B,\lessdot}$ iyi
+sıralamaları, $x<y$ ancak ve ancak $f(x)\lessdot f(y)$ olacak biçimde bir
+!!a{bijection} $f\colon A\to B$ varsa \emph{sıra izomorftur}. Bu durumda
+$\ordeq{\tuple{A,<}}{\tuple{B,\lessdot}}$ yazar ve $f$'ye bir
+\emph{sıra izomorfizmi} deriz.
+\end{defn}
+\noindent
+Bundan sonra kısaca ``sıra izomorfizmleri'' yerine ``izomorfizmler''
+diyeceğiz. Sezgisel olarak izomorfizmler, yapıyı koruyan
+!!{bijection}s. İzomorfizmler hakkındaki bazı basit olgular şunlardır.
+
+\begin{lem}\ollabel{isoscompose}
+İzomorfizmlerin bileşkeleri izomorfizmdir; yani $f\colon A\to B$ ile
+$g\colon B\to C$ izomorfizmse $(g\circ f)\colon A\to C$ de izomorfizmdir.
+\end{lem}
+\begin{prob}
+	\olref[sth][ordinals][iso]{isoscompose} sonucunu ispatlayın.
+\end{prob}
+\begin{proof}
+Alıştırma olarak bırakılmıştır.
+\end{proof}
+\begin{cor}\ollabel{ordisoisequiv}
+	$\ordeq{X}{Y}$ bir denklik bağıntısıdır.
+\end{cor}
+\begin{prop}\ollabel{ordisounique}
+$\tuple{A,<}$ ve $\tuple{B,\lessdot}$ izomorf iyi sıralamalarsa aralarındaki
+izomorfizm biriciktir.
+\end{prop}
+
+\begin{proof}
+$f$ ile $g$, $A\to B$ izomorfizmleri olsun. Sonucu tümevarımla, yani
+\olref[wo]{propwoinduction} kullanarak ispatlayacağız. $a\in A$ sabitleyin
+ve tümevarım varsayımı olarak $(\forall b<a)f(b)=g(b)$ kabul edin.
+$x\in B$ sabitleyin.
+
+$x\lessdot f(a)$ ise $f^{-1}(x)<a$ olur; $f$ ile $g$'nin izomorfizm
+olduğunu kullanarak $g(f^{-1}(x))\lessdot g(a)$ elde edilir. Fakat
+$f^{-1}(x)<a$ olduğundan varsayımımız gereği
+$x=f(f^{-1}(x))=g(f^{-1}(x))$'tir. Dolayısıyla $x\lessdot g(a)$ olur.
+Benzer biçimde $x\lessdot g(a)$ ise $x\lessdot f(a)$ olur.
+
+Genelleyerek $(\forall x\in B)(x\lessdot f(a)\liff x\lessdot g(a))$
+elde ederiz. \olref[sfr][rel][ord]{prop:extensionality-strictlinearorders}
+gereği bundan $f(a)=g(a)$ çıkar. Böylece
+\olref[wo]{propwoinduction} gereği $(\forall a\in A)f(a)=g(a)$ olur.
+\end{proof}\noindent
+Bu, iyi sıralamaların sağlamlığı hakkında bir fikir verir. Bunu açıklamayı
+sürdürmek için biraz daha gösterim tanıtmak yararlı olacaktır.
+
+\begin{defn}
+$\tuple{A,<}$, $a\in A$ olan bir iyi sıralamaysa
+$A_a=\Setabs{x\in A}{x<a}$ olsun. $A_a$'ya $A$'nın bir öz
+\emph{başlangıç kesiti} deriz (ve $A$'nın kendisinin öz olmayan bir
+başlangıç kesiti olmasına izin veririz). $<_a$, $<$ bağıntısının başlangıç
+kesitine kısıtlaması, yani $\funrestrictionto{\mathord{<}}{A_a^2}$ olsun.
+\end{defn}
+\noindent
+Bu gösterimi kullanarak hiçbir iyi sıralamanın öz başlangıç kesitlerinden
+herhangi biriyle izomorf olmadığını ifade ve ispat edebiliriz.
+
+\begin{lem}\ollabel{wellordnotinitial}
+$\tuple{A,<}$, $a\in A$ olan bir iyi sıralamaysa
+$\ordneq{\tuple{A,<}}{\tuple{A_a,<_a}}$ olur.
+\end{lem}
+
+\begin{proof}
+Olmayana ergiyle $f\colon A\to A_a$'nın bir izomorfizm olduğunu varsayın.
+$f$ bir bire bir örten fonksiyon ve $A_a\subsetneq A$ olduğundan,
+\olref[wo]{wo:strictorder} kullanarak $A$ içinde $b\neq f(b)$ koşulunu
+sağlayan $<$-en küçük !!{element} $b$'yi seçin. Şimdi
+$(\forall x\in A)(x<b\liff x<f(b))$ olduğunu göstereceğiz; bundan
+\olref[sfr][rel][ord]{prop:extensionality-strictlinearorders} gereği
+$b=f(b)$ çıkar ve olmayana ergi tamamlanır.
+
+$x<b$ olduğunu varsayın. $b$'nin seçimi gereği $x=f(x)$ olur. $f$
+izomorfizm olduğundan $f(x)<f(b)$'dir. Dolayısıyla $x<f(b)$ olur.
+
+$x<f(b)$ olduğunu varsayın. $f$ izomorfizm olduğundan $f^{-1}(x)<b$ olur;
+$b$'nin seçimi gereği de $f^{-1}(x)=x$'tir. Dolayısıyla $x<b$ olur.
+\end{proof}
+
+Sonraki sonucumuz, kabaca söylemek gerekirse, bir izomorfizmin ``başlangıç
+kesitinin'' de bir izomorfizm olduğunu gösterir:
+
+\begin{lem}\ollabel{wellordinitialsegment}
+$\tuple{A,<}$ ve $\tuple{B,\lessdot}$ iyi sıralamalar olsun.
+$f\colon A\to B$ bir izomorfizm ve $a\in A$ ise
+$\funrestrictionto{f}{A_a}\colon A_a\to B_{f(a)}$ bir izomorfizmdir.
+\end{lem}
+
+\begin{proof}
+$f$ bir izomorfizm olduğundan:
+	%Since $f$ is an isomorphism, $b < a$ iff $f(b) \lessdot f(a)$, so that 
+\begin{align*}
+	\funimage{f}{A_a} &= \funimage{f}{\Setabs{x \in A}{x < a}}\\
+	&= \funimage{f}{\Setabs{f^{-1}(y) \in A}{f^{-1}(y) < a}} \\
+	&= \Setabs{y \in B}{y \lessdot f(a)} \\
+	&=B_{f(a)}
+\end{align*}
+olur. $f$ sırayı koruduğu için $\funrestrictionto{f}{A_a}$ da sırayı korur.
+\end{proof}
+
+Sonraki iki sonucumuz iyi sıralamaların her zaman karşılaştırılabilir
+olduğunu ortaya koyar:
+
+\begin{lem}\ollabel{lemordsegments}
+$\tuple{A,<}$ ve $\tuple{B,\lessdot}$ iyi sıralamalar olsun. Eğer
+$\ordeq{\tuple{A_{a_1},<_{a_1}}}{\tuple{B_{b_1},\lessdot_{b_1}}}$ ve
+$\ordeq{\tuple{A_{{a_2}},<_{a_2}}}{\tuple{B_{{b_2}},
+\lessdot_{b_2}}}$ ise ${a_1}<{a_2}$ ancak ve ancak
+${b_1}\lessdot{b_2}$ olur.
+\end{lem}
+
+\begin{proof}
+\emph{Soldan sağa} yönü ispatlayacağız; öteki yön benzerdir.
+$\ordeq{\tuple{A_{a_1},<_{a_1}}}{\tuple{B_{b_1},\lessdot_{b_1}}}$ ve
+$\ordeq{\tuple{A_{{a_2}},<_{a_2}}}{\tuple{B_{{b_2}},\lessdot_{b_2}}}$
+olsun; izomorfizmimiz $f\colon A_{{a_2}}\to B_{{b_2}}$ olsun.
+${a_1}<{a_2}$ kabul edin. O zaman
+\olref{wellordinitialsegment} gereği
+$\ordeq{\tuple{A_{a_1},<_{a_1}}}{\tuple{B_{f({a_1})},
+\lessdot_{f({a_1})}}}$ olur. Dolayısıyla
+$\ordeq{\tuple{B_{b_1},\lessdot_{b_1}}}{\tuple{B_{f({a_1})},
+\lessdot_{f({a_1})}}}$ ve \olref{wellordnotinitial} gereği
+${b_1}=f({a_1})$ olur. $f$'nin değer kümesi $B_{{b_2}}$ olduğundan
+${b_1}\lessdot{b_2}$ elde edilir.
+\end{proof}
+
+\begin{thm}\ollabel{thm:woalwayscomparable}
+Herhangi iki iyi sıralama verildiğinde biri, ötekinin (öz olması gerekmeyen)
+bir başlangıç kesitiyle izomorftur.
+\end{thm}
+
+\begin{proof}
+$\tuple{A,<}$ ve $\tuple{B,\lessdot}$ iyi sıralamalar olsun. Ayırma'yı
+kullanarak
+\[
+	f = \Setabs{\tuple{a, b} \in A \times B}{
+		\ordeq{\tuple{A_a, <_a}}{\tuple{B_b, \lessdot_b}}}
+\]
+olsun. \olref{lemordsegments} gereği, bütün
+$\tuple{a_1,b_1},\tuple{a_2,b_2}\in f$ için $a_1<a_2$ ancak ve ancak
+$b_1\lessdot b_2$ olur. Böylece
+$f\colon\dom{f}\to\ran{f}$ bir izomorfizmdir.
+
+$a_2\in\dom{f}$ ve $a_1<a_2$ ise
+\olref{wellordinitialsegment} gereği $a_1\in\dom{f}$ olur; dolayısıyla
+$\dom{f}$, $A$'nın bir başlangıç kesitidir. Benzer biçimde $\ran{f}$,
+$B$'nin bir başlangıç kesitidir. Olmayana ergiyle ikisinin de \emph{öz}
+başlangıç kesiti olduğunu varsayın. O zaman $A\setminus\dom{f}$ içinde
+$<$-en küçük !!{element} $a$ olsun; böylece $\dom{f}=A_a$ olur. Benzer
+biçimde $B\setminus\ran{f}$ içinde $\lessdot$-en küçük !!{element} $b$
+olsun; böylece $\ran{f}=B_b$ olur. Demek ki
+$f\colon A_a\to B_b$ bir izomorfizmdir; dolayısıyla
+$\tuple{a,b}\in f$ olur. Bu bir çelişkidir.
+\end{proof}
+

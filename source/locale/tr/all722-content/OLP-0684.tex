@@ -1,0 +1,192 @@
+% Generated from locale/tr/content/proof-theory/proof-search/tableaux.tex; do not hand-edit.
+
+
+\olfileid[tr]{pt}{ps}{tab}
+
+\olsection{Tableau Sistemleri}
+
+Tableau sistemleri, sekant hesaplarıyla yakından ilişkili olan ve hem
+elle hem de yazılımda uygulanarak ispat aramaya özellikle elverişli
+!!{proof} sistemleridir. Tableau sistemlerinde sekantlardan oluşan ağaçlar
+kurmak yerine, !!a{proof}, !!{formula} biçimlerinden oluşan bir ağaçtır. Ancak
+doğal tümdengelimden farklı olarak kurallar sekant hesabının kurallarını
+yansıtır. Bir tableau !!{proof}, özünde açık bir model aramasıdır. Bu
+nedenle bu sistemlere bazen \emph{anlamsal} tableau ya da \emph{doğruluk
+ağacı} da denir.
+
+\emph{İşaretli} tableau, $\sFmla{\True}{!A}$ veya
+$\sFmla{\False}{!A}$ biçiminde olabilen işaretli !!{formula} biçimlerinden
+oluşan bir ağaçtır. Ağaçlar aşağı doğru büyür. İstenen sonucu belirten
+!!{formula} biçimleriyle başlarlar; amaç bu sonucu !!{prove}{}maktır. Örneğin,
+$!A, !B \Sequent !C, !D$ sekantını !!{prove}{}mak için tableau
+$\sFmla{\True}{!A}, \sFmla{\True}{!B},
+\sFmla{\False}{!C}, \sFmla{\False}{!D}$ ile başlar.
+$!A$ ve $!B$'yi doğru, $!C$ ve $!D$'yi yanlış yapan !!^a{structure},
+$!A, !B \Sequent !C, !D$ sekantının geçerli olmadığını gösteren
+!!a{structure} olur.
+
+Tableau ağacının bir yaprak (en alttaki) düğümü, aynı dala ek düğümler
+ekleyen ya da aşağıya iki kardeş düğüm ekleyerek dalı iki yeni dala
+ayıran dal genişletme kurallarıyla genişletilebilir. Kurallar, aynı
+dalda yukarıda bulunan herhangi bir işaretli !!{formula} için
+uygulanabilir. Klasik tableau sistemi \Log{Tc}'nin dal genişletme
+kuralları \olref{tab:Tc}'de verilmiştir.
+
+\allmodulessubfile{OLP-0682}
+
+Görüldüğü gibi, kurallar yalnızca \Log{G3c}'nin baş aşağı çevrilmiş
+kurallarıdır; $\True$ ve $\False$ işaretleri ise sırasıyla bir
+ana !!a{formula}{}ün sekantın solunda mı yoksa sağında mı
+olduğunu gösterir.
+
+Bir tableau dalı hem $\sFmla{\True}{!A}$ hem de
+$\sFmla{\False}{!A}$ içeriyorsa \emph{kapalıdır}. Her dal kapalıysa
+tableau ağacının tamamına kapalı deriz. Örneğin aşağıdaki, $!A \lor (!B
+\land !C) \Sequent (!A \lor !B) \land (!A \lor !C)$ için kapalı bir
+tableau örneğidir; yani $\sFmla{\True}{!A \lor (!B \land !C)}$ ve
+$\sFmla{\False}{(!A \lor !B) \land (!A \lor !C)}$ ile başlar:
+\begin{oltableau}
+  [\sFmla{\True}{\formula{A} \lor (\formula{B} \land \formula{C})},
+    just=\TAss, checked
+    [\sFmla{\False}{(\formula{A} \lor \formula{B}) \land
+        (\formula{A} \lor \formula{C})}, just=\TAss, checked
+      [\sFmla{\True}{\formula{A}}, just={\TRule{\True}{\lor}[1]}
+        [\sFmla{\False}{\formula{A} \lor \formula{B}},
+          just={\TRule{\False}{\land}[2]}, checked
+          [\sFmla{\False}{\formula{A}},
+            just={\TRule{\False}{\lor}[4]}
+            [\sFmla{\False}{\formula{B}},
+              just={\TRule{\False}{\lor}[4]}, close]
+          ]
+        ]
+        [\sFmla{\False}{\formula{A} \lor \formula{C}},
+          just={\TRule{\False}{\land}[2]}, checked
+          [\sFmla{\False}{\formula{A}},
+            just={\TRule{\False}{\lor}[4]}
+            [\sFmla{\False}{\formula{C}},
+              just={\TRule{\False}{\lor}[4]}, close]
+          ]
+        ]
+      ]
+      [\sFmla{\True}{\formula{B} \land \formula{C}},
+        just={\TRule{\True}{\lor}[1]}, checked
+        [\sFmla{\False}{\formula{A} \lor \formula{B}},
+          just={\TRule{\False}{\land}[2]}, checked
+          [\sFmla{\True}{\formula{B}},
+            just={\TRule{\True}{\land}[3]}, move by=2
+            [\sFmla{\True}{\formula{C}},
+              just={\TRule{\True}{\land}[3]}
+              [\sFmla{\False}{\formula{A}},
+                just={\TRule{\False}{\lor}[4]}
+                [\sFmla{\False}{\formula{B}},
+                  just={\TRule{\False}{\lor}[4]},close
+                ]
+              ]
+            ]
+          ]
+        ]
+        [\sFmla{\False}{\formula{A} \lor \formula{C}},
+          just={\TRule{\False}{\land}[2]}, checked
+          [\sFmla{\True}{\formula{B}},
+            just={\TRule{\True}{\land}[3]}, move by=2
+              [\sFmla{\True}{\formula{C}},
+                just={\TRule{\True}{\land}[3]}
+                [\sFmla{\False}{\formula{A}},
+                  just={\TRule{\False}{\lor}[4]}
+                  [\sFmla{\False}{\formula{C}},
+                  just={\TRule{\False}{\lor}[4]},close
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  ]
+\end{oltableau}
+
+Onay işaretleri, ilgili kuralın bir !!a{formula} için onun altındaki
+tüm dallarda uygulanmış olduğunu gösterir. $\otimes$ simgesi bir dalın
+kapalı olduğunu gösterir. Kuralların ardından gelen satır numaraları,
+kuralın hangi işaretli !!{formula} biçimlerine uygulandığını (yani belirtilen
+satırda, aynı dalda bulunan !!{formula} için uygulandığını) gösterir.
+
+Tableau sistemlerinde ispat aramak kolaydır. Bir tableau ağacını aşamalar hâlinde
+üretiriz. $0$. aşamada yalnızca başlangıç !!{formula} biçimlerini en üste
+yazarız. $n+1$. aşamada her yaprak düğüm için şunları yaparız: Henüz
+onay işareti konmamış ilk (en üstteki) işaretli formülü buluruz. Dal
+genişletme kuralını bu formüle uygularız. Kural, söz konusu işaretli
+formülü içeren her dalda uygulandıktan sonra formüle onay işareti
+koyarız. (Yukarıdaki örnek bu algoritma kullanılarak üretilmiştir.)
+
+$\sFmla{\True}{\lforall}$ ve $\sFmla{\False}{\lexists}$ biçimindeki
+işaretli !!{formula} biçimlerine hiçbir zaman onay işareti konmaz; dolayısıyla
+bunlara özel davranılmalıdır. Bunlar mevcutsa $\TRule{\True}{\forall}$
+ve $\TRule{\False}{\lexists}$ kurallarının uygulanabilir tüm terimler
+için eninde sonunda uygulanmasını sağlamalıyız. Bu, örneğin her aşamada
+bu tür bütün formüllere, her dalda (bu biçimde olmayan en üstteki
+işaretli !!{formula} ele alındıktan sonra) kuralları uygulayarak garanti
+edilebilir. Kullanılacak $t$ terimi, dalda zaten geçen !!{constant} simgeleri
+(hiç !!{constant} geçmiyorsa $\Obj c_0$) ve başlangıçta kullanılan
+!!{function} simgeleri---yani başlangıç !!{formula} biçimlerinde
+geçenler---kullanılarak kurulabilen ve
+karşılık gelen $\sFmla{\True}{!B(t)}$ ya da
+$\sFmla{\False}{!B(t)}$ işaretli !!{formula} dalda henüz geçmeyen ilk
+$t$ terimidir.
+
+Bu ispat araması kapalı bir tableau üretmezse ya atomik olmayan tüm
+!!{formula} biçimlerine onay işareti konmuş sonlu bir açık dal içerir ya da
+arama, sonsuz bir dal içermesi gereken sonsuz ve sonlu dallanan bir
+ağaç üretir. \olref[cpl]{sec}'de olduğu gibi, dalda
+$\sFmla{\True}{!A}$ geçiyorsa $\Sat{M}{!A}$ ve
+$\sFmla{\False}{!A}$ geçiyorsa $\Sat/{M}{!A}$ olacak biçimde
+!!a{structure}~$\Struct{M}$ tanımlayabiliriz. ($\Theta =
+\Setabs{!A}{\sFmla{\True}{!A} \text{ dalda geçer}}$ ve $\Xi =
+\Setabs{!A}{\sFmla{\False}{!A} \text{ dalda geçer}}$ alınır.)
+
+Bu ispat arama yöntemiyle üretilen tableau ağaçları, her düğüme bir sekant
+atanarak kolayca \Log{G3c} ispatlarına çevrilebilir. Başlangıç
+formülleri bir $\Gamma \Sequent \Delta$ sekantına karşılık
+geliyorsa başlangıç formüllerinin her birini $\Gamma \Sequent \Delta$
+ile etiketleyin. Bir dal, $\sFmla{\True}{!A}$ işaretli !!{formula}
+için dal genişletme kuralı uygulanarak genişletilmişse yaprak $!A,
+\Pi \Sequent \Lambda$ ile; kural $\sFmla{\False}{!A}$ işaretli
+!!{formula} için uygulanmışsa yaprak $\Pi \Sequent \Lambda, !A$ ile
+etiketlenir. Tableau'nun bir $\TRule{\True}{\star}$ kuralı uyguladığı
+yerde sekanta (ana $!A$ ile) $\LeftR{\star}$ kuralını; bir
+$\TRule{\False}{\star}$ kuralı uyguladığı yerdeyse $\RightR{\star}$
+kuralını uygulayın. Kuralın öncülleri, tableau ağacına eklenen karşılık gelen
+düğümleri etiketleyen sekantlardır. Bir tableau
+$\sFmla{\True}{!A}$ ve $\sFmla{\False}{!A}$ ile kapandığında son
+yaprak düğümünün etiketi $!A, \Pi \Sequent \Lambda, !A$ biçiminde bir
+sekant olacaktır. Tableau ağacında ardışık bazı düğümlere aynı sekant
+atanacaktır; yinelenenleri silin. Örneğin yukarıdaki tableau şu
+!!{proof} biçimine çevrilir:
+\[\small
+\Axiom$!A \fCenter !A, !B$
+\RightLabel{\RightR{\lor}}
+\UnaryInf$!A \fCenter !A \lor !B$
+\Axiom$!A \fCenter !A, !C$
+\RightLabel{\RightR{\lor}}
+\UnaryInf$!A \fCenter !A \lor !C$
+\RightLabel{\RightR{\land}}
+\BinaryInf$!A \fCenter (!A \lor !B) \land (!A \lor !C)$
+\Axiom$!B, !C \fCenter !A, !B$
+\RightLabel{\RightR{\lor}}
+\UnaryInf$!B, !C \fCenter !A \lor !B$
+\RightLabel{\LeftR{\land}}
+\UnaryInf$!B \land !C \fCenter !A \lor !B$
+\Axiom$!B, !C \fCenter !A, !C$
+\RightLabel{\RightR{\lor}}
+\UnaryInf$!B, !C \fCenter !A \lor !C$
+\RightLabel{\LeftR{\land}}
+\UnaryInf$!B \land !C \fCenter !A \lor !C$
+\RightLabel{\RightR{\land}}
+\BinaryInf$!B \land !C \fCenter (!A \lor !B) \land
+(!A \lor !C)$
+\RightLabel{\LeftR{\lor}}
+\BinaryInf$!A \lor (!B \land !C) \fCenter (!A \lor !B) \land
+(!A \lor !C)$
+\DisplayProof
+\]
+

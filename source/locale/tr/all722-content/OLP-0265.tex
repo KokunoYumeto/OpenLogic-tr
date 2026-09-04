@@ -1,0 +1,85 @@
+% Generated from locale/tr/content/turing-machines/undecidability/introduction.tex; do not hand-edit.
+
+
+\olfileid[tr]{tur}{und}{int} 
+\olsection{Giriş}
+
+Her fonksiyonun, hatta her aritmetik fonksiyonun hesaplanabilir olamayacağı
+açık görünebilir. Sayıları fazladır ve davranışları fazlasıyla karmaşıktır.
+Örneğin radyoaktif parçacıkların bozunmasından ya da başka kaotik veya
+rastlantısal davranışlardan tanımlanan fonksiyonlar böyledir. Belirli bir
+andan başlayarak bir saniyelik aralıkları saydığımızı ve $f(n)$ fonksiyonunu,
+bu ilk andan sonraki $n$. bir saniyelik aralıkta evrende bozunan parçacık
+sayısı olarak tanımladığımızı varsayalım. Bu, hesaplamayı hiçbir zaman
+umamayacağımız bir fonksiyon adayı gibi görünür.
+
+Ne var ki böyle fonksiyonların nasıl hesaplanacağını tasarlayamamak başka,
+gerçekten hesaplanamaz olduklarını kanıtlamak başkadır. Umutsuzca karmaşık
+görünen fonksiyonlar bile soyut bir anlamda hesaplanabilir olabilir. Örneğin
+evrenin zamanda sonlu olduğunu, bazı kozmoloji kuramlarının öngördüğü gibi çok
+uzak bir gelecekte bir gün tek bir noktaya çökeceğini varsayalım. O zaman bu
+ilk andan başlayarak $f(n)$'nin tanımlı olduğu yalnızca sonlu (ama inanılmaz
+büyük) sayıda saniye vardır. Yalnızca sonlu sayıda girdide tanımlı her
+fonksiyon hesaplanabilir: Çıktıları büyük bir tabloda listeleyebilir ya da çok
+büyük bir Turing makinesi durum geçiş diyagramında kodlayabiliriz.
+
+Değerleri evet/hayır sorularının yanıtlarını veren özel fonksiyonlarla sık
+sık ilgileniriz. Örneğin ``$n$ bir asal sayı mıdır?'' sorusu
+\[
+\fn{isprime}(n) = \begin{cases}
+  1 & \text{$n$ asal ise}\\
+  0 & \text{aksi durumda}
+  \end{cases}
+\]
+fonksiyonuyla ilişkilidir. İlişkili $1/0$ değerli fonksiyon etkili biçimde
+hesaplanabiliyorsa bir evet/hayır sorusuna \emph{etkili biçimde karar
+verilebildiğini} söyleriz.
+
+Etkili biçimde hesaplanamayan fonksiyonların ya da etkili biçimde karar
+verilemeyen problemlerin bulunduğunu matematiksel olarak kanıtlamak için
+belirli bir hesaplama modelini sabitlemek ve bu modelin hesaplayamadığı
+fonksiyonlar ya da karar veremediği problemler bulunduğunu göstermek gerekir.
+Örneğin her fonksiyonun Turing makinelerince hesaplanamayacağını ve her
+probleme Turing makinelerince karar verilemeyeceğini gösterebiliriz. Ardından,
+yalnızca Turing makinelerinin her fonksiyonu hesaplayacak güçte olmadığı değil,
+hiçbir etkili sürecin bunu yapamayacağı sonucuna varmak için Church--Turing
+tezine başvurabiliriz.
+
+Bu tür olumsuz sonuçları kanıtlamanın anahtarı, Turing makinelerinin
+kendilerine sayı atayabilmemizdir. Bunu yapmanın en kolay yolu, belki Turing
+makinelerini ve programlarını yazmanın belirli bir biçimini sabitleyip sonra
+onları sistematik olarak listeleyerek, makineleri numaralandırmaktır. Bunun
+yapılabildiğini gördüğümüzde Turing-hesaplanamaz fonksiyonların varlığı basit
+kardinalite değerlendirmelerinden çıkar: $\Nat$'ten $\Nat$'e (hatta yalnızca
+$\Nat$'ten $\{0,1\}$'e) fonksiyonlar kümesi !!{nonenumerable}, fakat bütün
+Turing makinelerini numaralandırabildiğimiz için Turing-hesaplanabilir
+fonksiyonlar kümesi yalnızca !!{denumerable}.
+
+Sırasıyla hesaplanamaz ve karar verilemez olduklarını kanıtlayabileceğimiz
+\emph{belirli} fonksiyonlar ve problemler de tanımlayabiliriz. Bunlardan biri
+\emph{Durma Problemi} denen problemdir. Turing makineleri, yönergeleri
+listelenerek sonlu biçimde betimlenebilir. Bir Turing makinesinin böyle bir
+betimi, yani Turing makinesi programı, elbette başka bir Turing makinesine
+girdi olarak verilebilir. Dolayısıyla başka Turing makineleri hakkındaki
+sorulara karar veren Turing makinelerini ele alabiliriz. Özellikle ilginç bir
+soru şudur: ``Verilen Turing makinesi $n$ girdisinde başlatıldığında sonunda
+durur mu?'' Bu soruya karar verebilen bir Turing makinesi bulunsa iyi olurdu;
+onu, Turing makinelerinin sonsuz döngülere vb. takılmamasını sağlayan bir
+kalite denetim Turing makinesi olarak düşünün. Turing'in kanıtladığı ilginç
+olgu, böyle bir Turing makinesinin bulunamayacağıdır. Bir Turing makinesi~$M$
+ile bir $n$ sayısının betiminden oluşan girdide başlatıldığında, $M$ makinesi
+$n$ girdisinde başlatılırsa durup durmayacağına göre her zaman $1$ ya da $0$
+çıktısıyla duran tek bir Turing makinesi bulunamaz.
+
+Belirli karar verilemez problem örneklerine sahip olduktan sonra bunları başka
+problemlerin de karar verilemez olduğunu göstermek için kullanabiliriz.
+Örneğin ünlü bir karar verilemez problem, ``Birinci dereceden
+!!{formula}~$!A$ geçerli midir?'' sorusudur. Birinci dereceden
+!!{formula}~$!A$ girdi olarak verildiğinde $!A$'nın geçerli olup olmamasına
+göre $1$ ya da $0$ çıktısıyla duracağı güvence altında olan hiçbir Turing
+makinesi yoktur. Tarihsel olarak bu problemi etkili biçimde çözecek bir süreç
+bulma sorusuna yalnızca ``karar problemi'' denmiştir; bu nedenle karar
+probleminin çözülemez olduğunu söyleriz. Turing ile Church bu sonucu yaklaşık
+aynı zamanda birbirlerinden bağımsız olarak kanıtlamışlardır; bu yüzden sonuca
+Church--Turing Teoremi de denir.
+

@@ -1,0 +1,75 @@
+% Generated from locale/tr/content/set-theory/choice/tarskiscott.tex; do not hand-edit.
+
+
+\olfileid[tr]{sth}{choice}{tarskiscott}
+\olsection{Tarski--Scott Hilesi}
+
+\olref[cardinals][cardsasords]{defcardinalasordinal} içinde kardinal
+sayıları sıra sayıları olarak tanımladık. Bunu yapmak için İyi Sıralama
+Aksiyomu'nu varsaydık. Bunu yalnızca ``sektör standardı'' olduğu için
+yaptık.
+
+Öyleyse İyi Sıralama'yı çevreleyen felsefi sorunları tartışmadan önce,
+sektör standardından \emph{ayrılabileceğimizin} ve İyi Sıralama'yı
+\emph{varsaymadan} da bir kardinal sayılar teorisi geliştirebileceğimizin
+açık olması önemlidir.
+\olref[sfr][siz][]{chap} içinde göründükleri biçimiyle
+$\cardeq{A}{B}$, $\cardle{A}{B}$ ve $\cardless{A}{B}$ tanımlarını yine
+kullanabiliriz. Yalnızca yeni bir \emph{kardinal sayı} kavramına
+ihtiyacımız olacaktır.
+
+Naif bir düşünce, $A$'nın kardinalitesini şöyle tanımlamaya çalışmak olurdu:
+\[
+	\Setabs{x}{\cardeq{A}{x}}.
+\]
+Bunu, \olref[cardinals][hp]{sec} kesiminin en sonunda taslağı verilen
+Frege'nin $\# x Fx$ tanımıyla karşılaştırabilirsiniz. Orada değindiğimiz
+nedenlerle bu tanım başarısız olur. Her tek elemanlı küme
+$\{\emptyset\}$ ile eş güçlüdür. Fakat hiyerarşinin her ardıl aşamasında
+yeni tek elemanlı kümeler oluşur (yalnızca önceki aşamanın tek elemanlı
+kümesini düşünün). Dolayısıyla
+$\Setabs{x}{\cardeq{A}{x}}$ var değildir; çünkü bir rankı olamaz.
+
+Bu sorunu aşmak için Tarski ve Scott'a ait bir hile kullanırız:\footnote{Bir
+hatırlatma: açıkça tersi belirtilmedikçe bütün formüllerin parametreleri
+olabilir.}
+
+\begin{defn}[Tarski--Scott]
+Her $\phi(x)$ formülü için $[x:\phi(x)]$, $\phi(x)$ koşulunu sağlayan ve
+olanaklı en küçük ranka sahip bütün $x$'lerin kümesi olsun (hiç $\phi$
+yoksa $\emptyset$ olsun).
+\end{defn}
+
+Bu tanımın meşru olduğunu denetlemeliyiz. $\ZF$ içinde çalışırken
+\olref[spine][foundation]{zfentailsregularity}, her $x$ için
+$\setrank{x}$'in var olduğunu güvence altına alır. Şimdi $\phi$'yi sağlayan
+varlıklar varsa $\alpha$, $(\exists x\subseteq V_\alpha)\phi(x)$ olacak en
+küçük rank olsun; yani
+$(\forall\beta\in\alpha)(\forall x\subseteq V_\beta)\lnot\phi(x)$ olsun.
+O zaman Ayırma ile $[x:\phi(x)]$ kümesini
+$\Setabs{x\in V_{\alpha+1}}{\phi(x)}$ olarak tanımlayabiliriz.
+
+Tarski--Scott hilesini gerekçelendirdiğimize göre artık bir kardinalite
+kavramını tanımlamak için kullanabiliriz:
+
+\begin{defn}
+$A$'nın \textsc{ts}-kardinalitesi
+$\text{tsc}(A)=[x:\cardeq{A}{x}]$'dir.
+\end{defn}
+
+Bir \textsc{ts}-kardinal sayısının tanımı İyi Sıralama'yı kullanmaz.
+Fakat bu Aksiyom olmadan bile \emph{\textsc{ts}-kardinal sayılarının},
+\olref[cardinals][cardsasords]{defcardinalasordinal} içinde tanımlanan
+\emph{kardinal sayılar} gibi davrandığını gösterebiliriz. Örneğin
+\olref[cardinals][cardsasords]{lem:CardinalsBehaveRight} ve
+\olref[card-arithmetic][opps]{lem:SizePowerset2Exp} sonuçlarını
+\textsc{ts}-kardinal sayıları cinsinden yeniden ifade edersek, ispatlar
+İyi Sıralama varsayılmadan $\ZF$ içinde sorunsuzca yürür.
+
+Bu konudayken Tarski--Scott hilesini kullanarak bir sıra sayıları teorisi
+de geliştirebileceğimizi belirtmek yerinde olur. $\tuple{A,<}$ bir iyi
+sıralama olduğunda
+$\text{tso}(A,<)=[\tuple{X,R}:\ordeq{\tuple{A,<}}{\tuple{X,R}}]$ olsun.
+Kardinal ve sıra sayılarına bu yaklaşım hakkında daha fazlası için
+\citet[chs.~9--12]{Potter2004} eserine bakın.
+

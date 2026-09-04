@@ -1,0 +1,69 @@
+% Generated from locale/tr/content/many-valued-logic/syntax-and-semantics/matrices.tex; do not hand-edit.
+
+
+\olfileid[tr]{mvl}{syn}{mat}
+
+\olsection{Matrisler}
+
+Çok değerli bir mantık; dili, doğruluk değerleri kümesi $V$, belirlenmiş
+doğruluk değerlerinden oluşan bir alt küme ve bağlaçlarının doğruluk
+fonksiyonlarıyla tanımlanır. Bu öğelerin tümüne birlikte \emph{matris} denir.
+
+\begin{defn}[Matris]
+\ollabel{defn:matrix}
+$\Log L$ mantığı için bir \emph{matris} şunlardan oluşur:
+\begin{enumerate}
+\item bir $\Lang L$ dilini oluşturan bağlaçlar kümesi;
+\item doğruluk değerlerinden oluşan, boş olmayan bir $V$ kümesi;
+\item belirlenmiş doğruluk değerlerinden oluşan bir $V^+\subseteq V$ kümesi;
+\item $\Lang L$ içindeki her $n$-konumlu $\star$ bağlacı için bir
+  $\tf{\star}\colon V^n\to V$ doğruluk fonksiyonu. $n=0$ ise
+  $\tf{\star}$ yalnızca $V$'nin bir elemanıdır.
+\end{enumerate}
+\end{defn}
+
+\begin{ex}
+Klasik mantık $\LogCL$ için matris şunlardan oluşur:
+\begin{enumerate}
+  \item $\lfalse$, $\lnot$, $\land$, $\lor$, $\lif$ içeren standart
+  önerme dili $\Lang L_0$.
+  \item Doğruluk değerleri kümesi $V=\{\True,\False\}$.
+  \item Tek belirlenmiş değer $\True$'dur, yani $V^+=\{\True\}$.
+  \item $\lfalse$ için $\tf{\lfalse}=\False$. Diğer doğruluk fonksiyonları
+  alışılmış doğruluk tablolarıyla verilir (bkz. \olref{fig:tf-CL}).
+\end{enumerate}
+\begin{figure}
+  \begin{center}
+      \begin{tabular}{c|c} 
+        $\tf{\lnot}$ & \\ 
+        \hline  
+        $\True$ & $\False$ \\ 
+        $\False$ & $\True$ 
+      \end{tabular}
+      \quad
+      \begin{tabular}{c|cc} 
+        $\tf{\land}$ & $\True$ & $\False$ \\ 
+        \hline 
+        $\True$ & $\True$ & $\False$ \\ 
+        $\False$ & $\False$ & $\False$ 
+      \end{tabular}
+      \quad
+      \begin{tabular}{c|cc} 
+        $\tf{\lor}$ & $\True$ & $\False$ \\ 
+        \hline 
+        $\True$ & $\True$ & $\True$ \\ 
+        $\False$ & $\True$ & $\False$ 
+      \end{tabular}
+      \quad
+      \begin{tabular}{c|cc} 
+        $\tf{\lif}$ & $\True$ & $\False$ \\ 
+        \hline 
+        $\True$ & $\True$ & $\False$ \\ 
+        $\False$ & $\True$ & $\True$ 
+      \end{tabular}
+    \end{center} 
+    \caption{Klasik mantık $\LogCL$ için doğruluk fonksiyonları.}
+    \ollabel{fig:tf-CL}
+  \end{figure}
+  \end{ex}
+

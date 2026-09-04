@@ -1,0 +1,43 @@
+% Generated from locale/tr/content/lambda-calculus/lambda-definability/lists.tex; do not hand-edit.
+
+
+\olfileid[tr]{lam}{ldf}{lst}
+\olsection{Listeler}
+
+$[M_1, M_2, \ldots, M_n]$ listesi şöyle tanımlanabilir:
+\[
+  [M_1, M_2, \ldots, M_n] \ident \lambd[sz][s M_1 (s M_2 (\ldots (s M_n z)))]
+\]
+Gayriresmî olarak, bir listeyi temsil eden terim listenin ``biriktirici''
+fonksiyonudur: Bu fonksiyon iki terim kabul eder. Birincisi, biriktirilmiş
+değerle yeni bir elemanı alıp yeni biriktirilmiş değeri döndüren fonksiyondur;
+ikincisi başlangıçtaki biriktirilmiş değerdir. Elemanları birer birer
+biriktirir ve sonunda sonucu döndürür.
+
+\begin{digress}
+  Fonksiyonel programlamaya aşinaysanız bu tanımın \emph{sağ katlama}ya
+  benzediğini göreceksiniz: Bir liste, içerdiği elemanların sağ katlama
+  fonksiyonu olarak tanımlanır.
+\end{digress}
+
+Bu kodlamaya dayanarak bazı yararlı fonksiyonları kolayca tanımlayabiliriz:
+\begin{align*}
+  \fn{Sum} & \ident
+  \lambd[l][l \, (\lambd[xa][\fn{Add} \, x \, a])\,  \num{0}]\\
+  \fn{Len} & \ident
+  \lambd[l][l \, (\lambd[xa][\fn{Add} \, a \, \num{1}]) \num{0}]
+\end{align*}
+
+$\fn{Sum}$, Church sayılarından oluşan bir listenin toplamını hesaplar.
+Bunu, başlangıç değeri $\num{0}$ olan bir liste biriktirmesi yaparak ve her
+eleman için yeni değer olarak $\fn{Add} \, x\, a$ değerini döndürerek yapar
+(burada $x$ geçerli eleman, $a$ ise biriktirilmiş değerdir). Sonuç bütün
+elemanların toplamıdır.
+
+\begin{prob}
+  $\fn{Len}$ ne yapar? Açıklayın.
+\end{prob}
+
+\begin{prob}
+  Bir listeyi tersine çeviren bir fonksiyon tanımlayın.
+\end{prob}

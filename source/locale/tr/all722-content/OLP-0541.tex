@@ -1,0 +1,73 @@
+% Generated from locale/tr/content/set-theory/z/pairs.tex; do not hand-edit.
+
+
+\olfileid[tr]{sth}{z}{pairs}
+\olsection{Çiftler}
+
+Sırada şu aksiyom var:
+
+\begin{axiom}[Çiftler]
+Her $a, b$ kümesi için $\{a, b\}$ kümesi vardır.
+\[
+	\forall a \forall b \exists P \forall x (x \in P \liff (x = a \lor x = b))
+\]
+\end{axiom}
+
+Bu aksiyomu yinelemeli anlayışla şöyle gerekçelendirebiliriz. $a$'nın
+$S$ aşamasında, $b$'nin de $T$ aşamasında kullanılabilir olduğunu
+varsayın. $M$, $S$ ile $T$ aşamalarından daha sonra geleni olsun. O zaman
+$a$ ile $b$'nin ikisi de $M$ aşamasında kullanılabilir olduğundan,
+$\{a,b\}$ kümesi $M$'den sonraki her aşamada oluşturulabilecek bir
+topluluktur.
+
+Ama bir dakika!{} $M$'den sonra herhangi bir aşama bulunduğunu neden
+varsayalım? Hiç yoksa gerekçemiz başarısız olur. Öyleyse Çiftler'i
+gerekçelendirmek için \olref[sth][z][story]{sec} içinde anlattığımız
+öyküye bir ilke daha eklemeliyiz:
+\begin{enumerate}
+	\item[] \stagessucc. Son aşama yoktur.
+\end{enumerate}
+Bu ilke gerekçeli midir? Shoenfield'ın öyküsünde son aşamanın bulunmadığı
+\emph{açıkça} belirtilmedi. Yine de bu, öykümüze (kesin konuşmak gerekirse)
+ek bir ilave olsa bile kümelerin aşamalar hâlinde oluşturulduğu temel
+fikriyle iyi bağdaşır. Bundan sonra bu ilkeyi, dolayısıyla Çiftler
+Aksiyomu'nu da kabul edeceğiz.
+
+Bu yeni aksiyomla donanmış olarak çok daha fazla kümenin varlığını
+ispatlayabiliriz. Örneğin:
+
+\begin{prop}\ollabel{prop:pairsconsequences}
+Her $a$ ve $b$ kümesi için aşağıdaki kümeler vardır:
+	\begin{enumerate}
+		\item\ollabel{singleton} $\{a\}$
+		\item\ollabel{binunion} $a \cup b$
+		\item\ollabel{tuples} $\tuple{a, b}$
+	\end{enumerate}
+\end{prop}
+
+\begin{proof}
+\olref{singleton}. Çiftler gereği $\{a, a\}$ vardır; Kaplamsallık gereği
+bu küme $\{a\}$'dır.
+
+\olref{binunion}. Çiftler gereği $\{a, b\}$ vardır. Artık
+$a \cup b = \bigcup\{a, b\}$, Birleşim gereği vardır.
+
+\olref{tuples}. \olref{singleton} gereği $\{a\}$ vardır. Çiftler gereği
+$\{a,b\}$ vardır. O hâlde $\{\{a\}, \{a,b\}\} = \tuple{a,b}$, Çiftler'in
+bir başka uygulamasıyla vardır.
+\end{proof}
+
+\begin{prob}
+Her $a,b,c$ kümesi için $\{a,b,c\}$ kümesinin var olduğunu gösterin.
+\end{prob}
+
+\begin{prob}
+Her $a_1, \ldots, a_n$ kümesi için $\{a_1, \ldots, a_n\}$ kümesinin
+var olduğunu gösterin.
+\end{prob}
+
+%\begin{proof} By two applications of Pairs, $\{\{a_1, a_2\}, \{a_1,
+%   a_3\}\}$ exists. By Union and Extensionality, $\bigcup \{\{a_1,
+%   a_2\}, \{a_1, a_3\}\} = \{a_1, a_2, a_3\}$ exists. Repeat this
+%   trick as often as necessary. \end{proof}
+

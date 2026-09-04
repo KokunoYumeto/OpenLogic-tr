@@ -1,0 +1,134 @@
+% Generated from locale/tr/content/normal-modal-logic/filtrations/more-filtrations.tex; do not hand-edit.
+
+
+\olfileid[tr]{nml}{fil}{acc}
+
+\olsection{Süzmeler ve Erişilebilirlik Özellikleri}
+
+Belirtildiği gibi, evrensel, seri ve yansımalı modellerin süzmeleri de her zaman
+sırasıyla evrensel, seri ya da yansımalıdır. Buna karşılık simetrik veya geçişli
+bir modelin her süzmesi sırasıyla simetrik veya geçişli olmak zorunda değildir.
+Yine de bazı durumlarda süzmeleri bu özellikleri koruyacak biçimde tanımlamak
+mümkündür. Bunun için en kaba süzmenin tanımındaki gibi ilerler, fakat $R^*$
+tanımına ek koşullar koyarız. $\Gamma$ alt-!!{formula}s altında kapalı olsun.
+$\mModel{M}=\tuple{W,R,V}$ modelindeki $u$ ve $v$ dünyaları arasında
+\olref{tab:Cn-filtrations}'de verilen $C_i(u,v)$ bağıntılarını düşünün.
+$R^*[u][v]$'yi bu koşulların birleşimlerine dayanarak tanımlayabiliriz.
+Örneğin $R^*[u][v]$ ancak ve ancak $C_1(u,v)$ geçerliyse koşulunu koyarsak
+tam olarak en kaba süzmeyi elde ederiz. $R^*[u][v]$ ancak ve ancak hem
+$C_1(u,v)$ hem $C_2(u,v)$ geçerliyse dersek başka bir süzme elde ederiz.
+Bu süzme en kaba süzmeden ``daha incedir''; çünkü $C_1(u,v)$ ile
+$C_2(u,v)$'yi birlikte sağlayan dünya çiftleri, yalnızca $C_1(u,v)$'yi
+sağlayan çiftlerin bir alt kümesidir.
+
+\begin{table}[ht]
+  \centering
+  \begin{tabular}{|ll|}
+    \hline
+    \multirow{2}{*}{$C_1(u,v)$:}
+    \iftag{prvBox}{&
+      $\Box!A \in \Gamma$ ve $\mSat{M}{\Box!A}[u]$ ise
+      $\mSat{M}{!A}[v]$;\iftag{prvDiamond}{ ve}{}\\}{}
+    \iftag{prvDiamond}{&
+      $\Diamond!A \in \Gamma$ ve $\mSat{M}{!A}[v]$ ise
+      $\mSat{M}{\Diamond!A}[u]$; \\}{}
+    \hline
+    \multirow{2}{*}{$C_2(u,v)$:}
+    \iftag{prvBox}{&
+      $\Box!A \in \Gamma$ ve $\mSat{M}{\Box!A}[v]$ ise
+      $\mSat{M}{!A}[u]$;\iftag{prvDiamond}{ ve}{}\\}{}
+    \iftag{prvDiamond}{&
+      $\Diamond!A \in \Gamma$ ve $\mSat{M}{!A}[u]$ ise
+      $\mSat{M}{\Diamond!A}[v]$; \\}{}
+    \hline
+    \multirow{2}{*}{$C_3(u,v)$:}
+    \iftag{prvBox}{&
+      $\Box!A \in \Gamma$ ve $\mSat{M}{\Box!A}[u]$ ise
+      $\mSat{M}{\Box!A}[v]$;\iftag{prvDiamond}{ ve}{}\\}{}
+    \iftag{prvDiamond}{&
+      $\Diamond!A \in \Gamma$ ve $\mSat{M}{\Diamond!A}[v]$ ise
+      $\mSat{M}{\Diamond!A}[u]$; \\}{}
+    \hline
+    \multirow{2}{*}{$C_4(u,v)$:}
+    \iftag{prvBox}{&
+      $\Box!A \in \Gamma$ ve $\mSat{M}{\Box!A}[v]$ ise
+      $\mSat{M}{\Box!A}[u]$;\iftag{prvDiamond}{ ve}{}\\}{}
+    \iftag{prvDiamond}{&
+      $\Diamond!A \in \Gamma$ ve $\mSat{M}{\Diamond!A}[u]$ ise
+      $\mSat{M}{\Diamond!A}[v]$; \\}{}
+    \hline
+    \end{tabular}
+  \caption{Süzmeleri tanımlamak için olası dünyalara konan koşullar.}
+  \ollabel{tab:Cn-filtrations}
+\end{table}
+
+\begin{thm}\ollabel{thm:more-filtrations}
+  $\mModel{M}=\tuple{W,R,V}$ bir model, $\Gamma$ alt-!!{formula}s altında
+  kapalı olsun. $W^*$ ile $V^*$, \olref[fil]{defn:filtration}'deki gibi
+  tanımlansın. O zaman:
+  \begin{enumerate}
+  \item $R^*[u][v]$ ancak ve ancak $C_1(u,v)\land C_2(u,v)$ olsun.
+    Bu durumda $R^*$ simetriktir ve $\mModel{M}$ simetrikse
+    $\mModel{M^*}=\tuple{W^*,R^*,V^*}$ bir süzmedir.
+  \item $R^*[u][v]$ ancak ve ancak $C_1(u,v)\land C_3(u,v)$ olsun.
+    Bu durumda $R^*$ geçişlidir ve $\mModel{M}$ geçişliyse
+    $\mModel{M^*}=\tuple{W^*,R^*,V^*}$ bir süzmedir.
+  \item $R^*[u][v]$ ancak ve ancak $C_1(u,v)\land C_2(u,v)
+    \land C_3(u,v)\land C_4(u,v)$ olsun. Bu durumda $R^*$ simetrik ve
+    geçişlidir; $\mModel{M}$ simetrik ve geçişliyse
+    $\mModel{M^*}=\tuple{W^*,R^*,V^*}$ bir süzmedir.
+  \item $R^*[u][v]$ ancak ve ancak $C_1(u,v)\land C_3(u,v)
+    \land C_4(u,v)$ olacak biçimde $R^*$ tanımlansın. Bu durumda $R^*$
+    geçişli ve Öklidyendir; $\mModel{M}$ geçişli ve Öklidyense
+    $\mModel{M^*}=\tuple{W^*,R^*,V^*}$ bir süzmedir.
+  \end{enumerate}
+\end{thm}
+
+\begin{proof}
+  \begin{enumerate}
+    \item $C_1(u,v)\Leftrightarrow C_2(v,u)$ ve
+      $C_2(u,v)\Leftrightarrow C_1(v,u)$ olduğundan $R^*$'nin simetrik
+      olduğu doğrudan görülür. Dolayısıyla yalnızca $\mModel{M}$ simetrikse
+      $\mModel{M^*}$'nin $\Gamma$ üzerinden bir süzme olduğunu göstermemiz
+      gerekir. $C_1(u,v)$ koşulu,
+      \iftag{prvBox}{%
+        \iftag{prvDiamond}{%
+          \olref[fil]{defn:filtration-R2} ile
+          \olref[fil]{defn:filtration-R3} koşullarının
+          \olref[fil]{defn:filtration} içinde}{%
+          \olref[fil]{defn:filtration}\olref[fil]{defn:filtration-R2}
+          koşulunun}}{%
+        \olref[fil]{defn:filtration}\olref[fil]{defn:filtration-R3}
+        koşulunun}
+      sağlanmasını güvence altına alır. Bu nedenle yalnızca
+      \olref[fil]{defn:filtration}\olref[fil]{defn:filtration-R1}'i,
+      yani $Ruv$'nin $R^*[u][v]$'yi gerektirdiğini doğrulamalıyız.
+
+      Öyleyse $Ruv$ olsun. $R^*[u][v]$'yi göstermek için $C_1(u,v)$ ile
+      $C_2(u,v)$'yi kurmamız gerekir. $C_1$ için:
+      \iftag{prvBox}{$\Box!A\in\Gamma$ ve
+        $\mSat{M}{\Box!A}[u]$ ise $Ruv$ olduğundan
+        $\mSat{M}{!A}[v]$ de geçerlidir.\iftag{prvDiamond}{ Benzer
+        biçimde, }{}}{}
+      \iftag{prvDiamond}{$\Diamond!A\in\Gamma$ ve
+        $\mSat{M}{!A}[v]$ ise $Ruv$ olduğundan
+        $\mSat{M}{\Diamond!A}[u]$.}{}
+      $C_2$ için:
+      \iftag{prvBox}{$\Box!A\in\Gamma$ ve
+        $\mSat{M}{\Box!A}[v]$ ise simetriklik ve $Ruv$, $Rvu$'yu
+        gerektirir; dolayısıyla $\mSat{M}{!A}[u]$.
+        \iftag{prvDiamond}{ Benzer biçimde, }{}}{}
+      \iftag{prvDiamond}{$\Diamond!A\in\Gamma$ ve
+        $\mSat{M}{!A}[u]$ ise simetriklikten $Rvu$, dolayısıyla
+        $\mSat{M}{\Diamond!A}[v]$.}{}
+    \item Alıştırma.
+    \item Alıştırma.
+    \item Alıştırma.
+  \end{enumerate}
+\end{proof}
+
+\begin{prob}
+  \olref[nml][fil][acc]{thm:more-filtrations} teoreminin ispatını
+  tamamlayın.
+\end{prob}
+

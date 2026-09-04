@@ -1,0 +1,63 @@
+% Generated from locale/tr/content/computability/recursive-functions/bounded-minimization.tex; do not hand-edit.
+
+
+\olfileid[tr]{cmp}{rec}{bmi}
+\olsection{Sınırlı En Küçükleme}
+
+\begin{explain}
+Bir fonksiyonu, belirli bir $P$ özelliğini ya da bağıntısını sağlayan en küçük
+sayı olarak tanımlamak çoğu kez yararlıdır. $P$ karar verilebilirse bu
+fonksiyonu, $P$'yi sağlayan ilk sayıyı buluncaya kadar $0,1,2,\dots$
+sayılarının tümünü deneyerek hesaplayabiliriz. Bu tür sınırsız bir arama bizi
+ilkel özyinelemeli fonksiyonların dışına çıkarır. Fakat yalnızca
+\emph{bağımsız olarak verilmiş bir sınırdan küçük} en küçük sayıyla
+ilgileniyorsak ilkel özyinelemeli alanda kalırız. Biraz daha genel söylersek,
+ilkel özyinelemeli bir $R(x,z)$ bağıntımız olsun. $x$ ile $y$'yi,
+$R(x,z)$ koşulunu sağlayan en küçük $z<y$ sayısına götüren fonksiyonu ele
+alalım. Bu da $R(x,0),R(x,1),\dots,R(x,y-1)$ koşullarını sınayarak
+hesaplanabilir. Peki neden ilkel özyinelemelidir?
+\end{explain}
+
+\begin{prop}
+$R(\vec x,z)$ ilkel özyinelemeliyse, böyle bir sayı varsa $R(\vec x,z)$
+koşulunu sağlayan en küçük $z<y$ sayısını, yoksa $y$'yi döndüren
+$m_R(\vec x,y)$ fonksiyonu da ilkel özyinelemelidir. $m_R$ fonksiyonunu
+\[
+  \bmin{z<y}{R(\vec x,z)}
+\]
+biçiminde yazacağız.
+\end{prop}
+
+\begin{proof}
+Hiçbir $z<0$ bulunmadığından $R(\vec x,z)$ koşulunu sağlayan bir $z<0$ da
+bulunamaz. Dolayısıyla $m_R(\vec x,0)=0$ olur.
+
+Sınır $y+1$ biçimindeyse üç durum vardır:
+\begin{enumerate}
+\item $R(\vec x,z)$ koşulunu sağlayan bir $z<y$ vardır. Bu durumda
+  $m_R(\vec x,y+1)=m_R(\vec x,y)$.
+\item Böyle bir $z<y$ yoktur, fakat $R(\vec x,y)$ geçerlidir. Bu durumda
+  $m_R(\vec x,y+1)=y$.
+\item $R(\vec x,z)$ koşulunu sağlayan hiçbir $z<y+1$ yoktur. Bu durumda
+  $m_R(\vec x,y+1)=y+1$.
+\end{enumerate}
+Böylece $m_R$ fonksiyonunu ilkel özyinelemeyle şöyle tanımlayabiliriz:
+\begin{align*}
+  m_R(\vec x,0) & = 0\\
+  m_R(\vec x,y+1) & = \begin{cases}
+    m_R(\vec x,y) & \text{$m_R(\vec x,y)\neq y$ ise}\\
+    y & \text{$m_R(\vec x,y)=y$ ve $R(\vec x,y)$ ise}\\
+    y+1 & \text{aksi durumda.}
+  \end{cases}
+\end{align*}
+$R(\vec x,z)$ koşulunu sağlayan bir $z<y$ bulunması ancak ve ancak
+$m_R(\vec x,y)\neq y$ olduğunda geçerlidir.
+\end{proof}
+
+\begin{prob}
+$R(\vec x,z)$ ilkel özyinelemeli olsun. Böyle bir sayı varsa
+$R(\vec x,z)$ koşulunu sağlayan en küçük $z<y$ sayısını, yoksa $0$'ı
+döndüren $m'_R(\vec x,y)$ fonksiyonunu $\Char{R}$'den ilkel özyinelemeyle
+tanımlayın.
+\end{prob}
+

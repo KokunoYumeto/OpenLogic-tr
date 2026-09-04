@@ -1,0 +1,215 @@
+% Generated from locale/tr/content/first-order-logic/completeness/complete-consistent-sets.tex; do not hand-edit.
+
+
+\iftag{FOL}
+      {\olfileid[tr]{fol}{com}{ccs}}
+      {\olfileid[tr]{pl}{com}{ccs}}
+
+\olsection{Tam ve Tutarlı \usetoken{P}{sentence} Kümeleri}
+
+\begin{defn}[Tam küme]
+\ollabel{def:complete-set} Bir !!{sentence}s kümesi~$\Gamma$,
+\emph{!!{complete}}dır ancak ve ancak herhangi bir !!{sentence}~$!A$ için
+ya $!A\in\Gamma$ ya da $\lnot !A\in\Gamma$ ise.
+\end{defn}
+
+\begin{explain}
+!!^{complete} tümce kümeleri hiçbir soruyu yanıtsız bırakmaz. Her
+!!{sentence}~$!A$ için $\Gamma$, $!A$'nın doğru mu yanlış mı olduğunu
+``söyler.'' !!{complete} kümelerin önemi tamlık teoreminin ispatıyla
+sınırlı değildir. Örneğin !!{complete} ve aksiyomlaştırılabilir bir
+kuram her zaman karar verilebilirdir.
+\end{explain}
+
+\begin{explain}
+!!^{complete} tutarlı kümeler tamlık ispatında önemlidir; çünkü her
+tutarlı !!{sentence}s kümesi~$\Gamma$'nın !!a{complete} tutarlı
+$\Gamma^*$ kümesinde bulunduğunu güvence altına alabiliriz.
+!!^a{complete} tutarlı küme her !!{sentence}~$!A$ için ya $!A$'yı ya
+da değillemesi~$\lnot !A$'yı içerir, fakat ikisini birden içermez. Bu,
+özellikle \iftag{FOL}{atomik !!{sentence}s}{önerme değişkenleri} için
+  doğrudur. Dolayısıyla !!a{complete} tutarlı bir kümeden
+  \iftag{FOL}{---uygun biçimde !!{constant}s eklenerek genişletilmiş bir
+  dilde---}{},
+\iftag{FOL}{!!a{structure}}{!!a{valuation}} kurabiliriz. Bu
+\iftag{FOL}{yapıdaki !!{predicate}s yorumunu}{değerlemenin önerme
+değişkenlerine verdiği doğruluk değerlerini},~$\Gamma^*$ içinde bulunan
+\iftag{FOL}{atomik !!{sentence}s}{!!{propositional variable}s}
+belirler. Ardından bu \iftag{FOL}{!!{structure}}{!!{valuation}}
+ifadesinin~$\Gamma^*$ içindeki bütün !!{sentence}s ifadelerini
+(dolayısıyla~$\Gamma$ içindekilerin de tümünü) doğru kıldığı
+gösterilebilir. Bu son olgunun ispatı için $\lnot !A\in\Gamma^*$ ancak
+ve ancak $!A\notin\Gamma^*$; $(!A\lor !B)\in\Gamma^*$ ancak ve ancak
+$!A\in\Gamma^*$ ya da $!B\in\Gamma^*$ olması vb. gerekir.
+\end{explain}
+
+Aşağıda $\Proves$ bağıntısının yansımalılık, monotonluk ve geçişlilik
+özelliklerini çoğu kez örtük olarak kullanacağız (bkz.
+\iftag{FOL}{%
+  \tagrefs{prfSC/{fol:seq:ptn:sec},prfND/{fol:ntd:ptn:sec},prfAX/{fol:axd:ptn:sec},prfTab/{fol:tab:ptn:sec}}}{%
+  \tagrefs{prfSC/{pl:seq:ptn:sec},prfND/{pl:ntd:ptn:sec},prfAX/{pl:axd:ptn:sec},prfTab/{pl:tab:ptn:sec}}}).
+
+\begin{prop}
+\ollabel{prop:ccs}
+$\Gamma$'nın !!{complete} ve tutarlı olduğunu varsayalım. O zaman:
+\begin{enumerate}
+\item \ollabel{prop:ccs-prov-in} $\Gamma\Proves !A$ ise
+  $!A\in\Gamma$.
+
+\tagitem{prvAnd}{\ollabel{prop:ccs-and} $!A\land !B\in\Gamma$ ancak
+  ve ancak hem $!A\in\Gamma$ hem de $!B\in\Gamma$ ise.}{}
+
+\tagitem{prvOr}{\ollabel{prop:ccs-or} $!A\lor !B\in\Gamma$ ancak ve
+  ancak $!A\in\Gamma$ ya da $!B\in\Gamma$ ise.}{}
+
+\tagitem{prvIf}{\ollabel{prop:ccs-if} $!A\lif !B\in\Gamma$ ancak ve
+  ancak $!A\notin\Gamma$ ya da $!B\in\Gamma$ ise.}{}
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+Aşağıdaki maddelerin tümünde~$\Gamma$'nın !!{complete} ve tutarlı
+olduğunu varsayalım.
+\begin{enumerate}
+\item $\Gamma\Proves !A$ ise $!A\in\Gamma$.
+
+$\Gamma\Proves !A$ olduğunu varsayalım. Aksine $!A\notin\Gamma$
+olduğunu varsayalım. $\Gamma$ !!{complete} olduğundan
+$\lnot !A\in\Gamma$ olur.
+\iftag{FOL}{%
+  \tagrefs{prfSC/{fol:seq:prv:prop:explicit-inc},
+    prfND/{fol:ntd:prv:prop:explicit-inc},
+    prfAX/{fol:axd:prv:prop:explicit-inc},
+    prfTab/{fol:tab:prv:prop:explicit-inc}}}{%
+  \tagrefs{prfSC/{pl:seq:prv:prop:explicit-inc},
+    prfND/{pl:ntd:prv:prop:explicit-inc},
+    prfAX/{pl:axd:prv:prop:explicit-inc},
+    prfTab/{pl:tab:prv:prop:explicit-inc}}}
+uyarınca~$\Gamma$ tutarsızdır. Bu,~$\Gamma$'nın tutarlı olduğu
+varsayımıyla çelişir. Dolayısıyla $!A\notin\Gamma$ olamaz ve
+$!A\in\Gamma$ olur.
+
+\tagitem{defAnd}{}{%
+\iftag{probAnd}{Alıştırma.}{%
+$!A\land !B\in\Gamma$ ancak ve ancak hem $!A\in\Gamma$ hem de
+$!B\in\Gamma$ ise:
+
+İleri yön için $!A\land !B\in\Gamma$ olduğunu varsayalım.
+\iftag{FOL}{%
+  \tagrefs{prfSC/{fol:seq:ppr:prop:provability-land},
+    prfND/{fol:ntd:ppr:prop:provability-land},
+    prfAX/{fol:axd:ppr:prop:provability-land},
+    prfTab/{fol:tab:ppr:prop:provability-land}}}{%
+  \tagrefs{prfSC/{pl:seq:ppr:prop:provability-land},
+    prfND/{pl:ntd:ppr:prop:provability-land},
+    prfAX/{pl:axd:ppr:prop:provability-land},
+    prfTab/{pl:tab:ppr:prop:provability-land}}}
+sonucunun (1). maddesine göre $\Gamma\Proves !A$ ve
+$\Gamma\Proves !B$ olur. \olref{prop:ccs-prov-in} uyarınca
+$!A\in\Gamma$ ve $!B\in\Gamma$; istenen de buydu.
+
+Ters yön için $!A\in\Gamma$ ve $!B\in\Gamma$ olsun.
+\iftag{FOL}{%
+  \tagrefs{prfSC/{fol:seq:ppr:prop:provability-land},
+    prfND/{fol:ntd:ppr:prop:provability-land},
+    prfAX/{fol:axd:ppr:prop:provability-land},
+    prfTab/{fol:tab:ppr:prop:provability-land}}}{%
+  \tagrefs{prfSC/{pl:seq:ppr:prop:provability-land},
+    prfND/{pl:ntd:ppr:prop:provability-land},
+    prfAX/{pl:axd:ppr:prop:provability-land},
+    prfTab/{pl:tab:ppr:prop:provability-land}}}
+sonucunun (2). maddesine göre $\Gamma\Proves !A\land !B$ olur.
+\olref{prop:ccs-prov-in} uyarınca $!A\land !B\in\Gamma$.}}
+
+\tagitem{defOr}{}{%
+\iftag{probOr}{Alıştırma.}{%
+Önce $!A\lor !B\in\Gamma$ ise $!A\in\Gamma$ ya da
+$!B\in\Gamma$ olduğunu gösterelim. $!A\lor !B\in\Gamma$ iken
+$!A\notin\Gamma$ ve $!B\notin\Gamma$ olduğunu varsayalım.
+$\Gamma$ !!{complete} olduğundan $\lnot !A\in\Gamma$ ve
+$\lnot !B\in\Gamma$ olur.
+\iftag{FOL}{%
+  \tagrefs{prfSC/{fol:seq:ppr:prop:provability-lor},
+    prfND/{fol:ntd:ppr:prop:provability-lor},
+    prfAX/{fol:axd:ppr:prop:provability-lor},
+    prfTab/{fol:tab:ppr:prop:provability-lor}}}{%
+  \tagrefs{prfSC/{pl:seq:ppr:prop:provability-lor},
+    prfND/{pl:ntd:ppr:prop:provability-lor},
+    prfAX/{pl:axd:ppr:prop:provability-lor},
+    prfTab/{pl:tab:ppr:prop:provability-lor}}}
+sonucunun (1). maddesine göre~$\Gamma$ tutarsız olur; bu bir
+çelişkidir. Dolayısıyla $!A\in\Gamma$ ya da $!B\in\Gamma$.
+
+Ters yön için $!A\in\Gamma$ ya da $!B\in\Gamma$ olduğunu varsayalım.
+\iftag{FOL}{%
+  \tagrefs{prfSC/{fol:seq:ppr:prop:provability-lor},
+    prfND/{fol:ntd:ppr:prop:provability-lor},
+    prfAX/{fol:axd:ppr:prop:provability-lor},
+    prfTab/{fol:tab:ppr:prop:provability-lor}}}{%
+  \tagrefs{prfSC/{pl:seq:ppr:prop:provability-lor},
+    prfND/{pl:ntd:ppr:prop:provability-lor},
+    prfAX/{pl:axd:ppr:prop:provability-lor},
+    prfTab/{pl:tab:ppr:prop:provability-lor}}}
+sonucunun (2). maddesine göre $\Gamma\Proves !A\lor !B$ olur.
+\olref{prop:ccs-prov-in} uyarınca $!A\lor !B\in\Gamma$; istenen de
+buydu.}}
+
+\tagitem{defIf}{}{%
+\iftag{probIf}{Alıştırma.}{%
+İleri yön için $!A\lif !B\in\Gamma$ olduğunu, aksine
+$!A\in\Gamma$ ve $!B\notin\Gamma$ olduğunu varsayalım. Bu varsayımlar
+altında $!A\lif !B\in\Gamma$ ve $!A\in\Gamma$.
+\iftag{FOL}{%
+  \tagrefs{prfSC/{fol:seq:ppr:prop:provability-lif},
+    prfND/{fol:ntd:ppr:prop:provability-lif},
+    prfAX/{fol:axd:ppr:prop:provability-lif},
+    prfTab/{fol:tab:ppr:prop:provability-lif}}}{%
+  \tagrefs{prfSC/{pl:seq:ppr:prop:provability-lif},
+    prfND/{pl:ntd:ppr:prop:provability-lif},
+    prfAX/{pl:axd:ppr:prop:provability-lif},
+    prfTab/{pl:tab:ppr:prop:provability-lif}}}
+sonucunun (1). maddesine göre $\Gamma\Proves !B$. Fakat
+\olref{prop:ccs-prov-in} uyarınca $!B\in\Gamma$ olur; bu da
+$!B\notin\Gamma$ varsayımıyla çelişir.
+
+Ters yön için önce $!A\notin\Gamma$ durumunu ele alalım. $\Gamma$
+!!{complete} olduğundan $\lnot !A\in\Gamma$.
+\iftag{FOL}{%
+  \tagrefs{prfSC/{fol:seq:ppr:prop:provability-lif},
+    prfND/{fol:ntd:ppr:prop:provability-lif},
+    prfAX/{fol:axd:ppr:prop:provability-lif},
+    prfTab/{fol:tab:ppr:prop:provability-lif}}}{%
+  \tagrefs{prfSC/{pl:seq:ppr:prop:provability-lif},
+    prfND/{pl:ntd:ppr:prop:provability-lif},
+    prfAX/{pl:axd:ppr:prop:provability-lif},
+    prfTab/{pl:tab:ppr:prop:provability-lif}}}
+sonucunun (2). maddesine göre $\Gamma\Proves !A\lif !B$. Yine
+\olref{prop:ccs-prov-in} uyarınca $!A\lif !B\in\Gamma$ elde ederiz.
+
+Şimdi $!B\in\Gamma$ durumunu ele alalım.
+\iftag{FOL}{%
+  \tagrefs{prfSC/{fol:seq:ppr:prop:provability-lif},
+    prfND/{fol:ntd:ppr:prop:provability-lif},
+    prfTab/{fol:tab:ppr:prop:provability-lif},
+    prfAX/{fol:axd:ppr:prop:provability-lif}}}{%
+  \tagrefs{prfSC/{pl:seq:ppr:prop:provability-lif},
+    prfND/{pl:ntd:ppr:prop:provability-lif},
+    prfTab/{pl:tab:ppr:prop:provability-lif},
+    prfAX/{pl:axd:ppr:prop:provability-lif}}}
+sonucunun yine (2). maddesine göre $\Gamma\Proves !A\lif !B$.
+\olref{prop:ccs-prov-in} uyarınca $!A\lif !B\in\Gamma$.}}
+\end{enumerate}
+\end{proof}
+
+\tagprob{FOL}
+\begin{prob}
+\olref[fol][com][ccs]{prop:ccs} önermesinin ispatını tamamlayın.
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+\olref[pl][com][ccs]{prop:ccs} önermesinin ispatını tamamlayın.
+\end{prob}
+\tagendprob
+

@@ -1,0 +1,42 @@
+% Generated from locale/tr/content/normal-modal-logic/sequent-calculus/introduction.tex; do not hand-edit.
+
+
+\olfileid[tr]{nml}{seq}{int}
+
+\olsection{Giriş}
+
+Önerme mantığının sekant hesabı,
+\iftag{prvBox}{$\Box$\iftag{prvDiamond}{ ve~}{}}{}%
+\iftag{prvDiamond}{$\Diamond$}{} ile ilgilenen ek kurallarla
+genişletilebilir. Örneğin $\Log{K}$ için \Log{LK}'ye ek olarak şunlar vardır:
+\[
+  \iftag{prvBox}{\iftag{prvDiamond}{% <> and [] primitive
+    \Axiom$\Gamma \fCenter \Delta, !A$
+    \RightLabel{$\Box$}
+    \UnaryInf$\Box\Gamma \fCenter \Diamond\Delta, \Box!A$
+    \DisplayProof
+    \qquad
+    \Axiom$!A, \Gamma \fCenter \Delta$
+    \RightLabel{$\Diamond$}
+    \UnaryInf$\Diamond!A, \Box\Gamma \fCenter \Diamond\Delta$
+    \DisplayProof
+}{% only Box primitive
+\Axiom$\Gamma \fCenter !A$
+\RightLabel{$\Box$}
+\UnaryInf$\Box\Gamma \fCenter \Box!A$
+\DisplayProof
+}}{% only <> primitive
+  \Axiom$!A \fCenter \Delta$
+  \RightLabel{$\Diamond$}
+  \UnaryInf$\Diamond!A \fCenter \Diamond\Delta$
+  \DisplayProof
+}
+\]
+$\Log{K}$'nin genişletmeleri için başka kuralların da eklenmesi gerekir.
+
+Her modal mantığın böyle bir sekant hesabı yoktur. Semantik bakımdan basit
+olan (hatta erişilebilirlik bağıntıları hiç kullanılmadan tanımlanabilen)
+$\Log{S5}$ için bile, $\Log{LK}$'ye kural ekleyerek elde edilen ve
+\Cut{} kuralı olmadan tam olan bir sekant hesabı bilinmemektedir. Bununla
+birlikte, kesmesiz ve tam bir \emph{hipersekant} hesabı vardır.
+

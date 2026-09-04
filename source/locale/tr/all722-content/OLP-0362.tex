@@ -1,0 +1,275 @@
+% Generated from locale/tr/content/lambda-calculus/syntax/alpha.tex; do not hand-edit.
+
+
+\olfileid[tr]{lam}{syn}{alp}
+\olsection{$\alpha$-Dönüşümü}
+
+$\lambd[x][x]$ ile $\lambd[y][y]$ arasında nasıl bir ilişki vardır? Her
+ikisi de özdeşlik fonksiyonunu gösterir. Elbette sözdizimsel olarak farklı
+terimlerdir. Yalnızca bağlı değişkenin adı bakımından ayrılırlar; biri,
+diğerindeki bağlı değişkenin ``yeniden adlandırılmasıyla'' elde edilir. Buna
+\emph{$\alpha$-dönüşümü} denir.
+
+\begin{defn}[Bağlı değişkeni değiştirme, $\aconvone$]
+  Bir $M$ terimi $\lambd[x][N]$ geçişini içeriyor, $y\notin\FV{N}$ ve
+  $\Subst{N}{y}{x}$ tanımlıysa, bu geçişin
+  \begin{equation*}
+    \lambd[y][\Subst{N}{y}{x}]
+  \end{equation*}
+  ile değiştirilerek $M'$ teriminin elde edilmesine \emph{bağlı değişkeni
+  değiştirme} denir ve $M\redone[\alpha]M'$ yazılır.
+\end{defn}
+
+\begin{defn}[Bir bağıntının bağdaşması]
+  Terimler üzerindeki bir $R$ bağıntısı aşağıdaki koşulları sağlıyorsa
+  \emph{bağdaşır} denir:
+  \begin{enumerate}
+  \item $R N N'$ ise $R \lambd[x][N] \lambd[x][N']$;
+  \item $R P P'$ ise $R (PQ) (P'Q)$;
+  \item $R Q Q'$ ise $R (PQ) (PQ')$.
+  \end{enumerate}
+\end{defn}
+
+Tanımı şimdi başka biçimde ifade edelim:
+\begin{defn}[Bağlı değişkeni değiştirme, $\aconvone$]
+  \emph{Bağlı değişkeni değiştirme} ($\redone[\alpha]$), terimler üzerinde
+  aşağıdaki koşulu sağlayan en küçük bağdaşır bağıntıdır:
+  \begin{align*}
+    &\lambd[x][N] \redone[\alpha] \lambd[y][\Subst{N}{y}{x}] && \text{$x
+      \neq y$, $y \notin \FV{N}$ ise} \\
+    & &&\text{ve $\Subst{N}{y}{x}$ tanımlıysa.}
+  \end{align*}
+\end{defn}
+
+Buradaki ``en küçük'', bağıntının yalnızca bağdaşma ve ek koşulun
+gerektirdiği çiftleri içerdiği, başka hiçbir çift içermediği anlamına gelir.
+Dolayısıyla bağıntı şöyle de tanımlanabilir:
+
+\begin{defn}[Bağlı değişkeni değiştirme, $\aconvone$] \ollabel{defn:aconvone}
+  \emph{Bağlı değişkeni değiştirme} ($\aconvone$) tümevarımlı olarak şöyle
+  tanımlanır:
+  \begin{enumerate}
+  \item $N \aconvone N'$ ise $\lambd[x][N] \aconvone
+    \lambd[x][N']$. \ollabel{defn:aconvone1}
+  \item $P \aconvone P'$ ise $(PQ) \aconvone (P'Q)$.
+    \ollabel{defn:aconvone2}
+  \item $Q \aconvone Q'$ ise $(PQ) \aconvone (PQ')$.
+    \ollabel{defn:aconvone3}
+  \item $x \neq y$, $y \notin \FV{N}$ ve $\Subst{N}{y}{x}$ tanımlıysa
+    $\lambd[x][N] \redone[\alpha] \lambd[y][\Subst{N}{y}{x}]$.
+    \ollabel{defn:aconvone4}
+  \end{enumerate}
+\end{defn}
+
+Tanımlar eşdeğerdir; ispatı alıştırma olarak bırakıyoruz. Bundan sonra
+tümevarımlı tanımı kullanacağız.
+
+\begin{defn}[$\alpha$-dönüşümü, $\aconv$]
+  \emph{$\alpha$-dönüşümü} ($\aconv$), $\aconvone$ bağıntısını içeren,
+  terimler üzerindeki en küçük yansımalı ve geçişli bağıntıdır.
+\end{defn}
+
+Yukarıdaki gibi ``en küçük'', bağıntının yalnızca geçişliliğin ve
+$\aconvone$ bağıntısının gerektirdiği çiftleri içerdiği anlamına gelir. Bu da
+aşağıdaki eşdeğer tanıma götürür:
+
+\begin{defn}[$\alpha$-dönüşümü, $\aconv$] \ollabel{defn:aconv}
+  \emph{$\alpha$-dönüşümü} ($\aconv$) tümevarımlı olarak şöyle tanımlanır:
+  \begin{enumerate}
+  \item $P \aconv Q$ ve $Q \aconv R$ ise $P \aconv R$.
+    \ollabel{defn:aconv1}
+  \item $P \aconvone Q$ ise $P \aconv Q$. \ollabel{defn:aconv2}
+  \item $P \aconv P$. \ollabel{defn:aconv3}
+  \end{enumerate}
+\end{defn}
+
+\begin{ex}
+  $\lambd[x][f x]$, $\lambd[y][f y]$ terimine $\alpha$-dönüşür; tersi de
+  geçerlidir. Gayriresmî olarak ikisi de bir argüman alıp bu argümanın $f$
+  altındaki değerini döndüren ve ortam değişkeni $f$'ye gönderme yapan
+  fonksiyonlardır.
+
+  $\lambd[x][f x]$, $\lambd[x][g x]$ terimine $\alpha$-dönüşmez.
+  Gayriresmî olarak bunlar sırasıyla $f$ ve $g$ ortam değişkenlerine gönderme
+  yapar; $f$ ile $g$'nin farklı olduğu ortamlarda farklı davrandıkları için
+  farklı fonksiyonlardır.
+\end{ex}
+
+\begin{prob}
+  Aşağıdaki terim çiftleri $\alpha$-dönüşümlü müdür?
+  \begin{enumerate}
+  \item $\lambd[x][\lambd[y][x]]$ ve $\lambd[y][\lambd[x][y]]$;
+  \item $\lambd[x][\lambd[y][x]]$ ve $\lambd[c][\lambd[b][a]]$;
+  \item $\lambd[x][\lambd[y][x]]$ ve $\lambd[c][\lambd[b][a]]$.
+  \end{enumerate}
+\end{prob}
+
+\begin{lem}\ollabel{lem:fv-one}
+  $P \aconvone Q$ ise $\FV{P} = \FV{Q}$.
+\end{lem}
+
+\begin{proof}
+  $P \aconvone Q$ !!{derivation} üzerinde tümevarımla.
+  \begin{enumerate}
+  \item Son kural \olref{defn:aconvone4} ise $P$, $\lambd[x][N]$;
+    $Q$ ise $\lambd[y][\Subst{N}{y}{x}]$ biçimindedir; burada $x\neq y$,
+    $y\notin\FV{N}$ ve $\Subst{N}{y}{x}$ tanımlıdır. $x\in\FV{N}$ olup
+    olmamasına göre durumları ayırırız:
+    \begin{enumerate}
+    \item $x \in \FV{N}$ ise:
+      \begin{align*}
+        \FV{\lambd[y][\Subst{N}{y}{x}]} &=
+        \FV{\Subst{N}{y}{x}} \setminus \{y\} \\
+        & = ((\FV{N} \setminus \{x\}) \cup \{y\}) \setminus \{y\}
+         && \text{\olref[sub]{thm:infv} gereği} \\
+        & = \FV{N} \setminus \{x\} \\
+        & = \FV{\lambd[x][N]}.
+      \end{align*}
+    \item $x \notin \FV{N}$ ise:
+      \begin{align*}
+        \FV{\lambd[y][\Subst{N}{y}{x}]}
+        & = \FV{\Subst{N}{y}{x}} \setminus \{y\} \\
+        & = \FV{N} \setminus \{y\}
+         && \text{\olref[sub]{thm:notinfv} gereği} \\
+        & = \FV{N} \\
+        & = \FV{N}\setminus\{x\} \\
+        & = \FV{\lambd[x][N]}.
+      \end{align*}
+    \end{enumerate}
+  \item Diğer üç durum alıştırma olarak bırakılmıştır.
+  \end{enumerate}
+\end{proof}
+
+\begin{prob}
+  \olref[lam][syn][alp]{lem:fv-one} lemasının ispatını tamamlayın.
+\end{prob}
+
+\begin{lem}\ollabel{lem:inv}
+  $P \aconvone Q$ ise $Q \aconvone P$.
+\end{lem}
+
+\begin{proof}
+  $P \aconvone Q$ !!{derivation} üzerinde tümevarımla.
+  \begin{enumerate}
+  \item Son kural \olref{defn:aconvone4} ise $P$, $\lambd[x][N]$ ve $Q$,
+    $\lambd[y][\Subst{N}{y}{x}]$ biçimindedir; burada $x\neq y$,
+    $y\notin\FV{N}$ ve $\Subst{N}{y}{x}$ tanımlıdır. Önce
+    \olref[sub]{thm:clr} gereği
+    $y\notin\FV{\Subst{N}{y}{x}}$ olur. \olref[sub]{thm:inv} gereği
+    $\Subst{\Subst{N}{y}{x}}{x}{y}$ yalnızca tanımlı değil, aynı zamanda
+    $N$'ye eşittir. Dolayısıyla \olref{defn:aconvone4} gereği
+    $\lambd[y][\Subst{N}{y}{x}]
+    \aconvone \lambd[x][\Subst{\Subst{N}{y}{x}}{x}{y}] =
+    \lambd[x][N]$ elde edilir.
+  \end{enumerate}
+\end{proof}
+
+\begin{prob}
+  \olref[lam][syn][alp]{lem:inv} lemasının ispatını tamamlayın.
+\end{prob}
+
+\begin{thm}
+  $\alpha$-dönüşümü terimler üzerinde bir denklik bağıntısıdır; yani
+  yansımalı, simetrik ve geçişlidir.
+\end{thm}
+
+\begin{proof}
+  \begin{enumerate}
+  \item Her $M$ terimi, bağlı değişkenlerde \emph{sıfır} değişiklik yapılarak
+    $M$'ye dönüştürülebilir.
+  \item $P$, bir dizi bağlı değişken değişikliğiyle $Q$'ya
+    $\alpha$-dönüşüyorsa, bu değişiklikleri \olref{lem:inv} gereği ters
+    yönde ve ters sırada uygulayarak $Q$'dan $P$ elde edilir.
+  \item $P$, bir değişiklik dizisiyle $Q$'ya; $Q$ da başka bir değişiklik
+    dizisiyle $R$'ye $\alpha$-dönüşüyorsa, önce ilk, sonra ikinci diziyi
+    uygulayarak $P$'yi $R$'ye dönüştürebiliriz.
+  \end{enumerate}
+\end{proof}
+
+Bundan sonra $M$, $N$'ye $\alpha$-dönüşüyorsa, $M$ ile $N$'nin
+\emph{$\alpha$-denk} olduğunu, $M\aeq N$, söyleriz. Az önce gösterdiğimiz
+gibi bu, ancak ve ancak $N$ de $M$'ye $\alpha$-dönüşüyorsa geçerlidir.
+
+\begin{thm}\ollabel{thm:fv}
+  $M \aeq N$ ise $\FV{M} = \FV{N}$.
+\end{thm}
+
+\begin{proof}
+  Doğrudan \olref{lem:fv-one} lemasından çıkar.
+\end{proof}
+
+\begin{lem}\ollabel{lem:sub:R}
+  $R \aeq R'$ ve $\Subst{M}{R}{y}$ tanımlıysa $\Subst{M}{R'}{y}$ de
+  tanımlıdır ve $\Subst{M}{R}{y}$ ile $\alpha$-denktir.
+\end{lem}
+
+\begin{proof}
+  Alıştırma.
+\end{proof}
+
+\begin{prob}
+  \olref[lam][syn][alp]{lem:sub:R} lemasını ispatlayın.
+\end{prob}
+
+\olref[sub]{sec} içinde yerine koymanın bazı durumlarda tanımsız olduğunu
+hatırlayın. Bununla birlikte terimler üzerinde $\alpha$-dönüşümü kullanarak
+bağlı değişkenleri yeniden adlandırabilir ve yerine koymayı her zaman tanımlı
+hâle getirebiliriz. Aşağıdaki teorem sonucun $\alpha$-denkliğini koruduğunu
+gösterir:
+
+\begin{thm}\ollabel{thm:sub}
+  Her $M$, $R$ ve~$y$ için $M \aeq M'$ ve $\Subst{M'}{R}{y}$ tanımlı
+  olacak biçimde bir $M'$ vardır. Ayrıca $M''\aeq M$, $R''\aeq R$ ve
+  $\Subst{M''}{R''}{y}$ tanımlı olacak biçimde başka bir $M'',R''$ çifti
+  varsa $\Subst{M'}{R}{y} \aeq \Subst{M''}{R''}{y}$ olur.
+\end{thm}
+
+\begin{proof}
+  $M$'nin kuruluşu üzerinde tümevarımla:
+  \begin{enumerate}
+  \item $M$, bir $z$ değişkenidir: alıştırma.
+  \item $M$'nin $\lambd[x][N]$ biçiminde olduğunu varsayın. $x$ ve $y$'den
+    farklı, ayrıca $z\notin\FV{N}$ ve $z\notin\FV{R}$ olacak biçimde bir
+    $z$ değişkeni seçin. Tümevarım varsayımına göre $N'\aeq N$ ve
+    $\Subst{N'}{z}{x}$ tanımlı olacak biçimde bir $N'$ vardır.
+    \olref{defn:aconvone}\olref{defn:aconvone1} gereği
+    $\lambd[x][N]\aeq\lambd[x][N']$ olur. Ayrıca
+    \olref{defn:aconvone}\olref{defn:aconvone4} gereği
+    $\lambd[x][N']\aeq\lambd[z][\Subst{N'}{z}{x}]$ olur. Bunu yapabiliriz;
+    çünkü $z\neq x$, $N'\aeq N$ olduğundan $z\notin\FV{N'}$ ve
+    $\Subst{N'}{z}{x}$ tanımlıdır. Son olarak
+    $\Subst{\lambd[z][\Subst{N'}{z}{x}]}{R}{y}$ tanımlıdır; çünkü
+    $z\neq y$ ve $z\notin\FV{R}$.
+
+    Aynı koşulları sağlayan başka bir $N''$ ve $R''$ varsa
+    \begin{multline*}
+      \Subst{(\lambd[z][\Subst{N''}{z}{x}])}{R''}{y} \aeq\\
+    \begin{aligned}
+      &\lambd[z][\Subst{\Subst{N''}{z}{x}}{R''}{y}] \\
+      &\aeq \lambd[z][\Subst{\Subst{N''}{z}{x}}{R}{y}] && \text{
+        \olref{lem:sub:R} gereği}\\
+      &\aeq\lambd[z][\Subst{\Subst{N'}{z}{x}}{R}{y}]
+      && \text{tümevarım varsayımı gereği}\\
+      &\aeq\Subst{(\lambd[z][\Subst{N'}{z}{x}])}{R}{y}.
+    \end{aligned}
+    \end{multline*}
+    \item $M$, $(PQ)$ biçimindedir: alıştırma.
+  \end{enumerate}
+\end{proof}
+
+\begin{prob}
+  \olref[lam][syn][alp]{thm:sub} teoreminin ispatını tamamlayın.
+\end{prob}
+
+\begin{cor}\ollabel{cor:sub}
+  Her $M$, $R$ ve~$y$ için $M'\aeq M$, $R\aeq R'$ ve
+  $\Subst{M'}{R'}{y}$ tanımlı olacak biçimde bir $M',R'$ çifti vardır.
+  Ayrıca $M''\aeq M$, $R''\aeq R$ ve $\Subst{M''}{R''}{y}$ tanımlı olacak
+  biçimde başka bir çift varsa
+  $\Subst{M'}{R'}{y}\aeq\Subst{M''}{R''}{y}$ olur.
+\end{cor}
+
+\begin{proof}
+  Doğrudan \olref{thm:sub} teoreminden çıkar.
+\end{proof}
+

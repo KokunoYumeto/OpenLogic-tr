@@ -1,0 +1,41 @@
+% Generated from locale/tr/content/turing-machines/undecidability/decision-problem.tex; do not hand-edit.
+
+
+\olfileid[tr]{tur}{und}{dec}
+\olsection{Karar Problemi}
+
+Verilen bir !!{sentence}{}nin geçerli olup olmadığını belirleyen etkili bir
+yöntem varsa ve ancak varsa birinci dereceden mantığın \emph{karar
+verilebilir} olduğunu söyleriz. Anlaşıldığı üzere böyle bir yöntem yoktur:
+Birinci dereceden tümcelerin geçerliliğine karar verme problemi çözülemezdir.
+
+Bu önemli olumsuz sonucu ortaya koymak için karar probleminin bir Turing
+makinesiyle çözülemeyeceğini kanıtlarız. Yani şeridinde birinci dereceden bir
+!!{sentence} bulunduğunda her zaman sonunda duran ve !!{sentence}{}nin geçerli
+olup olmamasına göre $1$ ya da $0$ çıktısını veren hiçbir Turing makinesinin
+bulunmadığını gösteririz. Church--Turing tezine göre hesaplanabilir her
+fonksiyon Turing hesaplanabilirdir. Dolayısıyla bu ``geçerlilik fonksiyonu''
+etkili biçimde hesaplanabilir olsaydı Turing hesaplanabilir olurdu. Turing
+hesaplanabilir değilse etkili biçimde de hesaplanamaz.
+
+Karar probleminin çözülemez olduğunu kanıtlama stratejimiz, durma problemini
+ona indirgemektir. Bunun anlamı şudur: $e$ ile betimlenen Turing makinesi $w$
+girdisinde duruyorsa $1$, aksi durumda $0$ çıktısıyla duran $h(e,w)$
+fonksiyonunun Turing hesaplanabilir olmadığını kanıtladık. Birinci dereceden
+tümcelerin geçerliliğine karar veren bir Turing makinesi bulunsaydı $h$'yi
+hesaplayan bir Turing makinesinin de bulunacağını göstereceğiz. $h$ bir
+Turing makinesince hesaplanamadığına göre geçerliliğe karar veren bir Turing
+makinesi de bulunamaz.
+
+Bu stratejinin ilk adımı, her $w$ girdisi ve $M$ Turing makinesi için $M$'nin
+yönerge kümesiyle $w$ girdisini gösteren !!a{sentence} $!T(M,w)$ ile
+``$M$ sonunda durur'' ifadesini dile getiren !!a{sentence}~$!E(M,w)$'yi
+aşağıdaki koşulu sağlayacak biçimde etkili olarak betimleyebileceğimizi
+göstermektir:
+\begin{quote}
+  $\Entails !T(M, w) \lif !E(M,w)$ ancak ve ancak $M$, $w$ girdisinde durursa.
+\end{quote}
+Kanıtımızın büyük bölümü bu $!T(M,w)$ ve $!E(M,w)$ tümcelerini betimlemekten
+ve $!T(M,w)\lif !E(M,w)$ tümcesinin ancak ve ancak $M$, $w$ girdisinde
+durursa geçerli olduğunu doğrulamaktan oluşacaktır.
+

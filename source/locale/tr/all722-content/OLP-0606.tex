@@ -1,0 +1,347 @@
+% Generated from locale/tr/content/methods/proofs/inference-patterns.tex; do not hand-edit.
+
+
+\olfileid[tr]{mth}{prf}{pat}
+
+\olsection{Çıkarım Kalıpları}
+
+Kanıtlar tek tek çıkarımlardan oluşur. Bir çıkarım yaptığımızı çoğu
+zaman ``öyleyse'', ``böylece'' ya da ``dolayısıyla'' gibi bir sözcükle
+belirtiriz. Çıkarım genellikle kanıtımızda hâlihazırda bulunan bir ya da
+iki olguya dayanır---bu, varsaydığımız bir şey ya da daha önce bir
+çıkarımla ulaştığımız bir sonuç olabilir. Açık olmak için bu şeyleri
+etiketleyebilir, çıkarım sırasında başka hangi ifadeleri kullandığımızı
+belirtebiliriz. Bir çıkarım çoğu zaman, yeni sonucumuzun önceki
+şeylerden \emph{neden} çıktığını açıklayan bir gerekçe de içerir.
+Kanıtlarda çok sık kullanılan bazı yaygın çıkarım kalıpları vardır;
+aşağıda bunlardan bazılarını ele alacağız. Tümevarımla kanıt gibi kimi
+çıkarım kalıpları daha kapsamlıdır (ve daha sonra tartışılacaktır).
+
+Bir çıkarım kalıbını daha önce ele aldık: bir tanımı açmak ya da
+uygulamak. Bir tanımı açtığımızda, tanımlananı içeren bir şeyi
+tanımlayanı kullanarak yeniden ifade ederiz. Örneğin bir kanıtın
+akışı içinde $D = E$ (a) olduğunu zaten belirlediğimizi varsayalım.
+O zaman kümeler için $=$ tanımını uygulayıp şu çıkarımı yapabiliriz:
+``Öyleyse (a)'dan tanım gereği, $D$'de bulunan her !!{element}, $E$'de
+de bir !!a{element} olarak bulunur ve bunun tersi de geçerlidir.''
+
+Biraz kafa karıştırıcı biçimde, bir çıkarımın gerekçesini çoğu kez
+çıkarımı gerçekten yaptığımız sırada değil, ondan önce yazarız. Henüz
+$D = E$'yi kanıtlamadığımızı fakat kanıtlamak istediğimizi düşünün.
+Hedeflediğimiz sonuç $D = E$ ise tanımı uygulayarak bu hedefi de yeniden
+ifade edebiliriz: $D = E$'yi kanıtlamak için $D$'de bulunan her
+!!{element} için $E$'de bir !!a{element} bulunduğunu ve bunun tersini
+kanıtlamalıyız. Dolayısıyla kanıtımız şu biçimde olur: (a) $D$'deki her
+!!{element} için $E$'de bir !!a{element} bulunduğunu kanıtla; (b)
+$E$'deki her !!{element} için $D$'de bir !!a{element} bulunduğunu kanıtla; (c)
+öyleyse (a) ve (b)'den, $=$ tanımı gereği, $D = E$. Ancak bunu genellikle
+bu biçimde yazmayız. Bunun yerine şöyle bir şey yazabiliriz:
+\begin{quote}
+$D = E$ olduğunu göstermek istiyoruz. $=$ tanımı gereği bu, $D$'deki
+her !!{element} için $E$'de bir !!a{element} bulunduğunu ve bunun tersini
+göstermek demektir.
+
+(a) \dots ($D$'deki her !!{element} için $E$'de bir !!a{element}
+olduğunun kanıtı) \dots
+
+(b) \dots ($E$'deki her !!{element} için
+$D$'de bir !!a{element} bulunduğunun kanıtı) \dots
+\end{quote}
+
+\subsection{Bir Bağlaşımı Kullanmak}
+
+Belki de en basit çıkarım kalıbı, bir bağlaşımın bileşenlerinden birini
+sonuç olarak çıkarmaktır. Başka bir deyişle: $p$ ve~$q$ olduğunu
+varsaymış ya da zaten kanıtlamışsak $p$ sonucunu (ve aynı zamanda $q$
+sonucunu) çıkarabiliriz. Bu öylesine temel bir çıkarımdır ki çoğu kez
+adı bile anılmaz. Örneğin $D = E$ tanımını açtığımızda $D$'de bulunan
+her !!{element} için $E$'de bir !!a{element} bulunduğunu ve bunun
+tersini belirlemiş oluruz. Buradan $E$'deki her !!{element} için $D$'de
+bir !!a{element} bulunduğu sonucuna varabiliriz (``bunun tersi'' kısmı budur).
+
+\subsection{Bir Bağlaşımı Kanıtlamak}
+
+Bazen kanıtlamanız istenen şey bir bağlaşım biçiminde olur; sizden
+``$p$ ve $q$'yu kanıtlamanız'' istenir. Bu durumda yalnızca iki şey
+yapmalısınız: $p$'yi, ardından $q$'yu kanıtlamak. Kanıtınızı iki kısma
+ayırıp açıklık için bunları etiketleyebilirsiniz. İlk notlarınızı
+alırken sayfanın başına ``(1) $p$'yi kanıtla'', ortasına da ``(2)
+$q$'yu kanıtla'' yazabilirsiniz. (Elbette sizden açıkça bir bağlaşımı
+kanıtlamanız istenmemiş olabilir; yine de kanıtınızın bir bağlaşımı
+kanıtlamanızı gerektirdiğini görebilirsiniz. Örneğin $D = E$'yi
+kanıtlamanız istenirse $=$ tanımını açtıktan sonra şunları kanıtlamanız
+gerektiğini görürsünüz: $D$'deki her !!{element}, $E$'de bir
+!!a{element} olarak bulunur \emph{ve} $E$'deki her !!{element}, $D$'de
+bir !!a{element} olarak bulunur.)
+
+\subsection{Bir Ayrışımı Kanıtlamak}
+
+Kanıtladığınız şey bir ayrışım biçimindeyse (yani ``$p$ ya da $q$''
+biçiminde bir ifadeyse), ayrışanlardan birinin doğru olduğunu göstermek
+yeterlidir. Ancak ayrışanlardan herhangi birinin teoreminizin
+varsayımlarından doğrudan çıkması hemen hemen hiç görülmez. Daha sık
+olarak, teoreminizin varsayımları da ayrışıktır ya da belirli türdeki
+bütün şeylerin iki özellikten birine sahip olduğunu gösteriyorsunuzdur;
+ama bazıları bir, bazıları öteki özelliğe sahiptir. Durumlara göre kanıt
+burada işe yarar (aşağıya bakın).
+
+\subsection{Koşullu Kanıt}
+
+Karşılaşacağınız birçok teorem koşullu biçimdedir (yani $p$ geçerliyse
+$q$'nun da doğru olduğunu göstermeniz istenir). Bu durumların kuruluşu
+kolaydır---koşullunun önbileşenini (burada $p$'yi) varsayın ve buradan
+$q$ sonucunu kanıtlayın. Dolayısıyla teoreminiz ``$p$ ise $q$'' diyorsa,
+kanıtınıza ``$p$'yi varsayalım'' diye başlar ve sonunda~$q$'yu
+kanıtlamış olursunuz.
+
+Koşullular farklı biçimlerde ifade edilebilir. Bir teorem ``$p$ ise
+$q$'' yerine ``$p$, ancak $q$ ise'', ``$q$, $p$ ise'' ya da ``$q$,
+$p$ koşuluyla'' diyebilir. Bunların hepsi aynı anlama gelir ve $p$'yi
+varsayıp bu varsayımdan~$q$'yu kanıtlamayı gerektirir. Bir iki yönlü
+koşullunun (``$p$ ancak ve ancak $q$ ise'') aslında bir araya getirilmiş
+iki koşullu olduğunu hatırlayın: $p$ ise $q$ ve $q$ ise~$p$. O hâlde
+yapmanız gereken yalnızca iki koşullu kanıttır: biri ilk koşullu, diğeri
+ikinci koşullu için. Bununla birlikte bazen bir ``ancak ve ancak''
+ifadesini, ``$p$'' ile başlayıp ``$q$'' ile bitecek biçimde başka birkaç
+``ancak ve ancak'' ifadesini zincirleyerek kanıtlamak mümkündür---ama bu
+durumda her adımın gerçekten bir ``ancak ve ancak'' olduğundan emin
+olmalısınız.
+
+\subsection{Tümel İddialar}
+
+Tümel bir iddiayı kullanmak basittir: bir şey her nesne için doğruysa,
+tek tek her nesne için de doğrudur. Örneğin kanıtınızın hipotezi $A
+\subseteq B$ ise bu, $\subseteq$ tanımı açıldığında, her $x \in A$ için
+$x \in B$ olduğu anlamına gelir. Dolayısıyla $z \in A$ olduğunu zaten
+biliyorsanız $z \in B$ sonucunu çıkarabilirsiniz.
+
+Tümel bir iddiayı kanıtlamak biraz çetrefilli görünebilir. Genellikle
+bu ifadeler şu biçimdedir: ``$x$, $P$ özelliğine sahipse $Q$ özelliğine
+de sahiptir'' ya da ``Bütün $P$'ler $Q$'dur.'' Elbette ifade bu biçime
+tam olarak uymayabilir ve sizden tam olarak neyin kanıtlanmasının
+istendiğini anlamak biraz alıştırma gerektirir. Ama çoğu zaman, belli
+bir özelliğe sahip bütün nesnelerin başka bir belirli özelliğe sahip
+olduğunu kanıtlamamız gerekir.
+
+Tümel bir iddiayı kanıtlamanın yolu, ilk özelliğe sahip şeyler için
+adlar ya da değişkenler ortaya koymak ve sonra onların öteki özelliğe
+de sahip olduğunu göstermektir. Bunu, \emph{bütün}~$P$'ler için bir şeyi
+kanıtlamak üzere onu \emph{keyfî} bir~$P$ için kanıtlamanız gerekir,
+diye ifade edebiliriz. Ortaya konan ad da keyfî bir~$P$'nin adıdır.
+Keyfî şeyler için ad olarak genellikle tek harf kullanır ve çoğu zaman
+yerleşik kurallara uyarız: örneğin doğal sayılar için $n$,
+!!{formula}s için $!A$, kümeler için $A$, fonksiyonlar için $f$ vb.
+
+İncelik, kanıt boyunca genelliği korumaktır. Keyfî bir nesnenin
+(``$x$'') $P$ özelliğine sahip olduğunu varsayarak başlar ve (yalnızca
+tanımlara ya da varsaymanıza izin verilenlere dayanarak) $x$'in $Q$
+özelliğine sahip olduğunu gösterirsiniz. $x$'in, $P$ özelliğine sahip
+olması dışında özellikle ne olduğunu belirtmediğiniz için, $P$'ye
+sahip her şeyin $Q$ özelliğine sahip olduğunu ileri sürebilirsiniz.
+Kısacası $x$, $P$ özelliğine sahip \emph{bütün} şeylerin yerini tutar.
+
+\begin{prop}
+  Bütün $A$ ve $B$ kümeleri için $A \subseteq A \cup B$.
+\end{prop}
+
+\begin{proof}
+  $A$ ve $B$ keyfî kümeler olsun. $A \subseteq A \cup B$ olduğunu
+  göstermek istiyoruz. $\subseteq$ tanımı gereği bu şu demektir: her
+  $x$ için, $x \in A$ ise $x \in A \cup B$. Öyleyse $x \in A$, $A$'nın
+  keyfî bir !!{element} olsun. $x \in A \cup B$
+  olduğunu göstermeliyiz.
+  $x \in A$ olduğundan, $x \in A$ ya da $x \in B$. Dolayısıyla $x \in
+  \Setabs{x}{x \in A \lor x \in B}$. Ancak bu, $\cup$ tanımı gereği
+  $x \in A \cup B$ demektir.
+\end{proof}
+
+
+\subsection{Durumlara Göre Kanıt}
+
+Bir varsayım ya da daha önce belirlenmiş bir sonuç olarak elinizde bir
+ayrışım bulunduğunu düşünün---$p$ ya da $q$'nun doğru olduğunu varsaymış
+veya kanıtlamışsınız. $r$'yi kanıtlamak istiyorsunuz. Bunu iki adımda
+yaparsınız: önce $p$'nin doğru olduğunu varsayıp~$r$'yi kanıtlar, sonra
+$q$'nun doğru olduğunu varsayıp~$r$'yi yeniden kanıtlarsınız. Bu yöntem
+işler; çünkü iki seçenekten birinin geçerli olduğunu varsayıyor ya da
+biliyoruzdur. İki adım da seçeneklerden her birinin~$r$'nin doğruluğu
+  için yeterli olduğunu belirler. (İkisi de doğruysa $r$'nin doğru olması
+  için bir değil iki gerekçemiz vardır. $r$'nin hem $p$ hem de~$q$
+  varsayımı altında doğru olduğunu ayrıca kanıtlamak gerekmez.) Ne
+yaptığımızı belirtmek için ``durumları ayırdığımızı'' duyururuz.
+Örneğin $x \in B \cup C$ olduğunu bildiğimizi varsayalım. $B \cup C$,
+$\Setabs{x}{x \in B \text{ ya da } x \in C}$ olarak tanımlanır. Başka
+bir deyişle, tanım gereği $x \in B$ ya da $x \in C$. Buradan $x \in A$
+olduğunu kanıtlamak için önce $x \in B$'yi varsayıp bu varsayımdan $x
+\in A$'yı kanıtlar, sonra $x \in C$'yi varsayıp $x \in A$'yı yeniden
+kanıtlardınız. Varsayımın altına ``Durumları ayıralım'', onun altına
+``Durum (1): $x \in B$'', sayfanın ortasına da ``Durum (2): $x \in C$''
+yazardınız. Sonra sayfanın üst ve alt yarılarını doldurmaya geçerdiniz.
+
+Durumlara göre kanıt, kanıtladığınız şeyin kendisi ayrışık olduğunda
+özellikle kullanışlıdır. İşte basit bir örnek:
+
+\begin{prop}
+$B \subseteq D$ ve $C \subseteq E$ olduğunu varsayın. O zaman $B \cup C
+\subseteq D \cup E$.
+\end{prop}
+
+\begin{proof}
+  (a) $B \subseteq D$ ve (b) $C \subseteq E$ olduğunu varsayalım. Tanım
+  gereği her $x \in B$, aynı zamanda $\in D$'dir (c) ve her $x \in C$,
+  aynı zamanda $\in E$'dir (d). $B \cup C \subseteq D \cup E$ olduğunu
+  göstermek için, $x \in B \cup C$ ise $x \in D \cup E$ olduğunu
+  göstermeliyiz ($\subseteq$ tanımı gereği). $x \in B \cup C$, ancak ve
+  ancak $x \in B$ ya da $x \in C$ ise geçerlidir ($\cup$ tanımı gereği).
+  Benzer biçimde, $x \in D \cup E$, ancak ve ancak $x \in D$ ya da $x
+  \in E$ ise geçerlidir. Öyleyse şunu göstermeliyiz: herhangi bir $x$
+  için, $x \in B$ ya da $x \in C$ ise $x \in D$ ya da $x \in E$.
+
+  \begin{quote}
+  Şimdiye kadar yalnızca tanımları açtık!{} Önermemizi $\subseteq$ ve
+  $\cup$ kullanmadan yeniden ifade ettik ve geriye tümel bir koşullu
+  iddiayı kanıtlamak kaldı. Yukarıdaki tartışmamıza göre bunu, ``ise''
+  kısmının doğru olduğunu varsaydığımız bir $x$ alıp ``o hâlde''
+  kısmının da doğru olduğunu göstererek yaparız. Başka bir deyişle $x
+  \in B$ ya da $x \in C$ olduğunu varsayıp $x \in D$ ya da $x \in E$
+  olduğunu göstereceğiz.\footnote{Bu paragraf yalnızca ne yaptığımızı
+    açıklıyor---kanıtın bir parçası değildir ve kendi kanıtlarınızı
+    yazarken bu kadar ayrıntıya girmeniz gerekmez.}
+  \end{quote}
+
+  $x \in B$ ya da $x \in C$ olduğunu varsayalım. $x \in D$ ya da $x \in
+  E$ olduğunu göstermeliyiz. Durumları ayıralım.
+
+  Durum 1: $x \in B$. (c)'ye göre $x \in D$. Öyleyse $x \in D$ ya da
+  $x \in E$. (Burada bir önceki alt kısımda ele alınan çıkarımı yaptık!)
+
+  Durum 2: $x \in C$. (d)'ye göre $x \in E$. Öyleyse $x \in D$ ya da
+  $x \in E$.
+ \end{proof}
+
+
+\subsection{Bir Varlık İddiasını Kanıtlamak}
+
+Bir varlık iddiasını kanıtlamanız istendiğinde soru genellikle
+``bir~$x$ için $\dots x \dots$ olduğunu kanıtlayın'', yani
+``$\dots x \dots$'' ile betimlenen özelliğe sahip bir nesnenin var
+olduğunu kanıtlayın biçiminde olur. Bu durumda uygun bir nesne belirleyip
+onun gereken özelliğe sahip olduğunu göstermelisiniz. Bu kolay
+görünebilir, fakat bu tür bir kanıt çetrefilli olabilir. Genellikle bir
+nesneyi \emph{kurmayı} ya da \emph{tanımlamayı} ve böyle tanımlanan
+nesnenin gereken özelliğe sahip olduğunu kanıtlamayı içerir. Doğru
+nesneyi bulmak zor olabilir, gereken özelliğe sahip olduğunu kanıtlamak
+zor olabilir, hatta bazen herhangi bir nesneyi tanımlamayı başardığınızı
+göstermek bile çetrefillidir!{}
+
+Genellikle bunu nesneyi belirterek, örneğin ``$x$, \dots{} olsun''
+(burada \dots{} aklınızdaki nesneyi belirler) diye yazar; belki
+$\dots$'ın gerçekten var olan bir nesneyi betimlediğini kanıtlar ve sonra
+$x$'in $Q$ özelliğine sahip olduğunu göstermeye geçersiniz. İşte basit
+bir örnek.
+
+\begin{prop}
+  $x \in B$ olduğunu varsayın. O zaman bir~$A$ vardır ve $A \subseteq B$
+  ile $A \neq \emptyset$ geçerlidir.
+\end{prop}
+
+\begin{proof}
+  $x \in B$ olduğunu varsayalım. $A = \{x\}$ olsun.
+  \begin{quote}
+    Burada~$A$ kümesini, !!{element}s sıralamasını vererek tanımladık. $x$'in bir
+    nesne olduğunu varsaydığımızdan ve !!{element}s sıralamasını vererek her
+    zaman bir küme oluşturabildiğimizden, burada bir~$A$ kümesi
+    tanımlamayı başardığımızı göstermemiz gerekmez. Bununla birlikte
+    $A$'nın önermenin istediği özelliklere sahip olduğunu hâlâ
+    göstermeliyiz. Kanıt onsuz tamamlanmış değildir!{}
+  \end{quote}
+  $x \in A$ olduğundan $A \neq \emptyset$.
+  \begin{quote}
+    Bu, $A$'nın $\{x\}$ olarak tanımlanmasına ve $x \in \{x\}$ ile $x
+    \notin \emptyset$ şeklindeki açık olgulara dayanır.
+  \end{quote}
+  $x$, ~$\{x\}$ içinde bulunan tek nesnedir; dolayısıyla bu kümenin tek
+  !!{element} odur. Ayrıca $x \in B$'dir; böylece $A$'daki her
+  !!{element}, $B$'de bir !!a{element} olarak
+  bulunur. $\subseteq$
+  tanımı gereği $A \subseteq B$.
+\end{proof}
+
+\subsection{Varlık İddialarını Kullanmak}
+
+Bir varlık iddiasının doğru olduğunu bildiğinizi (onu kanıtladığınızı
+ya da kullanabileceğiniz bir hipotez olduğunu) düşünün; örneğin
+``bir~$x$ için $x \in A$'' ya da ``bir $x \in A$ vardır.'' Bunu
+kanıtınızda kullanmak istiyorsanız, hipotezinizin var olduğunu söylediği
+şeylerden biri için bir adınız varmış gibi davranabilirsiniz. $A$ en az
+bir şey içerdiğine göre, bu adın gönderimde bulunabileceği şeyler
+vardır. Elbette bunlardan birini seçemeyebilir ya da daha ayrıntılı
+betimleyemeyebilirsiniz ($\in A$ olması dışında). Fakat kanıtın amacı
+bakımından onu seçmiş gibi davranıp ona bir ad verebilirsiniz. Daha önce
+kullanmadığınız (ya da hipotezlerinizde geçmeyen) bir ad seçmek
+önemlidir; aksi hâlde işler ters gidebilir. Kanıtınızda bunu ``bir $x$
+için $x \in A$''dan ``$a \in A$ olsun''a geçerek belirtirsiniz. Artık
+~$a$ hakkında akıl yürütebilir, başka hipotezler kullanabilir ve bir $p$
+sonucuna ulaşıncaya dek devam edebilirsiniz. $p$ artık~$a$'dan söz
+etmiyorsa, $p$, $a \in A$ varsayımından bağımsızdır ve yalnızca ``bir
+$x$ için $x \in A$'' varsayımından çıktığını göstermişsinizdir.
+
+\begin{prop}
+$A \neq \emptyset$ ise $A \cup B \neq \emptyset$.
+\end{prop}
+
+\begin{proof}
+  $A \neq \emptyset$ olduğunu varsayalım. Öyleyse bir $x$ için $x \in A$.
+  \begin{quote}
+    Burada önce yalnızca önermenin hipotezini yeniden ifade ettik. Bu
+    hipotez, yani $A \neq \emptyset$, yalnızca birkaç tanımı açarak
+    ulaşabileceğiniz bir varlık iddiasını gizler. $=$ tanımı bize $A =
+    \emptyset$'in ancak ve ancak her $x \in A$ aynı zamanda $\in
+    \emptyset$ ve her $x \in \emptyset$ aynı zamanda $\in A$ ise geçerli
+    olduğunu söyler. İki tarafı da olumsuzlayınca şunu elde ederiz: $A
+    \neq \emptyset$, ancak ve ancak bir $x \in A$, $\notin \emptyset$
+    ise ya da bir $x \in \emptyset$, $\notin A$ ise geçerlidir. Hiçbir
+    şey $\in \emptyset$ olmadığından ikinci ayrışan asla doğru olamaz;
+    ``$x \in A$ ve $x \notin \emptyset$'' de yalnızca $x \in A$'ya
+    indirgenir. Dolayısıyla $A \neq \emptyset$, ancak ve ancak bir $x$
+    için $x \in A$ ise geçerlidir. Bu bir varlık iddiasıdır. Şimdi bu
+    varlık iddiasını, $A$'da bulunan !!{element}s arasından birine ad vererek kullanırız:
+  \end{quote}
+  $a \in A$ olsun.
+  \begin{quote}
+    Şimdi~$\in A$ olan şeylerden birine bir ad verdik. $a$ hakkında
+    akıl yürütmeye devam edeceğiz ama $a \in A$ dışında hiçbir şey
+    varsaymamaya dikkat edeceğiz:
+  \end{quote}
+  $a \in A$ olduğundan $a \in A \cup B$; bu, $\cup$ tanımı gereğidir.
+  Dolayısıyla bir $x$ için $x \in A \cup B$, yani $A \cup B \neq
+  \emptyset$.
+  \begin{quote}
+    Son adımda ``$a \in A \cup B$''den ``bir $x$ için $x \in A \cup
+    B$''ye geçtik. İkinci ifade artık $a$'dan söz etmez; böylece ``bir
+    $x$ için $x \in A \cup B$''nin yalnızca ``bir $x$ için $x \in A$''dan
+    çıktığını biliriz. Bu da $A \cup B \neq \emptyset$ demektir.
+  \end{quote}
+\end{proof}
+
+Bağlı değişkenleri, yaptığımız gibi, ``$x$'' gibi yazıp varsayımsal
+adlar olan $a$ gibi adlardan ayrı tutmak iyi bir uygulama olabilir.
+Ancak pratikte çoğu zaman bunu yapmaz ve yalnızca $x$ kullanırız:
+\begin{quote}
+$A \neq \emptyset$ olduğunu, yani bir $x \in A$ bulunduğunu varsayalım.
+$\cup$ tanımı gereği $x \in A \cup B$. Öyleyse $A \cup B \neq
+\emptyset$.
+\end{quote}
+Ancak bunu yaptığınızda, farklı varlık iddiaları için farklı $x$ ve
+$y$'ler kullanmaya özellikle dikkat etmelisiniz. Örneğin aşağıdaki
+\emph{doğru bir kanıt değildir}: ``$A \neq \emptyset$ ve $B \neq
+\emptyset$ ise $A \cap B \neq \emptyset$'' (bu ifade zaten doğru değildir).
+\begin{quote}
+$A \neq \emptyset$ ve $B \neq \emptyset$ olduğunu varsayalım. Öyleyse
+bir $x$ için $x \in A$ ve ayrıca bir $x$ için $x \in B$. $x \in A$ ve
+$x \in B$ olduğundan $x \in A \cap B$; bu, $\cap$ tanımı gereğidir.
+Dolayısıyla $A \cap B \neq \emptyset$.
+\end{quote}
+Yanlış adımın nerede olduğunu bulup sonucun neden geçerli olmadığını
+açıklayabilir misiniz?
+

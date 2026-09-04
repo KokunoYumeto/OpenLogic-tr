@@ -1,0 +1,117 @@
+% Generated from locale/tr/content/proof-theory/sequent-calculus/introduction.tex; do not hand-edit.
+
+
+\olfileid[tr]{pt}{seq}{int}
+
+\olsection{Giriş}
+
+Sekant hesapları, Gerhard Gentzen'in 1930'larda tanıttığı !!{proof}
+sistemleridir. Bunlar daha çok şeyleri !!{proving}{}k için pratik bir
+yöntem olmaktan ziyade, Gentzen'in !!{proof}s{}ın olanaklı yapısı ve özellikleri
+hakkında belirli sonuçlar ispatlayabilmesi için tasarlanmıştı. Bu tür sorular
+tam da ispat kuramının ele aldığı sorulardır.
+
+Sekant hesapları, adından da anlaşılacağı üzere !!{formula}s üzerinde değil,
+\emph{sekantlar} üzerinde işler. Bir sekant, iki !!{formula}s dizisinin ya da
+çoklukümesinin oluşturduğu çifttir. Gentzen'in özgün sistemleri ($\Log{LK}$ ve
+$\Log{LJ}$) diziler kullanıyordu; günümüzde ispat kuramcıları çoklukümeleri
+yeğler. Çokluküme bir kümeye benzer; ancak bir !!{element}{}ı birden çok kez
+içerebilir. Yine de kümelerde olduğu gibi !!{element}s{}ın sırası önemli
+değildir. Dolayısıyla $\{!A,!A,!B\}$ ile $\{!A,!B,!A\}$ ifadeleri aynı
+çoklukümeyi anlatır. Buna karşılık o çokluküme $\{!A,!B\}$ ve
+$\{!A,!A,!B,!B\}$ çoklukümelerinden farklıdır; çünkü bunlar öncekinden farklı
+sayıda $!A$ ve $!B$ içerir.
+
+İspat kuramında !!{formula}s çoklukümeleri geleneksel olarak büyük Yunan
+harfleriyle yazılır. Dolayısıyla $\Gamma$, $\Delta$, $\Pi$, $\Lambda$ ya da
+$\Theta$ yazdığımızda bunların çalıştığımız mantığın !!{formula}s{}inden oluşan
+çoklukümeler olmasını amaçlarız. İspat kuramcıları yine geleneksel olarak
+$\tuple{\Gamma,\Delta}$ yazmak yerine iki bileşeni bir sekant simgesiyle
+ayırır; biz~$\Sequent$ kullanıyoruz.
+
+\begin{defn}[Sekant]
+Bir \emph{sekant},
+\[
+\Gamma \Sequent \Delta
+\]
+biçimindeki bir ifadedir; burada $\Gamma$ ile $\Delta$, sonlu (boş da
+olabilen) !!{formula}s çoklukümeleridir. $\Gamma$'ya \emph{önbileşen},
+$\Delta$'ya \emph{artbileşen} denir.
+\end{defn}
+
+$!G$, $\Gamma$ içindeki !!{formula}s{}in tümel evetlemesi (boş tümel evetleme
+$\ltrue$ alınır); $!D$ ise $\Delta$ içindeki !!{formula}s{}in ayrışımı (boş
+ayrışım $\lfalse$ alınır) olsun. O zaman $\Gamma \Sequent \Delta$ sekantı,
+(bir $\Struct{M}$ yapısında) ancak ve ancak $!G \lif !D$ doğruysa doğrudur.
+Klasik mantıkta bu, $\Gamma$ içindeki !!{formula}s{}den en az birinin yanlış ya
+da $\Delta$ içindeki !!{formula}s{}den en az birinin doğru olmasıyla aynıdır.
+
+$\Gamma$ bir !!{formula}s çoklukümesiyse $\Gamma,!A$ (ya da $!A,\Gamma$),
+$\Gamma$'ya $!A$ eklenmesiyle elde edilen çoklukümeyi gösterir. $\Delta$ da
+bir !!{formula}s çoklukümesiyse $\Gamma,\Delta$ iki çoklukümenin
+çoklukümesel birleşimidir: $\Gamma$, $!A$'yı $n$ \emph{çokluğuyla} (yani
+$n$ kopya $!A$) ve $\Delta$, $!A$'yı $m$ çokluğuyla içeriyorsa
+$\Gamma,\Delta$, $!A$'yı $n+m$ çokluğuyla içerir. Sekantın bir tarafındaki
+çokluküme boşsa genellikle o tarafı boş bırakırız. Örneğin $\Sequent !A$,
+önbileşeni boş ve artbileşeni $!A$'yı $1$ çokluğuyla içeren sekanttır.
+
+Sekant hesabındaki !!^a{proof}, sekantlardan oluşan bir ağaçtır. En üstteki
+(ya da başlangıç) sekantlar ele alınan sistemin aksiyomlarıdır; bir sekant
+başka bir ya da iki sekantın altında bulunuyorsa, sistemin bir çıkarım
+kuralıyla onlardan doğru biçimde çıkmalıdır. Önce klasik mantık için iki ayrı
+sekant sistemini, $\Log{G1c}$ ile $\Log{G3c}$'yi ele alacağız. Aksiyomları ve
+kuralları \cref{pt:seq:int:tab:G1c,pt:seq:int:tab:G3c} içinde verilmiştir.
+\oliflabeldef{fol:seq::chap}{ (Gentzen'in özgün $\Log{LK}$ sistemi
+\olref[fol][seq][]{chap} içinde açıklanır.)}{}
+
+\allmodulessubfile{OLP-0704}
+\allmodulessubfile{OLP-0707}
+
+Sistemler ince biçimde farklıdır ve bu farklar değişik ispat kuramsal
+özelliklere sahip olmalarına yol açar. $\Log{G1c}$, başka hiçbir !!{formula}
+içermesine izin verilmeyen $!A \Sequent !A$ aksiyomlarına sahiptir.
+$\Log{G3c}$ ise $\Gamma$ ile $\Delta$ içinde gelişigüzel ``yan'' !!{formula}s
+bulunan $!C,\Gamma \Sequent \Delta,!C$ biçiminde aksiyomlara sahiptir; fakat
+iki tarafta da görünen !!{formula}~$!C$ \emph{atomik} olmalıdır. $\Log{G1c}$,
+$\LeftR{\land}$ ile $\RightR{\lor}$ kurallarının ikişer sürümünü;
+$\Log{G3c}$ ise birer sürümünü içerir. Ayrıca $\Log{G1c}$, ``büzülme''
+(\LeftR{\Contraction}, \RightR{\Contraction}) ve ``zayıflatma''
+(\LeftR{\Weakening}, \RightR{\Weakening}) denen ek ``yapısal kurallara''
+sahiptir.
+
+$\Log{G1c}$ ile $\Log{G3c}$ klasik mantık için sağlam ve tamdır. Başka bir
+deyişle bu sistemlerde !!{provable} olan her sekant her !!{structure} içinde
+doğrudur ve her !!{structure} içinde doğru olan her sekantın !!a{proof}{}ı
+vardır. Dolayısıyla bir sekantın !!a{proof}{}ının bulunup bulunmadığı sorusu,
+mantığın başka yöntemleriyle de (örneğin model kuramıyla) yanıtlanabilir. İki
+sistem de tam olarak her !!{structure} içinde doğru olan sekantları !!{prove}{}dığından
+özellikle aynı sekantları ispatlar.
+
+Ancak ispat kuramı yalnızca bir şeyin ispatlanabilir \emph{olup olmadığıyla}
+değil, \emph{nasıl} ispatlandığıyla da ilgilenir. İspat kuramcıları ``Belirli
+bir kuraldan her zaman kaçınılabilir mi?'', ``Bu kural, yeni sekantları
+ispatlanabilir kılmadan sisteme eklenebilir mi?'' ya da ``Bir sistemdeki
+!!{proof}s başka bir sistemdeki !!{proof}s{}a dönüştürülebilir mi?'' gibi
+soruları ele alır. Böyle bir sorunun yanıtı ``evet'' ise olgunun ispatı çoğu
+kez !!{proof}s{}ın karmaşıklığı üzerinde, denk biçimde !!{proof}s{}ın yapısı
+üzerinde tümevarımla verilir. Bu yalnızca olgunun ispatını (örneğin
+$\Log{G1c}$ bir sekantı ispatlıyorsa $\Log{G3c}$'nin de aynı sekantı
+ispatladığını) değil, bir yordamı da (örneğin $\Log{G1c}$ içindeki !!{proof}s{}ı
+$\Log{G3c}$ içindeki !!{proof}s{}a dönüştürmeyi) verir.
+
+İspat kuramının merkezî bir sonucu \emph{kesme-giderimi teoremi}dir. Bu
+teorem, sekant sistemlerine hangi sekantların !!{provable} olduğunu
+değiştirmeden
+\[
+\Axiom$\Gamma \fCenter \Delta, !A$
+\Axiom$!A, \Pi \fCenter \Lambda$
+\RightLabel{\Cut}
+\BinaryInf$\Gamma, \Pi \fCenter \Delta, \Lambda$
+\DisplayProof
+\]
+kesme kuralını ekleyebileceğimizi gösterir. Dahası ispat, $\Log{G1c}$'nin
+(ya da $\Log{G3c}$'nin) kurallarıyla birlikte \Cut{} kullanan her !!{proof}{}ı,
+yalnızca $\Log{G1c}$'nin (ya da $\Log{G3c}$'nin) kurallarını kullanan bir
+ispata dönüştüren yöntem verir. Başka bir deyişle yordam, \Cut{} kuralını onu
+kullanan !!{proof}s{}dan ``giderir''; adı buradan gelir.
+

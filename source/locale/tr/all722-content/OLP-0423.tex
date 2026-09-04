@@ -1,0 +1,155 @@
+% Generated from locale/tr/content/normal-modal-logic/frame-definability/definability.tex; do not hand-edit.
+
+
+\olfileid[tr]{nml}{frd}{def}
+
+\olsection{Çerçeve Tanımlanabilirliği}
+
+\olref[acc]{thm:soundschemas} içindeki ters gerektirmeler geçerli olmasa da
+``model'' yerine ``çerçeve'' koyduğumuzda geçerli olurlar:
+\olref[acc]{thm:soundschemas} içinde ele alınan özellikler bakımından,
+!!a{formula} bir \emph{çerçevede} geçerliyse o çerçevenin erişilebilirlik
+bağıntısının karşılık gelen özelliğe sahip olduğu \emph{doğrudur}. Dolayısıyla ele
+alınan !!{formula}s, karşılık gelen özelliğe sahip çerçeve sınıflarını
+\emph{tanımlar}.
+
+\begin{defn}
+  $\mClass{F}$ bir çerçeveler sınıfıysa, tam ve yalnızca
+  $\mModel{F}\in\mClass{F}$ çerçeveleri için $\mModel{F}\Entails !A$
+  olduğunda $!A$'nın $\mClass{F}$'yi \emph{tanımladığını} söyleriz.
+\end{defn}
+
+Şimdi çerçevelere ilişkin tam tanımlanabilirlik sonuçlarını kuracağız.
+
+\begin{thm}\ollabel{thm:fullCorrespondence}
+\olref[acc]{tab:five} tablosunun sağındaki !!{formula} bir
+$\mModel{F}$ çerçevesinde geçerliyse, $\mModel{F}$ soldaki özelliğe
+sahiptir.
+\end{thm}
+
+\begin{proof}
+  \begin{enumerate}
+  \item \Ax{D}'nin $\mModel{F}=\tuple{W,R}$ içinde geçerli olduğunu, yani
+    $\mModel{F}\Entails\Box p\lif\Diamond p$ olduğunu varsayalım.
+    $\mModel{F}$'ye dayanan bir $\mModel{M}=\tuple{W,R,V}$ modeli ve
+    $w\in W$ alalım. $Rwv$ olacak bir $v$ bulunduğunu göstermeliyiz.
+    Bulunmadığını varsayalım: bu durumda $p$ de içinde olmak üzere her $!A$
+    için hem $\mSat{M}{\Box !A}[w]$ hem $\mSat/{M}{\Diamond !A}[w]$ olur.
+    O hâlde $\mSat/{M}{\Box p\lif\Diamond p}[w]$ elde edilir; bu ise
+    $\mModel{F}\Entails\Box p\lif\Diamond p$ varsayımıyla çelişir.
+  \item \Ax{T}'nin $\mModel{F}$ içinde geçerli olduğunu, yani
+    $\mModel{F}\Entails\Box p\lif p$ olduğunu varsayalım. Gelişigüzel bir
+    $w\in W$ dünyası alalım; $Rww$ olduğunu göstermeliyiz. $u\in V(p)$
+    ancak ve ancak $Rwu$ olacak biçimde $V$'yi seçelim ($p$ dışındaki bir
+    $q$ için $V(q)$ gelişigüzel, örneğin $V(q)=\emptyset$ olsun).
+    $\mModel{M}=\tuple{W,R,V}$ olsun. $V$'nin tanımı gereği $Rwu$ olan her
+    $u$ için $\mSat{M}{p}[u]$, dolayısıyla $\mSat{M}{\Box p}[w]$ olur.
+    Varsayıma göre $\Box p\lif p$ de $w$'de doğrudur; öyleyse
+    $\mSat{M}{p}[w]$. $V$'nin tanımına göre bu ancak $Rww$ ise mümkündür.
+  \item Karşıt-tersi ispatlayalım: $\mModel{F}$ simetrik değilse \Ax{B}'nin,
+    yani $p\lif\Box\Diamond p$'nin
+    $\mModel{F}=\tuple{W,R}$ içinde geçerli olmadığını göstereceğiz.
+    $\mModel{F}$ simetrik değilse $Ruv$ olup $Rvu$ olmayan $u,v\in W$
+    vardır. $w\in V(p)$ ancak ve ancak $Rvw$ değilse geçerli olacak biçimde
+    $V$'yi tanımlayalım (diğer yerlerde $V$ gelişigüzel olsun) ve
+    $\mModel{M}=\tuple{W,R,V}$ koyalım. $V$'nin tanımı gereği $Rvw$
+    olmayan her $w$ için $\mSat{M}{p}[w]$; özellikle $Rvu$ olmadığından
+    $\mSat{M}{p}[u]$ olur. Ayrıca $Rvw$ ancak ve ancak $w\notin V(p)$
+    olduğundan, hem $Rvw$ hem $\mSat{M}{p}[w]$ olan hiçbir $w$ yoktur;
+    dolayısıyla $\mSat/{M}{\Diamond p}[v]$. $Ruv$ olduğundan
+    $\mSat/{M}{\Box\Diamond p}[u]$ da elde edilir. Böylece
+    $\mSat/{M}{p\lif\Box\Diamond p}[u]$ olur ve \Ax{B}, $\mModel{F}$
+    içinde geçerli değildir.
+  \item \Ax{4}'ün $\mModel{F}=\tuple{W,R}$ içinde geçerli olduğunu, yani
+    $\mModel{F}\Entails\Box p\lif\Box\Box p$ olduğunu varsayalım. $Ruv$ ve
+    $Rvw$ olan gelişigüzel $u,v,w\in W$ dünyaları alalım; $Ruw$ olduğunu
+    göstermeliyiz. $z\in V(p)$ ancak ve ancak $Ruz$ olacak biçimde $V$'yi
+    tanımlayalım (diğer yerlerde $V$ gelişigüzel olsun) ve
+    $\mModel{M}=\tuple{W,R,V}$ koyalım. $V$'nin tanımı gereği $Ruz$ olan
+    her $z$ için $\mSat{M}{p}[z]$, dolayısıyla $\mSat{M}{\Box p}[u]$ olur.
+    Varsayıma göre \Ax{4}, yani $\Box p\lif\Box\Box p$, $u$'da doğrudur;
+    öyleyse $\mSat{M}{\Box\Box p}[u]$. $Ruv$ ve $Rvw$ olduğundan
+    $\mSat{M}{p}[w]$; $V$'nin tanımına göre bu ancak $Ruw$ ise mümkündür.
+  \item Karşıt-ters yönde ilerleyelim: $\mModel{F}=\tuple{W,R}$
+    çerçevesinin Öklidyen olmadığını varsayıp \Ax{5}'i yanlışladığını, yani
+    $\mModel{F}\Entails/\Diamond p\lif\Box\Diamond p$ olduğunu gösterelim.
+    $Rwu$ ve $Rwv$ olup $Ruv$ olmayan $u,v,w\in W$ dünyaları bulunsun.
+    Bütün $z$ dünyaları için $z\in V(p)$ ancak ve ancak $Ruz$ \emph{değilse}
+    geçerli olacak biçimde $V$'yi tanımlayalım ve
+    $\mModel{M}=\tuple{W,R,V}$ koyalım. Varsayım gereği
+    $\mSat{M}{p}[v]$ ve $Rwv$ olduğundan $\mSat{M}{\Diamond p}[w]$ olur.
+    Fakat hem $Ruy$ hem $\mSat{M}{p}[y]$ olan hiçbir $y$ dünyası yoktur;
+    dolayısıyla $\mSat/{M}{\Diamond p}[u]$. $Rwu$ olduğundan
+    $\mSat/{M}{\Box\Diamond p}[w]$ ve böylece \Ax{5}, yani
+    $\Diamond p\lif\Box\Diamond p$, $w$'de yanlış olur.
+  \end{enumerate}
+\end{proof}
+
+\Ax{D} ispatı ile öteki durumların ispatları arasında bir fark vardır:
+$V$ değerlemesinden hiç söz edilmedi. Aslında $\mSat{M}{\Ax{D}}$ ise
+$\mModel{M}$'nin seri olduğunu ispatladık. Demek ki \Ax{D} yalnızca
+çerçeveler sınıfını değil, seri \emph{modeller} sınıfını tanımlar.
+
+\begin{cor}\ollabel{prop:D-serial}
+  \Ax{D}'nin doğru olduğu her model seridir.
+\end{cor}
+
+\begin{cor}
+\olref[acc]{tab:five} tablosunun sağındaki her !!{formula}, soldaki
+özelliğe sahip çerçeveler sınıfını tanımlar.
+\end{cor}
+
+\begin{proof}
+  \olref[acc]{thm:soundschemas} içinde, bir model soldaki özelliğe sahipse
+  sağdaki !!{formula}{}ün o modelde doğru olduğunu ispatladık. Dolayısıyla
+  bir $\mModel{F}$ çerçevesi soldaki özelliğe sahipse sağdaki !!{formula}
+  $\mModel{F}$ içinde geçerlidir. \olref{thm:fullCorrespondence} içinde
+  ters gerektirmeleri ispatladık: sağdaki !!a{formula} $\mModel{F}$ içinde
+  geçerliyse $\mModel{F}$ soldaki özelliğe sahiptir.
+\end{proof}
+
+\begin{prob}
+\olref[nml][frd][acc]{tab:anotherfive} tablosunun sağındaki !!{formula}
+bir $\mModel{F}$ çerçevesinde geçerliyse $\mModel{F}$'nin soldaki özelliğe
+sahip olduğunu gösterin. Bunu yapmak için soldaki özelliği
+\emph{sağlamayan} bir çerçeve ele alın ve sağdaki !!{formula}{}ün bir
+dünyada yanlış olacağı uygun bir $V$ tanımlayın.
+\end{prob}
+
+\olref{thm:fullCorrespondence}, özelliklerin birleştirilebildiğini de
+gösterir: örneğin hem \Ax{B} hem \Ax{4}, $\mModel{F}$ içinde geçerliyse
+çerçeve hem simetrik hem geçişlidir. Birçok önemli modal mantık, bazı
+çerçeve özelliklerini birlikte taşıyan bütün çerçevelerde geçerli
+!!{formula}s kümesi olarak nitelenir. Dolayısıyla bunları, karşılık gelen
+tanımlayıcı !!{formula}s{}in geçerli olduğu bütün çerçevelerde geçerli
+!!{formula}s kümesi olarak niteleyebiliriz. Örneğin klasik $\Log{S4}$
+sistemi bütün yansımalı ve geçişli çerçevelerde, yani hem \Ax{T}'nin hem
+\Ax{4}'ün geçerli olduğu bütün çerçevelerde geçerli !!{formula}s kümesidir.
+$\Log{S5}$ ise bütün yansımalı, simetrik ve Öklidyen çerçevelerde, yani
+\Ax{T}, \Ax{B} ve \Ax{5}'in üçünün de geçerli olduğu bütün çerçevelerde
+geçerli formüller kümesidir.
+
+$R$'nin özellikleri arasındaki mantıksal ilişkiler genel olarak karşılık
+gelen tanımlayıcı !!{formula}s arasındaki ilişkilere karşılık gelir.
+Örneğin her yansımalı bağıntı seridir; dolayısıyla \Ax{T} bir çerçevede
+geçerliyse \Ax{D} de geçerlidir. (Bu ilişkinin mantıksal gerektirme ilişkisi
+\emph{olmadığına} dikkat edin. $\mSat{M}{\Ax{T}}[w]$ olduğunda her zaman
+$\mSat{M}{\Ax{D}}[w]$ olduğu doğru değildir.) Bu tür bazı ilişkileri
+kaydedelim.
+
+\begin{prop}\ollabel{prop:relation-facts}
+  $R$, $W$ kümesi üzerinde ikili bir bağıntı olsun. O zaman:
+  \begin{enumerate}
+  \item $R$ yansımalıysa seridir.
+  \item $R$ simetrikse, geçişlidir ancak ve ancak Öklidyendir.
+  \item $R$ simetrik ya da Öklidyense zayıf yönlendirilmiştir
+    (``elmas özelliği''ne sahiptir).
+  \item $R$ Öklidyense zayıf bağlantılıdır.
+  \item $R$ fonksiyonelse seridir.
+  \end{enumerate}
+\end{prop}
+
+\begin{prob}
+  \olref[nml][frd][def]{prop:relation-facts} önermesini ispatlayın.
+\end{prob}
+

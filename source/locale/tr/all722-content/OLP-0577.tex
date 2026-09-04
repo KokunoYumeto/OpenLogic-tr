@@ -1,0 +1,122 @@
+% Generated from locale/tr/content/set-theory/ord-arithmetic/using-addition.tex; do not hand-edit.
+
+
+\olfileid[tr]{sth}{ord-arithmetic}{using-addition}
+\olsection{Sıra Sayısı Toplamını Kullanmak}
+
+Sıra sayıları üzerindeki toplamayı kullanarak çeşitli kümelerin ranklarını
+\olref[spine][rank]{defnsetrank} anlamında açıkça hesaplayabiliriz:
+
+\begin{lem}\ollabel{rankcomputation}
+$\setrank{A}=\alpha$ ve $\setrank{B}=\beta$ ise:
+\begin{enumerate}
+	\item\ollabel{exrankpow} $\setrank{\Pow{A}}=\alpha\ordplus 1$
+	\item\ollabel{exrankpair} $\setrank{\{A,B\}}=\max(\alpha,
+	\beta)\ordplus 1$
+	\item\ollabel{exrankcup} $\setrank{A\cup B}=\max(\alpha,
+	\beta)$
+	\item\ollabel{exranktuple} $\setrank{\tuple{A,B}}=\max(\alpha,
+	\beta)\ordplus 2$
+	\item\ollabel{exranktimes} $\setrank{A\times B}\leq\max(\alpha,
+	\beta)\ordplus 2$
+	\item\ollabel{exrankunion} $\alpha$ boş ya da bir limit sıra sayısı
+	olduğunda $\setrank{\bigcup A}=\alpha$; $\alpha=\gamma\ordplus 1$
+	olduğunda $\setrank{\bigcup A}=\gamma$.
+\end{enumerate}
+\end{lem}
+
+\begin{proof}
+İspat boyunca \olref[spine][rank]{ranksupstrict} sonucunu tekrar tekrar
+kullanıyoruz.
+
+\emph{\olref{exrankpow}.} $x\subseteq A$ ise
+$\setrank{x}\leq\setrank{A}$. Dolayısıyla
+$\setrank{\Pow{A}}\leq\alpha\ordplus 1$. Özellikle
+$A\in\Pow{A}$ olduğundan $\setrank{\Pow{A}}=\alpha\ordplus 1$.
+
+\emph{\olref{exrankpair}.} \olref[spine][rank]{ranksupstrict} gereği.
+
+\emph{\olref{exrankcup}.} \olref[spine][rank]{ranksupstrict} gereği.
+
+\emph{\olref{exranktuple}.} \olref{exrankpair} iki kez uygulanır.
+
+\emph{\olref{exranktimes}.} Her $a\in A$ ve $b\in B$ için
+\olref{exranktuple} gereği
+$\setrank{\tuple{a,b}}=\max(\setrank{a},\setrank{b})\ordplus 2$ olur.
+Şimdi aynı rank-üst-sınırı sonucunu kullanın.
+
+\emph{\olref{exrankunion}.} $\alpha=\gamma\ordplus 1$ ise
+$\setrank{c}=\gamma$ olan bir $c\in A$ vardır ve $A$'nın hiçbir
+!!{element} daha yüksek ranklı değildir; dolayısıyla
+$\setrank{\bigcup A}=\gamma$. $\alpha$ bir limit sıra sayısıysa $A$,
+rankları $\alpha$'ya keyfî ölçüde yaklaşan (ama ondan kesin olarak küçük
+olan) !!{element}s içerir. Dolayısıyla $\bigcup A$ da rankları $\alpha$'ya
+keyfî ölçüde yaklaşan (ama ondan kesin olarak küçük olan) !!{element}s
+içerir ve $\setrank{\bigcup A}=\alpha$ olur. Son olarak $\alpha=0$ ise
+$A=\emptyset$ ve $\bigcup A=\emptyset$ olduğundan eşitlik yine geçerlidir.
+\end{proof}
+\noindent
+\olref{exranktimes} içinde neden bir eşitlik değil de
+\emph{eşitsizlik} bulunduğunu göstermeyi alıştırma olarak bırakıyoruz.
+
+\begin{prob}
+$\setrank{A\times B}=\max(\setrank{A},\setrank{B})$ olacak biçimde $A$ ve
+$B$ kümeleri verin. Ardından
+$\setrank{A\times B}=\max(\setrank{A},\setrank{B})\ordplus 2$ olacak
+biçimde $A$ ve $B$ kümeleri verin. Başka ranklar mümkün müdür?
+\end{prob}
+
+Artık bir sıra sayısını ``sonlu'' ya da ``sonsuz'' diye betimlemenin ne
+anlama gelebileceğine ilişkin birkaç makul kavramın çakıştığını da
+gösterebiliriz:
+
+\begin{lem}\ollabel{ordinfinitycharacter}
+Her $\alpha$ sıra sayısı için aşağıdakiler denktir:
+\begin{enumerate}
+	\item\ollabel{ord:notinomega} $\alpha\notin\omega$, yani $\alpha$ bir
+	doğal sayı değildir
+	\item\ollabel{ord:omegaplus} $\omega\leq\alpha$
+	\item\ollabel{ord:oneplus} $1\ordplus\alpha=\alpha$
+	%\alpha \approx \alpha \ordplus 1$
+	\item\ollabel{ord:plusone} $\alpha\approx\alpha\ordplus 1$, yani
+	$\alpha$ ile $\alpha\ordplus 1$ eş güçlüdür
+	\item\ollabel{ord:infinite} $\alpha$ Dedekind-sonsuzdur
+	\end{enumerate}
+\end{lem}
+\noindent
+Böylece bir sıra sayısının sonlu (ya da sonsuz) olması için gerekenleri
+anlamanın ispatlanabilir biçimde denk beş yolunu elde ettik.
+
+\begin{proof}
+\emph{\olref{ord:notinomega} $\Rightarrow$ \olref{ord:omegaplus}.}
+Üçlü Karşılaştırma gereği.
+
+\emph{\olref{ord:omegaplus} $\Rightarrow$ \olref{ord:oneplus}.}
+$\alpha\geq\omega$ sabit olsun. Sonlu Ötesi Tümevarım gereği, bazı limit
+sıra sayısı $\beta$ için $\alpha=\beta\ordplus\gamma$ olacak biçimde en
+küçük bir $\gamma$ sıra sayısı (muhtemelen $0$) vardır. Şimdi:
+\[
+	1 \ordplus \alpha =  
+	1 \ordplus (\beta \ordplus \gamma) = 
+	(1 \ordplus \beta) \ordplus \gamma =  
+	\supstrict_{\delta < \beta} (1 \ordplus  \delta) \ordplus  \gamma = 
+	\beta \ordplus  \gamma = 
+	\alpha.
+\]
+\emph{\olref{ord:oneplus} $\Rightarrow$ \olref{ord:plusone}.}
+Açıkça $f\colon(\alpha\disjointsum 1)\to(1\disjointsum\alpha)$ biçiminde
+!!a{bijection} vardır. $1\ordplus\alpha=\alpha$ ise
+$g\colon(1\disjointsum\alpha)\to\alpha$ biçiminde bir izomorfizma vardır.
+Şimdi $\comp{f}{g}$ bileşkesini ele alın.
+
+\emph{\olref{ord:plusone} $\Rightarrow$ \olref{ord:infinite}.}
+$\alpha\approx\alpha\ordplus 1$ ise
+$f\colon(\alpha\disjointsum 1)\to\alpha$ biçiminde !!a{bijection} vardır.
+Her $\gamma<\alpha$ için $g(\gamma)=f(\gamma,0)$ tanımlayın. Bu
+!!{injection}, $f(0,1)\in\alpha\setminus\ran{g}$ olduğundan $\alpha$'nın
+Dedekind-sonsuz olduğuna tanıklık eder.
+
+\emph{\olref{ord:infinite} $\Rightarrow$ \olref{ord:notinomega}.}
+Bu, \olref[z][infinity-again]{naturalnumbersarentinfinite} sonucudur.
+\end{proof}
+

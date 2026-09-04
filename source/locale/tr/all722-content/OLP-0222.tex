@@ -1,0 +1,62 @@
+% Generated from locale/tr/content/computability/recursive-functions/other-recursions.tex; do not hand-edit.
+
+
+\olfileid[tr]{cmp}{rec}{ore}
+\olsection{Başka Özyineleme Biçimleri}
+
+Çiftleme ve dizileme kullanarak ilkel özyinelemenin daha alışılmadık ve
+yararlı biçimlerini gerekçelendirebiliriz. Örneğin aşağıdaki tanımda olduğu
+gibi iki fonksiyonu aynı anda tanımlamak çoğu kez yararlıdır:
+\begin{align*}
+  h_0(\vec x,0) & = f_0(\vec x)\\
+  h_1(\vec x,0) & = f_1(\vec x)\\
+  h_0(\vec x,y+1) & =
+    g_0(\vec x,y,h_0(\vec x,y),h_1(\vec x,y))\\
+  h_1(\vec x,y+1) & =
+    g_1(\vec x,y,h_0(\vec x,y),h_1(\vec x,y)).
+\end{align*}
+Bu, \emph{eşzamanlı özyineleme} örneğidir. Fonksiyon tanımlamanın bir başka
+yararlı yolu da aşağıdaki gibi $h(\vec x,y+1)$ değerini
+$h(\vec x,0),\dots,h(\vec x,y)$ değerlerinin \emph{tümü} cinsinden vermektir:
+\begin{align*}
+  h(\vec x,0) & = f(\vec x)\\
+  h(\vec x,y+1) & =
+    g(\vec x,y,\tuple{h(\vec x,0),\dots,h(\vec x,y)}).
+\end{align*}
+Aşağıdaki şema bu düşünceyi daha kısa biçimde anlatır:
+\[
+  h(\vec x,y)=
+  g(\vec x,y,\tuple{h(\vec x,0),\dots,h(\vec x,y-1)}),
+\]
+burada $y=0$ iken $g$'nin son argümanı yalnızca boş dizidir. Her iki
+anlatımda da düşünce, ``ardıl adımı'' hesaplanırken $h$ fonksiyonunun o ana
+kadar hesaplanmış değerlerin bütün dizisini kullanabilmesidir. Buna
+\emph{önceki değerler üzerinden özyineleme} denir. Özel bir örnekte bu,
+aşağıdaki türden bir tanımı gerekçelendirmek için kullanılabilir:
+\begin{align*}
+  h(\vec x,y) & = \begin{cases}
+    g(\vec x,y,h(\vec x,k(\vec x,y))) & \text{$k(\vec x,y)<y$ ise}\\
+    f(\vec x) & \text{aksi durumda.}
+  \end{cases}
+\end{align*}
+Başka bir deyişle $h$'nin $y$ noktasındaki değeri, $k$ tarafından verilen
+\emph{herhangi bir} önceki noktadaki değeri cinsinden hesaplanabilir.
+
+\begin{prob}
+  Kalan fonksiyonu $r(x,y)$'yi önceki değerler üzerinden özyinelemeyle
+  tanımlayın. ($x,y$ doğal sayılar ve $y>0$ ise $r(x,y)$, bazı $z$ için
+  $x=z\times y+r(x,y)$ olacak biçimde $y$'den küçük sayıdır. Belirlilik için
+  $y=0$ iken $r(x,0)=0$ diyelim.)
+\end{prob}
+
+Bu fonksiyonların sıradan ilkel özyineleme kullanılarak nasıl elde
+edilebileceğini düşünmelisiniz. İlkel özyinelemenin son bir biçimi, süreç
+boyunca \emph{parametrelerin} (yan değerlerin) değiştirilmesine izin verdiği
+için daha esnektir:
+\begin{align*}
+  h(\vec x,0) & = f(\vec x)\\
+  h(\vec x,y+1) & = g(\vec x,y,h(k(\vec x),y)).
+\end{align*}
+Bu biçim de sıradan ilkel özyinelemeyle benzetilebilir. Bunu yapmak kolay
+değildir; ipucu olarak hesabı elle geriye doğru açmayı deneyin.
+

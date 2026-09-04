@@ -1,0 +1,389 @@
+% Generated from locale/tr/content/proof-theory/normalization/permutations.tex; do not hand-edit.
+
+
+\olfileid[tr]{pt}{nor}{per}
+
+\olsection{Permütasyon Dönüştürmeleri}
+
+\Log{N1i} sistemindeki kesmeler, !!a{elimination} kuralının büyük
+öncülünde biten kesitlerdir. Normalleştirme ispatındaki durumlardan
+biri, maksimal kesmelerin uzunluğunu ve böylece !!{proof} için kesme
+uzunluğunu azaltmaktır. Uzunluğu $>1$ olan bir kesme, kesmedeki son
+$!A$ !!{formula} oluşumunun bir çıkarımın (\Elim{\lor} ya da
+\Elim{\lexists}) sonucu olup olmamasına ve hangi !!{elimination}
+çıkarımının büyük öncülü olduğuna bağlı olarak birçok biçimde bitebilir.
+
+Örneğin, ilgili çıkarımlar \Elim{\lor} ve \Elim{\land}, $!A \ident !B
+\land !C$ ise ve aşağıdaki gibi biten bir $\delta_1$ alt-!!{proof}
+varsa:
+\[
+\AxiomC{}
+\RightLabel{$\delta_2$}
+\DeduceC{$!D \lor !E$}
+\AxiomC{$\Discharge{!D}{x}$}
+\RightLabel{$\delta_3$}
+\DeduceC{$!B \land !C$}
+\AxiomC{$\Discharge{!E}{y}$}
+\RightLabel{$\delta_4$}
+\DeduceC{$!B \land !C$}
+\DischargeRule{\Elim{\lor}}{x\,y}
+\TrinaryInfC{$!B \land !C$}
+\RightLabel{\Elim{\land}[1]}
+\UnaryInfC{$!B$}
+\DisplayProof
+\]
+Kesmedeki son $!A_n$ !!{formula} oluşumu, \Elim{\lor} çıkarımının sonucu
+olan alttaki $!B \land !C$'dir. Sondan bir önceki $!A_{n-1}$
+!!{formula} oluşumu ise \Elim{\lor} çıkarımının küçük öncüllerinden
+biridir.
+
+Bu kesmenin uzunluğunu azaltmak için \Elim{\lor} ve \Elim{\land}
+çıkarımlarının sırasını değiştirebilir (``permüte edebiliriz''). Başka
+bir deyişle, $\delta$ içindeki $\delta_1$ alt ispatını aşağıdakiyle
+değiştiririz:
+\[
+\AxiomC{}
+\RightLabel{$\delta_2$}
+\DeduceC{$!D \lor !E$}
+\AxiomC{$\Discharge{!D}{x}$}
+\RightLabel{$\delta_3$}
+\DeduceC{$!B \land !C$}
+\RightLabel{\Elim{\land}[1]}
+\UnaryInfC{$!B$}
+\AxiomC{$\Discharge{!E}{y}$}
+\RightLabel{$\delta_4$}
+\DeduceC{$!B \land !C$}
+\RightLabel{\Elim{\land}[1]}
+\UnaryInfC{$!B$}
+\DischargeRule{\Elim{\lor}}{x\,y}
+\TrinaryInfC{$!B$}
+\DisplayProof
+\]
+Önceden \Elim{\lor} altındaki \Elim{\land} öncülünde biten kesmeler,
+şimdi \Elim{\lor} çıkarımının küçük öncülleri üzerindeki \Elim{\land}
+çıkarımlarından birinin öncülünde biter; yani her birinin uzunluğu
+$1$ azalmıştır.
+
+Ayrıca, bütünüyle $\delta_2$, $\delta_3$ ya da $\delta_4$ içinde veya
+$\delta$ içindeki $\delta_1$'in bütünüyle dışında kalan her kesme
+değişmeden kalır: Yine aynı !!{formula} biçimlerini içerir ve aynı çıkarımlardan
+geçer; dolayısıyla özellikle, $\delta$ içindeki karşılık gelen kesmeyle
+aynı dereceye ve uzunluğa sahiptir. Böylece yeni !!{proof} için kesme
+derecesi artmamış, yeni !!{proof} için kesme uzunluğu ise eski
+!!{proof} için kesme
+uzunluğundan daha küçük olmuştur.
+
+\begin{prob}
+Bir permütasyon dönüştürmesinden sonra en az bir kesmenin uzunluğu
+$1$ azalır. \Elim{\land} çıkarımını bir \Elim{\lor} üzerinden permüte
+edersek aslında uzunluğu azalan iki kesme kesiti vardır; dolayısıyla bu
+durumda !!{proof} için kesme uzunluğu en az $2$ azalır. !!a{proof} için
+kesme uzunluğu bu tür tek bir permütasyonla $2$'den fazla azalabilir
+mi? Kesme \emph{derecesi} azalabilir mi?
+\end{prob}
+
+!!a{elimination} kuralını bir \Elim{\lor} ya da \Elim{\lexists}
+kuralının üzerine taşıma işlemine \emph{permütasyon dönüştürmesi}
+denir. Bazı kural çiftlerine ilişkin kalıplar
+\olref{tab:permutation-conversions}'da verilmiştir. (Kalanlar alıştırma
+olarak bırakılmıştır.)
+
+% \begin{table}
+% \begin{multline*}
+% \shoveleft{\AxiomC{$!D \lor !E$}
+% \AxiomC{$\Discharge{!D}{x}$}
+% \shortDeduce
+% \DeduceC{$!B \land !C$}
+% \AxiomC{$\Discharge{!E}{y}$}
+% \shortDeduce
+% \DeduceC{$!B \land !C$}
+% \DischargeRule{\Elim{\lor}}{x\,y}
+% \TrinaryInfC{$!B \land !C$}
+% \RightLabel{\Elim{\land}[1]}
+% \UnaryInfC{$!B$}
+% \DisplayProof}\\
+% \shoveright{\longrightarrow\ 
+% \AxiomC{$!D \lor !E$}
+% \AxiomC{$\Discharge{!D}{x}$}
+% \shortDeduce
+% \DeduceC{$!B \land !C$}
+% \RightLabel{\Elim{\land}[1]}
+% \UnaryInfC{$!B$}
+% \AxiomC{$\Discharge{!E}{y}$}
+% \shortDeduce
+% \DeduceC{$!B \land !C$}
+% \RightLabel{\Elim{\land}[1]}
+% \UnaryInfC{$!B$}
+% \DischargeRule{\Elim{\lor}}{x\,y}
+% \TrinaryInfC{$!B$}
+% \DisplayProof}
+% \\
+% \shoveleft{\AxiomC{$!D \lor !E$}
+% \AxiomC{$\Discharge{!D}{x}$}
+% \shortDeduce
+% \DeduceC{$!B \lif !C$}
+% \AxiomC{$\Discharge{!E}{y}$}
+% \shortDeduce
+% \DeduceC{$!B \lif !C$}
+% \DischargeRule{\Elim{\lor}}{x\,y}
+% \TrinaryInfC{$!B \lif !C$}
+% \AxiomC{$!B$}
+% \RightLabel{\Elim{\lif}}
+% \BinaryInfC{$!C$}
+% \DisplayProof}\\
+% \shoveright{\longrightarrow\ 
+% \AxiomC{$!D \lor !E$}
+% \AxiomC{$\Discharge{!D}{x}$}
+% \shortDeduce
+% \DeduceC{$!B \lif !C$}
+% \AxiomC{$!B$}
+% \RightLabel{\Elim{\lif}}
+% \BinaryInfC{$!C$}
+% \AxiomC{$\Discharge{!E}{y}$}
+% \shortDeduce
+% \DeduceC{$!B \lif !C$}
+% \AxiomC{$!B$}
+% \RightLabel{\Elim{\lif}}
+% \BinaryInfC{$!C$}
+% \DischargeRule{\Elim{\lor}}{x\,y}
+% \TrinaryInfC{$!C$}
+% \DisplayProof}
+% \\
+% \shoveleft{\AxiomC{$!D \lor !E$}
+% \AxiomC{$\Discharge{!D}{x}$}
+% \shortDeduce
+% \DeduceC{$!B \lif !C$}
+% \AxiomC{$\Discharge{!E}{y}$}
+% \shortDeduce
+% \DeduceC{$!B \lif !C$}
+% \DischargeRule{\Elim{\lor}}{x\,y}
+% \TrinaryInfC{$!B \lif !C$}
+% \AxiomC{$!B$}
+% \RightLabel{\Elim{\lif}}
+% \BinaryInfC{$!C$}
+% \DisplayProof}\\
+% \shoveright{\longrightarrow\ 
+% \AxiomC{$!D \lor !E$}
+% \AxiomC{$\Discharge{!D}{x}$}
+% \shortDeduce
+% \DeduceC{$!B \lif !C$}
+% \AxiomC{$!B$}
+% \RightLabel{\Elim{\lif}}
+% \BinaryInfC{$!C$}
+% \AxiomC{$\Discharge{!E}{y}$}
+% \shortDeduce
+% \DeduceC{$!B \lif !C$}
+% \AxiomC{$!B$}
+% \RightLabel{\Elim{\lif}}
+% \BinaryInfC{$!C$}
+% \DischargeRule{\Elim{\lor}}{x\,y}
+% \TrinaryInfC{$!C$}
+% \DisplayProof}
+% \\
+% \shoveleft{\AxiomC{$!D \lor !E$}
+% \AxiomC{$\Discharge{!D}{x}$}
+% \shortDeduce
+% \DeduceC{$\lforall[x][!B(x)]$}
+% \AxiomC{$\Discharge{!E}{y}$}
+% \shortDeduce
+% \DeduceC{$\lforall[x][!B(x)]$}
+% \DischargeRule{\Elim{\lor}}{x\,y}
+% \TrinaryInfC{$\lforall[x][!B(x)]$}
+% \RightLabel{\Elim{\lforall}}
+% \UnaryInfC{$!B(t)$}
+% \DisplayProof}\\
+% \shoveright{\longrightarrow\ 
+% \AxiomC{$!D \lor !E$}
+% \AxiomC{$\Discharge{!D}{x}$}
+% \shortDeduce
+% \DeduceC{$\lforall[x][!B(x)]$}
+% \RightLabel{\Elim{\lforall}}
+% \UnaryInfC{$!B(t)$}
+% \AxiomC{$\Discharge{!E}{y}$}
+% \shortDeduce
+% \DeduceC{$\lforall[x][!B(x)]$}
+% \RightLabel{\Elim{\lforall}}
+% \UnaryInfC{$!B(t)$}
+% \DischargeRule{\Elim{\lor}}{x\,y}
+% \TrinaryInfC{$!B(t)$}
+% \DisplayProof}
+% \end{multline*}
+% \caption{Some permutation conversions for \Log{N1i}.}
+% \ollabel{tab:permutation-conversions}
+% \end{table}
+
+{\small
+\begin{longtable}{@{}l@{}}
+\AxiomC{$!D \lor !E$}
+\AxiomC{$\Discharge{!D}{x}$}
+\shortDeduce
+\DeduceC{$!B \land !C$}
+\AxiomC{$\Discharge{!E}{y}$}
+\shortDeduce
+\DeduceC{$!B \land !C$}
+\DischargeRule{\Elim{\lor}}{x\,y}
+\TrinaryInfC{$!B \land !C$}
+\RightLabel{\Elim{\land}[1]}
+\UnaryInfC{$!B$}
+\DisplayProof
+$\longrightarrow$\\[6ex]
+\quad\AxiomC{$!D \lor !E$}
+\AxiomC{$\Discharge{!D}{x}$}
+\shortDeduce
+\DeduceC{$!B \land !C$}
+\RightLabel{\Elim{\land}[1]}
+\UnaryInfC{$!B$}
+\AxiomC{$\Discharge{!E}{y}$}
+\shortDeduce
+\DeduceC{$!B \land !C$}
+\RightLabel{\Elim{\land}[1]}
+\UnaryInfC{$!B$}
+\DischargeRule{\Elim{\lor}}{x\,y}
+\TrinaryInfC{$!B$}
+\DisplayProof
+\\[10ex]
+\AxiomC{$!D \lor !E$}
+\AxiomC{$\Discharge{!D}{x}$}
+\shortDeduce
+\DeduceC{$!B \lif !C$}
+\AxiomC{$\Discharge{!E}{y}$}
+\shortDeduce
+\DeduceC{$!B \lif !C$}
+\DischargeRule{\Elim{\lor}}{x\,y}
+\TrinaryInfC{$!B \lif !C$}
+\AxiomC{$!B$}
+\RightLabel{\Elim{\lif}}
+\BinaryInfC{$!C$}
+\DisplayProof
+$\longrightarrow$\\[6ex]
+\AxiomC{$!D \lor !E$}
+\AxiomC{$\Discharge{!D}{x}$}
+\shortDeduce
+\DeduceC{$!B \lif !C$}
+\AxiomC{$!B$}
+\RightLabel{\Elim{\lif}}
+\BinaryInfC{$!C$}
+\AxiomC{$\Discharge{!E}{y}$}
+\shortDeduce
+\DeduceC{$!B \lif !C$}
+\AxiomC{$!B$}
+\RightLabel{\Elim{\lif}}
+\BinaryInfC{$!C$}
+\DischargeRule{\Elim{\lor}}{x\,y}
+\TrinaryInfC{$!C$}
+\DisplayProof
+\\[10ex]
+\AxiomC{$!D \lor !E$}
+\AxiomC{$\Discharge{!D}{x}$}
+\shortDeduce
+\DeduceC{$\lforall[x][!B(x)]$}
+\AxiomC{$\Discharge{!E}{y}$}
+\shortDeduce
+\DeduceC{$\lforall[x][!B(x)]$}
+\DischargeRule{\Elim{\lor}}{x\,y}
+\TrinaryInfC{$\lforall[x][!B(x)]$}
+\RightLabel{\Elim{\lforall}}
+\UnaryInfC{$!B(t)$}
+\DisplayProof
+\quad$\longrightarrow$\\[8ex]
+\quad\AxiomC{$!D \lor !E$}
+\AxiomC{$\Discharge{!D}{x}$}
+\shortDeduce
+\DeduceC{$\lforall[x][!B(x)]$}
+\RightLabel{\Elim{\lforall}}
+\UnaryInfC{$!B(t)$}
+\AxiomC{$\Discharge{!E}{y}$}
+\shortDeduce
+\DeduceC{$\lforall[x][!B(x)]$}
+\RightLabel{\Elim{\lforall}}
+\UnaryInfC{$!B(t)$}
+\DischargeRule{\Elim{\lor}}{x\,y}
+\TrinaryInfC{$!B(t)$}
+\DisplayProof
+\\
+\caption{\Log{N1i} için bazı permütasyon dönüştürmeleri.}
+\ollabel{tab:permutation-conversions}
+\end{longtable}
+}
+
+\begin{prob}
+Ardından \Elim{\lor} ya da \Elim{\lnot} gelen \Elim{\lor} için
+permütasyon dönüştürmelerini verin.
+\end{prob}
+
+\begin{prob}
+Ardından \Elim{\lexists} gelen \Elim{\lexists} için permütasyon
+dönüştürmelerini verin. İkinci durumda hiçbir özdeğişken koşulunun
+neden ihlal edilmediğini açıklayın.
+\end{prob}
+
+Bir permütasyon dönüştürmesi uyguladığımızda herhangi bir özdeğişken
+koşulunu ihlal etmediğimizden emin olmalıyız. Şunu ele alalım:
+\[
+\AxiomC{}
+\RightLabel{$\delta_2$}
+\DeduceC{$!D \lor !E$}
+\AxiomC{$\Discharge{!D}{x}$}
+\RightLabel{$\delta_3$}
+\DeduceC{$\lexists[x][!B(x)]$}
+\AxiomC{$\Discharge{!E}{y}$}
+\RightLabel{$\delta_4$}
+\DeduceC{$\lexists[x][!B(x)]$}
+\DischargeRule{\Elim{\lor}}{x\,y}
+\TrinaryInfC{$\lexists[x][!B(x)]$}
+\AxiomC{$\Discharge{!B(c)}{z}$}
+\RightLabel{$\delta_5$}
+\DeduceC{$!C$}
+\DischargeRule{\Elim{\lexists}}{z}
+\BinaryInfC{$!C$}
+\DisplayProof
+\]
+Bunu aşağıdakiyle değiştirirsek
+\[
+\AxiomC{}
+\RightLabel{$\delta_2$}
+\DeduceC{$!D \lor !E$}
+\AxiomC{$\Discharge{!D}{x}$}
+\RightLabel{$\delta_3$}
+\DeduceC{$\lexists[x][!B(x)]$}
+\AxiomC{$\Discharge{!B(c)}{z}$}
+\RightLabel{$\delta_5$}
+\DeduceC{$!C$}
+\DischargeRule{\Elim{\lexists}}{z}
+\BinaryInfC{$!C$}
+\AxiomC{$\Discharge{!E}{y}$}
+\RightLabel{$\delta_4$}
+\DeduceC{$\lexists[x][!B(x)]$}
+\AxiomC{$\Discharge{!B(c)}{z}$}
+\RightLabel{$\delta_5$}
+\DeduceC{$!C$}
+\DischargeRule{\Elim{\lexists}}{z}
+\BinaryInfC{$!C$}
+\DischargeRule{\Elim{\lor}}{x\,y}
+\TrinaryInfC{$!C$}
+\DisplayProof
+\]
+özdeğişken $c$'nin, örneğin $!D$ içinde geçebileceğinden kaygılanabiliriz.
+Nitekim $!D$ varsayımı özgün $\Elim{\lexists}$ çıkarımının üzerinde
+boşa çıkarılır; dolayısıyla özgün !!{proof} içinde, \Elim{\lexists}
+çıkarımının büyük öncülü üzerinde açık olan bir varsayımda geçmez ve
+özdeğişken koşulu sağlanır. Ne var ki yeni !!{proof} içinde $!D$,
+\Elim{\lexists} çıkarımlarından sonrasına kadar boşa çıkarılmaz; bu
+durumda özdeğişken koşulu ihlal edilmiş olurdu. Ancak ele aldığımız
+!!{proof} örneklerinin düzenli olduğunu varsaydığımızı hatırlayalım: Her özdeğişken yalnızca
+bir çıkarımın özdeğişkenidir ve !!{proof} içinde yalnızca
+\Elim{\lexists} çıkarımının küçük öncülü üzerinde geçer. Özellikle $c$,
+$\delta_3$ ya da $\delta_4$ içinde geçemez.
+
+Bu örnek başka bir şeyi daha gösterir: Yeni !!{proof} içinde
+$\delta_5$'in iki kopyası olduğuna dikkat edin. Bu, $\delta_5$ bir
+maksimal kesme içeriyorsa kesme uzunluğunu \emph{azaltmamış} olduğumuz
+anlamına gelir! Bu nedenle bir permütasyon dönüştürmesini yalnızca
+$\delta_5$ içinde maksimal kesme bulunmadığını bildiğimizde uygulamaya
+dikkat etmeliyiz. Bunu her zaman \emph{en üstteki} maksimal kesmeyi
+seçerek sağlarız; yani alt-!!{proof} (bu durumda $\delta_1$), alt
+!!{proof} içindeki son çıkarımın üzerinde biten hiçbir maksimal kesme
+içermeyecek biçimde bir maksimal kesme seçeriz. Bu, $\delta_5$ içinde
+(hatta $\delta_2$, $\delta_3$ ya da $\delta_4$ içinde) başka maksimal
+kesmeler bulunması olasılığını dışlar.
+

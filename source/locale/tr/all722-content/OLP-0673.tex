@@ -1,0 +1,48 @@
+% Generated from locale/tr/content/proof-theory/normalization/normalization-thm.tex; do not hand-edit.
+
+
+\olfileid[tr]{pt}{nor}{thm}
+
+\olsection{Normalleştirme Teoremi}
+
+!!^a{proof}, kesme kesiti yoksa \emph{normal} biçimdedir. Bunun, ispata ne
+bir permütasyon dönüştürmesi ne de indirgeme dönüştürmesi uygulanabilmesiyle
+denk olduğu açıktır. !!a{proof}{}ı \emph{normalleştirmek}, hiç kesme kalmayana
+dek permütasyon ve indirgeme dönüştürmeleri uygulayarak onu normal bir ispata
+dönüştürmektir. Bunun her zaman mümkün olduğunu \emph{normalleştirme teoremi}
+söyler.
+
+\begin{thm}\ollabel{thm:normalization} Her $\Log{N1i}$-!!{proof}
+$\delta$ normalleşir; yani kesmesiz !!a{proof}~$\delta'$ biçimine
+dönüştürülebilir.
+\end{thm}
+
+\begin{proof}
+  $\delta$'nın kesme derecesi ve uzunluğu üzerinde tümevarımla. Tümevarım
+  varsayımı, daha düşük kesme derecesine ya da aynı kesme derecesiyle daha
+kısa kesme uzunluğuna sahip her !!{proof}{}ın normalleştiğidir.
+
+  Kesme uzunluğu~$0$ ise kesme yoktur ve $\delta$ zaten normaldir. Bu nedenle
+  $\delta$'nın kesme derecesiyle kesme uzunluğunun~$>0$ olduğunu varsayın. En
+  yukarıdaki, en sağdaki maksimal kesme kesitini seçin. Kesme kesitinin
+  uzunluğu $>1$ ise bir permütasyon dönüştürmesi; uzunluğu~$1$ ise karşılık
+  gelen indirgeme dönüştürmesini uygulayın. Böylece ya aynı kesme derecesine
+  fakat daha kısa kesme uzunluğuna ya da daha düşük kesme derecesine sahip
+  yeni bir !!{proof} elde edilir ve tümevarım varsayımı uygulanır.
+\end{proof}
+
+Yukarıdaki ispatta kullanılan strateji (her zaman en yukarıdaki, en sağdaki
+maksimal kesmeyi ele almak), normal bir !!{proof} elde etmek için
+dönüştürmelerin !!a{proof}{}a uygulanması gereken belirli bir sıra önerir.
+Şaşırtıcı biçimde sıra aslında önemli değildir. Permütasyon ve indirgeme
+dönüştürmelerini herhangi bir sırada uygulamak sonunda normal bir ispat verir.
+
+Kesit ve kesme tanımları $\Log{N2i}$ için kolayca formüle edilebilir;
+$\Log{N1i}$ permütasyon ve indirgeme dönüştürmeleri de doğrudan $\Log{N2i}$'ye
+aktarılır. Dolayısıyla normalleştirme teoremi $\Log{N2i}$ için de geçerlidir.
+
+\begin{thm}\ollabel{thm:normalization-N2i} Her $\Log{N2i}$-!!{proof}
+$\delta$ normalleşir; yani kesmesiz !!a{proof}~$\delta'$ biçimine
+dönüştürülebilir.
+\end{thm}
+

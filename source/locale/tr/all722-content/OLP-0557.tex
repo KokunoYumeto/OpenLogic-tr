@@ -1,0 +1,97 @@
+% Generated from locale/tr/content/set-theory/ordinals/opps.tex; do not hand-edit.
+
+
+\olfileid[tr]{sth}{ordinals}{opps}
+\olsection{Ardıl ve Limit Sıra Sayıları}
+
+Sonraki birkaç bölümde sıra sayılarını çok kullanacağız. Bu nedenle bazı
+basit kavramları tanıtmak yararlı olacaktır.
+
+\begin{defn}
+Her $\alpha$ sıra sayısı için onun \emph{ardılı}
+$\ordsucc{\alpha}=\alpha\cup\{\alpha\}$'dır. Bir $\beta$ sıra sayısı için
+$\ordsucc{\beta}=\alpha$ ise $\alpha$'ya bir \emph{ardıl} sıra sayısı
+deriz. $\alpha$ ne boş ne de ardıl bir sıra sayısıysa ona bir \emph{limit}
+sıra sayısı deriz.
+\end{defn}
+\noindent
+Aşağıdaki sonuç bunun doğru \emph{ardıl} kavramı olduğunu gösterir:
+
+\begin{prop}
+Her $\alpha$ sıra sayısı için:
+\begin{enumerate}
+	\item $\alpha \in \ordsucc{\alpha}$;
+	\item $\ordsucc{\alpha}$ bir sıra sayısıdır;
+	\item $\alpha \in \beta \in \ordsucc{\alpha}$ olan hiçbir $\beta$
+	sıra sayısı yoktur.
+	\end{enumerate}
+\end{prop}
+
+\begin{proof}
+Açıktır ki $\alpha\in\alpha\cup\{\alpha\}=\ordsucc{\alpha}$ olur.
+Aynı biçimde $\ordsucc{\alpha}$ geçişli bir sıra sayıları kümesidir ve
+dolayısıyla \olref[basic]{corordtransitiveord} gereği bir sıra sayısıdır.
+$\alpha\in\beta\in\ordsucc{\alpha}$ olması da olanaksızdır; çünkü bu
+durumda ya $\beta\in\alpha$ ya da $\beta=\alpha$ olur ve
+\olref[basic]{ordordered} ile çelişir.
+\end{proof}
+\noindent
+Bu aynı zamanda sonlu ötesi tümevarımla ispatın bir çeşidine izin verir:
+
+\begin{thm}[Basit Sonlu Ötesi Tümevarım]\ollabel{simpletransrecursion}
+$\phi(x)$ şu koşulları sağlayan bir formül olsun:
+\begin{enumerate}
+	\item $\phi(\emptyset)$;
+	\item her $\alpha$ sıra sayısı için $\phi(\alpha)$ ise
+	$\phi(\ordsucc{\alpha})$; ve
+	\item $\alpha$ bir limit sıra sayısı ve
+	$(\forall\beta\in\alpha)\phi(\beta)$ ise $\phi(\alpha)$.
+\end{enumerate}
+O zaman $\forall\alpha\phi(\alpha)$ olur.
+\end{thm}
+
+\begin{proof}
+Karşıt-tersi ispatlayacağız. $\lnot\phi$ koşulunu sağlayan bir sıra sayısı
+bulunduğunu varsayın; $\gamma$ bunların en küçüğü olsun. O zaman ya
+$\gamma=\emptyset$ olur; ya $\phi(\alpha)$ olan bir $\alpha$ için
+$\gamma=\ordsucc{\alpha}$ olur; ya da $\gamma$ bir limit sıra sayısıdır ve
+$(\forall\beta\in\gamma)\phi(\beta)$ olur.
+\end{proof}
+\noindent
+Son bir gösterim daha sonra yararlı olacaktır:
+
+\begin{defn}\ollabel{defsupstrict}
+$X$ bir sıra sayıları kümesiyse
+$\supstrict(X)=\bigcup_{\alpha\in X}\ordsucc{\alpha}$.
+\end{defn}
+\noindent
+Burada ``lsub'', ``en küçük kesin üst sınır''ın İngilizce kısaltmasıdır.
+\footnote{Bazı kitaplar bunun için ``$\text{sup}(X)$'' kullanır. Fakat
+başka kitaplar ``$\text{sup}(X)$'' ifadesini en küçük \emph{kesin olmayan}
+üst sınır, yani yalnızca $\bigcup X$ için kullanır. $X$'in en büyük elemanı
+$\alpha$ varsa bu kavramlar ayrışır: en küçük \emph{kesin} üst sınır
+$\ordsucc{\alpha}$ iken en küçük \emph{kesin olmayan} üst sınır yalnızca
+$\alpha$'dır.} Aşağıdaki sonuç bunu açıklar:
+
+\begin{prop}
+$X$ bir sıra sayıları kümesiyse $\supstrict(X)$, $X$ içindeki her sıra
+sayısından büyük olan en küçük sıra sayısıdır.
+\end{prop}
+
+\begin{proof}
+$Y=\Setabs{\ordsucc{\alpha}}{\alpha\in X}$ olsun; böylece
+$\supstrict(X)=\bigcup Y$ olur. Sıra sayıları geçişli olduğundan ve bir sıra
+sayısının her elemanı bir sıra sayısı olduğundan $\supstrict(X)$ geçişli bir
+sıra sayıları kümesidir; dolayısıyla
+\olref[basic]{corordtransitiveord} gereği bir sıra sayısıdır.
+
+$\alpha\in X$ ise $\ordsucc{\alpha}\in Y$ olur; böylece
+$\ordsucc{\alpha}\subseteq\bigcup Y=\supstrict(X)$ ve dolayısıyla
+$\alpha\in\supstrict(X)$ olur. Öyleyse $\supstrict(X)$, $X$ içindeki her
+sıra sayısından kesin olarak büyüktür.
+
+Tersine $\alpha\in\supstrict(X)$ ise bir $\beta\in X$ için
+$\alpha\in\ordsucc{\beta}\in Y$ olur; böylece $\alpha\leq\beta\in X$.
+Demek ki $\supstrict(X)$, $X$ üzerindeki \emph{en küçük} kesin üst sınırdır.
+\end{proof}
+

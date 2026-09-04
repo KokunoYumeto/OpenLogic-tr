@@ -1,0 +1,114 @@
+% Generated from locale/tr/content/model-theory/models-of-arithmetic/computable-models.tex; do not hand-edit.
+
+
+\olfileid[tr]{mod}{mar}{cmp}
+\section{Hesaplanabilir Aritmetik Modelleri}
+
+\begin{explain}
+Standart model~$\Struct N$ iki güzel özelliğe sahiptir. Evreni doğal
+sayılar~$\Nat$ kümesidir; yani elemanları, aritmetik dilini kullanarak
+hakkında konuşmak istediğimiz türden şeylerin kendisidir ve standart
+sayı terimi~$\num n$ gerçekten $n$'yi seçer. Öteki güzel özellik,
+$\Lang{L_A}$ dilinin mantıksal olmayan simgelerinin bütün yorumlarının
+\emph{hesaplanabilir} olmasıdır. $\Assign{\prime}{N}$,
+$\Assign{+}{N}$ ve $\Assign{\times}{N}$ görevindeki ardıl, toplama ve
+çarpma fonksiyonları sayıların hesaplanabilir fonksiyonlarıdır. (Örneğin
+Turing makineleriyle hesaplanabilir ya da ilkel özyinelemeyle
+tanımlanabilirler.) Ayrıca $\Struct N$ üzerindeki küçüktür bağıntısı,
+yani $\Assign{<}{N}$ karar verilebilirdir.
+
+$\Th Q$ ve $\Th{PA}$ gibi aritmetik kuramlarının standart olmayan
+modelleri standart olmayan elemanlar içermelidir. Dolayısıyla evrenleri
+çoğu kez $\Nat$ kümesine ek !!{element}s içerir. Ancak her sayılabilir
+!!{structure}, $\Nat$ dâhil herhangi bir !!{denumerable} küme üzerinde
+kurulabilir. Bu nedenle evreni $\Nat$ olan standart olmayan modeller de
+vardır. Elbette böyle $\Struct M$ modellerinde en azından bazı sayılar
+alışılmış rollerini oynayamaz; çünkü bütün $n\in\Nat$ için
+$k\neq\Value{\num n}{M}$ olacak bir $k$ bulunmalıdır.
+\end{explain}
+
+\begin{defn}
+$\Lang{L_A}$ için !!^a{structure}~$\Struct M$, ancak ve ancak
+$\Domain M=\Nat$; $\Assign{\prime}{M}$, $\Assign{+}{M}$ ve
+$\Assign{\times}{M}$ hesaplanabilir fonksiyonlar; $\Assign{<}{M}$ ise
+karar verilebilir bir bağıntıysa \emph{hesaplanabilirdir}.
+\end{defn}
+
+\begin{ex}\ollabel{ex:comp-model-q}
+\olref[mdq]{ex:model-K-of-Q} içindeki $\Struct K$ yapısını hatırlayın.
+Evreni $\Domain K=\Nat\cup\{a\}$ ve yorumları
+\begin{align*}
+  \Assign{\Obj{0}}{K} & = 0\\
+  \Assign{\prime}{K}(x) & =
+  \begin{cases}
+    x+1 & \text{$x\in\Nat$ ise}\\
+    a & \text{$x=a$ ise}
+  \end{cases}\\
+  \Assign{+}{K}(x, y) & =
+  \begin{cases}
+    x+y & \text{$x,y\in\Nat$ ise}\\
+    a & \text{aksi halde}
+  \end{cases}\\
+  \Assign{\times}{K}(x, y) & =
+  \begin{cases}
+    xy & \text{$x,y\in\Nat$ ise}\\
+    0 & \text{$x=0$ ya da $y=0$ ise}\\
+    a & \text{aksi halde}\\
+  \end{cases}\\
+  \Assign{<}{K} & =
+  \Setabs{\tuple{x,y}}{x, y \in \Nat \text{ ve } x<y} \cup
+  \Setabs{\tuple{x,a}}{x \in \Domain{K}}
+\end{align*}
+idi. Fakat $\Domain K$ !!{denumerable} ve dolayısıyla $\Nat$ ile eş
+güçlüdür. Örneğin $g(0)=a$ ve $n>0$ için $g(n)=n+1$ ile tanımlanan
+$g\colon\Nat\to\Domain K$ !!a{bijection}. Bunu, yeni bir $\Th Q$
+modeli~$\Struct{K'}$ ile $\Struct K$ arasında izomorfizmaya
+dönüştürebiliriz. Farklı $\Nat$ !!{element}s standart ve standart
+olmayan sayı rollerini oynadığı için $\Struct{K'}$ içinde
+$\Lang{L_A}$ simgelerine farklı fonksiyon ve bağıntılar atamalıyız.
+
+Özellikle $0$ artık en küçük standart sayı değil, $a$ rolünü oynar.
+En küçük standart sayı artık $1$'dir. Bu nedenle
+$\Assign{\Obj0}{K'}=1$ alırız. Ardıl fonksiyonu da artık farklıdır:
+Standart bir sayı, yani $n>0$ verildiğinde yine $n+1$ döndürür. Ancak
+$0$ artık kendi ardılı olan $a$ rolündedir; dolayısıyla
+$\Assign{\prime}{K'}(0)=0$. Toplama ve çarpma için de
+\begin{align*}
+\Assign{+}{K'}(x, y) & =
+  \begin{cases}
+    x+y-1 & \text{$x,y>0$ ise}\\
+    0 & \text{aksi halde}
+  \end{cases}\\
+  \Assign{\times}{K'}(x, y) & =
+  \begin{cases}
+    1 & \text{$x=1$ ya da $y=1$ ise}\\
+    xy-x-y+2 & \text{$x,y>1$ ise}\\
+    0 & \text{aksi halde}\\
+  \end{cases}
+\end{align*}
+alırız. Ayrıca $\tuple{x,y}\in\Assign{<}{K'}$ ancak ve ancak
+($x<y$, $x>0$, $y>0$) ya da $y=0$ olduğunda geçerlidir.
+
+Bu fonksiyonların tümü doğal sayıların hesaplanabilir fonksiyonları ve
+$\Assign{<}{K'}$, $\Nat$ üzerinde karar verilebilir bir bağıntıdır;
+fakat $\Nat$ üzerindeki ardıl, toplama ve çarpma fonksiyonlarıyla aynı
+değildir ve $\Assign{<}{K'}$, $\Nat$ üzerindeki $<$ bağıntısı değildir.
+\end{ex}
+
+\begin{prob}
+$\Domain{L'}=\Nat$ olan ve
+\olref[mod][mar][mdq]{ex:model-L-of-Q} içindeki $\Struct L$ yapısına
+izomorf !!a{structure}~$\Struct{L'}$ verin.
+\end{prob}
+
+\begin{explain}
+\Olref{ex:comp-model-q}, $\Th Q$ kuramının evreni $\Nat$ olan standart
+olmayan hesaplanabilir modelleri bulunduğunu gösterir. Ancak aşağıdaki
+sonuç bunun $\Th{PA}$ modelleri (dolayısıyla $\Th{TA}$ modelleri) için
+geçerli olmadığını gösterir.
+\end{explain}
+
+\begin{thm}[Tennenbaum teoremi]
+$\Struct N$, $\Th{PA}$ kuramının tek hesaplanabilir modelidir.
+\end{thm}
+

@@ -1,0 +1,81 @@
+% Generated from locale/tr/content/lambda-calculus/syntax/eta.tex; do not hand-edit.
+
+
+\olfileid[tr]{lam}{syn}{eta}
+\olsection{$\eta$-dönüşümü}
+
+$\lambda$-terimleri üzerinde başka bir bağıntı daha vardır. \olref[fv]{sec}
+içinde bir argüman alıp $f$'yi ona uygulayan $\lambd[x][(fx)]$ örneğini
+kullandık. Başka bir deyişle bu, $f$ ile aynı fonksiyondur:
+$\lambd[x][(fx)]N$ ile $fN$ ifadelerinin ikisi de $fN$'ye indirgenir. Bu
+düşünceyi $\eta$-indirgeme ve $\eta$-genişletmeyle ifade ederiz.
+
+\begin{defn}[$\eta$-daraltma, $\eredone$]
+  \ollabel{defn:beredone}
+  \emph{$\eta$-daraltma} ($\eredone$), terimler üzerinde aşağıdaki koşulu
+  sağlayan en küçük bağdaşır bağıntıdır:
+  \[
+    \lambd[x][M x] \eredone M \text{, eğer } x \notin \FV{M}.
+  \]
+\end{defn}
+
+\begin{defn}[$\beta\eta$-indirgeme, $\bered$] \ollabel{defn:bered}
+  \emph{$\beta\eta$-indirgeme} ($\bered$), $\bredone$ ve $\eredone$
+  bağıntılarını içeren, terimler üzerindeki en küçük yansımalı ve geçişli
+  bağıntıdır; yani yansıma ve geçişlilik kurallarına ek olarak şu iki kuralı
+  içerir:
+  \begin{enumerate}
+  \item $M \bredone N$ ise $M \bered N$. \ollabel{defn:bered3}
+  \item $M \eredone N$ ise $M \bered N$. \ollabel{defn:bered4}
+  \end{enumerate}
+
+\end{defn}
+
+\begin{defn}
+  $\equal$ denklik bağıntısını şu $\eta$-dönüşümü kuralıyla genişletiriz:
+  \[
+  \lambd[x][f x] \equal f
+  \]
+  ve genişletilmiş bağıntıyı $\equal[\eta]$ ile gösteririz.
+\end{defn}
+
+$\eta$-denkliği, lambda terimlerinin kaplamsallığıyla ilişkili olduğu için
+önemlidir:
+
+\begin{defn}[Kaplamsallık]
+  $\equal$ denklik bağıntısını şu (\ext) kuralıyla genişletiriz:
+  \begin{center}
+  $x \notin \FV{MN}$ olmak koşuluyla, $Mx \equal Nx$ ise $M \equal N$.
+  \end{center}
+  Genişletilmiş bağıntıyı $\equal[\ext]$ ile gösteririz.
+\end{defn}
+
+Kabaca bu kural, fonksiyon olarak görülen iki terim aynı argüman için aynı
+biçimde davranıyorsa eşit sayılmaları gerektiğini söyler.
+
+Şimdi $\eta$ kuralının tam olarak kaplamsallığı sağladığını ve bundan başka
+bir şey eklemediğini ispatlayacağız.
+
+\begin{thm}
+  $M \equal[\ext] N$ ancak ve ancak $M \equal[\eta] N$.
+\end{thm}
+
+\begin{proof}
+  Önce $\equal[\eta]$ bağıntısının kaplamsallık kuralı altında kapalı olduğunu
+  ispatlarız. Başka bir deyişle \ext{} kuralı $\equal[\eta]$ bağıntısına yeni
+  bir şey eklemez. Böylece $\equal[\eta]$, $\equal[\ext]$ bağıntısını içerir;
+  $M \equal[\ext] N$ ise $M \equal[\eta] N$ olur.
+
+  $\equal[\eta]$ bağıntısının \ext{} altında kapalı olduğunu göstermek için,
+  \ext{} kuralıyla elde edilen herhangi bir $M\equal N$ sonucunun öncülü
+  olarak $Mx\equal[\eta]Nx$ bulunduğuna dikkat edin. $\equal$ bağıntısının
+  bir kuralı gereği
+  $\lambd[x][Mx]\equal[\eta]\lambd[x][Nx]$ olur; iki tarafa $\eta$ kuralını
+  uygulayınca $M\equal[\eta]N$ elde edilir.
+
+  Benzer biçimde $\eta$ kuralının $\equal[\ext]$ içinde bulunduğunu
+  ispatlarız. $x\notin\FV{M}$ olan herhangi bir $\lambd[x][Mx]$ ile $M$ için
+  $(\lambd[x][Mx])x\equal[\ext]Mx$ vardır; \ext{} kuralı da
+  $\lambd[x][Mx]\equal[\ext]M$ sonucunu verir.
+\end{proof}
+

@@ -1,0 +1,40 @@
+% Generated from locale/tr/content/first-order-logic/tableaux/soundness-identity.tex; do not hand-edit.
+
+
+\olfileid[tr]{fol}{tab}{sid}
+
+\olsection{\usetoken{S}{identity} ile Sağlamlık}
+
+\begin{prop}
+Özdeşlik kuralları içeren !!^{tableau}s sağlamdır: hiçbir kapalı !!{tableau}
+sağlanabilir değildir.
+\end{prop}
+
+\begin{proof}
+Daha önce olduğu gibi yalnızca şunu göstermemiz gerekir: !!a{tableau}'nun
+sağlanabilir bir dalı varsa $\eq$ kurallarından birinin uygulanmasıyla elde
+edilen dal da sağlanabilirdir. $\Gamma$, daldaki işaretli !!{formula}s
+kümesi; $\Struct{M}$ ise~$\Gamma$'yı sağlayan !!a{structure} olsun.
+
+Dalın~$\eq$ kullanılarak, yani işaretli
+!!{formula}~$\sFmla{\True}{\eq[t][t]}$ eklenerek genişletildiğini varsayın.
+Açıkça $\Sat{M}{\eq[t][t]}$ olduğundan $\Struct{M}$,
+$\Gamma \cup \{\sFmla{\True}{\eq[t][t]}\}$ kümesini de sağlar.
+
+Dal $\TRule{\True}{\eq}$ kullanılarak genişletilirse işaretli
+!!{formula}~$\sFmla{\True}{!A(t_2)}$ eklenir; $\Gamma$ ise hem
+~$\sFmla{\True}{\eq[t_1][t_2]}$ hem de $\sFmla{\True}{!A(t_1)}$ içerir.
+Dolayısıyla $\Sat{M}{\eq[t_1][t_2]}$ ve $\Sat{M}{!A(t_1)}$ olur.
+$s(x) = \Value{t_1}{M}$ olan bir $s$ değişken ataması seçin.
+\olref[syn][ass]{prop:sentence-sat-true} uyarınca
+$\Sat{M}{!A(t_1)}[s]$. $\varAssign{s}{s}{x}$ olduğundan
+\olref[syn][ext]{prop:ext-formulas} uyarınca $\Sat{M}{!A(x)}[s]$.
+$\Sat{M}{\eq[t_1][t_2]}$ olduğundan
+$\Value{t_1}{M} = \Value{t_2}{M}$, dolayısıyla
+$s(x) = \Value{t_2}{M}$. \olref[syn][ext]{prop:ext-formulas} bir kez daha
+uygulanırsa $\Sat{M}{!A(t_2)}[s]$ elde edilir.
+\olref[syn][ass]{prop:sentence-sat-true} uyarınca
+$\Sat{M}{!A(t_2)}$. $\TRule{\False}{\eq}$ durumu da benzer biçimde ele
+alınır.
+\end{proof}
+

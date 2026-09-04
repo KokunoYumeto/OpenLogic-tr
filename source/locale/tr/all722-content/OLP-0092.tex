@@ -1,0 +1,126 @@
+% Generated from locale/tr/content/first-order-logic/natural-deduction/provability-consistency.tex; do not hand-edit.
+
+
+\iftag{FOL}
+      {\olfileid[tr]{fol}{ntd}{prv}}
+      {\olfileid[tr]{pl}{ntd}{prv}}
+      
+\olsection{\usetoken{S}{derivability} ve Tutarlılık}
+
+Şimdi !!{derivability} bağıntısının bir dizi özelliğini ortaya koyacağız.
+Bunlar kendi başlarına ilginçtir; ayrıca her biri tamlık teoreminin ispatında
+rol oynayacaktır.
+
+\begin{prop}\ollabel{prop:provability-contr}
+  $\Gamma \Proves !A$ ve $\Gamma \cup \{!A\}$ tutarsızsa $\Gamma$
+  tutarsızdır.
+\end{prop}
+
+\begin{proof}
+$\Gamma$'dan $!A$ için !!{derivation} $\delta_1$, $\Gamma \cup \{!A\}$'dan
+$\lfalse$ için !!{derivation} $\delta_2$ olsun. Bu durumda şunu !!{derive}
+mümkündür:
+\begin{prooftree}
+\AxiomC{$\Gamma, \Discharge{!A}{1}$}
+\RightLabel{$\delta_2$}
+\DeduceC{$\lfalse$}
+\DischargeRule{\Intro{\lnot}}{1}
+\UnaryInfC{$\lnot !A$}
+\AxiomC{$\Gamma$}
+\RightLabel{$\delta_1$}
+\DeduceC{$!A$}
+\RightLabel{\Elim{\lnot}}
+\BinaryInfC{$\lfalse$}
+\end{prooftree}
+Yeni !!{derivation} içinde $!A$ varsayımı !!{discharged} olduğundan bu,
+$\Gamma$'dan !!a{derivation} olur.
+\end{proof}
+
+\begin{prop}
+\ollabel{prop:prov-incons}
+$\Gamma \Proves !A$ olması, $\Gamma \cup \{\lnot !A\}$'nın tutarsız
+olmasına denktir.
+\end{prop}
+
+\begin{proof}
+Önce $\Gamma \Proves !A$ olduğunu varsayalım; bunun anlamı $!A$ için
+!!a{derivation}~$\delta_0$ bulunması ve kaynak olarak yalnızca
+!!{undischarged} varsayımlar~$\Gamma$'nın kullanılmasıdır.
+$\Gamma \cup \{\lnot !A\}$'dan $\lfalse$ için !!a{derivation} şöyle elde
+edilir:
+\begin{prooftree}
+  \AxiomC{$\lnot !A$}
+  \AxiomC{$\Gamma$}
+  \RightLabel{$\delta_0$}
+  \DeduceC{$!A$}
+  \RightLabel{\Elim{\lnot}}
+  \BinaryInfC{$\lfalse$}
+\end{prooftree}
+
+Şimdi $\Gamma \cup \{\lnot !A\}$'nın tutarsız olduğunu varsayalım ve
+$\delta_1$, $\lfalse$ için buna karşılık gelen !!{derivation} olsun.
+Buradaki !!{undischarged} varsayımlar $\Gamma \cup \{\lnot !A\}$ içindedir.
+Yalnızca $\Gamma$'dan $!A$ için !!a{derivation}, $\FalseCl$ kullanılarak
+elde edilir:
+\begin{prooftree}
+  \AxiomC{$\Gamma, \Discharge{\lnot !A}{1}$}
+  \RightLabel{$\delta_1$}
+  \DeduceC{$\lfalse$}
+  \DischargeRule{\FalseCl}{1}
+  \UnaryInfC{$!A$}
+\end{prooftree}
+\end{proof}
+
+\begin{prob}
+$\Gamma \Proves \lnot !A$ olmasının, $\Gamma \cup \{!A\}$'nın tutarsız
+olmasına denk olduğunu ispatlayın.
+\end{prob}
+
+\begin{prop}\ollabel{prop:explicit-inc}
+  $\Gamma \Proves !A$ ve $\lnot !A \in \Gamma$ ise $\Gamma$ tutarsızdır.
+\end{prop}
+
+\begin{proof}
+  $\Gamma \Proves !A$ ve $\lnot !A \in \Gamma$ olduğunu varsayalım. O zaman
+  $\Gamma$'dan $!A$ için !!a{derivation}~$\delta$ vardır. $\Elim{\lnot}$
+  kuralının şu basit uygulamasını ele alalım:
+  \begin{prooftree}
+    \AxiomC{$\lnot !A$}
+    \AxiomC{$\Gamma$}
+    \RightLabel{$\delta$}
+    \DeduceC{$!A$}
+    \RightLabel{\Elim{\lnot}}
+    \BinaryInfC{$\lfalse$}
+  \end{prooftree}
+  $\lnot !A \in \Gamma$ olduğundan bütün !!{undischarged} varsayımlar
+  $\Gamma$ içindedir; bu da $\Gamma \Proves \lfalse$ olduğunu gösterir.
+\end{proof}
+
+\begin{prop}\ollabel{prop:provability-exhaustive}
+  $\Gamma \cup \{!A\}$ ve $\Gamma \cup \{\lnot !A\}$ kümelerinin ikisi de
+  tutarsızsa $\Gamma$ tutarsızdır.
+\end{prop}
+
+\begin{proof}
+$\delta_1$ ve $\delta_2$ biçiminde !!{derivation}s vardır; bunlar sırasıyla
+$\Gamma \cup \{ !A \}$'dan $\lfalse$ ve $\Gamma \cup \{ \lnot !A \}$'dan
+$\lfalse$ sonucunu verir. Bu durumda şunu !!{derive} mümkündür:
+\begin{prooftree}
+\AxiomC{$\Gamma, \Discharge{\lnot !A}{2}$}
+\RightLabel{$\delta_2$}
+\DeduceC{$\lfalse$}
+\DischargeRule{\Intro{\lnot}}{2}
+\UnaryInfC{$\lnot \lnot !A$}
+\AxiomC{$\Gamma, \Discharge{!A}{1}$}
+\RightLabel{$\delta_1$}
+\DeduceC{$\lfalse$}
+\DischargeRule{\Intro{\lnot}}{1}
+\UnaryInfC{$\lnot !A$}
+\RightLabel{\Elim{\lnot}}
+\BinaryInfC{$\lfalse$}
+\end{prooftree}
+$!A$ ve $\lnot !A$ varsayımları !!{discharged} olduğundan bu, yalnızca
+$\Gamma$'dan $\lfalse$ için !!a{derivation} olur. Dolayısıyla $\Gamma$
+tutarsızdır.
+\end{proof}
+

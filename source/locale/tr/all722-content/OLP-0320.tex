@@ -1,0 +1,154 @@
+% Generated from locale/tr/content/incompleteness/incompleteness-provability/lob-thm.tex; do not hand-edit.
+
+
+\olfileid[tr]{inc}{inp}{lob}
+
+\olsection{L\"ob Teoremi}
+
+Bir kuram $\Th{T}$ verilsin. Bu kuramın G\"odel tümcesi,
+$\lnot \OProv[\Th{T}](y)$'nin bir sabit noktasıdır; yani
+\[
+\Th{T} \Proves \lnot \OProv[\Th{T}](\gn{!G}) \liff !G.
+\]
+olacak biçimde !!a{sentence}~$!G$'dir. Bu tümce !!{derivable} değildir;
+çünkü $\Th{T} \Proves !G$ olsaydı (a) (1) numaralı !!{derivability} koşulu
+uyarınca $\Th{T} \Proves \OProv[\Th{T}](\gn{!G})$ olurdu; (b)
+$\Th{T} \Proves !G$ ile
+$\Th{T} \Proves \lnot \OProv[\Th{T}](\gn{!G}) \liff !G$ birlikte
+$\Th{T} \Proves \lnot \OProv[\Th{T}](\gn{!G})$ sonucunu verirdi ve böylece
+$\Th{T}$ tutarsız olurdu. Şimdi $\OProv[\Th{T}](y)$'nin sabit noktasının,
+yani
+\[
+\Th{T} \Proves \OProv[\Th{T}](\gn{!H}) \liff !H.
+\]
+olacak biçimde !!a{sentence}~$!H$'nin durumunu sormak doğaldır. $!H$
+!!{derivable} olsaydı (1) koşulu uyarınca
+$\Th{T} \Proves \OProv[\Th{T}](\gn{!H})$ olurdu; fakat yukarıdaki denkliğe
+modus ponens uygularsak da aynı sonucu elde ederiz. Dolayısıyla, en azından
+G\"odel tümcesi durumundaki argümanla, $\Th{T}$'nin tutarsız olduğu sonucunu
+elde etmeyiz. Elbette bu, $\Th{T}$'nin $!H$'yi \emph{gerçekten}
+!!{derive} ettiğini göstermez.
+
+Soruyu biraz genelleştirirsek ilerleme kaydedebiliriz. Sabit nokta denkliğinin
+soldan sağa yönü, $\OProv[\Th{T}](\gn{!H}) \lif !H$, \emph{yansıma ilkesi}
+denen genel bir şemanın örneğidir:
+$\OProv[\Th{T}](\gn{!A}) \lif !A$. Bu adın verilmesinin nedeni bir anlamda
+$\Th{T}$'nin !!{derive} edebildikleri üzerine ``düşünebildiğini'' ifade
+etmesidir; ilke özünde, her $!A$ için ``$\Th{T}$, $!A$'yı !!{derive}
+edebiliyorsa $!A$ doğrudur'' der. Bu elbette yalnızca sağlam kuramlar için
+doğrudur ve kuramların genel olarak ilkenin her örneğini !!{derive}
+etmeyeceğini düşündürür. Öyleyse (yeterince güçlü ve !!{derivability}
+koşullarını sağlayan) bir kuram hangi örnekleri !!{derive} edebilir? Kuşkusuz
+$!A$'nın kendisinin !!{derivable} olduğu bütün örnekleri. Aşağıdaki sonucun
+gösterdiği gibi yalnızca bunları.
+
+\begin{thm}\ollabel{thm:lob}
+$\Th{T}$, $\Th{Q}$'yu genişleten !!a{axiomatizable} kuram olsun ve
+$\OProv[\Th{T}](y)$'nin
+% [tr source emendation] The P1--P3 conditions are introduced in the `prc`
+% section; upstream points to `2in`, the following second-theorem section.
+\olref[prc]{sec}'deki P1--P3 koşullarını sağlayan bir formül olduğunu
+varsayın. $\Th{T}$, $\OProv[\Th{T}](\gn{!A}) \lif !A$ formülünü !!{derive}
+ederse gerçekten de $!A$'yı !!{derive} eder.
+\end{thm}
+
+Başka türlü söylersek $\Th{T} \Proves/ !A$ ise
+$\Th{T} \Proves/ \OProv[\Th{T}](\gn{!A}) \lif !A$ olur. Bu sonuç L\"ob
+teoremi olarak bilinir.
+
+\begin{explain}
+L\"ob teoreminin ispatı için yol gösterici fikir, Noel Baba'nın var olduğunu
+gösteren zekice bir ispattır. (Bu sonucu beğenmiyorsanız istediğiniz başka bir
+sonucu koymakta özgürsünüz.) İspat şöyledir:
+\begin{enumerate}
+\item $X$, ``$X$ doğruysa Noel Baba vardır'' tümcesi olsun.
+\item $X$'in doğru olduğunu varsayın.
+\item O zaman söylediği şey geçerlidir; yani $X$ doğruysa Noel Baba vardır.
+\item $X$'in doğru olduğunu varsaydığımızdan (2) ve (3)'e modus ponens
+  uygulayarak Noel Baba'nın var olduğu sonucuna ulaşabiliriz.
+\item (4)'teki ``Noel Baba vardır'' sonucunu, (2)'deki ``$X$ doğrudur''
+  varsayımından türetmeyi başardık. Koşullu ispatla ``$X$ doğruysa Noel Baba
+  vardır'' önermesini göstermiş olduk.
+\item Fakat bu tam olarak $X$ tümcesidir. Demek ki $X$'in doğru olduğunu
+  gösterdik.
+\item O zaman yukarıdaki (2)--(4) argümanına göre Noel Baba vardır.
+\end{enumerate}
+Bu fikri, ``doğrudur'' yerine ``!!{derivable}{}dir'', ``Noel Baba vardır''
+yerine de $!A$ koyarak biçimselleştirmek L\"ob teoreminin ispatını verir.
+Hile, sabit nokta lemmasını $\OProv[\Th{T}](y) \lif !A$ !!{formula}'na
+uygulamaktır. Bunun sabit noktası, yukarıdaki taslakta yer alan $X$ tümcesine
+karşılık gelir.
+\end{explain}
+
+\begin{proof}[\olref{thm:lob} İspatı]
+$!A$, !!a{sentence} olsun ve $\Th{T}$,
+$\OProv[\Th{T}](\gn{!A}) \lif !A$ formülünü !!{derive} etsin. $!B(y)$,
+$\OProv[\Th{T}](y) \lif !A$ !!{formula} olsun. Sabit nokta lemmasıyla
+!!a{sentence}~$!D$ bulunsun ve $\Th{T}$, $!D \liff !B(\gn{!D})$
+formülünü !!{derive} etsin.
+O zaman aşağıdakilerin her biri $\Th{T}$ içinde !!{derivable}{}dir:
+\begin{align}
+  & !D \liff (\OProv[\Th{T}](\gn{!D}) \lif !A) \ollabel{L-1}\\
+  & \qquad \text{$!D$, $!B(y)$'nin bir sabit noktasıdır}\notag \\
+  & !D \lif (\OProv[\Th{T}](\gn{!D}) \lif !A) \ollabel{L-2}\\
+  & \qquad\text{\olref{L-1}'den}\notag\\
+  & \OProv[\Th{T}](\gn{!D \lif (\OProv[\Th{T}](\gn{!D}) \lif !A)}) \ollabel{L-3}\\
+  & \qquad \text{\olref{L-2}'den P1 koşulu aracılığıyla}\notag \\
+  & \OProv[\Th{T}](\gn{!D}) \lif \OProv[\Th{T}](\gn{\OProv[\Th{T}](\gn{!D}) \lif !A})
+  \ollabel{L-4}\\
+  &\qquad \text{\olref{L-3}'ten P2 koşulu kullanılarak}\notag \\
+  & \OProv[\Th{T}](\gn{!D}) \lif (\OProv[\Th{T}](\gn{\OProv[\Th{T}](\gn{!D})}) \lif \OProv[\Th{T}](\gn{!A})) \ollabel{L-5}\\
+  &\qquad \text{\olref{L-4}'ten P2 yeniden kullanılarak} \notag\\
+& \OProv[\Th{T}](\gn{!D}) \lif \OProv[\Th{T}](\gn{\OProv[\Th{T}](\gn{!D})}) \ollabel{L-6}\\
+  & \qquad\text{P3 !!{derivability} koşulu aracılığıyla} \notag\\
+  & \OProv[\Th{T}](\gn{!D}) \lif \OProv[\Th{T}](\gn{!A}) \ollabel{L-7} \\
+  &\qquad\text{\olref{L-5} ve \olref{L-6}'dan}\notag\\
+  & \OProv[\Th{T}](\gn{!A}) \lif !A \ollabel{L-8}\\
+  &\qquad\text{teoremin varsayımından} \notag\\
+  & \OProv[\Th{T}](\gn{!D}) \lif !A \ollabel{L-9}\\
+  &\qquad\text{\olref{L-7} ve \olref{L-8}'den}\notag\\
+  & (\OProv[\Th{T}](\gn{!D}) \lif !A) \lif !D \ollabel{L-10}\\
+  & \qquad \text{\olref{L-1}'den}\notag \\
+  & !D \ollabel{L-11}\\
+  & \qquad\text{\olref{L-9} ve \olref{L-10}'dan}\notag \\
+  & \OProv[\Th{T}](\gn{!D}) \ollabel{L-12}\\
+  & \qquad\text{\olref{L-11}'den P1 koşulu aracılığıyla}\notag \\
+  & !A \qquad\qquad\text{\olref{L-8} ve \olref{L-12}'den}\notag
+\end{align}
+\end{proof}
+
+L\"ob teoremi eldeyken, (P1)--(P3) koşullarını sağlayan !!a{derivability}
+yüklemi bulunan kuramlar için ikinci eksiklik teoreminin kısa bir ispatı
+vardır: $\Th{T} \Proves \OProv[\Th{T}](\gn{\lfalse}) \lif \lfalse$ ise
+$\Th{T} \Proves \lfalse$ olur. $\Th{T}$ tutarlıysa
+$\Th{T} \Proves/ \lfalse$ olur. Öyleyse
+$\Th{T} \Proves/ \OProv[\Th{T}](\gn{\lfalse}) \lif \lfalse$, yani
+$\Th{T} \Proves/ \OCon[\Th{T}]$ olur. Teoremi ayrıca
+$\OProv[\Th{T}](x)$'in sabit noktası $!H$'nin !!{derivable} olduğunu göstermek
+için de uygulayabiliriz. Çünkü
+\begin{align*}
+  \Th{T} & \Proves \OProv[\Th{T}](\gn{!H}) \liff !H\\
+  \intertext{ve özellikle}
+    \Th{T} & \Proves \OProv[\Th{T}](\gn{!H}) \lif !H
+\end{align*}
+olur; dolayısıyla L\"ob teoremi uyarınca $\Th{T} \Proves !H$ olur.
+
+% Going in the other direction, for homework I
+% may ask you to work through a short proof of L\"ob's theorem, using
+% the second incompleteness theorem instead of the fixed-point lemma.
+
+\begin{prob}
+$\Th{T}$ hesaplanabilir biçimde aksiyomlaştırılmış bir kuram ve
+$\OProv[\Th{T}]$, $\Th{T}$ için !!a{derivability} yüklemi olsun. Aşağıdaki
+dört önermeyi ele alın:
+% [tr source emendation] Upstream drops the \Th{} theory macro throughout
+% this list; the surrounding notation consistently denotes the theory \Th{T}.
+\begin{enumerate}
+\item $\Th{T} \Proves !A$ ise $\Th{T} \Proves \OProv[\Th{T}](\gn{!A})$ olur.
+\item $\Th{T} \Proves !A \lif \OProv[\Th{T}](\gn{!A})$.
+\item $\Th{T} \Proves \OProv[\Th{T}](\gn{!A})$ ise $\Th{T} \Proves !A$ olur.
+\item $\Th{T} \Proves \OProv[\Th{T}](\gn{!A}) \lif !A$
+\end{enumerate}
+Bu önermelerin her biri hangi koşullar altında doğrudur?
+\end{prob}
+

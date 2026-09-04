@@ -1,0 +1,73 @@
+% Generated from locale/tr/content/computability/recursive-functions/primes.tex; do not hand-edit.
+
+
+\olfileid[tr]{cmp}{rec}{pri}
+\olsection{Asal Sayılar}
+
+Sınırlı niceleme ve sınırlı en küçükleme, doğal fonksiyon ve bağıntıların
+ilkel özyinelemeli olduğunu göstermek için bize geniş bir araç takımı sağlar.
+Örneğin ``$x$, $y$'yi böler'' bağıntısını ele alalım; bunu $x\mid y$ diye
+yazarız. $y$'nin $x$'e bölümü kalansızsa, yani $y$, $x$'in bir tam sayı
+katıysa $x\mid y$ geçerlidir. Geçerli değilse, yani $y$'nin $x$'e bölümünden
+kalan $>0$ ise $x\nmid y$ yazarız. Başka bir deyişle $x\mid y$ ancak ve
+ancak bazı $z$ için $x\cdot z=y$ ise geçerlidir. Böyle bir $z$ varsa açıkça
+$z\leq y$ olmalıdır. Dolayısıyla $x\mid y$ ancak ve ancak bazı $z\leq y$
+için $x\cdot z=y$ olduğunda geçerlidir. $x\mid y$ bağıntısını eşitlik ve
+çarpmadan sınırlı varlıksal nicelemeyle
+\[
+  x\mid y\defiff\bexists{z\leq y}{(x\cdot z)=y}
+\]
+olarak tanımlayabiliriz. Böylece $x\mid y$ bağıntısının ilkel özyinelemeli
+olduğunu göstermiş olduk.
+
+Bir doğal sayı $x$, $0$ ya da $1$ değilse ve yalnızca $1$ ile kendisine
+bölünebiliyorsa \emph{asal}dır. Başka bir deyişle asal sayılar, $y\mid x$
+olduğunda $y=1$ ya da $y=x$ koşulunu sağlar. $x$'in asal olup olmadığını
+sınamak için yalnızca $y\leq x$ olan $y$ değerlerinde $y\mid x$ olup
+olmadığını denetlememiz yeterlidir; çünkü $y>x$ ise kendiliğinden
+$y\nmid x$ olur. Dolayısıyla ancak ve ancak $x$ asal olduğunda geçerli olan
+$\fn{Prime}(x)$ bağıntısı
+\[
+  \fn{Prime}(x)\defiff x\geq2\land
+  \bforall{y\leq x}{(y\mid x\lif y=1\lor y=x)}
+\]
+olarak tanımlanabilir ve ilkel özyinelemelidir.
+
+Asal sayılar $2,3,5,7,11,\dots$ biçimindedir. Bu dizideki $x$. asalı
+döndüren $p(x)$ fonksiyonunu ele alalım: $p(0)=2$, $p(1)=3$,
+$p(2)=5$, vb. Kolaylık için $p(x)$ yerine sık sık $p_x$ yazacağız
+($p_0=2$, $p_1=3$, vb.).
+
+$x$'ten büyük ilk asal sayıyı döndüren bir $\fn{nextPrime(x)}$ fonksiyonumuz
+olsaydı $p$ ilkel özyinelemeyle kolayca tanımlanırdı:
+\begin{align*}
+  p(0) & = 2\\
+  p(x+1) & = \fn{nextPrime}(p(x)).
+\end{align*}
+$\fn{nextPrime}(x)$, $y>x$ olan en küçük asal $y$ olduğundan sınırsız
+aramayla kolayca hesaplanabilir. Fakat Öklid'e ait bir sonuç sayesinde
+sınırlı en küçüklemeyle de tanımlanabilir: $x$ ile $\fact{x}+1$ arasında
+her zaman bir asal sayı vardır.
+\[
+  \fn{nextPrime(x)}=
+  \bmin{y\leq\fact{x}+1}{(y>x\land\fn{Prime}(y))}.
+\]
+Bu, $\fn{nextPrime}(x)$ ve dolayısıyla $p(x)$ fonksiyonlarının yalnızca
+hesaplanabilir değil, ilkel özyinelemeli olduğunu gösterir.
+
+(Merak edenler için Öklid teoreminin kısa bir ispatı şöyledir. $p_n$,
+$x$'ten küçük veya ona eşit en büyük asal olsun ve $x$'ten küçük veya ona
+eşit bütün asalların çarpımını
+$p=p_0\cdot p_1\cdots p_n$ olarak ele alalım. Ya $p+1$ asaldır ya da $x$ ile
+$p+1$ arasında bir asal vardır. Neden? $p+1$ asal olmasın. O zaman
+$q<p+1$ olacak biçimde bazı asal $q$ için $q\mid p+1$ olur. $x$'ten küçük
+veya ona eşit asalların hiçbiri $p+1$'i bölmez. Gerçekten, $p$ tanımı
+gereği her $p_i\leq x$ asalı $p$'yi kalansız böler; dolayısıyla $p+1$'i
+bir kalanıyla böler ve $p_i\nmid p+1$ olur. Öyleyse $q$, $x$'ten büyük ve
+$p+1$'den küçük bir asaldır. Ayrıca $p\leq\fact{x}$ olduğundan $x$'ten büyük
+ve $\fact{x}+1$'den küçük veya ona eşit bir asal vardır.)
+
+\begin{prob}
+Tam sayı bölmesi $d(x,y)$ fonksiyonunu sınırlı en küçüklemeyle tanımlayın.
+\end{prob}
+

@@ -1,0 +1,75 @@
+% Generated from locale/tr/content/model-theory/basics/dlo.tex; do not hand-edit.
+
+
+\olfileid[tr]{mod}{bas}{dlo}
+\section{Yoğun Doğrusal Sıralamalar}
+
+\begin{defn}
+  \emph{Uç noktaları olmayan yoğun doğrusal sıralama}, tek bir iki yerli
+  !!{predicate}~$<$ içeren !!{language} için aşağıdaki tümceleri
+  sağlayan !!a{structure}~$\Struct M$ ifadesidir:
+  \begin{enumerate}
+  \item $\lforall[x][\lnot x < x]$;
+  \item $\lforall[x][\lforall[y][\lforall[z][(x < y \lif (y < z \lif x
+    <z ))]]]$;
+  \item $\lforall[x][\lforall[y][(x< y \lor \eq[x][y] \lor y < x)]]$;
+  \item $\lforall[x][\lexists[y][x < y]]$;
+  \item $\lforall[x][\lexists[y][y < x]]$;
+  \item $\lforall[x][\lforall[y][(x < y \lif \lexists[z][(x < z \land
+        z < y))]]]$.
+ \end{enumerate}
+\end{defn}
+
+\begin{thm}\ollabel{thm:cantorQ}
+  Uç noktaları olmayan herhangi iki !!{enumerable} yoğun doğrusal
+  sıralama izomorftur.
+\end{thm}
+
+\begin{proof}
+  $\Struct M_1$ ve $\Struct M_2$, uç noktaları olmayan !!{enumerable}
+  yoğun doğrusal sıralamalar; ${<_1}=\Assign{<}{M_1}$ ve
+  ${<_2}=\Assign{<}{M_2}$ olsun. Aralarındaki bütün kısmi
+  izomorfizmaların kümesine $\PIso I$ diyelim. En azından
+  $\emptyset\in\PIso I$ olduğundan $\PIso I$ boş değildir. $\PIso I$
+  kümesinin ileri-geri özelliğini sağladığını göstereceğiz. O zaman
+  $\Struct M_1\iso[p]\Struct M_2$ olur ve teorem
+  \olref[pis]{thm:p-isom1} sonucundan çıkar.
+
+  $\PIso I$ kümesinin ileri özelliğini sağladığını göstermek için
+  $p\in\PIso I$ ve $i=1,\dots,n$ için $p(a_i)=b_i$ olsun; genelliği
+  bozmadan $a_1<_1a_2<_1\cdots<_1a_n$ varsayalım. Verilen
+  $a\in\Domain{M_1}$ için $b\in\Domain{M_2}$ elemanını şöyle bulun:
+  \begin{enumerate}
+  \item $a<_1a_1$ ise $b<_2b_1$ olacak bir $b\in\Domain{M_2}$ alın;
+  \item $a_n<_1a$ ise $b_n<_2b$ olacak bir $b\in\Domain{M_2}$ alın;
+  \item bazı $i$ için $a_i<_1a<_1a_{i+1}$ ise
+    $b_i<_2b<_2b_{i+1}$ olacak bir $b\in\Domain{M_2}$ alın.
+  \end{enumerate}
+  $\Struct M_2$ uç noktaları olmayan yoğun bir doğrusal sıralama
+  olduğundan istenen özelliğe sahip bir $b$ her zaman bulunabilir.
+  $q=p\cup\{\langle a,b\rangle\}$ tanımlayın; böylece $q\in\PIso I$,
+  $p$'nin istenen genişlemesidir. Bu, ileri özelliğini gösterir. Geri
+  özelliği benzerdir. Dolayısıyla $\Struct M_1\iso[p]\Struct M_2$;
+  \olref[pis]{thm:p-isom1} gereği $\Struct M_1\iso\Struct M_2$.
+\end{proof}
+
+\begin{prob}
+  $\PIso I$ kümesinin geri özelliğini sağladığını doğrulayarak
+  \olref[mod][bas][dlo]{thm:cantorQ} teoreminin ispatını tamamlayın.
+\end{prob}
+
+\begin{rem}
+  $\Struct S$, uç noktaları olmayan herhangi bir !!{enumerable} yoğun
+  doğrusal sıralama olsun. O zaman \olref{thm:cantorQ} gereği
+  $\Struct S\iso\Struct Q$; burada $\Struct Q=(\Rat,<)$, evreni
+  rasyonel sayılar kümesi~$\Rat$ olan !!{enumerable} yoğun doğrusal
+  sıralamadır. Şimdi \olref[thm]{remark:R} içindeki
+  !!{structure}~$\Struct R=(\Real,<)$ ifadesini yeniden ele alalım.
+  $\Struct R\elemequiv\Struct S$ olacak !!a{enumerable}
+  !!{structure}~$\Struct S$ bulunduğunu görmüştük. Ancak $\Struct S$,
+  uç noktaları olmayan !!a{enumerable} yoğun doğrusal sıralamadır;
+  dolayısıyla !!{structure}~$\Struct Q$ ile izomorf (ve bu yüzden
+  elementer eşdeğer) olur. Elementer eşdeğerliğin geçişliliği gereği
+  $\Struct R\elemequiv\Struct Q$. (Aynı ileri-geri savıyla doğrudan
+  $\Struct R\iso[p]\Struct Q$ göstererek de bu sonuca ulaşabilirdik.)
+\end{rem}

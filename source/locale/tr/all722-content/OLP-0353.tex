@@ -1,0 +1,136 @@
+% Generated from locale/tr/content/lambda-calculus/introduction/primitive-recursion.tex; do not hand-edit.
+
+
+\olfileid[tr]{lam}{int}{pr}
+\olsection{\usetoken{S}{lambda definable} Fonksiyonlar İlkel Özyineleme Altında Kapalıdır}
+
+İlkel özyinelemeye gelince artık biraz çalışmamız gerekir. Aşamalar hâlinde
+ilerleyeceğiz. Önceki gibi, sırasıyla $g$ ve $h$ fonksiyonlarını
+!!{lambda define} eden $G$ ve $H$ terimlerine zaten sahip olduğumuzu
+varsayarak, şu denklemlerle tanımlanan $f$ fonksiyonunu !!{lambda define}s
+bir terim isteriz:
+\begin{align*}
+f(0, \vec z) & = g(\vec z) \\
+f(x+1, \vec z) & = h(z, f(x,\vec z), \vec z).
+\end{align*}
+Dolayısıyla genel olarak $G'$ ve $H'$ lambda terimleri verildiğinde, her $n$
+doğal sayısı için
+\begin{align*}
+F(\num{0}, \vec z) & \equiv G(\vec z) \\
+F(\overline{n+1}, \vec z) & \equiv H(\num{n}, F(\num{n}, \vec z), \vec z)
+\end{align*}
+olacak biçimde bir $F$ terimi bulmak yeterlidir. $G'$ ile $H'$'nin $g$ ile
+$h$'yi !!{lambda define} etmesi, $\vec z$ yerine $\num{\vec m}$ sayıları
+koyduğumuzda $F(\num{n+1},\num{\vec m})$'nin doğru yanıta normalleşeceği
+anlamına gelir.
+
+Bunun içinse
+\begin{align*}
+F(\num 0) & \equiv G \\
+F(\overline {n+1}) & \equiv H(\num{n},F(\num{n}))
+\intertext{koşullarını her $n$ doğal sayısı için sağlayan bir $F$ bulmak yeterlidir; burada}
+G & = \lambd[\vec z][G'(\vec z)] \text{ ve}\\
+H(u,v) & = \lambd[\vec z][H'(u,v(u,\vec z),\vec z)].
+\end{align*}
+Başka bir deyişle lambda oyunuyla ek $\vec z$ parametrelerini dert etmekten
+kaçınabiliriz; bunlar lambda gösteriminin içinde soğurulur.
+
+$F$ terimini tanımlamadan önce sıralı ikilileri işleyecek bir düzeneğe
+gereksinimimiz vardır. Bunu sonraki lemma sağlar.
+
+\begin{lem}
+Her $M$ ve $N$ lambda terimi çifti için
+$D(M,N)(\num{0})\red M$ ve $D(M,N)(\num{1})\red N$ olacak biçimde bir $D$
+lambda terimi vardır.
+\end{lem}
+
+\begin{proof}
+Önce $K$ lambda terimini
+\[
+K(y) = \lambd[x][y]
+\]
+ile tanımlayın. Başka bir deyişle $K$, $\lambd[y][\lambd[x][y]]$ terimidir.
+Başka açıdan bakarsak her $M$ için $K(M)$, her girdide $M$'yi döndüren sabit
+bir fonksiyondur.
+
+Şimdi $D(x,y,z)$'yi $D(x,y,z)=z(K(y))x$ ile tanımlayın. O zaman istendiği
+gibi
+\begin{align*}
+D(M,N,\num 0) & \red \num 0 (K(N)) M \red M \text{ ve}\\
+D(M,N,\num 1) & \red \num 1 (K(N)) M \red K(N) M \red N
+\end{align*}
+olur.
+\end{proof}
+
+Düşünce, $D(M,N)$'nin $\tuple{M,N}$ ikilisini temsil etmesi; $P$'nin böyle
+bir ikiliyi temsil ettiği varsayılırsa $P(\num 0)$ ile $P(\num 1)$'in sol ve
+sağ izdüşümleri $(P)_0$ ile $(P)_1$'i temsil etmesidir. Bundan sonra ikinci
+gösterimleri kullanacağız.
+
+\begin{lem}
+!!{lambda definable} fonksiyonlar ilkel özyineleme altında kapalıdır.
+\end{lem}
+
+\begin{proof}
+Herhangi $G$ ve $H$ terimleri verildiğinde, her $n$ doğal sayısı için
+\begin{align*}
+F(\num{0}) & \equiv G \\
+F(\num{n+1}) & \equiv H(\num{n}, F(\num{n}))
+\end{align*}
+olacak biçimde bir $F$ bulabileceğimizi göstermeliyiz. Düşünce, sayıları
+yineleyici olarak kullanıp
+\[
+\tuple{\num 0, F(\num 0)}, \tuple{\num 1, F(\num 1)}, \dots
+\]
+\emph{ikili} dizilerini hesaplamaktır. İlk ikilinin yalnızca
+$\tuple{\num 0,G}$ olduğuna dikkat edin. $\tuple{\num n,F(\num n)}$ ikilisi
+verildiğinde sonraki $\tuple{\num{n+1},F(\num{n+1})}$ ikilisi,
+$\tuple{\num{n+1},H(\num n,F(\num n))}$ ile eşdeğer olmalıdır. Bu tek adımlı
+geçişi yapan bir $T$ lambda terimi tasarlayacağız.
+
+Ayrıntılar şöyledir. $T(u)$'yu
+\[
+T(u) = \tuple{S((u)_0), H((u)_0,(u)_1)}
+\]
+ile tanımlayın. Her $n$ sayısı için
+\[
+T(\tuple{\num{n}, M}) \red \tuple{\num{n+1}, H(\num{n}, M)}
+\]
+olduğu kolayca doğrulanır. Yukarıda önerildiği gibi $G$ ve $H$ verildiğinde
+$F(u)$'yu
+\[
+F(u) = (u(T,\tuple{\num 0, G}))_1
+\]
+ile tanımlayın. Başka bir deyişle $\num n$ girdisinde $F$, $T$'yi
+$\tuple{\num 0,G}$ üzerinde $n$ kez yineler, ardından ikinci bileşeni
+döndürür. Başlangıçta şunlar vardır:
+\begin{enumerate}
+\item $\num{0} (T, \tuple{\num 0, G}) \equiv \tuple{\num{0}, G}$
+\item $F(\num{0}) \equiv G$
+\end{enumerate}
+$n$ üzerinde tümevarımla her doğal sayı için şunları gösterebiliriz:
+\begin{enumerate}
+\item $\num{n+1}(T, \tuple{\num{0}, G}) \equiv \tuple{\num{n+1}, F(\num{n+1})}$
+\item $F(\num{n+1}) \equiv H(\num{n}, F(\num{n}))$
+\end{enumerate}
+İkinci koşul için
+\begin{align*}
+F(\num{n+1}) & \red (\num{n+1}(T, \tuple{\num 0, G}))_1 \\
+& \equiv (T(\num{n} (T, \tuple{\num 0, G})))_1 \\
+& \equiv (T(\tuple{\num{n}, F(\num{n})}))_1 \\
+& \equiv (\tuple{\num{n+1}, H(\num{n}, F(\num{n}))})_1 \\
+& \equiv H(\num{n}, F(\num{n})).
+\end{align*}
+Sondan bir önceki satırda tümevarım varsayımını kullandık. İlk koşul için
+\begin{align*}
+\num{n+1} (T, \tuple{\num 0, G}) &
+\equiv T(\num{n} (T, \tuple{\num 0, G})) \\
+& \equiv T( \tuple{\num{n}, F(\num{n})}) \\
+& \equiv \tuple{\num{n+1}, H(\num{n}, F(\num{n}))} \\
+& \equiv \tuple{\num{n+1}, F(\num{n+1})}.
+\end{align*}
+Son satırda ikinci koşulu kullandık. Böylece $F(\num 0)\equiv G$ ve her $n$
+için $F(\num{n+1})\equiv H(\num n,F(\num n))$ olduğunu, yani tam olarak
+gerekeni göstermiş olduk.
+\end{proof}
+

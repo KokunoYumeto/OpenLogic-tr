@@ -1,0 +1,45 @@
+% Generated from locale/tr/content/incompleteness/theories-computability/inseparability.tex; do not hand-edit.
+
+
+\olfileid[tr]{inc}{tcp}{ins}
+
+\olsection{$\Th{Q}$ İçinde İspatlanabilir ve Çürütülebilir Tümceler
+  Hesaplanabilir Biçimde Ayrılamazdır}
+
+
+$\Th{\bar Q}$, {\em değillemeleri} $\Th{Q}$ içinde ispatlanabilir olan
+tümceler kümesi olsun; yani
+$\Th{\bar Q} = \Setabs{!A}{\Th{Q} \Proves \lnot !A}$. Ayrık $A$ ve $B$
+kümelerine, $A \subseteq C$ ve $B \subseteq \Complement{C}$ olacak biçimde
+hesaplanabilir hiçbir $C$ kümesi yoksa hesaplanabilir biçimde ayrılamaz
+dendiğini anımsayın.
+
+\begin{lem}
+$\Th{Q}$ ile $\Th{\bar Q}$ hesaplanabilir biçimde ayrılamazdır.
+\end{lem}
+
+\begin{proof}
+$\Th{Q} \subseteq C$ ve $\Th{\bar Q} \subseteq \Complement{C}$ olacak
+biçimde hesaplanabilir bir $C$ kümesi bulunduğunu varsayın. $R(x,y)$ şu
+bağıntı olsun:
+\begin{quote}
+$x$ bir $!D(u)$ formülünü kodlar ve $!D(\num y)$, $C$ içindedir.
+\end{quote}
+$R(x,y)$'nin evrensel bir hesaplanabilir bağıntı olduğunu göstererek bir
+çelişki elde edeceğiz.
+
+$S(y)$ hesaplanabilir olsun ve $\Th{Q}$ içinde $!D_S(u)$ ile temsil ediliyor
+olsun. O zaman
+\begin{eqnarray*}
+S(\num n) & \lif & \Th{Q} \Proves !D_S(\num n) \\
+& \lif & !D_S(\num n) \in C
+\end{eqnarray*}
+ve
+\begin{eqnarray*}
+\lnot S(\num n) & \lif & \Th{Q} \Proves \lnot !D_S(\num n) \\
+& \lif & !D_S(\num n) \in \Th{\bar Q} \\
+& \lif & !D_S(\num n) \not\in C
+\end{eqnarray*}
+olur. Dolayısıyla $S(y)$, $R(\#(!D_S(u)),y)$ ile eşdeğerdir.
+\end{proof}
+

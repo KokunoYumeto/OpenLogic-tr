@@ -1,0 +1,64 @@
+% Generated from locale/tr/content/computability/computability-theory/russells-paradox.tex; do not hand-edit.
+
+
+\olfileid[tr]{cmp}{thy}{rus}
+\olsection{Russell Paradoksuyla Karşılaştırma}
+
+Bu bölümdeki savları Russell paradoksuyla karşılaştırmak öğreticidir:
+\begin{enumerate}
+\item Russell paradoksu: $S=\Setabs{x}{x\notin x}$ olsun. O zaman
+  $S\in S$ ancak ve ancak $S\notin S$ olur; bu bir çelişkidir.
+
+  \emph{Sonuç:} Böyle bir $S$ kümesi yoktur. ``Bütün kümelerin kümesi''nin
+  varlığını varsaymak küme kuramının öteki aksiyomlarıyla tutarsızdır.
+
+\item Russell paradoksunun değiştirilmiş bir sürümü: $F$, bütün fonksiyonlar
+  kümesinden $\{0,1\}$'e giden ve
+  \[
+    F(f)=\begin{cases}
+      1 & \text{$f$, $f$'nin tanım kümesindeyse ve $f(f)=0$ ise}\\
+      0 & \text{aksi durumda}
+    \end{cases}
+  \]
+  ile verilen bir ``fonksiyon'' olsun. Benzer bir sav
+  $F(F)=0$ ancak ve ancak $F(F)=1$ olduğunu gösterir; bu bir çelişkidir.
+
+  \emph{Sonuç:} $F$ bir fonksiyon değildir. ``Bütün fonksiyonlar kümesi'',
+  bir fonksiyonun tanım kümesi olamayacak kadar büyüktür.
+
+\item Köşegenleştirme savı: $f_0,f_1,\dots$, kısmi hesaplanabilir
+  fonksiyonların numaralandırması olsun ve $G\colon\Nat\to\{0,1\}$
+  \[
+    G(x)=\begin{cases}
+      1 & \text{$f_x(x)\downarrow=0$ ise}\\
+      0 & \text{aksi durumda}
+    \end{cases}
+  \]
+  ile tanımlansın. $G$ hesaplanabilir olsaydı bazı $k$ için $f_k$ fonksiyonu
+  olurdu. Fakat o zaman $G(k)=1$ ancak ve ancak $G(k)=0$ olurdu; bu bir
+  çelişkidir.
+
+  \emph{Sonuç:} $G$ hesaplanabilir değildir. Küme kuramı aksiyomlarına göre
+  $G$'nin yine de bir fonksiyon olduğuna dikkat edin. Burada paradoks değil,
+  yalnızca bir ayrımın açıklığa kavuşturulması vardır.
+\end{enumerate}
+
+Kısmi fonksiyonlar, hesaplanabilir fonksiyonlar, kısmi hesaplanabilir
+fonksiyonlar vb. hakkında konuşmak kafa karıştırıcı olabilir. $\Nat$'den
+$\Nat$'ye giden bütün kısmi fonksiyonlar kümesi büyük bir nesne
+topluluğudur. Bunların bazıları tümel, bazıları hesaplanabilir, bazıları hem
+tümel hem hesaplanabilir, bazıları da ikisi birden değildir. Varsayılan olarak
+``fonksiyon'' dediğimizde tümel fonksiyonu kastettiğimizi unutmayın. Böylece
+şu sınıflara sahibiz:
+\begin{enumerate}
+\item hesaplanabilir fonksiyonlar,
+\item tümel olmayan kısmi hesaplanabilir fonksiyonlar,
+\item hesaplanabilir olmayan fonksiyonlar,
+\item ne tümel ne hesaplanabilir olan kısmi fonksiyonlar.
+\end{enumerate}
+Bu ayrımı düzenlemek için $\Nat$'den $\Nat$'ye giden bütün kısmi
+fonksiyonları temsil eden büyük bir kare çizebilir ve içinde sırasıyla tümel
+fonksiyonlara ve hesaplanabilir kısmi fonksiyonlara karşılık gelen, birbiriyle
+kesişen iki bölgeyi işaretleyebilirsiniz. Ortaya çıkan bölgelerin her biri
+için bir nesne betimleyip betimleyemeyeceğinizi görmek iyi bir alıştırmadır.
+

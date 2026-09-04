@@ -1,0 +1,38 @@
+% Generated from locale/tr/content/many-valued-logic/syntax-and-semantics/formulas.tex; do not hand-edit.
+
+
+\olfileid[tr]{mvl}{syn}{fml}
+
+\olsection{\usetoken{P}{formula}}
+
+\begin{defn}[Formül]
+\ollabel{defn:formulas}
+Bir $\Lang L$ önerme dilinin $\Frm[L]$ \emph{!!{formula}s} kümesi
+tümevarımlı olarak şöyle tanımlanır:
+\begin{enumerate}
+\item Her !!{propositional variable} $\Obj p_i$, atomik bir !!a{formula}
+  oluşturur.
+\item $\Lang L$ dilinin her $0$-konumlu bağlacı (önerme sabiti), atomik
+  bir !!a{formula} oluşturur.
+\item $\star$, $\Lang L$ dilinin $n$-konumlu bir bağlacı ve $!A_1$,
+\dots, $!A_n$ !!{formula}s ise $\star(!A_1,\dots,!A_n)$ bir
+!!a{formula} olur.
+\tagitem{limitClause}{Başka hiçbir şey !!a{formula} değildir.}{}
+\end{enumerate}
+$\star$ tek konumluysa $\star(!A_1)$ çoğu zaman yalnızca $\star !A_1$;
+$\star$ iki konumluysa $\star(!A_1,!A_2)$ çoğu zaman
+$(!A_1\star !A_2)$ biçiminde yazılır.
+\end{defn}
+
+Her zamanki gibi çoğu zaman en dıştaki parantezleri sessizce atacağız.
+
+\begin{ex}
+Standart $\Lang{L_0}$ dilinde
+$\Obj p_1 \lif (\Obj p_1 \land \lnot \Obj p_2)$ bir formüldür. Çarpım
+mantığının dilinde bunun yerine
+$\Obj p_1 \lif (\Obj p_1 \odot \lnot \Obj p_2)$ yazılırdı. Dile tek
+konumlu $\triangle$ eklersek
+$\triangle (\Obj p_1 \land \Obj p_2) \lif
+(\triangle \Obj p_1 \land \triangle \Obj p_2)$ gibi formüllerimiz de olur.
+\end{ex}
+

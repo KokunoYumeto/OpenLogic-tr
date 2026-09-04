@@ -1,0 +1,73 @@
+% Generated from locale/tr/content/first-order-logic/axiomatic-deduction/provability-propositional.tex; do not hand-edit.
+
+
+\iftag{FOL}
+      {\olfileid[tr]{fol}{axd}{ppr}}
+      {\olfileid[tr]{pl}{axd}{ppr}}
+
+\olsection{\usetoken{S}{derivability} ve Önerme Bağlaçları}
+
+\begin{explain}
+  Aksiyomatik türetimin !!{derivability} bağıntısı~$\Proves$'in,
+  $!A \land !B \Proves !A$ ve $!A, !A \lif !B \Proves !B$ (modus ponens)
+  gibi önerme bağlaçlarına ilişkin temel olguları gösterecek kadar güçlü
+  olduğunu kanıtlıyoruz. Bu olgular tamlık teoreminin ispatı için gereklidir.
+\end{explain}
+
+\begin{prop}\ollabel{prop:provability-land}
+  \begin{enumerate}
+  \item \ollabel{prop:provability-land-left} Hem $!A \land !B \Proves !A$
+    hem de $!A \land !B \Proves !B$.
+  \item \ollabel{prop:provability-land-right} $!A, !B \Proves !A \land !B$.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+  \item Sırasıyla \olref[prp]{ax:land1} ve \olref[prp]{ax:land2}'den modus
+    ponens ile.
+  \item \olref[prp]{ax:land3}'ten modus ponensin iki uygulamasıyla.
+  \end{enumerate}
+\end{proof}
+
+\begin{prop}\ollabel{prop:provability-lor}
+  \begin{enumerate}
+  \item $!A \lor !B, \lnot !A, \lnot !B$ tutarsızdır.
+  \item Hem $!A \Proves !A \lor !B$ hem de $!B \Proves !A \lor !B$.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+  \item \olref[prp]{ax:lnot2}'den $\Proves \lnot !A \lif
+    (!A \lif \lfalse)$ ve $\Proves \lnot !B \lif (!B \lif \lfalse)$
+    elde edilir. Tümdengelim teoremiyle $\{\lnot !A\} \Proves
+    !A \lif \lfalse$ ve $\{\lnot !B\} \Proves !B \lif \lfalse$ olur.
+    \olref[prp]{ax:lor3}'ten $\{\lnot !A, \lnot !B\} \Proves
+    (!A \lor !B) \lif \lfalse$ elde edilir. Tümdengelim teoremiyle
+    $\{!A \lor !B, \lnot !A, \lnot !B\} \Proves \lfalse$.
+  \item \olref[prp]{ax:lor1} ve \olref[prp]{ax:lor2}'den modus ponens ile.
+  \end{enumerate}
+\end{proof}
+
+\begin{prop}\ollabel{prop:provability-lif}
+  \begin{enumerate}
+  \item \ollabel{prop:provability-lif-left} $!A, !A \lif !B \Proves !B$.
+  \item \ollabel{prop:provability-lif-right}
+    Hem $\lnot !A \Proves !A \lif !B$ hem de $!B \Proves !A \lif !B$.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+  \item Aşağıdaki biçimde türetiriz (\emph{!!{derive}}):
+    \begin{derivation}
+      1. & $!A$ & \Hyp\\
+      2. & $!A \lif !B$ & \Hyp\\
+      3. & $!B$ & 1, 2, \MP
+    \end{derivation}
+  \item Sırasıyla \olref[prp]{ax:lnot2}, \olref[prp]{ax:lif1} ve
+    tümdengelim teoremiyle.
+  \end{enumerate}
+\end{proof}
+

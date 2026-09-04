@@ -1,0 +1,166 @@
+% Generated from locale/tr/content/lambda-calculus/lambda-definability/fixpoints.tex; do not hand-edit.
+
+
+\olfileid[tr]{lam}{ldf}{fp}
+
+\olsection{Sabit Noktalar}
+
+Faktöriyel fonksiyonunu, aşağıdaki özelliğe sahip bir $\fn{Fac}$ terimi olarak
+özyinelemeyle tanımlamak istediğimizi varsayalım:
+\[
+\fn{Fac} \ident \lambd[n][\fn{IsZero}\, n\, \num 1
+  (\fn{Mult}\, n (\fn{Fac}(\fn{Pred} \, n)))].
+\]
+Yani $n=0$ ise $n$'nin faktöriyeli $1$, aksi durumda $n$ ile $n-1$'in
+faktöriyelinin çarpımıdır. Elbette $\fn{Fac}$ teriminin kendisi sağ tarafta
+geçtiğinden bu yolla $\fn{Fac}$'yi tanımlayamayız. Kendine gönderme içeren bu
+tür özyinelemeli tanımlar lambda hesabının parçası değildir. Örneğin
+\[
+\fn{Mult} \ident \lambd[ab][a (\fn{Add}\, a) \num0]
+\]
+tanımının sağ tarafı yalnızca önceden tanımlanmış $\fn{Add}$ gibi terimleri
+içerir. $\fn{Add}$'i kendi tanımlayıcı terimiyle değiştirerek her zaman
+kaldırabiliriz. Böylece $\fn{Mult}$ saf bir lambda terimine dönüşür;
+$\fn{Add}$ de tanımlanmış terimler içeriyorsa bu işlemi sürdürüp sonunda saf
+bir lambda terimine ulaşırız.
+
+Ancak yukarıdaki $\fn{Fac}$ tanımı gibi özyinelemeli tanımlarda bu doğru
+değildir. Sağ taraftaki $\fn{Fac}$ geçişini kendi tanımıyla değiştirirsek:
+\begin{align*}
+  \fn{Fac} & \ident \lambd[n][\fn{IsZero}\, n\, \num{1}] \\
+    & \qquad (\fn{Mult}\, n
+  ((\lambd[n][\fn{IsZero} \, n \, \num 1\, (\fn{Mult}\, n\, (\fn{Fac}
+    (\fn{Pred}\, n)))]) (\fn{Pred}\, n)))
+\end{align*}
+elde edilir ve sağ taraftaki $\fn{Fac}$ hâlâ ortadan kalkmamıştır. Bu işlemi
+yinelersek tanım sürekli uzar ve hiçbir zaman saf lambda terimine ulaşmaz.
+Dolayısıyla faktöriyeli, daha genel olarak özyinelemeli fonksiyonları bu
+şekilde tanımlamak işe yaramaz.
+
+Yine de özyinelemeli tanım bize bir şey söyler. $f$ faktöriyel fonksiyonunu
+gösteren bir terim olsaydı
+\[
+\fn{Fac}' \ident \lambd[g][\lambd[n][\fn{IsZero} \, n \, \num 1\,
+  (\fn{Mult} \, n\, (g (\fn{Pred} n)))]]
+\]
+teriminin $f$'ye uygulanması, yani $\fn{Fac}'f$, yine faktöriyel
+fonksiyonunu gösterirdi. $\fn{Fac}'$yi bir fonksiyon alıp fonksiyon döndüren
+bir fonksiyon olarak görürsek, $f$ faktöriyel olduğu sürece
+$\fn{Fac}'f$'nin değeri yine $f$'dir. $\fn{Fac}'f\equal[\beta]f$ özelliğine
+sahip bir $f$ terimine $\fn{Fac}'$nin \emph{sabit noktası} denir. Demek ki
+faktöriyel $\fn{Fac}'$nin bir sabit noktasıdır.
+
+Lambda hesabında verilen bir terimin sabit noktalarını hesaplayan terimler
+vardır; bunlar $\fn{Fac}'$ gibi bir terimi faktöriyel tanımına dönüştürmekte
+kullanılabilir.
+
+\begin{defn}
+  \ollabel{defn:Turing-Y}
+  \emph{Y-kombinatörü} şu terimdir:
+  \[
+  Y \ident (\lambd[ux][x(uux)])(\lambd[ux][x(uux)]).
+  \]
+\end{defn}
+
+\begin{thm}
+  Her $g$ terimi için $Yg\red g(Yg)$. Dolayısıyla $Yg$ her zaman $g$'nin
+  bir sabit noktasıdır.
+\end{thm}
+
+\begin{proof}
+  $(\lambd[ux][x(uux)])$ terimini $U$ ile kısaltalım; böylece $Y\ident UU$.
+  O zaman
+  \begin{align*}
+    Y g &\ident (\lambd[ux][x(uux)])U\,g \\
+    &\red (\lambd[x][x(UUx)])g\\
+    & \red g(UUg) \ident g(Yg).
+  \end{align*}
+  $g(Yg)$ ile $Yg$ aynı $g(Yg)$ terimine indirgendiğinden
+  $g(Yg)\equal[\beta]Yg$ ve dolayısıyla $Yg$, $g$'nin sabit noktasıdır.
+\end{proof}
+
+$Yg$ bir redex olduğundan indirgeme elbette sonsuza kadar sürebilir:
+\begin{align*}
+  Y g &\red g (Y g) \\
+    &\red g (g (Y g)) \\
+    &\red g(g (g (Y g)))\\
+    &\ldots
+\end{align*}
+Bu nedenle $Yg$'yi $g$'nin kendisine sonsuz kez uygulanması gibi
+düşünebiliriz. $g$'yi bir kez daha uygularsak, söz gelişi, yeni bir şey
+yapmış olmayız: $g$'nin $Yg$'ye sonsuz kez uygulanmasına bir $g$ daha eklemek
+yine aynı sonsuz uygulamadır.
+
+$Yg$ ile başlayan yukarıdaki $\beta$-indirgeme dizisinin sonsuz olduğuna
+dikkat edin. Bu yüzden $Yg$'yi bir $N$ terimine uygularsak $(Yg)N$ de
+$(g(Yg))N$, $(g(g(Yg)))N$, \dots{} gibi sonsuz sayıda farklı terime
+indirgenir. Yine de \emph{başka} bir indirgeme dizisinin normal biçimde sona
+ermesi mümkündür.
+
+Faktöriyeli ele alalım. $\fn{Fac}$ terimini $Y\,\fn{Fac}'$, yani
+$\fn{Fac'}$nin bir sabit noktası olarak tanımlayın. O zaman:
+\begin{align*}
+  \fn{Fac}\,\num 3
+  &\red Y\, \fn{Fac}' \, \num 3 \\
+  &\red \fn{Fac}' (Y \,\fn{Fac}') \, \num 3 \\
+  &\ident (\lambd[x][\lambd[n][\fn{IsZero} \, n\, \num 1\,
+      (\fn{Mult}\, n\, (x (\fn{Pred}\, n)))]]) \, \fn{Fac} \, \num 3\\
+  & \red \fn{IsZero} \, \num 3\, \num 1\,
+      (\fn{Mult}\, \num 3\, (\fn{Fac} (\fn{Pred}\, \num 3))) \\
+  &\red  \fn{Mult}\, \num 3 \, (\fn{Fac} \, \num 2).
+  \intertext{Benzer biçimde,}
+  \fn{Fac}\,\num 2
+  &\red  \fn{Mult}\, \num 2 \, (\fn{Fac} \, \num 1) \\
+  \fn{Fac}\,\num 1
+  &\red  \fn{Mult}\, \num 1 \, (\fn{Fac} \, \num 0)
+  \intertext{ancak}
+  \fn{Fac}\,\num 0
+  &\red \fn{Fac}' (Y \,\fn{Fac}') \, \num 0 \\
+  &\ident (\lambd[x][\lambd[n][\fn{IsZero} \, n\, \num 1\,
+      (\fn{Mult}\, n\, (x (\fn{Pred}\, n)))]]) \, \fn{Fac} \, \num 0\\
+  & \red \fn{IsZero} \, \num 0\, \num 1\,
+      (\fn{Mult}\, \num 0\, (\fn{Fac} (\fn{Pred}\, \num 0)))\\
+  &\red \num 1.
+  \intertext{Dolayısıyla birlikte}
+  \fn{Fac}\,\num 3
+  &\red  \fn{Mult}\, \num 3 \,
+  (\fn{Mult} \, \num 2\, (\fn{Mult} \, \num 1\, \num 1)).
+\end{align*}
+
+$\fn{Fac'}$ için geçerli olan her özyinelemeli tanım için geçerlidir.
+\begin{align*}
+g\,x_1\dots x_n & \equal[\beta] N
+\intertext{özyinelemeli eşitliği verilsin; burada $N$, $g$ ve
+$x_1$, \dots,~$x_n$ içerebilir. O zaman her zaman
+$G\ident(Y\lambd[g][\lambd[x_1\dots x_n][N]])$ olacak biçimde bir $G$ vardır ve}
+G\,x_1 \dots x_n & \equal[\beta] \Subst{N}{G}{g}.
+\intertext{Gerçekten sabit nokta teoremi gereği}
+G \ident (Y \lambd[g][\lambd[x_1\dots x_n][N]]) & \red
+\lambd[g][\lambd[x_1\dots x_n][N]](Y \lambd[g][\lambd[x_1\dots x_n][N]])\\
+& \ident (\lambd[g][\lambd[x_1\dots x_n][N]])\,G
+\intertext{ve dolayısıyla}
+G\,x_1 \dots x_n
+& \red (\lambd[g][\lambd[x_1\dots x_n][N]])\,G\,x_1\dots x_n\\
+& \red (\lambd[x_1\dots x_n][\Subst{N}{G}{g}])\,x_1\dots x_n\\
+& \red \Subst{N}{G}{g}.
+\end{align*}
+
+\olref{defn:Turing-Y} içindeki $Y$ kombinatörü Alan Turing'e aittir. Alonzo
+Church, $Y_C$ diyeceğimiz farklı bir sürüm önermiştir:
+\[
+Y_C \ident \lambd[g][(\lambd[x][g(xx)])(\lambd[x][g(xx)])].
+\]
+Church'ün kombinatörü Turing'inkinden biraz daha zayıftır: $Y_Cg$ için
+$Y_Cg\equal[\beta]g(Y_Cg)$ geçerlidir, fakat $Y_Cg\bred g(Y_Cg)$ olmak
+zorunda değildir. $V=\lambd[x][g(xx)]$ olsun; böylece
+$Y_C\ident\lambd[g][VV]$. O zaman
+\begin{align*}
+  VV & \ident (\lambd[x][g(xx)])V \red g(VV)
+  \text{ ve dolayısıyla}\\
+  Y_C g & \ident (\lambd[g][VV])g \red VV \red g(VV), \text{ ancak ayrıca}\\
+  g(Y_C g) & \ident g((\lambd[g][VV])g) \red g(VV).
+\end{align*}
+Başka bir deyişle $Y_Cg$ ile $g(Y_Cg)$ ortak $g(VV)$ terimine indirgenir;
+dolayısıyla $Y_Cg\equal[\beta]g(Y_Cg)$. Uygulamalar için bu çoğu zaman
+yeterlidir.
+

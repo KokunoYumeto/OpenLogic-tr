@@ -1,0 +1,69 @@
+% Generated from locale/tr/content/applied-modal-logic/temporal-logic/possible-histories.tex; do not hand-edit.
+
+
+\olfileid[tr]{aml}{tl}{poss}
+
+\olsection{Olası Tarihçeler}
+
+Erişilebilirlik bağıntısına herhangi bir kısıtlama getirmemiz gerekmediğinden,
+şimdiye dek kullandığımız zamansal mantığın bağıntısal modelleri son derece
+esnektir. Bu, zamansal modellerin hem geçmişte hem gelecekte dallanabileceği
+anlamına gelir. Fakat olay dizilerini olası tarihçeler olarak ele aldığımız,
+dallanmaya ilişkin daha ``modal'' bir kavrayışı incelemek isteyebiliriz. Bunun
+için dilimizi değiştirmek zorunda değiliz; yine de ``olağan'' $\Box$ ve
+$\Diamond$ modal işleçlerimizi ekleyebilir ve öznelerin bilgisinin zaman
+içindeki değişimini temsil etmek için epistemik erişilebilirlik bağıntıları
+eklemeyi de düşünebiliriz.
+
+\begin{defn}
+  Zamansal dil için bir \emph{olası tarihçeler modeli},
+  $\mModel{M}=\tuple{T,C,V}$ üçlüsüdür; burada
+  \begin{enumerate}
+    \item $T$, zaman içindeki durumlar olarak yorumlanan boş olmayan bir kümedir.
+    \item $C$, hesaplama yollarından ya da bir sistemin \emph{olası
+      tarihçelerinden} oluşan bir kümedir. Başka deyişle $C$, $\sigma$ ile
+      gösterilen ve $s_1$, $s_2$,~$s_3$, \dots durumlarından oluşan diziler
+      kümesidir; burada her $s_i\in T$'dir.
+    \item $V$, her !!{propositional variable}~$p$'ye zaman noktalarından
+      oluşan bir $V(p)$ kümesi atayan bir fonksiyondur.
+  \end{enumerate}
+  Konuyu basitleştirmek için genellikle, bir tarihçe $C$ içindeyse onun bütün
+  son parçalarının da orada bulunduğunu varsayacağız. Örneğin $s_1$,
+  $s_2$,~$s_3$ dizisi $C$ içindeyse $s_2$, $s_3$ dizisi ve ayrıca $s_3$ de
+  öyledir. Ayrıca iki $s_i$ ve~$s_j$ durumu bir $\sigma$ dizisinde
+  yer aldığında, $s_i\prec_\sigma s_j$ ifadesini $i<j$ olduğunda kullanırız.
+  $t\in V(p)$
+  olduğunda $p$'nin $t$'de \emph{doğru} olduğunu söyleriz.
+\end{defn}
+
+İlgili tek değişiklik, bir $t$ zaman noktasındaki !!a{formula} doğruluğunu
+bir $\mModel M$ modelinde değerlendirirken bunu bir $\sigma$ tarihçesine
+göre yapmamızdır; bu tarihçede $t$ bir durum olarak yer alır. Buna karşılık
+!!{propositional variable}s ya da doğruluk fonksiyonlu bağlaçların hiçbirinin
+semantiğini değiştirmemiz gerekmez. Bunların tümü tam olarak
+\olref[sem]{defn:tmodels}'deki gibidir; çünkü hiçbiri $\sigma$'ya gönderimde
+bulunmaz. Fakat şimdi gelecek işlecimiz $\Ftemp$'i yeniden tanımlıyor ve bu
+tarihçelere göre $\Diamond$ işlecimizi ekliyoruz.
+
+\begin{defn}\ollabel{defn:phmodels}
+  \emph{!!a{formula}~$!A$'nın $t,\sigma$'daki doğruluğu}, $\mModel M$ içinde,
+  yani $\mSat{M}{!A}[t,\sigma]$:
+  \begin{enumerate}
+  \item\ollabel{defn:sub:phmodels-f} \indcase{!A}{\Ftemp
+    !B}{$\mSat{M}{\indfrm}[t,\sigma]$ ancak ve ancak
+    $\mSat{M}{!B}[t',\sigma]$ olan bazı $t'\in T$ bulunup
+    $t\prec_\sigma t'$ ise geçerlidir.}
+  \item\ollabel{defn:sub:phmodels-diamond} \indcase{!A}{\Diamond
+    !B}{$\mSat{M}{\indfrm}[t,\sigma]$ ancak ve ancak
+    $\mSat{M}{!B}[t,\sigma']$ olan bazı $\sigma'\in C$ bulunur ve
+    $t$ bu tarihçede yer alırsa geçerlidir.}
+  \end{enumerate} 
+\end{defn}
+
+Diğer zamansal ve modal işleçler benzer biçimde tanımlanabilir. Ancak artık
+zaman kipini ve modaliteyi birleştiren iddiaları temsil edebiliriz. Örneğin
+``$p$ gerçekleşmeyecek ama gerçekleşebilirdi'' iddiasını
+$\lnot\Ftemp p\land\Diamond\Ftemp p$ formülüyle simgeleyebiliriz. Bu formül,
+$p$'nin bir ardıl durumda doğru hâle gelmediği bir nokta ve tarihçede,
+$p$'nin doğru hâle geleceği alternatif bir tarihçe bulunduğunda geçerli olur.
+

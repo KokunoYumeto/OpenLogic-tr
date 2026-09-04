@@ -1,0 +1,53 @@
+% Generated from locale/tr/content/first-order-logic/tableaux/rules-and-proofs.tex; do not hand-edit.
+
+
+\iftag{FOL}
+      {\olfileid[tr]{fol}{tab}{rul}}
+      {\olfileid[tr]{pl}{tab}{rul}}
+
+\olsection{Kurallar ve \usetoken{P}{tableau}}
+
+!!^a{tableau}, !!a{sentence}'nin
+\iftag{FOL}{!!a{structure}}{bir değerleme} içinde doğru ya da yanlış
+olabileceği yolların sistematik bir incelemesidir. Bir tableau'nun yapı
+taşları !!{signed formula}s, yani bir doğruluk değeri ``işareti'' ($\True$
+ya da~$\False$) taşıyan !!{sentence}s{}dir. Bu işaretli !!{formula}s (aşağıya
+doğru büyüyen) bir ağaçta düzenlenir.
+
+\begin{defn}
+  Bir \emph{!!{signed formula}}, bir doğruluk değeri ile !!a{sentence}'den
+  oluşan bir ikilidir; başka bir deyişle şu iki biçimden birindedir:
+  \[
+  \sFmla{\True}{!A} \text{ veya } \sFmla{\False}{!A}.
+  \]
+\end{defn}
+
+Sezgisel olarak $\sFmla{\True}{!A}$ ifadesini ``$!A$ doğru olabilir'',
+$\sFmla{\False}{!A}$ ifadesiniyse ``$!A$ yanlış olabilir'' (belirli bir
+\iftag{FOL}{!!{structure}}{değerleme} içinde) diye okuyabiliriz.
+
+Ağaçtaki her !!{signed formula} ya bir \emph{varsayım}dır (bunlar ağacın en
+üstünde sıralanır) ya da üstündeki !!a{signed formula}'dan çeşitli çıkarım
+kurallarından biriyle elde edilir. Önceki ifadenin olası her !!{main
+operator} için iki kural vardır; burada söz konusu ifade önceki
+!!{formula}'dır: işaretin~$\True$ olduğu durum için bir kural ve
+işaretin~$\False$ olduğu durum için bir kural. Bazı kurallar
+ağacın dallanmasına izin verirken bazıları yalnızca dala !!{signed formula}s
+ekler. Bir kural, hemen önce gelen !!{signed formula}'ya değil, kökten
+kuralın uygulandığı yere uzanan daldaki herhangi bir !!{signed formula}'ya
+uygulanabilir (ve çoğu zaman uygulanmalıdır).
+
+Bir dal hem $\sFmla{\True}{!A}$ hem de $\sFmla{\False}{!A}$ içerdiğinde
+\emph{kapalı}dır. Her dalı kapalı olan !!{tableau}, kapalıdır. Sezgisel
+yorum uyarınca her dal ortaklaşa mümkün bir durumu betimler; ancak
+$\sFmla{\True}{!A}$ ile $\sFmla{\False}{!A}$ ortaklaşa mümkün değildir.
+Başka bir deyişle, bir dal kapalıysa betimlediği olasılık elenmiştir.
+Özellikle bu, kapalı bir !!{tableau}'nun $\sFmla{\True}{!A}$ biçimindeki her
+varsayımı aynı anda doğru ve~$\sFmla{\False}{!A}$ biçimindeki her varsayımı
+aynı anda yanlış kılmaya yönelik bütün olasılıkları elediği anlamına gelir.
+
+$!A$ \emph{için kapalı bir !!{tableau}}, kökü~$\sFmla{\False}{!A}$ olan
+kapalı bir !!{tableau}'dur. Böyle kapalı bir !!{tableau} varsa $!A$'nın
+yanlış olmasına yönelik bütün olasılıklar elenmiştir; yani $!A$ her
+\iftag{FOL}{!!{structure}}{değerleme} içinde doğru olmalıdır.
+

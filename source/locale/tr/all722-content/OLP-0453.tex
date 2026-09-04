@@ -1,0 +1,167 @@
+% Generated from locale/tr/content/normal-modal-logic/filtrations/filtrations-def.tex; do not hand-edit.
+
+
+\olfileid[tr]{nml}{fil}{fil}
+
+\olsection{Süzmeler}
+
+$\mModel{M}$ modelinin $\Gamma$ üzerinden ``süzmesini'' tanımlamak yerine,
+bir $\mModel{M^*}$ modelinin ne zaman $\mModel{M}$'nin süzmesi sayılacağını
+tanımlarız. Bütün süzmeler aynı $W^*$ dünyalar kümesine ve aynı $V^*$
+değerlemesine sahiptir. Fakat farklı süzmelerin erişilebilirlik bağıntıları
+$R^*$ farklı olabilir. Bir süzme sayılmak için $R^*$ bazı koşulları
+sağlamalıdır. Bu koşullar, $!A\in\Gamma$ olmak üzere
+$\mSat{M}{!A}[w]$ ancak ve ancak $\mSat{M^*}{!A}[{[w]}]$ olan ana sonucu
+ispatlamak için gereken koşulların tam kendisidir.
+
+\begin{defn}\ollabel{defn:filtration}
+  $\Gamma$ alt formüller altında kapalı ve
+  $\mModel{M}=\tuple{W,R,V}$ olsun. $\mModel{M}$ modelinin
+  \emph{$\Gamma$ üzerinden bir süzmesi}, aşağıdakileri sağlayan herhangi bir
+  $\mModel{M^*}=\tuple{W^*,R^*,V^*}$ modelidir:
+  \begin{enumerate}
+  \item $W^*=\Setabs{[w]}{w\in W}$;
+  \item \ollabel{defn:filtration-R}%
+    Her $u,v\in W$ için:
+    \begin{enumerate}
+    \item \ollabel{defn:filtration-R1}%
+      $Ruv$ ise $R^*[u][v]$;
+    \tagitem{prvBox}{\ollabel{defn:filtration-R2}%
+      $R^*[u][v]$ ise her $\Box!A\in\Gamma$ için,
+      $\mSat{M}{\Box!A}[u]$ olduğunda $\mSat{M}{!A}[v]$}{};
+    \tagitem{prvDiamond}{\ollabel{defn:filtration-R3}%
+      $R^*[u][v]$ ise her $\Diamond!A\in\Gamma$ için,
+      $\mSat{M}{!A}[v]$ olduğunda $\mSat{M}{\Diamond!A}[u]$.}{}
+    \end{enumerate}
+  \item $V^*(p)=\Setabs{[u]}{u\in V(p)}$.
+  \end{enumerate}
+\end{defn}
+
+$V^*(p)$'nin ne olduğunu düşünmek yararlıdır: $\mModel{M}$ içinde $p$'nin
+doğru olduğu bütün $w$ dünyalarının $[w]$ denklik sınıflarından oluşan
+kümedir. Bir yandan $w\in V(p)$ ise tanım gereğince $[w]\in V^*(p)$.
+Fakat $[w]\in V^*(p)$ ise mutlaka $w\in V(p)$ olmak zorunda değildir.
+$[w]\in V^*(p)$ olduğunda yalnızca \emph{bazı} $u\in V(p)$ için
+$[w]=[u]$ olduğu güvence altındadır. Elbette $[w]=[u]$, $w\equiv u$
+demektir. Dolayısıyla $[w]\in V^*(p)$ olduğunda ancak bazı $u\in V(p)$
+için $w\equiv u$ sonucunu çıkarabiliriz.
+
+\begin{thm}\ollabel{thm:filtrations}
+  $\mModel{M^*}$, $\mModel{M}$'nin $\Gamma$ üzerinden bir süzmesiyse,
+  her $!A\in\Gamma$ ve $w\in W$ için $\mSat{M}{!A}[w]$ ancak ve ancak
+  $\mSat{M^*}{!A}[{[w]}]$.
+\end{thm}
+
+\begin{proof}
+  $\Gamma$'nın alt formüller altında kapalı olmasını kullanarak $!A$
+  üzerinde tümevarımla. $!A\in\Gamma$ ve $\Gamma$ alt !!{formula}s altında
+  kapalı olduğundan $!A$'nın bütün alt !!{formula}s{}i da $\Gamma$ içindedir.
+  Dolayısıyla her tümevarım adımında tümevarım varsayımı $!A$'nın alt
+  !!{formula}s{}ine uygulanır.
+  \begin{enumerate}
+    \tagitem{prvFalse}{\indcase{!A}{\lfalse}{Ne
+        $\mSat{M}{\indfrm}[w]$ ne de $\mSat{M^*}{\indfrm}[{[w]}]$.}}{}
+    \tagitem{prvTrue}{\indcase{!A}{\ltrue}{Hem
+        $\mSat{M}{\indfrm}[w]$ hem $\mSat{M^*}{\indfrm}[{[w]}]$.}}{}
+    \item \indcase{!A}{p}{Soldan sağa yön doğrudandır:
+      $\mSat{M}{\indfrm}[w]$ ancak $w\in V(p)$ ise geçerlidir; bu da
+      $[w]\in V^*(p)$, yani $\mSat{M^*}{\indfrm}[{[w]}]$ gerektirir.
+      Tersine $\mSat{M^*}{\indfrm}[{[w]}]$, yani $[w]\in V^*(p)$ olsun.
+      O zaman bazı $v\in V(p)$ için $w\equiv v$. Elbette
+      $\mSat{M}{p}[v]$. $w\equiv v$ olduğundan $w$ ile $v$, $\Gamma$
+      içindeki aynı !!{formula}s{}i doğru yapar. Varsayım gereğince
+      $p\in\Gamma$ ve $\mSat{M}{p}[v]$ olduğundan
+      $\mSat{M}{\indfrm}[w]$.}
+
+    \tagitem{prvNot}{\iftag{probNot}{Alıştırma.}{\indcase{!A}{\lnot
+          !B}{$\mSat{M}{\indfrm}[w]$ ancak ve ancak
+          $\mSat/{M}{!B}[w]$. Tümevarım varsayımıyla
+          $\mSat/{M}{!B}[w]$ ancak ve ancak
+          $\mSat/{M^*}{!B}[{[w]}]$. Son olarak
+          $\mSat/{M^*}{!B}[{[w]}]$ ancak ve ancak
+          $\mSat{M^*}{\indfrm}[{[w]}]$.}}}{}
+
+    \tagitem{prvAnd}{\iftag{probAnd}{Alıştırma.}{\indcase{!A}{(!B \land
+          !C)}{$\mSat{M}{\indfrm}[w]$ ancak ve ancak
+          $\mSat{M}{!B}[w]$ ve $\mSat{M}{!C}[w]$. Tümevarım varsayımıyla
+          $\mSat{M}{!B}[w]$ ancak ve ancak $\mSat{M^*}{!B}[{[w]}]$ ve
+          $\mSat{M}{!C}[w]$ ancak ve ancak $\mSat{M^*}{!C}[{[w]}]$.
+          $\mSat{M^*}{\indfrm}[{[w]}]$ da ancak ve ancak
+          $\mSat{M^*}{!B}[{[w]}]$ ve $\mSat{M^*}{!C}[{[w]}]$.}}}{}
+
+    \tagitem{prvOr}{\iftag{probOr}{Alıştırma.}{\indcase{!A}{(!B \lor
+          !C)}{$\mSat{M}{\indfrm}[w]$ ancak ve ancak
+          $\mSat{M}{!B}[w]$ ya da $\mSat{M}{!C}[w]$. Tümevarım varsayımıyla
+          $\mSat{M}{!B}[w]$ ancak ve ancak $\mSat{M^*}{!B}[{[w]}]$ ve
+          $\mSat{M}{!C}[w]$ ancak ve ancak $\mSat{M^*}{!C}[{[w]}]$.
+          $\mSat{M^*}{\indfrm}[{[w]}]$ da ancak ve ancak
+          $\mSat{M^*}{!B}[{[w]}]$ ya da $\mSat{M^*}{!C}[{[w]}]$.}}}{}
+
+    \tagitem{prvIf}{\iftag{probIf}{Alıştırma.}{\indcase{!A}{(!B \lif
+          !C)}{$\mSat{M}{\indfrm}[w]$ ancak ve ancak
+          $\mSat/{M}{!B}[w]$ ya da $\mSat{M}{!C}[w]$. Tümevarım varsayımıyla
+          $\mSat{M}{!B}[w]$ ancak ve ancak $\mSat{M^*}{!B}[{[w]}]$ ve
+          $\mSat{M}{!C}[w]$ ancak ve ancak $\mSat{M^*}{!C}[{[w]}]$.
+          $\mSat{M^*}{\indfrm}[{[w]}]$ da ancak ve ancak
+          $\mSat/{M^*}{!B}[{[w]}]$ ya da $\mSat{M^*}{!C}[{[w]}]$.}}}{}
+
+    \tagitem{prvIff}{\iftag{probIff}{Alıştırma.}{\indcase{!A}{(!B \liff
+          !C)}{$\mSat{M}{\indfrm}[w]$ ancak ve ancak ya
+          $\mSat{M}{!B}[w]$ ve $\mSat{M}{!C}[w]$ ya da
+          $\mSat/{M}{!B}[w]$ ve $\mSat/{M}{!C}[w]$. Tümevarım varsayımıyla
+          $\mSat{M}{!B}[w]$ ancak ve ancak $\mSat{M^*}{!B}[{[w]}]$ ve
+          $\mSat{M}{!C}[w]$ ancak ve ancak $\mSat{M^*}{!C}[{[w]}]$.
+          $\mSat{M^*}{\indfrm}[{[w]}]$ da ancak ve ancak ya
+          $\mSat{M^*}{!B}[{[w]}]$ ve $\mSat{M^*}{!C}[{[w]}]$ ya da
+          $\mSat/{M^*}{!B}[{[w]}]$ ve $\mSat/{M^*}{!C}[{[w]}]$.}}}{}
+
+    \tagitem{prvBox}{\iftag{probBox}{Alıştırma.}{\indcase{!A}{\Box
+          !B}{$\mSat{M}{\indfrm}[w]$ varsayalım. $\mSat{M^*}{\indfrm}[{[w]}]$
+          göstermek için $R^*[w][v]$ olan bir $v$ alalım.
+          \olref{defn:filtration}\olref{defn:filtration-R2} gereğince
+          $\mSat{M}{!B}[v]$; tümevarım varsayımıyla
+          $\mSat{M^*}{!B}[{[v]}]$. $v$ gelişigüzel olduğundan
+          $\mSat{M^*}{\indfrm}[{[w]}]$ çıkar.
+
+          Tersine $\mSat{M^*}{\indfrm}[{[w]}]$ olsun ve $Rwv$ olan
+          gelişigüzel bir $v$ alalım.
+          \olref{defn:filtration}\olref{defn:filtration-R1} gereğince
+          $R^*[w][v]$ ve dolayısıyla $\mSat{M^*}{!B}[{[v]}]$.
+          Tümevarım varsayımıyla $\mSat{M}{!B}[v]$; $v$ gelişigüzel
+          olduğundan $\mSat{M}{\indfrm}[w]$.}}}{}
+
+    \tagitem{prvDiamond}{\iftag{probDiamond}{Alıştırma.}{\indcase{!A}{\Diamond
+          !B}{$\mSat{M}{\indfrm}[w]$ varsayalım. O zaman bazı $v\in W$ için
+          $Rwv$ ve $\mSat{M}{!B}[v]$. Tümevarım varsayımıyla
+          $\mSat{M^*}{!B}[{[v]}]$; ayrıca
+          \olref{defn:filtration}\olref{defn:filtration-R1} gereğince
+          $R^*[w][v]$. Dolayısıyla $\mSat{M^*}{\indfrm}[{[w]}]$.
+
+          Şimdi $\mSat{M^*}{\indfrm}[{[w]}]$ varsayalım. O zaman
+          $R^*[w][v]$ olan bazı $[v]\in W^*$ için
+          $\mSat{M^*}{!B}[{[v]}]$. Tümevarım varsayımıyla
+          $\mSat{M}{!B}[v]$. \olref{defn:filtration}\olref{defn:filtration-R3}
+          gereğince $\mSat{M}{\indfrm}[w]$.}}}{}
+  \end{enumerate}
+\end{proof}
+
+\begin{prob}
+  \olref[nml][fil][fil]{thm:filtrations} teoreminin ispatını tamamlayın.
+\end{prob}
+
+Bir modelin dünyalarındaki doğruluk için geçerli olan, bir modeldeki
+doğruluk ve bir modeller sınıfındaki geçerlilik için de geçerlidir.
+
+\begin{cor}
+  $\Gamma$ alt formüller altında kapalı olsun. O zaman:
+  \begin{enumerate}
+  \item $\mModel{M^*}$, $\mModel{M}$'nin $\Gamma$ üzerinden bir süzmesiyse
+    her $!A\in\Gamma$ için $\mSat{M}{!A}$ ancak ve ancak
+    $\mSat{M^*}{!A}$.
+  \item $\mClass{C}$ bir modeller sınıfı ve $\Gamma(\mClass{C})$,
+    $\mClass{C}$ içindeki modellerin $\Gamma$-süzmeleri sınıfıysa, her
+    $!A\in\Gamma$ !!{formula}{}ü $\mClass{C}$ içinde ancak ve ancak
+    $\Gamma(\mClass{C})$ içinde geçerliyse geçerlidir.
+  \end{enumerate}
+\end{cor}
+

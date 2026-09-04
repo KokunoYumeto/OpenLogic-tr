@@ -1,0 +1,82 @@
+% Generated from locale/tr/content/second-order-logic/syntax-and-semantics/terms-formulas.tex; do not hand-edit.
+
+
+\olfileid[tr]{sol}{syn}{frm}
+
+\olsection{Terimler ve \printtoken{P}{formula}}
+
+Birinci dereceden mantıkta olduğu gibi, ikinci dereceden mantığın ifadeleri
+de \emph{!!{variable}s}, \emph{!!{constant}s}, \emph{!!{predicate}s} ve
+bazen \emph{!!{function}s} içeren temel bir söz dağarcığından kurulur.
+Bunlardan, mantıksal bağlaçlar, niceleyiciler ve parantezlerle virgüller gibi
+noktalama simgeleriyle birlikte \emph{terimler} ve \emph{!!{formula}s}
+oluşturulur. Aradaki fark, ikinci dereceden mantığın nesne değişkenlerine ek
+olarak bağıntı ve fonksiyon değişkenleri de içermesi ve bunlar üzerinde
+nicelemeye izin vermesidir. Dolayısıyla ikinci dereceden mantığın mantıksal
+simgeleri, birinci dereceden mantığın simgelerine ek olarak şunlardır:
+
+\begin{enumerate}
+\item Her arite~$n$ için !!{denumerable}s bir ikinci dereceden bağıntı
+  !!{variable}s kümesi: $\Obj V_0^n$, $\Obj V_1^n$, $\Obj V_2^n$, \dots
+\item !!{denumerable}s bir ikinci dereceden fonksiyon !!{variable}s kümesi:
+  $\Obj u_0^n$, $\Obj u_1^n$, $\Obj u_2^n$, \dots
+\end{enumerate}
+
+Birinci dereceden $\Obj v_i$ değişkenleri için üst dil değişkenleri olarak
+$x$, $y$, $z$ kullandığımız gibi, $\Obj V_i^n$ için $X$, $Y$, $Z$, vb.;
+~$\Obj u_i^n$ için de $u$, $v$, vb. kullanacağız.
+
+\begin{explain}
+İkinci dereceden bir dilin mantıksal olmayan simgeleri, birinci dereceden
+bir dilinkilerle aynı biçimde, yani dilin !!{constant}s, !!{function}s ve
+!!{predicate}s öğeleri listelenerek belirlenir.
+
+Birinci dereceden mantıkta !!{identity}~$\eq$ genellikle dile katılır.
+Birinci dereceden mantıkta bir~$\Lang{L}$ dilinin mantıksal olmayan
+simgeleri ilginç herhangi bir şeyi ifade edebilmemiz için çok önemlidir.
+Elbette mantıksal olmayan hiçbir simge kullanmayan !!{sentence}s vardır;
+fakat yalnızca~$\eq$ ile ilginç bir şey söylemek güçtür. İkinci dereceden
+mantıkta sınırsız sayıda bağıntı ve fonksiyon değişkenimiz olduğundan,
+mantıksal olmayan simgelerden oluşan özel bir dağarcık olmadan bile birinci
+dereceden bir dilde söyleyebileceğimiz her şeyi söyleyebiliriz.
+\end{explain}
+
+\begin{defn}[İkinci dereceden terimler]
+$\Lang L$ dilinin \emph{ikinci dereceden terimler} kümesi $\TrmSOL[L]$,
+\olref[fol][syn][frm]{defn:terms} tanımına şu madde eklenerek tanımlanır:
+\begin{enumerate}
+\item $u$, $n$-li bir fonksiyon değişkeni ve $t_1$, \dots, $t_n$ terimler
+  ise $\Atom{u}{t_1, \ldots, t_n}$ bir terimdir.
+\end{enumerate}
+\end{defn}
+
+\begin{explain}
+Dolayısıyla ikinci dereceden bir terim, birinci dereceden bir terime tıpatıp
+benzer; tek fark, birinci dereceden terimde !!a{function}~$\Obj{f^n_i}$
+bulunan yerde ikinci dereceden terimde bir fonksiyon değişkeni~$\Obj{u^n_i}$
+bulunabilmesidir.
+\end{explain}
+
+\begin{defn}[İkinci dereceden \usetoken{s}{formula}]
+$\Lang L$ dilinin \emph{ikinci dereceden !!{formula}s} kümesi
+$\FrmSOL[L]$, \olref[fol][syn][frm]{defn:formulas} tanımına şu maddeler
+eklenerek tanımlanır:
+\begin{enumerate}
+\item $X$, $n$-li bir yüklem değişkeni ve $t_1$, \dots, $t_n$,
+  $\Lang L$ dilinin ikinci dereceden terimleri ise
+  $\Atom{X}{t_1,\ldots, t_n}$ atomik bir !!{formula}{}dür.
+
+\tagitem{prvAll}{$!A$ !!a{formula} ve $u$ bir fonksiyon değişkeni ise
+  $\lforall[u][!A]$ !!a{formula}{}dür.}{}
+
+\tagitem{prvAll}{$!A$ !!a{formula} ve $X$ bir yüklem değişkeni ise
+  $\lforall[X][!A]$ !!a{formula}{}dür.}{}
+
+\tagitem{prvEx}{$!A$ !!a{formula} ve $u$ bir fonksiyon değişkeni ise
+  $\lexists[u][!A]$ !!a{formula}{}dür.}{}
+
+\tagitem{prvEx}{$!A$ !!a{formula} ve $X$ bir yüklem değişkeni ise
+  $\lexists[X][!A]$ !!a{formula}{}dür.}{}
+\end{enumerate}
+\end{defn}
+

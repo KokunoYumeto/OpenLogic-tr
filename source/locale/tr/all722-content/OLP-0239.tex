@@ -1,0 +1,162 @@
+% Generated from locale/tr/content/computability/computability-theory/equiv-ce-defs.tex; do not hand-edit.
+
+
+\olfileid[tr]{cmp}{thy}{eqc}
+
+\olsection[Hesaplanabilir Biçimde Numaralandırılabilir Kümelerin
+  Tanımları]{Hesaplanabilir Biçimde Numaralandırılabilir Kümelerin Eşdeğer
+  Tanımları}
+
+Aşağıdaki teorem, bir kümenin hesaplanabilir biçimde numaralandırılabilir
+olmasının ne anlama geldiğine ilişkin birkaç önemli eşdeğer ifade verir.
+
+\begin{thm}
+\ollabel{thm:ce-equiv}
+$S$ bir doğal sayılar kümesi olsun. Aşağıdakiler eşdeğerdir:
+\begin{enumerate}
+\item\ollabel{case:ce} $S$ hesaplanabilir biçimde numaralandırılabilir.
+\item\ollabel{case:ran-pc} $S$, \emph{kısmi} hesaplanabilir bir fonksiyonun
+  görüntü kümesidir.
+\item\ollabel{case:ran-prim} $S$ boştur ya da ilkel özyinelemeli bir
+  fonksiyonun görüntü kümesidir.
+\item\ollabel{case:ce-domain} $S$, kısmi hesaplanabilir bir fonksiyonun
+  \emph{tanım kümesi}dir.
+\end{enumerate}
+\end{thm}
+
+\begin{explain}
+İlk üç madde, boş olmayan herhangi bir hesaplanabilir biçimde
+numaralandırılabilir kümenin hesaplanabilir, kısmi hesaplanabilir ya da ilkel
+özyinelemeli bir fonksiyondan herhangi biriyle numaralandırılabileceğini
+söyler. Dördüncü madde ise $S$ hesaplanabilir biçimde
+numaralandırılabilirse bazı $e$ indisi için
+\[
+  S=\Setabs{x}{\cfind{e}(x)\fdefined}
+\]
+olduğunu söyler. Başka bir deyişle $S$, $\cfind{e}$ hesabının durduğu
+girdiler kümesidir. Bu nedenle hesaplanabilir biçimde numaralandırılabilir
+kümelere bazen \emph{yarı karar verilebilir} denir: Bir sayı kümedeyse
+sonunda ``evet'' yanıtını alırsınız; değilse hiçbir zaman ``hayır'' yanıtını
+alamazsınız.
+\end{explain}
+
+\begin{proof}
+Her ilkel özyinelemeli fonksiyon hesaplanabilir ve her hesaplanabilir
+fonksiyon kısmi hesaplanabilir olduğundan \olref{case:ran-prim},
+\olref{case:ce} maddesini; \olref{case:ce} ise
+\olref{case:ran-pc} maddesini gerektirir. $S$ boşsa, hiçbir yerde tanımlı
+olmayan kısmi hesaplanabilir fonksiyonun görüntü kümesi olduğuna dikkat edin.
+\olref{case:ran-pc} maddesinin \olref{case:ran-prim} maddesini gerektirdiğini
+gösterirsek ilk üç maddenin eşdeğerliğini göstermiş oluruz.
+
+$S$, kısmi hesaplanabilir $\cfind{e}$ fonksiyonunun görüntü kümesi olsun.
+$S$ boşsa işimiz biter. Değilse $a$, $S$'nin herhangi bir elemanı olsun.
+Kleene normal biçim teoremine göre
+\[
+  \cfind{e}(x)=U(\umin{s}{T(e,x,s)})
+\]
+yazabiliriz. Özellikle $\cfind{e}(x)\fdefined$ ve değeri $y$ olur ancak ve
+ancak $T(e,x,s)$ ile $U(s)=y$ koşullarını sağlayan bir $s$ varsa. $f(z)$
+fonksiyonunu şöyle tanımlayalım:
+\[
+  f(z)=\begin{cases}
+    U((z)_1) & \text{$T(e,(z)_0,(z)_1)$ ise}\\
+    a & \text{aksi durumda.}
+  \end{cases}
+\]
+$T$ ile $U$ ilkel özyinelemeli olduğundan $f$ de ilkel özyinelemelidir.
+\iftag{TMs}{Turing makineleri cinsinden söylersek $z$, $(z)_1$'in $M_e$
+makinesinin $(z)_0$ girdisindeki duran bir hesabı olduğu
+$\tuple{(z)_0,(z)_1}$ çiftini kodluyorsa $f$ hesabın çıktısını; aksi durumda
+$a$'yı döndürür.}
+
+$S$'nin $f$'nin görüntü kümesi olduğunu, yani her $y$ doğal sayısı için
+$y\in S$ ancak ve ancak $y$, $f$'nin görüntü kümesindeyse geçerli olduğunu
+göstermeliyiz. İleri yönde $y\in S$ olsun. O zaman $y$, $\cfind{e}$
+fonksiyonunun görüntü kümesindedir; dolayısıyla bazı $x$ ile $s$ için
+$T(e,x,s)$ ve $U(s)=y$ olur. Böylece $y=f(\tuple{x,s})$ elde edilir.
+Tersine $y$, $f$'nin görüntü kümesinde olsun. O zaman ya $y=a$ ya da bazı
+$z$ için $T(e,(z)_0,(z)_1)$ ve $U((z)_1)=y$ olur. İkinci durumda
+$\cfind{e}((z)_0)\fdefined=y$ olduğundan her iki durumda da $y\in S$ olur.
+
+$\cfind{e}(x)\fdefined=y$ gösterimi, ``$\cfind{e}(x)$ tanımlıdır ve $y$'ye
+eşittir'' anlamına gelir. Yalnızca $\cfind{e}(x)=y$ de yazabilirdik; fakat ek
+ok, kısmi bir fonksiyonla çalıştığımızı anımsatmak bakımından bazen yararlıdır.
+
+\olref{thm:ce-equiv} ispatını tamamlamak için \olref{case:ce} ile
+\olref{case:ce-domain} maddelerinin eşdeğerliğini göstermek yeterlidir. Önce
+\olref{case:ce} maddesinin \olref{case:ce-domain} maddesini gerektirdiğini
+gösterelim. $S$, hesaplanabilir bir $f$ fonksiyonunun görüntü kümesi olsun:
+\[
+  S=\Setabs{y}{\text{bazı $x$ için }f(x)=y}.
+\]
+\[
+  g(y)=\umin{x}{(f(x)=y)}
+\]
+olsun. O zaman $g$ kısmi hesaplanabilirdir ve $g(y)$ ancak ve ancak bazı
+$x$ için $f(x)=y$ ise tanımlıdır. Başka bir deyişle $g$'nin tanım kümesi,
+$f$'nin görüntü kümesidir. \iftag{TMs}{Turing makineleri cinsinden:
+$S$ elemanlarını numaralandıran bir $F$ Turing makinesi verildiğinde,
+$F$'nin çıktıları arasında belirli bir elemanı arayan; bulursa duran,
+bulamazsa sonsuza kadar arayan ve böylece $S$'ye yarı karar veren $G$ Turing
+makinesini alın.}{}
+
+Son olarak \olref{case:ce-domain} maddesinin \olref{case:ce} maddesini
+gerektirdiğini göstermek için $S$'nin kısmi hesaplanabilir
+$\cfind{e}$ fonksiyonunun tanım kümesi olduğunu varsayalım:
+\[
+  S=\Setabs{x}{\cfind{e}(x)\fdefined}.
+\]
+$S$ boşsa işimiz biter; değilse $a$, $S$'nin herhangi bir elemanı olsun.
+$f$ fonksiyonunu
+\[
+  f(z)=\begin{cases}
+    (z)_0 & \text{$T(e,(z)_0,(z)_1)$ ise}\\
+    a & \text{aksi durumda}
+  \end{cases}
+\]
+ile tanımlayalım. Yukarıdaki gibi bir $x$ sayısı $f$'nin görüntü kümesindedir
+ancak ve ancak $\cfind{e}(x)\fdefined$, yani $x\in S$ ise.
+\iftag{TMs}{Turing makineleri cinsinden: $S$'ye yarı karar veren bir $M_e$
+makinesi verildiğinde, bütün olası Turing makinesi hesapları arasında
+dolaşıp duran hesaplara karşılık gelen girdileri döndürerek $S$ elemanlarını
+numaralandırın.}{}
+\end{proof}
+
+\olref{case:ce-domain} maddesi, \olref{thm:ce-equiv} teoreminde
+hesaplanabilir biçimde numaralandırılabilir kümeleri numaralandırmak için
+elverişli bir yol sağlar: Her $e$ için $W_e$, $\cfind{e}$ fonksiyonunun tanım
+kümesini göstersin, yani
+\[
+  W_e=\Setabs{x}{\cfind{e}(x)\fdefined}.
+\]
+O zaman $A$ herhangi bir hesaplanabilir biçimde numaralandırılabilir kümeyse
+bazı $e$ için $A=W_e$ olur.
+
+Aşağıdaki sonuç, hesaplanabilir biçimde numaralandırılabilir kümelerin bir
+başka karakterizasyonunu verir.
+
+\begin{thm}
+\ollabel{thm:exists-char}
+Bir $S$ kümesi hesaplanabilir biçimde numaralandırılabilirdir ancak ve ancak
+\[
+  S=\Setabs{x}{\lexists[y][R(x,y)]}
+\]
+olacak hesaplanabilir bir $R(x,y)$ bağıntısı vardır.
+\end{thm}
+
+\begin{proof}
+İleri yönde $S$ hesaplanabilir biçimde numaralandırılabilir olsun. O zaman
+bazı $e$ için $S=W_e$ olur. Bu $e$ değeriyle $S$'yi
+\[
+  S=\Setabs{x}{\lexists[y][T(e,x,y)]}
+\]
+biçiminde yazabiliriz. Ters yönde
+$S=\Setabs{x}{\lexists[y][R(x,y)]}$ olsun ve $f$'yi
+\[
+  f(x)\simeq\umin{y}{R(x,y)}
+\]
+ile tanımlayalım. O zaman $f$ kısmi hesaplanabilirdir ve $S$, $f$'nin tanım
+kümesidir.
+\end{proof}
+

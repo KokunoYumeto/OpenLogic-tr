@@ -1,0 +1,130 @@
+% Generated from locale/tr/content/model-theory/lindstrom/abstract-logics.tex; do not hand-edit.
+
+
+\olfileid[tr]{mod}{lin}{alg}
+\olsection{Soyut Mantıklar}
+
+\begin{defn}
+Bir \emph{soyut mantık}, $\tuple{L, \models_L}$ ikilisidir. Burada $L$,
+her !!{language}~$\Lang{L}$ için $L(\Lang{L})$ ile gösterilen bir
+!!{sentence}s kümesi belirleyen bir fonksiyondur; $\models_L$ ise
+!!{structure}s ile, söz konusu !!{language}~$\Lang{L}$ için
+$L(\Lang{L})$'nin !!{element}s{}ı arasındaki bir bağıntıdır. Özellikle $\tuple{F, \models}$
+sıradan birinci dereceden mantıktır: $F$, !!{language}~$\Lang{L}$ için
+$\Lang{L}$'deki sabitlerden kurulan birinci dereceden !!{sentence}s
+kümesini belirleyen fonksiyon; $\models$ ise birinci dereceden mantığın
+sağlama bağıntısıdır.
+\end{defn}
+
+Kullandığımız !!{structure} kavramı, belirli bir !!{language} için hâlâ
+birinci dereceden mantıktakiyle aynıdır. Bununla birlikte !!{sentence}s
+öğelerinin $\Lang{L}$'deki temel simgelerden alışılmış biçimde kurulduğunu
+ya da $\models_L$ bağıntısının birinci dereceden mantıktaki gibi özyinelemeli
+olarak tanımlandığını varsaymıyoruz. Dolayısıyla bu bütünüyle genel tanım,
+örneğin $\tuple{L,\models_L}$ içindeki !!{sentence}s öğelerinin sonsuz uzun
+birleşimler veya ayrışımlar, $\lexists$ ve $\lforall$ dışında niceleyiciler
+(örneğin ``\dots özelliğini taşıyan sonsuz sayıda $x$ vardır'') ya da sonsuz
+uzun niceleyici önekleri içerdiği durumları da kapsamak üzere verilmiştir.
+$L(\Lang{L})$ içindeki ``!!{sentence}s'' öğelerinin birinci dereceden
+mantığın sıradan !!{sentence}s öğeleri olması gerekmediğini vurgulamak için
+bu bölümde bunlar üzerinde dolaşan değişkenler olarak $!E$, $!F$,~\dots
+!!{variable}s öğelerini kullanıyor; $!A$, $!B$,~\dots simgelerini sıradan
+birinci dereceden !!{formula}s için ayırıyoruz.
+
+\begin{defn}
+$\Mod(L){!E}$ ile $\Setabs{\Struct{M}}{\Struct{M} \models_L !E}$ sınıfını
+gösterelim. !!{language} açıkça belirtilmek istenirse $\Mod[L](L){!E}$
+yazarız. $\Lang{L}$ için !!{structure}s sınıfından $\Struct{M}$ ile
+$\Struct{N}$,
+$L(\Lang{L})$ içindeki aynı !!{sentence}s her ikisinde de doğruysa
+$\tuple{L, \models_L}$ içinde \emph{temel eşdeğer}dir; bunu
+$\Struct{M} \elemequiv[L] \Struct{N}$ biçiminde yazarız.
+\end{defn}
+
+\begin{defn}
+!!{language} $\Lang{L}$ için bir $\tuple{L,\models_L}$ soyut mantığı,
+aşağıdaki özellikleri taşıyorsa \emph{normal}dir:
+\begin{enumerate}
+\item (\emph{$L$-Monotonluğu}) !!{language}s $\Lang{L}$ ve $\Lang{L'}$
+  için $\Lang{L} \subseteq \Lang{L'}$ ise
+  $L(\Lang{L}) \subseteq L(\Lang{L'})$ olur.
+\item (\emph{Genişleme Özelliği}) Her $!E \in L(\Lang{L})$ için
+  $\Lang{L}$'nin öyle \emph{sonlu} bir $\Lang{L'}$ alt kümesi vardır ki
+  $\Struct{M} \models_L !E$ bağıntısı yalnızca $\Struct{M}$ yapısının
+  $\Lang{L'}$'ye indirgenmesine bağlıdır. Başka bir deyişle $\Struct{M}$
+  ile $\Struct{N}$ yapılarının $\Lang{L'}$'ye indirgenmeleri aynıysa
+  $\Struct{M} \models_L !E$ ancak ve ancak $\Struct{N} \models_L !E$ olur.
+\item (\emph{İzomorfizm Özelliği}) $\Struct{M} \models_L !E$ ve
+  $\Struct{M} \simeq \Struct{N}$ ise $\Struct{N} \models_L !E$ de olur.
+\item (\emph{Yeniden Adlandırma Özelliği}) $\models_L$ bağıntısı yeniden
+  adlandırma altında korunur: !!{language} $\Lang{L}'$, $\Lang{L}$ içindeki
+  her $P$ simgesinin aynı aritide bir $P'$ simgesiyle ve her $c$ sabitinin
+  ayrı bir $c'$ sabitiyle değiştirilmesiyle elde edilmişse, her
+  !!{structure}~$\Struct{M}$ ve !!{sentence}~$!E$ için
+  $\Struct{M} \models_L !E$ ancak ve ancak
+  $\Struct{M}' \models_L !E'$ olur. Burada $\Struct{M}'$, $\Lang{L}$ ve
+  $!E' \in L(\Lang{L}')$ öğelerine karşılık gelen $\Lang{L}'$-!!{structure}
+  yapısıdır.
+\item (\emph{Boole Özelliği}) $\tuple{L,\models_L}$ soyut mantığı Boole
+  bağlaçları altında şu anlamda kapalıdır: Her $!E \in L(\Lang{L})$ için,
+  $\Struct{M} \models_L !F$ ancak ve ancak
+  $\Struct{M} \not\models_L !E$ olacak bir $!F \in L(\Lang{L})$ vardır;
+  ayrıca her $!E$ ve $!F$ için
+  $\Mod(L){!G}=\Mod(L){!E}\cap\Mod(L){!F}$ olacak bir $!G$ vardır.
+  Atomik !!{formula}s ve öteki bağlaçlar için de benzer koşullar geçerlidir.
+\item (\emph{Niceleyici Özelliği}) $\Lang{L}$ içindeki her $c$ sabiti ve
+  $!E \in L(\Lang{L})$ için öyle bir $!F \in L(\Lang{L})$ vardır ki
+  \[
+  \Mod[L'](L){!F} = \Setabs{\Struct{M}}{\Expan{M}{a} \in
+  \Mod[L](L){!E} \text{ olacak bir } a \in \Domain{M} \text{ vardır}},
+  \]
+  burada $\Lang{L'}=\Lang{L}\setminus\{c\}$ ve $\Expan{M}{a}$,
+  $c$'ye $a$ değerini veren $\Struct{M}$ yapısının $\Lang{L}$'ye
+  genişlemesidir.
+\item (\emph{Göreleleştirme Özelliği}) !!a{sentence} $!E\in L(\Lang{L})$
+  ile $\Lang{L}$ içinde bulunmayan $R,c_1,\dots,c_n$ simgeleri verilsin.
+  $!E$'nin $\Atom{R}{x,c_1,\dots,c_n}$ ifadesine
+  \emph{göreleleştirmesi} denen öyle !!a{sentence}
+  $!F\in L(\Lang{L}\cup\{R,c_1,\ldots,c_n\})$ vardır ki her
+  !!{structure}~$\Struct{M}$ için
+  \[
+  \Expan{M}{X,b_1,\ldots,b_n}\models_L !F \text{ ancak ve ancak }
+  \Struct{N}\models_L !E,
+  \]
+  burada $\Struct{N}$, !!{domain}
+  $\Domain{N}=\Setabs{a\in\Domain{M}}{\Assign{R}{M}(a,b_1,\dots,b_n)}$
+  olan $\Struct{M}$ alt yapısıdır (bkz. \olref[bas][sub]{rem:substructure});
+  $\Expan{M}{X,b_1,\ldots,b_n}$ ise $R,c_1,\dots,c_n$ simgelerini sırasıyla
+  $X,b_1,\dots,b_n$ olarak yorumlayan $\Struct{M}$ genişlemesidir
+  ($X\subseteq M^{n+1}$).
+\end{enumerate}
+\end{defn}
+
+\begin{defn}
+İki soyut mantık $\tuple{L_1,\models_{L_1}}$ ve
+$\tuple{L_2,\models_{L_2}}$ verilsin. Her !!{language} $\Lang{L}$ ve
+!!{sentence} $!E\in L_1(\Lang{L})$ için
+$\Mod[L](L_1){!E}=\Mod[L](L_2){!F}$ olacak !!a{sentence}
+$!F\in L_2(\Lang{L})$ varsa ikinci mantık birincisi kadar
+\emph{anlatım güçlü}dür; bunu
+$\tuple{L_1,\models_{L_1}}\leq\tuple{L_2,\models_{L_2}}$ biçiminde yazarız.
+Hem $\tuple{L_1,\models_{L_1}}\leq\tuple{L_2,\models_{L_2}}$ hem de
+$\tuple{L_2,\models_{L_2}}\leq\tuple{L_1,\models_{L_1}}$ ise iki mantık
+\emph{eşdeğer}dir.
+\end{defn}
+
+\begin{rem}
+  Birinci dereceden mantık, yani $\tuple{F,\models}$ soyut mantığı normaldir.
+  Yukarıdaki özelliklerin birinci dereceden mantık için çoğu doğrudan
+  görülür. Yalnızca genişleme özelliğinin kaplamsallığa dayandığını ve
+  !!a{sentence} $!E$ ifadesinin $\Atom{R}{x,c_1,\dots,c_n}$ ifadesine
+  göreleleştirmesinin, her !!{subformula}
+  $\lforall[x][!F]$ yerine
+  $\lforall[x][(\Atom{R}{x,c_1,\dots,c_n}\lif !F)]$ konularak elde
+  edildiğini belirtelim. Üstelik $\tuple{L,\models_L}$ normalse,
+  $\tuple{F,\models}\leq\tuple{L,\models_L}$ olur; bu, birinci dereceden
+  !!{formula}s üzerinde tümevarımla gösterilebilir. Dolayısıyla genelliği
+  kaybetmeden her birinci dereceden !!{sentence} öğesinin her normal mantığa
+  ait olduğunu varsayabiliriz.
+\end{rem}
+

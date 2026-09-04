@@ -1,0 +1,152 @@
+% Generated from locale/tr/content/set-theory/card-arithmetic/ch.tex; do not hand-edit.
+
+
+\olfileid[tr]{sth}{card-arithmetic}{ch}
+
+\olsection{Süreklilik Hipotezi}
+
+Önceki sonuç, sonsuz kardinal sayıların $2$'nin kuvvetleriyle, yani
+(\olref[opps]{lem:SizePowerset2Exp} gereği) kuvvet kümeleri almakla
+``dolaysız biçimde davranacağı'' güvence altına alınsaydı kardinal üs
+almanın oldukça \emph{kolay} olacağını (doğru biçimde) sezdirir. Fakat
+sonsuz kardinal sayıların kuvvet kümeleriyle dolaysız biçimde
+\emph{davrandığını} varsayamayız.
+
+Bunu açıklamaya başlamak için kullanışlı bir gösterim sunuyoruz.
+
+\begin{defn}
+$\cardsucc{\cardfont{a}}$, $\cardfont{a}$'dan kesinlikle büyük olan en
+küçük kardinal sayı olmak üzere iki sonsuz dizi tanımlarız:
+\begin{align*}
+	\aleph_{0} &\defis \omega &
+	\beth_{0} &\defis \omega\\
+	\aleph_{\alpha \ordplus 1} &\defis \cardsucc{(\aleph_{\alpha})} &
+	\beth_{\alpha+1} &\defis \cardexpo{2}{\beth_{\alpha}}\\
+	\aleph_{\alpha} &\defis \bigcup_{\beta< \alpha} \aleph_{\beta} &
+	\beth_{\alpha} &\defis \bigcup_{\beta < \alpha}\beth_{\beta} &
+	\text{$\alpha$ bir limit sıra sayısı olduğunda}.
+	\end{align*}
+\end{defn}
+
+$\cardsucc{\cardfont{a}}$ tanımı yerindedir; çünkü
+\olref[cardinals][classing]{lem:NoLargestCardinal}, her
+$\cardfont{a}$ kardinal sayısı için $\cardfont{a}$'dan büyük bir kardinal
+sayı bulunduğunu söyler ve Sonlu Ötesi Tümevarım, $\cardfont{a}$'dan
+büyük \emph{en küçük} kardinal sayının bulunduğunu güvence altına alır.
+Tanımın geri kalanı sonlu ötesi özyineleme ile sağlanır.
+
+Cantor bu ``$\aleph$'' gösterimini ortaya koydu; bu, İbrani alfabesinin
+ilk harfi ve İbranice ``sonsuz'' sözcüğünün ilk harfi olan \emph{aleph}'tir.
+Peirce ``$\beth$'' gösterimini ortaya koydu; bu da İbrani alfabesinin
+ikinci harfi olan \emph{beth}'tir.\footnote{Peirce bu gösterimi Aralık
+1900'de Cantor'a yazdığı bir mektupta kullandı. Ne yazık ki aynı yerde
+$\alpha\geq\omega$ için $\beth_\alpha$'nın var olmadığına ilişkin kötü
+bir sav da ileri sürdü.} Bu gösterimler bize sonsuz kardinal sayılar verir.
+
+\begin{prop}
+Her $\alpha$ sıra sayısı için $\aleph_\alpha$ ve $\beth_\alpha$ kardinal
+sayılardır.
+\end{prop}
+
+\begin{proof}
+Her iki sonuç da basit bir sonlu ötesi tümevarımla çıkar.
+$\aleph_0=\beth_0=\omega$, \olref[cardinals][classing]{omegaisacardinal}
+gereği bir kardinal sayıdır. $\aleph_\alpha$ ve $\beth_\alpha$'nın
+ikisini de kardinal sayı varsayarsak $\aleph_{\alpha+1}$ ve
+$\beth_{\alpha+1}$ açıkça kardinal sayılar olarak tanımlanmıştır. Bir
+kardinal sayılar kümesinin birleşimi de
+\olref[cardinals][classing]{unioncardinalscardinal} gereği bir kardinal
+sayıdır.
+\end{proof}
+\noindent
+Üstelik her sonsuz kardinal sayı bir $\aleph$'tir:
+
+\begin{prop}
+$\cardfont{a}$ sonsuz bir kardinal sayıysa biricik bir $\gamma$ için
+$\cardfont{a}=\aleph_\gamma$ olur.
+\end{prop}
+
+\begin{proof}
+Kardinal sayılar üzerinde sonlu ötesi tümevarımla. Tümevarım için
+$\cardfont{b}<\cardfont{a}$ ise
+$\cardfont{b}=\aleph_{\gamma_\cardfont{b}}$ olduğunu varsayın.
+Bir $\cardfont{b}$ için
+$\cardfont{a}=\cardsucc{\cardfont{b}}$ ise
+$\cardfont{a}=\cardsucc{(\aleph_{\gamma_\cardfont{b}})}=
+\aleph_{\gamma_\cardfont{b}+1}$ olur. $\cardfont{a}$ hiçbir kardinal
+sayının ardılı değilse, kardinal sayılar sıra sayıları olduğundan
+$\cardfont{a}=\bigcup_{\cardfont{b}<\cardfont{a}}\cardfont{b}=
+\bigcup_{\cardfont{b}<\cardfont{a}}{\aleph_{\gamma_\cardfont{b}}}$;
+dolayısıyla
+$\gamma=\bigcup_{\cardfont{b}<\cardfont{a}}\gamma_\cardfont{b}$ olmak
+üzere $\cardfont{a}=\aleph_\gamma$ olur.
+\end{proof}
+
+Her sonsuz kardinal sayı bir $\aleph$ olduğuna göre şu soruyu sormak
+doğaldır: her sonsuz kardinal sayı bir $\beth$ midir? Durum gerçekten
+\emph{böyle} olsaydı sonsuz kardinal sayılar kuvvet kümesi alma işlemiyle
+``dolaysız biçimde davranırdı''. Gerçekten de şunu elde ederdik:
+
+\begin{defish}
+\emph{Genelleştirilmiş Süreklilik Hipotezi} (GCH).
+Her $\alpha$ için $\aleph_\alpha=\beth_\alpha$.
+\end{defish}
+
+Üstelik GCH geçerli olsaydı kardinal üs alma işleminde önemli
+sadeleştirmeler yapabilirdik. Özellikle $\cardfont{b}<\cardfont{a}$
+olduğunda $\cardexpo{\cardfont{a}}{\cardfont{b}}$ değerinin
+$\cardfont{a}\leq\cardexpo{\cardfont{a}}{\cardfont{b}}\leq
+\cardsucc{\cardfont{a}}$ arasında sıkıştığını gösterebilirdik. Daha sonra
+iki olasılıktan hangisinin gerçekleştiğini (yani
+$\cardfont{a}=\cardexpo{\cardfont{a}}{\cardfont{b}}$ mi, yoksa
+$\cardexpo{\cardfont{a}}{\cardfont{b}}=\cardsucc{\cardfont{a}}$ mı
+olduğunu) belirleyen kesin koşulları verebilirdik.\footnote{Koşulu
+\emph{eşsonluluk} belirler.}
+
+Fakat GCH bir \emph{hipotezdir}, \emph{teorem} değildir. Gerçekten
+\citet{Godel1938}, $\ZFC$ tutarlıysa $\ZFC+\text{GCH}$'nin de tutarlı
+olduğunu ispatladı. Daha sonra $\lnot$GCH'yi de $\ZFC$'ye ekleyebileceğimiz
+ortaya çıktı. Gerçekten GCH'nin en basit ve önemsiz olmayan \emph{örneğini}
+ele alın:
+
+\begin{defish}
+\emph{Süreklilik Hipotezi} (CH). $\aleph_1=\beth_1$.
+\end{defish}
+
+\citet{Cohen1963}, $\ZFC$ tutarlıysa $\ZFC+\lnot\text{CH}$'nin de
+tutarlı olduğunu ispatladı. Dolayısıyla Süreklilik Hipotezi $\ZFC$'den
+bağımsızdır.
+
+``Süreklilik'', gerçek doğru $\Real$ için kullanılan başka bir ad olduğu
+için bu hipoteze Süreklilik Hipotezi denir.
+\olref[opps]{continuumis2aleph0}, $\card{\Real}=\beth_1$ olduğunu söyler.
+Dolayısıyla Süreklilik Hipotezi, doğal sayıların kardinalitesi
+$\aleph_0=\beth_0$ ile sürekliliğin kardinalitesi $\beth_1$ arasında
+başka kardinal sayı bulunmadığını söyler.
+
+(G)CH'nin $\ZFC$'den \emph{bağımsızlığı} karşısında bunların
+\emph{doğruluğu} hakkında ne söylemeliyiz? Söylenecek \emph{çok} şey
+vardır. Gerçekten küme teorisindeki verimli güncel çalışmaların çoğu bu
+sorunları incelemeye yönelmiştir. Fakat iki kısa nokta kesinlikle
+vurgulanmaya değerdir.
+
+Birincisi: bu biçimsel bağımsızlık sonuçlarından GCH ya da CH'nin doğruluk
+değeri bakımından \emph{belirsiz} olduğu \emph{doğrudan} çıkmaz. Belki de
+yalnızca bize doğal görünen ve soruyu şu ya da bu yönde çözecek daha fazla
+aksiyom eklememiz gerekir. Gödel'in kendisi doğru karşılığın bu olduğunu
+öne sürmüştür.
+
+İkincisi: CH'nin $\ZFC$'den bağımsız olması kesinlikle \emph{çarpıcıdır},
+fakat (sözcüğün gerçek anlamıyla) \emph{inanılmaz} değildir. Mesele
+yalnızca şudur: $\ZFC$'nin söylediği kadarıyla kardinal sayılardan onların
+ardıllarına geçmek, yalnızca kuvvet kümeleri almaktan daha incelikli bir
+araç gerektirebilir.
+ %The operation of taking powersets moves us from one stage of the
+ %hierarchy to its successor stage (from $V_{\alpha}$ to
+ %$V_{\alpha+1}$).
+
+Bu iki gözlemden sonra daha fazlasını öğrenmek istiyorsanız artık bu
+tartışmada taraf olan çeşitli filozoflara ve matematikçilere yönelmeniz
+gerekecek.\footnote{Başlangıç olarak
+\citet[\S15.6]{Potter2004} okuyabilirsiniz.}
+

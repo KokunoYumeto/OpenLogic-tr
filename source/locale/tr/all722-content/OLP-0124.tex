@@ -1,0 +1,139 @@
+% Generated from locale/tr/content/first-order-logic/axiomatic-deduction/soundness.tex; do not hand-edit.
+
+
+\iftag{FOL}
+      {\olfileid[tr]{fol}{axd}{sou}}
+      {\olfileid[tr]{pl}{axd}{sou}}
+
+\olsection{Sağlamlık}
+
+\begin{explain}
+!!^a{derivation} sistemi, aksiyomatik türetimde olduğu gibi, gerçekte geçerli
+olmayan sonuçları !!{derive} işlemiyle elde edemiyorsa \emph{sağlam}dır. Bu
+bakımdan sağlamlık, !!{derivation} sistemleri için güvence altına alınmış bir
+güvenlik özelliğidir. Söz konusu ispat kuramsal özelliğe göre, örneğin şunları
+bilmek isteriz:
+\begin{enumerate}
+\item her !!{derivable}~$!A$ geçerlidir;
+\item $!A$, başka bazı formüllerden oluşan~$\Gamma$'dan !!{derivable} ise onların
+  mantıksal sonucudur;
+\item !!{formula}s içeren bir $\Gamma$ kümesi tutarsızsa sağlanamaz olur.
+\end{enumerate}
+Bunlar bir !!a{derivation} sisteminin önemli özellikleridir. Bunlardan biri
+geçerli değilse !!{derivation} sistemi kusurludur: !!{derive} işlemi
+gereğinden fazlasını verir. Bu nedenle bir !!a{derivation} sisteminin sağlamlığını
+göstermek son derece önemlidir.
+\end{explain}
+
+\begin{prop}
+  $!A$ bir aksiyomsa
+  \iftag{FOL}
+    {her !!{structure}~$\Struct{M}$ ve her $s$ ataması için
+    $\Sat{M}{!A}[s]$.}
+    {her !!{valuation}~$\pAssign{v}$ için $\pSat{v}{!A}$.}
+\end{prop}
+
+\begin{proof}
+\iftag{FOL}{Bütün aksiyomların geçerli olduğunu doğrulamalıyız. Örneğin
+  \olref[qua]{ax:q1} durumu şöyledir: $t$, $!A$ içinde $x$ için
+  !!{free for} olsun ve $\Sat{M}{\lforall[x][!A]}[s]$ varsayılsın.
+  Sağlama tanımı gereği her $\varAssign{s'}{s}{x}$ için
+  $\Sat{M}{!A}[s']$; özellikle $s'(x)=\Value{t}{M}[s]$ olduğunda bu
+  geçerlidir. \olref[syn][ext]{prop:ext-formulas} uyarınca
+  $\Sat{M}{\Subst{!A}{t}{x}}[s]$. Böylece
+  $\Sat{M}{(\lforall[x][!A] \lif \Subst{!A}{t}{x})}[s]$ elde edilir.}
+  {Her aksiyomun bir totoloji olduğunu doğrulamak için doğruluk tablosunu
+  oluşturun.}
+\end{proof}
+
+\begin{thm}[Sağlamlık]
+\ollabel{thm:soundness}
+$\Gamma \Proves !A$ ise $\Gamma \Entails !A$.
+\end{thm}
+
+\begin{proof}
+$\Gamma$'dan $!A$ için verilen !!{derivation} içinde çıkarımla
+gerekçelendirilen adımların sayısına göre tümevarım yaparız. Çıkarımla
+gerekçelendirilen adım yoksa bütün !!{formula}s, söz konusu !!{derivation}
+içinde ya
+aksiyom örnekleridir ya da $\Gamma$'dadır. Önceki önerme uyarınca bütün
+aksiyomlar \iftag{FOL}{geçerlidir}{totolojidir}; dolayısıyla $!A$ bir
+aksiyomsa $\Gamma \Entails !A$. $!A \in \Gamma$ ise de açıkça
+$\Gamma \Entails !A$.
+
+$!A$ için bir !!{derivation} ele alalım. Bunun son adımı modus ponens ile
+gerekçelendirilmişse $!B$ ile $!B \lif !A$ biçiminde !!{formula}s vardır;
+bunlar !!{derivation} içinde daha önce gelir.
+Tümevarım varsayımı, !!{derivation} içindeki bu !!{formula}s ile biten bölümlere
+uygulanır; çünkü her biri çıkarımla gerekçelendirilen en az bir adım daha az
+içerir. Böylece $\Gamma \Entails !B$ ve $\Gamma \Entails !B \lif !A$.
+O hâlde
+\iftag{FOL}
+      {\olref[syn][sem]{thm:sem-deduction}}
+      {\olref[pl][syn][sem]{thm:sem-deduction}}
+uyarınca $\Gamma \Entails !A$.
+
+\iftag{FOL}{Şimdi son adımın \QR{} ile gerekçelendirildiğini varsayalım.
+Bu adım $!C \lif \lforall[x][!B(x)]$ biçimindedir ve öncesinde,
+$c$'nin $\Gamma$, $!C$ ya da $\lforall[x][!B(x)]$ içinde geçmediği
+$!C \lif !B(c)$ adımı bulunur. Tümevarım varsayımıyla
+$\Gamma \Entails !C \lif !B(c)$. \olref[syn][sem]{thm:sem-deduction}
+uyarınca $\Gamma \cup \{!C\} \Entails !B(c)$.
+
+$\Sat{M}{\Gamma \cup \{!C\}}$ olacak biçimde bir yapı~$\Struct{M}$ ele
+alalım. $\Sat{M}{\lforall[x][!B(x)]}$
+olduğunu göstermeliyiz. $\lforall[x][!B(x)]$ bir !!a{sentence} olduğundan,
+bu her değişken ataması~$s$ için $\Sat{M}{!B(x)}[s]$ göstermemiz gerektiği
+anlamına gelir (\olref[syn][ass]{prop:sat-quant}).
+$\Gamma \cup \{!C\}$ yalnızca tümcelerden oluştuğu için
+\olref[syn][sat]{defn:satisfaction} uyarınca her
+$!D \in \Gamma \cup \{!C\}$ için
+$\Sat{M}{!D}[s]$. $\Struct{M'}$, $\Assign{c}{M'}=s(x)$ olması dışında
+$\Struct{M}$ gibi olsun. $c$, $\Gamma$ veya $!C$ içinde geçmediğinden
+\olref[syn][ext]{cor:extensionality-sent} ile
+$\Sat{M'}{\Gamma \cup \{!C\}}$. $\Gamma \cup \{!C\} \Entails !B(c)$
+olduğundan $\Sat{M'}{!B(c)}$. $!B(c)$ bir !!a{sentence} olduğundan
+\olref[syn][ass]{prop:sentence-sat-true} uyarınca
+$\Sat{M'}{!B(c)}[s]$. $!B(c)$ tam olarak $\Subst{!B(x)}{c}{x}$ olduğundan
+\olref[syn][ext]{prop:ext-formulas} ile $\Sat{M'}{!B(x)}[s]$ ancak ve ancak
+$\Sat{M'}{!B(c)}[s]$. Dolayısıyla $\Sat{M'}{!B(x)}[s]$. $c$, $!B(x)$ içinde
+geçmediğinden \olref[syn][ext]{prop:extensionality} ile
+$\Sat{M}{!B(x)}[s]$. $s$ gelişigüzel bir değişken ataması olduğundan
+$\Sat{M}{\lforall[x][!B(x)]}$. Böylece
+$\Gamma \cup \{!C\} \Entails \lforall[x][!B(x)]$. Son olarak
+\olref[syn][sem]{thm:sem-deduction} ile
+$\Gamma \Entails !C \lif \lforall[x][!B(x)]$.
+
+$!A$'nın \QR{} ile gerekçelendirildiği fakat
+$\lexists[x][!B(x)] \lif !C$ biçiminde olduğu durum alıştırma olarak
+bırakılmıştır.}{}
+\end{proof}
+
+\tagprob{FOL}
+\begin{prob}
+  \olref[fol][axd][sou]{thm:soundness} ispatını tamamlayın.
+\end{prob}
+\tagendprob
+
+\begin{cor}
+\ollabel{cor:weak-soundness}
+$\Proves !A$ ise $!A$ \iftag{FOL}{geçerlidir}{bir totolojidir}.
+\end{cor}
+
+\begin{cor}
+\ollabel{cor:consistency-soundness}
+$\Gamma$ sağlanabilir ise tutarlıdır.
+\end{cor}
+
+\begin{proof}
+Karşıt tersini ispatlayalım. $\Gamma$ tutarlı olmasın. O zaman
+$\Gamma \Proves \lfalse$; yani $\Gamma$'dan $\lfalse$ için bir
+!!a{derivation} vardır. \olref{thm:soundness} uyarınca $\Gamma$'yı sağlayan
+her \iftag{FOL}{!!{structure}~$\Struct{M}$}{!!{valuation}~$\pAssign{v}$},
+$\lfalse$'u da sağlamalıdır. Her
+\iftag{FOL}{!!{structure}~$\Struct{M}$ için $\Sat/{M}{\lfalse}$}
+{!!{valuation}~$\pAssign{v}$ için $\pSat/{v}{\lfalse}$} olduğundan hiçbir
+\iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$}, $\Gamma$'yı sağlayamaz; yani
+$\Gamma$ sağlanabilir değildir.
+\end{proof}
+

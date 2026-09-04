@@ -1,0 +1,86 @@
+% Generated from locale/tr/content/lambda-calculus/syntax/unique-readability.tex; do not hand-edit.
+
+
+\olfileid[tr]{lam}{syn}{unq}
+\olsection{Tek Okunabilirlik}
+
+Her terimin yalnızca tek bir biçimde oluşturulup oluşturulamayacağını
+sorabiliriz; gerçekten de öyledir. Her lambda teriminin tek bir kuruluşu ve
+tek bir çözümlemesi vardır. Aşağıdaki tartışmada \emph{kuruluş},
+\olref[trm]{defn:term} içindeki kuruluş kurallarını bir ya da birkaç kez
+kullanarak bir terim oluşturma işlemidir.
+
+\begin{lem}\ollabel{lem:term-start}
+Bir terim ya bir değişkenle ya da bir parantezle başlar.
+\end{lem}
+
+\begin{proof}
+Bir ifade ancak \olref[trm]{defn:term} uyarınca kurulmuşsa terim sayılır.
+\olref[trm]{defn:term-var} sonucundaysa bir değişken olmak zorundadır.
+\olref[trm]{defn:term-abs} ya da \olref[trm]{defn:term-app} sonucundaysa bir
+parantezle başlar.
+\end{proof}
+
+\begin{lem}\ollabel{lem:app-start}
+Bir uygulamanın sonucu ya iki parantezle ya da bir parantez ve bir değişkenle
+başlar.
+\end{lem}
+
+\begin{proof}
+$M$ bir uygulamanın sonucuysa $(PQ)$ biçimindedir ve dolayısıyla bir
+parantezle başlar. $P$ bir terim olduğundan, \olref{lem:term-start} gereği ya
+bir parantezle ya da bir değişkenle başlar.
+\end{proof}
+
+\begin{lem}\ollabel{lem:initial}
+Bir terimin hiçbir öz başlangıç parçası kendi başına bir terim değildir.
+\end{lem}
+
+\begin{prob}
+\olref[lam][syn][unq]{lem:initial} lemasını terimlerin uzunluğu üzerinde
+tümevarımla ispatlayın.
+\end{prob}
+
+\begin{prop}[Tek Okunabilirlik] \ollabel{prop:unq}
+Her terimin tam olarak bir kuruluşu vardır.
+\end{prop}
+
+\begin{proof}
+  Bunu terimlerin kuruluşu üzerinde tümevarımla ispatlarız.
+  \begin{enumerate}
+    \item $M$, bir $x$ değişkeni için $x$ biçiminde olsun. Soyutlama ve
+      uygulamaların sonuçları her zaman parantezle başladığından bunlar
+      $M$'yi kurmak için kullanılmış olamaz. Dolayısıyla $M$'nin kuruluşu,
+      \olref[trm]{defn:term}\olref[trm]{defn:term-var} kuralının tek bir
+      uygulaması olmak zorundadır.
+    \item $M$, bir $x$ değişkeni ve bir $N$ terimi için
+      $(\lambd[x][N])$ biçiminde olsun. Tek bir değişken olmadığından
+      \olref[trm]{defn:term}\olref[trm]{defn:term-var} uyarınca kurulmuş
+      olamaz. \olref{lem:app-start} gereği bir uygulamanın sonucu da değildir.
+      O hâlde $M$, yalnızca $N$ üzerinde bir soyutlamanın sonucu olabilir.
+      Tümevarım varsayımına göre $N$'nin kuruluşu da tektir.
+    \item $M$, $P$ ve $Q$ terimleri için $(PQ)$ biçiminde olsun. Bir
+      parantezle başladığından
+      \olref[trm]{defn:term}\olref[trm]{defn:term-var} ile kurulmuş olamaz.
+      \olref{lem:term-start} gereği $P$, $\lambd$ ile başlayamaz; dolayısıyla
+      $(PQ)$ bir soyutlamanın sonucu olamaz. Şimdi $M$'nin uygulamayla başka
+      bir kuruluşu bulunduğunu, örneğin aynı zamanda $(P'Q')$ biçiminde
+      olduğunu varsayalım. Bu durumda $P$, $P'$nin öz başlangıç parçası ya da
+      $P'$, $P$'nin öz başlangıç parçası olurdu; bu ise
+      \olref{lem:initial} ile olanaksızdır. Dolayısıyla $P$ ve $Q$ tek türlü
+      belirlenir; tümevarım varsayımına göre bunların kuruluşları da tektir.
+  \end{enumerate}
+\end{proof}
+
+Yukarıdaki önermenin daha okunaklı bir anlatımı şöyledir:
+\begin{prop}
+  Bir $M$ terimi yalnızca aşağıdaki biçimlerden birinde olabilir:
+  \begin{enumerate}
+    \item $M$ tarafından tek türlü belirlenen bir $x$ değişkeni için $x$.
+    \item Hem $x$ hem de $N$, $M$ tarafından tek türlü belirlenmek üzere,
+      bir $x$ değişkeni ve başka bir $N$ terimi için $(\lambd[x][N])$.
+    \item Her ikisi de $M$ tarafından tek türlü belirlenen iki $P$ ve $Q$
+      terimi için $(PQ)$.
+  \end{enumerate}
+\end{prop}
+

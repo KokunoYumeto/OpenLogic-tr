@@ -1,0 +1,81 @@
+% Generated from locale/tr/content/normal-modal-logic/tableaux/simple-S5.tex; do not hand-edit.
+
+
+\olfileid[tr]{nml}{tab}{s5}
+
+\olsection{\Log{S5} için Basit \usetoken{P}{tableau}}
+
+\Log{S5}, evrensel modeller sınıfına, yani her dünyadan her dünyaya
+erişilebilen modeller sınıfına göre sağlam ve tamdır. Evrensel modellerde
+erişilebilirlik bağıntısının ayrıntısı önem taşımaz: ``$\mSat{M}{!A}[w]$
+olan bir $w$ dünyası vardır'' ifadesi, ancak ve ancak $u$'dan erişilebilen
+böyle bir $w$ varsa doğrudur. Dolayısıyla \Log{S5} içinde modelleri yalnızca
+bir dünyalar kümesi ve bir $V$ değerlemesi olarak tanımlayabiliriz. Bu,
+!!{tableau} kurallarını da sadeleştirebilmemiz gerektiğini düşündürür. Genel
+durumda önek olarak pozitif tam sayı dizileri alırız; böylece hangi öneklerin
+başkalarından erişilebilen dünyaları adlandırdığını izleyebiliriz: $\sigma.n$,
+$\sigma$'dan erişilebilen bir dünyayı adlandırır. Fakat \Log{S5} içinde her
+dünyadan her dünyaya erişilebildiğinden bunu izlemeye gerek yoktur. Bunun
+yerine pozitif tam sayıları önek olarak kullanabiliriz. Sadeleştirilmiş
+kurallar \olref{tab:rules-S5}'te verilmiştir.
+
+\begin{table}
+  \begin{center}
+    \def\arraystretch{3}\def\fCenter{}
+    \begin{tabular}{|c|c|}
+    \hline
+    \iftag{prvBox}{
+      \AxiomC{\sFmla{\True}{\Box !A}[n]}
+      \RightLabel{\TRule{\True}{\Box}}
+      \UnaryInfC{\sFmla{\True}{!A}[m]}
+      \DisplayProof
+      &
+      \AxiomC{\sFmla{\False}{\Box !A}[n]}
+      \RightLabel{\TRule{\False}{\Box}}
+      \UnaryInfC{\sFmla{\False}{!A}[m]}
+      \DisplayProof\\
+      $m$ kullanılmıştır & $m$ yenidir
+      \\[1ex]
+      \hline}{}
+    \iftag{prvDiamond}{
+      \AxiomC{\sFmla{\True}{\Diamond !A}[n]}
+      \RightLabel{\TRule{\True}{\Diamond}}
+      \UnaryInfC{\sFmla{\True}{!A}[m]}
+      \DisplayProof
+      &
+      \AxiomC{\sFmla{\False}{\Diamond !A}[n]}
+      \RightLabel{\TRule{\False}{\Diamond}}
+      \UnaryInfC{\sFmla{\False}{!A}[m]}
+      \DisplayProof\\
+      $m$ yenidir & $m$ kullanılmıştır
+      \\[1ex]
+      \hline}{}
+    \end{tabular}
+  \end{center}
+  \caption{\Log{S5} için sadeleştirilmiş kurallar.}
+  \ollabel{tab:rules-S5}
+\end{table}
+
+\begin{ex}
+  $\Log{S5} \Proves \Ax{5}$, yani $\Diamond!A \lif \Box\Diamond!A$
+  olduğunu gösteren sadeleştirilmiş kapalı bir tablo veriyoruz.
+  \begin{oltableau}
+    [\pFmla{\False}{\Diamond\formula{A} \lif \Box\Diamond \formula{A}}{1},
+      just = \TAss
+      [\pFmla{\True}{\Diamond \formula{A}}{1}, just = {\TRule{\False}{\lif}[1]}
+        [\pFmla{\False}{\Box\Diamond \formula{A}}{1},
+          just = {\TRule{\False}{\lif}[1]}
+          [\pFmla{\False}{\Diamond \formula{A}}{2},
+            just = {\TRule{\False}{\Box}[3]}
+            [\pFmla{\True}{\formula{A}}{3},
+              just = {\TRule{\True}{\Diamond}[2]}
+                [\pFmla{\False}{\formula{A}}{3},
+                  just = {\TRule{\False}{\Diamond}[4]}, close]
+            ]
+          ]
+        ]
+      ]
+    ]
+  \end{oltableau}
+\end{ex}
+

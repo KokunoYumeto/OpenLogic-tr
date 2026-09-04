@@ -1,0 +1,84 @@
+% Generated from locale/tr/content/first-order-logic/axiomatic-deduction/rules-and-proofs.tex; do not hand-edit.
+
+
+\iftag{FOL}
+      {\olfileid[tr]{fol}{axd}{rul}}
+      {\olfileid[tr]{pl}{axd}{rul}}
+
+\olsection{Kurallar ve \usetoken{P}{derivation}}
+
+\begin{explain}
+  Aksiyomatik !!{derivation}s, mantığın belki de en basit !!{derivation}
+  sistemi örneğini verir. !!^a{derivation} yalnızca !!{formula}s içeren bir dizidir. Bir dizinin
+  !!a{derivation} sayılması için dizideki her !!{formula}, ya bir aksiyom örneği
+  olmalı ya da bir veya daha fazla önceki !!{formula}s kullanılarak bir çıkarım
+  kuralıyla elde edilmelidir. !!^a{derivation} için !!{derive}s işleminin
+  sonucu, dizinin son terimidir; bu terim bir !!{formula} olur.
+\end{explain}
+
+\begin{defn}[!!^{derivability}]
+$\Gamma$, $\Lang L$ dilinden !!{formula}s içeren bir kümeyse,
+$\Gamma$'dan bir \emph{!!{derivation}}, her $i \le n$ için aşağıdaki
+koşullardan birini sağlayan sonlu bir $!A_1$, \dots,~$!A_n$ !!{formula}s
+dizisidir:
+\begin{enumerate}
+\item $!A_i \in \Gamma$; veya
+\item $!A_i$ bir aksiyomdur; veya
+\item $!A_i$, $j < i$ (ve $k < i$) olmak üzere bazı $!A_j$'den (ve
+  $!A_k$'den) bir çıkarım kuralıyla elde edilir.
+\end{enumerate}
+\end{defn}
+
+Neyin doğru bir !!{derivation} sayıldığı, izin verdiğimiz çıkarım kurallarına
+(ve elbette aksiyom olarak aldıklarımıza) bağlıdır. Çıkarım kuralı ise belirli
+koşullar altında bir !!a{derivation} içindeki $!A_i$ adımının doğru bir çıkarım
+adımı olduğunu bildiren bir eğer--ise ifadesidir.
+
+\begin{defn}[Çıkarım kuralı]
+Bir \emph{çıkarım kuralı}, $\Gamma$'dan bir !!a{derivation} içinde hangi
+adımın doğru bir çıkarım adımı sayılacağına ilişkin yeterli bir koşul verir.
+\end{defn}
+
+Örneğin, $!A \in \Gamma$ olan tek elemanlı her $!A$ dizisi açıkça
+!!a{derivation} sayıldığından, aşağıdaki çok basit bir çıkarım kuralı olabilir:
+\begin{quote}
+  $!A \in \Gamma$ ise $!A$, $\Gamma$'dan her !!{derivation} içinde her zaman
+  doğru bir çıkarım adımıdır.
+\end{quote}
+Benzer biçimde $!A$ aksiyomlardan biriyse, tek başına $!A$ da bir
+!!a{derivation} oluşturur. Dolayısıyla aşağıdaki de bir çıkarım kuralıdır:
+\begin{quote}
+  $!A$ bir aksiyomsa doğru bir çıkarım adımıdır.
+\end{quote}
+Çıkarım kuralı ele alınan adımdan önce gelen !!{formula}s hakkında bilgi kullandığında
+durum daha ilginçleşir. Aşağıdaki kurala \emph{modus ponens} denir:
+\begin{quote}
+  $!B \lif !A$ ile $!B$, !!{derivation} içinde daha önce geçiyorsa $!A$ doğru
+  bir çıkarım adımıdır.
+\end{quote}
+Tek çıkarım kuralı buysa yukarıdaki !!{derivation} tanımımız şuna karşılık
+gelir: $!A_1$, \dots,~$!A_n$ dizisi ancak ve ancak bir !!a{derivation} olur;
+bunun koşulu, her $i \le n$ için aşağıdakilerden birinin geçerli olmasıdır:
+\begin{enumerate}
+\item $!A_i \in \Gamma$; veya
+\item $!A_i$ bir aksiyomdur; veya
+\item bazı $j < i$ için $!A_j$, $!B \lif !A_i$; bazı $k < i$ içinse $!A_k$,
+  $!B$'dir.
+\end{enumerate}
+Son koşul, $!A_i$'nin $!A_j$'den ($!B \lif !A_i$) ve $!A_k$'den ($!B$)
+modus ponens yoluyla elde edildiğini söyler. $1$'den $n$'ye ilerleyip her
+defasında $\Gamma$'da bulunan, bir aksiyom olan veya bir çıkarım kuralınca
+doğru çıkarım adımı olduğu belirlenen !!a{formula}~$!A_i$ bulursak dizinin
+tamamı doğru bir !!{derivation} sayılır.
+
+\begin{defn}[!!^{derivability}]
+Bir !!{formula}~$!A$, $\Gamma$'dan \emph{!!{derivable}} sayılır; bunun koşulu
+$!A$ ile biten ve $\Gamma$'dan başlayan !!a{derivation} bulunmasıdır. Bunu
+$\Gamma \Proves !A$ ile gösteririz.
+\end{defn}
+
+\begin{defn}[Teoremler]
+Bir !!^a{formula}~$!A$, boş kümeden $!A$ için bir !!a{derivation} varsa bir
+\emph{teorem}dir. $!A$ teoremse $\Proves !A$, değilse $\Proves/ !A$ yazarız.
+\end{defn}
+

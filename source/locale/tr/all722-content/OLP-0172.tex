@@ -1,0 +1,175 @@
+% Generated from locale/tr/content/first-order-logic/models-theories/set-theory.tex; do not hand-edit.
+
+
+\olfileid[tr]{fol}{mat}{set}
+
+\olsection{Kümeler Kuramı}
+
+Matematiğin neredeyse tamamı kümeler kuramı içinde geliştirilebilir.
+Matematiği bu kuramda geliştirmek birkaç şeyi gerektirir. Öncelikle
+$\in$ bağıntısı için bir aksiyomlar kümesi gerekir. Bazen $\in$
+bağıntısına birbiriyle çatışan özellikler veren çeşitli aksiyom
+sistemleri geliştirilmiştir. Seçim aksiyomunu içeren Zermelo--Fraenkel
+kümeler kuramı, yani $\Log{ZFC}$, bunların arasında öne çıkar: Açığa
+çıktığı üzere aksiyomları, matematikçilerin ispatlamayı bekledikleri
+şeylerin neredeyse tamamını ispatlamaya yeterli olduğundan, açık ara en
+yaygın kullanılan ve incelenen sistemdir. Fakat bunu gösterebilmeden
+önce matematikçilerin ifade etmek istedikleri şeylerin tümünü nasıl
+\emph{ifade edebileceğimizi} açıklamak gerekir. Başlangıç olarak dil
+hiçbir !!{constant}s ya da !!{function}s içermediğinden, belirli
+kümelerden (örneğin $\emptyset$ veya $\Nat$), kümeler üzerindeki
+işlemlerden (örneğin $X\cup Y$ ve $\Pow X$), hatta bağıntı ve fonksiyon
+gibi küme dışındaki şeyleri içeriyor görünen yapılardan nasıl söz
+edebileceğimiz ilk bakışta açık değildir.
+
+Öncelikle ``elemanı olmak'', ilgilendiğimiz tek bağıntı değildir;
+``alt kümesi olmak'' neredeyse onun kadar önemli görünür. Ancak ``alt
+kümesi olmak'' bağıntısını ``elemanı olmak'' cinsinden
+\emph{tanımlayabiliriz}. Bunun için kümeler kuramı dilinde, $\tuple{X,Y}$
+kümeler çifti tarafından ancak ve ancak $X\subseteq Y$ olduğunda
+sağlanan !!a{formula}~$!A(x,y)$ bulmalıyız. $X$, $Y$'nin alt kümesidir
+ancak ve ancak $X$ kümesinin bütün !!{element}s aynı zamanda $Y$
+kümesinin de !!{element}s ifadeleriyse. Dolayısıyla $\subseteq$
+bağıntısını
+\[
+\lforall[z][(z \in x \lif z \in y)]
+\]
+formülüyle tanımlayabiliriz. Bundan sonra bir formülde $\subseteq$
+bağıntısını kullanmak istediğimizde onun yerine bu formülü koyabiliriz
+($x$ ve $y$ uygun biçimde değiştirilir; gerekiyorsa bağlı değişken~$z$
+yeniden adlandırılır). Örneğin kümelerin kaplamsallığı, herhangi $x$ ve
+$y$ kümeleri birbirlerini içeriyorsa aynı küme olmaları gerektiğini
+söyler. Bu,
+$\lforall[x][\lforall[y][((x\subseteq y\land y\subseteq x)\lif x=y)]]$
+ile ya da $\subseteq$ yerine yukarıdaki tanımı koyarsak
+\[
+\lforall[x][\lforall[y][((\lforall[z][(z \in x \lif z \in y)] \land
+    \lforall[z][(z \in y \lif z \in x)]) \lif x = y)]]
+\]
+ile ifade edilebilir. Bu gerçekten de $\Log{ZFC}$ aksiyomlarından biri,
+\emph{kaplamsallık aksiyomudur}.
+
+$\emptyset$ için bir !!{constant} yoktur; fakat ``$x$ boştur'' ifadesini
+$\lnot\lexists[y][y\in x]$ ile belirtebiliriz. O zaman ``$\emptyset$
+vardır'', $\lexists[x][\lnot\lexists[y][y\in x]]$ !!{sentence}
+ifadesine dönüşür. Bu da $\Log{ZFC}$ aksiyomlarından biridir.
+(Kaplamsallık aksiyomunun yalnızca bir boş küme bulunduğunu gerektirdiğine
+dikkat edin.) Kümeler kuramı dilinde $\emptyset$ hakkında konuşmak
+istediğimizde bunu ``boş olan bir küme vardır ve ...'' biçiminde
+yazarız. Örneğin $\emptyset$ kümesinin her kümenin alt kümesi olduğunu
+ifade etmek için
+\[
+\lexists[x][(\lnot\lexists[y][y \in x] \land \lforall[z][x \subseteq z])]
+\]
+yazabiliriz; elbette burada $x\subseteq z$ de kendi tanımıyla
+değiştirilmelidir.
+
+$X\cup Y$ ve $\Pow X$ gibi küme işlemlerinden söz etmek için benzer bir
+yöntem kullanmalıyız. Kümeler kuramı dilinde fonksiyon simgeleri yoktur;
+fakat $X\cup Y=Z$ ve $\Pow X=Y$ fonksiyonel bağıntılarını
+\begin{align*}
+& \lforall[u][((u \in x \lor u \in y) \liff u \in z)]\\
+& \lforall[u][(u \subseteq x \liff u \in y)]
+\end{align*}
+ile ifade edebiliriz. Çünkü $X\cup Y$ kümesinin !!{element}s tam olarak
+$X$'in ya da $Y$'nin (veya ikisinin) !!{element}s olan kümelerdir;
+$\Pow X$ kümesinin !!{element}s ise tam olarak $X$'in alt kümeleridir.
+Ne var ki bu, $x\cup y$ veya $\Pow x$ ifadelerini birer terimmiş gibi
+kullanmamıza izin vermez; yalnızca $X\cup Y=Z$ ve $\Pow X=Y$
+bağıntılarını tanımlayan bütün !!{formula}s ifadelerini kullanabiliriz.
+Hatta bu bağıntıların herhangi bir zaman sağlandığını, yani birleşim ve
+kuvvet kümelerinin her zaman var olduğunu henüz bilmiyoruz. Örneğin
+$\lforall[x][\lexists[y][\Pow{x}=y]]$ !!{sentence}, $\Log{ZFC}$
+sisteminin başka bir aksiyomudur (kuvvet kümesi aksiyomu).
+
+Peki sıralı ikililerden veya fonksiyonlardan nasıl söz edeceğiz? Burada
+sıralı ikilileri ve fonksiyonları özel türden kümeler olarak nasıl
+düşünebileceğimizi açıklamalıyız. $\tuple{x,y}$ sıralı ikilisini
+$\{\{x\},\{x,y\}\}$ kümesi olarak tanımlayabiliriz. Fakat daha önce
+olduğu gibi, bu kümeyi adlandıran !!a{function} ekleyemeyiz; yalnızca
+$\tuple{x,y}=z$, yani $\{\{x\},\{x,y\}\}=z$ bağıntısını tanımlayabiliriz:
+\[
+\lforall[u][(u \in z \liff (\lforall[v][(v \in u \liff v = x)] \lor
+  \lforall[v][(v \in u \liff (v = x \lor v = y))]))].
+\]
+Bu formül, $z$ kümesinin !!{element}s olan $u$ kümelerinin tam olarak
+ya yalnızca $x$'i ya da yalnızca $x$ ile $y$'yi !!{element}s olarak
+içeren kümeler olduğunu söyler (başka bir deyişle bu kümeler ya
+$\{x\}$ ya da $\{x,y\}$ ile özdeştir). Bunu elde ettikten sonra örneğin
+$X\times Y=Z$ olduğunu da söyleyebiliriz:
+\[
+\lforall[z][(z \in Z \liff \lexists[x][\lexists[y][(x \in
+        X \land y \in Y \land \tuple{x, y} = z)]])].
+\]
+
+$f\colon X\to Y$ fonksiyonunu $f(x)=y$ bağıntısı, yani
+$\Setabs{\tuple{x,y}}{f(x)=y}$ ikilileri kümesi olarak düşünebiliriz.
+O zaman bir $f$ kümesinin $X$'ten $Y$'ye bir fonksiyon olduğunu şu
+koşullarla ifade edebiliriz: (a) $f\subseteq X\times Y$ bir bağıntıdır;
+(b) $f$ tümeldir, yani her $x\in X$ için $\tuple{x,y}\in f$ olacak bir
+$y\in Y$ vardır; (c) $f$ fonksiyoneldir, yani $\tuple{x,y},
+\tuple{x,y'}\in f$ olduğunda $y=y'$ olur (çünkü fonksiyon değerleri
+tektir). Dolayısıyla ``$f$, $X$'ten $Y$'ye bir fonksiyondur'' şöyle
+yazılabilir:
+\begin{align*}
+ \lforall[u][(u \in f \lif {}] & \lexists[x][\lexists[y][(x \in X \land y \in
+      Y \land \tuple{x, y} = u)]]) \land {}\\
+ \lforall[x][(x \in X \lif {}] &
+      (\lexists[y][(y \in Y \land \mathrm{maps}(f, x, y))] \land {}\\
+& (\lforall[y][\lforall[y'][((\mathrm{maps}(f, x, y) \land
+    \mathrm{maps}(f, x, y')) \lif y = y')]])).
+\end{align*}
+Burada $\mathrm{maps}(f,x,y)$, $\lexists[v][(v\in f\land
+\tuple{x,y}=v)]$ ifadesinin kısaltmasıdır (bu !!{formula},
+``$f(x)=y$'' ifadesini belirtir).
+
+Örneğin $f\colon X\to Y$ fonksiyonunun !!{injective} olduğunu ifade
+etmek de artık zor değildir:
+\begin{multline*}
+ f \colon X \to Y \land \lforall[x][\lforall[x'][((x \in X \land x' \in
+     X \land {}] \\
+ \lexists[y][(\mathrm{maps}(f, x, y) \land \mathrm{maps}(f,
+        x', y))]) \lif x = x')].
+\end{multline*}
+Bir $f\colon X\to Y$ fonksiyonu !!{injective} ancak ve ancak $f$,
+$x,x'\in X$ elemanlarını aynı $y$ elemanına eşlediğinde $x=x'$ ise.
+Bu formülü $\mathrm{inj}(f,X,Y)$ ile kısaltırsak Cantor teoremi kadar
+önemli bir önermeyi kümeler kuramı dilinde şimdiden ifade edebiliriz:
+$\Pow X$ kümesinden $X$ kümesine !!{injective} bir fonksiyon yoktur:
+\[
+\lforall[X][\lforall[Y][(\Pow{X} = Y \lif
+    \lnot\lexists[f][\mathrm{inj}(f, Y, X)])]].
+\]
+
+Kümeler kuramının, her tanımlayıcı özellik için bir kümenin varlığını
+güvence altına alan başka bir aksiyom gerektirdiği düşünülebilir.
+$!A(x)$, $x$ değişkeninin serbest olduğu bir kümeler kuramı formülü ise
+\[
+\lexists[y][\lforall[x][(x \in y \liff !A(x))]]
+\]
+!!{sentence} ifadesini ele alabiliriz. Bu !!{sentence}, !!{element}s
+tam ve yalnızca $!A(x)$ özelliğini sağlayan $x$ nesneleri olan bir $y$
+kümesinin bulunduğunu söyler. Bu şemaya ``küme oluşturma ilkesi''
+denir. Çok yararlı görünür; ne yazık ki tutarsızdır. $!A(x)\ident
+\lnot x\in x$ alırsak küme oluşturma ilkesi
+\[
+\lexists[y][\lforall[x][(x \in y \liff x \notin x)]]
+\]
+ifadesini, yani kendi kendisinin !!{element}s olmayan bütün kümelerin
+kümesinin var olduğunu söyler. Böyle bir küme var olamaz; bu Russell
+paradoksudur. $\Log{ZFC}$ aslında bu ilkenin kısıtlanmış ve tutarlı bir
+biçimi olan ayırma ilkesini içerir:
+\[
+\lforall[z][\lexists[y][\lforall[x][(x \in y \liff (x \in z \land
+      !A(x)))]]].
+\]
+
+\begin{prob}
+\[
+\lexists[y][\lforall[x][(x \in y \liff x \notin x)]] \Proves \lfalse
+\]
+sonucunu gösteren !!a{derivation} vererek küme oluşturma ilkesinin
+tutarsız olduğunu gösterin. Önce
+$(A\lif\lnot A)\land(\lnot A\lif A)\Proves\lfalse$ sonucunu göstermek
+yardımcı olabilir.
+\end{prob}

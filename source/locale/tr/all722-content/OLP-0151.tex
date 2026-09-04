@@ -1,0 +1,151 @@
+% Generated from locale/tr/content/first-order-logic/syntax-and-semantics/first-order-languages.tex; do not hand-edit.
+
+
+\olfileid[tr]{fol}{syn}{fol}
+
+\olsection{Birinci Dereceden Diller}
+
+
+Birinci dereceden mantığın ifadeleri; \emph{!!{variable}s},
+\emph{!!{constant}s}, \emph{!!{predicate}s} ve kimi zaman
+\emph{!!{function}s} içeren temel bir söz varlığından kurulur. Bunlardan,
+mantıksal bağlaçlar, niceleyiciler ve parantezlerle virgüller gibi
+noktalama simgeleriyle birlikte, \emph{terimler} ve
+\emph{!!{formula}s} oluşturulur.
+
+\begin{explain}
+Gayriresmî olarak, !!{predicate}s özelliklerin ve bağıntıların,
+!!{constant}s tek tek nesnelerin, !!{function}s ise gönderimlerin
+adlarıdır. !!{identity}~$\eq$ dışında bunlar \emph{mantıksal olmayan
+simgeler}dir ve birlikte bir dil oluştururlar. Her birinci dereceden
+dil~$\Lang L$, mantıksal olmayan simgeleriyle belirlenir. En genel
+durumda $\Lang L$, her türden sonsuz sayıda simge içerir.
+\end{explain}
+
+Genel durumda birinci dereceden mantıkta aşağıdaki simgeleri kullanırız:
+
+\begin{enumerate}
+\item Mantıksal simgeler
+\begin{enumerate}
+\item Mantıksal bağlaçlar:
+  \startycommalist
+  \iftag{prvNot}{\ycomma $\lnot$ (değilleme)}{}%
+  \iftag{prvAnd}{\ycomma $\land$ (ve bağlacı)}{}%
+  \iftag{prvOr}{\ycomma $\lor$ (veya bağlacı)}{}%
+  \iftag{prvIf}{\ycomma $\lif$ (!!{conditional})}{}%
+  \iftag{prvIff}{\ycomma $\liff$ (!!{biconditional})}{}%
+  \iftag{prvAll}{\ycomma $\lforall$ (evrensel niceleyici)}{}%
+  \iftag{prvEx}{\ycomma $\lexists$ (varlıksal niceleyici)}{}.
+\tagitem{prvFalse}{!!{falsity} için önerme sabiti~$\lfalse$.}{}
+\tagitem{prvTrue}{!!{truth} için önerme sabiti~$\ltrue$.}{}
+\item İki yerli !!{identity}~$\eq$.
+\item Bir !!{denumerable}s küme oluşturan !!{variable}s: $\Obj v_0$, $\Obj v_1$, $\Obj
+  v_2$, \dots
+\end{enumerate}
+\item Birinci dereceden mantığın \emph{standart dilini} oluşturan
+  mantıksal olmayan simgeler
+\begin{enumerate}
+\item Her $n>0$ için bir !!{denumerable}s küme oluşturan $n$-yerli !!{predicate}s: $\Obj
+  A^n_0$, $\Obj A^n_1$, $\Obj A^n_2$, \dots
+\item Bir !!{denumerable}s küme oluşturan !!{constant}s: $\Obj c_0$, $\Obj c_1$, $\Obj
+  c_2$, \dots.
+\item Her $n>0$ için bir !!{denumerable}s küme oluşturan $n$-yerli !!{function}s:
+  $\Obj f^n_0$, $\Obj f^n_1$, $\Obj f^n_2$, \dots
+\end{enumerate}
+\item Noktalama işaretleri: (, ) ve virgül.
+\end{enumerate}
+
+Tanımlarımızın ve sonuçlarımızın çoğu birinci dereceden mantığın tam
+standart dili için ifade edilecektir. Bununla birlikte, uygulamaya bağlı
+olarak dili yalnızca belirli !!{predicate}s, !!{constant}s ve
+!!{function}s içerecek biçimde de kısıtlayabiliriz.
+
+\begin{ex}
+Aritmetiğin dili~$\Lang L_A$ tek bir iki yerli !!{predicate}~$<$, tek
+bir !!{constant}~$\Obj 0$, bir tane bir yerli !!{function}~$\prime$ ve
+sayıları iki olan, iki yerli !!{function}{}u içerir:~$+$ ile~$\times$.
+\end{ex}
+
+\begin{ex}
+Küme teorisinin dili~$\Lang L_Z$ yalnızca tek bir iki yerli
+!!{predicate}~$\in$ içerir.
+\end{ex}
+
+\begin{ex}
+Sıralamaların dili~$\Lang L_\le$ yalnızca iki yerli
+!!{predicate}~$\le$ içerir.
+\end{ex}
+
+Bunlar da birer uzlaşımdır: resmî olarak yalnızca takma adlardır;
+örneğin $<$, $\in$ ve $\le$, $\Obj A^2_0$ için, $\Obj 0$, $\Obj c_0$ için,
+$\prime$, $\Obj f^1_0$ için, $+$, $\Obj f^2_0$ için ve $\times$,
+$\Obj f^2_1$ için takma addır.
+
+\iftag{defNot,defOr,defAnd,defIf,defIff,defTrue,defFalse,defEx,defAll}{%
+Yukarıda tanıtılan ilkel bağlaçlara ve
+\iftag{notprvEx,notprvAll}{niceleyiciye}{niceleyicilere} ek olarak
+aşağıdaki \emph{tanımlı} simgeleri de kullanırız:
+\startycommalist
+  \iftag{defNot}{\ycomma $\lnot$ (değilleme)}{}%
+  \iftag{defAnd}{\ycomma $\land$ (ve bağlacı)}{}%
+  \iftag{defOr}{\ycomma $\lor$ (veya bağlacı)}{}%
+  \iftag{defIf}{\ycomma $\lif$ (!!{conditional})}{}%
+  \iftag{defIff}{\ycomma $\liff$ (!!{biconditional})}{}%
+  \iftag{defAll}{\ycomma $\lforall$ (evrensel niceleyici)}{}%
+  \iftag{defEx}{\ycomma $\lexists$ (varlıksal niceleyici)}{}%
+  \iftag{defFalse}{\ycomma !!{falsity}~$\lfalse$}{}%
+  \iftag{defTrue}{\ycomma !!{truth}~$\ltrue$}}{}.
+
+\begin{tagblock}{defNot,defOr,defAnd,defIf,defIff,defTrue,defFalse,defEx,defAll}
+\begin{explain}
+Tanımlı bir simge resmen dilin bir parçası değildir; gayriresmî bir
+kısaltma olarak sunulur. Böylece yalnızca ilkel simgeleri kullansaydık
+oldukça uzayacak formülleri kısaltabiliriz. Bu açıkça bir üstünlüktür.
+Fakat daha büyük üstünlük, ispatların kısalmasıdır. Bir simge ilkelse
+ispatlarda ayrı olarak ele alınmalıdır. Dolayısıyla ilkel simge sayısı
+arttıkça ispatlarımız da uzar.
+\end{explain}
+\end{tagblock}
+
+% Alternate symbols
+
+\begin{intro}
+Yukarıda kullandığımız terimlerden ve simgelerden farklı olanlarına
+aşina olabilirsiniz. Mantık metinlerinde (ve derslerde) ``değilleme''
+için yaygın olarak $\sim$, $\neg$ veya~!\ kullanılır; ``ve bağlacı'' içinse
+$\wedge$, $\cdot$ veya $\&$ kullanılır. ``Koşul'' ya da ``gerektirme''
+için yaygın simgeler $\rightarrow$, $\Rightarrow$ ve $\supset$'dir.
+\iftag{prvIff,defIff}{``İki yönlü koşul'', ``iki yönlü gerektirme''
+  ya da ``(maddi) eşdeğerlik'' için kullanılan simgeler
+  $\leftrightarrow$, $\Leftrightarrow$ ve $\equiv$'dir.}{}
+\iftag{prvFalse,defFalse}{$\lfalse$ simgesine çeşitli kaynaklarda
+  ``yanlışlık'', ``falsum'', ``saçmalık'' ya da ``alt'' denir.}{}
+\iftag{prvTrue,defTrue}{$\ltrue$ simgesine çeşitli kaynaklarda
+  ``doğruluk'', ``verum'' ya da ``üst'' denir.}{}
+
+Latin alfabesinin başındaki küçük harfleri (ör. $a$, $b$, $c$)
+!!{constant}s için (bunlara bazen ad da denir), sonundaki küçük harfleri
+(ör. $x$, $y$, $z$) ise !!{variable}s için kullanmak gelenektir.
+Niceleyiciler !!{variable}s{}le birleşir; örneğin $x$ ile. Evrensel
+niceleyicinin gösterim çeşitleri $\forall x$, $(\forall x)$, $(x)$, $\Pi x$,
+$\bigwedge_x$; varlıksal niceleyicininkiler ise $\exists x$, $(\exists
+x)$, $(Ex)$, $\Sigma x$, $\bigvee_x$ biçimlerindedir.
+\end{intro}
+
+\begin{explain}
+Bütün önerme işleçlerini ve her iki niceleyiciyi dilin ilkel simgeleri
+olarak ele alabiliriz. Bunun yerine daha küçük bir ilkel simge dağarcığı
+seçip öteki !!{operator}s için tanımlı simge muamelesi yapabiliriz. Doğruluk
+fonksiyonları bakımından tam Boole işleci kümeleri arasında
+$\{ \lnot, \lor \}$, $\{ \lnot, \land \}$ ve $\{ \lnot,
+\lif\}$ bulunur---bunların her biri, anlatım bakımından tam bir birinci
+dereceden dil elde etmek için niceleyicilerden herhangi biriyle
+birleştirilebilir.
+
+Başka !!{operator}s arasından ikisini de biliyor olabilirsiniz: Sheffer çizgisi~$|$
+(adını Henry Sheffer'dan alır) ve Quine hançeri olarak da bilinen
+Peirce oku~$\downarrow$. Bu işleçler sırasıyla olağan ``ve-değil'' ve
+``veya-değil'' okumalarıyla tek başlarına doğruluk fonksiyonları
+bakımından tamdır.
+\end{explain}
+

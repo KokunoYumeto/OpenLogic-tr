@@ -1,0 +1,92 @@
+% Generated from locale/tr/content/sets-functions-relations/sets/proofs-about-sets.tex; do not hand-edit.
+
+
+\olfileid[tr]{sfr}{set}{prf}
+\olsection{Kümeler Hakkında İspatlar}
+
+\begin{editorial}
+Bu bölümün yerini \verb|content/methods/proofs| almıştır ve bölüm varsayılan
+olarak bu kitaptan çıkarılmıştır.
+\end{editorial}
+
+\begin{explain}
+Kümeler ve şimdiye kadar tanıttığımız gösterimler, kümeleri belirtmek ve
+aralarındaki bağıntıları ifade etmek için elverişli kısaltmalar sağlar. Çoğu
+zaman bu bağıntılar hakkındaki iddiaları ispatlamak da gerekir. Matematiksel
+ispatlara aşina değilseniz bu sizin için yeni olabilir. Bu nedenle basit bir
+örneği adım adım inceleyeceğiz. Her $X$ ve $Y$ kümesi için her zaman
+$X \cap (X \cup Y) = X$ olduğunu ispatlayacağız. Kümeler arasındaki böyle bir
+özdeşlik nasıl ispatlanır? Kümelerin yalnızca !!{element}s{}ıyla belirlendiğini,
+yani kümelerin ancak ve ancak aynı !!{element}s{}ı taşıdıklarında özdeş olduğunu
+hatırlayın. Bu durumda (a) $X \cap (X \cup Y)$ kümesinin her !!{element}{}ının
+$X$'in de !!{element}{}ı olduğunu ve tersine (b) $X$'in her !!{element}{}ının
+$X \cap (X \cup Y)$ kümesinin de !!{element}{}ı olduğunu göstermeliyiz. Başka
+bir deyişle hem (a) $X \cap (X \cup Y) \subseteq X$ hem de
+(b) $X \subseteq X \cap (X \cup Y)$ olduğunu gösteririz.
+
+``$X \cap (X \cup Y)$ kümesinin her~$z$ !!{element}{}ı, $X$'in de
+!!{element}{}ıdır'' gibi genel bir iddia, önce gelişigüzel bir
+$z \in X \cap (X \cup Y)$ verildiği varsayılarak ve bu varsayımdan
+$z \in X$ sonucu çıkarılarak ispatlanır. Bu kalıbı ``genel koşullu ispat''
+adıyla biliyor olabilirsiniz. Bu ispata katılan, örneğin ``$\cap$'' ve
+``$\cup$'' gibi kavramların tanımlarını da kullanmamız gerekecek. Dolayısıyla
+(a) durumu şöyle gerekçelendirilir:
+
+\begin{quote}
+(a) Önce $X \cap (X \cup Y) \subseteq X$ olduğunu, yani $\subseteq$ tanımı
+uyarınca her~$z$ için $z \in X \cap (X \cup Y)$ ise $z \in X$ olduğunu
+göstermek istiyoruz. $z \in X \cap (X \cup Y)$ olduğunu varsayın. $z$, iki
+kümenin kesişiminin !!{element}{}ı ancak ve ancak her iki kümenin de
+!!{element}{}ı olduğundan $z \in X$ ve ayrıca $z \in X \cup Y$ sonucuna
+varabiliriz. Özellikle $z \in X$; göstermek istediğimiz de buydu.
+\end{quote}
+
+Bu, ispatın ilk yarısını tamamlar. Son adımda bir varsayımdan bir tümel
+evetleme ($z \in X$ ve $z \in X \cup Y$) çıkıyorsa, her bileşenin de aynı
+varsayımdan çıktığı olgusunu kullandığımıza dikkat edin. Bu kuralı ``tümel
+evetleme giderimi'' ya da $\land$Elim adıyla biliyor olabilirsiniz. Şimdi de
+(b)'yi ispatlayalım:
+
+\begin{quote}
+(b) Şimdi $X \subseteq X \cap (X \cup Y)$ olduğunu, yani $\subseteq$ tanımı
+uyarınca her~$z$ için $z \in X$ ise $z \in X \cap (X \cup Y)$ olduğunu
+ispatlayalım. $z \in X$ varsayımını yapın. $z \in X \cap (X \cup Y)$
+olduğunu göstermek için ``$\cap$'' tanımı gereği (i) $z \in X$ ve ayrıca
+(ii) $z \in X \cup Y$ olduğunu göstermeliyiz. Burada (i) yalnızca
+varsayımımızdır; dolayısıyla başka bir şey ispatlamamız gerekmez. (ii) için
+$z$'nin kümeler birleşiminin !!{element}{}ı ancak ve ancak bu kümelerden en az
+birinin !!{element}{}ı olduğunu hatırlayın. $z \in X$ ve $X \cup Y$, $X$ ile
+$Y$'nin birleşimi olduğundan burada durum budur. O halde $z \in X \cup Y$.
+Hem (i) $z \in X$ hem de (ii) $z \in X \cup Y$ olduğunu gösterdik;
+dolayısıyla ``$\cap$'' tanımı gereği $z \in X \cap (X \cup Y)$.
+\end{quote}
+
+Bu anlatım biraz uzundu, fakat kümeler ve aralarındaki bağıntılar hakkında
+nasıl akıl yürüttüğümüzü gösterir. Genellikle bu kadar açık yazmayız;
+özellikle bütün tanımları tekrarlamayabiliriz. Daha ileri bir metindeki ispat
+çok daha sıkıştırılmış olur ve aşağıdakine benzeyebilir.
+\end{explain}
+
+
+\begin{prop}[Yutma]
+Bütün $X$, $Y$ kümeleri için
+\[
+X \cap (X \cup Y) = X.
+\]
+\end{prop}
+
+\begin{proof}
+(a) $z \in X \cap (X \cup Y)$ olsun. O halde $z \in X$; dolayısıyla
+$X \cap (X \cup Y) \subseteq X$.
+
+(b) Şimdi $z \in X$ olsun. O zaman $z \in X \cup Y$ ve dolayısıyla
+$z \in X \cap (X \cup Y)$. Böylece $X \subseteq X \cap (X \cup Y)$.
+\end{proof}
+
+\begin{prob}
+$X \cup (X \cap Y) = X$ olduğunu ayrıntılı biçimde ispatlayın. Ardından
+kısaltılmış, sıkıştırılmış bir ispat verin. (İpucu: $X \cup (X \cap Y)
+\subseteq X$ yönü için durumlara ayırarak ispatı, diğer adıyla $\lor$Elim
+kuralını kullanmanız gerekecek.)
+\end{prob}
+

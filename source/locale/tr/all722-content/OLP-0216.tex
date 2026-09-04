@@ -1,0 +1,186 @@
+% Generated from locale/tr/content/computability/recursive-functions/examples.tex; do not hand-edit.
+
+
+\olfileid[tr]{cmp}{rec}{exa}
+\olsection{İlkel Özyinelemeli Fonksiyon Örnekleri}
+
+İlkel özyinelemeli fonksiyonlara ilişkin bazı örneklerimiz zaten var:
+toplama ve çarpma fonksiyonları $\Add$ ile $\Mult$. Özdeşlik fonksiyonu
+$\fn{id}(x)=x$, yalnızca $\Proj{1}{0}$ olduğundan ilkel özyinelemelidir.
+Sabit fonksiyonlar $\fn{const}_n(x)=n$ de $\Zero$ ile $\Succ$'dan art arda
+bileşke alınarak tanımlanabildiği için ilkel özyinelemelidir. İlkel
+özyinelemeli tanımlarda sabit kullanmak istediğimizde bu yararlıdır. Örneğin
+$f(x)=2\cdot x$ fonksiyonunu, $\fn{const}_n(x)$ ile çarpmadan bileşke alarak
+\[
+  f(x)=\Mult(\fn{const}_2(x),\Proj{1}{0}(x))
+\]
+biçiminde elde ederiz. Bundan sonra bu yöntemi kullanacağız.
+
+\begin{prop}
+  Üs alma fonksiyonu $\fn{exp}(x,y)=x^y$ ilkel özyinelemelidir.
+\end{prop}
+
+\begin{proof}
+  $\fn{exp}$ fonksiyonunu ilkel özyinelemeyle şöyle tanımlayabiliriz:
+  \begin{align*}
+    \fn{exp}(x,0) & = 1 \\
+    \fn{exp}(x,y+1) & = \Mult(x,\fn{exp}(x,y)).
+    \intertext{Tam anlamıyla söylersek bu henüz ilkel özyinelemeli
+      fonksiyonlardan yapılan bir özyinelemeli tanım değildir. Resmî tanım
+      şudur:}
+    \fn{exp}(x,0) & = f(x) \\
+    \fn{exp}(x,y+1) & = g(x,y,\fn{exp}(x,y)).
+    \intertext{Burada}
+    f(x) & = \Succ(\Zero(x))=1 \\
+    g(x,y,z) & = \Mult(\Proj{3}{0}(x,y,z),\Proj{3}{2}(x,y,z))=x\cdot z.
+  \end{align*}
+  Böylece $f$ ile $g$, ilkel özyinelemeli fonksiyonlardan bileşkeyle
+  tanımlanır.
+\end{proof}
+
+\begin{prop}
+  \[
+    \fn{pred}(y)=\begin{cases}
+      0 & \text{$y=0$ ise}\\
+      y-1 & \text{aksi durumda}
+    \end{cases}
+  \]
+  ile tanımlanan öncül fonksiyonu $\fn{pred}(y)$ ilkel özyinelemelidir.
+\end{prop}
+
+\begin{proof}
+  Şunlara dikkat edin:
+  \begin{align*}
+    \fn{pred}(0) & = 0 \text{ ve}\\
+    \fn{pred}(y+1) & = y.
+  \end{align*}
+  Bu neredeyse ilkel özyinelemeli bir tanımdır. Tam anlamıyla ilkel
+  özyineleme şablonuna uymaz; çünkü o şablon en az bir ek $x$ argümanı ister.
+  Ayrıca $\fn{pred}(y+1)$ tanımında $\fn{pred}(y)$ değerinin gerçekte
+  kullanılmaması da alışılmadıktır. Fakat önce $\fn{pred}'(x,y)$ fonksiyonunu
+  şöyle tanımlayabiliriz:
+  \begin{align*}
+    \fn{pred}'(x,0) & = \Zero(x)=0,\\
+    \fn{pred}'(x,y+1) & = \Proj{3}{1}(x,y,\fn{pred'}(x,y))=y.
+  \end{align*}
+  Ardından $\fn{pred}$ fonksiyonunu bundan bileşkeyle, örneğin
+  $\fn{pred}(x)=\fn{pred}'(\Zero(x),\Proj{1}{0}(x))$ olarak tanımlarız.
+\end{proof}
+
+\begin{prop}
+  Faktöriyel fonksiyonu
+  $\fn{fac}(x)=\fact{x}=1\cdot2\cdot3\cdots x$ ilkel özyinelemelidir.
+\end{prop}
+
+\begin{proof}
+  Açık ilkel özyinelemeli tanım şudur:
+  \begin{align*}
+    \fn{fac}(0) & = 1\\
+    \fn{fac}(y+1) & = \fn{fac}(y)\cdot(y+1).
+    \intertext{Resmî olarak önce iki yerli bir $h$ fonksiyonu tanımlamalıyız:}
+    h(x,0) & = \fn{const}_1(x)\\
+    h(x,y+1) & = g(x,y,h(x,y))
+    \intertext{burada
+      $g(x,y,z)=\Mult(\Proj{3}{2}(x,y,z),
+      \Succ(\Proj{3}{1}(x,y,z)))$; ardından}
+    \fn{fac}(y) & = h(\Proj{1}{0}(y),\Proj{1}{0}(y))=h(y,y)
+  \end{align*}
+  deriz. Bundan sonra biraz daha serbest davranacak ve bileşke ile ilkel
+  özyineleme üzerinden yapılan resmî tanımları her defasında vermeyeceğiz.
+\end{proof}
+
+\begin{prop}
+  \[
+    x\tsub y=\begin{cases}
+      0 & \text{$x<y$ ise}\\
+      x-y & \text{aksi durumda}
+    \end{cases}
+  \]
+  ile tanımlanan kesilmiş çıkarma $x\tsub y$ ilkel özyinelemelidir.
+\end{prop}
+
+\begin{proof}
+  Şunlara sahibiz:
+  \begin{align*}
+    x\tsub0 & = x\\
+    x\tsub(y+1) & = \fn{pred}(x\tsub y).
+  \end{align*}
+\end{proof}
+
+\begin{prop}
+  $x$ ile $y$ arasındaki uzaklık $\lvert x-y\rvert$ ilkel özyinelemelidir.
+\end{prop}
+
+\begin{proof}
+  $\lvert x-y\rvert=(x\tsub y)+(y\tsub x)$ eşitliğine sahibiz. Dolayısıyla
+  uzaklık, ikisi de ilkel özyinelemeli olan $+$ ile $\tsub$ işlemlerinden
+  bileşkeyle tanımlanabilir.
+\end{proof}
+
+\begin{prop}
+  $x$ ile $y$'nin en büyüğü $\fn{max}(x,y)$ ilkel özyinelemelidir.
+\end{prop}
+
+\begin{proof}
+  $\fn{max}(x,y)$ fonksiyonunu $+$ ile $\tsub$ işlemlerinden bileşkeyle
+  \[
+    \fn{max}(x,y)\defis x+(y\tsub x)
+  \]
+  olarak tanımlayabiliriz. En büyük $x$ ise, yani $x\geq y$ ise,
+  $y\tsub x=0$ ve $x+(y\tsub x)=x+0=x$ olur. En büyük $y$ ise
+  $y\tsub x=y-x$ ve $x+(y\tsub x)=x+(y-x)=y$ olur.
+\end{proof}
+
+\begin{prop}
+  \ollabel{prop:min-pr}
+  $x$ ile $y$'nin en küçüğü $\fn{min}(x,y)$ ilkel özyinelemelidir.
+\end{prop}
+
+\begin{proof}
+  Alıştırma.
+\end{proof}
+
+\begin{prob}
+  \olref[cmp][rec][exa]{prop:min-pr} önermesini ispatlayın.
+\end{prob}
+
+\begin{prob}
+\[
+  f(x,y)=2^{(2^{\iddots^{2^x}})}
+  \raisebox{1ex}{\bigg\rbrace}
+  \raisebox{1ex}{\text{$y$ tane $2$}}
+\]
+fonksiyonunun ilkel özyinelemeli olduğunu gösterin.
+\end{prob}
+
+\begin{prob}
+Tam sayı bölmesi $d(x,y)=\lfloor x/y\rfloor$ fonksiyonunun, yani ondalık
+ayıracından sonraki her şeyin atıldığı bölmenin ilkel özyinelemeli olduğunu
+gösterin. $y=0$ iken $d(x,0)=0$ olduğunu kararlaştırıyoruz. $d$ için ilkel
+özyineleme ve bileşke kullanan açık bir tanım verin.
+\end{prob}
+
+\begin{prop}
+İlkel özyinelemeli fonksiyonlar kümesi aşağıdaki iki işlem altında kapalıdır:
+\begin{enumerate}
+\item Sonlu toplamlar: $f(\vec x,z)$ ilkel özyinelemeliyse
+\[
+  g(\vec x,y)\defis\sum_{z=0}^{y}f(\vec x,z)
+\]
+fonksiyonu da ilkel özyinelemelidir.
+\item Sonlu çarpımlar: $f(\vec x,z)$ ilkel özyinelemeliyse
+\[
+  h(\vec x,y)\defis\prod_{z=0}^{y}f(\vec x,z)
+\]
+fonksiyonu da ilkel özyinelemelidir.
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+Örneğin sonlu toplamlar şu denklemlerle özyinelemeli olarak tanımlanır:
+\begin{align*}
+  g(\vec x,0) & = f(\vec x,0)\\
+  g(\vec x,y+1) & = g(\vec x,y)+f(\vec x,y+1).
+\end{align*}
+\end{proof}
+

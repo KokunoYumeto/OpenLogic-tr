@@ -1,0 +1,113 @@
+% Generated from locale/tr/content/set-theory/replacement/finiteaxiomatizability.tex; do not hand-edit.
+
+	
+\olfileid[tr]{sth}{replacement}{finiteaxiomatizability}
+\olsection{Ek: Sonlu Aksiyomlaştırılabilirlik}
+Bu bölümü Yerine Koyma'dan bazı sonuçlar çıkararak kapatıyoruz. İlk sonuç
+\citet{Montague1961}'e aittir; bunun $\ZF$ \emph{içinde} bir ispat değil,
+$\ZF$ \emph{hakkında} bir ispat olduğuna dikkat edin:
+\begin{thm}\ollabel{zfnotfinitely}
+	$\ZF$ sonlu olarak aksiyomlaştırılamaz. Daha genel olarak: $\Th{T}$ sonlu
+	ve $\Th{T} \Proves \ZF$ ise $\Th{T}$ tutarsızdır.
+	
+	(Burada kendimizi, mantık dışı tek ilkel simgesi $\in$ olan birinci
+	dereceden tümcelerle örtük olarak sınırlandırıyor ve bütün $\phi \in \ZF$
+	için $\Th{T} \Proves \phi$ olduğunu belirtmek üzere
+	$\Th{T} \Proves \ZF$ yazıyoruz.)
+\end{thm}
+\begin{proof}
+	$\Th{T} \Proves \ZF$ olacak biçimde sonlu bir $\Th{T}$ sabit olsun.
+	Dolayısıyla $\Th{T}$ Yansıma'yı, yani
+	\olref[sth][replacement][ref]{reflectionschema} sonucunu ispatlar.
+	$\Th{T}$ sonlu olduğundan onu tek bir $\theta$ evetlemesi olarak
+	yeniden yazabiliriz. Bu formülle yansıma yapınca $\Th{T} \Proves \exists
+	\beta(\theta \liff \theta^{V_\beta})$ olur. Önemsiz biçimde
+	$\Th{T} \Proves \theta$ olduğundan $\Th{T} \Proves \exists \beta\
+	\theta^{V_\beta}$ sonucunu elde ederiz.
+	
+	Şimdi $\psi(X)$ şunu kısaltsın:
+	\[
+		\theta^X \land X\text{ geçişlidir} \land (\forall Y \in X)(Y\text{ geçişlidir}\lif \lnot \theta^{Y})
+	\]
+	Bu kabaca $X$'in geçişli bir $\theta$ modeli ve bu bakımdan $\in$-minimal
+	olduğunu söyler. $\Th{T} \Proves \exists \beta\ \theta^{V_\beta}$
+	olduğunu hatırlayıp $\ZF$ içindeki ve dolayısıyla $\Th{T}$ içindeki
+	ranklara ilişkin temel olguları kullanınca şunu elde ederiz:
+	\begin{equation}
+		\Th{T} \Proves \exists M \psi(M). \tag{*}\label{Mpsi}
+	\end{equation}
+	$\psi(X)$'in ilk evetlenenini kullanırsak, $\Th{T} \Proves \sigma$
+	olduğu her durumda $\Th{T} \Proves \forall X(\psi(X) \lif \sigma^X)$
+	elde ederiz. Dolayısıyla \eqref{Mpsi} gereği:
+	\begin{align*}
+		\Th{T} &\Proves \forall X(\psi(X) \lif (\exists N \psi(N))^X)\\
+	\intertext{Bunu ve yine \eqref{Mpsi} sonucunu kullanırsak:}
+		\Th{T} &\Proves \exists M(\psi(M) \land (\exists N \psi(N))^M)
+	\intertext{O hâlde özellikle:}
+		\Th{T} &\Proves \exists M(\psi(M) \land (\exists N \in M)((N\text{ geçişlidir})^N \land (\theta^N)^M))
+	\intertext{Dolayısıyla geçişlilik hakkındaki temel akıl yürütmeyle:}
+		\Th{T} &\Proves \exists M(\psi(M) \land (\exists N \in M)(N\text{ geçişlidir} \land \theta^N))
+	\end{align*} 
+	Böylece $\Th{T}$ tutarsızdır.\footnote{Bu ``temel akıl yürütme'', geçişli
+	kümeler için bazı ``mutlaklık olgularını'' ispatlamayı içerir.}
+\end{proof}
+
+\citet[223]{Potter2004} tarafından belirtilen benzer bir sonuç şöyledir:
+
+\begin{prop}\ollabel{finiteextensionofZ}
+	$\Th{T}$, $\Z$'yi sonlu sayıda yeni aksiyomla genişletsin.
+	$\Th{T} \Proves \ZF$ ise $\Th{T}$ tutarsızdır. (Burada
+	\olref{zfnotfinitely} için kullandığımız örtük sınırlamaların aynısını
+	kullanıyoruz.)
+\end{prop}
+\begin{proof}
+	Ayırma'nın (sonsuz sayıdaki) örnekleri \emph{dışında} $\Th{T}$'nin bütün
+	aksiyomlarının evetlemesi için $\theta$ kullanın. $\psi$'yi
+	\olref{zfnotfinitely} içindeki gibi $\theta$'dan tanımlayarak
+	$\Th{T} \Proves \exists M \psi(M)$ olduğunu gösterebiliriz.
+	
+	\olref{zfnotfinitely} içinde olduğu gibi, $\Th{T} \Proves \sigma$ olduğu
+	her durumda $\Th{T} \Proves \forall X(\psi(X) \lif \sigma^X)$ olduğunu
+	veren şemayı kurabiliriz. Ardından ispatımızı tam olarak
+	\olref{zfnotfinitely} içindeki gibi tamamlarız.
+	
+	Ancak şemayı kurmak \olref{zfnotfinitely} içindekinden biraz daha fazla
+	çalışma gerektirir. Sonuçta Ayırma örnekleri $\Th{T}$ içindedir, ama
+	$\theta$'nın evetlenenleri değildir. Yine de her Ayırma örneği
+	$\sigma$ için $\Th{T} \Proves \forall X(X\text{ geçişlidir} \lif
+	\sigma^X)$ olduğunu ispatlayarak bu engeli aşabiliriz. Bunu okura
+	bırakıyoruz.
+\end{proof}
+\begin{prob}
+	Her Ayırma örneği $\sigma$ için $\Z \Proves \forall X(X\text{ geçişlidir}
+	\lif \sigma^X)$ olduğunu gösterin. (Bu şemayı
+	\olref[sth][replacement][finiteaxiomatizability]{finiteextensionofZ}
+	içinde kullandık.)
+\end{prob}
+\begin{prob}
+	Her $\phi \in \Z$ için $\ZF \Proves \phi^{V_{\omega+\omega}}$ olduğunu
+	gösterin.
+\end{prob}
+\begin{prob}
+	\olref[sth][replacement][finiteaxiomatizability]{zfnotfinitely} ve
+	\olref[sth][replacement][finiteaxiomatizability]{finiteextensionofZ}
+	ispatlarında kullanılan geri kalan şematik sonuçları doğrulayın.
+\end{prob}
+
+\olref[sth][replacement][absinf]{sec} içinde belirtildiği gibi bu, Yerine
+Koyma'nın \olref[ordinals][ordtype]{thmOrdinalRepresentation} sonucundan
+kesin olarak daha güçlü olduğunu gösterir. Ya da biraz daha kesin söylersek:
+$\Z$ + ``her iyi sıralama biricik bir sıra sayısına izomorftur'' tutarlıysa
+bazı Yerine Koyma örneklerini ispatlayamaz.
+
+
+	% Varsayım gereği, $\psi^{V_\alpha}$ şu biçimdedir: 
+	% \[
+	% 	(\forall A \in V_\alpha)(\exists S \in V_\alpha)(\forall x \in V_\alpha)(x \in S \liff (\phi^{V_\alpha}(x) \land x \in A))
+	% \]
+	% Bunun geçerli olduğunu kurmak için $A \in V_\alpha$ sabit olsun. Ayırma ile şunu elde edin:
+	% \[
+	% 	S = \Setabs{x \in A}{\phi^{V_\alpha}(x)}
+	% \]
+	% Şimdi $S \subseteq A \in V_\alpha$ olduğundan $S \in V_\alpha$ ve açıkça $(\forall x \in V_\alpha)(x \in S \liff (\phi^{V_\alpha}(x) \land x \in A)$ olur.
+

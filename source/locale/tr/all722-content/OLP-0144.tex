@@ -1,0 +1,54 @@
+% Generated from locale/tr/content/first-order-logic/introduction/sentences.tex; do not hand-edit.
+
+
+\olfileid[tr]{fol}{int}{snt}
+
+\olsection{\usetoken{P}{sentence}}
+
+Artık !!{structure}s ve !!{formula}s için sağlama (``içinde doğru
+olma'') tanımının bir taslağına sahibiz. Fakat bu tanım ek bir öğeye,
+!!a{variable} atamasına ihtiyaç duyar; bizim istediğimizse
+!!{sentence}s tanımıydı. Atamalardan nasıl kurtulacağız ve
+!!{sentence}s nedir?
+
+Biçimsel mantıkla ilk tanışmanızdan !!{variable}s ile niceleyiciler
+arasındaki ilişkiye dair tartışmayı muhtemelen hatırlıyorsunuz. Bir
+niceleyiciyi her zaman !!a{variable} izler ve niceleyicinin uygulandığı
+!!{sentence} bölümü (onun ``kapsamı'') içinde bu !!{variable}
+ifadesinin niceleyici tarafından ``bağlandığını'' kabul ederiz.
+!!{formula}s içinde her !!{variable} ifadesinin karşılık gelen bir
+niceleyicisi olması istenmemişti; karşılık gelen niceleyicisi olmayan
+!!{variable}s ``serbest'' ya da ``bağlanmamış''tır. Serbest
+!!{variable}s içermeyen bütün !!{formula}s ifadelerini !!{sentence}s
+olarak alacağız.
+
+!!a{formula}~$!A$ içindeki !!a{variable} geçişinin ne zaman bağlı
+olduğu, hangi niceleyicinin onu bağladığı ve ne zaman serbest olduğu
+sezgisel olarak kolayca anlaşılır. Belki bunu sınamak için parantezleri
+saymayı içeren bir yöntem öğrendiniz. Yine de kesin bir tanımda ısrar
+etmemiz gerekir. !!{formula}s ifadelerini tümevarımla tanımladığımızdan,
+!!a{formula}~$!A$ içindeki !!a{variable}~$x$ ifadesinin serbest ve
+bağlı geçişlerini de tümevarımla tanımlayabiliriz. Basitleştirilmiş
+dilimiz için tanım örneğin şöyle olabilir:
+\begin{enumerate}
+  \item $!A$ atomikse içindeki bütün $x$ geçişleri serbesttir (yani
+  $\Atom{\Obj P}{x}$ içindeki $x$ geçişi serbesttir).
+  \item $!A$, $\lnot !B$ biçimindeyse $\lnot !B$ içindeki bir~$x$
+  geçişi ancak ve ancak~$!B$ içindeki karşılık gelen~$x$ geçişi
+  serbestse serbesttir (yani~$!B$ içindeki değişkenlerin serbest
+  geçişleri, $\lnot !B$ içindeki karşılık gelen geçişlerin tam
+  kendisidir).
+  \item $!A$, $(!B\land !C)$ biçimindeyse $(!B\land !C)$ içindeki
+  bir~$x$ geçişi ancak ve ancak~$!B$ ya da~$!C$ içindeki karşılık gelen
+  $x$ geçişi serbestse serbesttir.
+  \item $!A$, $\lexists[x][!B]$ biçimindeyse~$!A$ içindeki hiçbir
+  $x$ geçişi serbest değildir. $!A$,~$x$'ten farklı bir
+  !!{variable}~$y$ için $\lexists[y][!B]$ biçimindeyse
+  $\lexists[y][!B]$ içindeki bir~$x$ geçişi ancak ve ancak~$!B$
+  içindeki karşılık gelen~$x$ geçişi serbestse serbesttir.
+\end{enumerate}
+
+Değişkenlerin serbest ve bağlı geçişlerini kesin olarak tanımladıktan
+sonra basitçe şunu söyleyebiliriz: Serbest !!{variable}s geçişi
+içermeyen her !!a{formula}, !!a{sentence} ifadesidir.
+

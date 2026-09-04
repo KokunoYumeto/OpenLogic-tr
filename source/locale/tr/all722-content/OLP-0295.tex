@@ -1,0 +1,98 @@
+% Generated from locale/tr/content/incompleteness/representability-in-q/composition-representable.tex; do not hand-edit.
+
+
+\olfileid[tr]{inc}{req}{cmp}
+\olsection{Bileşke $\Th{Q}$ İçinde Temsil Edilebilir}
+
+$h$'nin
+\[
+h(x_0,\dots,x_{l-1}) = f(g_0(x_0,\dots,x_{l-1}), \dots,
+g_{k-1}(x_0,\dots,x_{l-1})).
+\]
+ile tanımlandığını varsayın. Burada !!{formula}s
+$!A_f,!A_{g_0},\dots,!A_{g_{k-1}}$ zaten bulunmuştur ve sırasıyla $f$ ile
+$g_0$, \dots, $g_{k-1}$ fonksiyonlarını temsil eder. $h$'yi temsil eden
+!!a{formula}~$!A_h$ bulmalıyız.
+
+Bütün fonksiyonların $1$-yerli olduğu yalın bir durumla başlayalım; yani
+$h(x)=f(g(x))$'i ele alalım. $!A_f(y,z)$, $f$'yi ve $!A_g(x,y)$, $g$'yi
+temsil ediyorsa $h$'yi temsil eden !!a{formula}~$!A_h(x,z)$ gerekir.
+$h(x)=z$ olmasının ancak ve ancak hem $z=f(y)$ hem de $y=g(x)$ olacak bir
+$y$ bulunmasına denk olduğuna dikkat edin. ($h(x)=z$ ise $g(x)$ böyle bir
+$y$'dir; böyle bir $y$ varsa $y=g(x)$ ve $z=f(y)$ olduğundan
+$z=f(g(x))$ olur.) Bu, $\lexists[y][(!A_g(x,y)\land !A_f(y,z))]$'nin
+$!A_h(x,z)$ için iyi bir aday olduğunu düşündürür. Yalnızca $\Th{Q}$'nun
+ilgili !!{formula}s{}i ispatladığını doğrulamamız gerekir.
+
+\begin{prop}
+\ollabel{prop:rep1}
+$h(n)=m$ ise $\Th{Q} \Proves !A_h(\num{n},\num{m})$ olur.
+\end{prop}
+
+\begin{proof}
+$h(n)=m$, yani $f(g(n))=m$ olduğunu varsayın. $k=g(n)$ olsun. O zaman
+\begin{align*}
+  \Th{Q} & \Proves !A_g(\num{n}, \num{k})
+  \intertext{çünkü $!A_g$, $g$'yi temsil eder ve}
+  \Th{Q} & \Proves !A_f(\num{k}, \num{m})
+  \intertext{çünkü $!A_f$, $f$'yi temsil eder. Dolayısıyla}
+  \Th{Q} & \Proves !A_g(\num{n}, \num{k}) \land !A_f(\num{k}, \num{m})
+  \intertext{ve bunun sonucu olarak}
+  \Th{Q} & \Proves \lexists[y][(!A_g(\num{n}, y) \land !A_f(y, \num{m}))],
+\end{align*}
+olur; yani $\Th{Q} \Proves !A_h(\num{n},\num{m})$ elde edilir.
+\end{proof}
+
+\begin{prop}
+\ollabel{prop:rep2}
+$h(n)=m$ ise $\Th{Q} \Proves \lforall[z][(!A_h(\num{n},z)\lif
+  z=\num{m})]$ olur.
+\end{prop}
+
+\begin{proof}
+$h(n)=m$, yani $f(g(n))=m$ olduğunu varsayın. $k=g(n)$ olsun. O zaman
+\begin{align*}
+  \Th{Q} & \Proves \lforall[y][(!A_g(\num{n}, y) \lif \eq[y][\num{k}])]
+  \intertext{çünkü $!A_g$, $g$'yi temsil eder ve}
+  \Th{Q} & \Proves \lforall[z][(!A_f(\num{k}, z) \lif \eq[z][\num{m}])]
+  \intertext{çünkü $!A_f$, $f$'yi temsil eder. Biraz mantık kullanarak şunu da gösterebiliriz:}
+  \Th{Q} & \Proves \lforall[z][(\lexists[y][(!A_g(\num{n}, y) \land
+      !A_f(y, z))] \lif \eq[z][\num{m}])].
+\end{align*}
+Yani $\Th{Q} \Proves \lforall[y][(!A_h(\num n,y)\lif\eq[y][\num m])]$
+olur.
+\end{proof}
+
+Aynı düşünce, $f$ ile $g_i$'lerin aritesi $1$'den büyük olduğunda ortaya
+çıkan daha karmaşık durumda da işler.
+
+\begin{prop}
+\ollabel{prop:rep-composition}
+$!A_f(y_0,\dots,y_{k-1},z)$, $f(y_0,\dots,y_{k-1})$'i $\Th{Q}$ içinde
+temsil ediyor ve $!A_{g_i}(x_0,\dots,x_{l-1},y)$,
+$g_i(x_0,\dots,x_{l-1})$'i $\Th{Q}$ içinde temsil ediyorsa
+\begin{multline*}
+  \lexists[y_0\dots][\lexists[y_{k-1}][(!A_{g_0}(x_0,\dots,x_{l-1},y_0) \land
+      \dots \land {}]]\\
+  !A_{g_{k-1}}(x_0,\dots,x_{l-1},y_{k-1}) \land !A_f(y_0,\dots,y_{k-1},z))
+\end{multline*}
+formülü
+\[
+h(x_0, \dots, x_{l-1}) = f(g_0(x_0, \dots, x_{l-1}), \dots, g_{k-1}(x_0,
+\dots, x_{l-1})).
+\]
+fonksiyonunu temsil eder.
+\end{prop}
+
+\begin{proof}
+Alıştırma.
+\end{proof}
+
+\begin{prob}
+% [tr source emendation] Upstream cites prop:rep2 twice; the two guide
+% proofs are prop:rep1 and prop:rep2.
+\olref[inc][req][cmp]{prop:rep1} ile \olref[inc][req][cmp]{prop:rep2}
+ispatlarını kılavuz alarak \olref[inc][req][cmp]{prop:rep-composition}
+önermesinin ispatını ayrıntılarıyla yapın.
+\end{prob}
+

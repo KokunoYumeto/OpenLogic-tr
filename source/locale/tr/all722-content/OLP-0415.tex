@@ -1,0 +1,71 @@
+% Generated from locale/tr/content/normal-modal-logic/syntax-and-semantics/modal-validity.tex; do not hand-edit.
+
+
+\olfileid[tr]{nml}{syn}{val}
+
+\olsection{Geçerlilik}
+
+\begin{explain}
+  Bütün modellerde, yani her modelin her dünyasında doğru olan
+  !!^{formula}s özellikle ilgi çekicidir. Bunlar $\Box$ ile $\Diamond$'ın
+  nasıl yorumlandığından bağımsız olarak doğru olan kiplik önermelerini
+  temsil eder; yeter ki yorum, olanaklı dünyalar üzerindeki bir
+  erişilebilirlik bağıntısından türetilmesi anlamında ``normal'' olsun. Böyle
+  !!{formula}s{}in \emph{geçerli} olduğunu söyleriz. Örneğin
+  $\Box(p \land q) \lif \Box p$ geçerlidir. Bununla birlikte $\Box$'ın
+  aletik yorumuna dayanarak geçerli olması beklenebilecek bazı !!{formula}s,
+  örneğin $\Box p \lif p$, geçerli değildir. Bağıntısal modelleri ilginç
+  kılan özelliklerden biri, $\Box$ ile $\Diamond$'ın farklı yorumlarının
+  farklı türde erişilebilirlik bağıntılarıyla yakalanabilmesidir. Bu durum
+  geçerliliği yalnızca \emph{bütün} modellere göre değil, \emph{belirli bir
+  türdeki} bütün modellere göre de tanımlamamız gerektiğini düşündürür.
+  Örneğin $\Box p \lif p$'nin her dünyanın kendisinden erişilebilir olduğu,
+  yani $R$'nin yansımalı olduğu bütün modellerde doğru olduğu ortaya
+  çıkacaktır. Geçerliliği model sınıflarına göre tanımlamak bunu özlü biçimde
+  dile getirmemizi sağlar: $\Box p \lif p$, yansımalı modeller sınıfında
+  geçerlidir.
+\end{explain}
+
+\begin{defn}
+  !!^a{formula}~$!A$, ancak ve ancak $\mClass{C}$ içindeki her modelde
+  (yani $\mClass{C}$ içindeki her modelin her dünyasında) doğruysa modellerin
+  $\mClass{C}$ sınıfında \emph{geçerlidir}. $!A$, $\mClass{C}$ içinde
+  geçerliyse $\mClass{C} \Entails !A$ yazarız; $!A$, \emph{bütün}
+  modeller sınıfında geçerliyse $\Entails !A$ yazarız.
+\end{defn}
+
+\begin{prop}\ollabel{prop:subset-class}
+  $!A$, $\mClass{C}$ içinde geçerliyse her
+  $\mClass{C}' \subseteq \mClass{C}$ sınıfında da geçerlidir.
+\end{prop}
+
+\begin{prop}\ollabel{prop:Nec-rule}
+  $!A$ geçerliyse $\Box!A$ da geçerlidir.
+\end{prop}
+
+\begin{proof}
+  $\Entails !A$ olduğunu varsayın. $\Entails \Box!A$ olduğunu göstermek
+  için $\mModel{M} = \tuple{W, R, V}$ bir model ve $w \in W$ olsun.
+  $Rww'$ ise $!A$ geçerli olduğundan $\mSat{M}{!A}[w']$ olur; dolayısıyla
+  $\mSat{M}{\Box!A}[w]$ da olur. $\mModel{M}$ ile $w$ keyfî olduğundan
+  $\Entails \Box!A$ sonucuna ulaşırız.
+\end{proof}
+
+\begin{prob}
+  Aşağıdakilerin geçerli olduğunu gösterin:
+  \begin{enumerate}
+  \item $\Box p \lif \Box (q \lif p)$;
+  \item $\Box \lnot \lfalse$;
+  \item $\Box p \lif (\Box q \lif \Box p)$.
+  \end{enumerate}
+\end{prob}
+
+\begin{prob}
+  $!A \lif \Box!A$'nın, $W = \{w\}$ olan
+  $\mModel{M} = \tuple{W, R, V}$ modellerinin $\mClass{C}$ sınıfında geçerli
+  olduğunu gösterin. Benzer biçimde $!B \lif \Box !A$ ile
+  $\Diamond !A \lif !B$'nin, $R = \emptyset$ olan
+  $\mModel{M} = \tuple{W, R, V}$ modelleri sınıfında geçerli olduğunu
+  gösterin.
+\end{prob}
+

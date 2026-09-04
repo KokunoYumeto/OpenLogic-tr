@@ -1,0 +1,77 @@
+% Generated from locale/tr/content/set-theory/ordinals/ordtype.tex; do not hand-edit.
+
+
+\olfileid[tr]{sth}{ordinals}{ordtype}
+\olsection{Sıra Tipleri Olarak Sıra Sayıları}
+
+Yerine Koyma'yla donanıp artık $\ZFminus$ içinde çalıştığımıza göre,
+nihayet amaçladığımız sonucu ispatlayabiliriz:
+
+\begin{thm}\ollabel{thmOrdinalRepresentation}
+Her iyi sıralama biricik bir sıra sayısıyla izomorftur.
+\end{thm}
+
+\begin{proof}
+$\tuple{A,<}$ bir iyi sıralama olsun. \olref[basic]{ordisoidentity}
+gereği en çok bir sıra sayısıyla izomorftur. Öyleyse olmayana ergiyle
+$\tuple{A,<}$'nin \emph{hiçbir} sıra sayısıyla izomorf olmadığını varsayın.
+Önce ``$\tuple{A,<}$'yi olabildiğince küçülteceğiz''. Ayrıntılı olarak:
+bir $\tuple{A_a,<_a}$ öz başlangıç kesiti hiçbir sıra sayısıyla izomorf
+değilse bu özelliği taşıyan en küçük bir $a\in A$ vardır; o zaman
+$B=A_a$ ve $\mathord{\lessdot}=\mathord{<_a}$ olsun. Böyle bir kesit yoksa
+$B=A$ ve $\mathord{\lessdot}=\mathord{<}$ olsun.
+
+Tanım gereği $B$'nin her öz başlangıç kesiti bir sıra sayısıyla izomorftur;
+bu sıra sayısı yukarıdaki gibi biriciktir. Dolayısıyla Yerine Koyma gereği
+şu küme vardır ve bir fonksiyondur:
+\[
+	f = \Setabs{\tuple{\beta, b}}{b \in B\text{ ve }\ordeq{\beta}{\tuple{B_b, \lessdot_b}}}
+\]
+Olmayana ergiyi tamamlamak için bir $\alpha$ sıra sayısı için $f$'nin
+$\alpha\to B$ izomorfizmi olduğunu göstereceğiz.
+
+$\ran{f}=B$ olduğu açıktır. \olref[iso]{lemordsegments} gereği $f$
+sıralamayı korur; yani $\gamma\in\beta$ ancak ve ancak
+$f(\gamma)\lessdot f(\beta)$ olur. $\dom{f}$'nin bir sıra sayısı olduğunu
+göstermek için \olref[basic]{corordtransitiveord} gereği $\dom{f}$'nin
+geçişli olduğunu göstermek yeterlidir. Bir $\beta\in\dom{f}$ sabitleyin;
+yani bir $b$ için
+$\ordeq{\beta}{\tuple{B_b,\lessdot_b}}$ olsun. $\gamma\in\beta$ ise
+\olref[iso]{wellordinitialsegment} gereği $\gamma\in\dom{f}$ olur;
+genelleyerek $\beta\subseteq\dom{f}$ elde edilir.
+\end{proof}
+
+Bu sonuç, \olref[vn]{sec} kesiminden beri sunmak istediğimiz şu tanıma izin
+verir:
+
+\begin{defn}
+$\tuple{A,<}$ bir iyi sıralamaysa onun sıra tipi $\ordtype{A,<}$,
+$\ordeq{\tuple{A,<}}{\alpha}$ koşulunu sağlayan biricik $\alpha$ sıra
+sayısıdır.
+\end{defn}
+
+Ayrıca bu tanım iki güzel ilkeye izin verir:
+
+\begin{cor}\ollabel{ordtypesworklikeyouwant}
+$\tuple{A,<}$ ve $\tuple{B,\lessdot}$ iyi sıralamalarsa:
+\begin{align*}
+	\ordtype{A, <} = \ordtype{B, \lessdot}&\text{ ancak ve ancak }\ordeq{\tuple{A, <}}{\tuple{B, \lessdot}}\\
+	\ordtype{A, <} \in \ordtype{B, \lessdot}&\text{ ancak ve ancak bir }b \in B\text{ için }\ordeq{\tuple{A, <}}{\tuple{B_b, \lessdot_b}}.
+\end{align*}
+\end{cor}
+
+\begin{proof}
+Özdeşlik \olref[basic]{ordisoidentity} gereği geçerlidir. İkinci iddiayı
+ispatlamak için $\ordtype{A,<}=\alpha$ ve
+$\ordtype{B,\lessdot}=\beta$ olsun; izomorfizmimiz
+$f\colon\beta\to\tuple {B,\lessdot}$ olsun. O zaman:
+\begin{align*}
+	\alpha \in \beta&\text{ ancak ve ancak }\funrestrictionto{f}{\alpha} \colon \alpha \to B_{f(\alpha)}\text{ bir izomorfizmdir}\\
+	&\text{ ancak ve ancak }\ordeq{\tuple{A, <}}{\tuple{B_{f(\alpha)}, \lessdot_{f(\alpha)}}}\\
+	&\text{ ancak ve ancak bir $b \in B$ için }\ordeq{\tuple{A, <}}{\tuple{B_b, \lessdot_b}}
+\end{align*}
+olur; burada \olref[iso]{ordisounique},
+\olref[iso]{wellordinitialsegment} ve
+\olref[basic]{ordissetofsmallerord} kullanılmıştır.
+\end{proof}
+

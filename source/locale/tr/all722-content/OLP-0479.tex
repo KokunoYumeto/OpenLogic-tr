@@ -1,0 +1,57 @@
+% Generated from locale/tr/content/applied-modal-logic/temporal-logic/properties-accessibility.tex; do not hand-edit.
+
+
+\olfileid[tr]{aml}{tl}{acc}
+
+\olsection{Zamansal Çerçevelerin Özellikleri}
+
+Zamansal modellerimizde $\prec$ bağıntısı üzerine hiçbir koşul
+koymadığımızdan, bildiğimiz aksiyomlar arasında bütün modellerde geçerli olan
+tek aksiyom $K$ ya da onun benzerleri $K_{\Gtemp}$ ve~$K_{\Htemp}$'dir:
+\begin{align*}
+\tag{$K_{\Gtemp}$}  \Gtemp (p \to q) & \to (\Gtemp p \to \Gtemp q)\\
+\tag{$K_{\Htemp}$}  \Htemp (p \to q) & \to (\Htemp p \to \Htemp q)
+\end{align*}
+
+Bununla birlikte modellerimizde zamanın nasıl temsil edildiğine daha sıkı
+koşullar koymak, örneğin $\prec$'nin doğrusal bir sıralama olmasını güvence
+altına almak istersek modellerimizde başka geçerlilikler de elde ederiz.
+
+\begin{table}[t]
+  \begin{tabular}{| p{.48\textwidth} || p{.48\textwidth} |}
+    \hline
+    {\emph{$\prec$ \dots ise}} & {\emph{\dots, $\mModel{M}$ içinde doğrudur:}} \\
+    \hline \hline
+    \emph{geçişli}: \newline
+    $\forall u \forall v \forall w ((u \prec v \land v \prec w) \lif u \prec w)$ & 
+    $\Ftemp \Ftemp p \lif \Ftemp p$  \\
+    \hline 
+    \emph{doğrusal}: \newline
+    $\forall w \forall v (w \prec v \lor w = v \lor v \prec w)$ &  
+    $(\Ftemp \Ptemp p \lor \Ptemp \Ftemp p) \lif (\Ptemp p \lor p \lor \Ftemp p)$\\
+    \hline
+    \emph{yoğun}: \newline
+    $\forall w \forall v (w \prec v \to \exists u(w \prec u \land u \prec v))$ &  
+    $\Ftemp p \lif \Ftemp \Ftemp p$ \\
+    \hline
+    \emph{sınırsız (geçmiş yönünde)}: \newline
+    $\forall w \exists v( v \prec w)$ &  
+    $\Htemp p \to \Ptemp p$ \\
+    \hline
+    \emph{sınırsız (gelecek yönünde)}: \newline
+    $\forall w \exists v( w \prec v)$ &  
+    $\Gtemp p \to \Ftemp p$ \\
+    \hline
+  \end{tabular}
+  \caption{Bazı zamansal çerçeve karşılıklılık özellikleri.}
+  \ollabel{tab:correspondence}
+\end{table} 
+
+\olref{tab:correspondence}'deki özelliklerden birkaçı, zamanı temsil etmesi
+amaçlanan bir model için arzu edilir özellikler gibi görünebilir. Bununla
+birlikte $\prec$ bağıntısına istediğimiz koşulları koyabilsek de bütün
+koşulların zamansal mantık dilinde ifade edilebilen !!{formula}s ile
+karşılanmadığını belirtmek gerekir. Örneğin yansımasızlığın, yani
+$\forall w\lnot(w\prec w)$ düşüncesinin, zamansal mantıkta karşılık gelen
+bir formülü yoktur.
+

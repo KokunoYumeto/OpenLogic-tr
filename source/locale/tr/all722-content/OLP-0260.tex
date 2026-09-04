@@ -1,0 +1,89 @@
+% Generated from locale/tr/content/turing-machines/machines-computations/disciplined-machines.tex; do not hand-edit.
+
+
+\olfileid[tr]{tur}{mac}{dis}
+\olsection{Disiplinli Makineler}
+
+\begin{explain}
+\olref[hal]{sec} bölümünde özel olarak belirlenmiş tek bir durma durumu~$h$
+olan Turing makinelerini ele aldık; bu makinelerin durmaları hâlinde $h$
+durumunda duracakları güvence altındadır. Bu bakımdan tek durma durumlu
+makineler, genel olarak izin verdiğimiz Turing makinelerinden daha
+``disiplinli''dir. Turing makinelerinin davranışına başka kısıtlamalar da
+getirebiliriz. Örneğin Turing makinelerinin $0$. karedeki şerit sonu
+işaretini silmesini ya da $0$. kareden sola gitmeye çalışmasını da
+yasaklamadık. (Tanımımıza göre bu durumda kafa yalnızca $0$. karede kalır;
+başka tanımlarda makine durur.) Benzer biçimde, bir Turing makinesinin
+durması hâlinde $1$. karede durduğunu varsayabilmek bazen yararlıdır.
+\end{explain}
+
+\begin{defn}\ollabel{defn:disciplined}
+Bir Turing makinesi~$M$ ancak ve ancak
+\begin{enumerate}
+    \item özel olarak belirlenmiş tek bir durma durumu~$h$ varsa,
+    \item durması hâlinde $1$. kareyi tararken duruyorsa,
+    \item $0$. karedeki $\TMendtape$ simgesini hiçbir zaman silmiyorsa ve
+    \item $0$. kareden sola gitmeye hiçbir zaman çalışmıyorsa
+\end{enumerate}
+\emph{disiplinlidir}.
+\end{defn}
+
+\begin{explain}
+Her Turing makinesinin, aynı davranışı gösteren ama özel bir durma durumu olan
+bir makineye dönüştürülebileceğini daha önce tartıştık. Bunun için yalnızca
+yeni bir $h$ durumu ve özgün $\delta$ fonksiyonunun tanımsız olduğu her
+$\tuple{q,\sigma}$ çifti için
+$\delta(q,\sigma)=\tuple{h,\sigma,N}$ yönergesi eklenir. Kanıtlamak zahmetli
+olsa da her Turing makinesi~$M$'nin aynı girdilerde duran ve aynı çıktıyı
+üreten disiplinli bir Turing makinesi~$M'$ biçimine getirilebileceği
+doğrudur. Örneğin Turing makinesi durduğunda $1$. karede değilse kafanın şerit
+sonu işaretini buluncaya kadar sola gitmesini, ardından bir kare sağa gidip
+durmasını sağlayan yönergeler ekleyebiliriz. Öteki koşulların nasıl ele
+alınabileceğini düşünmeyi size bırakıyoruz.
+\end{explain}
+
+\begin{ex}
+    \olref{fig:adder-disc} içinde \olref[una]{ex:adder} içindeki toplama
+    makinesini disiplinli bir makineye dönüştürüyoruz.
+    \begin{figure}\[
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=none,draw=black,text=black]
+
+  \node[initial,state]         (A)              {$q_0$};
+  \node[state]         (B) [right of=A] {$q_1$};
+  \node[state]         (C) [below right of=B] {$q_2$};
+  \node[state]         (D) [below left of=C] {$q_3$};
+  \node[state]         (H) [left of=D] {$h$};
+
+  \path (A) edge node {\TMtrans{\TMblank}{\TMstroke}{\TMstay}} (B)
+           edge [loop below] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (B)
+        (B) edge [loop below] node {\TMtrans{\TMstroke}{\TMstroke}{\TMright}} (B)
+            edge node {\TMtrans{\TMblank}{\TMblank}{\TMleft}} (C)
+        (C) edge node {\TMtrans{\TMstroke}{\TMblank}{\TMleft}} (D)
+        (D) edge [loop above] node {\TMtrans{\TMstroke}{\TMstroke}{\TMleft}} (D)
+        edge node {\TMtrans{\TMendtape}{\TMendtape}{\TMright}} (H);
+\end{tikzpicture}
+\]\caption{Disiplinli bir toplama makinesi}
+\ollabel{fig:adder-disc}
+\end{figure}
+\end{ex}
+
+\begin{prop}\ollabel{prop:disciplined} Her Turing makinesi~$M$ için öyle
+disiplinli bir Turing makinesi~$M'$ vardır ki $M$, $O$ çıktısıyla duruyorsa
+o da $O$ çıktısıyla durur; $M$ durmuyorsa o da durmaz. Özellikle, bir
+Turing makinesince hesaplanabilen her $f\colon\Nat^n \to \Nat$ fonksiyonu
+disiplinli bir Turing makinesince de hesaplanabilir.
+\end{prop}
+
+\begin{prob}\label{tur:mac:dis:prob:disc-succ}
+$f(x)=x+1$ fonksiyonunu hesaplayan disiplinli bir makine verin.
+\end{prob}
+
+
+\begin{prob}\label{tur:mac:dis:prob:copier}
+$\TMstroke^n$ girdisinde başlatıldığında
+$\TMstroke^n \concat \TMblank \concat \TMstroke^n$ çıktısını üreten
+disiplinli bir makine bulun.
+\end{prob}
+

@@ -1,0 +1,94 @@
+% Generated from locale/tr/content/first-order-logic/syntax-and-semantics/free-vars-sentences.tex; do not hand-edit.
+
+
+\olfileid[tr]{fol}{syn}{fvs}
+
+\olsection{Serbest \printtoken{P}{variable} ve \printtoken{P}{sentence}}
+
+\begin{defn}[Bir !!a{variable} için serbest oluşumlar]
+\ollabel{defn:free-occ}
+Bir !!a{variable} için bir !!a{formula} içindeki \emph{serbest}
+oluşumlar aşağıdaki gibi tümevarımsal olarak tanımlanır:
+\begin{enumerate}
+\item \indcase*{!A}{$!A$ atomiktir}{$\indfrm$ içindeki bütün
+  !!{variable} oluşumları serbesttir.}
+
+\tagitem{prvNot}{\indcase{!A}{\lnot !B}{$\indfrm$ içindeki serbest
+  !!{variable} oluşumları tam olarak $!B$'dekilerdir.}}{}
+
+\item \indcase{!A}{(!B \ast !C)}{$\indfrm$ içindeki serbest
+  !!{variable} oluşumları, $!B$'dekiler ile~$!C$'dekilerin birlikte
+  oluşturduğu kümedir.}
+
+\tagitem{prvAll}{\indcase{!A}{\lforall[x][!B]}{$\indfrm$ içindeki serbest
+  !!{variable} oluşumları, $x$ oluşumları dışında $!B$'deki oluşumların
+  tümüdür.}}{}
+
+\tagitem{prvEx}{\indcase{!A}{\lexists[x][!B]}{$\indfrm$ içindeki serbest
+  !!{variable} oluşumları, $x$ oluşumları dışında $!B$'deki oluşumların
+  tümüdür.}}{}
+\end{enumerate}
+\end{defn}
+
+\begin{defn}[Bağlı Değişkenler]
+Bir $!A$ formülündeki bir !!a{variable} oluşumu serbest değilse
+\emph{bağlı}dır.
+\end{defn}
+
+\begin{prob}
+\olref[fol][syn][fvs]{defn:free-occ} doğrultusunda bağlı değişken
+oluşumlarının tümevarımsal bir tanımını verin.
+\end{prob}
+
+\begin{defn}[Kapsam]
+\iftag{prvAll}{$\lforall[x][!B]$, bir $!A$ formülü içinde bir alt formül
+  oluşumuysa, $!A$ içindeki buna karşılık gelen $!B$ oluşumuna
+  $\lforall[x]$'in karşılık gelen oluşumunun \emph{kapsamı} denir.
+  \iftag{prvEx}{$\lexists[x]$ için de benzer biçimde.}{}}{$\lexists[x][!B]$,
+  bir $!A$ formülü içinde bir alt formül oluşumuysa, $!A$ içindeki buna
+  karşılık gelen $!B$ oluşumuna $\lexists[x]$'in karşılık gelen
+  oluşumunun \emph{kapsamı} denir.}
+
+$!B$, $!A$ içinde bir
+\iftag{prvAll}{$\lforall[x]$\iftag{prvEx}{ ya da
+    $\lexists[x]$}{}}{$\lexists[x]$} niceleyici oluşumunun kapsamıysa,
+$!B$ içindeki serbest $x$ oluşumları
+\iftag{prvAll}{$\lforall[x][!B]$\iftag{prvEx}{ ve
+$\lexists[x][!B]$}{}}{$\lexists[x][!B]$} içinde bağlıdır. Bu oluşumlara,
+söz konusu niceleyici oluşumu \emph{tarafından bağlanmış} deriz.
+\end{defn}
+
+\begin{ex}
+Şu formülü ele alalım:
+\[
+\lexists[\Obj v_0][\underbrace{\Atom{\Obj A^2_0}{\Obj v_0,\Obj v_1}}_{!B}] 
+\]
+$!B$, $\lexists[\Obj v_0]$'ın kapsamını gösterir. Niceleyici, $!B$
+içindeki $\Obj v_0$ oluşumunu bağlar; fakat $\Obj v_1$ oluşumunu
+bağlamaz. Dolayısıyla $\Obj v_1$ bu durumda serbest bir değişkendir.
+
+
+Şimdi bunun daha karmaşık bir !!{formula}~$!A$ içinde nasıl
+işleyebileceğini görebiliriz:
+\[
+\lforall[\Obj v_0][\underbrace{(\Atom{\Obj A^1_0}{\Obj v_0} \lif
+    \Atom{\Obj A^2_0}{\Obj v_0, \Obj v_1})}_{!B}] \lif \lexists[\Obj
+  v_1][\underbrace{(\Atom{\Obj A^2_1}{\Obj v_0, \Obj v_1} \lor \lforall[\Obj v_0][\overbrace{\lnot \Atom{\Obj A^1_1}{\Obj v_0}}^{!D}])}_{!C}]
+\]
+$!B$, ilk $\lforall[\Obj v_0]$'ın; $!C$, $\lexists[\Obj v_1]$'in; $!D$
+ise ikinci $\lforall[\Obj v_0]$'ın kapsamıdır. İlk
+$\lforall[\Obj v_0]$, $!B$ içindeki $\Obj v_0$ oluşumlarını;
+$\lexists[\Obj v_1]$, $!C$ içindeki $\Obj v_1$ oluşumunu; ikinci
+$\lforall[\Obj v_0]$ ise $!D$ içindeki $\Obj v_0$ oluşumunu bağlar.
+$\Obj v_1$'in ilk oluşumu ile $\Obj v_0$'ın dördüncü oluşumu $!A$
+içinde serbesttir. $\Obj v_0$'ın son oluşumu $!D$ içinde serbest, fakat
+$!C$ ve~$!A$ içinde bağlıdır.
+\end{ex}
+
+\begin{defn}[Tümce]
+!!^a{formula}~$!A$, \article{sentence} \emph{!!{sentence}} olarak
+adlandırılır ancak ve ancak !!{variable}s{}in hiçbir serbest oluşumunu içermiyorsa.
+\end{defn}
+
+% add examples!
+

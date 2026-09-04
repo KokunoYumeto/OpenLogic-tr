@@ -1,0 +1,62 @@
+% Generated from locale/tr/content/model-theory/basics/reducts-and-expansions.tex; do not hand-edit.
+
+
+\olfileid[tr]{mod}{bas}{red}
+\section{İndirgenmiş Yapılar ve Genişlemeler}
+
+Ortak simgeleri bulunan dilleri ve bu diller için !!{structure}s
+ifadelerini karşılaştırmak çoğu kez yararlı ya da gereklidir. En yaygın
+durum, !!a{language}~$\Lang L$ içindeki bütün simgelerin
+!!a{language}~$\Lang{L'}$ içinde de bulunması, yani
+$\Lang L\subseteq\Lang{L'}$ olmasıdır. O zaman bir
+$\Lang L$-!!{structure}~$\Struct M$, ortak simgelerin yorumlarını aynı
+bırakıp ek simgelere yorumlar vererek her zaman bir
+$\Lang{L'}$-!!{structure} biçiminde genişletilebilir. Öte yandan bir
+$\Lang{L'}$-yapısı~$\Struct{M'}$ içinden, $\Lang L$ dilinde geçmeyen
+simgelerin yorumlarını yalnızca ``unutarak'' bir $\Lang L$-yapısı elde
+edebiliriz.
+
+\begin{defn}
+\ollabel{defn:reduct}
+$\Lang L\subseteq\Lang L'$, $\Struct M$ bir $\Lang L$-!!{structure}
+ve $\Struct M'$ bir $\Lang L'$-!!{structure} olsun. Aşağıdaki koşullar
+sağlandığında ve ancak bu durumda $\Struct M$, $\Struct M'$ yapısının
+$\Lang L$ diline \emph{indirgenmiş yapısı}; $\Struct M'$ ise
+$\Struct M$ yapısının $\Lang L'$ diline bir \emph{genişlemesidir}:
+\begin{enumerate}
+\item $\Domain{M}=\Domain{M'}$.
+\item Her !!{constant}~$c\in\Lang L$ için
+  $\Assign{c}{M}=\Assign{c}{M'}$.
+\item Her !!{function}~$f\in\Lang L$ için
+  $\Assign{f}{M}=\Assign{f}{M'}$.
+\item Her !!{predicate}~$P\in\Lang L$ için
+  $\Assign{P}{M}=\Assign{P}{M'}$.
+\end{enumerate}
+\end{defn}
+
+\begin{prop}
+\ollabel{prop:reduct}
+Bir $\Lang L$-!!{structure}~$\Struct M$, bir
+$\Lang{L'}$-!!{structure}~$\Struct{M'}$ yapısının indirgenmiş yapısıysa
+her $\Lang L$-!!{sentence}s~$!A$ için
+\[
+\Sat{M}{!A} \text{ ancak ve ancak } \Sat{M'}{!A}.
+\]
+\end{prop}
+
+\begin{proof}
+  Alıştırma.
+\end{proof}
+
+\begin{prob}
+\olref[mod][bas][red]{prop:reduct} önermesini ispatlayın.
+\end{prob}
+
+\begin{defn}
+Bir $\Lang L$-yapısı~$\Struct M$ verilmiş olsun. $\Lang{L'}=
+\Lang L\cup\{P\}$, tek bir $n$ yerli !!{predicate}~$P$ eklenerek
+$\Lang L$ dilinden elde edilen genişleme ve $R\subseteq\Domain M^n$
+bir $n$ yerli bağıntıysa, $\Assign{P}{M'}=R$ olan $\Struct M$
+genişlemesi~$\Struct{M'}$ için $\Expan{M}{R}$ yazarız.
+\end{defn}
+

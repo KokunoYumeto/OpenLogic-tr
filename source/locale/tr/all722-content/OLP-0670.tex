@@ -1,0 +1,202 @@
+% Generated from locale/tr/content/proof-theory/natural-deduction/translation-G2i.tex; do not hand-edit.
+
+
+\olfileid[tr]{pt}{nat}{tgi}
+
+\olsection{\Log{G2i}'den \Log{N2i}'ye Çeviri}
+
+\Log{G2i}'deki sekantların öncülleri !!{formula}s{}in çoklu kümeleri~$\Gamma$,
+\Log{N2i}'deki sekantların öncülleriyse her etiketin yalnızca bir kez geçtiği
+etiketli formül kümeleri~$\Gamma'$'dür. Etiketli !!{formula}s{}in bir
+$\Gamma'$ kümesinin, her $!A$ !!{formula}{}ü için $\Gamma'$ içinde $x : !A$
+biçimindeki !!{element} sayısı $\Gamma$ içindeki $!A$'nın katlılığından (yani
+$!A$ kopyalarının sayısından) küçük ya da ona eşitse $\Gamma$ çoklu kümesine
+\emph{karşılık geldiğini} söyleyelim.
+
+\begin{prop}\ollabel{prop:G2i-to-N2i}
+$\Log{G2i} + \Cut \Proves \Gamma \Sequent \Delta$ ise $\Log{N2i}
+\Proves \Gamma' \Sequent !C$ olur; burada $\Delta$ boşsa $!C \ident \lfalse$,
+aksi hâlde $\Delta = \{!A\}$'dır ve $\Gamma'$, $\Gamma$'ya karşılık gelir.
+\end{prop}
+
+\begin{proof}
+  $\pi$, $\Log{G2i}+\Cut$ içinde $\Gamma \Sequent \Delta$'nın bir !!a{proof}{}ı
+  ise $\Gamma$'ya karşılık gelen bir~$\Gamma'$ ile \Log{N2i} içinde
+  $\Gamma' \Sequent !C$'nin bir~$\delta$ !!a{proof}{}ı bulunduğunu gösteriyoruz.
+  Bunu $n = \pheight{\pi}$ üzerinde tümevarımla yapıyoruz.
+
+  $n = 0$ ise $\pi$ bir aksiyomdur. $\lfalse \Sequent \quad$ aksiyomuysa
+  $\delta$, $x:\lfalse \Sequent \lfalse$ aksiyomudur; yani
+  $\Gamma' = \{x:\lfalse\}$ ve $!C \ident \lfalse$ olur. $\pi$, $!A \Sequent
+  !A$ biçiminde bir aksiyomsa $\delta$, $x: !A \Sequent !A$'dır.
+  
+  $n>0$ ise $\pi$ bir $R$ kuralıyla biter. Tümevarım varsayımı, bu kuralın
+  öncüllerine karşılık gelen sekantların \Log{N2i} içindeki !!{proof}s{}ını
+  güvence altına alır. Bu ispatlardaki tüm boşaltma etiketlerinin birbirinden
+  farklı olduğunu ve bir $x$ etiketinin, boşaltılıyorsa yalnızca onu boşaltan
+  çıkarımın üstünde geçtiğini (gerekirse yeniden etiketleyerek) varsayabiliriz.
+  Ardından bu !!{proof}s{}ın uygun bir $\Gamma' \Sequent !C$ ispatı sağlayacak
+  biçimde nasıl birleştirilebileceğini gösteririz. $R$'ye göre durumları
+  ayırıyoruz.
+
+  \begin{enumerate}
+    \item $R$, \RightR{\Weakening} ise $\pi$ şöyle biter:
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi_1$}
+    \Deduce$\Gamma \fCenter$
+    \RightLabel{\RightR{\Weakening}}
+    \UnaryInf$\Gamma \fCenter !A$
+    \DisplayProof
+    \]
+    $\pi_1$'e uygulanan tümevarım varsayımı $\Gamma' \Sequent \lfalse$'ın bir
+    !!a{proof}{}ını verir. $\Gamma' \Sequent !A$'nın bir !!a{proof}{}ını elde
+    etmek için $\FalseInt$ uygularız.
+    \item $R$, \LeftR{\Weakening} ise $\pi$ şöyle biter:
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi_1$}
+    \Deduce$\Gamma \fCenter \Delta$
+    \RightLabel{\LeftR{\Weakening}}
+    \UnaryInf$!A, \Gamma \fCenter \Delta$
+    \DisplayProof
+    \]
+    $\pi_1$'e uygulanan tümevarım varsayımı $\Gamma' \Sequent !C$'nin bir
+    !!a{proof}{}ını verir. Bunu $\delta$ olarak alırız. $\Gamma'$, $\Gamma$'ya
+    karşılık geliyorsa $!A, \Gamma$'ya da karşılık geldiğine dikkat edin:
+    $\Gamma'$ içindeki $x : !A$ sayısı $\Gamma$ içindeki $!A$ kopyalarının
+    sayısından büyük değildir; dolayısıyla $\Gamma \cup \{!A\}$ içindeki
+    $!A$ kopyalarının sayısından da büyük değildir.
+    \item $R$, \LeftR{\Contraction} ise $\pi$ şöyle biter:
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi_1$}
+    \Deduce$!A, !A, \Gamma \fCenter \Delta$
+    \RightLabel{\LeftR{\Contraction}}
+    \UnaryInf$!A, \Gamma \fCenter \Delta$
+    \DisplayProof
+    \]
+    $\pi_1$'e uygulanan tümevarım varsayımı $\Pi, \Gamma' \Sequent !C$'nin
+    bir $\delta_1$ !!a{proof}{}ını verir; burada
+    $\Pi \subseteq \{x : !A, y:!A\}$'dır.
+    $\Pi = \{x : !A, y:!A\}$ ise $\delta_1$ içindeki bütün etiketli
+    $y:!A$ !!{formula}{}ünü $x:!A$ ile değiştirin. $x$, $\delta_1$'in son
+    sekantının bağlamında geçtiğinden $\delta_1$ içinde hiçbir çıkarımın
+    $x:!B$ biçimindeki bir !!a{formula}{}ü boşaltmadığını, yani $\delta_1$
+    içindeki hiçbir sekantın solundaki $x:!B$'nin etkin olmadığını
+    varsayabiliriz. Dolayısıyla sonuç hâlâ \Log{N2i} içinde bir !!a{proof}{}tır.
+    \item $R$, $\RightR{\lif}$ ise $\pi$ şöyle biter:
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi_1$}
+    \Deduce$!A, \Gamma \fCenter !B$
+    \RightLabel{\RightR{\lif}}
+    \UnaryInf$\Gamma \fCenter !A \lif !B$
+    \DisplayProof
+    \]
+    Tümevarım varsayımı gereği $x:!A, \Gamma' \Sequent !B$'nin ya da
+    $\Gamma' \Sequent !B$'nin bir $\delta_1$ !!a{proof}{}ı vardır; burada
+    $\Gamma'$, $\Gamma$'ya karşılık gelir. $\delta$ olarak $\delta_1$'in
+    sonuna bir \Intro{\lif} uygulaması eklenmiş biçimini alabiliriz.
+    \item $R$, \LeftR{\lif} ise $\pi$ şöyle biter:
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi_1$}
+    \Deduce$\Gamma_1 \fCenter !A$
+    \AxiomC{}
+    \RightLabel{$\pi_2$}
+    \Deduce$!B, \Gamma_2 \fCenter \Delta$
+    \RightLabel{\LeftR{\lif}}
+    \BinaryInf$!A \lif !B, \Gamma_1, \Gamma_2 \fCenter \Delta$
+    \DisplayProof
+    \]
+    Tümevarım varsayımı !!{proof}s $\delta_1$ ile $\delta_2$'yi verir:
+    birincisi $\Gamma_1' \Sequent !A$'yı, ikincisi ya $x: !B, \Gamma_2'
+    \Sequent !C$'yi ya da $\Gamma_2' \Sequent !C$'yi ispatlar.
+    $\delta_2$ ikinci biçimdeyse $\delta_2$, $\delta$ olarak kullanılabilir.
+    Aksi hâlde hiçbir etiketin hem $\delta_1$ hem de $\delta_2$ içinde
+    geçmemesini sağlamak için $\delta_1$ içindeki bütün formülleri ve boşaltma
+    etiketlerini yeniden etiketleyebiliriz. Bu durumda $\Gamma_1' \cup
+    \Gamma_2'$, $\Gamma_1 \cup \Gamma_2$'ye karşılık gelir. $x:!B$,
+    $\delta_2$'nin son sekantında geçtiğinden $\delta_2$ içinde $x$ boşaltma
+    etiketli hiçbir çıkarımda etkin olamaz. $\delta_2$ içindeki her
+    $x:!B \Sequent !B$ aksiyomunu şu $\delta_3$ !!{proof}{}ıyla değiştirin:
+    \[
+    \Axiom$x: !A \lif !B \fCenter !A \lif !B$
+    \AxiomC{}
+    \RightLabel{$\delta_1$}
+    \Deduce$\Gamma_1' \fCenter !A$
+    \RightLabel{\Elim{\lif}}
+    \BinaryInf$x: !A \lif !B \fCenter !B$
+    \DisplayProof
+    \]
+    ve $\delta_2$ içindeki her $x:!B$ geçişini $x:!A \lif !B$ ile değiştirin.
+    Sonuç $\Subst{\delta_2}{\delta_3}{x:!B}$, $x:!A \lif !B, \Gamma_1',
+    \Gamma_2' \Sequent !C$'nin bir !!a{proof}{}ıdır.
+    \item $R$, \RightR{\land} ise $\pi$ şöyle biter:
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi_1$}
+    \Deduce$\Gamma_1 \fCenter !A$
+    \AxiomC{}
+    \RightLabel{$\pi_2$}
+    \Deduce$\Gamma_2 \fCenter !B$
+    \RightLabel{\RightR{\land}}
+    \BinaryInf$\Gamma_1, \Gamma_2 \fCenter !A \land !B$
+    \DisplayProof
+    \]
+    Tümevarım varsayımı, $\Gamma_1' \Sequent !A$'nın $\delta_1$ ispatını
+    ve $\Gamma_2' \Sequent !B$'nin $\delta_2$ ispatını verir.
+    $\delta_1$ ve $\delta_2$ içinde hiçbir etiketin ortak geçmemesini sağlamak
+    için $\delta_2$ içindeki tüm formülleri ve boşaltma etiketlerini yeniden
+    etiketleyebiliriz. Bu durumda $\Gamma_1' \cup \Gamma_2'$, $\Gamma_1 \cup
+    \Gamma_2$'ye karşılık gelir. $\delta_1$ ile $\delta_2$'nin son sekantlarına
+    $\Intro{\land}$ uygulayarak $\delta$ !!a{proof}{}ını elde ederiz.
+    \item $R$, $\LeftR{\land}$ ise $\pi$, örneğin şöyle biter:
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi_1$}
+    \Deduce$!A, \Gamma \fCenter \Delta$
+    \RightLabel{\LeftR{\land}}
+    \UnaryInf$!A \land !B, \Gamma \fCenter \Delta$
+    \DisplayProof
+    \]
+    Tümevarım varsayımı gereği $x:!A, \Gamma' \Sequent !C$'nin ya da
+    $\Gamma' \Sequent !C$'nin bir $\delta_1$ !!a{proof}{}ı vardır; burada
+    $\Gamma'$, $\Gamma$'ya karşılık gelir. İkinci durumda $\delta_1$'i
+    $\delta$ olarak alabiliriz. Birinci durumda $x:!A$ son sekantta geçtiği
+    için $\delta_1$ içindeki $x$ boşaltma etiketli hiçbir çıkarımda etkin
+    olmadığına dikkat edin. Her $x:!A \Sequent !A$ aksiyomunu şu $\delta_2$
+    !!{proof}{}ıyla değiştirin:
+    \[
+    \Axiom$x: !A \land !B \fCenter !A \land !B$
+    \RightLabel{\Elim{\land}}
+    \UnaryInf$x: !A \land !B \fCenter !A$
+    \DisplayProof
+    \]
+    ve her $x:!A$ geçişini $x:!A \land !B$ ile değiştirin; yani
+    $\Subst{\delta_1}{\delta_2}{x:!A}$'yı ele alın. Bu, $x:!A \land !B,
+    \Gamma' \Sequent !C$'nin bir !!a{proof}{}ıdır.
+    \item $R$, \Cut ise $\pi$ şöyle biter:
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi_1$}
+    \Deduce$\Gamma_1 \fCenter !A$
+    \AxiomC{}
+    \RightLabel{$\pi_2$}
+    \Deduce$!A, \Gamma_2 \fCenter \Delta$
+    \RightLabel{\Cut}
+    \BinaryInf$\Gamma_1, \Gamma_2 \fCenter \Delta$
+    \DisplayProof
+    \]
+    Tümevarım varsayımı $\Gamma_1' \Sequent !A$'nın $\delta_1$ ispatını
+    ve ya $x:!A, \Gamma_2' \Sequent !C$'nin ya da $\Gamma_2' \Sequent !C$'nin
+    $\delta_2$ ispatını verir. İkinci durumda $\delta$ olarak
+    $\delta_2$'yi alın. Aksi hâlde $\delta_2$ içindeki her
+    $x:!A \Sequent !A$ aksiyomunu $\delta_1$ ile değiştirin; böylece
+    $\Gamma_1', \Gamma_2' \Sequent !C$'nin
+    $\Subst{\delta_2}{\delta_1}{x:!A}$ !!{proof}{}ı olarak~$\delta$'yı elde
+    edersiniz.
+  \end{enumerate}
+\end{proof}
+

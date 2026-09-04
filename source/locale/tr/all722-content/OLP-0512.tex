@@ -1,0 +1,60 @@
+% Generated from locale/tr/content/intuitionistic-logic/tableaux/introduction.tex; do not hand-edit.
+
+
+\olfileid[tr]{int}{tab}{int}
+
+\olsection{Giriş}
+
+!!^{tableau}s, belirli (aşağıya doğru dallanan) !!{signed formula}s
+ağaçlarıdır; başka bir deyişle, bir doğruluk değeri işareti ($\True$ veya
+$\False$) ve bir !!a{sentence} içeren
+\[
+\sFmla{\True}{!A} \text{ veya } \sFmla{\False}{!A}
+\]
+çiftlerinin ağaçlarıdır. !!^a{tableau}, birtakım \emph{varsayımlarla}
+başlar. Sonraki her !!{signed formula}, çıkarım kurallarından biri uygulanarak
+üretilir. Bazı çıkarım kuralları ağacın bir ucuna bir ya da daha fazla
+!!{signed formula}s ekler; bazılarıysa iki yeni uç ekleyerek iki dal oluşturur.
+Kuralların ürettiği !!{signed formula}s içindeki !!{formula}, kuralın
+uygulandığı !!{signed formula} içindekinden daha az karmaşıktır. Bir dal hem
+$\sFmla{\True}{!A}$ hem de $\sFmla{\False}{!A}$ içerdiğinde o dala
+\emph{kapalı} deriz. !!a{tableau}{}daki her dal kapalıysa !!{tableau}{}nun tamamı
+kapalıdır. Kapalı bir !!{tableau}, !!a{derivation} oluşturur ve bu türetim,
+ilgili !!{signed formula}s kümesinin---bunlar !!{tableau}{}yu başlatmak için
+kullanılmıştır---sağlanamaz olduğunu gösterir. Bu, bir $\Proves$ bağıntısı
+tanımlamak için kullanılabilir:
+$\Gamma \Proves !A$ ancak ve ancak $\Gamma_0 = \{!B_1,
+\dots, !B_n\} \subseteq \Gamma$ olacak biçimde, şu varsayımlar için kapalı
+!!{tableau} bulunan sonlu bir küme varsa:
+\[
+\{\sFmla{\False}{!A}, \sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n}\}.
+\]
+
+Sezgisel mantık için hem !!{signed formula} kavramını genişletmeli hem de
+bağlaç kurallarını uyarlamalıyız. Ayrıca !!{formula}s, sezgisel !!{tableau}s
+içinde bir işaretin ($\True$ veya $\False$) yanı sıra $\sigma$
+\emph{öneklerine} de sahiptir. Önekler pozitif tam sayıların boş olmayan
+dizileridir; yani
+$\sigma \in (\PosInt)^* \setminus \{\emptyseq\}$. Bu önekleri çevrelerindeki
+$\tuple{\ }$ olmadan yazar ve tek tek !!{element}s{}ı $,$ yerine $.$ ile
+ayırırız. $\sigma$ bir önekse $\sigma.n$, $\sigma \concat \tuple{n}$
+demektir; örneğin $\sigma = 1.2.1$ ise $\sigma.3$, $1.2.1.3$'tür.
+Dolayısıyla örneğin
+\[
+\sFmla{\True}{!A \lif (!B \lif !C)}[1.2]
+\]
+bir \emph{önekli !!{signed formula}}dır (kısaca \emph{önekli
+  !!{formula}}).
+
+Sezgisel olarak önek, bir !!{formula}s{}in !!a{tableau} dalında
+sağlanabileceği modeldeki dünyayı adlandırır; $\sigma$ bir dünyayı
+adlandırıyorsa $\sigma.n$, $\sigma$'nın adlandırdığı dünyadan erişilebilen
+bir dünyayı adlandırır.
+
+Sezgisel modellerde erişilebilirlik bağıntısı yansımalı ve geçişlidir. Önekler
+bakımından bu, $\sigma$'dan hem $\sigma$'nın kendisine hem de $\sigma$'yı
+genişleten her öneke, yani $\sigma.n_1.\cdots.n_k$ biçimindeki her öneke
+erişilebildiği anlamına gelir. $\sigma$'nın kendisini ve bütün genişletmelerini belirtmek
+için $\sigma.*$ gösterimini kullanalım. Başka bir deyişle, $\sigma.*$
+önekleri tam olarak $\sigma$'dan erişilebilen öneklerdir.
+

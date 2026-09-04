@@ -1,0 +1,103 @@
+% Generated from locale/tr/content/first-order-logic/syntax-and-semantics/structures.tex; do not hand-edit.
+
+
+\olfileid[tr]{fol}{syn}{str}
+
+\olsection{Birinci Dereceden Diller İçin \printtoken{P}{structure}}
+
+\begin{explain}
+Birinci dereceden diller kendi başlarına \emph{yorumlanmamıştır}:
+!!{constant}s, !!{function}s ve !!{predicate}s ifadelerine belirli bir
+anlam iliştirilmez. Anlamlar, bir \article{structure}
+\emph{!!{structure}} belirtilerek verilir. Bu yapı \emph{evreni}, yani
+!!{constant}s ifadelerinin gösterdiği, !!{function}s ifadelerinin
+üzerinde işlem yaptığı ve niceleyicilerin üzerinde dolaştığı nesneleri
+belirler. Ayrıca hangi !!{constant}s ifadelerinin hangi nesneleri
+gösterdiğini, !!a{function} ifadesinin nesneleri nesnelere nasıl
+eşlediğini ve !!{predicate}s ifadelerinin hangi nesnelere uygulandığını
+belirler. !!^{structure}s, mantıktaki \emph{semantik} kavramların;
+örneğin sonuç, geçerlilik ve sağlanabilirlik kavramlarının temelidir.
+Literatürde bunlara farklı biçimlerde ``yapılar'', ``yorumlar'' ya da
+``modeller'' denir.
+\end{explain}
+
+\begin{defn}[!!^{structure}s]
+Bir \Article{structure} \emph{!!{structure}}~$\Struct M$, birinci
+dereceden mantığın~$\Lang L$ dili için aşağıdaki öğelerden oluşur:
+\begin{enumerate}
+\item \emph{Evren:} boş olmayan bir küme, $\Domain M$.
+\item \emph{!!{constant}s yorumu:} $\Lang L$ dilindeki her
+  !!{constant}~$c$ için !!a{element}~$\Assign cM\in\Domain M$.
+\item \emph{!!{predicate}s yorumu:} $\Lang L$ dilindeki ($\eq$
+  dışındaki) her $n$-li !!{predicate}~$R$ için $n$-li bir bağıntı
+  $\Assign RM\subseteq\Domain M^n$.
+\item \emph{!!{function}s yorumu:} $\Lang L$ dilindeki her $n$-li
+  !!{function}~$f$ için $n$-li bir fonksiyon
+  $\Assign fM\colon\Domain M^n\to\Domain M$.
+\end{enumerate}
+\end{defn}
+
+\begin{ex}
+Aritmetik diline ilişkin !!^a{structure}~$\Struct M$ şunlardan oluşur:
+bir küme; !!{constant}~$\Obj0$ simgesinin yorumu olarak
+$\Domain M$ içindeki $\Assign{\Obj0}M$ elemanı; bir-li
+$\Assign{\Obj\prime}M\colon\Domain M\to\Domain M$ fonksiyonu;
+iki-li $\Assign{\Obj+}M$ ve $\Assign{\Obj\times}M$ fonksiyonları
+(ikisi de $\Domain M^2\to\Domain M$); ve iki-li
+$\Assign{\Obj<}M\subseteq\Domain M^2$ bağıntısı.
+
+Böyle bir yapının apaçık bir örneği şudur:
+\begin{enumerate}
+\item $\Domain N=\Nat$;
+\item $\Assign{\Obj0}N=0$;
+\item bütün $n\in\Nat$ için $\Assign{\Obj\prime}N(n)=n+1$;
+\item bütün $n,m\in\Nat$ için $\Assign{\Obj+}N(n,m)=n+m$;
+\item bütün $n,m\in\Nat$ için $\Assign{\Obj\times}N(n,m)=n\cdot m$;
+\item $\Assign{\Obj<}N=\Setabs{\tuple{n,m}}{n\in\Nat,m\in\Nat,n<m}$.
+\end{enumerate}
+Bu biçimde tanımlanan~$\Lang L_A$ yapısı~$\Struct N$,
+$\Lang L_A$ dilinin mantıksal olmayan sabitlerini tam beklendiği gibi
+yorumladığından \emph{aritmetiğin standart modeli} olarak adlandırılır.
+
+Fakat~$\Lang L_A$ için başka birçok olası !!{structure}s vardır.
+Örneğin evren olarak~$\Nat$ yerine tam sayılar kümesi~$\Int$'i alıp
+$\Obj0$, $\Obj\prime$, $\Obj+$, $\Obj\times$ ve $\Obj<$ simgelerinin
+yorumlarını buna göre tanımlayabiliriz. Bunun yanında~$\Lang L_A$ için
+sayılarla uzaktan yakından ilgisi olmayan yapılar da tanımlayabiliriz.
+\end{ex}
+
+\begin{ex}
+Küme kuramının~$\Lang L_Z$ dili için bir~$\Struct M$ yapısı yalnızca
+bir küme ve tek bir iki-li bağıntı gerektirir. Dolayısıyla örneğin
+insanlar kümesiyle ``$x$,~$y$'den yaşlıdır'' bağıntısı ya da~$\Nat$
+ile $n,m\in\Nat$ için $n\geq m$ bağıntısı,~$\Lang L_Z$ için
+!!a{structure} olarak kullanılabilir.
+
+$\Lang L_Z$ için özellikle ilginç bir !!{structure}, evrendeki
+!!{element}s öğelerinin gerçekten kümeler olduğu ve~$\Obj\in$
+yorumunun gerçekten ``$x$,~$y$'nin !!a{element} öğesidir'' bağıntısı
+olduğu \emph{kalıtsal sonlu kümeler} !!{structure}~$\Struct{{HF}}$
+yapısıdır:
+\begin{enumerate}
+\item $\Domain{{HF}}=\emptyset\cup\Pow\emptyset\cup
+  \Pow{\Pow\emptyset}\cup\Pow{\Pow{\Pow\emptyset}}\cup\dots$;
+\item $\Assign{\Obj\in}{{HF}}=
+  \Setabs{\tuple{x,y}}{x,y\in\Domain{{HF}},x\in y}$.
+\end{enumerate}
+\end{ex}
+
+\begin{digress}
+Neyin !!a{structure} sayıldığına ilişkin kabullerimiz mantığımızı
+etkiler. Örneğin boş evrenleri dışlama seçimi, niceleyicili tümceler
+için olağan sağlama (ya da doğruluk) açıklaması verildiğinde
+$\lexists[x][(!A(x)\lor\lnot !A(x))]$ ifadesinin geçerli, yani
+mantıksal bir doğru olmasını güvence altına alır. Bütün !!{constant}s
+ifadelerinin evrendeki bir nesneye gönderme yapmasını istemek de
+varlıksal genellemenin sağlam bir çıkarım kalıbı olmasını sağlar:
+$!A(a)$, dolayısıyla $\lexists[x][!A(x)]$. Adların evren dışındaki
+nesnelere gönderme yapmasına ya da hiç gönderme yapmamasına izin
+verseydik, varlıksal genellemenin ek bir öncül gerektirdiği
+\emph{serbest mantığa} doğru ilerlerdik: $!A(a)$ ve
+$\lexists[x][\eq[x][a]]$, dolayısıyla $\lexists[x][!A(x)]$.
+\end{digress}
+

@@ -1,0 +1,138 @@
+% Generated from locale/tr/content/proof-theory/proof-search/search-algorithm.tex; do not hand-edit.
+
+
+\olfileid[tr]{pt}{ps}{sal}
+
+\olsection{\Log{G3c} İçin Arama Algoritması}
+
+\Log{G3c} için bir arama algoritması betimliyoruz. Bu, olanaklı tek
+algoritma olmadığı gibi en verimlisi de değildir. Ama doğrudur: Bir
+$\Gamma \Sequent \Delta$ sekantı için !!a{proof} varsa sonunda durup
+!!a{proof} bulur. Ayrıca şaşmazdır: !!a{proof} bulmadan durur ya da hiç
+durmazsa $\Gamma \Sequent \Delta$ baştan geçerli değildir.
+
+Algoritmanın zorunlu temel özelliklerinden biri, $\Gamma \Sequent \Delta$
+içindeki ya da ispat araması sırasında üretilen bir sekanttaki her
+!!{formula} için gerektiği kadar sık ``indirgeme'' yapılmasını güvence altına
+almasıdır; yani bu formül, geriye doğru uygulanan bir çıkarım kuralının
+asıl formülü olarak ele alınır. Bu özelliğe \emph{adillik} deriz.
+
+Algoritma aşamalar hâlinde çalışır. Her aşamanın çıktısı bir sekant ağacıdır;
+sonraki aşamanın çıktısı ise daha önce aksiyom olmayan her en üst sekantta
+!!a{formula} indirgenerek üretilir.
+
+$0$. aşamada $\Gamma \Sequent \Delta$ ile başlarız. Adilliği güvence altına
+almak üzere $\Gamma$ ve $\Delta$ içindeki !!{formula} biçimlerine, farklı
+!!{formula} biçimleri farklı sayılar alacak biçimde indisler atarız.
+Örneğin !!{formula} biçimlerini soldan sağa doğru saydığınızı düşünün. Sayıları üst indis
+olarak yazarız. Örneğin $!A, !B \Sequent !C$ için !!a{proof} arıyorsak
+$0$.~aşamanın çıktısı $!A^1, !B^2 \Sequent !C^3$ olur. Böyle indislenmiş bir
+sekantta üst indis olarak geçen en büyük~$n$, sekantın \emph{en büyük indisi}dir
+(örnekte~$3$).
+
+Sekant niceleyiciler içeriyorsa sağdaki $\lexists[x][!A(x)]$ ya da soldaki
+$\lforall[x][!A(x)]$ indirgenirken hangi terimlerin kullanılacağını da
+bilmemiz gerekir. Yalnızca !!{constant} simgeleri $\Obj c_0$, $\Obj c_1$, $\Obj c_2$,
+\dots{} ile~$\Gamma$ ve $\Delta$ içinde geçen fonksiyon simgelerinden
+kurulan terimlere ihtiyaç duyarız. Bütün bu terimler kümesinin sabit bir
+sıralaması verildiğini varsayarız; böylece örneğin ``$\Gamma \Sequent
+\Delta$ içinde geçmeyen ilk !!{constant} simgesinden söz edebiliriz.'' Algoritmanın
+ürettiği ağaçtaki her indisli sekantla ilişkilendirilmiş bir !!{constant}
+simgesi kümesi vardır. $0$.~aşamadaki sekanta atanan !!{constant} simgesi kümesi, sekantta
+geçen bütün !!{constant} simgelerinin kümesidir; sekant hiç !!{constant} içermiyorsa bu
+küme $\{\Obj c_0\}$'dır.
+
+Algoritmanın $n$.~aşamada, ilişkilendirilmiş !!{constant} simgesi kümeleriyle
+birlikte bir indisli sekantlar ağacı ürettiğini varsayın. $n+1$.~aşamada her
+en üst sekant için aşağıdakileri yaparız.
+
+Sekantın hem solunda hem sağında geçen bir !!a{formula}~$!A$ varsa ya da
+sol taraf~$\lfalse$ içeriyorsa hiçbir şey yapmayız: Bu sekantların her biri
+için \Log{G3c} içinde bir !!{proof} vardır ve bu belirli en üst sekant için yapılacak
+başka bir şey kalmamıştır.
+
+Sekantta atomik olmayan hiçbir !!{formula} yoksa algoritmayı başarısız olarak
+durdurun. $\Gamma \Sequent \Delta$ için ispat yoktur.
+
+Aksi hâlde en küçük~$i$ indisine sahip atomik olmayan, $!A$ adlı !!{formula} biçimini
+seçin. Söz konusu en üst sekant ya $!A^i, \Pi \Sequent \Lambda$ ya da
+$\Pi \Sequent \Lambda, !A^i$ biçimindedir. $k$, sekantın en büyük indisi;
+$C$ ise sekanta atanmış !!{constant} simgesi kümesi olsun.
+
+$!A^i$'yi ``indirgeriz''; yani~$!A$ içindeki !!{main operator} ile $!A^i$'nin
+solda mı sağda mı geçtiğine göre belirlenen çıkarım kuralı uyarınca yeni en
+üst sekantlar üretiriz.
+
+\begin{enumerate}
+  \item $!A \ident !B \land !C$ ve solda geçiyor: $(!B \land !C)^i,
+  \Pi \Sequent \Lambda$ üzerine yeni bir en üst sekant ekleyin:
+  \[
+  \Axiom$!B^{k+1}, !C^{k+2}, \Pi \fCenter \Lambda$
+  \RightLabel{\LeftR{\land}}
+  \UnaryInf$(!B \land !C)^i, \Pi \fCenter \Lambda$
+  \DisplayProof
+  \]
+  Yeni sekanta atanan !!{constant} simgesi kümesi~$C$'dir.
+  \item $!A \ident !B \land !C$ ve sağda geçiyor: $\Pi \Sequent
+  \Lambda, (!B \land !C)^i$ üzerine iki yeni en üst sekant ekleyin:
+  \[
+  \Axiom$\Pi \fCenter \Lambda, !B^{k+1}$
+  \Axiom$\Pi \fCenter \Lambda, !C^{k+1}$
+  \RightLabel{\RightR{\land}}
+  \BinaryInf$\Pi \fCenter \Lambda, (!B \land !C)^i$
+  \DisplayProof
+  \]
+  Yeni sekanta atanan !!{constant} simgesi kümesi~$C$'dir.
+
+  \item $!A \ident \lnot !B$, $!A \ident !B \lor !C$ ve $!A \ident !B
+  \lif !C$ durumları benzerdir ve alıştırma olarak bırakılmıştır.
+
+  \item $!A \ident \lexists[x][!B(x)]$ ve solda geçiyor:
+  $\lexists[x][!B(x)]^i, \Pi \Sequent \Lambda$ üzerine yeni bir en üst
+  sekant ekleyin:
+  \[
+  \Axiom$!B(c)^{k+1}, \Pi \fCenter \Lambda$
+  \RightLabel{\LeftR{\lexists}}
+  \UnaryInf$\lexists[x][!B(x)]^i, \Pi \fCenter \Lambda$
+  \DisplayProof
+  \]
+  Burada $c$,~$C$ içinde bulunmayan ilk !!{constant} simgesidir. Yeni sekanta
+  atanan !!{constant} simgesi kümesi $C \cup \{c\}$'dir.
+  \item $!A \ident \lexists[x][!B(x)]$ ve sağda geçiyor: $\Pi \Sequent
+  \Lambda, \lexists[x][!B(x)]$ üzerine yeni bir en üst sekant ekleyin:
+  \[
+  \Axiom$\Pi \fCenter \Lambda, \lexists[x][!B(x)]^{k+1}, !B(t)^{k+2}$
+  \RightLabel{\RightR{\lexists}}
+  \UnaryInf$\Pi \fCenter \Lambda, \lexists[x][!B(x)]^i$
+  \DisplayProof
+  \]
+  Burada $t$, yalnızca~$C$ içindeki !!{constant} simgelerini içeren ve bu
+  sekantın altında $\lexists[x][!B(x)]$ sağda indirgenirken daha önce
+  kullanılmamış ilk terimdir (böyle terimlerin tümü kullanılmışsa $\Obj
+  c_0$'dır). Yeni sekanta atanan !!{constant} simgesi kümesi~$C$'dir.
+  \item $!A \ident \lforall[x][!B(x)]$ durumları benzerdir ve alıştırma
+  olarak bırakılmıştır.
+\end{enumerate}
+
+$n+1$.~aşamada hiçbir en üst sekanta yeni bir sekant eklemediysek algoritma
+başarıyla sona erer. Bu durumda $n+1$.~aşamadaki ağaçtan bütün indisleri
+silerek elde edilen,~$\Gamma \Sequent \Delta$ için !!a{proof} bulmuşuzdur.
+En üst sekantların tümü $!A, \Pi \Sequent \Lambda, !A$ ya da $\lfalse,
+\Pi \Sequent \Lambda$ biçimindedir. Bütün çıkarımlar doğru \Log{G3c}
+çıkarımlarıdır. Önerme mantığı çıkarımları için bu açıktır. Her adımda bir
+sekanta atanan !!{constant} simgesi kümesi~$C$'nin, sekantta geçen bütün
+!!{constant} simgelerini içerdiğine dikkat edin. Dolayısıyla
+\LeftR{\lexists} ve \RightR{\lforall} kullanılan indirgemelerde özdeğişken
+koşulu sağlanır: Özdeğişken~$c$, sonuç sekantına atanan~$C$ kümesinde
+bulunmayan !!a{constant} olduğundan sonuçta da geçmez. Şunu elde ederiz:
+
+\begin{prop}
+\Log{G3c} için ispat arama algoritması doğrudur: Başarıyla sona ererse
+başlangıç sekantı~$\Gamma \Sequent \Delta$ için !!a{proof} vardır.
+\end{prop}
+
+
+
+
+
+

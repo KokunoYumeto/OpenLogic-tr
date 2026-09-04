@@ -1,0 +1,79 @@
+% Generated from locale/tr/content/normal-modal-logic/frame-definability/first-order-definability.tex; do not hand-edit.
+
+
+\olfileid[tr]{nml}{frd}{fol}
+
+\olsection{Birinci Dereceden Tanımlanabilirlik}
+
+Çerçevelerin erişilebilirlik bağıntılarının birçok özelliğinin modal
+!!{formula}s ile tanımlanabildiğini gördük. Örneğin çerçevelerin simetrikliği
+\Ax{B}, yani $p\lif\Box\Diamond p$ !!{formula}{}üyle tanımlanabilir. Şimdiye
+kadar karşılaştığımız koşulların tümü, birinci dereceden !!{formula}s ile,
+!!a{language} içinde tek bir iki yerli !!{predicate} kullanılarak ifade edilebilir.
+Örneğin simetriklik $\lforall[x][\lforall[y][(\Atom{Q}{x,y}\lif
+\Atom{Q}{y,x})]]$ ile tanımlanır: $\Domain{M}=W$ ve $\Assign{Q}{M}=R$
+olan birinci dereceden bir !!{structure} $\Struct{M}$, önceki formülü ancak
+ve ancak $R$ simetrikse sağlar. Bu, şu tanımı düşündürür:
+
+\begin{defn}
+  Bir $\mClass{F}$ çerçeveler sınıfına, birinci dereceden dilde öyle bir
+  !!a{sentence} $!A$ varsa \emph{birinci dereceden tanımlanabilir} denir:
+  bu dil tek bir iki yerli !!{predicate} $Q$ içerir ve
+  $\mModel{F}=\tuple{W,R}\in\mClass{F}$ olması,
+  $\Domain{M}=W$ ve $\Assign{Q}{M}=R$ olan birinci dereceden
+  !!{structure} $\Struct{M}$ içinde $\Sat{M}{!A}$ olmasına denktir.
+\end{defn}
+
+Şimdiye kadar ele alınan özelliklerin ve onları tanımlayan modal
+!!{formula}s{}in istisnai olduğu ortaya çıkar. Her !!{formula}, birinci
+dereceden tanımlanabilir bir çerçeveler sınıfı tanımlamaz; birinci dereceden
+tanımlanabilir her çerçeveler sınıfı da modal bir formülle tanımlanamaz.
+
+İlk iddiaya karşı-örnek olarak L\"ob formülü verilebilir:
+\begin{equation}
+\Box(\Box p \lif p) \lif \Box p. \tag{\Ax{W}}
+\end{equation}
+\Ax{W}, geçişli ve ters yönde iyi temellendirilmiş çerçeveler sınıfını
+tanımlar. $Rw_2w_1$, $Rw_3w_2$, \dots{} olacak biçimde sonsuz bir
+$w_1,w_2,\dots$ dizisi yoksa bir bağıntı iyi temellendirilmiştir. Örneğin
+$\Nat$ üzerindeki $<$ bağıntısı iyi temellendirilmişken $\Int$ üzerindeki
+$<$ bağıntısı değildir. Bir bağıntı, tersi iyi temellendirilmişse ters yönde
+iyi temellendirilmiştir. Dolayısıyla ters yönde iyi temellendirilmiş
+bağıntılarda $Rw_1w_2$, $Rw_2w_3$, \dots{} olacak biçimde sonsuz bir
+$w_1,w_2,\dots$ dizisi yoktur.
+
+Ne var ki geçişli ve ters yönde iyi temellendirilmiş bağıntıları tanımlayan
+birinci dereceden bir !!{formula} yoktur. $\Sat{M}{!F}$ ancak ve ancak
+$R=\Assign{Q}{M}$ geçişli ve ters yönde iyi temellendirilmişse geçerli
+olsun. $!A_n$ şu !!{formula} olsun:
+\[
+(\Atom{Q}{a_1,a_2} \land \dots \land
+    \Atom{Q}{a_{n-1},a_{n}})
+\]
+Şimdi şu !!{formula}s kümesini ele alalım:
+\[
+\Gamma=\{!F,!A_1,!A_2,\dots\}.
+\]
+$\Gamma$'nın her sonlu alt kümesi sağlanabilirdir: alt kümede bulunan
+indislerin en büyüğü $k$ olsun; $\Domain{M_k}=\{1,\dots,k\}$,
+$\Assign{a_i}{M_k}=i$ ve $\Assign{Q}{M_k}=<$ olarak belirleyelim.
+$\{1,\dots,k\}$ üzerindeki $<$ geçişli ve ters yönde iyi temellendirilmiş
+olduğundan $\Sat{M_k}{!F}$. Yapı gereği bütün $i\le k$ için
+$\Sat{M_k}{!A_i}$. Birinci dereceden mantığın Tıkızlık Teoremi gereğince
+$\Gamma$, bir !!{structure} $\Struct{M}$ içinde sağlanabilirdir. Varsayıma
+göre $\Sat{M}{!F}$ olduğundan $\Assign{Q}{M}$ ters yönde iyi
+temellendirilmiştir. Fakat $\Assign{a_1}{M},\Assign{a_2}{M},\dots$ açıkça
+ters yönde iyi temellendirilmişliğin dışladığı türden sonsuz bir dizi
+oluşturur.
+
+İkinci iddiaya karşı-örnek evrensellik özelliğidir: bütün $u$ ve $v$ için
+$Ruv$. Evrensel çerçeveler
+$\lforall[x][\lforall[y][\Atom{Q}{x,y}]]$ formülüyle birinci dereceden
+tanımlanabilir. Buna karşılık tam ve yalnızca evrensel çerçevelerde geçerli
+olan hiçbir modal formül yoktur. Bu, kendi başına da ilginç bir sonucun
+neticesidir: evrensel çerçevelerde geçerli formüller, yansımalı, simetrik ve
+geçişli çerçevelerde geçerli formüllerle tam olarak aynıdır. Evrensel
+olmayan yansımalı, simetrik ve geçişli çerçeveler bulunduğundan, bütün
+evrensel çerçevelerde geçerli her !!{formula} evrensel olmayan bazı
+çerçevelerde de geçerlidir.
+

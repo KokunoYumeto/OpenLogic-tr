@@ -1,0 +1,231 @@
+% Generated from locale/tr/content/first-order-logic/tableaux/soundness.tex; do not hand-edit.
+
+
+\iftag{FOL}
+      {\olfileid[tr]{fol}{tab}{sou}}
+      {\olfileid[tr]{pl}{tab}{sou}}
+      
+\olsection{Sağlamlık}
+
+\begin{explain}
+Tableau ağaçları gibi !!^a{derivation} sistemi, öncüllerinden gerçekte
+çıkmayan sonuçları !!{derive} edemiyorsa \emph{sağlamdır}. Dolayısıyla sağlamlık,
+!!{derivation} sistemleri için bir tür güvence altına alınmış emniyet
+özelliğidir. Söz konusu ispat kuramsal özelliğe bağlı olarak, örneğin şunları
+bilmek isteriz:
+\begin{enumerate}
+\item !!{derivable} her~$!A$ \iftag{FOL}{geçerlidir}{bir tautolojidir};
+\item !!a{sentence} başka tümcelerden !!{derivable} ise aynı zamanda onların
+  mantıksal sonucudur;
+\item bir !!{sentence}s kümesi tutarsızsa sağlanamazdır.
+\end{enumerate}
+Bunlar !!a{derivation} sisteminin önemli özellikleridir. Bunlardan herhangi
+biri geçerli değilse !!{derivation} sistemi kusurludur---çok fazla şeyi
+!!{derive} eder. Bu nedenle !!a{derivation} sisteminin sağlamlığını ortaya
+koymak son derece önemlidir.
+
+Bu ispat kuramsal özelliklerin tümü şu ya da bu tür kapalı !!{tableau}s
+üzerinden tanımlandığından yukarıdaki (1)--(3) maddelerini ispatlamak, kapalı
+!!{tableau}s ağaçlarının semantik özellikleri hakkında bir şey
+ispatlamamızı gerektirir. Önce !!a{signed formula}'nın uygun semantik nesne
+tarafından sağlanmasının ne anlama geldiğini tanımlayacak, sonra !!{tableau}
+kapalıysa hiçbir semantik nesnenin bütün varsayımlarını sağlamadığını göstereceğiz. Ardından
+(1)--(3) bu sonucun doğal sonuçları olarak elde edilecektir.
+\end{explain}
+
+\begin{defn}
+\iftag{FOL}{!!^a{structure}}{!!^a{valuation}}~$\iftag{FOL}{\Struct{M}}{\pAssign{v}}$,
+!!a{signed formula} $\sFmla{\True}{!A}$ ifadesini ancak ve ancak
+$\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$ ise; $\sFmla{\False}{!A}$ ifadesini
+ise ancak ve ancak $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A}$ ise
+\emph{sağlar}. $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$, bir !!{signed
+formula}s kümesi~$\Gamma$'yı ancak ve ancak her
+$\sFmla{S}{!A} \in \Gamma$ ifadesini sağlarsa sağlar. $\Gamma$, kendisini
+sağlayan \iftag{FOL}{!!a{structure}}{!!a{valuation}} varsa
+\emph{sağlanabilir}, aksi hâlde \emph{sağlanamazdır}.
+\end{defn}
+
+\begin{thm}[Sağlamlık]
+  \ollabel{thm:tableau-soundness}
+  $\Gamma$'nın kapalı bir !!{tableau}'su varsa $\Gamma$ sağlanamazdır.
+\end{thm}
+
+\begin{proof}
+Bir !!a{tableau}'nun dalına, üzerindeki !!{signed formula}s kümesi
+sağlanabilirse sağlanabilir dal; en az bir sağlanabilir dal içeren
+!!a{tableau}'ya ise sağlanabilir tableau diyelim.
+
+Şunu gösteriyoruz: Sağlanabilir bir !!{tableau}'yu çıkarım kurallarından
+biriyle genişletmenin sonucu her zaman sağlanabilir bir !!{tableau}'dur. Bu,
+teoremi ispatlayacaktır: Her kapalı !!{tableau}, yalnızca~$\Gamma$'dan gelen
+varsayımlardan oluşan !!{tableau}'ya çıkarım kurallarının uygulanmasıyla elde
+edilir. Dolayısıyla $\Gamma$ sağlanabilir olsaydı onun için her !!{tableau}
+sağlanabilir olurdu. Oysa kapalı bir !!{tableau}'nun sağlanabilir olmadığı
+açıktır: her dal hem $\sFmla{\True}{!A}$ hem de $\sFmla{\False}{!A}$ içerir
+ve hiçbir semantik nesnenin~$!A$'yı hem sağlaması hem de sağlamaması mümkün değildir.
+
+Sağlanabilir bir !!{tableau}, yani en az bir sağlanabilir dalı olan
+!!a{tableau} bulunduğunu varsayın. Bir çıkarım kuralının uygulanması ya dala
+!!{signed formula}s ekler ya da dalı ikiye ayırır. !!{tableau}, söz konusu
+kural uygulamasıyla genişletilmeyen sağlanabilir bir dala sahipse bu dal
+genişletilmiş !!{tableau} içinde de sağlanabilir kalır; dolayısıyla
+genişletilmiş tableau sağlanabilirdir. Bu nedenle yalnızca bir kuralın
+sağlanabilir bir dala uygulandığı durumu ele almalıyız.
+
+$\Gamma$ bu daldaki !!{signed formula}s kümesi ve
+$\sFmla{S}{!A} \in \Gamma$, kuralın uygulandığı !!{signed formula} olsun.
+Kural dalı ikiye ayırmıyorsa genişletilmiş dalın, yani kuralın sonuçlarıyla
+birlikte $\Gamma$'nın hâlâ sağlanabilir olduğunu göstermeliyiz. Kural dalı
+ikiye ayırıyorsa ortaya çıkan iki daldan en az birinin sağlanabilir olduğunu
+göstermeliyiz.
+  
+Önce dalı ikiye ayırmayan olası çıkarımları ele alıyoruz.
+\begin{enumerate}
+\item Dal, $\sFmla{\True}{\lnot !B} \in \Gamma$ ifadesine
+  $\TRule{\True}{\lnot}$ uygulanarak genişletilir. Bu durumda genişletilmiş
+  dal $\Gamma \cup \{\sFmla{\False}{!B}\}$ !!{signed formula}s kümesini
+  içerir. $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$ olduğunu varsayın.
+  Özellikle $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\lnot !B}$. Dolayısıyla
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!B}$; yani
+  $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$, $\sFmla{\False}{!B}$ ifadesini
+  sağlar.
+\item Dal, $\sFmla{\False}{\lnot !B} \in \Gamma$ ifadesine
+  $\TRule{\False}{\lnot}$ uygulanarak genişletilir: Alıştırma.
+\item Dal, $\sFmla{\True}{!B \land !C} \in \Gamma$ ifadesine
+  $\TRule{\True}{\land}$ uygulanarak genişletilir; böylece dala iki yeni
+  !!{signed formula}s, $\sFmla{\True}{!B}$ ile $\sFmla{\True}{!C}$ eklenir.
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$, özellikle de
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B \land !C}$ olduğunu varsayın. O zaman
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$ ve
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!C}$. Bu,
+  $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ yapısının hem
+  $\sFmla{\True}{!B}$ hem de $\sFmla{\True}{!C}$ ifadesini sağladığı
+  anlamına gelir.
+\item Dal, $\sFmla{\False}{!B \lor !C} \in \Gamma$ ifadesine
+  $\TRule{\False}{\lor}$ uygulanarak genişletilir: Alıştırma.
+\item Dal, $\sFmla{\False}{!B \lif !C} \in \Gamma$ ifadesine
+  $\TRule{\False}{\lif}$ uygulanarak genişletilir. Böylece dala iki yeni
+  !!{signed formula}s, $\sFmla{\True}{!B}$ ile $\sFmla{\False}{!C}$ eklenir.
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$, özellikle de
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!B \lif !C}$ olduğunu varsayın. O zaman
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$ ve
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$. Bu,
+  $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ yapısının hem
+  $\sFmla{\True}{!B}$ hem de $\sFmla{\False}{!C}$ ifadesini sağladığı
+  anlamına gelir.
+
+\iftag{FOL}{%
+\item Dal, $\sFmla{\True}{\lforall[x][!A(x)]} \in \Gamma$ ifadesine
+  $\TRule{\True}{\lforall}$ uygulanarak genişletilir. Böylece dala yeni bir
+  !!{signed formula}~$\sFmla{\True}{!A(t)}$ eklenir.
+  $\Sat{M}{\Gamma}$, özellikle de $\Sat{M}{\lforall[x][!A(x)]}$ olduğunu
+  varsayın. \olref[syn][sem]{prop:quant-terms} uyarınca
+  $\Sat{M}{!A(t)}$. Dolayısıyla $\Struct{M}$,
+  $\sFmla{\True}{!A(t)}$ ifadesini sağlar.
+
+\item Dal, $\sFmla{\False}{\lforall[x][!A(x)]} \in \Gamma$ ifadesine
+  $\TRule{\False}{\lforall}$ uygulanarak genişletilir. Böylece dala yeni bir
+  !!{signed formula}~$\sFmla{\False}{!A(a)}$ eklenir; burada $a$,~$\Gamma$
+  içinde geçmeyen !!a{constant}'tır. $\Gamma$ sağlanabilir olduğundan
+  $\Sat{M}{\Gamma}$, özellikle de
+  $\Sat/{M}{\lforall[x][!A(x)]}$ olacak biçimde bir $\Struct{M}$ vardır.
+  $\Gamma \cup \{\sFmla{\False}{!A(a)}\}$ kümesinin sağlanabilir olduğunu
+  göstermeliyiz. Bunun için uygun bir~$\Struct{M'}$ yapısını şöyle tanımlarız.
+
+  \olref[syn][ass]{prop:sat-quant} uyarınca
+  $\Sat/{M}{\lforall[x][!A(x)]}$ ancak ve ancak belirli bir $s$ için
+  $\Sat/{M}{!A(x)}[s]$ ise. Şimdi $\Struct{M'}$, yalnızca
+  $\Assign{a}{M'} = s(x)$ olması dışında $\Struct{M}$ ile aynı olsun.
+  $a$,~$\Gamma$ içinde geçmediğinden
+  \olref[syn][ext]{cor:extensionality-sent} uyarınca her
+  $\sFmla{\True}{!C} \in \Gamma$ için $\Sat{M'}{!C}$ ve her
+  $\sFmla{\False}{!C} \in \Gamma$ için $\Sat/{M'}{!C}$.
+
+  \olref[syn][ext]{prop:extensionality} uyarınca
+  $\Sat/{M'}{!A(x)}[s]$. \olref[syn][ext]{prop:ext-formulas} uyarınca
+  $\Sat/{M'}{!A(a)}[s]$. $!A(a)$ bir !!a{sentence} olduğundan
+  \olref[syn][ass]{prop:sentence-sat-true} uyarınca
+  $\Sat/{M'}{!A(a)}$; yani $\Struct{M'}$,
+  $\sFmla{\False}{!A(a)}$ ifadesini sağlar.
+\item Dal, $\sFmla{\True}{\lexists[x][!B(x)]} \in \Gamma$ ifadesine
+  $\TRule{\True}{\lexists}$ uygulanarak genişletilir: Alıştırma.
+\item Dal, $\sFmla{\False}{\lexists[x][!B(x)]} \in \Gamma$ ifadesine
+  $\TRule{\False}{\lexists}$ uygulanarak genişletilir: Alıştırma.}{}
+\end{enumerate}
+Şimdi dalı ikiye ayıran olası çıkarımları ele alalım.
+\begin{enumerate}
+\item Dal, $\sFmla{\False}{!B \land !C} \in \Gamma$ ifadesine
+  $\TRule{\False}{\land}$ uygulanarak genişletilir. Böylece
+  $\sFmla{\False}{!B}$ üzerinden devam eden bir sol dal ile
+  $\sFmla{\False}{!C}$ üzerinden devam eden bir sağ dal elde edilir.
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$, özellikle de
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!B \land !C}$ olduğunu varsayın. O zaman
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!B}$ ya da
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!C}$. İlk durumda
+  $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$, $\sFmla{\False}{!B}$ ifadesini,
+  yani $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ sol daldaki formülleri sağlar.
+  İkinci durumda $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$,
+  $\sFmla{\False}{!C}$ ifadesini, yani
+  $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ sağ daldaki formülleri sağlar.
+\item Dal, $\sFmla{\True}{!B \lor !C} \in \Gamma$ ifadesine
+  $\TRule{\True}{\lor}$ uygulanarak genişletilir: Alıştırma.
+\item Dal, $\sFmla{\True}{!B \lif !C} \in \Gamma$ ifadesine
+  $\TRule{\True}{\lif}$ uygulanarak genişletilir: Alıştırma.
+\item Dal \Cut{} ile genişletilir. Böylece biri $\sFmla{\True}{!B}$,
+  diğeri $\sFmla{\False}{!B}$ içeren iki dal elde edilir.
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$ ve ya
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$ ya da
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!B}$ olduğundan
+  $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$, sol ya da sağ daldan birini
+  sağlar.
+\end{enumerate}
+\end{proof}
+
+\tagprob{FOL}
+\begin{prob}
+\olref[fol][tab][sou]{thm:tableau-soundness} teoreminin ispatını tamamlayın.
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+\olref[pl][tab][sou]{thm:tableau-soundness} teoreminin ispatını tamamlayın.
+\end{prob}
+\tagendprob
+
+\begin{cor}
+\ollabel{cor:weak-soundness}
+$\Proves !A$ ise $!A$ \iftag{FOL}{geçerlidir}{bir tautolojidir}.
+\end{cor}
+
+\begin{cor}
+\ollabel{cor:entailment-soundness}
+$\Gamma \Proves !A$ ise $\Gamma \Entails !A$.
+\end{cor}
+
+\begin{proof}
+  $\Gamma \Proves !A$ ise belirli $!B_1$, \dots, $!B_n \in \Gamma$ için
+  $\{\sFmla{\False}{!A}, \sFmla{\True}{!B_1}, \dots,
+  \sFmla{\True}{!B_n}\}$ kümesinin kapalı bir !!{tableau}'su vardır.
+  \olref{thm:tableau-soundness} uyarınca her
+  \iftag{FOL}{!!{structure}}{!!{valuation}}~$\iftag{FOL}{\Struct{M}}{\pAssign{v}}$
+  ya belirli bir $!B_i$'yi yanlış kılar ya da $!A$'yı doğru kılar. Dolayısıyla
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$ ise
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$ da olur.
+\end{proof}
+
+\begin{cor}
+\ollabel{cor:consistency-soundness}
+$\Gamma$ sağlanabilirse tutarlıdır.
+\end{cor}
+
+\begin{proof}
+Karşıt tersini ispatlıyoruz. $\Gamma$'nın tutarlı olmadığını varsayın. Bu
+durumda $!B_1$, \dots, $!B_n \in \Gamma$ vardır ve
+$\{\sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n}\}$ için kapalı bir
+!!{tableau} bulunur. \olref{thm:tableau-soundness} uyarınca her
+$i=1$, \dots,~$n$ için $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B_i}$ olacak
+biçimde hiçbir $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ yoktur. Ama o hâlde
+$\Gamma$ sağlanabilir değildir.
+\end{proof}
+

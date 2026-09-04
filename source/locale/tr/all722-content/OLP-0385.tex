@@ -1,0 +1,55 @@
+% Generated from locale/tr/content/many-valued-logic/syntax-and-semantics/introduction.tex; do not hand-edit.
+
+
+\olfileid[tr]{mvl}{syn}{int}
+
+\olsection{Giriş}
+
+Klasik mantıkta, !!{formula}s üzerinde çalışırız; bunlar
+!!{propositional variable}s ile $\lnot$, $\land$, $\lor$, $\lif$ ve $\liff$
+önermesel bağlaçları kullanılarak kurulur. Klasik mantığın semantiğini iki
+doğruluk değeri $\True$ ve $\False$ ile tanımlarız. Her
+!!{propositional variable}, kendisine $\True$ ya da $\False$ doğruluk
+değerini atayan !!a{valuation} $\pAssign{v}$ altında yorumlanır. Her
+!!{valuation}, her $!A$ !!{formula} için bir doğruluk değeri
+$\pValue{v}(!A)$ belirler; !!^a{formula}, !!a{valuation} $\pAssign{v}$
+altında, $\pSat{v}{!A}$, ancak ve ancak $\pValue{v}(!A)=\True$ ise sağlanır.
+
+Çok değerli mantıklar, yalnızca $\True$ ve $\False$ yerine daha fazla
+doğruluk değerine izin vererek klasik iki değerli mantığı genelleştirir.
+Dolayısıyla çok değerli mantıkta !!a{valuation} $\pAssign{v}$, her
+!!{propositional variable} $p$ için olası doğruluk değerleri arasından birini
+atayan bir fonksiyondur. İzin verilen doğruluk değerlerinin kümesine genel
+olarak $V$ diyeceğiz. Klasik mantık, $V=\{\True,\False\}$ olan çok değerli
+bir mantıktır ve $\pValue{v}(!A)$ doğruluk değeri, bağlaçların bildik
+karakteristik doğruluk tabloları kullanılarak hesaplanır.
+
+Ek doğruluk değerleri kattığımızda ``ve'', ``veya'', ``değil'' ve
+``eğer---ise'' diye okuduğumuz bağlaçlar için $\pValue{v}(!A)$'nın nasıl
+hesaplanacağına ilişkin birden çok doğal seçenek ortaya çıkar. Dolayısıyla
+çok değerli bir mantığı yalnızca doğruluk değerleri kümesi değil, her bağlaç
+için kullanmaya karar verdiğimiz \emph{doğruluk fonksiyonları} da belirler.
+Ancak bunlar bir $\Log L$ çok değerli mantığı için seçildikten sonra,
+klasik mantıktaki gibi $\pValue{v}(!A)[\Log L]$ doğruluk değeri değerleme
+tarafından tek biçimde belirlenir. Klasik mantık gibi çok değerli mantıklar
+da \emph{doğruluk fonksiyonludur}.
+
+Bu semantik yapı taşlarıyla totoloji, mantıksal gerektirme ve
+sağlanabilirliğin semantik karşılıklarını tanımlayabiliriz. Klasik mantıkta
+!!a{formula}, her $\pAssign{v}$ için doğruluk değeri
+$\pValue{v}(!A)=\True$ ise totolojidir. Çok değerli mantıkta bunu da biraz
+genelleştirmeliyiz. Öncelikle doğruluk değerleri kümesi $V$'nin $\True$'yu
+içermesi gerekmez. Örneğin bazı çok değerli mantıklar doğruluk değerleri
+kümesi olarak $0$ ile $1$ arasındaki bütün rasyonel sayılar gibi sayıları
+kullanır. Böyle bir durumda $1$ genellikle $\True$ rolünü oynar. Başka
+mantıklarda bu rolü tek değil birkaç doğruluk değeri oynar. Bu nedenle her
+çok değerli mantığın \emph{belirlenmiş değerlerden} oluşan bir $V^+$ kümesi
+olmasını şart koşarız. O zaman !!a{formula}, !!a{valuation}
+$\pAssign{v}$ içinde, $\pSat{v}{!A}[\Log L]$, ancak ve ancak
+$\pValue{v}(!A)[\Log L]\in V^+$ ise sağlanır diyebiliriz. !!^a{formula}
+$!A$, ancak ve ancak her $\pAssign{v}$ için $\pValue{v}(!A)\in V^+$ ise
+  mantığın totolojisidir, $\Entails[\Log L] !A$. Son olarak, $\Gamma$ bir
+  formüller kümesiyse, $\Gamma$'daki bütün formülleri sağlayan her
+  !!{valuation} $!A$'yı da sağladığında $!A$'nın $\Gamma$ tarafından
+  mantıksal olarak gerektirildiğini, $\Gamma\Entails[\Log L]!A$, söyleriz.
+

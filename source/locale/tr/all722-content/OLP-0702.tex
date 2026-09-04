@@ -1,0 +1,336 @@
+% Generated from locale/tr/content/proof-theory/sequent-calculus/proof-examples.tex; do not hand-edit.
+
+
+\olfileid[tr]{pt}{seq}{ex}
+
+\olsection{İspat Örnekleri}
+
+Sekantların !!{proof}s{}ını vermek için genellikle son sekanttan yukarı doğru
+ilerlemek elverişlidir: içindeki bir !!a{formula} etkin !!{formula} olarak
+seçilir, karşılık gelen kuralın öncülleri sekantın üstüne yazılır ve
+aksiyomlara ulaşılıncaya dek işlem yinelenir. Örneğin şu sekantı ispatlamak
+istediğimizi varsayalım:
+\[(!C \land !D) \lif !E \Sequent !C \lif (!D \lif !E)\]
+$!C \lif (!D \lif !E)$'yi ele alın: $!A \lif !B$ biçimindedir ve sekantın
+sağında geçer. Bütün sekantı \Log{G1c}'nin $\RightR{\lif}$ kuralıyla
+eşleştirelim:
+\[\Axiom$ !A, \Gamma \fCenter \Delta, !B$
+\RightLabel{\RightR{\lif}}
+\UnaryInf$ \Gamma \fCenter \Delta, !A \lif !B $
+\DisplayProof\]
+Bu eşleştirme $\Gamma = \{(!C \land !D) \lif !E\}$, $\Delta = \emptyset$,
+$!A \ident !C$ ve $!B \ident !D \lif !E$ almamız gerektiğini düşündürür.
+Öyleyse bir ispatın son çıkarımı şöyle olabilir:
+\[\Axiom$ !C, (!C \land !D) \lif !E \fCenter !D \lif !E$
+\RightLabel{\RightR{\lif}}
+\UnaryInf$(!C \land !D) \lif !E \fCenter !C \lif (!D \lif !E)$
+\DisplayProof\]
+$!D \lif !E$'yi etkin formül seçerek aynı düşünceyi yinelersek şunu
+üretiriz:
+\[\Axiom$ !D, !C, (!C \land !D) \lif !E \fCenter !E$
+\RightLabel{\RightR{\lif}}
+\UnaryInf$!C, (!C \land !D) \lif !E \fCenter !D \lif !E$
+\RightLabel{\RightR{\lif}}
+\UnaryInf$(!C \land !D) \lif !E \fCenter !C \lif (!D \lif !E)$
+\DisplayProof\]
+Şimdi $(!C \land !D) \lif !E$'ye odaklanıp \Log{G1c}'nin
+$\LeftR{\lif}$ kuralını kullanmalıyız:
+\[\Axiom$ \Gamma \fCenter \Delta, !A$
+\Axiom$ !B, \Gamma \fCenter \Delta$
+\RightLabel{\LeftR{\lif}}
+\BinaryInf$ !A \lif !B, \Gamma \fCenter \Delta$
+\DisplayProof\]
+Bu bizi şuraya götürür:
+\[\Axiom$!D, !C \fCenter !E, !C \land !D$
+\Axiom$!D, !C, !E \fCenter !E$
+\RightLabel{\LeftR{\lif}}
+\BinaryInf$ !D, !C, (!C \land !D) \lif !E \fCenter !E$
+\RightLabel{\RightR{\lif}}
+\UnaryInf$!C, (!C \land !D) \lif !E \fCenter !D \lif !E$
+\RightLabel{\RightR{\lif}}
+\UnaryInf$(!C \land !D) \lif !E \fCenter !C \lif (!D \lif !E)$
+\DisplayProof\]
+Sol üst sekantta $!C \land !D$ !!{formula}{}ünü başlıca formül seçip
+$\RightR{\land}$ kuralını kullanırsak şunu elde ederiz:
+\[
+\Axiom$!D, !C \fCenter !E, !C$
+\Axiom$!D, !C \fCenter !E, !D$
+\RightLabel{\RightR{\land}}
+\BinaryInf$!D, !C \fCenter !E, !C \land !D$
+\Axiom$!D, !C, !E \fCenter !E$
+\RightLabel{\LeftR{\lif}}
+\BinaryInf$ !D, !C, (!C \land !D) \lif !E \fCenter !E$
+\RightLabel{\RightR{\lif}}
+\UnaryInf$!C, (!C \land !D) \lif !E \fCenter !D \lif !E$
+\RightLabel{\RightR{\lif}}
+\UnaryInf$(!C \land !D) \lif !E \fCenter !C \lif (!D \lif !E)$
+\DisplayProof
+\]
+Buraya kadar her şey yolunda. Şimdiye dek kullandığımız kurallar \Log{G1c}
+ile~\Log{G3c}'de aynı olduğundan yaptıklarımızın tümü \Log{G3c}'de de
+işler. En üstteki bütün sekantların solunda ve sağında aynı !!{formula}
+bulunan bir !!a{proof} parçasına ulaştık. Ancak bunlar henüz tam olarak
+aksiyom değildir.
+
+\Log{G1c}'de en üstteki sekantların $!A \Sequent !A$ biçimindeki
+aksiyomlardan !!{proof}s{}ını vermeliyiz. Bu, zayıflatma kurallarıyla kolayca
+yapılır. Örneğin en soldaki $!D, !C \Sequent !E, !C$ üst sekantı şöyle
+!!{prove}{}nabilir:
+\[
+\Axiom$!C \fCenter !C$
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$!D, !C \fCenter !C$
+\RightLabel{\RightR{\Weakening}}
+\UnaryInf$!D, !C \fCenter !E, !C$
+\]
+Genel olarak \Log{G1c}'de şu görünüme sahip bir !!a{proof}{}ımız vardır:
+\[
+\Axiom$!C \fCenter !C$
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$!D, !C \fCenter !C$
+\RightLabel{\RightR{\Weakening}}
+\UnaryInf$!D, !C \fCenter !E, !C$
+\Axiom$!D \fCenter !D$
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$!D, !C \fCenter !D$
+\RightLabel{\RightR{\Weakening}}
+\UnaryInf$!D, !C \fCenter !E, !D$
+\RightLabel{\RightR{\land}}
+\BinaryInf$!D, !C \fCenter !E, !C \land !D$
+\Axiom$!E \fCenter !E$
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$!C, !E \fCenter !E$
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$!D, !C, !E \fCenter !E$
+\RightLabel{\LeftR{\lif}}
+\BinaryInf$ !D, !C, (!C \land !D) \lif !E \fCenter !E$
+\RightLabel{\RightR{\lif}}
+\UnaryInf$!C, (!C \land !D) \lif !E \fCenter !D \lif !E$
+\RightLabel{\RightR{\lif}}
+\UnaryInf$(!C \land !D) \lif !E \fCenter !C \lif (!D \lif !E)$
+\DisplayProof
+\]
+Bu ispatın yapısı (özellikle yüksekliği), $!C$, $!D$ ve~$!E$
+!!{formula}s{}inin ne olduğundan bağımsızdır. Yukarıdaki !!{proof} içinde bu
+simgeleri gelişigüzel !!{formula}s ile değiştirebiliriz ve sonuç yine
+\Log{G1c}'de bir !!a{proof} olur. \Log{G1c}'deki ispat \emph{şematiktir}.
+
+\Log{G3c}'de aksiyomlar, $!A$ atomik olmak koşuluyla $!A, \Gamma \Sequent
+\Delta, !A$ biçimindeki sekantlardır. Dolayısıyla $!D, !C \Sequent !E, !C$
+bir \Log{G3c} aksiyomu gibi görünse de ($\Gamma = \{!D\}$; $\Delta =
+\{!E\}$) ancak $!C$ gerçekten atomikse bir aksiyomdur. İspat parçamız
+yalnız $!C$, $!D$ ve $!E$ atomik !!{formula}s olduğunda \Log{G3c}'de tam
+bir ispattır.
+
+Tam anlamıyla
+\[\Log{G1c} \Proves (!C \land !D) \lif !E \fCenter !C \lif (!D \lif
+!E)\]
+olduğunu göstermemiş olsak da uygulamada yapmamız gereken (ve
+yapabileceğimiz) bundan ibarettir. Çünkü $!A$ atomik olmasa bile $!A,
+\Gamma \Sequent \Delta, !A$ biçimindeki her sekant \Log{G3c}'de
+ispatlanabilir. Bunu $!A$'nın derinliği~$\depth{!A}$ üzerinde tümevarımla
+gösterebiliriz.
+
+\begin{defn}\ollabel{defn:depth}
+Bir !!a{formula}{}ün \emph{derinliği}~$\depth{!A}$ şöyle tanımlanır:
+\begin{enumerate}
+  \item $!A$ atomikse $\depth{!A} = 0$.
+  \item $!A \ident \lnot !B$, $!A \ident \lforall[x][!B]$ ya da
+  $!A \ident \lexists[x][!B]$ ise $\depth{!A} = \depth{!B} + 1$.
+  \item $!A \ident (!B \land !C)$, $!A \ident (!B \lor !C)$ ya da
+  $!A \ident (!B \lif !C)$ ise $\depth{!A} =
+  \max(\depth{!B},\depth{!C}) + 1$.
+\end{enumerate}
+\end{defn}
+
+Her $t$ terimi için $\depth{A(x)} = \depth{A(t)}$ olduğunu ispatlamak zor
+değildir. Bizim için önemli olgu şudur: her kuralda başlıca !!{formula}{}ün
+derinliği, etkin !!{formula}{}ün derinliğinden her zaman büyüktür. Örneğin:
+\begin{align*}
+\depth{P(x)} = \depth{P(a)} & = 0,\\
+\depth{\lforall[x][P(x)]} & = 1,\\
+\depth{(\lforall[x][P(x)] \lif P(a))} & = \max(1,0) + 1 = 2.
+\end{align*}
+Bunu, aşağıdaki gibi bazı sonuçları $\depth{!A}$ üzerinde tümevarımla
+ispatlamak için kullanabiliriz.
+
+\begin{prop}\ollabel{prop:G1c-axioms}
+Her~$!A$ için \Log{G1c}'de $!A \Sequent !A$'nın bütün aksiyomları atomik
+olan bir !!a{proof}{}ı vardır.
+\end{prop}
+
+\begin{proof}
+  $\depth{!A}$ üzerinde tümevarımla. $\depth{!A} = 0$ ise $!A$ atomiktir
+  ve $!A \Sequent !A$ zaten \Log{G1c}'de istenen biçimde bir !!a{proof}{}tır.
+  $\depth{!A} > 0$ ise $!A$, daha düşük derinlikteki !!{formula}s{}den
+  kurulmuştur; örneğin $!A \ident \lnot !B$, $!A \ident (!B \land !C)$
+  ya da $!A \ident \lforall[x][A(x)]$ olabilir. Tümevarım varsayımı,
+  $\depth{!D} < \depth{!A}$ olan bütün $!D$ için $\Log{G1c} \Proves !D
+  \Sequent !D$ eşitliğinin atomik aksiyomlardan elde edildiğidir.
+
+  $!A \ident \lnot !B$ ise $\depth{!B} < \depth{!A}$ ve tümevarım
+  varsayımına göre \Log{G1c}'de atomik aksiyomlardan $!B \Sequent !B$'nin
+  bir !!a{proof}{}ı~$\pi_1$ vardır. Bunu şöyle $\lnot !B \Sequent \lnot !B$'nin
+  bir !!a{proof}{}a genişletebiliriz:
+  \[
+  \AxiomC{}
+  \RightLabel{$\pi_1$}
+  \Deduce$!B \fCenter !B$
+  \RightLabel{\LeftR{\lnot}}
+  \UnaryInf$\lnot !B, !B \fCenter $
+  \RightLabel{\RightR{\lnot}}
+  \UnaryInf$\lnot !B \fCenter \lnot !B$
+  \DisplayProof
+\]
+
+  $!A \ident (!B \land !C)$ ise $\depth{!B} < \depth{!A}$ ve
+  $\depth{!C} < \depth{!A}$'dır. Tümevarım varsayımına göre \Log{G1c}'de
+  atomik aksiyomlardan $!B \Sequent !B$ ile $!C \Sequent !C$'nin
+  !!{proof}s{}ı~$\pi_1$ ve~$\pi_2$ vardır. Bunları şöyle $!B \land !C
+  \Sequent !B \land !C$'nin bir !!a{proof}{}a genişletebiliriz:
+  \[
+  \AxiomC{}
+  \RightLabel{$\pi_1$}
+  \Deduce$!B, \fCenter !B$
+  \RightLabel{\LeftR{\Weakening}}
+  \UnaryInf$!B, !C, \fCenter !B$
+  \RightLabel{\LeftR{\land}}
+  \UnaryInf$!B \land !C, !C\fCenter !B$
+  \RightLabel{\LeftR{\land}}
+  \UnaryInf$!B \land !C, !B \land !C \fCenter !B$
+  \AxiomC{}
+  \RightLabel{$\pi_2$}
+  \Deduce$!C, \fCenter !C$
+  \RightLabel{\LeftR{\Weakening}}
+  \UnaryInf$!B, !C, \fCenter !C$
+  \RightLabel{\LeftR{\land}}
+  \UnaryInf$!B \land !C, !C \fCenter !C$
+  \RightLabel{\LeftR{\land}}
+  \UnaryInf$!B \land !C, !B \land !C \fCenter !C$
+  \RightLabel{\RightR{\land}}
+  \BinaryInf$!B \land !C, !B \land !C \fCenter !B \land !C$
+  \RightLabel{\LeftR{\Contraction}}
+  \UnaryInf$!B \land !C \fCenter !B \land !C$
+  \DisplayProof
+  \]
+
+  Şimdi $!A \ident \lforall[x][B(x)]$ olsun. $\lforall[x][B(x)]$ içinde
+  geçmeyen bir !!a{constant}~$c$ seçin. O zaman $\depth{B(c)} =
+  \depth{!B(x)} < \depth{!A}$ ve tümevarım varsayımına göre \Log{G1c}'de
+  atomik aksiyomlardan $!B(c) \Sequent !B(c)$'nin bir !!a{proof}{}ı~$\pi_1$
+  vardır. Bunu şöyle $\lforall[x][B(x)] \Sequent \lforall[x][B(x)]$'nin
+  bir !!a{proof}{}a genişletebiliriz:
+  \[
+  \AxiomC{}
+  \RightLabel{$\pi_1$}
+  \Deduce$!B(c) \fCenter !B(c)$
+  \RightLabel{\LeftR{\lforall}}
+  \UnaryInf$\lforall[x][!B(x)] \fCenter !B(c)$
+  \RightLabel{\RightR{\lforall}}
+  \UnaryInf$\lforall[x][!B(x)] \fCenter \lforall[x][!B(x)]$
+  \DisplayProof
+  \]
+
+  Geri kalan durumlar alıştırma olarak bırakılmıştır.
+\end{proof}
+
+\begin{prob}
+  $!A \ident (!B \lor !C)$, $!A \ident (!B \lif !C)$ ve $!A \ident
+  \lexists[x][B(x)]$ durumlarını ele alarak \olref{prop:G1c-axioms}
+  ispatını tamamlayın.
+\end{prob}
+
+Amaçlarımız bakımından $!A \ident \lnot !B$ durumunda şu !!{proof}{}ı da
+kullanabilirdik:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$!B \fCenter !B$
+\RightLabel{\RightR{\lnot}}
+\UnaryInf$\fCenter !B, \lnot !B$
+\RightLabel{\LeftR{\lnot}}
+\UnaryInf$\lnot !B \fCenter \lnot !B$
+\DisplayProof
+\]
+Ancak bunun işlemediği sekant sistemleri vardır. Sezgici sekant hesabı
+\Log{G1i}, her sekantın sağ yanında en fazla bir !!{formula} bulunmasını
+gerektirmesi dışında \Log{G1c} gibidir. $\Delta = \emptyset$ ise ilk
+!!{proof} \Log{G1i}'de de bir !!a{proof} olur; ikincisi olmaz, çünkü bir
+sekant sağda hem $!B$ hem de $\lnot !B$'yi içerir.
+
+\Log{G1c}'de bile $!A \ident \lforall[x][!B(x)]$ durumunda kuralların
+başka bir sırasını kullanamazdık. Aşağıdaki bir !!a{proof} \emph{değildir}:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$!B(c) \fCenter !B(c)$
+\RightLabel{\RightR{\lforall}}
+\UnaryInf$!B(c) \fCenter \lforall[x][!B(x)]$
+\RightLabel{\LeftR{\lforall}}
+\UnaryInf$\lforall[x][!B(x)] \fCenter \lforall[x][!B(x)]$
+\DisplayProof
+\]
+Çünkü $\RightR{\lforall}$ üzerindeki özdeğişken koşulu ihlal edilir.
+
+\begin{prop}\ollabel{prop:G3c-axioms}
+$!A$'nın atomik olması \emph{gerekmeksizin}, $!A, \Gamma \Sequent \Delta,
+!A$ biçimindeki her sekant \Log{G3c}'de ispatlanabilir.
+\end{prop}
+
+\begin{proof}
+İspat \olref{prop:G1c-axioms} ispatına çok benzer; ancak tümevarım
+varsayımına dikkat etmeliyiz. $n = \depth{!A} = 0$ durumu yine kolaydır.
+$n=0$ ise $!A$ atomiktir ve $!A, \Gamma \Sequent \Delta, !A$ bir
+\Log{G3c} aksiyomudur.
+
+Şimdi $n>0$ olduğunu varsayalım. Yine durumları ayırırız. Tümevarım
+varsayımı şudur: $\depth{!D} < n$ olan bütün $!D$ ile bütün $\Pi$ ve
+$\Lambda$ için $\Log{G3c} \Proves !D, \Pi \Sequent \Lambda, !D$.
+$!A \ident (!B \land !C)$ durumunu ele alalım. Tümevarım varsayımını iki
+kez kullanırız: $!D = !B$, $\Pi = !C, \Gamma$, $\Lambda = \Delta$ alarak
+$!B, !C, \Gamma \Sequent \Delta, !B$'nin bir !!a{proof}{}ı~$\pi_1$;
+$!D = !C$, $\Pi = !B, \Gamma$, $\Lambda = \Delta$ alarak $!B, !C,
+\Gamma \Sequent \Delta, !C$'nin bir !!a{proof}{}ı~$\pi_2$ elde edilir.
+$!B \land !C, \Gamma \Sequent \Delta, !B \land !C$'nin !!{proof}{}ı
+şöyledir:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$!B, !C, \Gamma \fCenter \Delta, !B$
+\RightLabel{\LeftR{\land}}
+\UnaryInf$!B \land !C, \Gamma \fCenter \Delta, !B$
+\AxiomC{}
+\RightLabel{$\pi_2$}
+\Deduce$!B, !C, \Gamma \fCenter \Delta, !C$
+\RightLabel{\LeftR{\land}}
+\UnaryInf$!B \land !C, \Gamma \fCenter \Delta, !C$
+\RightLabel{\RightR{\land}}
+\BinaryInf$!B \land !C, \Gamma \fCenter \Delta, !B \land !C$
+\DisplayProof
+\]
+
+$!A \ident \lforall[x][!B(x)]$ için $\lforall[x][!B(x)]$, $\Gamma$ ya da
+$\Delta$ içinde geçmeyen bir !!a{constant}~$c$ seçin. $!D = !B(c)$,
+$\Pi = \lforall[x][!B(x)], \Gamma$ ve $\Lambda = \Delta$ için tümevarım
+varsayımını uygulayın. Böylece $!B(c), \lforall[x][!B(x)], \Gamma
+\Sequent \Delta, !B(c)$'nin bir !!a{proof}{}ı~$\pi_1$ elde edilir ve bundan
+şunu kurarız:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$!B(c), \lforall[x][!B(x)], \Gamma \fCenter \Delta, !B(c)$
+\RightLabel{\LeftR{\lforall}}
+\UnaryInf$\lforall[x][!B(x)], \Gamma \fCenter \Delta, !B(c)$
+\RightLabel{\RightR{\lforall}}
+\UnaryInf$\lforall[x][!B(x)], \Gamma \fCenter \Delta, \lforall[x][!B(x)]$
+\DisplayProof
+\]
+$c$'yi seçme biçimimiz nedeniyle $\RightR{\lforall}$ üzerindeki
+özdeğişken koşulu sağlanır.
+\end{proof}
+
+\begin{prob}
+  $!A \ident (!B \lif !C)$ ve $!A \ident \lexists[x][B(x)]$ durumlarını
+  ele alarak \olref{prop:G3c-axioms} ispatını sürdürün.
+\end{prob}
+

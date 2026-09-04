@@ -1,0 +1,59 @@
+% Generated from locale/tr/content/incompleteness/representability-in-q/representing-relations.tex; do not hand-edit.
+
+
+\olfileid[tr]{inc}{req}{rel}
+
+\olsection{Bağıntıların Temsil Edilmesi}
+
+Bir \emph{bağıntının} temsil edilebilir olmasının ne anlama geldiğini
+söyleyelim.
+
+\begin{defn}
+\ollabel{defn:representing-relations} Doğal sayılar üzerindeki bir
+$R(x_0,\dots,x_k)$ bağıntısı, $R(n_0,\dots,n_k)$ doğru olduğunda $\Th{Q}$
+$!A_R(\num{n_0},\dots,\num{n_k})$'yi, $R(n_0,\dots,n_k)$ yanlış olduğunda ise $\Th{Q}$
+$\lnot !A_R(\num{n_0},\dots,\num{n_k})$'yi ispatlayacak biçimde bir
+$!A_R(x_0,\dots,x_k)$ formülü varsa {\em $\Th{Q}$ içinde temsil
+edilebilir}.
+\end{defn}
+
+\begin{thm}
+\ollabel{thm:representing-rels} Bir bağıntı $\Th{Q}$ içinde ancak ve ancak
+hesaplanabilirse temsil edilebilir.
+\end{thm}
+
+\begin{proof}
+İleri yön için $R(x_0,\dots,x_k)$'nin $!A_R(x_0,\dots,x_k)$ formülüyle
+temsil edildiğini varsayın. $R$'yi hesaplayan bir algoritma şöyledir:
+$n_0$, \dots,~$n_k$ girdisinde aynı anda
+$!A_R(\num{n_0},\dots,\num{n_k})$'nin bir ispatını ve
+$\lnot !A_R(\num{n_0},\dots,\num{n_k})$'nin bir ispatını arayın.
+Varsayımımız uyarınca arama mutlaka ikisinden birini bulur; birincisini
+bulursa ``evet'', ötekini bulursa ``hayır'' yanıtını verin.
+
+Öteki yönde $R(x_0,\dots,x_k)$'nin hesaplanabilir olduğunu varsayın. Tanım
+gereği bu, $\Char{R}(x_0,\dots,x_k)$ fonksiyonunun hesaplanabilir olması
+demektir. \olref[int]{thm:representable-iff-comp} uyarınca $\Char{R}$ bir
+formülle, diyelim $!A_{\Char{R}}(x_0,\dots,x_k,y)$ ile temsil edilir.
+$!A_R(x_0,\dots,x_k)$, $!A_{\Char{R}}(x_0,\dots,x_k,\num{1})$ formülü
+olsun. O zaman her $n_0$, \dots,~$n_k$ için $R(n_0,\dots,n_k)$ doğruysa
+$\Char{R}(n_0,\dots,n_k)=1$ olur; bu durumda $\Th{Q}$
+$!A_{\Char{R}}(\num{n_0},\dots,\num{n_k},\num{1})$'i ve dolayısıyla
+$\Th{Q}$, $!A_R(\num{n_0},\dots,\num{n_k})$'yi ispatlar. Öte yandan
+$R(n_0,\dots,n_k)$ yanlışsa $\Char{R}(n_0,\dots,n_k)=0$ olur. Bu,
+$\Th{Q}$'nun
+\[
+\lforall[y][(!A_{\Char{R}}(\num{n_0}, \dots, \num{n_k}, y) \lif y =
+  \num{0})].
+\]
+formülünü ispatladığı anlamına gelir. $\Th{Q}$,
+$\eq/[\num{0}][\num{1}]$'i de ispatladığından $\Th{Q}$,
+$\lnot !A_{\Char{R}}(\num{n_0},\dots,\num{n_k},\num{1})$'i ve dolayısıyla
+$\lnot !A_R(\num{n_0},\dots,\num{n_k})$'yi ispatlar.
+\end{proof}
+
+\begin{prob}
+$R$, $\Th{Q}$ içinde temsil edilebiliyorsa $\Char{R}$'nin de temsil
+edilebildiğini gösterin.
+\end{prob}
+

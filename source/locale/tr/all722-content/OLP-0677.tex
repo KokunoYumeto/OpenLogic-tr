@@ -1,0 +1,105 @@
+% Generated from locale/tr/content/proof-theory/normalization/segments.tex; do not hand-edit.
+
+
+\olfileid[tr]{pt}{nor}{seg}
+
+\olsection{Kesitler ve Kesmeler}
+
+!!^a{introduction} kuralının ardından !!a{elimination} kuralının gelmesi,
+bir !!a{proof}{}ın içindeki dolambaçtır; bir !!a{proof}{}ı normalleştirmek de bu tür
+dolambaçların tümünü gidermektir. Bununla birlikte \Elim{\lor} ve
+\Elim{\lexists} kuralları, ``gidermek istediğimiz dolambaç'' tanımını bile
+biraz karmaşıklaştırır. Sorun şudur: Bu kurallar yüzünden bir dolambaçta
+!!{elimination} kuralının !!{introduction} kuralını \emph{hemen} izlemesi
+garanti değildir. Arada, örneğin bir \Elim{\lor} ya da
+\Elim{\lexists} bulunabilir:
+\[
+\AxiomC{}
+\DeduceC{$\lexists[x][!C(x)]$}
+\AxiomC{$\Discharge{!A}{x}$}
+\DeduceC{$!B$}
+\DischargeRule{\Intro{\lif}}{x}
+\UnaryInfC{$!A \lif !B$}
+\DischargeRule{\Elim{\lexists}}{y}
+\BinaryInfC{$!A \lif !B$}
+\AxiomC{}
+\DeduceC{$!A$}
+\RightLabel{\Elim{\lif}}
+\BinaryInfC{$!B$}
+\DisplayProof
+\]
+Aslında herhangi sayıda \Elim{\lor} ya da \Elim{\lexists},
+\Intro{\lif} ile \Elim{\lif} arasına girebilir; örneğin:
+\[
+\AxiomC{}
+\DeduceC{$\lexists[x][!C(x)]$}
+\AxiomC{}
+\DeduceC{$!D \lor !E$}
+\AxiomC{$\Discharge{!A}{x}$}
+\DeduceC{$!B$}
+\DischargeRule{\Intro{\lif}}{x}
+\UnaryInfC{$!A \lif !B$}
+\AxiomC{$\Discharge{!A}{x}$}
+\DeduceC{$!B$}
+\DischargeRule{\Intro{\lif}}{x}
+\UnaryInfC{$!A \lif !B$}
+\RightLabel{\Elim{\lor}}
+\TrinaryInfC{$!A \lif !B$}
+\DischargeRule{\Elim{\lexists}}{y}
+\BinaryInfC{$!A \lif !B$}
+\AxiomC{}
+\DeduceC{$!A$}
+\RightLabel{\Elim{\lif}}
+\BinaryInfC{$!B$}
+\DisplayProof
+\]
+Bu örnek, birden fazla~\Intro{\lif} sonrasında geldiği için aynı
+\Elim{\lif} kuralının birden çok dolambaçta yer alabileceğini de gösterir.
+Bütün bu olasılıkları hesaba katmak üzere dolambaçları, bir
+\Log{N1i}-ispatındaki belirli türden !!{formula} oluşumu dizilerini
+kullanarak tanımlarız; bunlara \emph{kesit} denir. Örneğimizde bu, küçük
+bir $\Elim{\lor}$ ya da $\Elim{\lexists}$ öncülünün ardından onun sonucunun
+geldiği~$!A \lif !B$ formül oluşumları dizisidir. Örnekte, her biri üç~$!A \lif
+!B$ oluşumu içeren böyle iki kesit vardır. Resmî tanım şöyledir.
+
+\begin{defn}
+Bir \Log{N1i} !!{proof} örneği $\delta$ içindeki bir \emph{kesit},
+$\delta$ içindeki aynı $!A$ !!{formula}{}ünün $!A_1$, \dots, $!A_n$ oluşumlarından
+oluşan ve aşağıdaki koşulları sağlayan bir dizidir:
+\begin{enumerate}
+  \item $!A_1$, \Elim{\lor} ya da \Elim{\lexists} sonucunda elde
+  edilmemiştir;
+  \item $!A_n$, \Elim{\lor} ya da \Elim{\lexists} kuralının küçük
+  öncülü değildir;
+  \item $i = 1$, \dots,~$n-1$ için $!A_i$, \Elim{\lor} ya da
+  \Elim{\lexists} kuralının küçük öncülü ve $!A_{i+1}$ bu çıkarımın
+  sonucudur.
+\end{enumerate}
+Bu kesitin \emph{uzunluğu}~$n$'dir.
+\end{defn}
+
+Her kesit giderme hedefi (yani bir dolambaç) değildir. Hedef olanlara
+\emph{kesme} denir.
+
+\begin{defn}
+Bir \emph{kesme}, $!A_n$'nin !!a{elimination} çıkarımının büyük öncülü
+olduğu ve ayrıca ya $n=1$ olup $!A_1 = !A_n$ bir !!a{introduction}
+çıkarımının ya da~\FalseInt'in sonucu olduğu ya da~$n>1$ olduğu bir
+kesittir.
+\end{defn}
+
+Bir kesme kesitinin !!a{introduction} kuralının sonucuyla başlaması
+gerekmediğine dikkat edin. Yalnızca !!a{elimination} kuralının büyük
+öncülüyle bitmesi gerekir. Bununla birlikte uzunluğu~$1$ olan bir kesitin,
+kesme sayılabilmesi için !!{introduction} kurallarından birinin sonucu
+olması gerekir.
+
+\begin{defn}
+Bir kesmenin \emph{derecesi}~$\depth{!A}$'dır. !!a{proof}~$\delta$'nın
+\emph{kesme derecesi}~$\cutrank{\delta}$,~$\delta$ içindeki kesmelerin en
+büyük derecesidir. Bir kesmenin derecesi~$\cutrank{\delta}$ ise, yani
+derecesi en büyükse, kesme~$\delta$ içinde \emph{maksimal}dir.
+$\delta$'nın \emph{kesme uzunluğu}, bütün maksimal kesmelerinin
+uzunlukları toplamıdır.
+\end{defn}
+

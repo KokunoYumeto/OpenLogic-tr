@@ -1,0 +1,66 @@
+% Generated from locale/tr/content/intuitionistic-logic/soundness-completeness/decidability.tex; do not hand-edit.
+
+
+\olfileid[tr]{int}{sc}{dec}
+
+\olsection{Karar Verilebilirlik}
+Tamlık teoreminin ispatının, her $\Gamma\Proves/ !A$ için
+$\Gamma\Entails/ !A$ olgusuna tanıklık eden sonsuz sayıda dünyalı bir model
+verdiğine dikkat edin. Aşağıdaki önerme, $\Entails !A$'yı ispatlamak için
+bütün sonlu modeller (yani sonlu dünya kümeli modeller) için
+$\mSat{M}{!A}$ olduğunu göstermenin yeterli olduğunu ortaya koyar.
+
+\begin{thm}\ollabel{thm:decidability}
+  $\Entails/ !A$ ise $\mSat/{M'}{!A}$ olan sonlu bir model vardır.
+\end{thm}
+
+\begin{proof}
+  $\mModel{M}=\tuple{W,R,V}$, $\mSat/{M}{!A}$ olacak biçimde bir model ve
+  $P$, $!A$ içinde geçen !!{propositional variable}s{}nin kümesi olsun.
+  $\Sigma$, $!A$'nın bütün alt formüllerinin sonlu kümesi olsun ve
+  \[
+    w\sim v \quad\text{ancak ve ancak}\quad
+    \text{her $!B\in\Sigma$ için }
+    \bigl(\mSat{M}{!B}[w]\text{ ancak ve ancak }\mSat{M}{!B}[v]\bigr)
+  \]
+  diye tanımlayın. $[w]$, $w$'nin $\sim$-eşdeğerlik sınıfını göstersin.
+  $W'=\Setabs{[w]}{w\in W}$ olsun ve
+  \[
+    R'[w][v] \quad\text{ancak ve ancak}\quad
+    \text{her $!B\in\Sigma$ için }
+    \bigl(\mSat{M}{!B}[w]\text{ ise }\mSat{M}{!B}[v]\bigr)
+  \]
+  diye tanımlayın. Son olarak, $p\in P$ ise
+  $V'(p)=\Setabs{[w]}{\mSat{M}{p}[w]}$, aksi hâlde $V'(p)=\emptyset$ alıp
+  $\mModel{M'}=\tuple{W',R',V'}$'yi tanımlayın. $\Sigma$ sonlu olduğundan
+  $W'$ en çok $2^{|\Sigma|}$ elemanlıdır. $R'$ bir kısmi sıradır ve $V'$
+  bu sıraya göre monotondur. Böylece $\mModel{M'}$, sonlu olan
+  !!a{relational model}{}dir.
+
+  $\Sigma$ içindeki !!{formula}s için yapı üzerinde tümevarımla
+  \[
+    \mSat{M}{!B}[w] \text{ ancak ve ancak } \mSat{M'}{!B}[{[w]}]
+  \]
+  olduğu gösterilir. Bunların her biri yalnızca $P$ içindeki
+  !!{propositional variable}s{}ni kullanır. $\lfalse$, önerme değişkeni,
+  $\land$ ve $\lor$ durumları doğrudandır. $\lnot !B$ durumunda soldan sağa
+  yön, $R'[w][v]$ tanımının $\lnot !B$'nin doğruluğunu korumasını; sağdan
+  sola yön ise $Rwv$ olduğunda $R'[w][v]$ olmasını kullanır.
+  $!B\lif !C$ durumunda
+  soldan sağa yön, $R'[w][v]$ tanımı ve
+  $!B\lif !C\in\Sigma$ olgusunu; sağdan sola yön ise $Rwv$ olduğunda
+  doğruluğun kalıcılığı nedeniyle $R'[w][v]$ olmasını kullanır.
+  Dolayısıyla özellikle $\mSat/{M'}{!A}[{[w]}]$ olur.
+\end{proof}
+
+\begin{prob}
+\olref[int][sc][dec]{thm:decidability} teoreminin ispatını, $\Sigma$
+içindeki bütün $!B$ !!{formula}s{}i için
+$\mSat{M}{!B}[w]$ ancak ve ancak $\mSat{M'}{!B}[{[w]}]$ olduğunu göstererek
+tamamlayın. Özellikle $\lif$ durumunda $R'$ tanımının iki yönünü ayrı ayrı
+kullanın.
+\end{prob}
+
+\olref{thm:decidability}'den $\Entails !A$ olup olmadığına karar veren
+bir algoritmanın varlığı çıkar.
+

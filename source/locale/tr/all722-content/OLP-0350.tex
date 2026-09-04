@@ -1,0 +1,34 @@
+% Generated from locale/tr/content/lambda-calculus/introduction/computable-lambda.tex; do not hand-edit.
+
+
+\olfileid[tr]{lam}{int}{lrp}
+\olsection{Hesaplanabilir Fonksiyonlar \usetoken{S}{lambda definable}}
+
+\begin{thm}
+\ollabel{thm:computable-lambda}
+Her hesaplanabilir kısmi fonksiyon !!{lambda definable}.
+\end{thm}
+
+\begin{proof}
+Her kısmi hesaplanabilir $f$ fonksiyonunun bir $F$ lambda terimi tarafından
+!!{lambda defined} olduğunu göstermeliyiz. Kleene normal biçim teoremi
+gereği, her ilkel özyinelemeli fonksiyonun bir lambda terimi tarafından
+!!{lambda defined} olduğunu ve ardından !!{lambda definable} fonksiyonların
+uygun bileşimler ve sınırsız arama altında kapalı olduğunu göstermek
+yeterlidir. Her ilkel özyinelemeli fonksiyonun bir lambda terimi tarafından
+!!{lambda defined} olduğunu göstermek için başlangıç fonksiyonlarının
+!!{lambda definable} olduğunu ve !!{lambda definable} kısmi fonksiyonların
+bileşim, ilkel özyineleme ve sınırsız arama altında kapalı olduğunu
+göstermek yeterlidir.
+\end{proof}
+
+İspatın geri kalanını daha okunaklı kılmak için daha alışılmış bir gösterim
+kullanacağız. Örneğin $Mxyz$ yerine $M(x,y,z)$ yazacağız. Bu çağrışımlı olsa
+da türsüz lambda kalkülüsündeki terimlere aritelerin iliştirilmediğini
+anımsamalısınız; aynı $M$ terimi için $M(x,y)$ yazmak da $M(x,y,z,w)$ yazmak
+da aynı ölçüde anlamlıdır. Fakat bu gösterim $M$'yi üç değişkenli bir
+fonksiyon olarak ele aldığımızı gösterir ve tanımların arkasındaki amacı
+daha açık kılar. Benzer biçimde ``$M$'yi
+$M=\lambd[x][\lambd[y][\lambd[z][\dots]]]$ ile tanımlayın'' yerine
+``$M$'yi $M(x,y,z)=\dots$ ile tanımlayın'' diyeceğiz.
+

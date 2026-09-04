@@ -1,0 +1,124 @@
+% Generated from locale/tr/content/first-order-logic/natural-deduction/provability-propositional.tex; do not hand-edit.
+
+
+\iftag{FOL}
+      {\olfileid[tr]{fol}{ntd}{ppr}}
+      {\olfileid[tr]{pl}{ntd}{ppr}}
+
+\olsection{\usetoken{S}{derivability} ve Önerme Bağlaçları}
+
+\begin{explain}
+  Doğal tümdengelimin !!{derivability} bağıntısı~$\Proves$'in, önerme
+  bağlaçlarını içeren bazı temel olguları---örneğin $!A \land !B \Proves
+  !A$ ve $!A, !A \lif !B \Proves !B$ (modus ponens)---ortaya koyacak kadar
+  güçlü olduğunu göstereceğiz. Tamlık teoreminin ispatı için bu olgulara
+  ihtiyaç vardır.
+\end{explain}
+
+\begin{prop}\ollabel{prop:provability-land}
+  \begin{enumerate}
+  \item \ollabel{prop:provability-land-left} Hem $!A \land !B \Proves !A$
+    hem de $!A \land !B \Proves !B$.
+  \item \ollabel{prop:provability-land-right} $!A, !B \Proves !A \land !B$.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+  \item İkisini de !!{derive} mümkündür:
+    \begin{prooftree}
+      \AxiomC{$!A \land !B$}
+      \RightLabel{\Elim{\land}}
+      \UnaryInfC{$!A$}
+      \DisplayProof\qquad\bottomAlignProof
+      \AxiomC{$!A \land !B$}
+      \RightLabel{\Elim{\land}}
+      \UnaryInfC{$!B$}
+    \end{prooftree}
+  \item Şunu !!{derive} mümkündür:
+    \begin{prooftree}
+      \AxiomC{$!A$}
+      \AxiomC{$!B$}
+      \RightLabel{\Intro{\land}}
+      \BinaryInfC{$!A \land !B$}
+    \end{prooftree}
+  \end{enumerate}
+\end{proof}
+
+
+\begin{prop}\ollabel{prop:provability-lor}
+  \begin{enumerate}
+  \item $!A \lor !B, \lnot !A, \lnot !B$ tutarsızdır.
+  \item Hem $!A \Proves !A \lor !B$ hem de $!B \Proves !A \lor !B$.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+  \item Şu !!{derivation} üzerinde düşünelim:
+    \begin{prooftree}
+      \AxiomC{$!A \lor !B$}
+      \AxiomC{$\lnot !A$}
+      \AxiomC{$\Discharge{!A}{1}$}
+      \RightLabel{\Elim{\lnot}}
+      \BinaryInfC{$\lfalse$}
+      \AxiomC{$\lnot !B$}
+      \AxiomC{$\Discharge{!B}{1}$}
+      \RightLabel{\Elim{\lnot}}
+      \BinaryInfC{$\lfalse$}
+      \DischargeRule{\Elim{\lor}}{1}
+      \TrinaryInfC{$\lfalse$}
+    \end{prooftree}
+    Bu, $\lfalse$ için !!a{derivation} olur; buradaki !!{undischarged}
+    varsayımlar $!A \lor !B$, $\lnot !A$ ve $\lnot !B$'dir.
+  \item İkisini de !!{derive} mümkündür:
+    \begin{prooftree}
+      \AxiomC{$!A$}
+      \RightLabel{\Intro{\lor}}
+      \UnaryInfC{$!A \lor !B$}
+      \DisplayProof\qquad\bottomAlignProof
+      \AxiomC{$!B$}
+      \RightLabel{\Intro{\lor}}
+      \UnaryInfC{$!A \lor !B$}
+    \end{prooftree}
+  \end{enumerate}
+\end{proof}
+
+\begin{prop}\ollabel{prop:provability-lif}
+  \begin{enumerate}
+  \item \ollabel{prop:provability-lif-left} $!A, !A \lif !B \Proves !B$.
+  \item \ollabel{prop:provability-lif-right}
+    Hem $\lnot !A \Proves !A \lif !B$ hem de $!B \Proves !A \lif !B$.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+  \item Şunu !!{derive} mümkündür:
+    \begin{prooftree}
+      \AxiomC{$!A \lif !B$}
+      \AxiomC{$!A$}
+      \RightLabel{\Elim{\lif}}
+      \BinaryInfC{$!B$}
+    \end{prooftree}
+    
+  \item Bunu aşağıdaki !!{derivation}s, iki ayrı örnek hâlinde gösterir:
+    \begin{prooftree}
+      \AxiomC{$\lnot !A$}
+      \AxiomC{$\Discharge{!A}{1}$}
+      \RightLabel{\Elim{\lnot}}
+      \BinaryInfC{$\lfalse$}
+      \RightLabel{\FalseInt}
+      \UnaryInfC{$!B$}
+      \DischargeRule{\Intro{\lif}}{1}
+      \UnaryInfC{$!A \lif !B$}
+      \DisplayProof\qquad\bottomAlignProof
+      \AxiomC{$!B$}
+      \RightLabel{\Intro{\lif}}
+      \UnaryInfC{$!A \lif !B$}
+    \end{prooftree}
+    $\Intro{\lif}$ kuralının $!A$ bakımından !!{discharge} olanağı verdiğine,
+    ama bunu zorunlu kılmadığına dikkat edin.
+  \end{enumerate}
+\end{proof}
+

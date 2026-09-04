@@ -1,0 +1,259 @@
+% Generated from locale/tr/content/turing-machines/undecidability/trakhtenbrot.tex; do not hand-edit.
+
+
+\olfileid[tr]{tur}{und}{tra}
+\olsection{Trakhtenbrot Teoremi}
+
+\begin{explain}
+  \olref[rep]{sec} içinde bir $M$ Turing makinesiyle $w$ girdi dizgesi için
+  !!{sentence}s $!T(M,w)$ ile $!E(M,w)$'yi tanımladık. Ardından
+  \olref[ver]{lem:valid-if-halt} ile \olref[ver]{lem:halt-if-valid} içinde
+  $!T(M,w)\lif !E(M,w)$'nin ancak ve ancak $M$, $w$ girdisinde
+  başlatıldığında sonunda durursa geçerli olduğunu gösterdik. Durma Problemi
+  karar verilemez olduğundan bu, birinci dereceden mantığın !!{sentence}s
+  geçerliliğiyle doyurulabilirliğinin karar verilemez olduğunu gerektirir
+  (\cref{tur:und:uns:thm:decision-prob,tur:und:uns:cor:undecidable-sat}).
+
+  Fakat tümcelerin geçerliliği ve doyurulabilirliği, sonlu ya da sonsuz keyfî
+  !!{structure}s için tanımlanır. !!a{sentence} sonlu !!{structure} içinde
+  doyurulabilir olup olmadığına (ya da bütün sonlu !!{structure}s içinde
+  geçerli olup olmadığına) karar vermenin daha kolay olduğundan
+  kuşkulanabilirsiniz. Karar probleminin çözülemezliği kanıtını, bunun böyle
+  olmadığını gösterecek biçimde uyarlayabiliriz.
+
+  Önce \olref[ver]{lem:halt-if-valid} kanıtına dönerseniz orada yaptığımızın,
+  $M$ makinesinin $w$ girdisinde başlatıldığında tam olarak ne yaptığını
+  betimleyen bir $!T(M,w)$ modeli~$\Struct M$ üretmek olduğunu görürsünüz. Bu
+  modelin evreni $\Nat$, yani sonsuzdu. Ama $M$, $w$ girdisinde gerçekten
+  duruyorsa aynı yolla sonlu bir $\Struct M'$ modeli kurabiliriz. $M$'nin
+  $w$ girdisinde başlatıldığında $k$ adım sonra durduğunu varsayalım.
+  $n$, $k+1$ ile $w$'nin uzunluğundan büyük olanı olmak üzere
+  $\Domain{M'}$ evrenini $\{0,\dots,n\}$ kümesi olarak alın ve
+  \[
+    \Assign{\prime}{M'}(x) = 
+    \begin{cases}
+      x + 1 &\text{$x < n$ ise}\\
+      n &\text{aksi durumda,}
+    \end{cases}
+  \]
+  ayrıca $\tuple{x,y}\in\Assign{<}{M'}$ ancak ve ancak $x<y$ ya da
+  $x=y=n$ ise olsun. Bunun dışında $\Struct{M'}$, $\Struct{M}$ gibi
+  tanımlansın. $\Struct{M'}$ tanımı gereği, tıpkı
+  \olref[ver]{lem:halt-if-valid} kanıtındaki gibi,
+  $\Sat{M'}{!T(M,w)}$. $M$'nin $w$ girdisinde durduğunu varsaydığımız için
+  $\Sat{M'}{!E(M,w)}$ de olur. Böylece $\Struct{M'}$,
+  $!T(M,w)\land !E(M,w)$'nin sonlu bir modelidir ($\lif$ simgesini $\land$
+  ile değiştirdiğimize dikkat edin).
+  
+  Kanıtın yarısına geldik: $M$, $w$ girdisinde durursa
+  $!T(M,w)\land !E(M,w)$'nin sonlu bir modeli olduğunu gösterdik. Ne yazık ki
+  bunun tersi geçerli değildir; yani bazı $w$ girdilerinde durmayan Turing
+  makineleri vardır, fakat $!T(M,w)\land !E(M,w)$ yine de sonlu bir modele
+  sahiptir. Örneğin tek durumu $q_0$ ve tek yönergesi
+  $\delta(q_0,\TMblank)=\tuple{q_0,\TMblank,\TMstay}$ olan $M$ makinesini ele
+  alın. Boş $w=\emptyseq$ girdisinde başlatılan bu makine hiç durmaz: Sonsuz
+  bir döngüdedir, ama şeridi değiştirmez ve kafayı oynatmaz. Bütün
+  konfigürasyonlar aynıdır (aynı durum, aynı kafa konumu, aynı şerit içeriği).
+  $!T(M,\emptyseq)\land !E(M,\emptyseq)$'yi sağlayan sonlu bir
+  !!{structure}~$\Struct{M''}$ tanımlayabiliriz (alıştırma). Bununla birlikte
+  $!T(M,w)$'yi, böyle !!{structure}s dışlanacak biçimde uygun olarak
+  değiştirebiliriz.
+
+  \begin{prob}
+    $M$, tek durumu $q_0$ ve tek yönergesi
+    $\delta(q_0,\TMblank)=\tuple{q_0,\TMblank,\TMstay}$ olan bir Turing
+    makinesi olsun. $\Domain{M''}=\{0,1,2\}$,
+    $\Assign{\prime}{M''}(0)=\Assign{\prime}{M''}(1)=1$ ve
+    $\Assign{\prime}{M''}(2)=2$; ayrıca
+    $\Assign{<}{M''}=\{\tuple{0,1},\tuple{1,1},\tuple{2,2}\}$ olsun.
+    $!T(M,\emptyseq)$ ile $!E(M,\emptyseq)$ doğru olacak biçimde
+    $\Assign{\Obj Q_{q_0}}{M''}$, $\Assign{\Obj S_{\TMblank}}{M''}$ ve
+    $\Assign{\Obj S_{\TMendtape}}{M''}$ yorumlarını tanımlayın ve neden
+    doğru olduklarını açıklayın. İpucu: $\delta(q_0,\TMendtape)$'in tanımsız
+    olduğuna dikkat edin. Hem
+    \begin{align*}
+    & \Obj Q_{q_0}(\num{1}, \num{n}) \land \Obj S_{\TMendtape}(\num{0}, \num{n})
+      \land 
+      \lforall[x][(\num{0} < x \lif \Obj S_\TMblank(x, \num{n}))] \text{\quad bütün $n \in \Nat$ için}\\
+    & \lexists[y][(\Obj Q_{q_0}(\num{0}, y) \land \Obj S_{\TMendtape}(\num{0}, y))]
+    \end{align*}
+    ifadelerinin $\Struct{M''}$ içinde doğru olmasını sağlayın.
+  \end{prob}
+\end{explain}
+
+Turing makinesi~$M$'nin $w=\sigma_{i_1}\dots\sigma_{i_k}$ girdisindeki
+işleyişini betimleyen !!{sentence}s ele alın:
+\begin{enumerate}
+\item Sayıları ve~$<$ bağıntısını betimleyen aksiyomlar
+(\olref[rep]{sec} içindeki $!T(M,w)$ tanımında olduğu gibi).
+\item Girdi konfigürasyonunu betimleyen aksiyomlar: $!T(M,w)$ tanımında
+olduğu gibi.
+\item Bir konfigürasyondan sonrakine geçişi betimleyen aksiyomlar:
+
+Aşağıdakiler için $!A(x,y)$ önceki gibi olsun ve
+\[
+  !B(y) \ident \lforall[x][(x < y \lif \eq/[x][y])].
+\]
+olsun.
+\begin{enumerate}
+\item \ollabel{rep-right} Her
+$\delta(q_i,\sigma)=\tuple{q_j,\sigma',\TMright}$ yönergesi için şu
+!!{sentence}:
+\begin{align*}
+& \lforall[x][\lforall[y][(
+   (\Obj Q_{q_i}(x, y) \land \Obj S_{\sigma}(x, y)) \lif {}]] \\
+&\qquad   (\Obj Q_{q_j}(x', y') \land \Obj S_{\sigma'}(x, y') \land
+!A(x, y) \land !B(y')))
+\end{align*}
+\item \ollabel{rep-left} Her
+$\delta(q_i,\sigma)=\tuple{q_j,\sigma',\TMleft}$ yönergesi için şu
+!!{sentence}:
+\begin{align*}
+& \lforall[x][\lforall[y][
+    ((\Obj Q_{q_i}(x', y) \land \Obj S_{\sigma}(x', y)) \lif {}]]\\
+& \qquad   (\Obj Q_{q_j}(x, y') \land \Obj S_{\sigma'}(x', y') \land
+!A(x', y) \land !B(y'))) \land {}\\
+& \lforall[y][((\Obj Q_{q_i}(\num{0}, y) \land \Obj S_{\sigma}(\num{0},
+    y)) \lif {}]\\
+& \qquad (\Obj Q_{q_j}(\num{0}, y') \land \Obj S_{\sigma'}(\num{0},
+  y') \land !A(\num{0}, y) \land !B(y')))
+\end{align*}
+\item \ollabel{rep-stay} Her
+$\delta(q_i,\sigma)=\tuple{q_j,\sigma',\TMstay}$ yönergesi için şu
+!!{sentence}:
+\begin{align*}
+& \lforall[x][\lforall[y][(
+   (\Obj Q_{q_i}(x, y) \land \Obj S_{\sigma}(x, y)) \lif {}]] \\
+&\qquad (\Obj Q_{q_j}(x, y') \land \Obj S_{\sigma'}(x, y') \land
+!A(x, y) \land !B(y')))
+\end{align*}
+\end{enumerate}
+Görüldüğü gibi $M$'nin geçişlerini betimleyen !!{sentence}s, sonlarına
+$!B(y')$ eklememiz dışında $!T(M,w)$ içindeki karşılık gelen !!{sentence}
+ile aynıdır. $!B(y')$, ``sonraki'' konfigürasyonun $y'$ sayısının önceki
+bütün $\Obj 0$, $\Obj 0'$, \dots sayılarından farklı olmasını sağlar.
+% \item Tutarlılık koşullarını ifade eden tümceler:
+% \begin{enumerate}
+%   \item\ollabel{rep-con-symb}%
+%   Belirli bir anda hiçbir karenin üzerinde birden fazla simge
+%   bulunamayacağını söyleyen !!^a{sentence}:
+%   \[\lforall[x][\lforall[y][(\Obj S_{\sigma}(x, y) \lif \lnot \Obj
+%   S_{\sigma'}(x, y))]],\]
+%   $T$'nin her $\sigma \neq \sigma'$ şerit simgesi çifti için.
+%   \item\ollabel{rep-con-state}%
+%   $M$'nin belirli bir anda birden fazla durumda olamayacağını söyleyen
+%   !!^a{sentence}:
+%   \[\lforall[x][\lforall[y][(\Obj Q_{q}(x, y) \lif
+%   \lforall[z][\lnot \Obj
+%   Q_{q'}(z, y))]],\]
+%   $T$'nin her $q \neq q'$ durum çifti için.
+%   \item\ollabel{rep-con-tape}%
+%   $M$'nin belirli bir anda birden fazla şerit karesinde olamayacağını
+%   söyleyen !!^a{sentence}:
+%   \[\lforall[x][\lforall[y][(\Obj Q_{q}(x, y) \lif
+%   \lforall[z][\eq/[z][y]\lif \lnot \Obj
+%   Q_{q'}(z, y))]],\]
+%   $T$'nin her $q$, $q'$ durum çifti için.
+% \end{enumerate}
+\end{enumerate}
+Turing makinesi~$M$ ile $w$ girdisi için yukarıdaki bütün !!{sentence}s
+bağlacı $!T'(M,w)$ olsun.
+
+\begin{lem}\ollabel{lem:halts-sat}
+  $M$, $w$ girdisinde başlatıldığında durursa
+  $!T'(M,w)\land !E(M,w)$'nin sonlu bir modeli vardır.
+\end{lem}
+
+\begin{proof}
+  $\Struct{M'}$, \olref[ver]{lem:halt-if-valid} kanıtındaki gibi, ancak
+  \begin{align*}
+    \Domain{M'} & = \{0, \dots, n\},\\
+    \Assign{\prime}{M'}(x) & = 
+    \begin{cases}
+      x + 1 &\text{$x < n$ ise}\\
+      n &\text{aksi durumda,}
+    \end{cases} \\
+    \tuple{x,y} \in \Assign{<}{M'} &\text{ ancak ve ancak $x < y$ ya da $x = y = n$ ise,}
+  \end{align*}
+  biçiminde olsun; burada $n=\max(k+1,\len{w})$ ve $k$, $w$ girdisinde
+  başlatılan $M$'nin $k$ adım sonra durduğu en küçük sayıdır.
+  $\Sat{M'}{!T'(M,w)\land !E(M,w)}$ olduğunun doğrulanmasını alıştırma olarak
+  bırakıyoruz.
+\end{proof}
+
+\begin{prob}
+  $\Sat{M'}{!T'(M,w)\land !E(M,w)}$ olduğunu kanıtlayarak
+  \olref[tur][und][tra]{lem:halts-sat} kanıtını tamamlayın.
+\end{prob}
+
+\begin{lem}\ollabel{lem:sat-halts}
+  $!T'(M,w)\land !E(M,w)$'nin sonlu bir modeli varsa $M$, $w$ girdisinde
+  başlatıldığında durur.
+\end{lem}
+
+\begin{proof}
+  Karşıt tersini gösteriyoruz. $w$ girdisinde başlatılan $M$'nin durmadığını
+  varsayalım. $!T'(M,w)\land !E(M,w)$'nin hiçbir modeli yoksa işimiz biter.
+  Bu yüzden $\Struct{M}$'nin $!T'(M,w)\land !E(M,w)$'nin bir modeli olduğunu
+  varsayalım. Onun sonlu olamayacağını göstermeliyiz.
+  
+  Tıpkı \olref[ver]{lem:config} içindeki gibi, $w$ girdisinde başlatılan $M$,
+  $n$ adım sonra henüz durmamışsa
+  $!T'(M,w)\Entails !C(M,w,n)\land !B(\num{n})$ olduğunu kanıtlayabiliriz.
+  $w$ girdisinde başlatılan $M$ durmadığından bütün $n\in\Nat$ için
+  $!T'(M,w)\Entails !C(M,w,n)\land !B(\num{n})$.
+  \olref[rep]{prop:mlessk} gereği bütün $k<n$ için
+  $!T'(M,w)\Entails \num{k}<\num{n}$ olduğuna da dikkat edin. Ayrıca
+  $!B(\num{n})\Entails \num{k}<\num{n}\lif
+  \eq/[\num{k}][\num{n}]$. Dolayısıyla bütün $k<n$ için
+  $\Sat{M}{\eq/[\num{k}][\num{n}]}$; yani sonsuz sayıdaki $\num{k}$ teriminin
+  $\Struct{M}$ içinde birbirinden farklı değerleri olmalıdır. Fakat bunun için
+  $\Domain{M}$ sonsuz olmalıdır; dolayısıyla $\Struct{M}$,
+  $!T'(M,w)\land !E(M,w)$'nin sonlu bir modeli olamaz.
+\end{proof}
+
+\begin{prob}
+  $w$ girdisinde başlatılan $M$, $n$ adım sonra henüz durmamışsa
+  $!T'(M,w)\Entails !B(\num{n})$ olduğunu kanıtlayarak
+  \olref[tur][und][tra]{lem:sat-halts} kanıtını tamamlayın.
+\end{prob}
+
+\begin{thm}[Trakhtenbrot Teoremi]
+  \ollabel{thm:trakhtenbrodt}
+  Birinci dereceden mantığın keyfî bir !!{sentence}{}nin sonlu bir modeli olup
+  olmadığı (yani sonlu olarak doyurulabilir olup olmadığı) karar verilemezdir.
+\end{thm}
+
+\begin{proof}
+  Sonlu doyurulabilirlik problemine karar veren bir $F$ Turing makinesinin
+  bulunduğunu varsayalım. O zaman herhangi bir $M$ Turing makinesi ve $w$
+  girdisi verildiğinde $!T'(M,w)\land !E(M,w)$ tümcesini hesaplayıp sonlu bir
+  modeli olup olmadığına $F$ ile karar verebilirdik.
+  \cref{tur:und:tra:lem:halts-sat,tur:und:tra:lem:sat-halts} gereği bu
+  tümcenin sonlu bir modeli ancak ve ancak $M$, $w$ girdisinde başlatıldığında
+  durursa vardır. Böylece çözülemez olduğunu bildiğimiz durma problemini $F$
+  ile çözebilirdik.
+\end{proof}
+
+\begin{cor}\ollabel{cor:fproof-incomp}%
+  \emph{Sonlu} geçerlilik için sağlam ve tam hiçbir !!{derivation} sistemi,
+  yani öyle bir !!a{derivation} sistemi bulunamaz ki her sonlu
+  !!{structure}~$\Struct{M}$ için $\Proves !B$ ancak ve ancak
+  $\Sat{M}{!B}$ olsun.
+\end{cor}
+
+\begin{proof}
+  Alıştırma.
+\end{proof}
+
+\begin{prob}
+  \olref[tur][und][tra]{cor:fproof-incomp} önermesini kanıtlayın. $!B$'nin
+  her sonlu !!{structure} içinde ancak ve ancak $\lnot !B$ sonlu olarak
+  doyurulabilir değilse sağlandığına dikkat edin. Sonlu doyurulabilirliğin
+  \olref[tur][und][uns]{thm:valid-ce} anlamında neden yarı karar verilebilir
+  olduğunu açıklayın. Bunu, sonlu geçerlilik için !!a{derivation} sistemi
+  bulunsaydı sonlu doyurulabilirliğin karar verilebilir olacağını savunmak
+  için kullanın.
+\end{prob}
+
+

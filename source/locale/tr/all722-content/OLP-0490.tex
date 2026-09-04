@@ -1,0 +1,125 @@
+% Generated from locale/tr/content/applied-modal-logic/epistemic-logic/public-announcement-logic-semantics.tex; do not hand-edit.
+
+
+\olfileid[tr]{aml}{el}{psm}
+
+\olsection{Kamusal Duyuru Mantığının Semantiği}
+
+Kamusal duyuru mantıklarının bağıntısal modelleri epistemik mantıklardakiyle
+aynıdır. Ancak kamusal duyuru işlecinin semantiği yenidir.
+
+\begin{defn}\ollabel{defn:mmodels} \emph{!!a{formula}~$!A$'nın $w$'deki
+  doğruluğu}, bir $\mModel M = \tuple{W, R, V}$ içinde, yani
+  $\mSat{M}{!A}[w]$ olmak üzere tümevarımlı olarak şöyle tanımlanır:
+  \begin{enumerate}
+  \tagitem{prvFalse}{\indcase{!A}{\lfalse}{$\mSat{M}{\lfalse}[w]$ hiçbir zaman geçerli değildir.}}{}
+  \tagitem{prvTrue}{\indcase{!A}{\ltrue}{$\mSat{M}{\ltrue}[w]$ her zaman geçerlidir.}}{}
+  \item $\mSat{M}{p}[w]$ ancak ve ancak $w \in V(p)$ ise geçerlidir.
+  \tagitem{prvNot}{\indcase{!A}{\lnot !B}{$\mSat{M}{\indfrm}[w]$ ancak ve ancak
+    $\mSat/{M}{!B}[w]$ ise geçerlidir.}}{}
+  \tagitem{prvAnd}{\indcase{!A}{(!B \land !C)}{$\mSat{M}{\indfrm}[w]$ ancak ve ancak
+    $\mSat{M}{!B}[w]$ ve $\mSat{M}{!C}[w]$ ise geçerlidir.}}{}
+  \tagitem{prvOr}{\indcase{!A}{(!B \lor !C)}{$\mSat{M}{\indfrm}[w]$ ancak ve ancak
+    $\mSat{M}{!B}[w]$ ya da $\mSat{M}{!C}[w]$ ise geçerlidir} (ikisi de olabilir).}{}
+  \tagitem{prvIf}{\indcase{!A}{(!B \lif !C)}{$\mSat{M}{\indfrm}[w]$ ancak ve ancak
+    $\mSat/{M}{!B}[w]$ ya da $\mSat{M}{!C}[w]$ ise geçerlidir.}}{}
+  \tagitem{prvIff}{\indcase{!A}{(!B \liff !C)}{$\mSat{M}{\indfrm}[w]$ ancak ve ancak
+    hem $\mSat{M}{!B}[w]$ hem $\mSat{M}{!C}[w]$ geçerliyse ya da
+    ne $\mSat{M}{!B}[w]$ ne de $\mSat{M}{!C}[w]$ geçerliyse doğrudur.}}{}
+  \item\ollabel{defn:sub:mmodels-box}
+    \indcase{!A}{\Knows_a !B}{$\mSat{M}{\indfrm}[w]$ ancak ve ancak
+    $\mSat{M}{!B}[w']$ bütün $w' \in W$ için $R_a ww'$ olduğunda
+    geçerliyse doğrudur}
+  \item\ollabel{defn:sub:mmodels-pal}
+    \indcase{!A}{[!B] !C}{$\mSat{M}{\indfrm}[w]$ ancak ve ancak
+    $\mSat{M}{!B}[w]$ ifadesi $\mSat{M \mid !B}{!C}[w]$ ifadesini gerektiriyorsa geçerlidir}
+
+  
+  Burada $\mModel M \mid !B = \tuple{W', R', V'}$ şöyle tanımlanır:
+  \begin{enumerate}
+    \item $W' = \Setabs{ u \in W}{\mSat{M}{!B}[u]}$. Dolayısıyla
+      $\mModel M \mid !B$ modelinin dünyaları, $\mModel M$ içinde $!B$'nin
+      geçerli olduğu dünyalardır.
+    \item $R'_a = R_a \cap (W' \times W')$. Her öznenin erişilebilirlik
+      bağıntısı yalnızca $W'$ içinde kalan dünyalarla sınırlandırılır.
+    \item $V'(p) = \Setabs{ u \in W'}{u \in V(p) }$. Benzer biçimde
+      dünyalardaki önerme değerlemeleri aynı kalır; bu, bilgisel olayların
+      önerme değişkenlerinin doğruluk değerini değiştirmeyeceği düşüncesini
+      temsil eder.
+  \end{enumerate}
+  
+  \end{enumerate} 
+\end{defn}
+
+Öyleyse kamusal duyuru mantıklarını ayırt eden özellik, !!a{formula}{}ün
+$\mModel M$ içindeki doğruluğuna kimi zaman yalnızca $\mModel M$'nin
+kendisinden başka bir modele başvurarak karar verilebilmesidir.
+
+Semantiğimizin duyuru işlecini bir $\Box$ işleci olarak ele aldığına da dikkat
+edin. Dolayısıyla !!a{formula}~$!A$ bir dünyada doğru bir biçimde kamuya
+duyurulamıyorsa $[!A]!B$ o dünyada önemsiz biçimde geçerli olur; tıpkı bütün
+$\Box$ !!{formula}s{}in uç noktalarda geçerli olması gibi.
+% [tr source emendation] Upstream prints `[!A]B`, although the language and
+% semantic clause consistently require the metavariable marker `[!A]!B`.
+
+\begin{figure}
+  \begin{center}
+    \begin{tikzpicture}[modal]
+      \node[world] (w1) [label={below left:$p, \lnot q$}]{$w_1$}; 
+      \node[world] (w2) [left=of w1, label={left:$\lnot p, \lnot q$}]{$w_2$}; 
+      \node[world] (w3) [above=of w1, label={right:$p, q$}] {$w_3$};
+      \draw[<->] (w1) to [swap] node {$b$} (w2);
+      \draw[->,loop below] (w1) to node {$a, b$} (w1);
+      \draw[<->] (w1) to [swap] node {$a$} (w3);
+      \draw[->,loop above] (w2) to node {$a, b$} (w2) ;
+      \draw[->,loop above] (w3) to node {$a, b$} (w3) ;
+      
+      \node[world](v1)[right of=w1, xshift=1.25in, label={right:$p, \lnot q$}]{$w'_1$};
+      \node[world](v3)[above of=v1,label={right:$p,q$}]{$w'_3$};
+      \draw[<->] (v1) to node {$a$} (v3);
+      \draw[->,loop below] (v1) to node {$a,b$} (v1);
+      \draw[->,loop above] (v3) to node {$a,b$} (v3) ;
+      
+      \node(m)[below=of w1]{$\mModel M$};
+      \node(m')[below=of v1]{$\mModel M \mid p$}; 
+
+      \draw[-,dotted] (w1) to node {\footnotesize $p$'nin duyurulması}(v1) ;
+     
+    \end{tikzpicture}
+  \end{center}
+  \caption{$p$'nin kamuya duyurulmasından önce ve sonra.}
+  \ollabel{fig:announcement-example}
+\end{figure}
+
+!!a{formula}{}ün kamuya duyurulmasını bir modeli küçültmek ya da !!{formula}{}ün
+doğru olduğu dünyalarla sınırlandırmak olarak görebiliriz.
+\olref{fig:announcement-example}, $p$'nin kamuya duyurulmasının etkilerine bir
+örnek verir. Bu modelin dikkate değer bir özelliği, duyurunun sonucunda
+özne~$b$'nin $p$'yi öğrenmesi, buna karşılık özne~$a$'nın öğrenmemesidir
+(çünkü $a$, $p$'nin doğru olduğunu zaten biliyordu).
+
+Daha biçimsel olarak $\mSat{M}{\lnot \Knows_b p}[w_1]$ geçerlidir, fakat
+$\mSat{M \mid p}{\Knows_b p}[w'_1]$ geçerlidir. Bu, $\mSat{M}{[p] \Knows_b
+p}[w_1]$ sonucunu verir. Ancak duyurunun sonucu hakkında daha da güçlü
+iddialarda bulunabiliriz. Gerçekte $\mSat{M}{[p]\CKnows_{\{a,b\}} p}[w_1]$
+geçerlidir. Başka deyişle $p$ duyurulduktan sonra \emph{ortak bilgi} olur.
+
+Bunun genel durumda geçerli olup olmadığını, yani $!A$'nın doğru bir biçimde
+duyurulmasının \emph{her zaman} $!A$'yı ortak bilgiye dönüştürüp
+dönüştürmediğini sorabiliriz. Yanıtın hayır olması şaşırtıcı gelebilir.
+Gerçekte duyurulduktan sonra artık doğru olmayacak !!{formula}s{}i doğru bir
+biçimde kamuya duyurmak mümkündür. Örneğin $p \land \lnot \Knows_b p$'nin
+$w_1$'de \olref{fig:announcement-example} içinde duyurulmasının etkilerini
+düşünün. $\mModel M \mid p$ iki dünya içerirken
+$\mModel M \mid (p \land \lnot \Knows_b p)$ yalnızca ilk dünyayı içerir;
+yani bu modeller aynı değildir. Bu ikinci modelde
+$\mSat{M \mid (p \land \lnot \Knows_b p)}{\Knows_b p}[w'_1]$ geçerlidir.
+Dolayısıyla
+$\mSat{M \mid (p \land \lnot \Knows_b p)}{\lnot (p \land \lnot \Knows_b
+p)}[w'_1]$ geçerlidir; öyleyse bu, duyurulduğu anda yanlış hâle gelen
+!!a{formula}{}dür.
+% [tr source emendation] Upstream says M|p and M|(p & ~K_b p) are the same
+% model, but the displayed frame leaves {w1,w3} after p and only {w1} after
+% the Moore sentence. The satisfaction witness is therefore evaluated in the
+% latter restricted model, where b has only the p-world accessible.
+

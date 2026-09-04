@@ -1,0 +1,132 @@
+% Generated from locale/tr/content/methods/induction/induction-on-N.tex; do not hand-edit.
+
+
+\olfileid[tr]{mth}{ind}{inN}
+
+\olsection{$\Nat$ Üzerinde Tümevarım}
+
+En basit biçimiyle tümevarım, bütün doğal sayılar için geçerli
+sonuçları kanıtlamakta kullanılan bir tekniktir. $0$'dan başlayıp
+tekrar tekrar~$1$ ekleyerek sonunda her doğal sayıya ulaşmamız olgusunu
+kullanır. Dolayısıyla bir şeyin her sayı için doğru olduğunu kanıtlamak
+üzere (1)~$0$ için doğru olduğunu belirleyebilir ve (2)~bir~$n$ sayısı
+için doğru olduğunda sonraki~$n+1$ sayısı için de doğru olduğunu
+gösterebiliriz. ``~$n$ sayısı $P$ özelliğine sahiptir'' sözünü $P(n)$
+ile (ve ``~$k$ sayısı $P$ özelliğine sahiptir'' sözünü $P(k)$ ile vb.)
+kısaltırsak, bütün $n \in \Nat$ için $P(n)$'nin tümevarımla kanıtı
+şunlardan oluşur:
+\begin{enumerate}
+\item $P(0)$'ın bir kanıtı ve
+\item herhangi bir~$k$ için, $P(k)$ ise $P(k+1)$ olduğunun bir kanıtı.
+\end{enumerate}
+Bunu bütünüyle açık kılmak için hem (1)'in hem de~(2)'nin elimizde
+olduğunu varsayın. O zaman (1), $P(0)$'ın doğru olduğunu söyler. (2) de
+elimizdeyse özellikle $P(0)$ ise $P(0+1)$, yani $P(1)$ olduğunu biliriz.
+Bu, ``herhangi bir~$k$ için, $P(k)$ ise $P(k+1)$'' genel ifadesinde~$k$
+yerine~$0$ konarak çıkar. Dolayısıyla modus ponens ile~$P(1)$'i elde
+ederiz. Yeniden (2)'den, bu kez~$k$ yerine $1$ alarak, $P(1)$ ise
+$P(2)$ olduğunu elde ederiz. $P(1)$'i az önce belirlediğimizden modus
+ponens ile~$P(2)$'yi elde ederiz. Bu böyle sürer. Herhangi bir~$n$
+sayısı için bunu $n$~kez yaptıktan sonra sonunda~$P(n)$'ye ulaşırız.
+Öyleyse (1) ve~(2) birlikte herhangi $n \in \Nat$ için~$P(n)$'yi
+belirler.
+
+Bir örneğe bakalım. $n$ zarla kaç farklı toplam atabileceğimizi bulmak
+istediğimizi düşünün. Saçma görünebilir ama $0$ zarla başlayalım. Hiç
+zarınız yoksa ``atabileceğiniz'' yalnızca bir olası toplam vardır: hiç
+benek yoktur ve toplam~$0$'dır. Dolayısıyla farklı olası atışların
+sayısı~$1$'dir. Yalnızca bir zarınız varsa, yani $n=1$ ise, $1$'den~$6$'ya
+altı olası değer vardır. İki zarla $2$'den $12$'ye kadar her toplamı
+atabiliriz; bu $11$ olasılıktır. Üç zarla $3$'ten $18$'e kadar her
+sayıyı, yani $16$ farklı olasılığı atabiliriz. $1$, $6$, $11$, $16$:
+  bir örüntüye benziyor; yanıt $5n+1$ olabilir mi? Elbette en fazla
+  $5n+1$ olası değer vardır; çünkü $n$ zarla atabileceğiniz en küçük değer olan
+$n$ (bütün zarlar $1$) ile atabileceğiniz en büyük değer olan $6n$
+(bütün zarlar $6$) arasında yalnızca $5n+1$ sayı vardır.
+
+\begin{thm}
+  $n$ zarla, $n$ ile $6n$ arasındaki $5n+1$ olası değerin tamamı
+  atılabilir.
+\end{thm}
+
+\begin{proof}
+$P(n)$ şu iddia olsun: ``$n$~zar kullanarak $n$ ile~$6n$ arasındaki
+herhangi bir sayıyı atmak mümkündür.'' Tümevarımı kullanmak için şunları
+kanıtlarız:
+\begin{enumerate}
+\item \emph{Tümevarım tabanı} $P(1)$, yani yalnızca bir zarla $1$ ile
+  $6$ arasındaki herhangi bir sayıyı atabilirsiniz.
+\item \emph{Tümevarım adımı}: bütün $k$'ler için, $P(k)$ ise~$P(k+1)$.
+\end{enumerate}
+
+(1), $6$ yüzlü bir zar incelenerek kanıtlanır. Altı yüzünün tamamı
+vardır ve $1$ ile~$6$ arasındaki her sayı yüzlerden birinde yer alır.
+Dolayısıyla tek bir zarla $1$ ile~$6$ arasındaki herhangi bir sayıyı
+atmak mümkündür.
+
+(2)'yi kanıtlamak için koşullunun önbileşenini, yani $P(k)$'yi
+varsayarız. Bu varsayıma \emph{tümevarım hipotezi} denir. Onu $P(k+1)$'i
+kanıtlamakta kullanırız. Zor olan, $k+1$ zarın olası atış değerlerini
+  $k$~zarın olası atış değerleriyle ve ek $k+1$'inci zarın atışlarıyla
+ilişkilendirerek düşünmenin bir yolunu bulmaktır---tümevarım hipotezini
+kullanmak istiyorsak yapmamız gereken budur.
+
+Tümevarım hipotezi, $k$~zar kullanarak $k$ ile~$6k$ arasındaki herhangi
+bir sayıyı elde edebileceğimizi söyler. $(k+1)$'inci zarımızla~$1$
+atarsak bu, toplama $1$ ekler. Böylece $k$~zar atıp ardından
+$(k+1)$'inci zarla~$1$ atarak $k+1$ ile $6k+1$ arasındaki herhangi bir
+değeri atabiliriz. Geriye ne kalır? $6k+2$'den $6k+6$'ya kadar olan
+değerler. Bunları $k$ tane $6$ atıp ardından $(k+1)$'inci zarımızla $2$
+ile $6$ arasında bir sayı atarak elde edebiliriz. Bunlar birlikte,
+$k+1$ zarla $k+1$ ile $6(k+1)$ arasındaki sayıların herhangi birini
+atabileceğimiz anlamına gelir; yani tümevarım hipotezi olan~$P(k)$
+varsayımını kullanarak~$P(k+1)$'i kanıtladık.
+\end{proof}
+
+Çoğu kez, kendisi ``tümevarımsal'' olarak tanımlanan, yani $(n+1)$'inci
+nesnesi $n$'inci nesne cinsinden tanımlanan bir nesneler dizisi
+(sayılar, kümeler vb.) hakkında bir şey kanıtlamak istediğimizde
+tümevarımı kullanırız. Örneğin $n$'ye kadar olan doğal sayıların
+toplamı~$s_n$'yi şöyle tanımlayabiliriz:
+\begin{align*}
+  s_0 & = 0\\
+  s_{n+1} & = s_n + (n+1)
+\end{align*}
+Bu tanım şunları verir:
+\begin{align*}
+  s_0 & = 0,\\
+  s_1 & = s_0 + 1 && = 1,\\
+  s_2 & = s_1 + 2 && = 1 + 2 = 3\\
+  s_3 & = s_2 + 3 && = 1 + 2 + 3 = 6, \text{ vb.}
+\end{align*}
+Artık $s_n = n(n+1)/2$ olduğunu tümevarımla kanıtlayabiliriz.
+
+\begin{prop}
+  $s_n = n(n+1)/2$.
+\end{prop}
+
+\begin{proof}
+  (1) $s_0 = 0\cdot(0 + 1)/2$ olduğunu ve (2) $s_k = k(k+1)/2$ ise
+  $s_{k+1} = (k+1)(k+2)/2$ olduğunu kanıtlamalıyız. (1) açıktır.
+  (2)'yi kanıtlamak için tümevarım hipotezini varsayarız: $s_k =
+  k(k+1)/2$. Bunu kullanarak $s_{k+1} = (k+1)(k+2)/2$ olduğunu
+  göstermeliyiz.
+
+  $s_{k+1}$ nedir? Tanım gereği $s_{k+1} = s_k + (k+1)$. Tümevarım
+  hipotezi gereği $s_k = k(k+1)/2$. Bunu bir önceki eşitlikte yerine
+  koyabiliriz; ardından yalnızca biraz kesir aritmetiğine ihtiyacımız
+  kalır:
+  \begin{align*}
+    s_{k+1} & = \frac{k(k+1)}{2} + (k+1) = {}\\
+    & = \frac{k(k+1)}{2} + \frac{2(k+1)}{2} = {}\\
+    & = \frac{k(k+1) + 2(k+1)}{2} = {}\\
+    & = \frac{(k+2)(k+1)}{2}.
+  \end{align*}
+\end{proof}
+
+Buradaki önemli ders şudur: tümevarımsal olarak tanımlanmış bir $a_n$
+dizisi hakkında bir şey kanıtlıyorsanız, tümevarım başvurulacak en açık
+yoldur. Açık yol olmasa bile (zar atışlarının olasılıklarında olduğu
+gibi),~$k+1$ durumunu~$k$ durumuyla bir biçimde ilişkilendirebilirseniz
+tümevarımı kullanabilirsiniz.
+

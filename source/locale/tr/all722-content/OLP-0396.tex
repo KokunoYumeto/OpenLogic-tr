@@ -1,0 +1,112 @@
+% Generated from locale/tr/content/many-valued-logic/three-valued-logics/goedel.tex; do not hand-edit.
+
+
+\olfileid[tr]{mvl}{thr}{god}
+
+\olsection{G\"odel Mantıkları}
+
+Kurt G\"odel, her biri sezgisel mantıkta geçerli bütün !!{formula}s{}i
+içeren ve klasik mantığın içinde yer alan bir $n$-değerli mantıklar dizisi
+ortaya koydu. Bunların ilk ilginç örneği şöyledir:
+
+\begin{defn}\ollabel{defn:goedel}
+\emph{$3$-değerli G\"odel mantığı}~$\LogGod$ şu matrisle tanımlanır:
+\begin{enumerate}
+  \item $\lfalse$, $\lnot$, $\land$, $\lor$, $\lif$ bağlaçlarını içeren
+  standart önerme dili $\Lang L_0$.
+  \item Doğruluk değerleri kümesi $V = \{\True, \Undef, \False\}$.
+  \item Tek belirlenmiş değer $\True$'dur; yani $V^+ = \{\True\}$.
+  \item $\lfalse$ için $\tf{\lfalse} = \False$'dur. Geri kalan bağlaçların
+  doğruluk fonksiyonları aşağıdaki tablolarla verilir:
+  \begin{center}
+    \begin{tabular}{c|c} 
+      $\tf{\lnot}[\LogGod]$ & \\ 
+      \hline  
+      $\True$ & $\False$ \\ 
+      $\Undef$ & $\False$ \\
+      $\False$ & $\True$ 
+    \end{tabular}
+    \quad
+    \begin{tabular}{c|ccc} 
+      $\tf{\land}[\LogGod]$ & $\True$ & $\Undef$ & $\False$ \\ 
+      \hline 
+      $\True$ & $\True$ & $\Undef$ & $\False$ \\ 
+      $\Undef$ & $\Undef$ & $\Undef$ & $\False$\\ 
+      $\False$ & $\False$ & $\False$ & $\False$ 
+    \end{tabular}
+    \\[2ex]
+    \begin{tabular}{c|ccc} 
+      $\tf{\lor}[\LogGod]$ & $\True$ & $\Undef$ & $\False$ \\ 
+      \hline 
+      $\True$ & $\True$ & $\True$ & $\True$ \\ 
+      $\Undef$ & $\True$ & $\Undef$ & $\Undef$ \\
+      $\False$ & $\True$ & $\Undef$ & $\False$ 
+    \end{tabular}
+    \quad
+    \begin{tabular}{c|ccc} 
+      $\tf{\lif}[\LogGod]$ & $\True$ & $\Undef$ & $\False$ \\ 
+      \hline 
+      $\True$ & $\True$ & $\Undef$ & $\False$ \\ 
+      $\Undef$ & $\True$ & $\True$ & $\False$  \\ 
+      $\False$ & $\True$ & $\True$ & $\True$ 
+    \end{tabular}
+  \end{center} 
+\end{enumerate}
+\end{defn}
+
+$\land$ ve~$\lor$ doğruluk tablolarının \L ukasiewicz ve güçlü Kleene
+mantığındakilerle aynı, $\lnot$ ve~$\lif$ tablolarının ise üçünde de farklı
+olduğuna dikkat edin. G\"odel mantığında
+$\tf{\lnot}(\Undef) = \False$'dur. \L ukasiewicz ve Kleene mantığından farklı
+olarak $\tf{\lif}(\Undef, \False) = \False$; Kleene mantığından farklı
+(fakat \L ukasiewicz mantığındaki gibi) olarak
+$\tf{\lif}(\Undef, \Undef) = \True$'dur.
+
+Yukarıda değinilen sezgisel mantık bağlantısının düşündürdüğü gibi
+$\LogGod[3]$, sezgisel mantığa yakındır. Sezgisel mantığın bütün doğruları
+$\LogGod[3]$ içinde totolojidir; sezgisel olarak geçerli olmayan birçok
+klasik totoloji de $\LogGod[3]$ içinde totoloji değildir. Örneğin
+aşağıdakiler totoloji değildir:
+\begin{align*}
+  & p \lor \lnot p && (p \lif q) \lif (\lnot p \lor q) \\
+  & \lnot\lnot p \lif p && \lnot(\lnot p \land \lnot q) \lif (p \lor q) \\
+  & ((p \lif q) \lif p) \lif p && \lnot(p \lif q) \lif (p \land \lnot q)
+\end{align*}
+Ancak $\LogGod[3]$'ün her totolojisi sezgisel olarak geçerli değildir;
+örneğin $\lnot\lnot p \lor \lnot p$ ya da
+$(p \lif q) \lor (q \lif p)$.
+
+\begin{prob}
+  Aşağıdakilerin $\LogGod[3]$'ün totolojileri olduğunu gösterecek doğruluk
+  tabloları verin:
+  \begin{align*}
+    & \lnot\lnot p \lor \lnot p\\
+    & (p \lif q) \lor (q \lif p) \\
+    & \lnot(p \land q) \lif (\lnot p \lor \lnot q) \\
+    & (p \lif q) \lor (q \lif r) \lor (r \lif s)
+  \end{align*}
+\end{prob}
+
+\begin{prob}
+  Aşağıdakilerin $\LogGod[3]$'ün totolojileri olmadığını gösterecek doğruluk
+  tabloları verin:
+  \begin{align*}
+    & (p \lif q) \lif (\lnot p \lor q) \\
+    & \lnot(\lnot p \land \lnot q) \lif (p \lor q) \\
+    & ((p \lif q) \lif p) \lif p \\
+    & \lnot(p \lif q) \lif (p \land \lnot q)
+  \end{align*}
+\end{prob}
+
+\begin{prob}
+  Aşağıdaki bağıntılardan hangileri G\"odel mantığında geçerlidir? Her biri
+  için bir doğruluk tablosu verin.
+  \begin{enumerate}
+    \item $p, p \lif q \Entails q$
+    \item $p \lor q, \lnot p \Entails q$
+    \item $p \land q \Entails p$
+    \item $p \Entails p \land p$
+    \item $p \Entails p \lor q$
+  \end{enumerate}
+\end{prob}
+

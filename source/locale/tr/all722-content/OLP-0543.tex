@@ -1,0 +1,135 @@
+% Generated from locale/tr/content/set-theory/z/infinity-again.tex; do not hand-edit.
+
+
+\olfileid[tr]{sth}{z}{infinity-again}	
+\olsection{Sonsuzluk}
+
+Elimizdeki aksiyomlar, herhangi bir küme varsa sonsuz sayıda küme
+bulunduğunu güvence altına almaya yeter. Bir kümenin var olduğunu varsayın;
+o zaman $\emptyset$ vardır (\olref[sth][z][sep]{prop:emptyexists} gereği).
+Şimdi her $x$ kümesi için $x \cup \{x\}$ kümesi
+\olref[sth][z][pairs]{prop:pairsconsequences} gereği vardır. Bunu birkaç
+kez uyguladığımızda şu kümeleri elde ederiz:
+\begin{enumerate}
+	\item[0.] $\emptyset$ %& $0$ & stage $0$\\
+	\item[1.] $ \{\emptyset\}$ %& $1$ & stage $1$\\
+	\item[2.] $\{\emptyset, \{\emptyset\}\}$ %& $2$ & stage $2$\\
+	\item[3.] $\{\emptyset, \{\emptyset\}, \{\emptyset, \{\emptyset\}\}\}$ %&$3$ & stage $3$\\
+	\item[4.] $\{\emptyset, \{\emptyset\}, \{\emptyset, \{\emptyset\}\}, \{\emptyset, \{\emptyset\}, \{\emptyset, \{\emptyset\}\}\}\}$% & $4$ & stage $4$ 
+\end{enumerate}
+Bu kümelerin birbirinden farklı olduğu denetlenebilir.
+
+Numaralandırmaya $0$'dan başlamamızın birkaç nedeni var. Bunlardan biri
+şudur: ``$n$'' diye etiketlediğimiz kümenin tam olarak $n$ elemanı olduğunu
+ve (sezgisel olarak) $n$'inci aşamada oluşturulduğunu doğrulamak zor değildir.
+
+Fakat bu bize \emph{sonsuz sayıda} küme verir; \emph{sonsuz bir kümenin},
+yani sonsuz sayıda elemanı olan bir kümenin bulunduğunu güvence altına almaz.
+Bu gerçekten önemlidir: Dedekind-sonsuz bir küme bulamazsak bir Dedekind
+cebiri kuramayız. Oysa doğal sayılar kümesi olarak ele alabilmek için bir
+Dedekind cebiri istiyoruz. (\olref[sfr][infinite][dedekindsproof]{sec}
+ile karşılaştırın.)
+
+Önemli olarak, şimdiye dek ortaya koyduğumuz aksiyomlar hiçbir sonsuz
+kümenin varlığını güvence altına \emph{almaz}. Bu yüzden yeni bir aksiyom
+ortaya koymalıyız:
+
+\begin{axiom}[Sonsuzluk]
+$\emptyset \in I$ olan ve $x \in I$ olduğunda $x \cup \{x\} \in I$ olan
+bir $I$ kümesi vardır.
+\begin{align*}
+	\exists I( & (\exists o \in I)\forall x\ x \notin o \land {}\\
+	& (\forall x \in I)(\exists s \in I)\forall z(z \in s \liff (z \in x \lor z = x)))
+\end{align*}
+\end{axiom}
+
+Sonsuzluk Aksiyomu'nun bize verdiği $I$ kümesinin Dedekind-sonsuz olduğunu
+görmek kolaydır. Ayırt edilmiş elemanı $\emptyset$, $I$ üzerindeki bire bir
+fonksiyon ise $s(x)=x\cup\{x\}$'tir. Şimdi,
+\olref[sfr][infinite][dedekind]{thm:DedekindInfiniteAlgebra},
+Dedekind-sonsuz bir kümeden bir Dedekind cebirinin nasıl çıkarılacağını
+gösterdi; biz de bunu doğal sayılar kümemiz olarak ele alacağız. Daha kesin
+olarak:
+\begin{defn}\ollabel{defnomega}
+$I$, Sonsuzluk Aksiyomu'nun bize verdiği herhangi bir küme olsun. $s$,
+$s(x)=x\cup\{x\}$ fonksiyonu olsun. $\omega =
+\closureofunder{s}{\emptyset}$ olsun. $\omega$'nın elemanlarına
+\emph{doğal sayılar} der ve $n$'nin, $s$'nin $\emptyset$'a $n$ kez
+uygulanmasının sonucu olduğunu söyleriz.
+\end{defn}
+
+Şimdi birkaç paragraf önce ``$n$'' diye etiketlenen kümenin $n$ sayısı
+\emph{olarak} ele alınacağını geriye dönüp doğrulayabilirsiniz.
+
+Bu koşul koymanın önemini \olref[sth][z][nat]{sec} içinde tartışacağız.
+Şimdilik bu, sezgisel bir sonucu ispatlamamızı sağlar:
+
+\begin{prop}\ollabel{naturalnumbersarentinfinite}
+Hiçbir doğal sayı Dedekind-sonsuz değildir.
+\end{prop}
+
+\begin{proof}
+İspat tümevarımladır; yani
+\olref[sfr][infinite][induction]{thm:dedinfiniteinduction} kullanılır.
+Açıktır ki $0=\emptyset$ Dedekind-sonsuz değildir. Tümevarım adımı için
+karşıt-tersi göstereceğiz: (saçma biçimde) $s(n)$ Dedekind-sonsuz ise $n$
+de Dedekind-sonsuzdur.
+
+Öyleyse $s(n)$'nin Dedekind-sonsuz olduğunu varsayın; yani
+$\ran{f}\subsetneq\dom{f}=s(n)=n\cup\{n\}$ olan bir !!{injection} $f$
+vardır. İki durum ele alınmalıdır.
+
+\emph{Durum 1: $n \notin \ran{f}$.} O hâlde $\ran{f}\subseteq n$ ve
+$f(n)\in n$'dir. $g=\funrestrictionto{f}{n}$ olsun; şimdi
+$\ran{g}=\ran{f}\setminus\{f(n)\}\subsetneq n=\dom{g}$ olur. Dolayısıyla
+$n$ Dedekind-sonsuzdur.
+
+\emph{Durum 2: $n \in \ran{f}$.} Bir
+$m\in\dom{f}\setminus\ran{f}$ sabitleyin ve tanım kümesi
+$s(n)=n\cup\{n\}$ olan $h$ fonksiyonunu şöyle tanımlayın:
+\[
+h(x) =
+	\begin{cases}
+		f(x) & \text{$f(x) \neq n$ ise}\\
+		m & \text{$f(x)=n$ ise.}
+	\end{cases}
+\]
+Demek ki $h$ ile $f$, $h(f^{-1}(n))=m\neq n=f(f^{-1}(n))$ olan nokta
+dışında her yerde aynıdır. $f$ bir !!a{injection} olduğundan
+$n\notin\ran{h}$ ve $\ran{h}\subsetneq\dom{h}=s(n)$ olur. Şimdi Durum 1'in
+gerekçesi kullanılarak $n$'nin Dedekind-sonsuz olduğu çıkar.
+\end{proof}
+
+Yine de Sonsuzluk Aksiyomu'nu nasıl \emph{gerekçelendireceğimiz} sorusu
+kalır. Kısa yanıt, anlatmakta olduğumuz öyküye bir ilke daha eklememiz
+gerektiğidir. Bu ilke şöyledir:
+\begin{enumerate}
+	\item[] \stagesinf. Sonsuz bir aşama vardır. Başka bir deyişle,
+	(a) ilk aşama olmayan, (b) kendisinden önce bazı aşamalar bulunan, fakat
+	(c) hemen önce gelen bir aşaması bulunmayan bir aşama vardır.
+\end{enumerate}
+Sonsuzluk Aksiyomu bu ilkeden doğrudan çıkar. Doğal sayı $n$'nin $n$'inci
+aşamada oluşturulduğunu biliyoruz. Öyleyse $\omega$ kümesi ilk sonsuz
+aşamada oluşturulur ve $\omega$'nın kendisi Sonsuzluk Aksiyomu'na tanıklık
+eder.
+
+Ancak bu bizi yalnızca \stagesinf{} ilkesini nasıl gerekçelendireceğimiz
+sorusuna geri götürür. \stagessucc{} gibi bu da birikimli-yinelemeli
+hiyerarşi hakkında anlattığımız öykünün açık bir parçası değildi. Üstelik
+kümelerin aşama aşama oluşturulduğu yinelemeli hiyerarşi fikrinde, sürecin
+\emph{sonsuz} bir aşama içerdiğini düşünmeye bizi zorlayan hiçbir şey
+yoktur. Aşamaların doğal sayılar gibi sıralandığını düşünmek bütünüyle
+tutarlı görünür.
+
+Bu ise açık bir soruna yol açar. \olref[sfr][infinite][dedekindsproof]{sec}
+içinde Dedekind'in (düşüncelerden oluşan) Dedekind-sonsuz bir kümenin
+bulunduğuna ilişkin ``ispatını'' ele aldık. Bu size pek tatmin edici
+gelmemiş olabilir. Fakat \stagesinf{} kümenin yinelemeli anlayışı (ya da
+``düşünce yasaları'') tarafından ``bize zorunlu kılınmıyorsa'', bir
+Dedekind-sonsuz kümenin bulunduğu savı için hâlâ içsel bir gerekçemiz yoktur.
+
+Elbette bu konuda söylenecek çok daha fazla şey vardır. Ama umarız artık
+bir aksiyomu (ya da ilkeyi) gerekçelendirmenin ne \emph{gerektirebileceği}
+üzerine düşünmeye başlayacak bir noktadasınızdır. Bundan sonra
+\stagesinf{} ilkesini olduğu gibi kabul edeceğiz.
+

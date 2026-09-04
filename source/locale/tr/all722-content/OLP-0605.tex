@@ -1,0 +1,102 @@
+% Generated from locale/tr/content/methods/proofs/using-definitions.tex; do not hand-edit.
+
+
+\olfileid[tr]{mod}{prf}{def}
+
+\olsection{Tanımları Kullanmak}
+
+Kanıtta kullanılabilecek bütün tanımları bilmeniz ve onları doğru
+uygulayabilmeniz gerektiğini belirtmiştik. Bu gerçekten önemli bir
+noktadır ve biraz daha ayrıntılı incelenmeye değer. Tanımlar, özellik
+ve bağıntıları daha kısa biçimde anlatabilmemiz için onları
+kısaltmakta kullanılır. Ortaya konan kısaltmaya \emph{tanımlanan}, onun
+kısalttığı şeye ise \emph{tanımlayan} denir. Kanıtlarda çoğu kez
+tanımlananın nasıl ortaya konduğuna geri dönmek zorunda kalırız; çünkü
+kanıtımızı ilerletmek için tanımlayanın (tanımlanan terimin kısalttığı
+uzun biçimin) mantıksal yapısından yararlanmamız gerekir. Tanımları
+açarak mantıksal işleyişin özüne indiğinizden emin olursunuz.
+
+Bir örnekle başlayalım. Aşağıdakini kanıtlamak istediğinizi düşünün:
+
+\begin{prop}
+Herhangi $A$ ve $B$ kümeleri için $A \cup B = B \cup A$.
+\end{prop}
+
+Kanıta başlayabilmek için bile iki kümenin özdeş olmasının ne anlama
+geldiğini, yani bu eşitlikteki ``$=$'' işaretinin kümeler için ne
+anlama geldiğini bilmemiz gerekir. Kümeler, !!{element}s bakımından aynı
+olduklarında özdeş olarak tanımlanır. Dolayısıyla açmamız gereken tanım
+şudur:
+
+\begin{defn}
+$A$ ve $B$ kümeleri
+\emph{özdeştir}, $A = B$, ancak ve ancak $A$'daki her !!{element},
+$B$'de de bir !!a{element} olarak bulunduğunda ve bunun tersi geçerli
+olduğunda.
+\end{defn}
+
+Bu tanım, $A$ ve~$B$'yi keyfî kümelerin yer tutucuları olarak kullanır.
+Tanımladığı şey---\emph{tanımlanan}---``$A = B$'' ifadesidir ve bunu,
+$A = B$'nin doğru olduğu koşulu vererek yapar. Bu koşul---``$A$'daki her
+!!{element}, $B$'de de bir !!a{element} olarak bulunur ve bunun tersi de
+geçerlidir''---\emph{tanımlayan}dır.
+\footnote{Bu özel durumda---ve oldukça kafa karıştırıcı biçimde!---
+  $A = B$ olduğunda $A$ ve $B$ kümeleri, sol ve sağ tarafta farklı
+  harfler kullansak da, tek ve aynı kümedir. Ancak bu kümenin
+  belirlenme yolları farklı olabilir ve tanımı önemsiz olmaktan
+  çıkaran da budur.} Tanım, $A = B$'nin ancak ve ancak bu koşul
+sağlandığında doğru olduğunu belirtir.
+
+Tanımı uygularken, tanımdaki $A$ ve $B$'yi ele aldığınız durumla
+eşleştirmeniz gerekir. Bizim durumumuzda bu, $A \cup B = B \cup A$'nın
+doğru olması için her $z \in A \cup B$'nin aynı zamanda $B \cup A$'da
+olması ve bunun tersinin de geçerli olması gerektiği anlamına gelir.
+Önermedeki $A \cup B$ ifadesi tanımdaki~$A$'nın, $B \cup A$ ise
+tanımdaki~$B$'nin rolünü oynar. $A$ ve $B$ hem tanımda hem de
+kanıtladığımız önermenin ifadesinde, fakat farklı amaçlarla
+kullanıldığından, ikisini karıştırmadığınızdan emin olmalısınız.
+Örneğin önermeyi, $A$'daki her !!{element} için $B$'de de bir
+!!a{element} bulunduğunu ve bunun tersini göstererek kanıtlayabileceğinizi
+düşünmek hata olurdu---bu, $A = B$'yi gösterirdi; $A \cup B = B \cup A$'yı
+değil. (Üstelik $A$ ve $B$ herhangi iki küme olabileceğinden pek
+ilerleyemezdiniz; çünkü $A$ ve~$B$ hakkında hiçbir şey varsayılmamışsa
+pekâlâ farklı kümeler olabilirler.)
+
+Kanıtta birleşim gibi küme kuramsal kavramlarla uğraşıyoruz; bu nedenle
+kanıtın nasıl ilerlemesi gerektiğini anlamak için $\cup$ simgesinin
+anlamını da bilmemiz gerekir. Bazen bir tanımı açmak, açılması gereken
+başka tanımlar doğurur. Örneğin $A \cup B$, $\Setabs{z}{z \in A
+  \text{ ya da } z \in B}$ olarak tanımlanır. Dolayısıyla $x \in A \cup
+B$ olduğunu kanıtlamak istiyorsanız, $\cup$ tanımını açınca $x \in
+\Setabs{z}{z \in A \text{ ya da } z \in B}$ olduğunu kanıtlamanız
+gerektiğini görürsünüz. Şimdi ayrıca $x \in
+\Setabs{z}{\dots z\dots}$ olmasının ancak ve ancak $\dots x\dots$
+olduğunda geçerli olduğunu hatırlamanız gerekir. Öyleyse
+$\Setabs{z}{\dots z \dots}$ gösteriminin tanımını da açınca göstermeniz
+gereken şudur: $x \in A$ ya da $x \in B$. Böylece ``$A \cup B$'deki her
+!!{element}, aynı zamanda $B \cup A$'da da bir !!a{element} olarak bulunur'' sözü
+aslında şu anlama gelir: ``her $x$ için, $x \in A$ ya da $x \in B$ ise
+$x \in B$ ya da $x \in A$'dır.'' Önermedeki tanımları bütünüyle
+açarsak göstermemiz gerekenin şu olduğunu görürüz:
+
+\begin{prop}
+Herhangi $A$ ve $B$ kümeleri için: (a) her $x$ için, $x \in A$ ya da
+$x \in B$ ise $x \in B$ ya da $x \in A$; ve (b) her $x$ için, $x \in
+B$ ya da $x \in A$ ise $x \in A$ ya da $x \in B$.
+\end{prop}
+
+Önemli olan, tanımları açmanın bir kanıt kurmanın zorunlu bir parçası
+olmasıdır. Bunu doğru yapmak bazen güçtür: tanımdaki değişkenleri ve
+kanıtladığınız iddiadaki terimleri dikkatle ayırmalı ve eşleştirmelisiniz.
+Başarılı olmak için sorunun ne istediğini ve soruda kullanılan bütün
+terimlerin ne anlama geldiğini bilmelisiniz---çoğu kez birden fazla
+tanımı açmanız gerekir. Aşağıdakiler gibi basit kanıtlarda çözüm,
+tanımların kendilerinden neredeyse hemen çıkar. Elbette her zaman bu
+kadar basit olmayacaktır.
+
+\begin{prob}
+$A \cap B \neq \emptyset$ olduğunu kanıtlamanız istendiğini varsayın.
+Burada geçen bütün tanımları açın; yani ifadeyi ``$\cap$'', ``='' veya
+``$\emptyset$'' kullanmadan yeniden söyleyin.
+\end{prob}
+

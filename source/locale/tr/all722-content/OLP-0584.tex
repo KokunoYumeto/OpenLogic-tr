@@ -1,0 +1,190 @@
+% Generated from locale/tr/content/set-theory/cardinals/classing.tex; do not hand-edit.
+
+
+\olfileid[tr]{sth}{cardinals}{classing}
+\olsection{Sonlu, \usetoken{S}{enumerable}, \usetoken{S}{nonenumerable}}
+
+Kardinal sayılarla tanıştığımıza göre kardinal sayıların farklı türlerini,
+özellikle sonlu, !!{enumerable} ve !!{nonenumerable} kardinal sayıları
+tartışmak için biraz zaman ayırmak yararlıdır.
+
+İlk iki sonucumuz, sonlu kardinal sayıların tam olarak
+\olref[z][infinity-again]{defnomega} içinde \emph{doğal sayılarımız}
+olarak tanımladığımız sonlu sıra sayıları olduğunu gerektirir:
+
+\begin{prop}\ollabel{finitecardisoequal}
+$n,m\in\omega$ olsun. $n=m$ ancak ve ancak $\cardeq{n}{m}$.
+\end{prop}
+
+\begin{proof}
+\emph{Soldan sağa} yön açıktır. \emph{Sağdan sola} yön için $n\neq m$
+olduğu hâlde $\cardeq{n}{m}$ olduğunu varsayın. Üçlü Karşılaştırma gereği
+ya $n\in m$ ya da $m\in n$ olur; genelliği kaybetmeden $n\in m$ varsayın.
+O zaman $n\subsetneq m$ ve bir !!a{bijection} $f\colon m\to n$ vardır;
+dolayısıyla $m$ Dedekind-sonsuzdur. Bu,
+\olref[z][infinity-again]{naturalnumbersarentinfinite} ile çelişir.
+\end{proof}
+
+\begin{cor}\ollabel{naturalsarecardinals}
+$n\in\omega$ ise $n$ bir kardinal sayıdır.
+\end{cor}
+
+\begin{proof}
+Doğrudan çıkar.
+\end{proof}
+\noindent
+Bir kardinal sayıyı ``sonlu'' ya da ``sonsuz'' diye betimlemenin çeşitli
+makul anlamlarının çakıştığı da çıkar:
+\begin{thm}\ollabel{generalinfinitycharacter}
+Her $A$ kümesi için aşağıdakiler denktir:
+\begin{enumerate}
+	\item\ollabel{card:notinomega} $\card{A}\notin\omega$; yani $A$ bir
+	doğal sayı değildir;
+	\item\ollabel{card:omegaplus} $\omega\leq\card{A}$;
+	\item\ollabel{card:infinite} $A$ Dedekind-sonsuzdur.
+\end{enumerate}
+\end{thm}
+
+\begin{proof}
+\olref[ord-arithmetic][using-addition]{ordinfinitycharacter},
+\olref[cardinals][cardsasords]{lem:CardinalsBehaveRight} ve
+\olref{naturalsarecardinals} sonuçlarından çıkar.
+\end{proof}
+
+Bu, \olref[sfr][][]{part} içinde oldukça gayriresmî kullandığımız bazı
+kavramların şu \emph{tanımına} izin verir:
+
+\begin{defn}\ollabel{defnfinite}
+$\card{A}$ bir doğal sayıysa, yani $\card{A}\in\omega$ ise $A$'ya
+\emph{sonlu}; aksi hâlde \emph{sonsuz} deriz.
+\end{defn}
+\noindent
+Fakat bu tanımın $\ZFC$ arka planında sunulduğuna dikkat edin. Sonuçta her
+kümenin bir kardinalitesi olduğunu güvence altına almak için İyi Sıralama'ya
+ihtiyaç duyduk. Gerçekten İyi Sıralama olmadan ne sonlu ne de
+Dedekind-sonsuz olan bir küme bulunabilir. Bu tür sorulara
+\olref[choice][]{chap} içinde döneceğiz. Şimdilik İyi Sıralama'ya
+dayanmayı sürdürüyoruz.
+
+Şimdi sonlu kardinal sayılardan sonsuz kardinal sayılara dönelim. İşte iki
+temel nokta:
+
+\begin{cor}\ollabel{omegaisacardinal}
+$\omega$, en küçük sonsuz kardinal sayıdır.
+\end{cor}
+
+\begin{proof}
+$\omega$ bir kardinal sayıdır; çünkü $\omega$ Dedekind-sonsuzdur ve bir
+$n\in\omega$ için $\cardeq{\omega}{n}$ olsaydı $n$ de Dedekind-sonsuz
+olurdu; bu, \olref[z][infinity-again]{naturalnumbersarentinfinite} ile
+çelişir. Şimdi tanım gereği $\omega$ en küçük sonsuz kardinal sayıdır.
+\end{proof}
+
+\begin{cor}
+Her sonsuz kardinal sayı bir limit sıra sayısıdır.
+\end{cor}
+
+\begin{proof}
+$\alpha$ sonsuz bir ardıl sıra sayısı, dolayısıyla bir $\beta$ için
+$\alpha=\beta\ordplus1$ olsun. \olref{finitecardisoequal} gereği $\beta$
+de sonsuzdur; böylece
+\olref[ord-arithmetic][using-addition]{ordinfinitycharacter} gereği
+$\cardeq{\beta}{\beta\ordplus1}$ olur. O zaman
+\olref[cardinals][cardsasords]{lem:CardinalsBehaveRight} gereği
+$\card{\beta}=\card{\beta\ordplus1}=\card{\alpha}$ olur; dolayısıyla
+$\alpha\neq\card{\alpha}$.
+\end{proof}
+
+\olref[sfr][siz][enm-alt]{defn:enumerable} kadar erken bir aşamada
+!!{enumerable} ve !!{nonenumerable} sonsuz kümeler arasında ayrım
+yapabileceğimizi belirtmiştik. Bu tanım doğal olarak şu sonuca yol açar:
+
+\begin{prop}
+$A$, !!{enumerable} ancak ve ancak $\card{A}\leq\omega$; $A$,
+!!{nonenumerable} ancak ve ancak $\omega<\card{A}$.
+\end{prop}
+
+\begin{proof}
+Üçlü Karşılaştırma gereği iki iddia denktir; bu yüzden $A$'nın
+!!{enumerable} olmasıyla $\card{A}\leq\omega$ olmasının denk olduğunu
+ispatlamak yeterlidir. \emph{Sağdan sola}: $\card{A}\leq\omega$ ise
+\olref[cardinals][cardsasords]{lem:CardinalsBehaveRight} ve
+\olref{omegaisacardinal} gereği $\cardle{A}{\omega}$ olur.
+\emph{Soldan sağa}: $A$'nın !!{enumerable} olduğunu varsayın. O zaman
+\olref[sfr][siz][enm-alt]{defn:enumerable} gereği üç durum vardır:
+\begin{enumerate}
+	\item $A=\emptyset$ ise \olref{naturalsarecardinals} ve
+	\olref[cardinals][cardsasords]{lem:CardinalsBehaveRight} gereği
+	$\card{A}=0\in\omega$ olur.
+	\item $\cardeq{n}{A}$ ise \olref{naturalsarecardinals} ve
+	\olref[cardinals][cardsasords]{lem:CardinalsBehaveRight} gereği
+	$\card{A}=n\in\omega$ olur.
+	\item $\cardeq{\omega}{A}$ ise \olref{omegaisacardinal} gereği
+	$\card{A}=\omega$ olur.
+\end{enumerate}
+Böylece her durumda $\card{A}\leq\omega$ olur.
+\end{proof}
+\noindent
+Gerçekten $\omega$'nın özel bir yeri vardır. Sayılabilir birçok sıra sayısı
+bulunmasına rağmen:
+
+\begin{cor}
+$\omega$, tek !!{enumerable} sonsuz kardinal sayıdır.
+\end{cor}
+
+\begin{proof}
+$\cardfont{a}$ bir !!a{enumerable} sonsuz kardinal sayı olsun.
+$\cardfont{a}$ sonsuz olduğundan $\omega\leq\cardfont{a}$ olur.
+$\cardfont{a}$ bir !!a{enumerable} kardinal sayı olduğundan
+$\cardfont{a}=\card{\cardfont{a}}\leq\omega$ olur. Üçlü Karşılaştırma
+gereği $\cardfont{a}=\omega$ elde edilir.
+\end{proof}
+
+Elbette sonsuz sayıda kardinal sayı vardır. Bu nedenle \emph{Kaç kardinal
+sayı vardır?} diye sorabiliriz. Aşağıdaki sonuçlar, soruyu yeniden
+düşünmemiz gerekebileceğini gösterir.
+
+\begin{prop}\ollabel{unioncardinalscardinal}
+$X$'in her elemanı bir kardinal sayıysa $\bigcup X$ de bir kardinal sayıdır.
+\end{prop}
+
+\begin{proof}
+$\bigcup X$'in bir sıra sayısı olduğunu denetlemek kolaydır.
+$\alpha\in\bigcup X$ bir sıra sayısı olsun. O zaman bir $\cardfont{b}$
+kardinal sayısı için $\alpha\in\cardfont{b}\in X$ olur.
+$\cardfont{b}$ kardinal sayı olduğundan
+$\cardless{\alpha}{\cardfont{b}}$ olur. Ayrıca
+$\cardfont{b}\subseteq\bigcup X$ olduğundan
+$\cardle{\cardfont{b}}{\bigcup X}$ ve dolayısıyla
+$\cardneq{\alpha}{\bigcup X}$ olur. Genelleyerek $\bigcup X$'in bir
+kardinal sayı olduğu çıkar.
+\end{proof}
+
+\begin{thm}\ollabel{lem:NoLargestCardinal}
+En büyük kardinal sayı yoktur.
+\end{thm}
+
+\begin{proof}
+Her $\cardfont{a}$ kardinal sayısı için Cantor Teoremi
+(\olref[sfr][siz][car]{thm:cantor}) ile
+\olref[cardinals][cardsasords]{lem:CardinalsExist},
+$\cardfont{a}<\card{\Pow{\cardfont{a}}}$ olduğunu gerektirir.
+\end{proof}
+
+\begin{thm}
+Bütün kardinal sayıların kümesi yoktur.
+\end{thm}
+
+\begin{proof}
+Olmayana ergiyle
+$C=\Setabs{\cardfont{a}}{\cardfont{a}\text{ bir kardinal sayıdır}}$
+varsayın. \olref{unioncardinalscardinal} gereği $\bigcup C$ bir kardinal
+sayıdır. Öyleyse \olref{lem:NoLargestCardinal} gereği
+$\cardfont{b}>\bigcup C$ olan bir $\cardfont{b}$ kardinal sayısı vardır.
+Tanım gereği $\cardfont{b}\in C$; böylece
+$\cardfont{b}\subseteq\bigcup C$ ve dolayısıyla
+$\cardfont{b}\leq\bigcup C$ olur. Bu bir çelişkidir.
+\end{proof}
+
+Bunu hem Russell Paradoksu'yla hem Burali--Forti ile karşılaştırmalısınız.
+

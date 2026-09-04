@@ -1,0 +1,60 @@
+% Generated from locale/tr/content/many-valued-logic/syntax-and-semantics/semantic-notions.tex; do not hand-edit.
+
+
+\olfileid[tr]{mvl}{syn}{sem}
+
+\olsection{Semantik Kavramlar}
+
+Bir $\Log L$ çok değerli mantığının bir matrisle verildiğini varsayalım.
+O zaman $\Log L$ için alışılmış semantik kavramları tanımlayabiliriz.
+
+\begin{defn} 
+\begin{enumerate}
+\item !!^a{formula} $!A$, bir $\pAssign{v}$ için $\pSat{v}{!A}$ ise
+  \emph{sağlanabilir}; hiçbir $\pAssign{v}$ için $\pSat{v}{!A}$ değilse
+  \emph{sağlanamaz};
+\item !!^a{formula} $!A$, bütün $v$ değerlemeleri için $\pSat{v}{!A}$ ise
+  bir \emph{totolojidir};
+\item $\Gamma$ bir !!{formula} kümesiyse, $\pSat{v}{\Gamma}$ olan her
+  !!{valuation} $\pAssign{v}$ için $\pSat{v}{!A}$ ise ve ancak o zaman
+  $\Gamma\Entails !A$ (``$\Gamma$, $!A$'yı mantıksal olarak gerektirir'');
+\item $\Gamma$ bir !!{formula} kümesiyse, $\pSat{v}{\Gamma}$ olacak biçimde
+  !!a{valuation} $\pAssign{v}$ varsa $\Gamma$ \emph{sağlanabilir}, aksi
+  durumda \emph{sağlanamaz}.
+\end{enumerate} 
+\end{defn}
+
+Bu kavramlar için klasik mantıktaki bazı olguların aynısı geçerlidir:
+
+\begin{prop}
+\ollabel{prop:semanticalfacts} 
+\begin{enumerate} 
+\item $!A$ ancak ve ancak $\emptyset\Entails !A$ ise bir totolojidir;
+\item $\Gamma$ sağlanabilirse $\Gamma$'nın her sonlu alt kümesi de
+  sağlanabilirdir;
+\item\ollabel{def:monotonicity}%
+Monotonluk: $\Gamma\subseteq\Delta$ ve $\Gamma\Entails !A$ ise
+$\Delta\Entails !A$ da geçerlidir;
+\item\ollabel{def:Cut}%
+Geçişlilik: $\Gamma\Entails !A$ ve $\Delta\cup\{!A\}\Entails !B$ ise
+$\Gamma\cup\Delta\Entails !B$.
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+Alıştırma.
+\end{proof}
+
+\begin{prob}
+\olref[mvl][syn][sem]{prop:semanticalfacts} önermesini ispatlayın.
+\end{prob}
+
+Klasik mantıkta mantıksal gerektirme ile koşullu arasında bağlantı
+kurabiliriz. Örneğin \emph{modus ponens} geçerlidir: $\Gamma\Entails !A$ ve
+$\Gamma\Entails !A\lif !B$ ise $\Gamma\Entails !B$. Klasik mantıkta
+$\Entails$ ile $\lif$ arasındaki başka bir önemli ilişki semantik tümdengelim
+teoremidir: $\Gamma\Entails !A\lif !B$ ancak ve ancak
+$\Gamma\cup\{!A\}\Entails !B$. Bu sonuçlar çok değerli mantıklarda her zaman
+geçerli \emph{değildir}. Geçerli olup olmamaları $\tf{\lif}$ doğruluk
+fonksiyonuna bağlıdır.
+

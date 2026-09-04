@@ -1,0 +1,35 @@
+% Generated from locale/tr/content/computability/computability-theory/coding-computations.tex; do not hand-edit.
+
+
+\olfileid[tr]{cmp}{thy}{cod}
+\olsection{Hesapların Kodlanması}
+
+Her hesaplama modelinde aşağıdakileri yapmak mümkündür:
+\begin{enumerate}
+\item Hesaplanabilir fonksiyonların \emph{tanımlarını} sistematik biçimde
+  betimlemek. Örneğin Turing makinesi belirtimleri, özyinelemeli tanımlar ya
+  da bir programlama dilindeki programlar bu tanımları sağlar.
+\item Belirli bir tanımla verilen fonksiyonun belirli bir girdideki hesabının
+  eksiksiz kaydını betimlemek. Örneğin bir Turing makinesi hesabı, her hesap
+  adımındaki konfigürasyonların, yani makinenin durumu ile şerit içeriğinin
+  dizisiyle betimlenebilir.
+\item Bir hesabın varsayılan kaydının, belirli bir tanıma sahip hesaplanabilir
+  fonksiyonun belirli bir girdide, fonksiyonun tanımlı ve hesabın durduğu
+  durumda, nasıl hesaplandığının gerçekten kaydı olup olmadığını sınamak.
+\item Bir hesabın tam kaydına ilişkin böyle bir betimden, fonksiyonun belirli
+  girdideki değerini çıkarmak. Örneğin duran bir Turing makinesi hesabının
+  en son adımındaki şerit içeriği değerdir.
+\end{enumerate}
+
+Kodlama kullanılarak hesaplanabilir bir fonksiyonun her betimine sayısal bir
+\emph{indis}, yönergeler bu indisten hesaplanabilir biçimde geri elde
+edilebilecek şekilde atanabilir. Benzer biçimde bir hesabın tam kaydı da tek
+bir sayıyla kodlanabilir. Böylece ortaya çıkan ``$s$, indisi $e$ olan
+fonksiyonun $x$ girdisindeki hesabının kaydını kodlar'' aritmetik bağıntısı
+ile ``kodu $s$ olan hesap dizisinin çıktısı'' fonksiyonu hesaplanabilirdir;
+hatta ilkel özyinelemelidir.
+
+Bu temel olgu çok güçlüdür ve seçilen hesaplama modelinden bağımsız olarak
+hesaplanabilirlik hakkında çarpıcı ve önemli birçok sonuç ispatlamamızı
+sağlar.
+

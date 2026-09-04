@@ -1,0 +1,62 @@
+% Generated from locale/tr/content/counterfactuals/introduction/material-conditional.tex; do not hand-edit.
+
+
+\olfileid[tr]{cnt}{int}{mat}
+
+\olsection{Maddi Koşul}
+
+Bir koşullu tümcenin İngilizcedeki en yalın biçimi ``Eğer \dots{} ise
+\dots'' kalıbındadır; burada \dots{} ile gösterilen parçaların kendileri de
+tümcedir. Örneğin: ``Eğer bunu uşak yaptıysa bahçıvan masumdur.'' Mantığa
+giriş derslerinde koşullu tümceleri $\lif$ bağlacıyla simgeleştirmeyi
+öğreniriz: \dots{} ile belirtilen parçaları örneğin $!A$ ve~$!B$
+!!{formula}s{}iyle simgeler, bütün koşullu tümceyi de $!A\lif !B$ olarak
+gösteririz.
+
+$\lif$ bağlacı \emph{doğruluk fonksiyonludur}; yani $!A\lif !B$'nin
+doğruluk değeri---$\True$ ya da $\False$---$!A$ ile~$!B$'nin doğruluk
+değerlerince belirlenir: $!A\lif !B$ ancak ve ancak $!A$ yanlış ya da $!B$
+doğruysa doğrudur; aksi hâlde yanlıştır. Bir doğruluk değeri ataması
+$\pAssign v$'ye göre $\pSat{v}{!A\lif !B}$ ancak ve ancak
+$\pSat/{v}{!A}$ ya da $\pSat{v}{!B}$ olacak biçimde tanımlanır. Bu
+semantiğe sahip $\lif$ bağlacına \emph{maddi koşul} denir.
+
+Bu tanımdan birtakım temel mantıksal olgular çıkar. İlk olarak, maddi koşul
+için tümdengelim teoremi geçerlidir:
+\begin{align}
+  \text{$\Gamma,!A\Entails !B$ ise } \Gamma\Entails !A\lif !B
+\end{align}
+Doğruluk fonksiyonludur: $!A\lif !B$ ile $\lnot !A\lor !B$ denktir:
+\begin{align}
+  !A \lif !B & \Entails \lnot !A \lor !B\\
+  \lnot !A \lor !B & \Entails !A \lif !B
+  \intertext{Bir maddi koşul hem artbileşeninden hem önbileşeninin
+    değillemesinden çıkar:}
+  !B & \Entails !A \lif !B\\
+  \lnot !A & \Entails !A \lif !B
+  \intertext{Yanlış bir maddi koşul, önbileşeniyle artbileşeninin
+    değillemesinin tümel evetlemesine denktir: $!A\lif !B$ yanlışsa
+    $!A\land\lnot !B$ doğrudur ve bunun tersi de geçerlidir:}
+  \lnot(!A \lif !B) & \Entails !A \land \lnot !B\\
+  !A \land \lnot !B & \Entails \lnot(!A \lif !B)
+  \intertext{Maddi koşul modus ponens'i destekler:}
+  !A, !A \lif !B & \Entails !B
+  \intertext{Maddi koşul birleştirilebilir:}
+  !A \lif !B,  !A \lif !C & \Entails !A \lif (!B \land !C)
+  \intertext{Önbileşeni her zaman güçlendirebiliriz; yani koşul
+    \emph{monotondur}:}
+  !A \lif !B & \Entails (!A \land !C) \lif !B
+  \intertext{Maddi koşul geçişlidir; yani zincir kuralı geçerlidir:}
+  !A \lif !B, !B \lif !C & \Entails !A \lif !C
+  \intertext{Maddi koşul karşıt tersine denktir:}
+  !A \lif !B & \Entails \lnot !B \lif \lnot !A\\
+  \lnot !B \lif \lnot !A & \Entails !A \lif !B
+\end{align}
+
+Bunların tümü matematiksel akıl yürütmede yararlı ve sorunsuz çıkarımlardır.
+Ne var ki felsefe ve dilbilim yazını, matematik dışındaki bağlamlarda bunlara
+karşılık gelen çıkarımlara yöneltilen sözde karşı örneklerle doludur. Bu
+örnekler, maddi koşul~$\lif$'in İngilizcedeki ``if \dots{} then \dots''
+ifadelerini simgeleştirmek için uygun bağlaç olmadığını---ya da en azından
+her zaman uygun olmadığını---düşündürür.
+

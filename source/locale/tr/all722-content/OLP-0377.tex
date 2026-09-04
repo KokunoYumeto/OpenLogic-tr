@@ -1,0 +1,66 @@
+% Generated from locale/tr/content/lambda-calculus/lambda-definability/truth-values.tex; do not hand-edit.
+
+
+\olfileid[tr]{lam}{ldf}{tvr}
+\olsection{Doğruluk Değerleri ve Bağıntılar}
+
+Doğruluk değerlerini saf lambda hesabında şöyle kodlayabiliriz:
+\begin{align*}
+  \fn{true} & \ident \lambd[x][\lambd[y][x]]\\
+  \fn{false} & \ident \lambd[x][\lambd[y][y]].
+\end{align*}
+
+Doğruluk değerleri, iki argüman alıp bunlardan birini döndüren fonksiyonlar,
+yani \emph{seçiciler} olarak gösterilir. $\fn{true}$ birinci, $\fn{false}$
+ikinci argümanını seçer. Örneğin $\fn{true}\,MN$ her zaman $M$'ye,
+$\fn{false}\,MN$ ise her zaman $N$'ye indirgenir.
+
+\begin{defn}
+Bir $R\subseteq\Nat^n$ bağıntısına, aşağıdakileri sağlayan bir $R$ terimi
+varsa !!{lambda definable} deriz:
+\begin{align*}
+  R\, \num{n_1} \dots \num{n_n} & \bred \fn{true}
+  \intertext{$R(n_1,\dots,n_n)$ geçerli olduğunda ve}
+  R\, \num{n_1} \dots \num{n_n} & \bred \fn{false}
+\end{align*}
+aksi durumda.
+\end{defn}
+
+Örneğin yalnızca $0$ için geçerli olan $\fn{IsZero}=\{0\}$ bağıntısı şu
+terimle !!{lambda definable}:
+\[
+  \fn{IsZero} \ident \lambd[n][n (\lambd[x][\fn{false}])\, \fn{true}].
+\]
+Bu nasıl çalışır? Church sayıları yineleyiciler, yani birinci argümanını
+ikinciye $n$ kez uygulayan fonksiyonlar olarak tanımlanır. Başlangıç değerini
+$\fn{true}$ seçeriz; yinelemenin her adımında, önceki adımın sonucuna
+bakmaksızın $\fn{false}$ döndürürüz. Bu adım başlangıç değerine $n$ kez
+uygulanır. Sonuç ancak ve ancak adım hiç uygulanmamışsa, yani $n=0$ ise
+$\fn{true}$ olur.
+
+Doğruluk değerlerinin bu gösterimine dayanarak doğruluk fonksiyonlarını da
+tanımlayabiliriz. Değilleme ve tümel evetlemenin gösterimleri şöyledir:
+\begin{align*}
+  \fn{Not} & \ident \lambd[x][x\, \fn{false}\, \fn{true}]\\
+  \fn{And} & \ident \lambd[x][\lambd[y][xy \,\fn{false}]].
+\end{align*}
+$\fn{Not}$ bir argüman alır; argüman $\fn{false}$ ise $\fn{true}$,
+$\fn{true}$ ise $\fn{false}$ döndürür. $\fn{And}$ iki doğruluk değeri alıp
+ancak ve ancak ikisi de $\fn{true}$ ise $\fn{true}$ döndürmelidir. Doğruluk
+değerleri seçici olarak gösterildiğinden, $x$ bir doğruluk değeri olup iki
+argümana uygulandığında $x=\fn{true}$ ise birinci, aksi durumda ikinci
+argüman sonuç olur. $\fn{And}$, $x,y$ argümanlarını alır ve $y$ ile
+$\fn{false}$ değerlerini birinci argümanı $x$'e verir. $x$ bir doğruluk
+değeriyse sonuç $x=\fn{true}$ olduğunda $y$, $x=\fn{false}$ olduğunda
+$\fn{false}$ olur; istediğimiz de tam olarak budur.
+
+Burada $\fn{And}$ fonksiyonuna yalnızca doğruluk değerlerinin argüman olarak
+verildiğini varsayıyoruz. Başka terimler verilirse sonuç, yani varsa normal
+biçim, bir doğruluk değeri olmayabilir.
+
+\begin{prob}
+  Doğruluk değerlerinin $\lambd$-terimleri olarak kodlanmasını kullanarak
+  kapsayıcı ve dışlayıcı veya doğruluk fonksiyonlarını gösteren $\fn{Or}$ ve
+  $\fn{Xor}$ fonksiyonlarını tanımlayın.
+\end{prob}
+

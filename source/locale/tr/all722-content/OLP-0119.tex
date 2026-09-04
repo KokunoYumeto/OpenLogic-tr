@@ -1,0 +1,122 @@
+% Generated from locale/tr/content/first-order-logic/axiomatic-deduction/deduction-theorem.tex; do not hand-edit.
+
+
+\iftag{FOL}
+      {\olfileid[tr]{fol}{axd}{ded}}
+      {\olfileid[tr]{pl}{axd}{ded}}
+
+\olsection{Tümdengelim Teoremi}
+
+Gördüğümüz gibi aksiyomatik bir sistemde !!{derivation}s vermek zahmetlidir ve
+!!{derivation}s bulmak zor olabilir. Uzun !!{formula}s listelerini gerçekten
+yazmak yerine, birkaç basit sonuçtan yararlanarak bu tür !!{derivation}s
+bulunduğunu savunmak genellikle daha kolaydır. Böyle üç sonuç gösterdik:
+\olref[ptn]{prop:reflexivity}, $!A \in \Gamma$ olduğunu bildiğimizde her zaman
+$\Gamma \Proves !A$ diyebileceğimizi söyler. \olref[ptn]{prop:monotonicity},
+$\Gamma \Proves !A$ ise $\Gamma \cup \{!B\} \Proves !A$ da olduğunu söyler.
+\olref[ptn]{prop:transitivity} ise $\Gamma \Proves !A$ ve $!A \Proves !B$
+olduğunda $\Gamma \Proves !B$ sonucunu verir. İşte bir başka basit sonuç,
+modus ponensin ``meta'' sürümü:
+
+\begin{prop}
+  \ollabel{prop:mp} $\Gamma \Proves !A$ ve $\Gamma \Proves !A \lif !B$ ise
+  $\Gamma \Proves !B$.
+\end{prop}
+
+\begin{proof}
+  $\{!A, !A \lif !B\} \Proves !B$ olduğunu şu türetim gösterir:
+  \begin{derivation}
+    1. & $!A$ & Vars.\\
+    2. & $!A \lif !B$ & Vars.\\
+    3. & $!B$ & 1, 2, MP
+  \end{derivation}
+  \olref[ptn]{prop:transitivity} ile $\Gamma \Proves !B$ elde edilir.
+\end{proof}
+
+Bu bağlamda kullanacağımız en önemli sonuç tümdengelim teoremidir:
+
+\begin{thm}[Tümdengelim Teoremi]
+\ollabel{thm:deduction-thm} $\Gamma \cup \{!A\} \Proves !B$ ancak ve ancak
+$\Gamma \Proves !A \lif !B$ ise geçerlidir.
+\end{thm}
+
+\begin{proof}
+``Eğer'' yönü doğrudandır. $\Gamma \Proves !A \lif !B$ ise
+\olref[ptn]{prop:monotonicity} uyarınca $\Gamma \cup \{!A\} \Proves
+!A \lif !B$. Ayrıca \olref[ptn]{prop:reflexivity} ile
+$\Gamma \cup \{!A\} \Proves !A$. Dolayısıyla \olref{prop:mp} uyarınca
+$\Gamma \cup \{!A\} \Proves !B$.
+
+``Ancak'' yönünde, $\Gamma \cup \{!A\}$'dan $!B$ için verilen
+!!{derivation} ele alınır ve uzunluğuna göre tümevarım yapılır.
+
+Tümevarımın başlangıcında iddiayı uzunluğu~$1$ olan her !!{derivation} için
+ispatlarız. $\Gamma \cup \{!A\}$'dan $!B$ için uzunluğu~$1$ olan
+!!^a{derivation}, tek başına $!B$'den oluşur; doğruysa $!B$ ya
+$\Gamma \cup \{!A\}$ içindedir ya da bir aksiyomdur. $!B \in \Gamma$ ise
+veya $!B$ bir aksiyomsa $\Gamma \Proves !B$. Ayrıca
+\olref[prp]{ax:lif1} uyarınca $\Gamma \Proves !B \lif (!A \lif !B)$;
+\olref{prop:mp} de $\Gamma \Proves !A \lif !B$ verir. $!B \in \{!A\}$
+ise $!B$ ile $!A$ aynı formül olduğundan $\Gamma \Proves !A \lif !B$;
+son !!{formula}~$!A \lif !B$,
+$!A \lif !A$ ile aynıdır; bunu \olref[pro]{ex:identity} içinde
+türettik (\emph{!!{derive}}).
+
+Tümevarım adımında, $\Gamma \cup \{!A\}$'dan $!B$ için bir
+!!a{derivation} ele alalım ve bunun modus ponens ile gerekçelendirilen $!B$
+adımıyla bittiğini varsayalım. (Son adım modus ponensle gerekçelendirilmemişse,
+$!B$ bir aksiyom, $\Gamma$'nın elemanı ya da $!A$ olduğunda başlangıç
+adımındaki akıl yürütme geçerlidir; FOL'daki niceleyici kuralı durumu sonraki
+bölümde ayrıca ele alınır.) O zaman !!{derivation}
+içindeki önceki adımlar, bir
+!!{formula}~$!C$ için $!C \lif !B$ ve $!C$'dir; yani
+$\Gamma \cup \{!A\} \Proves !C \lif !B$ ve
+$\Gamma \cup \{!A\} \Proves !C$. İlgili !!{derivation}s daha kısa
+olduğundan tümevarım varsayımı uygulanır. Böylece
+\begin{align*}
+  & \Gamma \Proves !A \lif (!C \lif !B); \\
+  & \Gamma \Proves !A \lif !C
+\end{align*}
+elde ederiz. Ayrıca \olref[prp]{ax:lif2} ile
+\[
+\Gamma \Proves (!A \lif (!C \lif !B)) \lif
+((!A\lif !C) \lif (!A \lif !B)).
+\]
+\olref{prop:mp}'nin iki uygulaması, istendiği gibi
+$\Gamma \Proves !A \lif !B$ verir.
+\end{proof}
+
+\olref[prp]{ax:lif1} ile \olref[prp]{ax:lif2}'nin, Tümdengelim Teoremi tam
+olarak geçerli olsun diye seçildiğine dikkat edin.
+
+Aşağıda !!{derivability} hakkında bazı yararlı olgular verilmiştir; bunları
+alıştırma olarak bırakıyoruz.
+
+\begin{prop}
+  \ollabel{prop:derivfacts}
+\begin{enumerate}
+\item $\Proves (!A \lif !B) \lif ((!B \lif !C)
+  \lif (!A \lif !C))$; \ollabel{derivfacts:a}
+\item $\Gamma \cup \{ \lnot !A\} \Proves \lnot !B$ ise
+  $\Gamma \cup \{ !B\} \Proves !A$ (Karşıt konum); \ollabel{derivfacts:b}
+\item $\{ !A, \lnot!A\} \Proves !B$ (Ex Falso Quodlibet, Patlama);
+  \ollabel{derivfacts:c}
+\item $\{ \lnot\lnot!A\} \Proves !A$ (Çifte Değillemenin Giderilmesi);
+  \ollabel{derivfacts:d}
+\item $\Gamma \Proves \lnot\lnot!A$ ise $\Gamma \Proves !A$;
+  \ollabel{derivfacts:e}
+\end{enumerate}
+\end{prop}
+
+\tagprob{FOL}
+\begin{prob}
+  \olref[fol][axd][ded]{prop:derivfacts} önermesini ispatlayın.
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+  \olref[pl][axd][ded]{prop:derivfacts} önermesini ispatlayın.
+\end{prob}
+\tagendprob
+

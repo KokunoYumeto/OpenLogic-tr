@@ -1,0 +1,130 @@
+% Generated from locale/tr/content/lambda-calculus/lambda-definability/arithmetical-functions.tex; do not hand-edit.
+
+
+\olfileid[tr]{lam}{rep}{arf}
+\olsection{\usetoken{S}{lambda definable} Aritmetik Fonksiyonlar}
+
+\begin{prop}
+  \ollabel{prop:succ-ld}
+  Ardıl fonksiyonu $\Succ$ !!{lambda definable}.
+\end{prop}
+
+\begin{proof}
+Ardıl fonksiyonunu !!{lambda define}s bir terim şudur:
+\begin{align*}
+  \fn{Succ} & \ident \lambd[a][\lambd[fx][f ({a} f x)]].
+  \intertext{Uzlaşımlarımıza göre bu, şunun kısaltmasıdır:}
+  \fn{Succ} & \ident \lambd[a][\lambd[f][\lambd[x][(f (({a} f) x))]]].
+  \intertext{$\fn{Succ}$, sayı $a$'yı argüman olarak alan ve başka bir
+    $\lambd[fx][f({a}fx)]$ fonksiyonuna değerlenen bir fonksiyondur. Bu ikinci
+    fonksiyon kendi başına Church sayısı değildir; ancak $a$ bir Church sayısı
+    olduğunda bir Church sayısına indirgenir:}
+   (\lambd[a][\lambd[fx][f ({a} f x)]])\,\num{n} & \redone
+   \lambd[fx][f ({\num{n}} f x)].
+   \intertext{İçteki $\num{n}fx$ terimi bir redextir; çünkü
+     $\num{n}$, $\lambd[fx][f^nx]$'tir. Dolayısıyla
+     $\num{n}fx\redone f^nx$ ve bütün terim için}
+   \fn{Succ}\, \num n & \red \lambd[fx][f(f^n(x))]
+\end{align*}
+elde edilir; bu da $\num{n+1}$'dir.
+\end{proof}
+
+\begin{ex}
+  $\fn{Succ}$ fonksiyonunu $\num{0}$, yani $\lambd[fx][x]$ terimine
+  uyguladığımızda ne olduğunu görelim. Terimleri bütünüyle açalım:
+  \begin{align*}
+    \fn{Succ}\, \num{0} & \ident (\lambd[a][\lambd[f][\lambd[x][(f (({a} f) x))]]])(\lambd[f][\lambd[x][x]])\\
+    & \redone \lambd[f][\lambd[x][(f (({(\lambd[f][\lambd[x][x]])} f) x))]] \\
+    & \redone \lambd[f][\lambd[x][(f ({(\lambd[x][x])} x))]] \\
+    & \redone \lambd[f][\lambd[x][(f x)]] \ident \num{1}.
+  \end{align*}
+\end{ex}
+
+\begin{prob}
+  Şu terim
+  \begin{align*}
+    \fn{Succ}' & \ident \lambd[{n}][\lambd[fx][{n} f (f x)]]
+  \end{align*}
+  ardıl fonksiyonunu !!{lambda define}s. Nedenini açıklayın.
+\end{prob}
+
+\begin{prop}
+  \ollabel{prop:add-ld}
+  Toplama fonksiyonu $\Add$ !!{lambda definable}.
+\end{prop}
+
+\begin{proof}
+Şu terimler toplamayı !!{lambda define}:
+\begin{align*}
+  \fn{Add} & \ident \lambd[{a}{b}][\lambd[fx][{a} f ({b} f x)]]
+\intertext{ya da alternatif olarak}
+  \fn{Add}' & \ident \lambd[{a}{b}][{a}\, \fn{Succ} \, {b}].
+\intertext{İlk tanım şöyle çalışır: $\fn{Add}$ önce iki $a,b$ sayısı alır.
+  Sonuç, $f,x$ argümanlarını alıp $af(bfx)$ döndüren bir fonksiyondur.
+  $a,b$ sırasıyla $\num n,\num m$ Church sayılarıysa bu,
+  $f^{n+m}(x)$'e, yani $f^n(f^m(x))$'e indirgenir. Daha ayrıntılı olarak:}
+  (\lambd[{a}{b}][\lambd[fx][{a} f ({b} f x)]])\num n\,\num m & \redone
+  \lambd[fx][\num{n}\, f (\num {m}\, f x)] \\
+  & \redone \lambd[fx][\num{n}\, f (f^m x)] \\
+  & \redone \lambd[fx][f^n (f^m x)] \ident \num {n+m}.
+\intertext{İkinci toplama gösterimi $\fn{Add'}$ farklı çalışır. İki Church
+  sayısı $\num n,\num m$'ye uygulandığında}
+\fn{Add}' \num n \,\num m
+& \redone \num{n}\, \fn{Succ}\, \num{m}.
+\intertext{Ancak $\num n f x$ her zaman $f^n(x)$'e indirgenir. Dolayısıyla}
+  \num{n}\,\fn{Succ}\,\num{m} & \red \fn{Succ}^n(\num{m}).
+\end{align*}
+$\fn{Succ}$ ardıl fonksiyonunu !!{lambda define}s ve ardıl fonksiyonunu
+$m$'ye $n$ kez uygulamak $n+m$ sonucunu verir; dolayısıyla bu terim de
+$\num{n+m}$'ye indirgenir.
+\end{proof}
+
+\begin{prop}
+  \ollabel{prop:mult-ld}
+  Çarpma şu terim tarafından !!{lambda definable}:
+  \[
+  \fn{Mult} \ident \lambd[ab][\lambd[fx][a (b f) x]].
+  \]
+\end{prop}
+
+\begin{proof}
+  $\fn{Mult}$ terimini $\num n,\num m$ Church sayılarına uygulayalım.
+  $\fn{Mult}\,\num n\,\num m$, $\lambd[fx][\num n(\num m\,f)x]$'e
+  indirgenir. $\num m f$ terimi, $f$'yi argümanına $m$ kez uygulayan bir
+  fonksiyonu tanımlar. Dolayısıyla $\num n(\num m f)x$, ``$f$'yi $m$ kez
+  uygula'' fonksiyonunu $x$'e $n$ kez uygular. Başka bir deyişle $f$, $x$'e
+  $n\cdot m$ kez uygulanır. Ortaya çıkan normal terim $\num{nm}$ Church
+  sayısıdır.
+\end{proof}
+
+\begin{editorial}
+Bu terimi $\eta$-indirgemeyle daha da sadeleştirebiliriz:
+\[
+  \fn{Mult} \ident \lambd[ab][\lambd[f][a (b f)]].
+\]
+
+Ancak bunun için önce $\eta$-indirgemeyi açıklamak gerekir.
+\end{editorial}
+
+\begin{prob}
+Şu terim çarpmayı !!{lambda define}:
+\[
+  \fn{Mult}' \ident \lambd[ab][a (\fn{Add}\, a) \num{0}].
+\]
+Neden çalıştığını açıklayın.
+\end{prob}
+
+Üs almanın $\lambd$-terimi olarak tanımı şaşırtıcı ölçüde basittir:
+\[
+  \fn{Exp} \ident \lambd[be][e b].
+\]
+İlk $b$ argümanı taban, ikinci $e$ argümanı üstür. Sayı kodlamamız gereği
+$ef$, sezgisel olarak $f^e$'dir. Bu tanımı anlamak zor gelirse üs almayı
+yinelenen çarpmayla da tanımlayabiliriz:
+\[
+  \fn{Exp}' \ident \lambd[be][e (\fn{Mult}\, b) \num{1}].
+\]
+
+Church sayıları üzerinde öncül ve çıkarma düşündüğümüz kadar basit değildir;
+çiftlerin kodlanmasını gerektirir.
+

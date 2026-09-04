@@ -1,0 +1,81 @@
+% Generated from locale/tr/content/intuitionistic-logic/introduction/constructive-reasoning.tex; do not hand-edit.
+
+
+\olfileid[tr]{int}{int}{cr}
+
+\section{Yapıcı Akıl Yürütme}
+
+Klasik mantığın kiplik işleçleriyle ya da ikinci dereceden niceleyicilerle
+genişletilmesinden farklı olarak, sezgici mantık klasik mantığı kısıtladığı için
+``klasik olmayan'' bir mantıktır. Klasik mantık çeşitli bakımlardan
+\emph{yapıcı değildir}. Sezgici mantık, yapıcı matematiğin bir türüne özgü,
+daha ``yapıcı'' bir akıl yürütme türünü yakalamayı amaçlar. Aşağıdaki örnekler,
+bunun altında yatan güdülerden bazılarını açıklamaya yarayabilir.
+
+Birinin, şu özelliğe sahip bir $n$ doğal sayısı belirlediğini ileri sürdüğünü
+varsayın: $n$ çiftse Riemann hipotezi doğru, $n$ tekse Riemann hipotezi
+yanlıştır. Müthiş haber!{} Riemann hipotezinin doğru olup olmadığı matematiğin
+büyük açık sorularından biridir; oysa bu kişi sorunu bir hesaplama problemine,
+yani belirli bir sayının çift olup olmadığını belirlemeye indirgemiş
+görünmektedir.
+
+$n$'nin sihirli değeri nedir? Şöyle betimliyor: $n$, Riemann hipotezi doğruysa
+$2$'ye, değilse $3$'e eşit olan doğal sayıdır.
+
+Öfkelenip paranızı geri istersiniz. Klasik bakımdan yukarıdaki betimleme
+gerçekten de $n$'nin tek bir değerini belirler; ama sizin asıl istediğiniz,
+\emph{açıkça} verilen bir $n$ değeridir.
+
+Başka, belki daha az yapay bir örnek olarak şu soruyu ele alın. İrrasyonel bir
+sayının rasyonel bir kuvvetini alıp rasyonel bir sonuç elde etmenin mümkün
+olduğunu biliyoruz. Örneğin, $\sqrt{2}^2 = 2$. Daha az açık olan, irrasyonel bir
+sayının \emph{irrasyonel} bir kuvvetini alıp rasyonel bir sonuç elde etmenin
+mümkün olup olmadığıdır. Aşağıdaki teorem buna olumlu yanıt verir:
+
+\begin{thm}
+Öyle irrasyonel $a$ ve $b$ sayıları vardır ki $a^b$ rasyoneldir.
+\end{thm}
+
+\begin{proof}
+$\sqrt{2}^{\sqrt{2}}$ sayısını ele alın. Bu sayı rasyonelse işimiz bitmiştir:
+$a = b = \sqrt{2}$ alabiliriz. Değilse irrasyoneldir. O zaman
+\[
+(\sqrt{2}^{\sqrt{2}})^{\sqrt{2}} = \sqrt{2}^{\sqrt{2} \cdot
+  \sqrt{2}} = \sqrt{2}^2 = 2,
+\]
+olur ve bu sayı rasyoneldir. Dolayısıyla bu durumda $a$'yı
+$\sqrt{2}^{\sqrt{2}}$, $b$'yi de~$\sqrt 2$ alalım.
+\end{proof}
+
+Bu, geçerli bir ispat sayılır mı? Çoğu matematikçi öyle olduğunu düşünür.
+Ancak burada da biraz doyurucu olmayan bir şey vardır: belirli bir özelliğe
+sahip bir gerçek sayı çiftinin varlığını, bunun \emph{hangi} sayı çifti
+olduğunu söyleyemeden ispatladık. Aynı sonuç, $a$, $b$ çifti ispatta
+\emph{verilecek} biçimde de ispatlanabilir: $a = \sqrt{3}$ ve $b = \log_3 4$
+alın. O zaman
+\[
+a^b = \sqrt{3}^{\log_3 4} = 3^{1/2 \cdot \log_3 4} = (3^{\log_3
+  4})^{1/2} = 4^{1/2}= 2,
+\]
+elde edilir; çünkü $3^{\log_3 x} = x$.
+
+Sezgici mantık, ilk ispattaki gibi hamlelere izin verilmeyen bir akıl yürütme
+türünü yakalamak üzere tasarlanmıştır. Bir $x$'in~$!A(x)$ koşulunu sağladığını
+göstererek varlığını ispatlamak, ikinci ispattaki gibi belirli bir~$x$ ile onun $!A$
+koşulunu sağladığının bir ispatını vermeniz gerektiği anlamına gelir. $!A$ ya
+da $!B$'nin geçerli olduğunu ispatlamak da bunlardan birini ispatlayabilmenizi
+gerektirir.
+
+Biçimsel olarak sezgici mantık, klasik mantığa ait !!a{derivation} sistemini
+belirli bir biçimde kısıtlayınca elde edilen şeydir. Matematiksel bakımdan
+bunlar yalnızca biçimsel tümdengelim sistemleridir; ama daha önce belirtildiği
+gibi belirli bir matematiksel akıl yürütme türünü yakalamaları amaçlanır. Bu,
+matematik hakkındaki belirli bir felsefi görüşün (Brouwer'ın sezgiciliği gibi)
+gerekçelendirdiği akıl yürütme türü olarak görülebilir; daha ``somut'' ve
+doyurucu bir matematiksel akıl yürütme türü (Bishop'ın yapıcılığı doğrultusunda)
+sayılabilir; biçimsel betimlemenin biçimsel olmayan güdüyü yakalayıp
+yakaladığı da tartışılabilir. Fakat hangi felsefi görüşü benimsersek
+benimseyelim, sezgici mantığı biçimsel olarak sunulmuş bir mantık diye
+inceleyebiliriz; her ne sebeple olursa olsun, birçok matematiksel mantıkçı bunu
+yapmayı ilginç bulur.
+

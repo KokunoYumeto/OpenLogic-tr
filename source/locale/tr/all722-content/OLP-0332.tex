@@ -1,0 +1,120 @@
+% Generated from locale/tr/content/second-order-logic/metatheory/second-order-arithmetic.tex; do not hand-edit.
+
+
+\olfileid[tr]{sol}{met}{spa}
+
+\olsection{İkinci Dereceden Aritmetik}
+
+Peano aritmetiğinin $\Th{PA}$ teorisinin $\Th{Q}$'nun sekiz aksiyomunu,
+\begin{align*}
+& \lforall[x][\eq/[x'][\Obj 0]]\\
+& \lforall[x][\lforall[y][(\eq[x'][y'] \lif \eq[x][y])]]\\
+& \lforall[x][(\eq[x][\Obj 0] \lor \lexists[y][\eq[x][y']])]\\ 
+& \lforall[x][\eq[(x + \Obj 0)][x]]\\
+& \lforall[x][\lforall[y][\eq[(x + y')][(x + y)']]]\\
+& \lforall[x][\eq[(x \times \Obj 0)][\Obj 0]]\\
+& \lforall[x][\lforall[y][\eq[(x \times y')][((x \times y) + x)]]]\\
+& \lforall[x][\lforall[y][(x < y \liff \lexists[z][\eq[(z' + x)][y]])]]\\
+\intertext{ve ayrıca şu biçimdeki bütün tümceleri içerdiğini anımsayın:}
+& (!A(\Obj 0) \land \lforall[x][(!A(x) \lif !A(x'))]) \lif \lforall[x][!A(x)].
+\end{align*}
+Sonuncusu bir ``şema'', yani aritmetik dilinde sonsuz sayıda !!{sentence},
+her $!A(x)$ !!{formula} için bir tane tümce üreten bir kalıptır. Bu
+şemaya (birinci dereceden) \emph{tümevarım aksiyomu şeması} deriz.
+\emph{İkinci dereceden} Peano aritmetiği $\Th{PA^2}$ içinde tümevarım tek bir
+tümceyle ifade edilebilir. $\Th{PA^2}$, yukarıdaki ilk sekiz aksiyom ile şu
+(ikinci dereceden) \emph{tümevarım aksiyomundan} oluşur:
+\[
+\lforall[X][((X(\Obj 0) \land \lforall[x][(X(x) \lif X(x'))]) \lif \lforall[x][X(x)])].
+\]
+Bu aksiyom şunu söyler: !!{domain} içinde yer alan bir $X$ alt kümesi
+$\Assign{\Obj{0}}{M}$'yi içeriyor ve her $x\in\Domain{M}$ ile birlikte
+$\Assign{\prime}{M}(x)$'i de içeriyorsa (yani ``ardıl altında kapalıysa''),
+!!{domain} içindeki her şeyi içerir (yani $X=\Domain{M}$ olur).
+
+Tümevarım aksiyomu şunu güvence altına alır: Onu sağlayan her !!{structure}
+için, $\Domain{M}$ içindeki !!{element}s tam olarak aksiyomların orada
+bulunmasını gerektirdiği öğelerdir; yani $n\in\Nat$ için $\num{n}$
+değerleridir. Bir $\Th{PA^2}$ modeli standart olmayan sayılar içermez.
+
+\begin{thm}
+\ollabel{thm:sol-pa-standard}
+$\Sat{M}{\Th{PA^2}}$ ise $\Domain{M} =
+\Setabs{\Value{\num{n}}{M}}{n \in \Nat}$.
+\end{thm}
+
+\begin{proof}
+$N=\Setabs{\Value{\num{n}}{M}}{n\in\Nat}$ olsun ve
+$\Sat{M}{\Th{PA^2}}$ olduğunu varsayalım. Her $n\in\Nat$ için elbette
+$\Value{\num{n}}{M}\in\Domain{M}$ olduğundan $N\subseteq\Domain{M}$.
+
+Şimdi öbür yöndeki içerilmeyi ele alalım. $s(X)=N$ olan bir değişken ataması
+$s$ düşünün. Varsayım gereği,
+\begin{align*}
+\Sat{M}{\lforall[X][((X(\Obj 0) \land \lforall[x][(X(x)
+      \lif X(x'))]) \lif \lforall[x][X(x)])]}, & \text{ dolayısıyla}\\
+\Sat{M}{(X(\Obj 0) \land \lforall[x][(X(x) \lif X(x'))]) \lif
+  \lforall[x][X(x)]}[s]. & 
+\end{align*}
+Bu koşullunun önbileşenini ele alalım. $\Value{\Obj{0}}{M}\in N$ olduğundan
+$\Sat{M}{X(\Obj{0})}[s]$. İkinci bileşen
+$\lforall[x][(X(x)\lif X(x'))]$ de sağlanır. Gerçekten $x\in N$ olsun.
+$N$'nin tanımı gereği bir $n$ için $x=\Value{\num{n}}{M}$'dir. O hâlde
+$\Assign{\prime}{M}(x)=\Value{\num{n+1}}{M}\in N$, dolayısıyla
+$\Assign{\prime}{M}(x)\in N$.
+
+Böylece $\Sat{M}{X(\Obj 0) \land \lforall[x][(X(x) \lif X(x'))]}[s]$ olur.
+Sonuç olarak $\Sat{M}{\lforall[x][X(x)]}[s]$. Bu da her
+$x\in\Domain{M}$ için $x\in s(X)=N$ demektir. Dolayısıyla
+$\Domain{M}\subseteq N$.
+\end{proof}
+
+\begin{cor}
+\ollabel{cor:sol-pa-categorical}
+$\Th{PA^2}$'nin herhangi iki modeli izomorftur.
+\end{cor}
+
+\begin{proof}
+\olref{thm:sol-pa-standard} gereği her $\Th{PA^2}$ modelinin evreni
+$\Value{\num{n}}{M}$ değerlerinden oluşur. Bu tür her model aynı zamanda
+$\Th{Q}$'nun modelidir. \olref[mod][mar][stm]{prop:thq-standard} gereği bu
+tür her model standarttır, yani $\Struct{N}$ ile izomorftur.
+\end{proof}
+
+Yukarıda $\Th{PA^2}$'yi ilk sekiz aritmetik aksiyom ile ikinci dereceden
+tümevarım aksiyomunu içeren teori olarak tanımladık. Gerçekte ikinci
+dereceden mantığın ifade gücü sayesinde, ikinci dereceden Peano aritmetiği
+için aritmetik aksiyomların yalnızca \emph{ilk ikisi} ile tümevarım yeterlidir.
+
+\begin{prop}\ollabel{prop:sol-pa-definable}
+$\Th{PA^{2\dagger}}$, ilk iki aritmetik aksiyomu (ardıl aksiyomlarını) ve
+ikinci dereceden tümevarım aksiyomunu içeren ikinci dereceden teori olsun.
+O zaman $\le$, $+$ ve $\times$, $\Th{PA^{2\dagger}}$ içinde tanımlanabilir.
+\end{prop}
+
+\begin{proof}
+$\le$ bağıntısının tanımlanabilir olduğunu göstermek için
+$\Sat{N}{!A_\le(\num n, \num m)}$ ancak ve ancak $n\le m$ olacak biçimde bir
+$!A_\le(x,y)$ formülü bulmalıyız. Şu formülü ele alalım:
+\[
+!B(x, Y) \ident Y(x) \land \lforall[y][(Y(y) \lif Y(y'))]
+\]
+Açıkça, $Y\subseteq\Nat$ için $!B(\num n,Y)$ ancak ve ancak
+$\Setabs{m}{n\le m}\subseteq Y$ ise sağlanır. Dolayısıyla
+$!A_\le(x,y)\ident\lforall[Y][(!B(x,Y)\lif Y(y))]$ alabiliriz.
+
+Toplamanın tanımlanabilir olduğunu görmek için $k+l=m$ olmasının, ancak ve
+ancak $u(0)=k$, bütün $n$'ler için $u(n')=u(n)'$ ve $m=u(l)$ olacak biçimde
+bir $u$ fonksiyonu bulunmasına denk olduğunu gözlemleyin. Bu eşdeğerliği
+kullanarak toplamayı $\Th{PA^{2\dagger}}$ içinde şu formülle tanımlayabiliriz:
+\[
+!A_+(x,y,z) \ident \lexists[u][(u(\Obj 0)=x \land \lforall[w][u(w')=u
+ (w)'] \land u(y)=z)]
+\]
+$\Sat{N}{!A_+(\num k,\num l,\num m)}$ ancak ve ancak $k+l=m$ olduğu açıktır.
+\end{proof}
+
+\begin{prob}
+\olref[sol][met][spa]{prop:sol-pa-definable} önermesinin ispatını tamamlayın.
+\end{prob}
+

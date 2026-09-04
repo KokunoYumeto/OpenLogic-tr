@@ -1,0 +1,107 @@
+% Generated from locale/tr/content/proof-theory/propositions-as-types/type-preservation.tex; do not hand-edit.
+
+
+\olfileid[tr]{int}{pty}{tpr}
+
+\olsection{Tip Korunumu}
+
+Ele alınan indirgeme ve yer değiştirme dönüşümleri \Log{tN2i} ile
+\Log{tN3i} sistemleri için de doğrudan tanımlanabilir. \Log{tN3i} sistemi,
+bir lambda terimi~$N$'nin $\Gamma$ bağlamına göre tipini, $\Gamma \Sequent
+N : !A$'nın \Log{tN3i}'de bir !!a{proof}{}ı bulunacak biçimdeki
+!!{formula}~$!A$ olarak tanımlar. Lambda terimleri için $\beta$-indirgeme
+kurallarının, !!{proof}s{}ın indirgeme ve yer değiştirme dönüşümlerini tam
+olarak yansıtması önemli bir sonuç doğurur: bir lambda teriminin $\Gamma$
+bağlamına göre tipi $\beta$-dönüşümünden sonra aynı kalır. Bu özelliğe
+\emph{tip korunumu} denir.
+
+\begin{prop}
+$N$, $\Gamma$'ya göre~$!A$ tipindeyse ve $N \redone N'$ ise $N'$ de
+$\Gamma$'ya göre~$!A$ tipindedir.
+\end{prop}
+
+\begin{proof}
+  $N$ ve $\Gamma \Sequent N : !A$'nın !!{proof}{}ı~$\delta$'nın yüksekliği
+  üzerinde tümevarımla şunu kolayca gösterebiliriz: $M$,~$N$'nin bir alt
+  terimiyse $\delta$, $\Gamma' \Sequent M : !B$ ile biten bir
+  alt-!!{proof}~$\delta_1$ içerir. $M$ bir indirgenense $\delta_1$'e bir
+  dönüşüm uygulanır. $\delta_1$'e indirgemeyi uygulayarak $\Gamma' \Sequent
+  M' : !B$'nin bir !!a{proof}{}ı~$\delta_1'$ elde edilir. \Log{tN3i}
+  dönüşümleri incelendiğinde $M'$'nin~$M$'nin indirgenmişi olduğu görülür.
+  $\delta$ içinde $\delta_1$'i $\delta_1'$ ile değiştirmek, $N$ içinde alt
+  terim~$M$'nin~$M'$ ile değiştirilmesiyle elde edilen $N'$ için $\Gamma
+  \Sequent N' : !A$'nın bir !!a{proof}{}ı~$\delta'$yi verir.
+
+  Örneğin \Intro{\land}'ı izleyen \Elim{\land} için indirgeme dönüşümünü
+  ele alalım:
+  \[
+  \bottomAlignProof
+  \AxiomC{}
+  \Deduce$\Gamma \fCenter N_1 : !B_1$
+  \AxiomC{}
+  \Deduce$\Gamma \fCenter N_2 : !B_2$
+  \RightLabel{\Intro{\land}}
+  \BinaryInf$\Gamma \fCenter \pair{N_1}{N_2} : !B_1 \land !B_2$
+  \RightLabel{\Elim{\land}[i]}
+  \UnaryInf$\Gamma \fCenter \proj{i}{\pair{N_1}{N_2}} : !B_i$
+  \DisplayProof
+  \quad\redone\quad
+  \bottomAlignProof
+  \AxiomC{}
+  \Deduce$\Gamma \fCenter N_i : !B_i$
+  \DisplayProof
+  \]
+  Sağdaki !!{proof}{}ın, yani $\delta_1'$nin ispat teriminin $N_i$ olduğunu
+  görüyoruz. Bu, soldaki !!{proof}~$\delta_1$'in ispat terimi
+  $\proj{i}{\pair{N_1}{N_2}}$'ye $\beta$-dönüşümü uygulanmasının tam
+  sonucudur.
+
+  Ya da bir \Intro{\lif} çıkarımını izleyen \Elim{\lif} çıkarımını ve ona
+  uygulanan indirgeme dönüşümünü ele alın:
+  \begin{multline*}
+  \bottomAlignProof
+  \AxiomC{$\delta_2$}
+  \Deduce$x: !B_1, \Gamma \fCenter N : !B_2$
+  \RightLabel{\Intro{\lif}}
+  \UnaryInf$\Gamma \fCenter \lambd[\typeof{x}{!B_1}][N] : !B_1 \lif !B_2$
+  \AxiomC{}
+  \RightLabel{$\delta_3$}
+  \Deduce$\Gamma \fCenter M : !B_1$
+  \RightLabel{\Elim{\lif}}
+  \BinaryInf$\Gamma \fCenter (\lambd[\typeof{x}{!B_1}][N] M) : !B_2$
+  \DisplayProof
+  \quad\redone\\
+  \bottomAlignProof
+  \AxiomC{}
+  \RightLabel{$\delta_3$}
+  \Deduce$\Gamma \fCenter M : !B_1$
+  \RightLabel{$\Subst{\delta_2}{\delta_3}{x:!B_1}$}
+  \Deduce$\Gamma \fCenter \Subst{N}{M}{x} : !B_2$
+  \DisplayProof
+  \end{multline*}
+  Yine sağdaki !!{proof}{}ın ispat terimi, soldaki !!{proof}{}ın ispat
+  teriminin $\beta$-indirgenmesinin tam sonucudur. Elbette $\delta_2$
+  içindeki $\Gamma' \Sequent x:!B_1$ biçimindeki bütün aksiyomların,
+  $\Gamma \Sequent M:!B_1$'nin !!{proof}{}ı~$\delta_3$ ile değiştirilmesinin
+  gerçekten $\Gamma \Sequent \Subst{N}{M}{x} : !B_2$'nin bir
+  !!a{proof}{}ı $\Subst{\delta_2}{\delta_3}{x:!B_1}$ ile sonuçlandığını
+  ($\delta_2$'nin yüksekliği üzerinde tümevarımla) dikkatle doğrulamak
+  gerekir.
+\end{proof}
+
+!!{proof}s ile lambda terimleri arasındaki sıkı karşılığın başka bir sonucu
+daha vardır. $N$, bir $\Gamma$ bağlamına göre $!A$ tipinde bir lambda
+terimiyse ve bir indirgenen~$M$ içeriyorsa (yani normal biçimde değilse),
+$\Gamma \Sequent N : !A$'nın karşılık gelen \Log{tN3i}
+ispatı~$\delta$, kendisine bir dönüşüm uygulanabilen bir alt-!!{proof}
+(bu alt ispat $\Gamma' \Sequent M: !B$ ile biter) içerir. $M$'nin
+indirgenmişiyle değiştirilmesi sonucunda $N \redone N'$ ise indirgeme
+$\delta$'ya uygulandığında karşılık gelen sonuç $\Gamma \Sequent N' : !A$'nın
+bir !!a{proof}{}ıdır. Dolayısıyla normal biçimde olmayan her lambda terimi
+başka bir terime $\beta$-indirgenir. Bu özelliğe \emph{ilerleme} denir.
+
+İlerleme ile tip korunumu birlikte, lambda terimlerinin $\beta$-indirgemesinin
+hiçbir zaman ``takılıp kalmamasını'' sağlar: iyi tiplenmiş bir terim normal
+biçimde değilse başka bir iyi tiplenmiş terime indirgenir (ve bu terim aynı
+tiptedir).
+

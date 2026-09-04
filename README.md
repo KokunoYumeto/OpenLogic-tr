@@ -1,85 +1,112 @@
-# Open Logic Project — Türkçe Tam Sürüm
+[**Türkçe PDF'yi aç / Read the Turkish PDF — 1,198 pages**](reader/00_OPENLOGIC_tr_COMPLETE_LINKED_READER_OLP-0722.pdf)
+
+# Open Logic Project — Türkçe
+
+**722 modülün tamamı tek okuyucuda. / All 722 modules in one reader.**
+
+Önceki PDF, çevrilmiş 722 modülden yalnızca 642'sini içeriyordu. Diğer
+80 modülün çevirileri kaynak paketindeydi, fakat okuyucuda yoktu. Bu sürüm,
+o 80 modülün metinlerini, kanıtlarını, alıştırmalarını ve kural tablolarını
+okuyucuya ekler. PDF'deki yer imleri ve OLP kimlikleri, eklenen bölümlere
+doğrudan ulaşmayı sağlar.
+
+The translation already covered all 722 source modules. The earlier PDF
+omitted 80 of them. This correction makes their actual text, proofs,
+exercises, and rule tables readable in the PDF, with bookmarks and stable
+OLP identifiers. It repairs reader coverage; it is not a claim that those
+modules have just been translated.
 
 > Bu sürüm [Open Logic çevirileri ana kataloğunda](https://github.com/KokunoYumeto/OpenLogic-translations) yer alır; katalog, çevrilmiş kaynak kapsamı ile bağımsız okuyucu kapsamını ayrı bildirir.
 
-> **Complete Turkish edition:** all 722/722 frozen Open Logic Project content
-> modules are translated into Turkish. The linked reader covers the 642
-> canonical-reader-reachable modules; 80 retained non-reader modules remain in
-> the editable corpus and are explicitly outside build/render applicability.
+## Bu sürümde ne var? / What is in this edition?
 
-[Open the complete Turkish reader](reader/00_OPENLOGIC_tr_COMPLETE_LINKED_READER_OLP-0722.pdf)
+| Verified feature | Result |
+|---|---:|
+| Translated source modules | 722 / 722 |
+| Modules included in the reader | 722 / 722 |
+| Previously omitted modules now included | 80 / 80 |
+| PDF pages | 1,198 |
+| Bookmarks | 904 |
+| Internal links | 3,172 |
+| Broken internal links | 0 |
 
-## Release identity
+The additional material follows the original reader as a supplement.
+Nested rule tables stay with their importing sections, and supplementary
+exercises print inline. All 722 original translated target files retain
+their frozen hashes. Logged, reversible overlays handle the alternative
+reader contexts without silently dropping source bodies.
 
-- Exact release DOI: [10.5281/zenodo.21927145](https://doi.org/10.5281/zenodo.21927145)
-- Stable Turkish concept DOI: [10.5281/zenodo.21921844](https://doi.org/10.5281/zenodo.21921844)
-- Public Zenodo record: [zenodo.org/records/21927145](https://zenodo.org/records/21927145)
-- Repository: [KokunoYumeto/OpenLogic-tr](https://github.com/KokunoYumeto/OpenLogic-tr)
-- Public GitHub release: [tr-olp-0722-20260814](https://github.com/KokunoYumeto/OpenLogic-tr/releases/tag/tr-olp-0722-20260814)
-- Annotated tag object: `22b4196d87f6246c552487d3c6df40116468bd2e`
-- Tagged standalone content commit: `7cd0e89be208e2db9964b360aa1c17ec7e175319`
-- Tagged standalone content tree: `c8d38e63d1098a10736a3e98a15a93198b351d96`
-- Version: `OLP-0722-20260814`
-- Release date: 2026-08-14
-- Language: Turkish / Türkçe (BCP 47 `tr`; Zenodo `tur`)
-- Frozen authority: Open Logic Project commit
-  `9620cc73f9c8e0ad003c514a5d3748f29611c4c0`, tree
-  `f67757bb9305b173634082ab4cefd5601a707a34`
+The exact PDF passed the build, source-preservation, text/link, and visual
+checks recorded in [FINAL_QA.json](evidence/reader722/FINAL_QA.json).
+These checks verify the PDF itself. Publication is recorded separately.
 
-The complete four-asset package was independently audited, published on GitHub
-and Zenodo, and read back byte for byte from both public surfaces. All four
-assets match the final corrected local hashes; observed readback errors: 0.
+## Kaynaklar ve kararlar / Sources and decisions
 
-## Reader and evidence
+This is **Turkish**, not Inter-Turkic and not a substitute edition for other
+Turkic languages. The authority is the frozen English Open Logic Project
+[commit 9620cc73f9c8e0ad003c514a5d3748f29611c4c0](https://github.com/OpenLogicProject/OpenLogic/commit/9620cc73f9c8e0ad003c514a5d3748f29611c4c0).
+The correction does not complete proofs left unfinished in that source,
+claim new linguistic validation, or claim human comprehension testing.
 
-- Reader: `00_OPENLOGIC_tr_COMPLETE_LINKED_READER_OLP-0722.pdf`
-  — 1,037 pages; 5,470,171 bytes;
-  SHA-256 `2D9939692A971EDF468D3B41F38C57283C046BE9D110783CF50D10CDB3152900`.
-- Editable sources: `01_OPENLOGIC_tr_EDITABLE_SOURCES_OLP-0722.zip`.
-- Evidence and provenance:
-  `02_OPENLOGIC_tr_EVIDENCE_AND_PROVENANCE_OLP-0722.zip`.
-- Public SHA-256 manifest:
-  `03_OPENLOGIC_tr_SHA256_MANIFEST_OLP-0722.txt`.
-- Publication receipts:
-  [`PUBLICATION_GITHUB_0722.md`](evidence/PUBLICATION_GITHUB_0722.md) and
-  [`PUBLICATION_ZENODO_0722.md`](evidence/PUBLICATION_ZENODO_0722.md).
-- Extracted text: 2,593,270 bytes; 46,990 lines;
-  SHA-256 `26D2CAE84B478ADD70D9EDBC8088F6BD2C761FD47EF01F5DED5E008F6EBFC286`.
-- Source closure: 722/722 rows;
-  SHA-256 `4F0DFAA58C38B54C00180DE30AE09507D0DF9FBEA1E0ED6729DB7E2FA77AAC2F`.
-- Structural QA: PASS for 722/722;
-  SHA-256 `46F5FE080693D3A99DE234A9588C28D5A683D0FDACFA62AD2323AC3B8EB01499`.
-- Build: exit 0, with zero missing-character diagnostics, unresolved
-  references, or unresolved citations.
-- Text scan: zero `??`, raw `!!` tokens, U+FFFD replacement characters,
-  undefined markers, TODO/TBD/placeholder markers, or TeX-command residue.
-- Visual QA: all 1,037 pages clean. A final render replay found 1,020 pages
-  byte-identical to the inspected render; all 17 changed pages were inspected
-  again at original detail and were clean.
+- [Reader decisions](evidence/reader722/DECISIONS.md) explain inclusion and compatibility choices.
+- [Source import manifest](evidence/reader722/SOURCE_IMPORT_MANIFEST.json) connects every original target to its reversible reader overlay.
+- [Runtime module record](evidence/reader722/RUNTIME_MODULES.csv) records actual inclusion and anchor events.
+- [PDF checks](evidence/reader722/PDF_QA.json) and [visual checks](evidence/reader722/VISUAL_QA.json) concern this corrected PDF, not the historical reader.
 
-The sealed four-file payload is the complete reader, an editable-sources ZIP,
-an evidence-and-provenance ZIP, and a SHA-256 manifest. ZIP and outer-manifest
-byte identities are intentionally recorded only in the external public
-manifest and post-package receipt, not recursively inside an embedded metadata
-file. Package audit reports zero manifest, duplicate, path-traversal,
-forbidden-path, or read errors. The packages preserve the
-localization configuration, target hashes, translation decisions, terminology
-and source-diff ledgers, authority and closure records, build and render
-receipts, DOI methodology, and the hardened Turkic interlanguage notebook.
+## Mahremiyet ve geçmiş / Privacy and historical evidence
 
-## Scope and credit
+The new source and evidence ZIPs are privacy-safe derivatives. Across
+48 metadata/log entries, the private profile identifier is replaced
+with `[maintainer]`, case-insensitively. Entry names and every other entry
+byte are preserved. **None of the 722 translated target bodies changed.**
+The [privacy receipt](evidence/reader722/PRIVACY_REDACTION_RECEIPT.json)
+records each changed entry's original and derivative hashes and verifies
+the complete translated corpus against its frozen closure.
 
-This is Turkish, not a proxy surface for Uzbek, Uyghur, Azerbaijani, Kazakh,
-or any other Turkic standard. Interlanguage observations are preserved as
-auditable research notes and are not represented as translations into those
-languages.
+The previous public archives and releases remain unchanged. Historical
+hashes inside the derivative evidence still identify historical bytes;
+the privacy receipt supplies the explicit before/after mapping. Historical
+reader QA does not certify the corrected PDF.
 
-Produced for this translation programme by “OpenAI 5.6 Sol, Ultra mode” (“OpenAI’s
-current flagship model for complex work”). Human or native review is not a
-release gate. The release evidence instead records exact source replay,
-structural and semantic checks, a deterministic build, complete text-layer
-scans, all-page visual inspection, and immutable hashes.
+## Dosyalar / Release files
 
-The Turkish concept DOI records the `IsTranslationOf` intent toward the frozen
-Open Logic Project authority. No genuine global Open Logic multilingual hub
-DOI exists, so this release asserts no active `IsPartOf` relation.
+| File | What it contains |
+|---|---|
+| `00_OPENLOGIC_tr_COMPLETE_LINKED_READER_OLP-0722.pdf` | The corrected reader |
+| `01_OPENLOGIC_tr_EDITABLE_SOURCES_OLP-0722.zip` | Privacy-safe source package; all 722 target bodies unchanged |
+| `02_OPENLOGIC_tr_EVIDENCE_AND_PROVENANCE_OLP-0722.zip` | Privacy-safe derivative of the original translation/provenance evidence |
+| `03_OPENLOGIC_tr_SHA256_MANIFEST_OLP-0722.txt` | Hashes of this correction payload |
+| `04_OPENLOGIC_tr_READER_CORRECTION_OLP-0722.zip` | Reader inputs, reproducible build, decisions, and new QA |
+
+Reader identity: **6,200,006 bytes**; SHA-256
+`4af08c16e61aa058500cc1e96acb5d700c988718a729d4d6cbbe4aea9664df94`.
+
+## Yeniden derleme / Rebuild
+
+On Windows with Git, MiKTeX, latexmk, and PowerShell 7, run:
+
+```powershell
+pwsh -File build/BUILD.ps1
+```
+
+The entry point calls `build/BUILD_ALL722.ps1`, which obtains the frozen
+upstream commit, installs the supplied Turkish sources and reader overlays,
+acquires the machine-wide TeX mutex, and builds `open-logic-all722.tex` with
+a bounded captured process. Output goes to `output/`; optional
+`-WorkDirectory` and `-OutputDirectory` arguments select other locations.
+It does not silently rebuild the old 642-module reader.
+
+For an archive-only rebuild, unpack this version's `01` source ZIP and `04`
+correction ZIP into the same empty directory, then run
+`build/BUILD_ALL722.ps1`. The correction ZIP alone is not a complete source
+distribution.
+
+## Sürüm ve atıf / Version and citation
+
+- Version: `OLP-0722-READER-20260904`.
+- Stable Turkish concept DOI: [10.5281/zenodo.21921844](https://doi.org/10.5281/zenodo.21921844).
+- [Previous published version](https://doi.org/10.5281/zenodo.21927145): 722 translated source modules, but a 642-module reader.
+- [Historical GitHub release](https://github.com/KokunoYumeto/OpenLogic-tr/releases/tag/tr-olp-0722-20260814).
+- [GitHub repository and release inventory](https://github.com/KokunoYumeto/OpenLogic-tr).
+- Open Logic Project remains the credited source author; existing translation credit is “OpenAI 5.6 Sol, Ultra mode”.
+- Language: Turkish / Türkçe (`tr`; Zenodo `tur`). License: CC BY 4.0, subject to upstream attribution and exceptions.

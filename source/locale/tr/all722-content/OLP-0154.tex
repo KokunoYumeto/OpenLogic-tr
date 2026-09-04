@@ -1,0 +1,95 @@
+% Generated from locale/tr/content/first-order-logic/syntax-and-semantics/main-operator.tex; do not hand-edit.
+
+
+\olfileid[tr]{fol}{syn}{mai}
+
+\olsection{\printtoken{S}{main operator} Kavramı}
+
+\begin{explain}
+Bir !!a{formula}~$!A$ kurulurken en son kullanılan işleçten söz etmek
+çoğu kez yararlıdır. Bu işlece $!A$'nın \emph{ana işleci} denir.
+Sezgisel olarak bu, $!A$'nın ``en dıştaki'' işlecidir. Örneğin
+$\lnot !A$'nın ana işleci $\lnot$, $(!A \lor !B)$'nin ana işleci
+$\lor$'dur vb.
+\end{explain}
+
+
+\begin{defn}[!!^{main operator}]
+\ollabel{def:main-op}
+\emph{!!{main operator}}, bir !!a{formula}~$!A$ için aşağıdaki gibi
+tanımlanır:
+\begin{enumerate}
+\item \indcase*{!A}{!A}{$\indfrm$ için !!{main operator} yoktur.}
+
+\tagitem{prvNot}{\indcase{!A}{\lnot !B}{$\indfrm$ için !!{main operator},
+  $\lnot$'tur.}}{}
+
+\tagitem{prvAnd}{\indcase{!A}{(!B \land !C)}{$\indfrm$ için
+  !!{main operator}, $\land$'dır.}}{}
+
+\tagitem{prvOr}{\indcase{!A}{(!B \lor !C)}{$\indfrm$ için
+  !!{main operator}, $\lor$'dur.}}{}
+
+\tagitem{prvIf}{\indcase{!A}{(!B \lif !C)}{$\indfrm$ için
+  !!{main operator}, $\lif$'tir.}}{}
+
+\tagitem{prvIff}{\indcase{!A}{(!B \liff !C)}{$\indfrm$ için
+  !!{main operator}, $\liff$'tir.}}{}
+
+\tagitem{prvAll}{\indcase{!A}{\lforall[x][!B]}{$\indfrm$ için
+  !!{main operator}, $\lforall$'dır.}}{}
+
+\tagitem{prvEx}{\indcase{!A}{\lexists[x][!B]}{$\indfrm$ için
+  !!{main operator}, $\lexists$'tir.}}{}
+\end{enumerate}
+\end{defn}
+
+Her durumda formülde özellikle gösterilen !!{main operator}
+\emph{oluşumunu} kastediyoruz. Örneğin $((!D \lif !E) \lif (!E \lif
+!D))$ formülü, $!B$'nin $(!D \lif !E)$ ve $!C$'nin $(!E \lif !D)$
+olduğu $(!B \lif !C)$ biçiminde olduğundan, $\lif$'in ikinci oluşumu
+!!{main operator}{}tir.
+
+\begin{explain}
+Bu, atomik olmayan bütün !!{formula}s{}in her biri için !!{main operator}
+oluşumunu veren bir fonksiyonun \emph{özyinelemeli} tanımıdır.
+!!{formula}s tümevarımsal olarak tanımlandığı için her
+!!{formula}~$!A$, \olref{def:main-op}'taki durumlardan birini sağlar.
+Bu, atomik olmayan her !!{formula}~$!A$ için bir !!a{main
+  operator} bulunduğunu güvence altına alır. Her !!{formula} bu
+koşullardan yalnızca birini sağladığı ve $!A$'nın her durumda kendilerinden
+kurulduğu daha küçük !!{formula}s tek türlü belirlendiği için $!A$'nın
+!!{main
+  operator} oluşumu tektir; dolayısıyla bir fonksiyon tanımlamış oluruz.
+\end{explain}
+
+!!{formula}s, sahip oldukları !!{main operator} simgesine göre
+\olref{tab:main-op}'taki adlarla anılır.
+\iftag{defNot,defOr,defAnd,defIf,defIff,defTrue,defFalse,defEx,defAll}
+{ Ancak tanımlı işleçlerin resmen !!{formula}s içinde yer almadığını
+anımsayın. Bunlar yalnızca kısaltmadır; dolayısıyla resmen bir formülün
+ana işleci olamazlar. Bu yüzden bütün !!{formula}s hakkındaki ispatlarda
+ayrı olarak ele alınmaları gerekmez.}
+
+\begin{table}[!h]
+\centering
+\begin{tabular}{c | c | c}
+!!^{main operator} & !!{formula} türü & Örnek\\
+\hline
+yok & atomik (!!{formula}) &
+\iftag{prvFalse}{$\lfalse$,}{}
+\iftag{prvTrue}{$\ltrue$,}{}
+$\Atom{R}{t_1, \dots, t_n}$,
+$\eq[t_1][t_2]$\\
+$\lnot$ & değilleme & $\lnot !A$ \\
+$\land$ & ve bağlacı & $(!A \land !B)$ \\
+$\lor$ & veya bağlacı & $(!A \lor !B)$ \\
+$\lif$ & !!{conditional} & $(!A \lif !B)$ \\
+$\liff$ & !!{biconditional} & $(!A \liff !B)$ \\
+$\lforall[][]$ & evrensel (!!{formula})& $\lforall[x][!A]$ \\
+$\lexists[][]$ & varlıksal (!!{formula})& $\lexists[x][!A]$
+\end{tabular}
+\caption{Ana işleçlere göre !!{formula}s ve adları}
+\ollabel{tab:main-op}
+\end{table}
+

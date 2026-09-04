@@ -1,0 +1,95 @@
+% Generated from locale/tr/content/set-theory/story/predicativity.tex; do not hand-edit.
+
+
+\olfileid[tr]{sth}{story}{predicative}
+
+\olsection{Yüklemsel ve Yüklemsel Olmayan}
+
+Russell kümesi $R$, $\Setabs{x}{x\notin x}$ aracılığıyla tanımlandı. Daha
+açık söylersek $R$, tam olarak kendisinin elemanı olmayan bütün kümeleri
+içeren küme olacaktı. Dolayısıyla $R$'yi tanımlarken (var olsaydı) $R$'yi de
+içerecek alan üzerinde niceleme yaparız.
+
+Bu \emph{yüklemsel olmayan} bir tanımdır. Daha genel olarak, bir tanım ancak
+ve ancak tanımlanan nesneyi içeren bir alan üzerinde niceleme yapıyorsa
+yüklemsel değildir diyebiliriz.
+
+Paradoksların ardından Whitehead, Russell, Poincar\'{e} ve Weyl bu tür
+yüklemsel olmayan tanımları ``kısır döngülü'' bularak reddetti:
+\begin{quote}
+  Kaçınılması gereken paradoksların çözümlemesi, hepsinin bir tür kısır
+  döngüden kaynaklandığını gösterir. Söz konusu kısır döngüler, bir nesneler
+  koleksiyonunun ancak koleksiyonun bütünü aracılığıyla tanımlanabilen
+  elemanlar içerebileceğini varsaymaktan doğar[\ldots. \textparagraph]
+
+  Gayrimeşru bütünlüklerden kaçınmamızı sağlayan ilke şöyle ifade edilebilir:
+  ``Bir koleksiyonun \emph{tümünü} içeren şey o koleksiyonun üyelerinden biri
+  olmamalıdır''; ya da tersine: ``Belli bir koleksiyonun bir bütünü olsaydı,
+  yalnızca o bütün aracılığıyla tanımlanabilen üyeler içerirdi denebiliyorsa,
+  söz konusu koleksiyonun bütünü yoktur.'' Buna ``kısır döngü ilkesi''
+  diyeceğiz; çünkü gayrimeşru bütünlük varsayımının içerdiği kısır
+  döngülerden kaçınmamızı sağlar. \citep[p.~37]{WhiteheadRussell1910}
+\end{quote}
+Onları izleyip \emph{kısır döngü ilkesini} benimsersek,
+\olref[sth][story][rus]{sec}'deki yıkıcı Naif Küme Oluşturma Şeması'nı
+şuna benzer bir şeyle değiştirmeyi deneyebiliriz:
+
+\begin{defish}
+\emph{Yüklemsel Küme Oluşturma.} Yalnızca kümeler üzerinde niceleme yapan
+her $\phi$ formülü için küme$^\prime$ $\Setabs{x}{\phi(x)}$ vardır.
+\end{defish}
+
+Kümeler$^{\prime}$ küme olmadığı sürece çelişki doğmaz.
+
+Ne yazık ki Yüklemsel Küme Oluşturma pek \emph{kapsamlı} değildir. Bizi yeni
+varlıklarla, kümeler$^\prime$ ile tanıştırır. Öyleyse kümeler$^\prime$
+üzerinde niceleme yapan formülleri de ele almamız gerekir. Bunlar her zaman
+bir küme$^\prime$ verirse, kendisinin elemanı olmayan bütün
+kümeler$^\prime$ın küme$^\prime$ını düşünerek Russell paradoksunu yeniden
+elde ederiz. Aynı düşünceyi sürdürürsek kümeler$^\prime$ üzerinde niceleme
+yapan bir formülün karşılık gelen bir küme$^{\prime\prime}$ verdiğini
+söylemeliyiz. Sonra kümeler$^{\prime\prime\prime}$,
+kümeler$^{\prime\prime\prime\prime}$ vb. gerekir. Üs işaretlerinin
+çoğalmasını önlemek için bunları kümeler$_0$, kümeler$_1$, kümeler$_2$,
+kümeler$_3$, kümeler$_4$, \ldots{} olarak düşünmek daha kolaydır. Bu da bizi
+(basit) tipler teorisine götürür.
+
+Böyle bir teoriye karşı birkaç açık itiraz vardır (bunların \emph{ezici}
+itirazlar olduğu açık olmasa da): Elde edilen teoriyi kullanmak zahmetlidir;
+farklı türde çok sayıda nesne varsayar; ayrıca yüklemsel olmayan tanımların
+sonuçta gerçekten \emph{o kadar kötü} olduğu açık değildir.
+
+Son noktayı belirginleştirmek için \citeauthor{Ramsey1925}'nin şu
+yorumunu düşünün:
+\begin{quote}
+  Bir adamdan bir grubun en uzunu diye söz edebilir, böylece hiçbir kısır
+  döngü olmaksızın onu kendisinin de üyesi olduğu bir bütünlük aracılığıyla
+  belirleyebiliriz. \citep{Ramsey1925}
+\end{quote}
+Ramsey'in vurgusu, ``gruptaki en uzun adam''ın yüklemsel olmayan bir tanım
+\emph{olduğu}, fakat açıkça tümüyle sorunsuz olduğudur.
+
+Buna, bu durumda en uzun kişiyi \emph{yüklemsel} yollarla seçebileceğimiz
+yanıtı verilebilir. Örneğin söz konusu adamı parmağımızla gösterebiliriz.
+O zaman yüklemsel olmayan tanımlara itiraz, yalnızca yüklemsel olmayan yolla
+belirlenebilen varlıklarla sınırlandırılmalıdır. Fakat o durumda bile böyle
+bir ``özsel yüklemsel olmama''nın neden kötü olduğu konusunda daha fazlasını
+duymamız gerekir.\footnote{Daha fazlası için bkz. \citet{Linnebo2010}.}
+
+Tanımlarımızın bir nesneyi \emph{yaratmak} için bize bir tür tarif vermesini
+istiyorsak yüklemsel olmayan tanımların son derece kötü olduğu kabul
+edilebilir. Böyle bir tanım verildiğinde gerçekten kısır döngüye düşülür:
+Yüklemsel olmayan biçimde belirtilmiş nesneyi yaratmak için önce bütün
+nesneleri (bu nesnenin kendisi dâhil) yaratmak gerekir; çünkü nesne bütün
+nesneler aracılığıyla belirtilmiştir. Böylece nesneyi daha onu yaratmadan
+önce yaratmak gerekir. Fakat bu da yalnızca kümeleri \emph{yarattığımız}
+şeyler olarak düşünüyorsak ``özsel olarak yüklemsel olmayan'' kümelere karşı
+ciddi bir itirazdır. Muhtemelen böyle düşünmüyoruz.
+
+Bu nedenle---iyi ya da kötü---yaygınlaşan yaklaşım, yüklemsel olup olmama
+konusunda katı bir çizgi izlemez. Bunun yerine bugün birikimli-yinelemeli
+yaklaşım olarak görülen yolu izler. Sonunda bu, kümelerimizi ``evrelere''
+ayırmamızı sağlar---yüklemsel yaklaşımın varlıkları kümeler$_0$,
+kümeler$_1$, kümeler$_2$, \ldots{} olarak katmanlara ayırmasına \emph{biraz}
+benzer---fakat aralarında bir tür farkı varsaymayız.
+

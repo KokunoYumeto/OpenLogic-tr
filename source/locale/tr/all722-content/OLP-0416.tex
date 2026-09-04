@@ -1,0 +1,154 @@
+% Generated from locale/tr/content/normal-modal-logic/syntax-and-semantics/tautological-instances.tex; do not hand-edit.
+
+
+\olfileid[tr]{nml}{syn}{tau}
+
+\olsection{Totolojik Örnekler}
+
+\begin{explain}
+Kipliksiz bir formül, her doğruluk değeri ataması altında doğruysa bir
+totolojidir. Açıkça, her totoloji her modelin her dünyasında doğrudur. Ancak
+$\Box$ ve~$\Diamond$ içeren !!{formula}s için totoloji kavramı tanımlı
+değildir. Örneğin dışlanmış orta ilkesinin bir örneği olan $\Box p \lor
+\lnot \Box p$ geçerli midir? \emph{Totolojik örnek} kavramı burada yardımcı
+olur: Bu, (kipliksiz) bir totolojinin yerine koyma örneği olan
+!!a{formula}{}dür. Her totolojik örneğin geçerli olması şaşırtıcı değildir;
+yine de bunun ispatlanması gerekir.
+\end{explain}
+
+\begin{defn}
+  $!B$ adlı kiplik !!{formula}, ancak ve ancak $p_1$, \dots,~$p_n$
+  !!{propositional variable}s{}ne sahip kipliksiz bir totoloji~$!A$ ile
+  $!D_1$, \dots,~$!D_n$ !!{formula}s{}i bulunup
+  $!B \ident \SSubst{!A}{\subst{!D_1}{p_1},
+    \dots, \subst{!D_n}{p_n}}$ oluyorsa bir \emph{totolojik örnek}tir.
+\end{defn}
+
+\begin{lem}\ollabel{lem:valid-taut}
+  $!A$ kipliksiz bir !!{formula} olsun; onun !!{propositional variable}s
+  $p_1$, \dots, $p_n$ olsun ve $!D_1$, \dots, $!D_n$ de kiplik
+  !!{formula}s{}i olsun.
+  O zaman herhangi bir $\pAssign{v}$ ataması, herhangi bir
+  $\mModel{M} = \tuple{W, R, V}$ modeli ve $w \in W$ için, her indis bakımından
+  $\pAssign{v}(p_i) = \True$ olması ancak ve ancak $\mSat{M}{!D_i}[w]$
+  oluyorsa, $\pSat{v}{!A}$ olması ancak ve ancak
+  $\mSat{M}{\SSubst{!A}{\subst{!D_1}{p_1}, \dots,
+      \subst{!D_n}{p_n}}}[w]$ olur.
+\end{lem}
+
+\begin{proof}
+  $!A$ üzerinde tümevarımla.
+  \begin{enumerate}
+  \tagitem{prvFalse}{\indcase{!A}{\lfalse}{$\pSat/{v}{\lfalse}$ ve
+      $\mSat/{M}{\lfalse}[w]$ ifadelerinin ikisi de geçerlidir.}.}{}
+  \tagitem{prvTrue}{\indcase{!A}{\ltrue}{$\pSat{v}{\ltrue}$ ve
+      $\mSat{M}{\ltrue}[w]$ ifadelerinin ikisi de geçerlidir.}.}{}
+  \item \indcase{!A}{p_i}{%
+    \begin{align*}
+      \pSat{v}{p_i} \Leftrightarrow {} & \pAssign{v}(p_i) = \True \\
+      & \qquad \text{$\pSat{v}{p_i}$ tanımı gereği}\\
+      \Leftrightarrow {} & \mSat{M}{!D_i}[w] \\
+      &\qquad \text{varsayım gereği}\\
+      \Leftrightarrow {} & \mSat{M}{\SSubst{p_i}{\subst{!D_1}{p_1}, \dots,
+          \subst{!D_n}{p_n}}}[w]\\
+      &\qquad \text{çünkü $\SSubst{p_i}{\subst{!D_1}{p_1}, \dots,
+          \subst{!D_n}{p_n}} \ident !D_i$.}
+      \end{align*}}
+  \tagitem{prvNot}{\indcase{!A}{\lnot !B}{%
+      \begin{align*}
+        \pSat{v}{\lnot !B} \Leftrightarrow {} & \pSat/{v}{!B}\\
+        &\qquad \text{$\pSat{v}{}$ tanımı gereği};\\
+        \Leftrightarrow {} & \mSat/{M}{\SSubst{!B}{\subst{!D_1}{p_1}, \dots,
+          \subst{!D_n}{p_n}}}[w]\\
+        &\qquad \text{tümevarım varsayımı gereği}\\
+        \Leftrightarrow {} &
+        \mSat{M}{\SSubst{\lnot !B}{\subst{!D_1}{p_1}, \dots,
+          \subst{!D_n}{p_n}}}[w]\\
+        &\qquad \text{$\mSat{M}{}[w]$ tanımı gereği}.
+      \end{align*}}}{}
+  \tagitem{prvAnd}{\indcase{!A}{(!B \land !C)}{%
+      \begin{align*}
+        \pSat{v}{!B \land !C} \Leftrightarrow {} &
+        \pSat{v}{!B} \text{ ve } \pSat{v}{!C}\\
+        &\qquad \text{$\pSat{v}{}$ tanımı gereği}\\
+        \Leftrightarrow {} &
+        \mSat{M}{\SSubst{!B}{\subst{!D_1}{p_1}, \dots,
+            \subst{!D_n}{p_n}}}[w] \text{ ve } \\
+        & \mSat{M}{\SSubst{!C}{\subst{!D_1}{p_1}, \dots,
+          \subst{!D_n}{p_n}}}[w]\\
+        &\qquad \text{tümevarım varsayımı gereği}\\
+        \Leftrightarrow{} &
+        \mSat{M}{\SSubst{(!B \land !C)}{\subst{!D_1}{p_1}, \dots,
+          \subst{!D_n}{p_n}}}[w]\\
+        &\qquad \text{$\mSat{M}{}[w]$ tanımı gereği}.
+      \end{align*}}}{}
+  \tagitem{prvOr}{\indcase{!A}{(!B \lor !C)}{%
+      \begin{align*}
+        \pSat{v}{!B \lor !C} \Leftrightarrow{} &
+        \pSat{v}{!B} \text{ ya da } \pSat{v}{!C}\\
+        &\qquad \text{$\pSat{v}{}$ tanımı gereği};\\
+        \Leftrightarrow{} & \mSat{M}{\SSubst{!B}{\subst{!D_1}{p_1}, \dots,
+            \subst{!D_n}{p_n}}}[w] \text{ ya da }\\
+        & \mSat{M}{\SSubst{!C}{\subst{!D_1}{p_1}, \dots,
+          \subst{!D_n}{p_n}}}[w]\\
+        &\qquad \text{tümevarım varsayımı gereği}\\
+        \Leftrightarrow{} &
+        \mSat{M}{\SSubst{(!B \lor !C)}{\subst{!D_1}{p_1}, \dots,
+          \subst{!D_n}{p_n}}}[w]\\
+        &\qquad \text{$\mSat{M}{}[w]$ tanımı gereği}.
+      \end{align*}}}{}
+  \tagitem{prvIf}{\indcase{!A}{(!B \lif !C)}{%
+      \begin{align*}
+        \pSat{v}{!B \lif !C} \Leftrightarrow{} &
+        \pSat/{v}{!B} \text{ ya da } \pSat{v}{!C}\\
+        &\qquad \text{$\pSat{v}{}$ tanımı gereği}\\
+        \Leftrightarrow{} &
+        \mSat/{M}{\SSubst{!B}{\subst{!D_1}{p_1}, \dots,
+            \subst{!D_n}{p_n}}}[w] \text{ ya da }\\
+        & \mSat{M}{\SSubst{!C}{\subst{!D_1}{p_1}, \dots,
+          \subst{!D_n}{p_n}}}[w]\\
+        &\qquad \text{tümevarım varsayımı gereği}\\
+        \Leftrightarrow{} &
+        \mSat{M}{\SSubst{(!B \lif !C)}{\subst{!D_1}{p_1}, \dots,
+          \subst{!D_n}{p_n}}}[w]\\
+        &\qquad \text{$\mSat{M}{}[w]$ tanımı gereği}.
+      \end{align*}}}{}
+  \tagitem{prvIff}{\indcase{!A}{(!B \liff !C)}{%
+      \begin{align*}
+        \pSat{v}{!B \liff !C} \Leftrightarrow {} &
+        \text{ya } \pSat{v}{!B} \text{ ve } \pSat{v}{!C}\\
+        & \text{ya da } \pSat/{v}{!B} \text{ ve } \pSat/{v}{!C}\\
+        &\qquad \text{$\pSat{v}{}$ tanımı gereği}\\
+        \Leftrightarrow {} &
+        \text{ya } \mSat{M}{\SSubst{!B}{\subst{!D_1}{p_1}, \dots,
+            \subst{!D_n}{p_n}}}[w] \text{ ve }\\
+        & \qquad \mSat{M}{\SSubst{!C}{\subst{!D_1}{p_1}, \dots,
+          \subst{!D_n}{p_n}}}[w]\\ 
+        &  \text{ ya da } \mSat/{M}{\SSubst{!B}{\subst{!D_1}{p_1}, \dots,
+            \subst{!D_n}{p_n}}}[w] \text{ ve }\\
+        & \qquad \mSat/{M}{\SSubst{!C}{\subst{!D_1}{p_1}, \dots,
+          \subst{!D_n}{p_n}}}[w]\\
+        &\qquad\text{tümevarım varsayımı gereği}\\
+        \Leftrightarrow {} &
+        \mSat{M}{\SSubst{(!B \liff !C)}{\subst{!D_1}{p_1}, \dots,
+          \subst{!D_n}{p_n}}}[w]\\
+        &\qquad \text{$\mSat{M}{}[w]$ tanımı gereği}.
+      \end{align*}}}{}
+  \end{enumerate}
+  \end{proof}
+
+\begin{prop}\ollabel{prop:valid-taut}
+  Bütün totolojik örnekler geçerlidir.
+\end{prop}
+
+\begin{proof}
+  Karşıt tersini gösterelim. Bir $\mModel{M}$ modeli ve bir $w$ dünyası için
+  $\mSat/{M}{\SSubst{!A}{\subst{!D_1}{p_1}, \dots,
+  \subst{!D_n}{p_n}}}[w]$ olacak biçimde bir $!A$ bulunduğunu varsayalım.
+  $\pAssign{v}(p_i) = \True$ olması ancak ve ancak $\mSat{M}{!D_i}[w]$
+  olacak biçimde bir $\pAssign{v}$ ataması tanımlayalım (ve $q \notin
+  \{p_1, \dots, p_n \}$ için $\pAssign{v}$ keyfî değerler atasın). O zaman
+  \olref{lem:valid-taut} gereği $\pSat/{v}{!A}$ olur; dolayısıyla $!A$ bir
+  totoloji değildir.
+\end{proof}
+

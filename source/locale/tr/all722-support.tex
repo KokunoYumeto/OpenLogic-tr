@@ -1,0 +1,111 @@
+% Canonical module import overlay. Original translation sources are unchanged.
+\makeatletter
+\newif\ifallmodulesextra
+\allmodulesextrafalse
+\newwrite\allmoduleslog
+\immediate\openout\allmoduleslog=\jobname.modules.csv
+\immediate\write\allmoduleslog{event,id,source_path,page,context}
+\AtEndDocument{\immediate\closeout\allmoduleslog}
+\newcommand\allmodulesdefine[4]{%
+  \expandafter\gdef\csname all722path@#1\endcsname{#2}%
+  \expandafter\gdef\csname all722title@#1\endcsname{#3}%
+  \expandafter\gdef\csname all722kind@#1\endcsname{#4}}
+% Install after cleveref's begin-document patch, so duplicate suppression
+% also covers the companion @cref metadata label, not only the main label.
+\newcommand\allmodulesinstalllabels{%
+  \NewCommandCopy\allmodulesoriginallabel\label
+  \RenewDocumentCommand\label{o m}{%
+    \ifallmodulesextra
+      \ifcsname all722label@##2\endcsname
+        \immediate\write\allmoduleslog{retained-existing-label,\allmodulesid,##2,\thepage,supplement}%
+      \else
+        \expandafter\gdef\csname all722label@##2\endcsname{1}%
+        \IfNoValueTF{##1}{\allmodulesoriginallabel{##2}}{\allmodulesoriginallabel[##1]{##2}}%
+      \fi
+    \else
+      \expandafter\gdef\csname all722label@##2\endcsname{1}%
+      \IfNoValueTF{##1}{\allmodulesoriginallabel{##2}}{\allmodulesoriginallabel[##1]{##2}}%
+    \fi}}
+\AddToHook{begindocument/end}{\allmodulesinstalllabels}
+\newcommand\allmodulesmark{%
+  \ifallmodulesextra
+    \ifcsname all722anchor@\allmodulesid\endcsname\else
+      \expandafter\gdef\csname all722anchor@\allmodulesid\endcsname{1}%
+      \par\phantomsection
+      \pdfbookmark[2]{\allmodulesid\space --- \csname all722title@\allmodulesid\endcsname}{module.\allmodulesid}%
+      \allmodulesoriginallabel{module:\allmodulesid}%
+      {\small\sffamily Kaynak modülü: \allmodulesid\par}\nobreak
+      \immediate\write\allmoduleslog{anchor,\allmodulesid,\csname all722path@\allmodulesid\endcsname,\thepage,supplement}%
+    \fi
+  \fi}
+% xparse commands have implementation helpers. A plain let aliases those
+% helpers; renewing the public command would then recurse into itself.
+\NewCommandCopy\allmodulesoriginalsection\olsection
+\NewCommandCopy\allmodulesoriginalchapter\olchapter
+\NewCommandCopy\allmodulesoriginalpart\olpart
+% Only sources with the literal language marker [tr] use these aliases.
+% Legitimate short-title arguments on other source commands remain intact.
+\NewDocumentCommand\allmoduleschapter{m m m}{\olchapter{#1}{#2}{#3}}
+\NewDocumentCommand\allmodulespart{m m}{\olpart{#1}{#2}}
+\newcommand\allmodulesphotocredits{%
+  \IfFileExists{\jobname.pcr}{%
+    % A CatchFile read can contain an endline even for a zero-byte file.
+    % The fixed pdfTeX reader can test the actual byte count directly.
+    \ifnum\pdffilesize{\jobname.pcr}>0\relax
+      \photocredits
+    \else
+      % Register memoir's list stream without generating a title or page.
+      % Future credits still reach .pcr and print on the following pass.
+      \@starttoc{pcr}%
+    \fi
+  }{\@starttoc{pcr}}}
+\newcommand\allmodulesinlineproblems{%
+  % The normal reader has finished flushing its deferred exercises. From
+  % here each exercise stays in its module body; later alternate drivers
+  % cannot clear a pending .prb buffer and silently lose an exercise.
+  \let\prob\probd
+  \let\endprob\endprobd
+  \renewenvironment{probtag}[1]{\begin{probd}}{\end{probd}}%
+  \renewcommand\theprobd{\thechapter.\arabic{probd}}%
+  \renewcommand\theHprobd{supplement.\thechapter.\arabic{probd}}%
+  \@addtoreset{probd}{chapter}%
+  \setcounter{probd}{0}%
+  \renewcommand\memendofchapterhook{}%
+  \renewcommand\OLEndChapterHook{}}
+\newcommand\allmodulesheadings{%
+  \RenewDocumentCommand\olsection{o m}{%
+    \IfNoValueTF{##1}{\allmodulesoriginalsection{##2}}{\allmodulesoriginalsection[##1]{##2}}%
+    \allmodulesmark}%
+  \RenewDocumentCommand\olchapter{o m m m}{%
+    \IfNoValueTF{##1}{\allmodulesoriginalchapter{##2}{##3}{##4}}{\allmodulesoriginalchapter[##1]{##2}{##3}{##4}}\allmodulesmark}%
+  \RenewDocumentCommand\olpart{o m m}{%
+    \IfNoValueTF{##1}{\allmodulesoriginalpart{##2}{##3}}{\allmodulesoriginalpart[##1]{##2}{##3}}\allmodulesmark}}
+\newcommand\allmodulesload[2]{%
+  \begingroup
+  \def\allmodulesid{#1}%
+  \def\olfilename{#1}%
+  \ifallmodulesextra
+    \ifcsname all722seen@#1\endcsname
+      \immediate\write\allmoduleslog{skip-visited,#1,\csname all722path@#1\endcsname,\thepage,supplement}%
+    \else
+      \allmodulesexecute{#1}{#2}%
+    \fi
+  \else
+    \allmodulesexecute{#1}{#2}%
+  \fi
+  \endgroup}
+\newcommand\allmodulesexecute[2]{%
+  \expandafter\gdef\csname all722seen@#1\endcsname{1}%
+  \immediate\write\allmoduleslog{include,#1,\csname all722path@#1\endcsname,\thepage,\ifallmodulesextra supplement\else normal\fi}%
+  \def\allmodulesinherit{inherit}\def\allmodulesrequested{#2}%
+  \ifx\allmodulesinherit\allmodulesrequested\else\def\ol@sectioncs{#2}\fi
+  \ifallmodulesextra
+    \allmodulesheadings
+    \edef\allmoduleskind{\csname all722kind@#1\endcsname}%
+    \def\allmodulesbodykind{body}%
+    \ifx\allmoduleskind\allmodulesbodykind\allmodulesmark\fi
+  \fi
+  \input{all722-content/#1.tex}}
+\NewDocumentCommand\allmodulesimport{O{section} m}{\allmodulesload{#2}{#1}}
+\NewDocumentCommand\allmodulessubfile{m}{\allmodulesload{#1}{inherit}}
+\makeatother

@@ -1,0 +1,59 @@
+% Generated from locale/tr/content/set-theory/ord-arithmetic/exponentiation.tex; do not hand-edit.
+
+
+\olfileid[tr]{sth}{ord-arithmetic}{expo}
+\olsection{Sıra Sayılarında Üs Alma}
+
+Şimdi sıra sayılarında üs almaya geçiyoruz. Ne yazık ki sıra sayılarında üs
+alma için \emph{zarif} bir sentetik tanım yoktur.
+
+Elbette açık sentetik tanımlar \emph{vardır}. İşte bunlardan biri.
+$\text{finfun}(\alpha,\beta)$, $f\colon\beta\to\alpha$ olup
+$\Setabs{\gamma\in\beta}{f(\gamma)\neq 0}$ kümesi bir doğal sayıyla eş
+güçlü olan bütün $f$ fonksiyonlarının kümesi olsun. $f\sqsubset g$ ancak ve
+ancak $f\neq g$ ve
+$\gamma_0=\text{max}\Setabs{\gamma\in\beta}{f(\gamma)\neq g(\gamma)}$
+için $f(\gamma_0)<g(\gamma_0)$ olacak biçimde
+$\text{finfun}(\alpha,\beta)$ üzerinde bir iyi sıralama tanımlayın. O zaman
+$\ordexpo{\alpha}{\beta}$'yı
+$\ordtype{\text{finfun}(\alpha,\beta),\sqsubset}$ olarak tanımlayabiliriz.
+Potter bu açık tanımı kullanır ve hemen ardından şöyle açıklar:
+\begin{quote}
+	Bu sıralamanın seçimi, yalnızca uygun özyineleme koşuluna uyan bir sıra
+	sayısı üs alma tanımı elde etme isteğimizce belirlenir\ldots{} ve onu
+	gözde canlandırmak, sıralı toplamı ya da sıralı çarpımı
+	gözde canlandırmaktan çok daha zordur.
+	\citep[p.~199]{Potter2004}
+\end{quote}
+Aynen öyle. Toplamayı ``$\alpha$'nın bir kopyasının ardından $\beta$'nın
+bir kopyası''; çarpmayı ise ``$\alpha$'nın kopyalarından oluşan bir
+$\beta$-dizisi'' diye açıkladık. Fakat
+$\text{finfun}(\alpha,\beta)$ hakkında böylesine özlü bir açıklamamız
+yoktur. Bu nedenle sıra sayılarında üs almayı bunun yerine doğrudan
+sonlu ötesi özyinelemeyle şöyle tanımlayacağız:
+
+\begin{defn}\ollabel{ordexporecursion}
+\begin{align*}
+	\ordexpo{\alpha}{0} &= 1\\
+	\ordexpo{\alpha}{\beta\ordplus 1} &=\ordexpo{\alpha}{\beta} \ordtimes \alpha\\
+	\ordexpo{\alpha}{\beta} &= \bigcup_{\delta < \beta}\ordexpo{\alpha}{\delta}& & \text{$\beta$ bir limit sıra sayısı olduğunda}
+\end{align*}
+\end{defn}
+
+Küme teorisyenleri \emph{sıfatıyla} çalışıyor olsaydık sıra sayılarında üs
+almanın bazı özelliklerini araştırmak isteyebilirdik. Burada, üs almanın
+değişmeli olmadığına ilişkin şaşırtıcı olmayan olgu dışında ekleyecek fazla
+bir şeyimiz yoktur. Nitekim
+$\ordexpo{2}{\omega}=\bigcup_{\delta<\omega}\ordexpo{2}{\delta}=\omega$,
+oysa $\ordexpo{\omega}{2}=\omega\ordtimes\omega$'dır. Zaten doğal sayılarda
+da değişmeli olmadığı için üs almanın değişmeli olmasını
+\emph{beklememeliyiz}: $\ordexpo{2}{3}=8<9=\ordexpo{3}{2}$.
+
+\begin{prob}
+Sonlu Ötesi Tümevarım'ı kullanarak
+$\ordexpo{\alpha}{\beta}=\ordtype{\text{finfun}(\alpha,\beta),\sqsubset}$
+diye tanımladığımızda
+\olref[sth][ord-arithmetic][expo]{ordexporecursion} içindeki özyineleme
+denklemlerini elde ettiğimizi ispatlayın.
+\end{prob}
+

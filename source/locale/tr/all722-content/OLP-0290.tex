@@ -1,0 +1,121 @@
+% Generated from locale/tr/content/incompleteness/representability-in-q/introduction.tex; do not hand-edit.
+
+
+\olfileid[tr]{inc}{req}{int}
+\olsection{Giriş}
+
+Eksiklik teoremleri, hesaplanabilir fonksiyonlar hakkındaki temel olguların
+dile getirilip ispatlanabildiği kuramlara uygulanır. Böyle, son derece küçük
+bir kuramı betimleyeceğiz; buna ``$\Th{Q}$'' (ya da Raphael Robinson'a
+atıfla bazen ``Robinson $Q$'su'') denir. Bir fonksiyonun $\Th{Q}$ içinde
+\emph{temsil edilebilir} olmasının ne anlama geldiğini söyleyecek ve ardından
+şunu ispatlayacağız:
+\begin{quote}
+  Bir fonksiyon $\Th{Q}$ içinde ancak ve ancak hesaplanabilirse temsil
+  edilebilir.
+\end{quote}
+Bu, her şeyden önce bize başka bir hesaplanabilirlik modeli sağlar. Fakat
+durma problemini ona indirgeyerek $\Setabs{!A}{\Th{Q} \Proves !A}$ kümesinin
+karar verilebilir olmadığını göstermek için de bu sonucu kullanacağız.
+Bitirdiğimizde bundan çok daha güçlü şeyler ispatlamış olacağız.
+
+$\Th{Q}$'nun dili aritmetik dilidir; $\Th{Q}$ aşağıdaki aksiyomlardan oluşur
+(bunlar !!{identity} içeren birinci derece mantığın öteki aksiyom ve
+kurallarıyla birlikte kullanılacaktır):
+\begin{align*}
+& \lforall[x][\lforall[y][(\eq[x'][y'] \lif \eq[x][y])]] \tag{$!Q_1$}\\
+& \lforall[x][\eq/[\Obj 0][x']] \tag{$!Q_2$}\\
+& \lforall[x][(\eq[x][\Obj 0] \lor \lexists[y][\eq[x][y']])] \tag{$!Q_3$}\\
+& \lforall[x][\eq[(x + \Obj 0)][x]] \tag{$!Q_4$}\\
+& \lforall[x][\lforall[y][\eq[(x + y')][(x + y)']]] \tag{$!Q_5$}\\
+& \lforall[x][\eq[(x \times \Obj 0)][\Obj 0]] \tag{$!Q_6$}\\
+& \lforall[x][\lforall[y][\eq[(x \times y')][((x \times y) + x)]]] \tag{$!Q_7$}\\
+& \lforall[x][\lforall[y][(x < y \liff \lexists[z][\eq[(z' + x)][y]])]] \tag{$!Q_8$}
+\end{align*}
+Her $n$ doğal sayısı için $\num{n}$ sayısalını, toplam $n$ tane kesme imi
+bulunan $\Obj{0}^{\prime\prime\ldots\prime}$ terimi olarak tanımlayın.
+Dolayısıyla $\num{0}$ tek başına !!{constant}~$\Obj{0}$, $\num{1}$
+$\Obj{0}'$, $\num{2}$ ise $\Obj{0}''$'dır; böyle devam eder.
+
+Bir aritmetik kuramı olarak $\Th{Q}$ \emph{son derece} zayıftır; örneğin
+$\lforall[x][\eq/[x][x']]$ veya $\lforall[x][\lforall[y][(x + y) = (y +
+    x)]]$ gibi çok yalın olguları bile ispatlayamazsınız. Fakat
+$\Th{Q}$'yu böylesine ilginç kılan nedenlerin çoğunun onun bu kadar zayıf
+\emph{olması} olduğunu göreceğiz. Gerçekte eksiklik teoreminin geçerli
+olmasına ancak yetecek güçtedir. $\Th{Q}$'nun ilginç olmasının başka bir
+nedeni, \emph{sonlu} bir aksiyomlar kümesine sahip olmasıdır.
+
+$\Th{Q}$'dan daha güçlü olan ve \emph{Peano aritmetiği} $\Th{PA}$ denen
+kuram, $\Th{Q}$'ya tümevarım şeması eklenerek elde edilir:
+\[
+(!A(\Obj 0) \land \lforall[x][(!A(x) \lif !A(x'))]) \lif \lforall[x][!A(x)]
+\]
+burada $!A(x)$ herhangi bir formüldür. $!A(x)$, $x$ dışında serbest
+!!{variable}s içeriyorsa bunların hepsini bağlamak için başa evrensel
+niceleyiciler ekleriz (böylece tümevarım şemasının karşılık gelen örneği
+!!a{sentence} olur). Örneğin $!A(x,y)$ serbest olarak !!{variable}~$y$'yi
+de içeriyorsa karşılık gelen örnek şudur:
+\[
+\lforall[y][((!A(\Obj 0) \land \lforall[x][(!A(x) \lif !A(x'))]) \lif
+  \lforall[x][!A(x)])]
+\]
+Tümevarım şemasının örneklerini kullanarak $\Th{PA}$'nın aksiyomlarından,
+$\Th{Q}$'nun aksiyomlarından çıkarılabileceğinden çok daha fazlası
+ispatlanabilir. Gerçekte doğal sayılar hakkında Peano aritmetiğinde
+ispatlanamayan ``doğal'' ifadeler bulmak epey emek gerektirir!{}
+
+\begin{defn}
+\ollabel{defn:representable-fn}
+  Doğal sayılardan doğal sayılara giden $f(x_0,\ldots,x_k)$ fonksiyonuna,
+  $f(n_0,\dots,n_k)=m$ olduğunda $\Th{Q}$ aşağıdakileri ispatlayacak
+  biçimde bir $!A_f(x_0,\dots,x_k,y)$ formülü varsa
+  {\em $\Th{Q}$ içinde temsil edilebilir} denir:
+\begin{enumerate}
+\item\ollabel{defn:rep:a} $!A_f(\num{n_0}, \dots, \num{n_k}, \num{m})$
+\item\ollabel{defn:rep:b} $\lforall[y][(!A_f(\num{n_0}, \dots,
+\num{n_k}, y) \lif \num{m} = y)]$.
+\end{enumerate}
+\end{defn}
+
+Tanımı başka biçimlerde de ifade edebiliriz; örneğin $\Th{Q}$'nun
+$\lforall[y][(!A_f(\num{n_0}, \dots, \num{n_k}, y) \liff
+\eq[y][\num{m}])]$ tümcesini ispatlamasını denk bir koşul olarak
+isteyebilirdik.
+
+\begin{thm}
+\ollabel{thm:representable-iff-comp}
+Bir fonksiyon $\Th{Q}$ içinde ancak ve ancak hesaplanabilirse temsil
+edilebilir.
+\end{thm}
+
+Teoremin ispatlanacak iki yönü vardır. Soldan sağa yön, sözdizimin
+aritmetikleştirilmesi hazır olduğunda oldukça doğrudandır. Öteki yön daha
+fazla emek gerektirir. Temel düşünce şudur: ``hesaplanabilir''i kesinleştirmenin
+bir yolu olarak ``genel özyinelemeli''yi seçer ve her genel özyinelemeli
+fonksiyonun $\Th{Q}$ içinde temsil edilebilir olduğunu gösteririz. Bir
+fonksiyonun; $\Zero$, ardıl fonksiyonu~$\Succ$ ve izdüşüm
+fonksiyonları~$\Proj{n}{i}$'den bileşke, ilkel özyineleme ve düzenli
+minimizasyon kullanılarak tanımlanabiliyorsa genel özyinelemeli olduğunu
+anımsayın. Bu nedenle her genel özyinelemeli fonksiyonun $\Th{Q}$ içinde
+temsil edilebilir olduğunu göstermenin bir yolu, temel fonksiyonların temsil
+edilebilir olduğunu ve bazı fonksiyonlar temsil edilebilirse bunlardan
+bileşke, ilkel özyineleme ve düzenli minimizasyon kullanılarak tanımlanan
+fonksiyonların da temsil edilebildiğini göstermektir. Başka bir deyişle,
+temel fonksiyonların temsil edilebilir olduğunu ve temsil edilebilir
+fonksiyonların bileşke, ilkel özyineleme ve düzenli minimizasyon ``altında
+kapalı'' olduğunu gösterebiliriz. Bu, her genel özyinelemeli fonksiyonun
+temsil edilebilir olmasını güvenceye alır.
+
+Temsil edilebilir fonksiyonların ilkel özyineleme altında kapalı olduğunu
+göstereceğimiz adımın zor olduğu ortaya çıkar. Bu adımdan kaçınmak için önce
+ilkel özyineleme olmadan da çalışabileceğimizi gösteririz. Yani her genel
+özyinelemeli fonksiyonun yalnızca temel fonksiyonlardan bileşke ve düzenli
+minimizasyon kullanılarak tanımlanabileceğini gösteririz. Bunu yapmak için
+ilkel özyinelemenin gerçekte belirli bir düzenli minimizasyonla yapılabildiğini
+gösteririz. Ancak bunun işe yaraması için birtakım ek temel fonksiyonlar
+katmalıyız: toplama, çarpma ve özdeşlik bağıntısının karakteristik
+fonksiyonu~$\Char{=}$. Ardından \emph{bu} temel fonksiyonların hepsinin
+$\Th{Q}$ içinde temsil edilebilir olduğunu ve temsil edilebilir fonksiyonların
+bileşke ile düzenli minimizasyon altında kapalı olduğunu göstererek teoremi
+ispatlayabiliriz.
+

@@ -1,0 +1,161 @@
+% Generated from locale/tr/content/first-order-logic/syntax-and-semantics/semantic-notions.tex; do not hand-edit.
+
+
+\olfileid[tr]{fol}{syn}{sem}
+\olsection{Semantik Kavramlar}
+
+\begin{explain}
+Birinci dereceden diller için !!{structure}s tanımı verildiğinde,
+tümcelerin bazı temel semantik özelliklerini ve aralarındaki ilişkileri
+tanımlayabiliriz. Bunların en basiti bir tümcenin \emph{geçerliliği}
+kavramıdır. Bir tümce her !!{structure} içinde sağlanıyorsa geçerlidir.
+Geçerli tümceler, içlerindeki mantıksal olmayan simgelerin nasıl
+yorumlandığından bağımsız olarak sağlanan tümcelerdir. Bu nedenle
+geçerli tümcelere \emph{mantıksal doğrular} da denir: Bunlar herhangi
+bir !!{structure} içinde doğrudur, yani sağlanır. Dolayısıyla
+doğrulukları yalnızca içlerinde geçen mantıksal simgelere ve
+sözdizimsel !!{structure} ifadelerine bağlıdır; mantıksal olmayan
+simgelere veya onların yorumlarına bağlı değildir.
+\end{explain}
+
+\begin{defn}[Geçerlilik]
+Bir $!A$ tümcesi, her !!{structure}~$\Struct M$ için $\Sat{M}{!A}$
+olduğunda ve ancak bu durumda \emph{geçerlidir}; bunu $\Entails !A$
+ile gösteririz.
+\end{defn}
+
+\begin{defn}[Mantıksal gerektirme]
+Bir tümceler kümesi~$\Gamma$, $\Sat{M}{\Gamma}$ olan her
+!!{structure}~$\Struct M$ için $\Sat{M}{!A}$ olduğunda ve ancak bu
+durumda $!A$ tümcesini \emph{mantıksal olarak gerektirir}; bunu
+$\Gamma\Entails !A$ ile gösteririz.
+\end{defn}
+
+\begin{defn}[Sağlanabilirlik]
+Bir tümceler kümesi~$\Gamma$, bazı !!{structure}~$\Struct M$ için
+$\Sat{M}{\Gamma}$ ise \emph{sağlanabilirdir}. $\Gamma$ sağlanabilir
+değilse \emph{sağlanamaz} denir.
+\end{defn}
+
+\begin{prop}
+Bir $!A$ tümcesi, ancak ve ancak her tümceler kümesi~$\Gamma$ için
+$\Gamma\Entails !A$ ise geçerlidir.
+\end{prop}
+
+\begin{proof}
+İleri yön için $!A$ geçerli ve $\Gamma$ bir tümceler kümesi olsun.
+$\Sat{M}{\Gamma}$ olan !!a{structure}~$\Struct M$ alalım. $!A$ geçerli
+olduğundan $\Sat{M}{!A}$; dolayısıyla $\Gamma\Entails !A$.
+
+Ters yönün karşıt tersini ispatlamak için $!A$ geçersiz olsun. O zaman
+$\Sat/{M}{!A}$ olan !!a{structure}~$\Struct M$ vardır. $\Gamma=\{\ltrue\}$
+aldığımızda, $\ltrue$ geçerli olduğu için $\Sat{M}{\Gamma}$. Böylece
+$\Sat{M}{\Gamma}$ olduğu halde $\Sat/{M}{!A}$ olan !!a{structure}
+$\Struct M$ vardır; dolayısıyla $\Gamma$, $!A$'yı mantıksal olarak
+gerektirmez.
+\end{proof}
+
+\begin{prop}
+\ollabel{prop:entails-unsat}
+$\Gamma\Entails !A$ ancak ve ancak $\Gamma\cup\{\lnot !A\}$
+sağlanamazdır.
+\end{prop}
+
+\begin{proof}
+İleri yön için $\Gamma\Entails !A$ olduğunu varsayalım ve tersine
+$\Sat{M}{\Gamma\cup\{\lnot !A\}}$ olan !!a{structure}~$\Struct M$
+bulunduğunu kabul edelim. $\Sat{M}{\Gamma}$ ve $\Gamma\Entails !A$
+olduğundan $\Sat{M}{!A}$. Ayrıca
+$\Sat{M}{\Gamma\cup\{\lnot !A\}}$ olduğundan $\Sat{M}{\lnot !A}$,
+yani $\Sat/{M}{!A}$. Hem $\Sat{M}{!A}$ hem $\Sat/{M}{!A}$ elde
+ederiz; bu bir çelişkidir. Dolayısıyla böyle bir !!{structure}~$\Struct
+M$ olamaz ve $\Gamma\cup\{\lnot !A\}$ sağlanamazdır.
+
+Ters yön için $\Gamma\cup\{\lnot !A\}$ sağlanamaz olsun. O zaman her
+!!{structure}~$\Struct M$ için ya $\Sat/{M}{\Gamma}$ ya da
+$\Sat{M}{!A}$ olur. Dolayısıyla $\Sat{M}{\Gamma}$ olan her
+!!{structure}~$\Struct M$ için $\Sat{M}{!A}$; yani
+$\Gamma\Entails !A$.
+\end{proof}
+
+\begin{prob}
+\begin{enumerate}
+\item $\Gamma\Entails\bot$ olmasının, $\Gamma$'nın sağlanamaz olmasına
+  denk olduğunu gösterin.
+\item $\Gamma\cup\{!A\}\Entails\bot$ olmasının
+  $\Gamma\Entails\lnot !A$ olmasına denk olduğunu gösterin.
+\item $c$ simgesinin $!A$ veya $\Gamma$ içinde geçmediğini varsayın.
+  $\Gamma\Entails\lforall[x][!A]$ olmasının
+  $\Gamma\Entails\Subst{!A}{c}{x}$ olmasına denk olduğunu gösterin.
+\end{enumerate}
+\end{prob}
+
+\begin{prop}
+$\Gamma\subseteq\Gamma'$ ve $\Gamma\Entails !A$ ise
+$\Gamma'\Entails !A$.
+\end{prop}
+
+\begin{proof}
+$\Gamma\subseteq\Gamma'$ ve $\Gamma\Entails !A$ varsayılsın.
+$\Sat{M}{\Gamma'}$ olan bir $\Struct M$ yapısı alalım. O zaman
+$\Sat{M}{\Gamma}$; $\Gamma\Entails !A$ olduğundan $\Sat{M}{!A}$ elde
+ederiz. Dolayısıyla $\Sat{M}{\Gamma'}$ olduğunda $\Sat{M}{!A}$, yani
+$\Gamma'\Entails !A$.
+\end{proof}
+
+\begin{thm}[Semantik tümdengelim teoremi]
+\ollabel{thm:sem-deduction}
+$\Gamma\cup\{!A\}\Entails !B$ ancak ve ancak
+$\Gamma\Entails !A\lif !B$.
+\end{thm}
+
+\begin{proof}
+İleri yön için $\Gamma\cup\{!A\}\Entails !B$ olsun ve
+$\Sat{M}{\Gamma}$ olan !!a{structure}~$\Struct M$ alalım.
+$\Sat{M}{!A}$ ise $\Sat{M}{\Gamma\cup\{!A\}}$; dolayısıyla
+$\Sat{M}{!B}$. Böylece $\Sat{M}{!A\lif !B}$ ve
+$\Gamma\Entails !A\lif !B$.
+
+Ters yön için $\Gamma\Entails !A\lif !B$ olsun ve
+$\Sat{M}{\Gamma\cup\{!A\}}$ olan !!a{structure}~$\Struct M$ alalım.
+O zaman $\Sat{M}{\Gamma}$, dolayısıyla $\Sat{M}{!A\lif !B}$; ayrıca
+$\Sat{M}{!A}$ olduğundan $\Sat{M}{!B}$. Böylece
+$\Sat{M}{\Gamma\cup\{!A\}}$ olduğunda $\Sat{M}{!B}$; yani
+$\Gamma\cup\{!A\}\Entails !B$.
+\end{proof}
+
+\begin{prop}\ollabel{prop:quant-terms}
+  $\Struct M$ !!a{structure}, $!A(x)$ yalnız bir serbest değişkeni~$x$
+  olan !!a{formula}, $t$ ise kapalı bir terim olsun. O zaman:
+  \begin{tagenumerate}{prvEx,prvAll}
+    \tagitem{prvEx}{$!A(t) \Entails \lexists[x][!A(x)]$}{}
+    \tagitem{prvAll}{$\lforall[x][!A(x)] \Entails !A(t)$}{}
+  \end{tagenumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{tagenumerate}{prvEx,prvAll}
+    \tagitem{prvEx}{%
+      \iftag{probEx}{Alıştırma.}{
+        $\Sat{M}{!A(t)}$ varsayılsın. $s(x)=\Value{t}{M}$ olan bir
+        değişken ataması~$s$ alalım. $!A(t)$ !!a{sentence} olduğundan
+        $\Sat{M}{!A(t)}[s]$. \olref[ext]{prop:ext-formulas} gereği
+        $\Sat{M}{!A(x)}[s]$. \olref[ass]{prop:sat-quant} gereği
+        $\Sat{M}{\lexists[x][!A(x)]}$.}}{}
+    \tagitem{prvAll}{%
+      \iftag{probAll}{Alıştırma.}{
+        $\Sat{M}{\lforall[x][!A(x)]}$ varsayılsın.
+        $s(x)=\Value{t}{M}$ olan bir değişken ataması~$s$ alalım.
+        \olref[ass]{prop:sat-quant} gereği $\Sat{M}{!A(x)}[s]$.
+        \olref[ext]{prop:ext-formulas} gereği $\Sat{M}{!A(t)}[s]$.
+        $!A(t)$ !!a{sentence} olduğundan
+        \olref[ass]{prop:sentence-sat-true} gereği
+        $\Sat{M}{!A(t)}$.}}{}
+  \end{tagenumerate}
+\end{proof}
+
+\begin{probtag}{probEx,probAll}
+  \olref[fol][syn][sem]{prop:quant-terms} önermesinin ispatını
+  tamamlayın.
+\end{probtag}
+

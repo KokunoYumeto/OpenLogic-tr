@@ -1,0 +1,327 @@
+% Generated from locale/tr/content/incompleteness/arithmetization-syntax/proofs-in-nd.tex; do not hand-edit.
+
+
+\olfileid[tr]{inc}{art}{pnd}
+\olsection{Doğal Tümdengelimde \usetoken{P}{derivation}}
+
+\begin{explain}
+!!{derivation}s{}i aritmetikleştirmek için !!{derivation}s{}i sayılarla temsil
+etmemiz gerekir. !!{derivation}s, her çıkarımın bir ya da iki etiket taşıdığı
+!!{formula}s ağaçları olduğundan, en açık yaklaşım özyinelemeli bir temsildir:
+Bir !!{derivation}{}i, bileşenleri son çıkarımın öncüllerine götüren dolaysız
+alt-!!{derivation}s{}in sayısı, bu alt-!!{derivation}s{}in temsilleri, son
+!!{formula}, son çıkarımın kapatma etiketi ve son çıkarımın türünü belirten
+bir sayı olan bir demetle temsil ederiz.
+\end{explain}
+
+\begin{defn}
+  $\delta$, doğal tümdengelimde !!a{derivation} ise $\Gn{\delta}$ tümevarımlı
+  olarak aşağıdaki gibi tanımlanır:
+  \begin{enumerate}
+  \item
+    $\delta$ yalnızca $!A$ varsayımından oluşuyorsa $\Gn{\delta}$
+    $\tuple{0, \Gn{!A}, n}$ olur. $n$ sayısı, varsayım !!{undischarged} ise
+    $0$, değilse varsayımın sayısal etiketidir.
+  \item
+    $\delta$ sıfır, bir, iki ya da üç öncüllü bir çıkarımla bitiyorsa
+    $\Gn{\delta}$ sırasıyla
+    \begin{align*}
+      & \tuple{0, \Gn{!A}, n, k}, \\
+      & \tuple{1, \Gn{\delta_1}, \Gn{!A}, n, k}, \\
+      & \tuple{2, \Gn{\delta_1}, \Gn{\delta_2}, \Gn{!A}, n, k}, \text{ ya da}\\
+      & \tuple{3, \Gn{\delta_1}, \Gn{\delta_2}, \Gn{\delta_3}, \Gn{!A}, n,
+        k}
+    \end{align*}
+    olur. Burada $\delta_1$, $\delta_2$, $\delta_3$, $\delta$'daki son
+    çıkarımın öncülüyle ya da öncülleriyle biten alt-!!{derivation}s;
+    $!A$, $\delta$'daki son çıkarımın sonucu; $n$, son çıkarımın kapatma
+    etiketi (çıkarım hiçbir varsayımı kapatmıyorsa $0$); $k$ ise son çıkarımda
+    kullanılan kurala göre aşağıdaki tabloyla verilen sayıdır.
+
+    \begin{tabular}{lccccccc}
+      \text{Kural:} & \Intro{\land} & \Elim{\land} & \Intro{\lor} & \Elim{\lor} \\
+      $k$: & 1 & 2 & 3 & 4  \\[1.5ex]
+      \text{Kural:} &  \Intro{\lif} & \Elim{\lif} & \Intro{\lnot} & \Elim{\lnot} \\
+      $k$: & 5 & 6 & 7 & 8 \\[1.5ex]
+      \text{Kural:}  &  \FalseInt & \FalseCl & \Intro{\lforall} & \Elim{\lforall} \\
+      $k$: & 9 & 10 & 11 & 12 \\[1.5ex]
+      \text{Kural:} & \Intro{\lexists} & \Elim{\lexists} & \Intro{\eq} & \Elim{\eq} \\
+      $k$: & 13 & 14 & 15 & 16
+    \end{tabular}
+  \end{enumerate}
+\end{defn}
+
+\begin{ex}
+  Şu çok basit !!{derivation}{}i ele alın:
+  \begin{prooftree}
+    \AxiomC{$\Discharge{!A \land !B}{1}$}
+    \RightLabel{\Elim{\land}}
+    \UnaryInfC{$!A$}
+    \DischargeRule{\Intro{\lif}}{1}
+    \UnaryInfC{$(!A \land !B) \lif !A$}
+  \end{prooftree}
+  Varsayımın Gödel numarası $d_0 = \tuple{0,
+    \Gn{!A \land !B}, 1}$ olurdu. $\Elim{\land}$ sonucuyla biten
+  !!{derivation}{}in Gödel numarası $d_1 = \tuple{1,
+     d_0, \Gn{!A}, 0, 2}$ olurdu ($\Elim{\land}$ bir öncüllü olduğu için
+  $1$, sonuç $!A$'nın Gödel numarası, hiçbir varsayım kapatılmadığı için
+  $0$ ve $\Elim{\land}$'ı kodlayan sayı olduğu için $2$). Böylece bütün
+  !!{derivation}{}in Gödel numarası
+  $\tuple{1, d_1, \Gn{((!A \land !B) \lif
+      !A)}, 1, 5}$, yani
+  \[
+  \tuple{1, \tuple{1, \tuple{0, \Gn{(!A \land !B)}, 1}, \Gn{!A}, 0, 2},
+    \Gn{((!A \land !B) \lif !A)}, 1, 5}
+  \]
+  olur.
+\end{ex}
+
+\begin{explain}
+!!{derivation}s için bir temsil belirlediğimize göre bu !!{derivation}s{}in
+Gödel numaralarını ilkel özyinelemeli biçimde işleyebildiğimizi ve temel
+özellikleriyle bağıntılarını ifade edebildiğimizi de göstermeliyiz. Bazı
+işlemler basittir: Örneğin !!a{derivation}{}in $d$ Gödel numarası verildiğinde
+$\fn{EndFmla}(d) = (d)_{(d)_0+1}$ bize son !!{formula} için Gödel numarasını,
+$\fn{DischargeLabel}(d) = (d)_{(d)_0 + 2}$ kapatma etiketini ve
+$\fn{LastRule}(d) = (d)_{(d)_0 + 3}$ son çıkarımın türünü belirten sayıyı
+verir. Bazı işlemler ise çok daha zordur. En azından bunların nasıl
+yapılacağını ana hatlarıyla göstereceğiz. Amaç, ``$\delta$, $\Gamma$'dan
+$!A$'nın !!a{derivation}{}idir'' bağıntısının $\delta$ ile $!A$'nın Gödel
+numaraları üzerinde ilkel özyinelemeli bir bağıntı olduğunu göstermektir.
+\end{explain}
+
+\begin{prop}
+  Aşağıdaki bağıntılar ilkel özyinelemelidir:
+  \begin{enumerate}
+  \item $!A$, $\delta$ içinde $n$ etiketiyle bir varsayım olarak geçer.
+  \item $\delta$ içindeki $n$ etiketli bütün varsayımlar $!A$ biçimindedir
+    (yani $\delta$ içinde $n$ etiketini kullanarak $!A$ varsayımını
+    !!{discharge} yapabiliriz).
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  !!{formula}s{}in Gödel numaraları ile !!{derivation}s{}in Gödel numaraları
+  arasındaki karşılık gelen bağıntıların ilkel özyinelemeli olduğunu
+  göstermeliyiz.
+  \begin{enumerate}
+  \item Gödel numarası $x$ olan bir formülün, Gödel numarası $d$ olan
+    !!{derivation}{}in $n$ etiketli bir varsayımı olması durumunda geçerli olan
+    $\fn{Assum}(x, d, n)$ bağıntısının ilkel özyinelemeli olduğunu göstermek
+    istiyoruz. Bu, Gödel numarası $\tuple{0, x, n}$ olan !!{derivation},
+    $d$'nin bir alt-!!{derivation}{}i olduğunda geçerlidir. !!{derivation}s{}i
+    kodlama biçimimizin \olref[cmp][rec][tre]{sec}'te tanıtılan ağaç
+    kodlamasının özel bir durumu olduğuna dikkat edin. Dolayısıyla ilkel
+    özyinelemeli $\fn{SubtreeSeq}(d)$ fonksiyonu, $d$'nin bütün
+    alt-!!{derivation}s{}inin (uzunluğu en çok $d$ olan) Gödel numaraları
+    dizisini verir. Böylece
+    \[
+    \fn{Assum}(x, d, n) \defiff \bexists{i<d}{(\fn{SubtreeSeq}(d))_i =
+      \tuple{0, x, n}}
+    \]
+    olarak tanımlayabiliriz.
+  \item Gödel numarası $d$ olan !!{derivation} içindeki $n$ etiketli bütün
+    varsayımların Gödel numarası $x$ olan !!{formula} olması durumunda geçerli
+    olan $\fn{Discharge}(x, d, n)$ bağıntısının ilkel özyinelemeli olduğunu
+    göstermek istiyoruz. Bu bağıntı, ancak ve ancak
+    $\bforall{y<d}{(\fn{Assum}(y, d, n) \lif y = x)}$ geçerliyse geçerlidir.
+  \end{enumerate}
+\end{proof}
+
+\begin{prop}
+  \ollabel{prop:followsby}
+  Gödel numarası $d$ olan $\delta$ !!{derivation}{}indeki son çıkarımın doğru
+  olması durumunda geçerli olan $\fn{Correct}(d)$ özelliği ilkel
+  özyinelemelidir.
+\end{prop}
+
+\begin{proof}
+  Burada her $R$ çıkarım kuralı için $\fn{FollowsBy}_R(d)$ bağıntısının
+  ilkel özyinelemeli olduğunu göstermeliyiz. $\fn{FollowsBy}_R(d)$, ancak ve
+  ancak $d$, bir $\delta$ !!{derivation}{}inin Gödel numarasıysa ve
+  $\delta$'nın sonundaki !!{formula}, $\delta$'nın dolaysız
+  alt-!!{derivation}s{}inden $R$'nin doğru uygulanmasıyla çıkıyorsa geçerlidir.
+
+  Basit bir durum $\Intro{\land}$ kuralıdır. $\delta$ doğru bir
+  $\Intro{\land}$ çıkarımıyla bitiyorsa şu biçimdedir:
+  \begin{prooftree}
+    \AxiomC{}
+    \RightLabel{$\delta_1$}
+    \DeduceC{$!A$}
+
+    \AxiomC{}
+    \RightLabel{$\delta_2$}
+    \DeduceC{$!B$}
+
+    \RightLabel{\Intro\land}
+    \BinaryInfC{$!A \land !B$}
+  \end{prooftree}
+  Bu durumda $\delta$'nın Gödel numarası $d = \tuple{2, d_1, d_2,
+    \Gn{(!A \land !B)}, 0, k}$ olur; burada
+  $\fn{EndFmla}(d_1) = \Gn{!A}$, $\fn{EndFmla}(d_2) = \Gn{!B}$,
+  $n=0$ ve $k=1$'dir. Dolayısıyla
+  $\fn{FollowsBy}_{\Intro\land}(d)$ bağıntısını
+  \begin{multline*}
+    (d)_0 = 2 \land \fn{DischargeLabel}(d) = 0 \land \fn{LastRule}(d) = 1 \land {}\\
+    \fn{EndFmla}(d) = {}\\
+    \Gn{(} \concat \fn{EndFmla}((d)_1) \concat \Gn{\land}
+    \concat \fn{EndFmla}((d)_2) \concat \Gn{)}
+  \end{multline*}
+  olarak tanımlayabiliriz.
+
+  Bir başka basit örnek $\Intro\eq$ kuralıdır. Bunun öncülü yoktur; dolayısıyla
+  varsayımlarda olduğu gibi $(d)_0 = 0$ olur. Ayrıca kapatma etiketi de
+  yoktur, yani $n=0$'dır. Ancak $!A$, kapalı bir $t$ terimi için
+  $\eq[t][t]$ biçiminde olmalıdır. İlkel özyinelemeli bir tanım şöyledir:
+  \begin{multline*}
+    (d)_0 = 0 \land \fn{DischargeLabel}(d) = 0 \land {}\\
+    \bexists{t<d}{(\fn{ClTerm}(t) \land
+      \fn{EndFmla}(d) = {}\\
+      \Gn{{\eq}(} \concat t \concat \Gn{,} \concat t \concat \Gn{)})}
+  \end{multline*}
+
+  Daha karmaşık bir örnek için $\fn{FollowsBy}_{\Intro{\lif}}(d)$, ancak ve
+  ancak $\delta$'nın sonundaki !!{formula} $(!A \lif !B)$ biçimindeyse,
+  $\delta_1$'in sonundaki !!{formula} $!B$ ise ve $\delta$'da $n$ ile etiketli
+  her varsayım $!A$ biçimindeyse geçerlidir. Bunu ilkel özyinelemeli biçimde
+  şöyle ifade edebiliriz:
+  \begin{multline*}
+    (d)_0 = 1 \land {}\\
+    \bexists{a<d}{(\fn{Discharge}(a, (d)_1, \fn{DischargeLabel}(d)) \land {}}\\
+      \fn{EndFmla}(d) = (\Gn{(} \concat a \concat \Gn{\lif}
+      \concat \fn{EndFmla}((d)_1) \concat \Gn{)}))
+  \end{multline*}
+  (Burada $a$'yı $!A$'nın Gödel numarası olarak düşünün.)
+
+  Bir başka örnek olarak \Intro{\lexists} kuralını ele alın. Burada
+  $\delta$'daki son çıkarım, ancak ve ancak $\Subst{!A}{t}{x}$,
+  $\delta_1$ !!{derivation}{}inin sonunda bulunan !!{formula} ve
+  $\lexists[x][!A]$ son çıkarımın sonucu olacak biçimde !!a{formula}~$!A$,
+  kapalı bir $t$ terimi ve !!a{variable}~$x$ varsa doğrudur. Dolayısıyla
+  $\fn{FollowsBy}_{\Intro{\lexists}}(d)$ ancak ve ancak
+  \begin{multline*}
+    (d)_0 = 1 \land \fn{DischargeLabel}(d) = 0 \land {} \\
+    \bexists{a < d}{\bexists{x<d}{\bexists{t<d}{
+          (\fn{ClTerm}(t) \land \fn{Var}(x)  \land {}}}}\\
+    \fn{Subst}(a,t,x) = \fn{EndFmla}((d)_1) \land
+    \fn{EndFmla}(d) = (\Gn{\lexists} \concat x \concat a))
+  \end{multline*}
+  geçerliyse geçerlidir.
+
+  Ardından $\fn{Correct}(d)$'yi şöyle tanımlarız:
+  \begin{multline*}
+    \fn{Sent}(\fn{EndFmla}(d)) \land {}\\
+    [(\fn{LastRule}(d) = 1 \land
+    \fn{FollowsBy}_{\Intro\land}(d)) \lor \dots \lor {}\\
+    (\fn{LastRule}(d) = 16 \land \fn{FollowsBy}_{\Elim\eq}(d)) \lor {}\\
+    \bexists{n<d}{\bexists{x<d}{(d = \tuple{0, x, n})}}]
+  \end{multline*}
+  İlk satır $d$'nin sonundaki !!{formula} ifadesinin bir tümce olmasını sağlar. Son satır
+  ise $d$'nin yalnızca bir varsayım olduğu durumu kapsar.
+\end{proof}
+
+\begin{prob}
+  Aşağıdaki özellikleri \olref[inc][art][pnd]{prop:followsby}'deki gibi
+  tanımlayın:
+  \begin{enumerate}
+  \item $\fn{FollowsBy}_{\Elim{\lif}}(d)$,
+  \item $\fn{FollowsBy}_{\Elim{\eq}}(d)$,
+  \item $\fn{FollowsBy}_{\Elim{\lor}}(d)$,
+  \item $\fn{FollowsBy}_{\Intro{\lforall}}(d)$.
+  \end{enumerate}
+  Sonuncusu için Gödel numarası $d$ olan !!{derivation}{}in son çıkarımının
+  özdeğişken koşulunu sağlayıp sağlamadığını, yani
+  $\Intro{\lforall}$ çıkarımının $a$ özdeğişkeninin ne $d$'nin sonundaki
+  !!{formula} içinde ne de $d$'nin açık bir varsayımında geçtiğini ilkel
+  özyinelemeli biçimde sınayabildiğinizi de göstermelisiniz. Bunun için
+  \olref[inc][art][pnd]{prop:openassum}'daki ilkel özyinelemeli
+  $\fn{OpenAssum}$ yüklemini kullanabilirsiniz.
+\end{prob}
+
+\begin{prop}
+  \ollabel{prop:deriv}
+  $d$'nin doğru bir $\delta$ !!{derivation}{}inin Gödel numarası olması
+  durumunda geçerli olan $\fn{Deriv}(d)$ bağıntısı ilkel özyinelemelidir.
+\end{prop}
+
+\begin{proof}
+  !!^a{derivation}~$\delta$, ancak ve ancak çıkarımlarının her biri bir
+  kuralın doğru uygulamasıysa, başka bir deyişle alt-!!{derivation}s{}inin her
+  biri doğru bir çıkarımla bitiyorsa doğrudur. Dolayısıyla $\fn{Deriv}(d)$
+  ancak ve ancak
+  \[
+  \bforall{i<\len{\fn{SubtreeSeq}(d)}}{\fn{Correct}((\fn{SubtreeSeq}(d))_i)}
+  \]
+  geçerliyse geçerlidir.
+\end{proof}
+
+\begin{prop}
+  \ollabel{prop:openassum} Gödel numarası $z$ olan bir $!A$ varsayımının,
+  Gödel numarası $d$ olan $\delta$ !!{derivation}{}inin !!a{undischarged}
+  varsayımı olması durumunda geçerli olan $\fn{OpenAssum}(z, d)$ bağıntısı
+  ilkel özyinelemelidir.
+\end{prop}
+
+\begin{proof}
+  Bir varsayım geçişi, $\delta$'nın kapatma etiketi $n$ olan bir kuralla
+  biten alt-!!{derivation}{}inde $n$ etiketiyle geçiyorsa !!{discharged}{}tır.
+  Dolayısıyla $!A$, ancak ve ancak geçişlerinden en az biri $\delta$ içinde
+  !!{discharged} değilse $\delta$'nın !!a{undischarged} varsayımıdır. Dikkatli
+  olmalıyız: $\delta$, $!A$'nın hem !!{discharged} hem de !!{undischarged}
+  geçişlerini içerebilir.
+
+  $\delta_0 = \delta$ ve $\delta_k$, bir $n$ için
+  $\Discharge{!A}{n}$ varsayımı olacak ve $\delta_{i+1}$,
+  $\delta_i$'nin dolaysız bir alt-!!{derivation}{}i olacak biçimde bir
+  $\delta_0$, \dots, $\delta_k$ dizisini ele alın. Hiçbir $\delta_i$'nin
+  kapatma etiketi $n$ olan bir çıkarımla bitmediği böyle bir dizi varsa
+  $!A$, $\delta$'nın !!a{undischarged} varsayımıdır.
+
+  İlkel özyinelemeli $\fn{SubtreeSeq}(d)$ fonksiyonu bize $\delta$'nın bütün
+  alt-!!{derivation}s{}inin Gödel numaraları dizisini verir. $\delta$'nın
+  alt-!!{derivation}s{}inin Gödel numaralarından oluşan her dizi bunun bir alt
+  dizisidir. Alt dizi olma, ilkel özyinelemeli bir bağıntıdır:
+  $\fn{Subseq}(s, s')$ ancak ve ancak
+  $\bforall{i<\len{s}}{\lexists[j<\len{s'}][(s)_i = (s')_j]}$ geçerliyse
+  geçerlidir. Dolaysız alt-!!{derivation} olma da öyledir:
+  $\fn{Subderiv}(d, d')$ ancak ve ancak
+  $\bexists{j<(d')_0}{d = (d')_{j+1}}$ geçerliyse geçerlidir. Dolayısıyla
+  $\fn{OpenAssum}(z, d)$'yi şöyle tanımlayabiliriz:
+  \begin{multline*}
+    \bexists{s<\fn{SubtreeSeq}(d)}{(\fn{Subseq}(s, \fn{SubtreeSeq}(d))
+      \land (s)_0 = d \land {}} \\
+    \bexists{n<d}{((s)_{\len{s} \tsub 1} = \tuple{0, z, n} \land {}}\\
+      \bforall{i<(\len{s} \tsub 1)}{(\fn{Subderiv}((s)_{i+1}, (s)_i) \land {}}\\
+      \fn{DischargeLabel}((s)_i) \neq n)))
+  \end{multline*}
+\end{proof}
+
+\begin{prop}
+  \ollabel{prop:prf-prim-rec}
+  $\Gamma$'nın ilkel özyinelemeli bir !!{sentence}s kümesi olduğunu varsayın.
+  O zaman ``$x$, $!A$'nın !!a{derivation}{}i olan ve !!{undischarged}
+  varsayımları $\Gamma$ içinde bulunan bir $\delta$'nın kodudur ve $y$,
+  $!A$'nın Gödel
+  numarasıdır'' ifadesini veren $\Prf[\Gamma](x, y)$ bağıntısı ilkel
+  özyinelemelidir.
+\end{prop}
+
+\begin{proof}
+  ``$y \in \Gamma$'' ifadesinin ilkel özyinelemeli $R_\Gamma(y)$ yüklemiyle
+  verildiğini varsayın. Ancak ve ancak $y$, bir $!A$ tümcesinin Gödel
+  numarasıysa ve $x$, son !!{formula} olarak $!A$'yı taşıyan, bütün !!{undischarged}
+  varsayımları da $\Gamma$'da bulunan bir doğal tümdengelim !!{derivation}{}inin
+  koduysa geçerli olan $\Prf[\Gamma](x, y)$ bağıntısının ilkel
+  özyinelemeli olduğunu göstermeliyiz.
+
+  \olref{prop:deriv}'e göre $x$'in doğal tümdengelimde doğru bir $\delta$
+  !!{derivation}{}inin Gödel numarası olması durumunda geçerli olan
+  $\fn{Deriv}(x)$ özelliği ilkel özyinelemelidir. Dolayısıyla
+  $\Prf[\Gamma](x, y)$'yi şöyle tanımlayabiliriz:
+  \begin{align*}
+    \Prf[\Gamma](x, y) \defiff {}
+    & \fn{Deriv}(x) \land \fn{EndFmla}(x) = y \land {} \\
+    & \bforall{z < x}{(\fn{OpenAssum}(z, x) \lif R_\Gamma(z))}
+  \end{align*}
+\end{proof}
+

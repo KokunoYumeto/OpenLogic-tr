@@ -1,0 +1,100 @@
+% Generated from locale/tr/content/proof-theory/natural-deduction/introduction.tex; do not hand-edit.
+
+
+\olfileid[tr]{pt}{nat}{int}
+
+\olsection{Giriş}
+
+Doğal tümdengelim, her mantıksal bağlaç ya da niceleyici için biri işleci
+``tanıtan'' (!!a{introduction} kuralı), öteki işleci ``gideren''
+(!!a{elimination} kuralı) bir çıkarım çifti bulunan !!{proof} sistemleri
+ailesidir. Örneğin \Intro{\lif}, sonuç olarak~$!A \lif !B$ biçimindeki
+!!{formula}{}ü; \Elim{\lif} ise öncül olarak~$!A \lif !B$ biçimindeki
+!!{formula}{}ü içerir.
+
+Doğal tümdengelimin ilk iki sürümü 1930'larda Gerhard Gentzen ve Stanisław
+Jaśkowski tarafından tanıtıldı. İspat kuramcıları daha çok Gentzen'in
+sistemini ele alır; öğretimde en yaygın kullanılan sistemler ise
+Jaśkowski'nin yaklaşımından doğmuştur. İki sistemde de \emph{varsayımlarla}
+başlanabilir: Bunlar !!{prove}{}nması gerekmeyen, fakat başka !!{formula}s{}i
+!!{proving} amacıyla kullanılabilen !!{formula}s{}dir. Bütün bir !!{proof} böyle
+varsayımlara dayanabilir. Varsayımlar ispatlanmadığından !!{proof}, sonucunu
+(\emph{son-!!{formula}{}ünü}) tek başına değil, yalnızca sonucun varsayımlardan
+çıktığını gösterir.
+
+Bazı çıkarım kuralları, sonuçlarının artık kimi varsayımlara dayanmamasını
+sağlar: Varsayımları ``kapatırlar.'' Örneğin \Intro{\lif} kuralı, $!A$
+varsayımından $!B$ sonucuna giden !!a{proof}{}ı alır ve sonuç olarak
+$!A \lif !B$'yi verir. $!A \lif !B$ ile biten !!{proof} artık $!A$'ya
+dayanmaz; $!A$ varsayımı kapatılmıştır. Gentzen sistemlerinde !!{proof}s,
+!!{formula}s{}den oluşan ağaçlardır; varsayımlar en üstteki !!{formula}s ve
+\Intro{\lif} gibi kurallar hangi varsayımların kapatıldığını belirten
+etiketler taşır. Jaśkowski sistemlerinde bir varsayıma dayanan !!{proof}
+parçaları bir biçimde ayrılır: Örneğin dikey bir çizginin gerisine girintili
+yazılır ya da bir kutuya alınır. Kapatılacak $!A$ varsayımı kutunun ilk,
+koşullunun artbileşeni $!B$ son satırında; \Intro{\lif}'in sonucu
+$!A \lif !B$ ise kutunun dışında bulunur.
+
+Bu sistemler ``doğal''dır; çünkü çıkarım kuralları bizim (en azından
+matematikçilerin) doğal akıl yürütmesini yansıtır. Varsayımsal bir sonucu
+(koşulluyu) göstermek için önbileşeni varsayar ve artbileşeni ispatlamakta
+kullanırız. Bu~\Intro{\lif}'dir. Bir $!A \lif !B$ koşullusuyla önbileşeni
+$!A$ bilindiğinde $!B$ sonucuna varırız. Bu~\Elim{\lif}'dir. Bir ayrışım
+$!A \lor !B$ varsayımı altında bir sonucun geçerli olduğunu göstermek için
+durumlara ayırarak ispat kullanırız. Bu~\Elim{\lor}'dir. Genel bir
+$\lforall[x][!A(x)]$ iddiasını ispatlamak için gelişigüzel bir~$c$ için
+$!A(c)$'nin geçerli olduğunu ispatlarız. Bu~\Intro{\lforall}'dır. Ve böyle
+devam eder.
+
+Örneğin Gentzen tipi doğal tümdengelimde $!A \lif (!A \lor !B)$'nin basit
+bir !!{proof}{}ı şöyledir:
+\[
+\AxiomC{$\Discharge{!A}{x}$}
+\RightLabel{\Intro{\lor}}
+\UnaryInfC{$!A \lor !B$}
+\DischargeRule{\Intro{\lif}}{x}
+\UnaryInfC{$!A \lif (!A \lor !B)$}
+\DisplayProof
+\]
+$!A$ varsayımıyla başlar,~$!A \lor !B$ sonucunu çıkarmak için
+\Intro{\lor}, ardından~$!A \lif (!A \lor !B)$ sonucunu çıkarmak için
+\Intro{\lif} kullanılır. \Intro{\lif} çıkarımı $!A$ varsayımını kapatır;
+bunu~$x$ etiketi gösterir.
+
+Bir çeşitlemesi de ispat kuramında önemli olsa da ispat kuramcıları
+Gentzen'in !!{formula}s ağaçlarıyla çalışan özgün sistemlerini yeğler.
+$\Gamma$ varsayımlarından~$!A$'nın !!^a{proof}{}ı, $!A$'nın $\Gamma$'dan
+çıktığını, yani $\Gamma \Entails !A$ olduğunu gösterir. Doğal tümdengelimin
+çıkarım kuralları böyle gerektirmeler hakkında bir şey söylediği biçiminde
+doğal olarak okunabilir. Örneğin \Intro{\lif},
+$\Gamma + !A \Entails !B$ ise $\Gamma \Entails !A \lif !B$ olduğunu söyler.
+Kuralları, çıkarım kuralının öncülleriyle sonucunda hem varsayımlar hem de
+onlardan çıkan sonuç üzerinde, yani $\Gamma \Sequent !A$ sekantları üzerinde
+doğrudan işleyecek biçimde formüle etmek doğaldır. Yukarıdaki basit ispat
+böyle bir sistemde şöyle görünür:
+\[
+\Axiom$x:!A \fCenter !A$
+\RightLabel{\Intro{\lor}}
+\UnaryInf$x:!A \fCenter !A \lor !B$
+\DischargeRule{\Intro{\lif}}{x}
+\UnaryInf$\fCenter !A \lif (!A \lor !B)$
+\DisplayProof
+\]
+Gördüğünüz gibi kurallar aynıdır: $\Sequent$ simgesinin sağındaki
+!!{formula} üzerinde işler; soldaki !!{formula}s ise yalnızca her adımın
+dayandığı varsayımları listeler.
+
+!!{introduction}/!!{elimination} kural çiftlerinin tam kümesi tek başına
+klasik mantık için tam değildir. $\lfalse$ ile ilgili iki ek kural
+eklemeliyiz. Birincisi, $\lfalse$'dan her şeyin çıkarılabileceğini söyleyen
+``sezgici saçmalık kuralı''~\FalseInt, diğer adıyla ``patlama''dır. İkincisi,
+$\lnot !A$'dan~$\lfalse$'ı !!{prove}{}yabilirsek $!A$'yı !!{prove}{}mış
+olduğumuzu söyleyen klasik dolaylı ispat ilkesi~\FalseCl{} (ya da ``klasik
+saçmalık kuralı'')dır. \FalseCl{} çıkarılırsa sezgici mantığa uygun bir sistem
+elde ederiz. İkisi de çıkarılırsa ``minimal mantık'' denen sistem kalır.
+
+Klasik ve sezgici mantık için Gentzen tipi doğal tümdengelimi ele alacağız.
+Bunlar $\Log{N1c}$ ve $\Log{N1i}$ sistemleridir. $\Log{N2c}$ ile
+$\Log{N2i}$ ise tek tek !!{formula}s~$!A$ yerine $\Gamma \Sequent !A$
+sekantları üzerinde çalışan karşılık gelen sistemlerdir.
+

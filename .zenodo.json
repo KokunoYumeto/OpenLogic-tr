@@ -1,15 +1,20 @@
 {
   "creators": [
-    {"name": "Open Logic Project"}
+    {
+      "name": "Open Logic Project"
+    }
   ],
   "contributors": [
-    {"name": "OpenAI 5.6 Sol, Ultra mode", "type": "Other"}
+    {
+      "name": "OpenAI 5.6 Sol, Ultra mode",
+      "type": "Other"
+    }
   ],
-  "title": "Open Logic Project — Türkçe Tam Sürüm / Complete Turkish Edition (OLP-0722, 722/722)",
-  "version": "OLP-0722-20260814",
-  "publication_date": "2026-08-14",
+  "title": "Open Logic Project — Türkçe: 722 modülün tamamı / All 722 modules in the Turkish reader",
+  "version": "OLP-0722-READER-20260904",
+  "publication_date": "2026-09-04",
   "access_right": "open",
-  "description": "<p><strong>Complete Turkish edition:</strong> all 722/722 frozen Open Logic Project content modules are translated. The 1,037-page linked reader covers the 642 canonical-reader-reachable modules; 80 retained non-reader modules remain in the editable corpus and are explicitly outside build/render applicability. Frozen authority: commit <code>9620cc73f9c8e0ad003c514a5d3748f29611c4c0</code>, tree <code>f67757bb9305b173634082ab4cefd5601a707a34</code>, under CC BY 4.0.</p><p>All 722 targets passed aggregate exact-source, structural, and model-review admission. The 642 reader-reachable targets additionally passed a deterministic build with exit code 0 and zero missing-character or unresolved-reference/citation diagnostics, complete text-layer residue scans, and all-page visual inspection; build/render are not applicable to the 80 retained non-reader targets. The editable-source and evidence packages preserve terminology, translation decisions, source-backed emendations, build/render receipts, target hashes, closure records, DOI methodology, and Turkic interlanguage research notes.</p><p>Exact release DOI: <a href=\"https://doi.org/10.5281/zenodo.21927145\">10.5281/zenodo.21927145</a>. Stable Turkish concept DOI: <a href=\"https://doi.org/10.5281/zenodo.21921844\">10.5281/zenodo.21921844</a>.</p><p>Performed at Floris’s direction by “OpenAI 5.6 Sol, Ultra mode” (“OpenAI’s current flagship model for complex work”). Human or native review is not a release gate.</p>",
+  "description": "<p><strong>Türkçe: 722 modülün tamamı tek okuyucuda / All 722 modules in one Turkish reader — 1,198 pages.</strong></p><p>Önceki PDF’de olmayan 80 modül, metinleri, kanıtları, alıştırmaları ve kural tablolarıyla okuyucuya eklenmiştir. Bu çeviriler zaten kaynak paketinde bulunuyordu.</p><p>The previous reader covered 642 of the 722 translated modules. This correction includes the other 80 in the PDF, with stable OLP identifiers and bookmarks. It preserves the original Turkish target bodies and does not claim to complete proofs unfinished in the frozen English source.</p><p>The exact 6,200,006-byte PDF passed local build, source-preservation, text/link and visual checks: 904 bookmarks, 3,172 internal links, zero broken internal links. SHA-256: <code>4af08c16e61aa058500cc1e96acb5d700c988718a729d4d6cbbe4aea9664df94</code>. These checks concern the PDF itself; publication is recorded separately.</p><p>The source/provenance ZIPs are privacy-safe derivatives. In 48 metadata/log entries, the case-insensitive private profile identifier becomes [maintainer]. Every other entry byte and all entry names are preserved; all 722 translated target bodies match their frozen closure hashes. The correction ZIP includes per-entry original/derivative hashes and the privacy rationale. Historical public versions remain unchanged.</p><p>Frozen source: Open Logic Project commit <code>9620cc73f9c8e0ad003c514a5d3748f29611c4c0</code>. This is Turkish, not Inter-Turkic.</p><p><a href=\"https://doi.org/10.5281/zenodo.21921844\">Stable Turkish concept DOI</a>; <a href=\"https://doi.org/10.5281/zenodo.21927145\">previous 642-module reader</a>; <a href=\"https://github.com/KokunoYumeto/OpenLogic-tr\">GitHub repository</a>.</p>",
   "related_identifiers": [
     {
       "identifier": "https://github.com/OpenLogicProject/OpenLogic/commit/9620cc73f9c8e0ad003c514a5d3748f29611c4c0",

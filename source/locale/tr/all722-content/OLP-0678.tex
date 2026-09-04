@@ -1,0 +1,311 @@
+% Generated from locale/tr/content/proof-theory/normalization/translations.tex; do not hand-edit.
+
+
+\olfileid[tr]{pt}{nor}{tr}
+
+\olsection{Normal \Log{N2i}-\usetoken{P}{proof} ile \Log{G2i} Arasında Çeviri}
+
+\Log{N2i} içindeki !!^{proof} örnekleri, \Log{G2i} içindeki !!{proof} biçimine
+ve bunun tersi yönde çevrilebilir. Öncelikle, kesmesiz \Log{G2i}
+!!{proof} örnekleri çevrildiğinde normal \Log{N2i}-!!{proof} örnekleri elde edilir.
+
+Sonucu ifade etmek için \Log{N2i} ve \Log{G2i} içindeki sekantların
+önbileşenlerini daha kolay ilişkilendirmemizi sağlayacak biraz
+terminolojiye gereksinimimiz var: Etiketli !!{formula} biçimlerinden oluşan bir
+$\Gamma'$ kümesi, etiketsiz !!{formula} biçimlerinden oluşan $\Gamma$ çoklu
+kümesine şu durumda \emph{karşılık gelir}: Her $!A$ !!{formula} için,
+$\Gamma'$ içinde $x : !A$ biçimindeki !!{element} sayısı, $!A$'nın
+$\Gamma$ içindeki katlılığından küçük ya da ona eşittir.
+
+\begin{cor}
+$\Log{G2i} \Proves \Gamma \Sequent !C$ ise $\Gamma' \Sequent !C$
+için normal bir \Log{N2i}-!!{proof}~$\delta$ vardır; burada etiketli
+!!{formula} biçimlerinden oluşan $\Gamma'$ kümesi $\Gamma$ çoklu kümesine
+karşılık gelir. Başka bir deyişle, her $!A$ !!{formula} için,
+$\Gamma'$ içinde $x : !A$ biçimindeki !!{element} sayısı $!A$'nın
+$\Gamma$ içindeki katlılığından (yani $!A$ kopyalarının sayısından)
+küçük ya da ona eşittir.
+\end{cor}
+
+\begin{proof}
+\olref[nat][tgi]{prop:G2i-to-N2i} ispatını inceleyelim:
+!!{introduction} kurallarını !!{proof} sonlarına, !!{elimination}
+kurallarını ise yalnızca !!{proof} başlarına ekleriz; dolayısıyla hiçbir
+!!{introduction} kuralını !!a{elimination} kuralının üzerine getirmeyiz.
+\end{proof}
+
+Ancak \olref[nat][tgi]{prop:G2i-to-N2i}'de verilen \Cut{} kuralı
+çevirisi, \Log{N2i}-!!{proof}~$\delta$ içinde kesmeler ortaya
+çıkarabilir. Bir \Log{G2i} !!{proof}, sırasıyla $\Gamma_1 \Sequent !A$
+ve $!A, \Gamma_2 \Sequent \Delta_2$ için doğrudan alt-!!{proof} örnekleri
+$\pi_1$ ve $\pi_2$ ile \Cut{} çıkarımında bitiyorsa $\pi_1$'in
+$\delta_1$ çevirisini, $\pi_2$'nin $\delta_2$ çevirisinde geçen $x:!A
+\Sequent !A$ aksiyomlarına aşılarız. $\delta_1$, !!a{introduction}
+kuralında ana !!{formula} olarak $!A$'yı taşıyarak bitiyorsa ve
+$\delta_2$ içindeki $x:!A \Sequent !A$ aksiyomu !!a{elimination}
+kuralının büyük öncülüyse bunun sonucunda $\delta$ içinde bir kesme
+oluşur.
+
+\Log{N2i} içindeki !!{proof} örnekleri, \Log{G2i} içindeki !!{proof} biçimine
+de çevrilebilir. \olref[nat][tni]{prop:N2-to-G2} ispatında
+\Elim{\land}, \Elim{\lif}, \Elim{\lnot}, \Elim{\lforall} çevirisi,
+elde edilen \Log{G2i} !!{proof} içinde \Cut{} çıkarımlarına yol açar.
+Ancak başladığımız \Log{N2i}-!!{proof} normal ise bundan kaçınılabilir.
+
+Bir \Log{N2i}-!!{proof}~$\delta$ içindeki sekant oluşumlarından
+oluşan $S_1$, \dots,~$S_n$ listesine, $S_1$ bir aksiyomsa ve $S_i$ bir
+çıkarımın büyük öncülü olduğunda $S_{i+1}$ o çıkarımın sonucuysa
+\emph{dal} diyelim. Başka bir deyişle dal, $\delta$ içinde sekantları
+aksiyomlardan aşağı doğru izler, ancak !!{elimination}
+kurallarının küçük öncüllerinde durur. $\delta$ için bir \emph{ana dal},
+$S_n$'nin son sekant olduğu bir daldır. Her kuralın en az bir büyük
+öncülü bulunduğundan (yalnızca \Intro{\land} iki büyük öncüle sahiptir),
+her !!{proof}~$\delta$ en az bir ana dala sahip olmalıdır.
+
+
+\begin{prop}\ollabel{prop:normal-N2i-to-G2i} $\delta$, $\Gamma \Sequent
+!A$ için normal bir $\Log{N2c}$- ya da $\Log{N2i}$-!!{proof} ise
+$\Gamma' \Sequent \Delta$ için (kesmesiz) bir $\Log{G2c}$-!!{proof}
+($\Log{G2i}$-!!{proof})~$\pi$ vardır; burada $\Gamma'$, $\Gamma$
+içindeki etiketlerin kaldırılmasıyla elde edilen !!{formula} çoklu
+kümesidir ve $!A$, $\lfalse$ değilse $\Delta = \{!A\}$, öyleyse
+$\Delta = \emptyset$ olur.
+\end{prop}
+
+\begin{proof}
+Bu kez tümevarım, $\Gamma \Sequent !A$ için !!{proof}~$\delta$ içindeki
+çıkarımların sayısı üzerindendir. $\delta$ içinde çıkarım yoksa
+$x:!A \Sequent !A$ bir aksiyomdur ve $\pi$, karşılık gelen $!A \Sequent
+!A$ aksiyomudur; $!A \ident \lfalse$ ise $\lfalse \Sequent \ $ olur.
+
+$\delta$ bir çıkarım kuralında bitiyorsa durumları ayırırız:
+\begin{enumerate}
+  \item $R$, !!a{introduction} kuralı ya da \FalseInt ise çeviri
+  tam olarak \olref[nat][tni]{prop:N2-to-G2} ispatındaki gibi ilerler
+  ve \Cut{} gerektirmez.
+
+  $\delta$'nın son kuralı $R$, !!a{elimination} kuralıysa şunlara
+  dikkat edin:
+  \begin{enumerate}
+    \item $\delta$'nın bir ana dalı hiçbir !!{introduction} kuralından
+    geçmez; aksi hâlde ana dal boyunca !!a{introduction} kuralını ya da
+    \FalseInt{} kuralını !!a{elimination} kuralı izler ve $\delta$
+    normal olmazdı.
+    \item $\delta$'nın ana dalları boyunca !!{introduction} kuralı
+    bulunmadığından yalnızca bir ana dal vardır. (Yalnızca
+    \Intro{\land} iki büyük öncüle sahiptir; dolayısıyla birden çok ana
+    dalın bir \Intro{\land} kuralının öncüllerinden geçmesi gerekirdi.)
+    \item Ana dal \Elim{\lor} ya da \Elim{\lexists} çıkarımının büyük
+    öncülünü içeriyorsa bu tür yalnızca bir kural vardır ve bu da son
+    kural, yani $R$'dir. (Aksi hâlde ana dal, sonucu !!a{elimination}
+    kuralının büyük öncülü olan bir \Elim{\lor} ya da \Elim{\lexists}
+    kuralı içerirdi ve permütasyon dönüştürmesi uygulayabildiğimiz için
+    ispat normal olmazdı.)
+  \item \Elim{\lor} ve \Elim{\lexists} dışındaki hiçbir
+  !!{elimination} kuralı varsayımları boşa çıkarmaz, yani sekantların
+  sol bağlamını değiştirmez. \Elim{\lor} ve \Elim{\lexists}
+  yalnızca küçük bir öncülün üzerindeki varsayımları boşa çıkarır; yani
+  yalnızca küçük öncüllerinin sol bağlamını değiştirir. Başka bir
+  deyişle, $\delta$'nın ana dalındaki bir $S_i$ sekantı
+  $\Gamma_1$ bağlamına sahipse $S_i$'nin büyük öncül olduğu çıkarımın
+  $S_{i+1}$ sonucu $\Gamma_1' \supseteq \Gamma_1$ bağlamına sahiptir.
+  \item Dolayısıyla $x: !C \Sequent !C$, ana daldaki en üst sekant
+  $S_1$ ise $x:!C \in \Gamma$ olur.
+  \end{enumerate}
+  Şimdi $!C$'nin biçimine göre durumları ayırırız. Ana daldaki her
+  $S_i$, !!a{elimination} kuralının büyük öncülü olduğundan bu,
+  $x:!C \Sequent !C$ için de geçerlidir.
+
+  \item $!C \ident !D \land !E$ olsun. O zaman $\delta$ şu biçimdedir:
+  \[
+  \Axiom$x:!D \land !E \fCenter !D \land !E$
+  \RightLabel{\Elim{\land}[1]}
+  \UnaryInf$x:!D \land !E \fCenter !D$
+  \Deduce$x:!D \land !E, \Gamma_1 \fCenter !A$
+  \DisplayProof
+  \]
+  $x:!D \land !E \Sequent !D$'yi içeren ana dal, \Intro{\lif} ya da
+  \Intro{\lnot} çıkarımının hiçbir büyük öncülünü ve \Elim{\lor} ya da
+  \Elim{\lexists} çıkarımının hiçbir küçük öncülünü içermediğinden,
+  $x:!D \land !E$ içindeki bağlamın !!{formula} biçimleri ana dal boyunca
+  değişmeden kalır. Bu, son sekantın bağlamının neden $x:!D \land
+  !E$'yi içermesi gerektiğini açıklar. Ayrıca \Elim{\land} ile biten
+  alt-!!{proof} yerine $x:!D \Sequent !D$ koyup ana dal boyunca her
+  sekantın bağlamındaki $x:!D \land !E$ yerine $x:!D$ koyarak
+  !!{proof}~$\delta$'yı bir !!{proof}~$\delta_1$ biçimine getirebiliriz;
+  yani aşağıdakini
+  \[
+  \bottomAlignProof
+  \Axiom$x:!D \land !E \fCenter !D \land !E$
+  \RightLabel{\Elim{\land}[1]}
+  \UnaryInf$x:!D \land !E \fCenter !D$
+  \Deduce$x:!D \land !E, \Gamma_1 \fCenter !A$
+  \DisplayProof
+  \quad\text{şuna dönüştürürüz:}\quad
+  \bottomAlignProof
+  \Axiom$x:!D \fCenter !D$
+  \Deduce$x:!D, \Gamma_1 \fCenter !A$
+  \DisplayProof
+  \]
+  $\delta$ içindeki çıkarım sayısı $\delta_1$ içindeki çıkarım
+  sayısından $1$ fazla olduğundan tümevarım varsayımı $\delta_1$ için
+  geçerlidir.
+
+  Tümevarım varsayımına göre $x:!D, \Gamma_1 \Sequent !A$ için bir
+  \Log{G2i}-!!{proof} $\pi_1$ vardır. \LeftR{\land} uygulayarak
+  !!{proof}~$\pi$'yi elde ederiz:
+  \[
+  \AxiomC{}
+  \RightLabel{$\pi_1$}
+  \Deduce$!D, \Gamma_1' \fCenter !A$
+  \RightLabel{\LeftR{\land}}
+  \UnaryInf$!D \land !E, \Gamma_1' \fCenter !A$
+  \DisplayProof
+  \]
+  $!A \ident \lfalse$ ise tümevarım varsayımının verdiği $\pi_1$'in
+  artbileşeni boştur; \LeftR{\land} uygulaması da artbileşeni boş bırakır.
+  \item $!C \ident !D \lor !E$ ise \Elim{\lor} çıkarımının büyük
+  öncülü olmalıdır ve bu çıkarım ana daldaki son çıkarım $R$ olmalıdır.
+  Başka bir deyişle $\delta$ şu biçimdedir:
+  \[
+  \Axiom$x:!D \lor !E \fCenter !D \lor !E$
+  \AxiomC{}
+  \RightLabel{$\delta_1$}
+  \Deduce$y:!D, \Gamma_1 \fCenter!A$
+  \AxiomC{}
+  \RightLabel{$\delta_2$}
+  \Deduce$z:!E, \Gamma_2 \fCenter !A$
+  \RightLabel{\Elim{\lor}}
+  \TrinaryInf$x:!D \lor !E, \Gamma_1, \Gamma_2 \fCenter !A$
+  \DisplayProof
+  \]
+  Tümevarım varsayımı !!{proof} örnekleri $\delta_1$ ve $\delta_2$ için
+  geçerlidir; $!D, \Gamma_1' \Sequent !A$ ve $!E, \Gamma_2' \Sequent
+  !A$ için \Log{G2i}-!!{proof} örnekleri $\pi_1$ ve $\pi_2$ elde ederiz.
+  $\pi$'yi elde etmek için $\LeftR{\lor}$ uygularız:
+  \[
+  \AxiomC{}
+  \RightLabel{$\pi_1$}
+  \Deduce$!D, \Gamma_1' \fCenter !A$
+  \AxiomC{}
+  \RightLabel{$\pi_2$}
+  \Deduce$!E, \Gamma_2' \fCenter !A$
+  \RightLabel{\LeftR{\lor}}
+  \BinaryInf$!D \lor !E, \Gamma_1', \Gamma_2' \fCenter !A$
+  \DisplayProof
+  \]
+  $\Elim{\lor}$, $y: !D$ ya da $z: !E$'yi boşa çıkarmıyorsa (yani
+  bunlar küçük öncüllerin bağlamında yoksa) birkaç
+  \LeftR{\Weakening} eklememiz gerekir. $!A \ident \lfalse$ ise
+  tümevarım varsayımının verdiği artbileşenler ve sonuç artbileşeni boş
+  kalır. Örneğin:
+  \[
+  \AxiomC{}
+  \RightLabel{$\pi_1$}
+  \Deduce$\Gamma_1' \fCenter $
+  \RightLabel{\LeftR{\Weakening}}
+  \UnaryInf$!D, \Gamma_1' \fCenter $
+  \AxiomC{}
+  \RightLabel{$\pi_2$}
+  \Deduce$\Gamma_2' \fCenter $
+  \RightLabel{\LeftR{\Weakening}}
+  \UnaryInf$!E, \Gamma_2' \fCenter $
+  \RightLabel{\LeftR{\lor}}
+  \BinaryInf$!D \lor !E, \Gamma_1', \Gamma_2' \fCenter $
+  \DisplayProof
+  \]
+  
+  \item $!C \ident !D \lif !E$ olsun. O zaman $\delta$ şu biçimdedir:
+  \[
+  \Axiom$x:!D \lif !E \fCenter !D \lif !E$
+  \AxiomC{}
+  \RightLabel{$\delta_1$}
+  \Deduce$\Gamma_1 \fCenter!D$
+  \RightLabel{\Elim{\lif}}
+  \BinaryInf$x:!D \lif !E, \Gamma_1 \fCenter !E$
+  \RightLabel{$\delta_2$}
+  \Deduce$x:!D \lif !E, \Gamma_1, \Gamma_2 \fCenter !A$
+  \DisplayProof
+  \]
+  Burada $x:!D \lif !E, \Gamma_1 \Sequent !E$'yi içeren ana dal,
+  \Intro{\lif} ya da \Intro{\lnot} çıkarımının hiçbir büyük öncülünü
+  ve \Elim{\lor} ya da \Elim{\lexists} çıkarımının hiçbir küçük
+  öncülünü içermediğinden, $x:!D \lif !E, \Gamma_1$ içindeki bağlam
+  !!{formula} biçimleri ana dal boyunca değişmeden kalır. Bu, son sekantın
+  bağlamının neden $x:!D \lif !E, \Gamma_1$'i içermesi gerektiğini
+  açıklar. Ayrıca \Elim{\lif} ile biten alt-!!{proof} yerine $x:!E
+  \Sequent !E$ koyup ana dal boyunca her sekantın bağlamındaki
+  $x:!D \lif !E, \Gamma_1$ yerine $x:!E$ koyarak !!{proof} parçası
+  $\delta_2$'yi doğru bir !!{proof}~$\delta_2'$ biçimine getirebiliriz;
+  yani aşağıdakini
+  \[
+  \bottomAlignProof
+  \Axiom$x:!D \lif !E, \Gamma_1 \fCenter !E$
+  \RightLabel{$\delta_2$}
+  \Deduce$x:!D \lif !E, \Gamma_1, \Gamma_2 \fCenter !A$
+  \DisplayProof
+  \quad\text{şuna dönüştürürüz:}\quad
+  \bottomAlignProof
+  \Axiom$x:!E \fCenter !E$
+  \RightLabel{$\delta_2'$}
+  \Deduce$x:!E, \Gamma_2 \fCenter !A$
+  \DisplayProof
+  \]
+  $\delta$ içindeki çıkarım sayısı, $\delta_1$ ve $\delta_2$ içindeki
+  çıkarım sayılarının toplamına ana dalın başlangıcındaki \Elim{\lif}
+  çıkarımı için $1$ eklenmesiyle elde edildiğinden, tümevarım varsayımı
+  $\delta_1$ ve $\delta_2'$ için geçerlidir. (Bu çıkarım aynı zamanda
+  $\delta$ içindeki son çıkarım $R$ ise $\delta_1$ sıfır çıkarım içerir.)
+
+  Tümevarım varsayımına göre $\Gamma_1 \Sequent !D$ ve $!E, \Gamma_2'
+  \Sequent !A$ için \Log{G2i}-!!{proof} örnekleri $\pi_1$ ve $\pi_2$ vardır.
+  \LeftR{\lif} uygulayarak !!{proof}~$\pi$'yi elde ederiz:
+  \[
+  \AxiomC{}
+  \RightLabel{$\pi_1$}
+  \Deduce$\Gamma_1' \fCenter !D$
+  \AxiomC{}
+  \RightLabel{$\pi_2$}
+  \Deduce$!E, \Gamma_2' \fCenter !A$
+  \RightLabel{\LeftR{\lif}}
+  \BinaryInf$!D \lif !E, \Gamma_1', \Gamma_2' \fCenter !A$
+  \DisplayProof
+  \]
+  $!D \ident \lfalse$ ise $\pi_1$'i \LeftR{\lif} kuralının öncülüne
+  uygun hâle getirmek için bir \RightR{\Weakening} ekleriz. Buna karşılık
+  $!A \ident \lfalse$ ise $\pi_2$'nin ve elde edilen sonucun artbileşeni
+  boş kalır. Örneğin her iki durum birlikte gerçekleştiğinde:
+  \[
+  \AxiomC{}
+  \RightLabel{$\pi_1$}
+  \Deduce$\Gamma_1' \fCenter $
+  \RightLabel{\RightR{\Weakening}}
+  \UnaryInf$\Gamma_1' \fCenter !D$
+  \AxiomC{}
+  \RightLabel{$\pi_2$}
+  \Deduce$!E, \Gamma_2' \fCenter $
+  \RightLabel{\LeftR{\lif}}
+  \BinaryInf$!D \lif !E, \Gamma_1', \Gamma_2' \fCenter $
+  \DisplayProof
+  \]
+
+\end{enumerate}
+Kalan durumlar benzer biçimde ele alınır ve alıştırma olarak bırakılır.
+\end{proof}
+
+\begin{cor}
+Her !!{formula}, normal bir \Log{N1i}- ya da \Log{N2i}-!!{proof}
+içinde geçiyorsa son-!!{formula} ya da son sekantın bir alt
+!!{formula} biçimidir.
+\end{cor}
+
+\begin{proof}
+  \olref{prop:normal-N2i-to-G2i} uyarınca her normal
+  \Log{N2i}-!!{proof}, bir \Log{G2i}-!!{proof} biçimine çevrilebilir.
+  İspat incelendiğinde her !!{formula} biçiminin,
+  \Log{N2i}-!!{proof} içinde geçiyorsa \Log{G2i}-!!{proof} içinde de
+  geçtiği görülür.
+  \Cut{} kuralını içermeyen \Log{G2i}, alt-!!{formula} özelliğine
+  sahiptir.
+\end{proof}
+

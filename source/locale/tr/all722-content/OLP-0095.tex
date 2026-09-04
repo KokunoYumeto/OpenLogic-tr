@@ -1,0 +1,302 @@
+% Generated from locale/tr/content/first-order-logic/natural-deduction/soundness.tex; do not hand-edit.
+
+
+\iftag{FOL}
+      {\olfileid[tr]{fol}{ntd}{sou}}
+      {\olfileid[tr]{pl}{ntd}{sou}}
+      
+\olsection{Sağlamlık}
+
+\begin{explain}
+!!^a{derivation} sistemi olan doğal tümdengelim, gerçekte sonuç olarak
+çıkmayan şeyleri !!{derive} mümkün değilse \emph{sağlamdır}. Dolayısıyla
+sağlamlık, !!{derivation} sistemleri için bir tür güvenlik garantisidir. Söz
+konusu ispat kuramsal özelliğe bağlı olarak, örneğin şunları bilmek isteriz:
+\begin{enumerate}
+\item her !!{derivable} !!{sentence}, \iftag{FOL}{geçerlidir}{bir
+  totolojidir};
+\item !!a{sentence} başka bazı tümcelerden !!{derivable} ise onların aynı
+  zamanda mantıksal sonucudur;
+\item bir !!{sentence}s kümesi tutarsızsa sağlanamaz.
+\end{enumerate}
+Bunlar !!a{derivation} sisteminin önemli özellikleridir. Bunlardan herhangi
+biri geçerli değilse !!{derivation} sistemi kusurludur: gereğinden fazlasını
+!!{derive} mümkün kılar. Bu nedenle !!{derivation} sisteminin sağlamlığını ortaya
+koymak son derece önemlidir.
+\end{explain}
+
+\begin{thm}[Sağlamlık]
+\ollabel{thm:soundness}
+$!A$ !!{derivable} ise ve kaynak !!{undischarged} varsayımlar $\Gamma$ ise
+$\Gamma \Entails !A$ olur.
+\end{thm}
+
+\begin{proof}
+$\delta$, $!A$ için !!a{derivation} olsun. $\delta$ içindeki çıkarım sayısı
+üzerinde tümevarımla ilerleriz.
+
+Tümevarımın başlangıç adımında çıkarım sayısı~$0$ olduğunda iddiayı
+gösteririz. Bu durumda $\delta$, yalnızca tek bir !!{sentence}~$!A$'dan,
+yani bir varsayımdan oluşur. Bu varsayım !!{undischarged} kalır; çünkü
+varsayımlar ancak çıkarımlarla !!{discharged} olabilir ve burada hiçbir
+çıkarım yoktur. Dolayısıyla her
+\iftag{FOL}{!!{structure}~$\Struct{M}$}{!!{valuation}~$\pAssign{v}$},
+ispatın bütün !!{undischarged} varsayımlarını sağlıyorsa $!A$'yı da sağlar.
+
+Şimdi tümevarım adımına geçelim. $\delta$'nın $n$ çıkarım içerdiğini
+varsayalım. En alttaki çıkarımın öncülünü veya öncüllerini !!{derive} için,
+her biri $n$'den daha az çıkarım içeren alt-!!{derivation}s kullanılır.
+Tümevarım hipotezimiz şudur: en alttaki çıkarımın öncülleri !!{undischarged}
+varsayımlardan çıkar; bunlar, söz konusu öncüllerle biten
+alt-!!{derivation}s içinde kalan varsayımlardır. Sonuç~$!A$'nın tüm ispatın
+!!{undischarged} varsayımlarından çıktığını göstermeliyiz.
+
+En alttaki çıkarımın türüne göre durumları ayırırız. Önce yalnızca bir öncülü
+olan olası çıkarımları ele alırız.
+
+\begin{enumerate}
+\item Son çıkarımın \Intro{\lnot} olduğunu varsayalım. !!{derivation} şu
+  biçimdedir:
+  \begin{prooftree}
+    \AxiomC{$\Gamma, \Discharge{!A}{n}$}
+    \RightLabel{$\delta_1$}
+    \DeduceC{$\lfalse$}
+    \DischargeRule{\Intro{\lnot}}{n}
+    \UnaryInfC{$\lnot !A$}
+  \end{prooftree}
+  Tümevarım hipotezi uyarınca $\lfalse$, $\delta_1$'in !!{undischarged}
+  varsayımları $\Gamma \cup \{!A\}$'dan çıkar.
+  \iftag{FOL}{!!a{structure}~$\Struct{M}$}{!!a{valuation}~$\pAssign{v}$}
+  ele alalım. $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$ ise
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\lnot !A}$ olduğunu göstermeliyiz.
+  Tersine indirgeme için $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$ olduğunu,
+  ama $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{\lnot !A}$, yani
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$ olduğunu varsayalım. Bu,
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma \cup \{!A\}}$ demektir ve tümevarım
+  hipotezimizle çelişir. Dolayısıyla
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\lnot !A}$ olur.
+
+\item Son çıkarım \Elim{\land} olsun. İki çeşidi vardır: $!A \land !B$
+  öncülünden $!A$ veya $!B$ çıkarılabilir. İlk durumu ele alalım.
+  !!{derivation}~$\delta$ şöyle görünür:
+  \begin{prooftree}
+    \AxiomC{$\Gamma$}
+    \RightLabel{$\delta_1$}
+    \DeduceC{$!A \land !B$}
+    \RightLabel{\Elim{\land}}
+    \UnaryInfC{$!A$}
+  \end{prooftree}
+  Tümevarım hipotezi uyarınca $!A \land !B$, $\delta_1$'in
+  !!{undischarged} varsayımları~$\Gamma$'dan çıkar.
+  \iftag{FOL}{!!a{structure}~$\Struct{M}$}{bir değerleme~$\pAssign{v}$}
+  ele alalım. $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$ ise
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$ olduğunu göstermeliyiz.
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$ varsayalım. Tümevarım hipotezimiz
+  ($\Gamma \Entails !A \land !B$) uyarınca
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \land !B}$ olduğunu biliriz. Tanım
+  gereği $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \land !B}$ olması, hem
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$ hem de
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$ olmasına denktir. ($!A \land !B$'den
+  $!B$'nin çıkarıldığı durum da benzer biçimde ele alınır.)
+  
+\item Son çıkarım \Intro{\lor} olsun. İki çeşidi vardır: $!A \lor !B$,
+  $!A$ öncülünden veya $!B$ öncülünden çıkarılabilir. İlk durumu ele alalım.
+  !!{derivation} şu biçimdedir:
+  \begin{prooftree}
+    \AxiomC{$\Gamma$}
+    \RightLabel{$\delta_1$}
+    \DeduceC{$!A$}
+    \RightLabel{\Intro{\lor}}
+    \UnaryInfC{$!A \lor !B$}
+  \end{prooftree}
+  Tümevarım hipotezi uyarınca $!A$, $\delta_1$'in !!{undischarged}
+  varsayımları~$\Gamma$'dan çıkar.
+  \iftag{FOL}{!!a{structure}~$\Struct{M}$}{!!a{valuation}~$\pAssign{v}$}
+  ele alalım. $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$ ise
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \lor !B}$ olduğunu göstermeliyiz.
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$ varsayalım. $\Gamma \Entails !A$
+  olduğundan (tümevarım hipotezi),
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$ olur. Öyleyse
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \lor !B}$ de olmalıdır. ($!A \lor !B$'nin
+  $!B$'den çıkarıldığı durum da benzer biçimde ele alınır.)
+  
+\item Son çıkarım \Intro{\lif} olsun. $!A \lif !B$, varsayımı $!A$ ve
+  sonucu $!B$ olan bir alt ispattan çıkarılır; yani
+  \begin{prooftree}
+    \AxiomC{$\Gamma, \Discharge{!A}{n}$}
+    \RightLabel{$\delta_1$}
+    \DeduceC{$!B$}
+    \DischargeRule{\Intro{\lif}}{n}
+    \UnaryInfC{$!A \lif !B$}
+  \end{prooftree}
+  Tümevarım hipotezi uyarınca $!B$, $\delta_1$'in !!{undischarged}
+  varsayımlarından çıkar; yani $\Gamma \cup \{!A\} \Entails !B$ olur.
+  \iftag{FOL}{!!a{structure}~$\Struct{M}$}{!!a{valuation}~$\pAssign{v}$}
+  ele alalım. $!A$ son çıkarımda kapatıldığı için $\delta$'nın
+  !!{undischarged} varsayımları yalnızca $\Gamma$'dır. Dolayısıyla
+  $\Gamma \Entails !A \lif !B$ olduğunu göstermeliyiz. Tersine indirgeme
+  için, bazı \iftag{FOL}{!!{structure}~$\Struct{M}$}{!!{valuation}~$\pAssign{v}$}
+  bakımından $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$ olduğunu ama
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A \lif !B}$ olduğunu varsayalım. Bu
+  durumda $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$ ve
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!B}$ olur. Oysa hipotez uyarınca $!B$,
+  $\Gamma \cup \{!A\}$'nın mantıksal sonucudur; yani
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$ olur ve bu bir çelişkidir. Dolayısıyla
+  $\Gamma \Entails !A \lif !B$.
+
+\item Son çıkarım \FalseInt olsun. Burada $\delta$ şöyle biter:
+  \begin{prooftree}
+    \AxiomC{$\Gamma$}
+    \RightLabel{$\delta_1$}
+    \DeduceC{$\lfalse$}
+    \RightLabel{\FalseInt}
+    \UnaryInfC{$!A$}
+  \end{prooftree}
+  Tümevarım hipotezi uyarınca $\Gamma \Entails \lfalse$ olur.
+  $\Gamma \Entails !A$ olduğunu göstermeliyiz. Aksini varsayarsak bazı
+  $\iftag{FOL}{\Struct{M}}{\pAssign{v}}$ için hem
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma}$ hem de
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A}$ olur. Ancak her zaman
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{\lfalse}$ olduğundan bu,
+  $\Gamma \Entails/ \lfalse$ demektir ve tümevarım hipoteziyle çelişir.
+
+\item Son çıkarım \FalseCl olsun: Alıştırma.
+
+\iftag{FOL}{
+\item Son çıkarım \Intro{\lforall} olsun. O zaman $\delta$ şu biçimdedir:
+  \begin{prooftree}
+    \AxiomC{$\Gamma$}
+    \RightLabel{$\delta_1$}
+    \DeduceC{$!A(a)$}
+    \RightLabel{\Intro{\lforall}}
+    \UnaryInfC{$\lforall[x][!A(x)]$}
+  \end{prooftree}
+  Tümevarım hipotezi uyarınca öncül $!A(a)$, !!{undischarged}
+  varsayımlar~$\Gamma$'nın mantıksal sonucudur. $\Sat{M}{\Gamma}$ olacak
+  biçimde bir $\Struct{M}$ yapısı ele alalım.
+  $\Sat{M}{\lforall[x][!A(x)]}$ olduğunu göstermeliyiz.
+  $\lforall[x][!A(x)]$ !!a{sentence} olduğundan bunun anlamı, her değişken
+  ataması~$s$ için $\Sat{M}{!A(x)}[s]$ olduğunu göstermemiz gerektiğidir
+  (\olref[syn][ass]{prop:sat-quant}). $\Gamma$ tümüyle tümcelerden oluştuğu
+  için, \olref[syn][sat]{defn:satisfaction} uyarınca her $!B \in \Gamma$
+  için $\Sat{M}{!B}[s]$ olur. $\Struct{M'}$, $\Assign{a}{M'} = s(x)$ olması
+  dışında $\Struct{M}$ gibi olsun. $a$, $\Gamma$ içinde geçmediğinden
+  \olref[syn][ext]{cor:extensionality-sent} uyarınca $\Sat{M'}{\Gamma}$ olur.
+  $\Gamma \Entails !A(a)$ olduğundan $\Sat{M'}{!A(a)}$ olur. $!A(a)$
+  !!a{sentence} olduğundan \olref[syn][ass]{prop:sentence-sat-true} uyarınca
+  $\Sat{M'}{!A(a)}[s]$ olur. \olref[syn][ext]{prop:ext-formulas} uyarınca
+  $\Sat{M'}{!A(x)}[s]$ ancak ve ancak $\Sat{M'}{!A(a)}$ olur ($!A(a)$'nın
+  yalnızca $\Subst{!A(x)}{a}{x}$ olduğunu hatırlayın). Dolayısıyla
+  $\Sat{M'}{!A(x)}[s]$. $a$, $!A(x)$ içinde geçmediğinden
+  \olref[syn][ext]{prop:extensionality} uyarınca $\Sat{M}{!A(x)}[s]$ olur.
+  Ancak $s$ keyfî bir değişken atamasıydı; öyleyse
+  $\Sat{M}{\lforall[x][!A(x)]}$ olur.
+  
+\item Son çıkarım \Intro{\lexists} olsun: Alıştırma.
+
+\item Son çıkarım \Elim{\lforall} olsun: Alıştırma.
+}{}
+\end{enumerate}
+
+Şimdi birden çok öncülü olan olası çıkarımları ele alalım:
+\Elim{\lor}, \Intro{\land}, \iftag{FOL}{\Elim{\lif} ve
+  \Elim{\lexists}}{\Elim{\lif}}.
+\begin{enumerate}
+
+\item Son çıkarım \Intro{\land} olsun. $!A \land !B$, $!A$ ve $!B$
+  öncüllerinden çıkarılır ve $\delta$ şu biçimdedir:
+  \begin{prooftree}
+    \AxiomC{$\Gamma_1$}
+    \RightLabel{$\delta_1$}
+    \DeduceC{$!A$}
+    \AxiomC{$\Gamma_2$}
+    \RightLabel{$\delta_2$}
+    \DeduceC{$!B$}
+    \RightLabel{\Intro{\land}}
+    \BinaryInfC{$!A \land !B$}
+  \end{prooftree}
+  Tümevarım hipotezi uyarınca $!A$, $\delta_1$'in !!{undischarged}
+  varsayımları~$\Gamma_1$'den; $!B$ ise $\delta_2$'nin !!{undischarged}
+  varsayımları~$\Gamma_2$'den çıkar. $\delta$'nın !!{undischarged}
+  varsayımları $\Gamma_1 \cup \Gamma_2$ olduğundan
+  $\Gamma_1 \cup \Gamma_2 \Entails !A \land !B$ olduğunu göstermeliyiz.
+  \iftag{FOL}{!!a{structure}~$\Struct{M}$}{!!a{valuation}~$\pAssign{v}$}
+  ve $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma_1 \cup \Gamma_2}$ koşulunu ele
+  alalım. $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma_1}$ ve
+  $\Gamma_1 \Entails !A$ olduğundan
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$ olmalıdır. Benzer şekilde
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma_2}$ ve $\Gamma_2 \Entails !B$
+  olduğundan $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$ olur. İkisi birlikte
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \land !B}$ verir.
+  
+\item Son çıkarım \Elim{\lor} olsun: Alıştırma.
+
+\item Son çıkarım \Elim{\lif} olsun. $!B$, $!A \lif !B$ ve $!A$
+  öncüllerinden çıkarılır. !!{derivation}~$\delta$ şöyle görünür:
+  \begin{prooftree}
+    \AxiomC{$\Gamma_1$}
+    \RightLabel{$\delta_1$}
+    \DeduceC{$!A \lif !B$}
+    \AxiomC{$\Gamma_2$}
+    \RightLabel{$\delta_2$}
+    \DeduceC{$!A$}
+    \RightLabel{\Elim{\lif}}
+    \BinaryInfC{$!B$}
+  \end{prooftree}
+  Tümevarım hipotezi uyarınca $!A \lif !B$, $\delta_1$'in
+  !!{undischarged} varsayımları~$\Gamma_1$'den; $!A$ ise $\delta_2$'nin
+  !!{undischarged} varsayımları~$\Gamma_2$'den çıkar.
+  \iftag{FOL}{!!a{structure}~$\Struct{M}$}{!!a{valuation}~$\pAssign{v}$}
+  ele alalım. $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma_1 \cup \Gamma_2}$ ise
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$ olduğunu göstermeliyiz.
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{\Gamma_1 \cup \Gamma_2}$ varsayalım.
+  $\Gamma_1 \Entails !A \lif !B$ olduğundan
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \lif !B}$ olur.
+  $\Gamma_2 \Entails !A$ olduğundan $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$
+  olur. Bu, $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!B}$ demektir. (Çünkü
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!B}$ olsaydı,
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A}$ olduğu için
+  $\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{!A \lif !B}$ olurdu; bu da
+  $\iftag{FOL}{\Sat{M}}{\pSat{v}}{!A \lif !B}$ ile çelişirdi.)
+
+\item Son çıkarım \Elim{\lnot} olsun: Alıştırma.
+  
+\tagitem{FOL}{Son çıkarım \Elim{\lexists} olsun: Alıştırma.}{}
+\end{enumerate}
+\end{proof}
+
+\tagprob{FOL}
+\begin{prob}
+\olref[fol][ntd][sou]{thm:soundness} ispatını tamamlayın.
+\end{prob}
+\tagendprob
+
+\tagprob{notFOL}
+\begin{prob}
+\olref[pl][ntd][sou]{thm:soundness} ispatını tamamlayın.
+\end{prob}
+\tagendprob
+
+\begin{cor}
+\ollabel{cor:weak-soundness}
+$\Proves !A$ ise $!A$ \iftag{FOL}{geçerlidir}{bir totolojidir}.
+\end{cor}
+
+\begin{cor}
+\ollabel{cor:consistency-soundness}
+$\Gamma$ sağlanabilir ise tutarlıdır.
+\end{cor}
+
+\begin{proof}
+Karşıt-tersini ispatlarız. $\Gamma$'nın tutarlı olmadığını varsayalım. O zaman
+$\Gamma \Proves \lfalse$ olur; yani $\lfalse$ için !!a{derivation} vardır ve
+bunun !!{undischarged} varsayımları $\Gamma$ içindedir.
+\olref{thm:soundness} uyarınca $\Gamma$'yı sağlayan her
+\iftag{FOL}{!!{structure}~$\Struct{M}$}{!!{valuation}~$\pAssign{v}$},
+$\lfalse$'ı da sağlamalıdır. Her
+\iftag{FOL}{!!{structure}~$\Struct{M}$}{!!{valuation}~$\pAssign{v}$} için
+$\iftag{FOL}{\Sat/{M}}{\pSat/{v}}{\lfalse}$ olduğundan hiçbir
+\iftag{FOL}{$\Struct{M}$}{$\pAssign{v}$}, $\Gamma$'yı sağlayamaz; yani
+$\Gamma$ sağlanamaz.
+\end{proof}
+

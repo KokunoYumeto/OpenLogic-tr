@@ -1,0 +1,81 @@
+% Generated from locale/tr/content/proof-theory/natural-deduction/grafting.tex; do not hand-edit.
+
+
+\olfileid[tr]{pt}{nat}{gra}
+
+\olsection{\usetoken{P}{proof} Aşılama}
+
+\Log{N1c} ve~\Log{N1i}'deki !!^{proof}s, !!{proof}s{}dır: bunlarda
+!!{formula}s~$!A$,~$!B$ varsayımlarından elde edilir. $!B$'nin kendisinin
+bir !!a{proof}{}ı
+bulunduğunu varsayalım. $!B$'nin !!{proof}{}ıyla $!B$'den $!A$'nın !!{proof}{}ını,
+$!B$ varsayımını kullanmayan bir $!A$ !!a{proof}{}ı elde edecek biçimde nasıl
+birleştiririz?
+
+Seçeneklerden biri, $!A$'nın !!{proof}{}ından $!B$ varsayımını~\Intro{\lif}
+uygulayarak kaldırmaktır. Ardından ortaya çıkan $!B \lif !A$ !!{proof}{}ını
+$!B$'nin !!{proof}{}ıyla birleştirerek şunu elde edebiliriz:
+\[
+\AxiomC{$\Discharge{!B}{x}$}
+\DeduceC{$!A$}
+\DischargeRule{\Intro{\lif}}{x}
+\UnaryInfC{$!B \lif !A$}
+\AxiomC{}
+\DeduceC{$!B$}
+\RightLabel{\Elim{\lif}}
+\BinaryInfC{$!A$}
+\DisplayProof
+\]
+Bu kolaydır, fakat biraz çirkindir: $\lif$'i hemen ardından ortadan kaldırmak
+için neden önce ortaya sokalım? $!B \lif !A$ üzerinden geçen bu tür bir
+``dolambaçtan'' kaçınmak mümkün olmalıdır. (Bunlardan her zaman
+kaçınılabildiği, aslında normalleştirme teoreminin içeriğidir.)
+
+\Log{N1c} ve~\Log{N1i}'de bu durumda dolambaçtan gerçekten oldukça kolay
+kaçınabiliriz: $!B^x$ varsayımlarını $!B$'nin bütün !!{proof}{}ıyla değiştirmek
+yeterlidir. !!{proof}s{}ın başkalarının varsayımlarına bu biçimde
+``aşılanması'' oldukça yararlıdır; dolayısıyla bunu bir tanım olarak kayda
+geçiriyoruz.
+
+\begin{defn}
+$\delta_1$, açık $!B^x$ varsayımından $!A$'nın bir \Log{N1c}-!!{proof}{}ı
+(ya da \Log{N1i}-!!{proof}{}ı), $\delta_2$ de $!B$'nin bir
+\Log{N1c}-!!{proof}{}ı (\Log{N1i}-!!{proof}{}ı) ise
+$\Subst{\delta_1}{\delta_2}{!B^x}$, $\delta_1$ içindeki boşaltılmamış her
+$!B^x$ geçişinin $\delta_2$ ile değiştirilmesinin sonucudur.
+\end{defn}
+
+$\delta_1$ ile $\delta_2$ aynı etiketle etiketlenmiş farklı varsayım
+!!{formula}s{}ine sahip değilse ve $\delta_2$'nin hiçbir açık varsayımı
+$\delta_1$'in bir özdeğişkenini içermiyorsa ortaya çıkan
+$\Subst{\delta_1}{\delta_2}{!B^x}$ doğru bir !!{proof}{}tır; açık varsayımları
+da $\delta_1$'in açık varsayımlarıyla $\delta_2$'ninkilerin birlikte
+alınmasıdır. !!{proof}s aşılanırken bu koşullar genellikle sağlanır. Birinci
+koşul, $\delta_1$ ile $\delta_2$ daha büyük bir !!{proof}{}ın alt ispatları
+olduğunda sağlanır. İkinci koşul sağlanmıyorsa $\delta_1$'in özdeğişkenlerini
+sağlanacak biçimde yeniden adlandırabiliriz.
+
+Karşılık gelen bir tanım \Log{N2c} ve~\Log{N2i} için de geçerlidir.
+
+\begin{defn}
+$\delta_1$, $x:!B, \Gamma_1 \Sequent !A$'nın bir \Log{N2c}-!!{proof}{}ı
+(ya da \Log{N2i}-!!{proof}{}ı), $\delta_2$ de $\Gamma_2 \Sequent !B$'nin bir
+\Log{N2c}-!!{proof}{}ı (\Log{N2i}-!!{proof}{}ı) ise
+$\Subst{\delta_1}{\delta_2}{x:!B}$, $\delta_1$ içindeki her
+$x:!B \Sequent !B$ aksiyomunun $\delta_2$ ile değiştirilmesinin ve
+$\Gamma_2$'nin bu aksiyomların altındaki her sekantın bağlamına eklenmesinin
+sonucudur.
+\end{defn}
+
+\begin{prop}
+$\delta_1 \Proves x:!B, \Gamma_1 \Sequent !A$ ve
+$\delta_2 \Proves \Gamma_2 \Sequent !B$ ise ve $\delta_1$'in hiçbir
+özdeğişkeni $\Gamma_2$ içinde geçmiyorsa
+$\Subst{\delta_1}{\delta_2}{x:!B} \Proves \Gamma_1, \Gamma_2 \Sequent !A$.
+\end{prop}
+
+
+\begin{proof}
+  $\pheight{\delta_1}$ üzerinde tümevarımla.
+\end{proof}
+

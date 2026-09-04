@@ -1,0 +1,151 @@
+% Generated from locale/tr/content/proof-theory/natural-deduction/sequents.tex; do not hand-edit.
+
+
+\olfileid[tr]{pt}{nat}{seq}
+
+\olsection{Sekantlarla Doğal Tümdengelim: \Log{N2c} ve~\Log{N2i}}
+
+\Log{N1c} ya da \Log{N1i}'deki bir !!^a{proof}~$\delta$, son-!!{formula}{}ü
+$!A$'nın açık varsayımlarından çıktığını gösterir. $\Gamma$, $!B^x$'in
+$\delta$ içinde açık bir varsayım olarak geçtiği !!{formula}s~$!B$ kümesiyse
+bunu $\delta \Proves \Gamma \Sequent !A$ biçiminde yazabiliriz. Bu, sekantlar
+için de bir doğal tümdengelim sistemi formüle edebileceğimizi düşündürür.
+Böyle bir sistemde her sekant, sağdaki !!{formula}{}ün hangi açık varsayımlara
+dayandığı, yani bir sekantla biten alt-!!{proof} içinde hangilerinin açık
+olduğu bilgisini taşır. Bu, sekantlarla doğal tümdengelim ya da ``sekant
+tarzında'' doğal tümdengelimdir; ortaya çıkan sistemlere \Log{N2c}
+ve~\Log{N2i} diyoruz.
+
+\Log{N1} ile \Log{N2} arasındaki karşılıklılığı daha yakın kılmak için soldaki
+$\Gamma$ kümelerini etiketli !!{formula}s~$x:!B$'den oluşturalım. \Log{N1}'deki
+kurallar yalnızca öncüllerdeki !!{formula}s, yani son-!!{formula}s üzerinde
+işlem yapar; söz konusu son formüller doğrudan alt-!!{proof}s{}a aittir.
+Dolayısıyla \Log{N2}'nin kuralları da
+sekantın yalnızca ardılı üzerinde işlem yapar. Böylece sekantların solundaki
+etiketli formüllere kısaca bağlam diyebiliriz.
+
+\Log{N2} ispatlarında varsayımlar yerine en üstte şu biçimde aksiyom
+sekantları bulunur:
+\[x:!A \Sequent !A.\]
+Kurallar \Log{N1}'in kurallarına tam olarak karşılık gelir ve
+\olref{tab:N2}'de verilmiştir.
+
+\allmodulessubfile{OLP-0667}
+
+(\Log{N1c} ve \Log{N1i}'de yaptığımız gibi) \Intro{\lif}, \Intro{\lnot},
+\Elim{\lor} ve \Elim{\lexists} kurallarının varsayımları boşaltmasına izin
+vermekle birlikte bunu zorunlu tutmadığımızdan, karşılık gelen bağlam
+!!{formula}s{}i $!A$, $!B$ ve $!A(a)$ ilgili öncülün bağlamında bulunmadığında
+da \Log{N2c} ve~\Log{N2i}'deki karşılık gelen kuralların doğru uygulanmasına
+izin veririz.
+
+\begin{prop}
+$\delta$, \Log{N1c} ya da \Log{N1i}'de $!A$'nın bir !!a{proof}{}ı ise
+\Log{N2c}'de (\Log{N2i}'de) $\Gamma \Sequent !A$'nın bir $\delta'$ !!a{proof}{}ı
+vardır; burada $\Gamma$, $!B^x$'in $\delta$'nın açık bir varsayımı olduğu tüm
+$x:!B$'lerin kümesidir.
+\end{prop}
+
+\begin{proof}
+  $n=\pheight{\delta}$ üzerinde tümevarımla. $n=0$ ise $\delta$ tek bir açık
+  $!A^x$ varsayımıdır. Bu durumda $\Gamma = \{x:!A\}$ ve $\Gamma \Sequent !A$,
+  \Log{N2c} ya da~\Log{N2i}'nin bir aksiyomudur.
+
+  $n>0$ ise $\delta$'daki son çıkarıma göre durumları ayırırız. Yalnızca bir
+  durumu ele alıyoruz; geri kalanı alıştırma olarak bırakılmıştır.
+
+  Son çıkarımın $\Intro{\lif}$ olduğunu varsayalım. Bu durumda $\delta$ şöyle
+  biter:
+  \[
+  \AxiomC{$\Discharge{!B}{x}$}
+  \RightLabel{$\delta_1$}
+  \DeduceC{$!C$}
+  \DischargeRule{\Intro{\lif}}{x}
+  \UnaryInfC{$!B \lif !C$}
+  \DisplayProof
+  \]
+  Tümevarım varsayımı gereği \Log{N2c}'de (\Log{N2i}'de) $\Gamma' \Sequent
+  !C$'nin bir $\delta_1'$ !!a{proof}{}ı vardır; burada $\Gamma'$, $\delta_1$
+  içinde açık olan etiketli varsayımlardır. $!B^x$, $\delta_1$'in açık bir
+  varsayımıysa \Intro{\lif} çıkarımında boşaltılır ve $\delta$'nın açık
+  varsayımları $\Gamma = \Gamma' \setminus \{x:!B\}$ olur. Başka bir deyişle
+  $\delta_1'$, $x:!B, \Gamma \Sequent !C$'nin bir !!a{proof}{}ıdır ve
+  $\delta'$ olarak şunu alabiliriz:
+  \[
+  \AxiomC{}
+  \RightLabel{$\delta_1'$}
+  \Deduce$x:!B, \Gamma \fCenter !C$
+  \RightLabel{\Intro{\lif}}
+  \UnaryInf$\Gamma \fCenter !B \lif !C$
+  \DisplayProof
+  \]
+  $!B^x$, $\delta_1$'in açık bir varsayımı değilse \Intro{\lif} bir varsayımı
+  boşaltmaz ve $\delta$ ile $\delta_1$'in açık varsayımları aynıdır.
+  \Log{N2c} ve~\Log{N2i}'deki \Intro{\lif} öncülünde $x:!B$ bağlam
+  formülünün bulunması gerekmediğinden $\delta'$ olarak şunu alabiliriz:
+  \[
+  \AxiomC{}
+  \RightLabel{$\delta_1'$}
+  \Deduce$\Gamma \fCenter !C$
+  \RightLabel{\Intro{\lif}}
+  \UnaryInf$\Gamma \fCenter !B \lif !C$
+  \DisplayProof
+  \]
+
+  $\delta$'nın başka bir kuralla bittiği durumlar benzerdir.
+\end{proof}
+
+\begin{prop}
+$\delta$, \Log{N2c} ya da \Log{N2i}'de $\Gamma \Sequent !A$'nın bir
+!!a{proof}{}ı ise \Log{N1c}'de (\Log{N1i}'de) bir !!a{proof}~$\delta'$ vardır;
+bunun son-!!{formula}{}ü $!A$'dır ve her $x:!B \in \Gamma$ için $!B^x$ açık
+varsayımını taşır.
+\end{prop}
+
+\begin{proof}
+  Yine $\delta$'nın !!{height}~değeri~$n$ üzerinde tümevarımla ilerliyoruz. $n=0$
+  ise $\delta$, $x:!A \Sequent !A$ aksiyomudur. $\delta'$ !!{proof}{}ı $!A^x$
+  varsayımıdır.
+
+  $n>0$ ise $\delta$'daki son çıkarıma göre durumları ayırırız. Örneğin bu
+  çıkarım~$\Intro{\lif}$ ise $\delta$ şöyle biter:
+  \[
+  \bottomAlignProof
+  \AxiomC{}
+  \RightLabel{$\delta_1$}
+  \Deduce$x:!B, \Gamma \fCenter !C$
+  \RightLabel{\Intro{\lif}}
+  \UnaryInf$\Gamma \fCenter !B \lif !C$
+  \DisplayProof
+  \quad\text{ ya da }\quad
+  \bottomAlignProof
+  \AxiomC{}
+  \RightLabel{$\delta_1$}
+  \Deduce$\Gamma \fCenter !C$
+  \RightLabel{\Intro{\lif}}
+  \UnaryInf$\Gamma \fCenter !B \lif !C$
+  \DisplayProof
+  \]
+  Tümevarım varsayımı gereği \Log{N1c}'de (\Log{N1i}'de) $!C$'nin bir
+  $\delta_1'$ !!a{proof}{}ı vardır. Birinci durumda $!B^x$, $\delta_1'$'in açık
+  bir varsayımıdır; ikinci durumda değildir. $\delta'$ !!{proof}{}ı olarak
+  sırasıyla şunları alabiliriz:
+  \[
+  \bottomAlignProof
+  \AxiomC{$\Discharge{!B}{x}$}
+  \RightLabel{$\delta_1'$}
+  \DeduceC{$!C$}
+  \DischargeRule{\Intro{\lif}}{x}
+  \UnaryInfC{$!B \lif !C$}
+  \DisplayProof
+  \quad\text{ ya da }\quad
+  \bottomAlignProof
+  \AxiomC{}
+  \RightLabel{$\delta_1'$}
+  \DeduceC{$!C$}
+  \RightLabel{\Intro{\lif}}
+  \UnaryInfC{$!B \lif !C$}
+  \DisplayProof
+  \]
+\end{proof}
+

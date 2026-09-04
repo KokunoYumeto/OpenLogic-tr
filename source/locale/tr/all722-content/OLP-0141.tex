@@ -1,0 +1,51 @@
+% Generated from locale/tr/content/first-order-logic/introduction/syntax.tex; do not hand-edit.
+
+
+\olfileid[tr]{fol}{int}{syn}
+
+\olsection{Sözdizim}
+
+Önce hangi simge dizgelerinin birinci dereceden mantığın
+!!{sentence}s ifadeleri sayıldığını kesinleştirmeliyiz. Bunu daha sonra
+yapacağız; şimdilik örneklerle ilerleyelim. Birinci dereceden mantığın
+temel yapı taşları---söz dağarcığı---iki bölüme ayrılır. İlk bölüm,
+belirli şeyler söylemek ya da belirli şeyleri göstermek için
+kullandığımız simgelerdir. Şeyleri !!{constant}s aracılığıyla gösterir,
+gösterdiğimiz şeyler hakkında !!{predicate}s kullanarak bir şeyler
+söyleriz. Örneğin tek bir şeyi göstermek için !!a{constant} olarak
+$\Obj a$ kullanabilir ve ardından o şey hakkında
+!!{sentence}~$\Atom{\Obj P}{\Obj a}$ ile bir şey söyleyebiliriz.
+``$\Obj a$'' ve ``$\Obj P$'' için aklınızda anlamlar varsa
+$\Atom{\Obj P}{\Obj a}$ ifadesini doğal dilde bir tümce gibi
+okuyabilirsiniz (biçimsel mantığı ilk öğrendiğinizde muhtemelen böyle
+yaptınız). Birinci dereceden mantığın bu basit !!{sentence}s ifadeleri
+elde edildikten sonra söz dağarcığının ikinci bölümünü, yani mantıksal
+simgeleri (bağlaçlar ve niceleyicileri) kullanarak daha karmaşık olanlar
+kurabiliriz. Örneğin $(\Atom{\Obj P}{\Obj a}\land
+\Atom{\Obj Q}{\Obj b})$ ya da
+$\lexists[\Obj x][\Atom{\Obj P}{\Obj x}]$ gibi ifadeler oluşturabiliriz.
+
+Titiz bir metamantıksal inceleme için gereken semantik tanımlarını ve
+!!{derivation} sistemlerimizin kurallarını verebilmek üzere, önce neyin
+birinci dereceden mantığın !!a{sentence} ifadesi sayıldığını kesin
+olarak tanımlamalıyız. Temel fikri anlamak kolaydır: yalnızca
+!!{predicate}s ve !!{constant}s kullanarak
+$\Atom{\Obj P}{\Obj a}$ gibi bazı basit !!{sentence}s oluşturabiliriz.
+Ardından bunlardan bağlaçları ve niceleyicileri kullanarak daha karmaşık
+ifadeler oluştururuz. Fakat daha karmaşık !!{sentence}s oluşturmamıza
+izin veren kurallar tam olarak nelerdir? Bunlar belirtilmelidir; aksi
+halde ``birinci dereceden mantığın !!{sentence} ifadesi''ni yeterince
+kesin tanımlamış olmayız. Birkaç sorun vardır. Birincisi, doğru
+dizgelerin !!{sentence}s sayılmasını sağlamaktır. İkincisi, bunu bütün
+!!{sentence}s hakkında matematiksel ispatlar verebileceğimiz biçimde
+yapmaktır. Son olarak ``$!A$ içindeki her $\Obj x$ yerine~$\Obj b$
+koy'' gibi, !!{sentence}s üzerinde bazı temel işlemleri de kesin
+olarak tanımlamamız gerekecektir. Güçlük, birinci dereceden mantıktaki
+niceleyiciler ve !!{variable}s yüzünden bunun nasıl yapılacağının
+tamamen açık olmamasıdır. Örneğin
+$\lexists[\Obj x][\Atom{\Obj P}{\Obj a}]$ !!a{sentence} sayılmalı
+mıdır? Ya $\lexists[\Obj x][\lexists[\Obj x][\Atom{\Obj P}{\Obj x}]]$
+ifadesi? ``$(\Atom{\Obj P}{\Obj x}\land
+\lexists[\Obj x][\Atom{\Obj P}{\Obj x}])$ içindeki $\Obj x$ yerine
+$\Obj b$ koy'' işleminin sonucu ne olmalıdır?
+

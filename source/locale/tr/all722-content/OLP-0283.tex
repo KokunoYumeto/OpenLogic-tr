@@ -1,0 +1,105 @@
+% Generated from locale/tr/content/incompleteness/arithmetization-syntax/coding-terms.tex; do not hand-edit.
+
+
+\olfileid[tr]{inc}{art}{trm}
+\olsection{Terimlerin Kodlanması}
+
+\begin{explain}
+Bir terim yalnızca belirli türde bir simge dizisidir: sabitlerden ve
+değişkenlerden, terimlerin kuruluş kurallarına göre tümevarımlı biçimde
+kurulur. Simgelere yönelik bir kodlama şeması ile sayı dizilerini kodlamanın
+bir yolu kullanılarak simge dizileri sayılarla kodlanabildiğinden, terimlere
+Gödel numaraları atamak zor değildir. Asıl güçlük, bir sayının düzgün
+kurulmuş bir terimin Gödel numarası olması özelliğinin hesaplanabilir, hatta
+ilkel özyinelemeli olduğunu göstermektir.
+\end{explain}
+
+!!^{variable}s ve !!{constant}s en basit terimlerdir; $x$'in böyle bir
+terimin Gödel numarası olup olmadığını sınamak kolaydır: $x$, bir $i$ için
+$\Gn{\Obj v_i}$ ise $\fn{Var}(x)$ geçerlidir. Başka bir deyişle $x$,
+uzunluğu $1$ olan bir dizidir ve tek elemanı $(x)_0$, bir $\Obj v_i$
+!!{variable}{}inin kodudur; yani $x$, bir $i$ için
+$\tuple{\tuple{1, i}}$'dir. Benzer biçimde $x$, bir $i$ için
+$\Gn{\Obj c_i}$ ise $\fn{Const}(x)$ geçerlidir. Böyle bir $i$ varsa
+$i<x$ olmak zorunda olduğundan, bu bağıntıların ikisi de ilkel
+özyinelemelidir:
+\begin{align*}
+  \fn{Var}(x) & \defiff \bexists{i<x}{x = \tuple{\tuple{1, i}}}\\
+  \fn{Const}(x) & \defiff \bexists{i<x}{x = \tuple{\tuple{2, i}}}
+\end{align*}
+
+\begin{prop}
+\ollabel{prop:term-primrec}
+$x$'in sırasıyla bir terimin ya da kapalı bir terimin Gödel numarası olması
+durumunda geçerli olan $\fn{Term}(x)$ ve $\fn{ClTerm}(x)$ bağıntıları ilkel
+özyinelemelidir.
+\end{prop}
+
+\begin{proof}
+Bir $s$ simge dizisi ancak ve ancak $s$ teriminin terimlerin kuruluş
+kurallarına göre !!{constant}s{}den ve !!{variable}s{}den nasıl kurulduğunu
+kaydeden bir $s_0$, \dots, $s_{k-1}=s$ terim dizisi varsa bir terimdir.
+Böyle bir kuruluş dizisi kuruluş kurallarına uyuyorsa her $i<k$ için
+aşağıdakilerden biri geçerlidir:
+\begin{enumerate}
+\item $s_i$, bir $\Obj v_j$ !!a{variable}{}dir; ya da
+\item $s_i$, bir $\Obj c_j$ !!a{constant}{}tir; ya da
+\item $s_i$, $i$ konumundan önce geçen $n$ tane $t_1$, \dots, $t_n$
+  teriminden, $n$-li bir $\Obj f^n_j$ !!{function}{}u kullanılarak kurulmuştur.
+\end{enumerate}
+Gödel numaraları üzerindeki karşılık gelen bağıntının ilkel özyinelemeli
+olduğunu göstermek için bu koşulu ilkel özyinelemeli, yani ilkel özyinelemeli
+fonksiyonlar, bağıntılar ve sınırlı niceleme kullanarak ifade etmeliyiz.
+
+$y$'nin $s_0$, \dots, $s_{k-1}$ dizisini kodlayan sayı olduğunu, yani
+$y=\tuple{\Gn{s_0},\dots,\Gn{s_{k-1}}}$ olduğunu varsayalım. $y$, ancak ve
+ancak her $i<k$ için aşağıdakilerden biri geçerliyse Gödel numarası $x$ olan
+terimin bir kuruluş dizisini kodlar:
+\begin{enumerate}
+\item $\fn{Var}((y)_i)$; ya da
+\item $\fn{Const}((y)_i)$; ya da
+\item her $z_l$, bir $i'<i$ için $(y)_{i'}$'ye eşit olacak biçimde bir $n$
+  ve $z=\tuple{z_1,\dots,z_n}$ sayısı vardır ve
+\[
+(y)_i = \Gn{\Obj f^n_j(} \concat \fn{flatten}(z) \concat \Gn{)},
+\]
+\end{enumerate}
+ayrıca $(y)_{k-1}=x$ olur. ($\fn{flatten}(z)$ fonksiyonu
+$\tuple{\Gn{t_1},\dots,\Gn{t_n}}$ dizisini $\Gn{t_1,\dots,t_n}$'ye
+dönüştürür ve ilkel özyinelemelidir.)
+
+(3)'teki $j$, $n$ indisleri, $t_l$ terimlerinin $z_l$ Gödel numaraları ve
+$\tuple{z_1,\dots,z_n}$ dizisinin $z$ kodu $y$'den küçüktür. Yukarıdaki
+$k$'yi $\len{y}$ ile değiştirebiliriz. Dolayısıyla ``$y$, Gödel numarası $x$
+olan terimin bir kuruluş dizisinin kodudur'' ifadesini bu bağıntının ilkel
+özyinelemeli olduğunu gösterecek biçimde yazabiliriz.
+
+Şimdi yalnızca $y$ üzerinde ilkel özyinelemeli bir sınır bulunduğuna ikna
+olmalıyız. $x$ bir terimin Gödel numarasıysa, en çok $\len{x}$ terimli bir
+kuruluş dizisi vardır; çünkü $s$'nin kuruluş dizisindeki her terim $s$
+içinde bir konumda başlamalıdır ve iki alt terim aynı konumda başlayamaz.
+$s$'nin her alt teriminin Gödel numarası elbette $\le x$'tir. Dolayısıyla
+$k=\len{x}$ olmak üzere kodu $\le p_{k-1}^{k(x+1)}$ olan bir kuruluş dizisi
+her zaman vardır.
+
+$\fn{ClTerm}$ için !!{variable}s{}i kapsayan koşulu çıkarmak yeterlidir.
+\end{proof}
+
+\begin{prob}
+$\tuple{\Gn{t_1},\dots,\Gn{t_n}}$ dizisini $\Gn{t_1,\dots,t_n}$'ye
+dönüştüren $\fn{flatten}(z)$ fonksiyonunun ilkel özyinelemeli olduğunu
+gösterin.
+\end{prob}
+
+\begin{prop}\ollabel{prop:num-primrec}
+  $\fn{num}(n)=\Gn{\num{n}}$ fonksiyonu ilkel özyinelemelidir.
+\end{prop}
+
+\begin{proof}
+  $\fn{num}(n)$'yi ilkel özyinelemeyle tanımlarız:
+  \begin{align*}
+    \fn{num}(0) & = \Gn{\Obj 0}\\
+    \fn{num}(n+1) & = \Gn{\prime(} \concat \fn{num}(n) \concat \Gn{)}.
+  \end{align*}
+\end{proof}
+

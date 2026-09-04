@@ -1,0 +1,44 @@
+% Generated from locale/tr/content/first-order-logic/syntax-and-semantics/intro-semantics.tex; do not hand-edit.
+
+
+\olfileid[tr]{fol}{syn}{its}
+
+\olsection{Giriş}
+
+İfadelere anlam vermek semantiğin alanıdır. Semantiğin merkezî kavramı,
+!!a{structure} içinde sağlamadır. !!^a{structure}, dilin yapı taşlarına
+anlam verir: !!a{domain}, boş olmayan bir nesneler kümesidir.
+Niceleyiciler bu evren üzerinde dolaşacak biçimde yorumlanır;
+!!{constant}s evrendeki elemanlara, !!{function}s !!{domain} içinden
+yine kendisine giden fonksiyonlara, !!{predicate}s ise !!{domain}
+üzerindeki bağıntılara atanır. !!{domain} ile temel söz dağarcığına
+yapılan atamalar birlikte !!a{structure} oluşturur. !!^{variable}s,
+!!{formula}s içinde geçebilir ve semantik verebilmek için bunlara da
+!!{element}s öğelerini !!{domain} içinden atamamız gerekir; buna
+değişken ataması denir. Son olarak sağlama bağıntısı bütün bunları bir
+araya getirir. !!^a{formula}, !!a{structure}~$\Struct M$ içinde
+!!a{variable} ataması~$s$'ye göre sağlanabilir; bunu
+$\Sat M{!A}[s]$ biçiminde yazarız. Bu bağıntı da~$!A$'nın yapısı
+üzerinde tümevarımla tanımlanır. Örneğin $(!A\land !B)$ ifadesinin
+sağlanmasını,~$!A$ ile~$!B$ ifadelerinin sağlanmasına (ya da
+sağlanmamasına) göre tanımlamak için mantıksal bağlaçların doğruluk
+çizelgeleri kullanılır. Ardından !!{variable} atamasının,~$!A$
+!!{formula} ifadesi !!a{sentence}, yani serbest değişken içermeyen bir
+formülse önemsiz olduğu ortaya çıkar. Böylece
+!!{sentence}s ifadelerinin !!{structure}s içinde doğrudan sağlandığından
+(ya da sağlanmadığından) söz edebiliriz.
+
+!!{sentence}s için $\Sat{M}{!A}$ sağlama bağıntısına dayanarak temel
+semantik geçerlilik, mantıksal gerektirme ve sağlanabilirlik
+kavramlarını tanımlayabiliriz. !!^a{sentence}, her !!{structure} onu
+sağlıyorsa geçerlidir: $\Entails !A$. Bir !!{sentence}s kümesi,
+$\Gamma \Entails !A$, ancak ve ancak $\Gamma$ içindeki bütün
+!!{sentence}s ifadelerini sağlayan her !!{structure},~$!A$'yı da
+sağlıyorsa bu tümceyi mantıksal olarak gerektirir. Bir
+!!{sentence}s kümesi de, bir !!{structure} içindeki bütün
+!!{sentence}s ifadelerini aynı anda sağlıyorsa sağlanabilirdir.
+!!{formula}s tümevarımlı olarak tanımlandığından ve sağlama da tek tek
+!!{formula}s ele alındığında bunların yapısı üzerinde tümevarımla
+tanımlandığından, semantiğimizin özelliklerini ispatlamak ve tanımlanan
+semantik kavramları ilişkilendirmek için tümevarımı kullanabiliriz.
+

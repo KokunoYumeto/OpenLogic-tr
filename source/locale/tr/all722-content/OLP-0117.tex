@@ -1,0 +1,32 @@
+% Generated from locale/tr/content/first-order-logic/axiomatic-deduction/proving-things-quant.tex; do not hand-edit.
+
+
+\olfileid[tr]{fol}{axd}{prq}
+
+\olsection{Niceleyiciler İçeren \usetoken{P}{derivation}}
+
+\begin{ex}
+$(\lforall[x][!A(x)] \land \lforall[y][!B(y)]) \lif
+\lforall[x][(!A(x) \land !B(x))]$ ifadesi için bir !!a{derivation} verelim.
+
+Önce,
+\begin{align*}
+  (\lforall[x][!A(x)] \land \lforall[y][!B(y)]) & \lif \lforall[x][!A(x)]
+  \\
+  \intertext{ifadesinin \olref[prp]{ax:land1}'in bir örneği,}
+  \lforall[x][!A(x)] & \lif !A(a) \\
+  \intertext{ifadesinin de \olref[qua]{ax:q1}'in bir örneği olduğuna dikkat edin. Dolayısıyla \olref[pro]{prop:chain} uyarınca}
+  (\lforall[x][!A(x)] \land \lforall[y][!B(y)]) & \lif !A(a) \\
+  \intertext{ifadesinin !!{derivable} olduğunu biliriz. Benzer biçimde,}
+  (\lforall[x][!A(x)] \land \lforall[y][!B(y)]) & \lif \lforall[y][!B(y)] \qquad\text{ve}\\
+    \lforall[y][!B(y)] & \lif !B(a)\\
+    \intertext{ifadeleri sırasıyla \olref[prp]{ax:land2} ile \olref[qua]{ax:q1}'in örnekleri olduğundan,}
+    (\lforall[x][!A(x)] \land \lforall[y][!B(y)]) & \lif !B(a)\\
+    \intertext{ifadesi \olref[pro]{prop:chain} ile türetilebilir. \olref[prp]{ax:land3}'ün uygun bir örneğini ve \MP'nin iki uygulamasını kullanarak}
+    (\lforall[x][!A(x)] \land \lforall[y][!B(y)]) & \lif (!A(a) \land !B(a))\\
+    \intertext{ifadesinin türetilebilir olduğunu görürüz. Şimdi \QR{} uygulayarak}
+(\lforall[x][!A(x)] \land \lforall[y][!B(y)]) & \lif \lforall[x][(!A(x) \land !B(x))]
+\end{align*}
+ifadesini elde ederiz.
+\end{ex}
+

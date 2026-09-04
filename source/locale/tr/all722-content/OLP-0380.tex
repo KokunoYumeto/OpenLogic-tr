@@ -1,0 +1,64 @@
+% Generated from locale/tr/content/lambda-calculus/lambda-definability/minimization.tex; do not hand-edit.
+
+
+\olfileid[tr]{lam}{ldf}{min}
+\olsection{Minimizasyon}
+
+Genel özyinelemeli fonksiyonlar, temel $\Zero$, $\Succ$, $\Proj{n}{i}$
+fonksiyonlarından bileşke, ilkel özyineleme ve düzenli minimizasyonla elde
+edilebilen fonksiyonlardır. Bütün genel özyinelemeli fonksiyonların
+!!{lambda definable} olduğunu göstermek için, düzenli minimizasyonla
+!!a{lambda definable} fonksiyondan tanımlanan her fonksiyonun da
+!!{lambda definable} olduğunu göstermeliyiz.
+
+\begin{lem}
+  \ollabel{lem:min} $f(x_1,\dots,x_k,y)$ düzenli ve !!{lambda definable}
+  ise
+  \[
+  g(x_1, \dots, x_k) = \umin{y}{f(x_1,\dots,x_k, y) = 0}
+  \]
+  ile tanımlanan $g$ de !!{lambda definable}.
+\end{lem}
+
+\begin{proof}
+  $F$ lambda teriminin düzenli $f(\vec x,y)$ fonksiyonunu lambda ile
+  tanımladığını varsayın. $g$'yi !!{lambda define} için bir arama fonksiyonu
+  ile sabit nokta kombinatörü kullanırız:
+  \begin{align*}
+    \fn{Search} & \ident \lambd[g][\lambd[f\,\vec{x}\,y][
+        \fn{IsZero} (f\, \vec{x}\, y)\, y\,
+        (g\, \vec{x} (\fn{Succ}\, y))]]\\
+    H & \ident \lambd[\vec x][(Y \, \fn{Search}) F\, \vec{x}\, \num{0}],
+  \end{align*}
+  burada $Y$ herhangi bir sabit nokta kombinatörüdür. Gayriresmî olarak
+  $\fn{Search}$ kendine gönderme yapan bir fonksiyondur: $y$'den başlayarak
+  $f\vec x y$'nin sıfır olup olmadığını sınar; sıfırsa $y$'yi döndürür,
+  değilse kendisini $\fn{Succ}\,y$ ile çağırır. Dolayısıyla
+  $(Y\,\fn{Search})F\num{n_1}\dots\num{n_k}\num0$,
+  $f(n_1,\dots,n_k,m)=0$ olan en küçük $m$'yi döndürür.
+
+  Daha açık olarak:
+  \begin{align*}
+    (Y \, \fn{Search}) F \num{n_1}
+    \dots\num{n_k}\, \num{m} & \red \num{m}
+    \intertext{$f(n_1,\dots,n_k,m)=0$ ise; aksi durumda}
+    & \red (Y \, \fn{Search}) F\, \num{n_1} \dots\num{n_k}\, \num{m+1}.
+    \intertext{$f$ düzenli olduğundan bazı $y$ için
+    $f(n_1,\dots,n_k,y)=0$ ve dolayısıyla}
+    (Y \, \fn{Search}) F \num{n_1} \dots\num{n_k}\,\num{0}
+    & \red \num{g(n_1, \dots, n_k)}.
+  \end{align*}
+\end{proof}
+
+
+\begin{prop}
+  Her genel özyinelemeli fonksiyon !!{lambda definable}.
+\end{prop}
+
+\begin{proof}
+ \olref[prf]{lem:basic} gereği bütün temel fonksiyonlar
+ !!{lambda definable}; \olref[prf]{lem:comp}, \olref[prf]{lem:prim} ve
+ \olref{lem:min} gereği de !!{lambda definable} fonksiyonlar bileşke, ilkel
+ özyineleme ve düzenli minimizasyon altında kapalıdır.
+\end{proof}
+

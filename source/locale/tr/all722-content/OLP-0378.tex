@@ -1,0 +1,147 @@
+% Generated from locale/tr/content/lambda-calculus/lambda-definability/primitive-recursive-functions.tex; do not hand-edit.
+
+
+\olfileid[tr]{lam}{ldf}{prf}
+\olsection{İlkel Özyinelemeli Fonksiyonlar \usetoken{S}{lambda definable}}
+
+İlkel özyinelemeli fonksiyonların, temel $\Zero$, $\Succ$ ve $\Proj{n}{i}$
+fonksiyonlarından bileşke ve ilkel özyinelemeyle tanımlanabilen fonksiyonlar
+olduğunu hatırlayın.
+
+\begin{lem}
+  \ollabel{lem:basic}
+  Temel ilkel özyinelemeli $\Zero$, $\Succ$ ve izdüşüm $\Proj{n}{i}$
+  fonksiyonları !!{lambda definable}.
+\end{lem}
+
+\begin{proof}
+Aşağıdaki terimler bu fonksiyonları !!{lambda define}:
+\begin{align*}
+  \fn{Zero} & \ident \lambd[a][\lambd[fx][x]]\\
+  \fn{Succ} & \ident \lambd[a][\lambd[fx][f (a f x)]] \\
+  \fn{Proj}^n_i & \ident \lambd[x_0\dots x_{n-1}][x_i].
+\end{align*}
+\end{proof}
+
+\begin{lem}
+  \ollabel{lem:comp} $k$ yerli $f$ fonksiyonu ile $n$ yerli
+  $g_0,\dots,g_{k-1}$ fonksiyonlarının sırasıyla
+  $F,G_0,\dots,G_{k-1}$ terimleri tarafından !!{lambda definable}
+  olduğunu ve $h$'nin bunlardan bileşkeyle tanımlandığını varsayın. O zaman
+  $h$ de !!{lambda definable}.
+\end{lem}
+
+\begin{proof}
+  Şu terim $h$'yi !!{lambda define}:
+  \[
+  H \ident \lambd[x_0 \dots x_{n-1}][F\, (G_0 x_0 \dots
+    x_{n-1}) \dots (G_{k-1} x_0 \dots x_{n-1})].
+  \]
+  Bunun doğrulanmasını alıştırma olarak bırakıyoruz.
+\end{proof}
+
+\begin{prob}
+  $H\num{n_0}\dots\num{n_{n-1}}\red
+  \num{h(n_0,\dots,n_{n-1})}$ olduğunu göstererek
+  \olref[lam][ldf][prf]{lem:comp} lemasının ispatını tamamlayın.
+\end{prob}
+
+\olref{lem:comp}, $f$ ve $g_0$, \dots,~$g_{k-1}$ fonksiyonlarının ilkel
+özyinelemeli olmasını gerektirmez; yalnızca tümel ve !!{lambda definable}
+olmaları gerekir.
+
+\begin{lem}\ollabel{lem:prim}
+  $f$ $n$ yerli, $g$ ise $n+2$ yerli bir fonksiyon olsun; bunların sırasıyla
+  $F,G$ terimleri tarafından !!{lambda definable} olduğunu ve $h$'nin $f,g$
+  fonksiyonlarından ilkel özyinelemeyle tanımlandığını varsayın. O zaman $h$
+  de !!{lambda definable}.
+\end{lem}
+
+\begin{proof}
+  $h$'nin şöyle tanımlandığını hatırlayın:
+  \begin{align*}
+    h(x_1, \dots, x_n, 0) &= f(x_1, \dots, x_n)\\
+    h(x_1, \dots, x_n, y+1) & = g(x_1, \dots, x_n, y,
+      h(x_1, \dots, x_n, y)).
+  \end{align*}
+  Gayriresmî olarak ilkel özyinelemeli tanım, $g$ fonksiyonunun uygulanmasını
+  $y$ kez yineler ve başlangıç değeri olarak $f(x_1,\dots,x_n)$ kullanır.
+  Bu, yineleyici olarak tanımlanan Church sayılarının tanımını andırır.
+
+  Basitlik için tek bir ek $x$ argümanı bulunan duruma ait tanımı ve ispatı
+  veriyoruz. Şu terim $h$'yi !!{lambda define}:
+  \begin{align*}
+    H \ident & \lambd[x][\lambd[y][\fn{Snd} (y
+        D \tuple{\num{0}, F x})]]
+    \intertext{burada}
+    D \ident & \lambd[p][\tuple{\fn{Succ} (\fn{Fst}\, p), (G x
+          (\fn{Fst}\, p) (\fn{Snd}\, p))}].
+  \end{align*}
+  Koruduğumuz yineleme durumu bir çifttir: birinci bileşen güncel $y$, ikinci
+  bileşen buna karşılık gelen $h$ değeridir. Her yineleme adımında $y$ ile
+  $h$'nin yeni değerlerinden oluşan bir çift kurarız; yineleme bittiğinde
+  çiftin ikinci bileşenini, yani son $h$ değerini döndürürüz. Şimdi bunun
+  gerçekten ilkel özyinelemenin bir gösterimi olduğunu ispatlayalım.
+
+  Her $n,m$ için $H\,\num n\,\num m\red\num{h(n,m)}$ olduğunu göstermek
+  istiyoruz. Önce $D_n\ident\Subst{D}{\num n}{x}$ ise
+  $D_n^m\tuple{\num0,F\,\num n}\red
+  \tuple{\num m,\num{h(n,m)}}$ olduğunu $m$ üzerinde tümevarımla gösterelim.
+
+  $m=0$ ise göstermek istediğimiz
+  $D_n^0\tuple{\num0,F\,\num n}\red\tuple{\num0,\num{h(n,0)}}$'dır.
+  Sol taraf doğrudan $\tuple{\num0,F\,\num n}$'dir. $F$, $f$'yi
+  !!{lambda define}s; dolayısıyla bu çift $\tuple{\num0,\num{f(n)}}$'ye
+  indirgenir. $f(n)=h(n,0)$ olduğundan sonuç
+  $\tuple{\num0,\num{h(n,0)}}$'dır.
+
+  Şimdi $D_n^m\tuple{\num0,F\,\num n}\red
+  \tuple{\num m,\num{h(n,m)}}$ olduğunu varsayın. Göstermek istediğimiz
+  $D_n^{m+1}\tuple{\num0,F\,\num n}\red
+  \tuple{\num{m+1},\num{h(n,m+1)}}$'dır.
+  \begin{align*}
+    D_n^{m+1} \tuple{\num{0}, F\, \num{n}}
+    & \ident D_n(D_n^{m} \tuple{\num{0}, F\, \num{n}})\\
+    & \red D_n\,\tuple{\num{m}, \num{h(n, m)}}
+      \text{\qquad (TV gereği)}\\
+    & \ident (\lambd[p][
+      \tuple{
+        \fn{Succ} (\fn{Fst}\, p), (G \, \num{n} (\fn{Fst}\, p) (\fn{Snd}\, p))
+    }]) \tuple{\num{m}, \num{h(n,m)}}\\
+    & \redone
+    \tuple{\fn{Succ} (\fn{Fst}\, \tuple{\num{m}, \num{h(n,m)}}),\\
+      & \qquad (G \, \num{n} (\fn{Fst}\, \tuple{\num{m}, \num{h(n,m)}})
+      (\fn{Snd}\, \tuple{\num{m}, \num{h(n,m)}}))}\\
+    & \red
+    \tuple{\fn{Succ}\, \num{m}, (G \, \num{n} \,\num{m} \, \num{h(n,m)})}\\
+    & \red \tuple{\num{m+1}, \num{g(n, m, h(n, m))}}.
+  \end{align*}
+  $g(n,m,h(n,m))=h(n,m+1)$ olduğundan ispat tamamlanır.
+
+  Son olarak şunu ele alalım:
+  \begin{align*}
+    H\,\num n\,\num m &\ident \lambd[x][\lambd[y][\fn{Snd} (y
+        (\lambd[p][\tuple{\fn{Succ} (\fn{Fst}\, p), (G\, x\,
+          (\fn{Fst}\, p)\, (\fn{Snd}\, p))}]) \tuple{\num{0}, F x})]]\\
+    & \qquad\,\num n\, \num m\\
+    & \red \fn{Snd} (\num m \,
+    \underbrace{(\lambd[p][\tuple{\fn{Succ} (\fn{Fst}\, p), (G \,\num n\,
+      (\fn{Fst}\, p) (\fn{Snd}\, p))}])}_{D_n} \tuple{\num{0}, F \num n})\\
+    & \ident \fn{Snd} (\num m \, D_n\, \tuple{\num{0}, F \num n})\\
+    & \red \fn{Snd} \,(D_n^m  \tuple{\num{0}, F \num n})\\
+    & \red \fn{Snd} \,\tuple{\num{m}, \num{h(n, m)}} \\
+    & \red \num{h(n,m)}.
+  \end{align*}
+\end{proof}
+
+
+\begin{prop}
+  Her ilkel özyinelemeli fonksiyon !!{lambda definable}.
+\end{prop}
+
+\begin{proof}
+  \olref{lem:basic} gereği bütün temel fonksiyonlar !!{lambda definable};
+  \olref{lem:comp} ve \olref{lem:prim} gereği de !!{lambda definable}
+  fonksiyonlar bileşke ve ilkel özyineleme altında kapalıdır.
+\end{proof}
+

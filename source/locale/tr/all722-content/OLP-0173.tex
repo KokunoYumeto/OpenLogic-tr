@@ -1,0 +1,65 @@
+% Generated from locale/tr/content/first-order-logic/models-theories/size-of-structures.tex; do not hand-edit.
+
+
+\olfileid[tr]{fol}{mat}{siz}
+
+\olsection{\printtoken{P}{structure} Büyüklüğünü İfade Etmek}
+
+\begin{explain}
+Bir dilin mantıksal olmayan simgelerini kullanmadan da yapıların bazı
+özelliklerini ifade edebiliriz. Örneğin !!a{structure} içinde ancak ve
+ancak !!{structure} ifadesinin !!{domain} en az, en çok ya da tam
+olarak belirli bir $n$ sayıda !!{element}s içerdiğinde doğru olan
+!!{sentence}s vardır.
+\end{explain}
+
+\begin{prop}
+\begin{multline*}
+  !A_{\ge n} \ident \lexists[x_1][\lexists[x_2][\dots\lexists[x_n][{}]]]\\
+  \begin{aligned}
+  (\eq/[x_1][x_2] \land {}
+  \eq/[x_1][x_3] \land \eq/[x_1][x_4] \land \dots \land \eq/[x_1][x_n] \land {}\\
+\eq/[x_2][x_3] \land \eq/[x_2][x_4] \land \dots \land {} \eq/[x_2][x_n] \land {} \\
+\vdots\\
+\eq/[x_{n-1}][x_n])
+\end{aligned}
+\end{multline*}
+!!{sentence} ifadesi, !!a{structure}~$\Struct M$ içinde ancak ve ancak
+$\Domain M$ en az $n$ !!{element}s içerdiğinde doğrudur. Dolayısıyla
+$\Sat{M}{\lnot !A_{\ge n+1}}$ ancak ve ancak $\Domain M$ en çok $n$
+!!{element}s içerdiğinde geçerlidir.
+\end{prop}
+
+\begin{prop}
+\begin{multline*}
+!A_{= n} \ident \lexists[x_1][\lexists[x_2][\dots\lexists[x_n][{}]]] \\
+\begin{aligned}
+  (\eq/[x_1][x_2] \land {}
+  \eq/[x_1][x_3] \land \eq/[x_1][x_4] \land \dots \land \eq/[x_1][x_n] \land {}\\
+\eq/[x_2][x_3] \land \eq/[x_2][x_4] \land \dots \land {} \eq/[x_2][x_n] \land {} \\
+\vdots\\
+\eq/[x_{n-1}][x_n] \land {} \\
+\lforall[y][(\eq[y][x_1] \lor \dots \lor \eq[y][x_n]]))
+\end{aligned}
+\end{multline*}
+!!{sentence} ifadesi, !!a{structure}~$\Struct M$ içinde ancak ve ancak
+$\Domain M$ tam olarak $n$ !!{element}s içerdiğinde doğrudur.
+\end{prop}
+
+\begin{prop}
+!!a{structure}, ancak ve ancak
+\[
+\{!A_{\ge 1}, !A_{\ge 2}, !A_{\ge 3}, \dots \}
+\]
+kümesinin bir modeliyse sonsuzdur.
+\end{prop}
+
+$\Struct M$ içinde ancak ve ancak $\Domain M$ sonsuz olduğunda doğru
+olan tek bir salt mantıksal tümce yoktur. Bununla birlikte, yalnızca
+sonsuz modelleri olan, mantıksal olmayan !!{predicate}s içeren
+!!{sentence}s verilebilir (gerçi her sonsuz !!{structure} bunların bir
+modeli değildir). Bir yapının sonlu olması özelliği ve bir yapının
+!!{nonenumerable} olması özelliği, sonsuz bir !!{sentence}s kümesiyle
+bile ifade edilemez. Bu olgular tıkızlık ve Löwenheim--Skolem
+teoremlerinden çıkar.
+

@@ -1,0 +1,155 @@
+% Generated from locale/tr/content/set-theory/card-arithmetic/opps.tex; do not hand-edit.
+
+
+\olfileid[tr]{sth}{card-arithmetic}{opps}
+\olsection{Temel İşlemlerin Tanımlanması}
+
+Sırayı izlememiz gerekmediğinden kardinal aritmetiğini tanımlamak sıra
+sayısı aritmetiğini tanımlamaktan oldukça kolaydır. Toplama, çarpma ve
+üs almayı aynı anda tanımlayacağız.
+
+\begin{defn}
+$\cardfont{a}$ ve $\cardfont{b}$ kardinal sayılar olduğunda:
+\begin{align*}
+	\cardfont{a} \cardplus \cardfont{b} &\defis
+	\card{\cardfont{a} \disjointsum \cardfont{b}}\\
+	\cardfont{a} \cardtimes \cardfont{b} &\defis
+	\card{\cardfont{a} \times \cardfont{b}}\\
+	\cardexpo{\cardfont{a}}{\cardfont{b}} &\defis
+	\card{\funfromto{\cardfont{b}}{\cardfont{a}}}
+\end{align*}
+burada $\funfromto{X}{Y} = \Setabs{f}{f \text{ bir } X \to Y
+\text{ fonksiyonudur}}$ olur. (Her $X$ ve $Y$ kümesi için
+$\funfromto{X}{Y}$'nin var olduğunu göstermek kolaydır; bunu alıştırma
+olarak bırakıyoruz.)
+\end{defn}
+
+\begin{prob}
+Her $X$ ve $Y$ kümesi için $\funfromto{X}{Y}$'nin var olduğunu $\Zminus$
+içinde ispatlayın. $\ZF$ içinde çalışarak
+$\setrank{\funfromto{X}{Y}}$ değerini, $\setrank{X}$ ve $\setrank{Y}$
+değerlerinden
+\olref[sth][ord-arithmetic][using-addition]{rankcomputation} tarzında
+hesaplayın.
+\end{prob}
+
+Bu tanımı açıklamak yararlı olabilir. Toplama bakımından tanım,
+\olref[ord-arithmetic][add]{defdissum} içinde tanımlanan ayrık toplam
+$\disjointsum$ kavramını kullanır; sonlu durumlarda doğru sonucu verdiğini
+görmek kolaydır. Çarpma bakımından
+\olref[sfr][set][pai]{cardnmprod}, $A$'nın $n$ elemanı ve $B$'nin $m$
+elemanı varsa $A\times B$'nin $n\cdot m$ elemanı olduğunu söyler;
+dolayısıyla tanımımız düşünceyi yalnızca sonlu ötesi çarpmaya geneller.
+Üs alma da benzerdir: sonlu durumdaki düşünceyi sonlu ötesi duruma
+genelliyoruz. Gerçekten sonlu ötesi kardinal aritmetiği bazı yönlerden
+sonlu ötesi sıra sayısı aritmetiğine kıyasla ``olağan'' aritmetiğe çok
+daha fazla benzer:
+
+\begin{prop}\ollabel{cardplustimescommute}
+$\cardplus$ ve $\cardtimes$ değişmeli ve birleşmelidir.
+\end{prop}
+
+\begin{proof}
+Değişmelilik için
+\olref[cardinals][cardsasords]{lem:CardinalsBehaveRight} gereği
+$\cardeq{(\cardfont{a} \disjointsum
+\cardfont{b})}{(\cardfont{b} \disjointsum \cardfont{a})}$ ve
+$\cardeq{(\cardfont{a} \times \cardfont{b})}{(\cardfont{b} \times
+\cardfont{a})}$ olduğunu gözlemlemek yeterlidir. Birleşmeliliği alıştırma
+olarak bırakıyoruz.
+\end{proof}
+
+\begin{prob}
+$\cardplus$ ve $\cardtimes$ işlemlerinin birleşmeli olduğunu ispatlayın.
+\end{prob}
+
+\begin{prop}
+$A$ sonsuzdur ancak ve ancak
+$\card{A} \cardplus 1 = 1 \cardplus \card{A} = \card{A}$.
+\end{prop}
+
+\begin{proof}
+\olref[cardinals][classing]{generalinfinitycharacter} içindeki gibi;
+\olref[ord-arithmetic][using-addition]{ordinfinitycharacter} ve
+\olref[cardinals][cardsasords]{lem:CardinalsBehaveRight} sonuçlarından
+çıkar.
+\end{proof}
+
+Bu, sıra sayısı toplaması/çarpması ile kardinal toplaması/çarpması için
+niçin farklı simgeler kullanmamız gerektiğini açıklar: bunlar gerçekten
+\emph{farklı} işlemlerdir. Sıradaki iki sonuç, sıra sayısı üs alması ile
+kardinal üs almasının da farklı işlemler olduğunu gösterir.
+(\olref[z][infinity-again]{defnomega} sonucunun $2=\{0,1\}$ gerektirdiğini
+hatırlayın):
+
+\begin{lem}\ollabel{lem:SizePowerset2Exp}
+Her $A$ için $\card{\Pow{A}} = \cardexpo{2}{\card{A}}$.
+\end{lem}
+
+\begin{proof}
+Her $B\subseteq A$ altkümesi için $\chi_B\in\funfromto{A}{2}$ fonksiyonu
+şöyle verilsin:
+\begin{align*}
+	\chi_{B}(x) &\defis
+	\begin{cases}
+		1 & \text{eğer }x\in B\\
+		0 & \text{aksi hâlde.}
+	\end{cases}
+\end{align*}
+Şimdi $f(B)=\chi_B$ olsun; bu, $f\colon\Pow{A}\to
+\funfromto{A}{2}$ !!a{bijection} tanımlar. Öyleyse
+$\cardeq{\Pow{A}}{\funfromto{A}{2}}$. Dolayısıyla
+$\cardeq{\Pow{A}}{\funfromto{\card{A}}{2}}$ ve böylece
+$\card{\Pow{A}} = \card{\funfromto{\card{A}}{2}} =
+2^{\card{A}}$ olur.
+\end{proof}
+
+Bu kısa ispat esasen \olref[sfr][siz][red-alt]{sec} tartışmasını kapsar.
+Orada $\Pow{\omega}$'nın sayılamazlığının sonsuz ikili diziler kümesi
+$\Bin^\omega$'nın sayılamazlığına nasıl ``indirgeneceğini'' gösterdik.
+Aslında $\Bin^\omega$ yalnızca $\funfromto{\omega}{2}$'dir; önceki ispat
+da \olref[sfr][siz][red-alt]{sec} içindeki uslamlamanın $\omega$ yerine
+herhangi bir $A$ kümesi konarak yürütülebileceğini gösterdi. Sonuç ayrıca
+kardinal üs alma hakkında hızlı bir olgu verir:
+
+\begin{cor}\ollabel{cantorcor}
+Her $\cardfont{a}$ kardinal sayısı için
+$\cardfont{a}<\cardexpo{2}{\cardfont{a}}$.
+\end{cor}
+
+\begin{proof}
+Cantor Teoremi'nden (\olref[sfr][siz][car]{thm:cantor}) ve
+\olref{lem:SizePowerset2Exp} sonucundan çıkar.
+\end{proof}
+\noindent
+Dolayısıyla $\omega<\cardexpo{2}{\omega}$. Fakat dikkat edin: bu,
+\emph{kardinal} üs alma hakkındaki bir sonuçtur. \emph{Sıra sayısı} üs
+almasıyla karşılaştırılmalıdır; çünkü ikinci durumda
+$\omega=\ordexpo{2}{\omega}$ olur (bkz.
+\olref[ord-arithmetic][expo]{sec}).
+
+Kardinal üs alma konusundayken $\Real$'in hangi ``anlamda''
+!!{nonenumerable} olduğu konusunda biraz daha kesin konuşabiliriz.
+
+\begin{thm}\ollabel{continuumis2aleph0}
+$\card{\Real} = \cardexpo{2}{\omega}$
+\end{thm}
+
+\begin{proof}[İspat taslağı]
+Bunu ispatlamanın birçok yolu vardır. En dolaysız yol,
+$\cardle{\Pow{\omega}}{\Real}$ ve $\cardle{\Real}{\Pow{\omega}}$
+olduğunu savunmak; sonra Schröder--Bernstein ile
+$\cardeq{\Real}{\Pow{\omega}}$ ve
+\olref[card-arithmetic][opps]{lem:SizePowerset2Exp} ile
+$\card{\Real}=\cardexpo{2}{\omega}$ sonucunu çıkarmaktır.
+$f\colon\Pow{\omega}\to\Real$ ve $g\colon\Real\to\Pow{\omega}$
+iğnelemeleri tanımlamayı (aydınlatıcı) bir alıştırma olarak bırakıyoruz.
+\end{proof}
+
+\begin{prob}
+$\cardle{\Pow{\omega}}{\Real}$ ve $\cardle{\Real}{\Pow{\omega}}$
+olduğunu göstererek
+\olref[sth][card-arithmetic][opps]{continuumis2aleph0} ispatını
+tamamlayın.
+\end{prob}
+

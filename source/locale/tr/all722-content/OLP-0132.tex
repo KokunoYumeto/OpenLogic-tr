@@ -1,0 +1,289 @@
+% Generated from locale/tr/content/first-order-logic/completeness/construction-of-model.tex; do not hand-edit.
+
+
+\iftag{FOL}
+      {\olfileid[tr]{fol}{com}{mod}}
+      {\olfileid[tr]{pl}{com}{mod}}
+
+\olsection{Bir Modelin Kuruluşu}
+
+\begin{explain}
+\iftag{FOL}{Şimdilik~$\eq$ ile ilgilenmiyoruz; yani yalnızca~$\eq$
+  içermeyen tutarlı bir !!{sentence}s kümesi~$\Gamma$'nın
+  sağlanabilir olduğunu göstermek istiyoruz. Önce~$\Gamma$'yı tutarlı,
+  !!{complete} ve doygun bir~$\Gamma^*$ kümesine genişletiriz. Bu
+  durumda $\Struct{M(\Gamma^*)}$ modelinin tanımı basittir:
+  $\Lang{L'}$ dilinin kapalı terimleri kümesini evren olarak alırız.
+  Her !!{constant} simgesini kendisine atar ve daha genel olarak her
+  kapalı~$t$ terimi için $\Value{t}{M(\Gamma^*)}=t$ olmasını sağlarız.
+  !!{predicate}s simgelerine, atomik bir !!{sentence}
+  $\Struct{M(\Gamma^*)}$ içinde ancak ve ancak~$\Gamma^*$ içindeyse
+  doğru olacak biçimde uzanımlar atanır. Bu,~$\Gamma^*$ içindeki bütün
+  atomik !!{sentence}s ifadelerini açıkça $\Struct{M(\Gamma^*)}$
+  içinde doğru kılar. Geri kalanlar da başlangıçtaki~$\Gamma^*$
+  tutarlı, tam ve doygunsa doğrudur.}{Şimdi bütün $!A\in\Gamma$
+  ifadelerini doğru kılan !!a{valuation} tanımlamaya hazırız.
+  Bunun için önce Lindenbaum Lemması'nı uygularız ve
+  $\Gamma^*\supseteq\Gamma$ olacak biçimde tam ve tutarlı bir
+  $\Gamma^*$ elde ederiz. $\Gamma^*$ içindeki !!{propositional variable}s
+  ifadelerinin~$\pAssign v(\Gamma^*)$ değerlemesini
+  belirlemesine izin veririz.}
+\end{explain}
+
+\iftag{FOL}{%
+\begin{defn}[Terim modeli]
+\ollabel{defn:termmodel}
+$\Gamma^*$, bir~$\Lang L$ dilindeki !!a{complete}, tutarlı ve doygun
+bir !!{sentence}s kümesi olsun. $\Gamma^*$ kümesinin \emph{terim
+  modeli}~$\Struct M(\Gamma^*)$ aşağıdaki gibi tanımlanan
+!!{structure} ifadesidir:
+\begin{enumerate}
+\item !!{domain}~$\Domain{M(\Gamma^*)}$,~$\Lang L$ dilinin bütün kapalı
+  terimleri kümesidir.
+\item !!a{constant}~$c$ simgesinin yorumu kendisidir:
+  $\Assign{c}{M(\Gamma^*)}=c$.
+\item !!{function}~$f$ simgesine, argüman olarak kapalı $t_1$, \dots,
+  $t_n$ terimleri verildiğinde değer olarak kapalı
+  $f(t_1,\dots,t_n)$ terimini veren fonksiyon atanır:
+\[
+\Assign{f}{M(\Gamma^*)}(t_1, \dots, t_n) = f(t_1,\dots, t_n)
+\]
+\item $R$, $n$-li !!{predicate} ise
+  \[
+  \tuple{t_1, \dots,t_n}\in\Assign{R}{M(\Gamma^*)}
+  \text{ ancak ve ancak }
+  \Atom{R}{t_1,\dots,t_n}\in\Gamma^*.
+  \]
+\end{enumerate}
+\end{defn}
+}{%
+\begin{defn}
+\ollabel{defn:termmodel}
+$\Gamma^*$'ın tam ve tutarlı bir !!{formula}s kümesi olduğunu
+varsayalım. Şöyle tanımlarız:
+\[
+\pAssign v(\Gamma^*)(p) = \begin{cases}
+  \True & \text{$p\in\Gamma^*$ ise}\\
+  \False & \text{$p\notin\Gamma^*$ ise.}
+  \end{cases}
+\]
+\end{defn}
+}
+
+\iftag{FOL}{%
+Şimdi gerçekten $\Value{t}{M(\Gamma^*)}=t$ olduğunu doğrulayalım.
+
+\begin{lem}
+\ollabel{lem:val-in-termmodel} $\Struct M(\Gamma^*)$,
+\olref{defn:termmodel} tanımındaki terim modeli olsun. O zaman her kapalı
+$t$ terimi için $\Value{t}{M(\Gamma^*)}=t$.
+\end{lem}
+\begin{proof}
+İspat~$t$ üzerinde tümevarımladır. $t$ bir !!a{constant} olduğundaki
+temel durum doğrudan terim modeli tanımından çıkar. Tümevarım adımında
+$t_1,\ldots,t_n$ kapalı terimlerinin
+$\Value{t_i}{M(\Gamma^*)}=t_i$ eşitliklerini sağladığını ve $f$'nin
+$n$-li bir !!{function} olduğunu varsayalım. O zaman
+\begin{align*}
+\Value{f(t_1,\ldots,t_n)}{M(\Gamma^*)} &= \Assign{f}{M(\Gamma^*)}(\Value{t_1}
+ {M(\Gamma^*)},
+\ldots, \Value{t_n}{M(\Gamma^*)}) \\
+&= \Assign{f}{M(\Gamma^*)}(t_1, \dots, t_n) \\
+&= f(t_1,\dots, t_n).
+\end{align*}
+Dolayısıyla tümevarım gereği eşitlik her kapalı~$t$ terimi için
+geçerlidir.
+\end{proof}
+}
+
+\iftag{FOL}{%
+\begin{explain}
+  \iftag{prvEx}{!!^a{structure}~$\Struct{M}$, hiçbir doğru
+    $!A(t)$ örneği bulunmadığı halde varlıksal niceleyicili bir
+    $\lexists[x][!A(x)]$ !!{sentence} ifadesini doğru kılabilir.}{}
+  \iftag{prvAll}{!!^a{structure}~$\Struct{M}$, tümel niceleyicili bir
+    $\lforall[x][!A(x)]$ !!{sentence} ifadesinin bütün $!A(t)$
+    örneklerini doğru kıldığı halde $\lforall[x][!A(x)]$ ifadesini
+    doğru kılmayabilir.}{} Bunun nedeni, genel olarak
+  $\Domain{M}$ içindeki her !!{element} öğesinin kapalı bir terimin
+  değeri olmamasıdır ($\Struct{M}$ örtülmüş olmayabilir). Sağlama
+  bağıntısının değişken atamaları üzerinden tanımlanmasının nedeni
+  budur. Ancak terim modelimiz~$\Struct{M(\Gamma^*)}$ için buna gerek
+  kalmaz; çünkü bu model örtülmüştür. Bir sonraki sonuç tam olarak bunu
+  söyler.
+\end{explain}
+
+\begin{prop}
+\ollabel{prop:quant-termmodel}
+$\Struct M(\Gamma^*)$,~\olref{defn:termmodel} tanımındaki terim modeli
+olsun.
+\begin{tagenumerate}{prvEx,prvAll}
+\tagitem{prvEx}{$\Sat{M(\Gamma^*)}{\lexists[x][!A(x)]}$ ancak ve ancak
+  en az bir kapalı~$t$ terimi için $\Sat{M(\Gamma^*)}{!A(t)}$ ise.}{}
+\tagitem{prvAll}{$\Sat{M(\Gamma^*)}{\lforall[x][!A(x)]}$ ancak ve ancak
+  bütün kapalı~$t$ terimleri için $\Sat{M(\Gamma^*)}{!A(t)}$ ise.}{}
+\end{tagenumerate}
+\end{prop}
+
+\begin{proof}
+\begin{tagenumerate}{prvEx,prvAll}
+\tagitem{prvEx}{%
+  \iftag{probEx}{Alıştırma.}{\olref[syn][ass]{prop:sat-quant} uyarınca
+    $\Sat{M(\Gamma^*)}{\lexists[x][!A(x)]}$ ancak ve ancak en az bir
+    değişken ataması~$s$ için $\Sat{M(\Gamma^*)}{!A(x)}[s]$ ise.
+    $\Domain{M(\Gamma^*)}$,~$\Lang{L}$ dilinin kapalı terimlerinden
+    oluştuğundan bu, ancak ve ancak $s(x)=t$ ve
+    $\Sat{M(\Gamma^*)}{!A(x)}[s]$ olacak biçimde en az bir kapalı~$t$
+    terimi varsa geçerlidir. \olref[fol][syn][ext]{prop:ext-formulas}
+    uyarınca, $s(x)=t$ olduğunda $\Sat{M(\Gamma^*)}{!A(x)}[s]$ ancak
+    ve ancak $\Sat{M(\Gamma^*)}{!A(t)}[s]$ ise.
+    \olref[fol][syn][ass]{prop:sentence-sat-true} uyarınca $!A(t)$ bir
+    tümce olduğundan $\Sat{M(\Gamma^*)}{!A(t)}[s]$ ancak ve ancak
+    $\Sat{M(\Gamma^*)}{!A(t)}$ ise.}}{}
+\tagitem{prvAll}{%
+  \iftag{probAll}{Alıştırma.}{\olref[syn][ass]{prop:sat-quant} uyarınca
+    $\Sat{M(\Gamma^*)}{\lforall[x][!A(x)]}$ ancak ve ancak her değişken
+    ataması~$s$ için $\Sat{M(\Gamma^*)}{!A(x)}[s]$ ise.
+    $\Domain{M(\Gamma^*)}$ kümesinin~$\Lang{L}$ dilinin kapalı
+    terimlerinden oluştuğunu hatırlayalım. Bu yüzden her kapalı~$t$
+    terimi için $s(x)=t$ olacak bir değişken ataması vardır ve her
+    değişken atamasında $s(x)$, kapalı bir~$t$ terimidir.
+    \olref[fol][syn][ext]{prop:ext-formulas} uyarınca, $s(x)=t$
+    olduğunda $\Sat{M(\Gamma^*)}{!A(x)}[s]$ ancak ve ancak
+    $\Sat{M(\Gamma^*)}{!A(t)}[s]$ ise.
+    \olref[fol][syn][ass]{prop:sentence-sat-true} uyarınca $!A(t)$ bir
+    tümce olduğundan $\Sat{M(\Gamma^*)}{!A(t)}[s]$ ancak ve ancak
+    $\Sat{M(\Gamma^*)}{!A(t)}$ ise.}}{}
+\end{tagenumerate}
+\end{proof}
+}{}
+
+\tagprob[FOL]{probEx,probAll}
+\begin{prob}
+\olref[fol][com][mod]{prop:quant-termmodel} önermesinin ispatını tamamlayın.
+\end{prob}
+\tagendprob
+
+\begin{lem}[Doğruluk Lemması]
+\ollabel{lem:truth} \iftag{FOL}{$!A$ ifadesinin~$\eq$ içermediğini
+varsayalım. O zaman}{}
+$\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{!A}$ ancak ve ancak
+$!A\in\Gamma^*$ ise.
+\end{lem}
+
+\begin{proof}
+İki yönü aynı anda,~$!A$ üzerinde tümevarımla ispatlarız.
+\begin{enumerate}
+\tagitem{prvFalse}{\indcase{!A}{\lfalse}
+  {$\iftag{FOL}{\Sat/{M(\Gamma^*)}{\lfalse}}{\pSat/{v(\Gamma^*)}{\lfalse}}$
+    sağlama tanımı gereği geçerlidir. Öte yandan $\Gamma^*$ tutarlı
+    olduğundan $\lfalse\notin\Gamma^*$.}}{}
+
+\tagitem{prvTrue}{\indcase{!A}{\ltrue}
+  {$\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{\ltrue}$
+    sağlama tanımı gereği geçerlidir. Öte yandan $\Gamma^*$ tutarlı ve
+    !!{complete} olduğundan ve $\Gamma^*\Proves\ltrue$ olduğundan
+    $\ltrue\in\Gamma^*$.}}{}
+
+\tagitem{FOL}{\indcase{!A}{R(t_1, \dots, t_n)}
+  {$\Sat{M(\Gamma^*)}{\Atom{R}{t_1, \dots, t_n}}$ ancak ve ancak
+    $\tuple{t_1,\dots,t_n}\in\Assign{R}{M(\Gamma^*)}$ ise (sağlama
+    tanımı gereği); bu da ancak ve ancak $R(t_1,\dots,t_n)\in\Gamma^*$
+    ise geçerlidir ($\Struct M(\Gamma^*)$ kuruluşu gereği).}}{\indcase{!A}{p}
+  {$\pSat{v(\Gamma^*)}{p}$ ancak ve ancak
+    $\pAssign v(\Gamma^*)(p)=\True$ ise (sağlama tanımı gereği); bu da
+    ancak ve ancak $p\in\Gamma^*$ ise geçerlidir
+    ($\pAssign v(\Gamma^*)$ kuruluşu gereği).}}
+
+\tagitem{prvNot}{%
+  \indcase{!A}{\lnot !B}
+    {$\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{\indfrm}$
+    ancak ve ancak
+    $\iftag{FOL}{\Sat/{M(\Gamma^*)}{!B}}{\pSat/{v(\Gamma^*)}{!B}}$
+    ise (sağlama tanımı gereği). Tümevarım varsayımıyla,
+    $\iftag{FOL}{\Sat/{M(\Gamma^*)}{!B}}{\pSat/{v(\Gamma^*)}{!B}}$
+    ancak ve ancak $!B\notin\Gamma^*$ ise geçerlidir. $\Gamma^*$
+    tutarlı ve !!{complete} olduğundan $!B\notin\Gamma^*$ ancak ve
+    ancak $\lnot !B\in\Gamma^*$ ise.}}{}
+
+\tagitem{prvAnd}{%
+\iftag{probAnd}{%
+  \indcase!{!A}{!B \land !C}{}}{%
+  \indcase{!A}{!B \land !C}
+    {$\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{\indfrm}$
+    ancak ve ancak hem
+    $\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{!B}$ hem de
+    $\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{!C}$ ise
+    (sağlama tanımı gereği); tümevarım varsayımıyla bu, ancak ve ancak
+    hem $!B\in\Gamma^*$ hem de $!C\in\Gamma^*$ ise geçerlidir.
+    \olref[ccs]{prop:ccs}\olref[ccs]{prop:ccs-and} uyarınca bu koşul,
+    ancak ve ancak $(!B\land !C)\in\Gamma^*$ ise geçerlidir.}}}{}
+
+\tagitem{prvOr}{%
+\iftag{probOr}{%
+  \indcase!{!A}{!B \lor !C}{}}{%
+  \indcase{!A}{!B \lor !C}
+    {$\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{\indfrm}$
+    ancak ve ancak
+    $\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{!B}$ ya da
+    $\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{!C}$ ise
+    (sağlama tanımı gereği); tümevarım varsayımıyla bu, ancak ve ancak
+    $!B\in\Gamma^*$ ya da $!C\in\Gamma^*$ ise geçerlidir.
+    \olref[ccs]{prop:ccs}\olref[ccs]{prop:ccs-or} uyarınca bu da ancak
+    ve ancak $(!B\lor !C)\in\Gamma^*$ ise geçerlidir.}}}{}
+
+\tagitem{prvIf}{%
+\iftag{probIf}{%
+  \indcase!{!A}{!B \lif !C}{}}{%
+  \indcase{!A}{!B \lif !C}
+    {$\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{\indfrm}$
+    ancak ve ancak
+    $\iftag{FOL}{\Sat/{M(\Gamma^*)}}{\pSat/{v(\Gamma^*)}}{!B}$ ya da
+    $\iftag{FOL}{\Sat{M(\Gamma^*)}}{\pSat{v(\Gamma^*)}}{!C}$ ise
+    (sağlama tanımı gereği); tümevarım varsayımıyla bu, ancak ve ancak
+    $!B\notin\Gamma^*$ ya da $!C\in\Gamma^*$ ise geçerlidir.
+    \olref[ccs]{prop:ccs}\olref[ccs]{prop:ccs-if} uyarınca bu da ancak
+    ve ancak $(!B\lif !C)\in\Gamma^*$ ise geçerlidir.}}}{}
+
+\iftag{FOL}{%
+\tagitem{prvAll}{%
+  \iftag{probAll}{%
+    \indcase!{!A}{\lforall[x][!B(x)]}{}}{%
+    \indcase{!A}{\lforall[x][!B(x)]}
+      {$\Sat{M(\Gamma^*)}{\indfrm}$ ancak ve ancak bütün~$t$ terimleri
+      için $\Sat{M(\Gamma^*)}{!B(t)}$ ise
+      (\olref{prop:quant-termmodel}). Tümevarım varsayımına göre bu,
+      ancak ve ancak bütün~$t$ terimleri için $!B(t)\in\Gamma^*$ ise;
+      \olref[hen]{prop:saturated-instances} uyarınca bu da ancak ve
+      ancak $\lforall[x][!B(x)]\in\Gamma^*$ ise geçerlidir.}}}{}
+
+\tagitem{prvEx}{%
+  \iftag{probEx}{%
+    \indcase!{!A}{\lexists[x][!B(x)]}{}}{%
+    \indcase{!A}{\lexists[x][!B(x)]}
+      {$\Sat{M(\Gamma^*)}{\indfrm}$ ancak ve ancak en az bir~$t$ terimi
+      için $\Sat{M(\Gamma^*)}{!B(t)}$ ise
+      (\olref{prop:quant-termmodel}). Tümevarım varsayımına göre bu,
+      ancak ve ancak en az bir~$t$ terimi için $!B(t)\in\Gamma^*$ ise;
+      \olref[hen]{prop:saturated-instances} uyarınca bu da ancak ve
+      ancak $\lexists[x][!B(x)]\in\Gamma^*$ ise geçerlidir.}}}{}
+}{}
+\end{enumerate}
+\end{proof}
+
+\tagprob[FOL]{probOr,probAnd,probIf,probEx,probAll}
+
+\begin{prob}
+\olref[fol][com][mod]{lem:truth} lemmasının ispatını tamamlayın.
+\end{prob}
+
+\tagendprob
+
+\tagprob[notFOL]{probOr,probAnd,probIf}
+
+\begin{prob}
+\olref[pl][com][mod]{lem:truth} lemmasının ispatını tamamlayın.
+\end{prob}
+
+\tagendprob
+

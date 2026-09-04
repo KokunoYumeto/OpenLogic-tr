@@ -1,0 +1,53 @@
+% Generated from locale/tr/content/normal-modal-logic/frame-definability/introduction.tex; do not hand-edit.
+
+
+\olfileid[tr]{nml}{frd}{int}
+
+\olsection{Giriş}
+
+Modal mantıkçıların ilgilendiği sorulardan biri, erişilebilirlik bağıntısı ile
+bu bağıntıya sahip modellerde belirli !!{formula}s{}in doğruluğu arasındaki
+ilişkidir. Örneğin erişilebilirlik bağıntısının yansımalı olduğunu, yani her
+$w\in W$ için $Rww$ olduğunu varsayalım. Başka bir deyişle her dünya
+kendisinden erişilebilirdir. Bu durumda $\Box !A$ bir $w$ dünyasında
+doğruysa, $w$ de $!A$'nın doğru olması gereken erişilebilir dünyalar
+arasındadır. Dolayısıyla $\mModel{M}$ modelinin erişilebilirlik bağıntısı $R$
+yansımalıysa, hangi $w$ dünyasını ve $!A$ formülünü alırsak alalım $\Box !A
+\lif !A$ orada doğru olur (başka bir deyişle $\Box p\lif p$ şeması ve onun
+bütün yerine koyma örnekleri $\mModel{M}$ içinde doğrudur).
+
+Ne var ki tersi yanlıştır. Örneğin $\Box p\lif p$ ifadesinin
+$\mModel{M}$ içinde doğru olmasından $R$'nin yansımalı olduğu çıkmaz.
+$\Box p\lif p$'nin bütün dünyalarda doğru olduğu yansımalı olmayan bir
+$\mModel{M}$ modelini kolayca bulabiliriz: kendisinden erişilemeyen tek bir
+$w$ dünyası bulunan ve $w\in V(p)$ olan modeli alın. $p$'nin doğruluk
+değerini uygun biçimde seçerek $\Box !A\lif !A$'yı yansımalı olmayan bir
+modelde doğru yapabiliriz.
+
+Çözüm, $V$ değerlemesini denklemden çıkarmaktır. $V(p)$'de hangi
+dünyaların bulunduğundan bağımsız olarak $\Box p\lif p$'nin
+$\mModel{M}$ içindeki bütün dünyalarda doğru olmasını istersek, $R$'nin
+yansımalı olması gerekir. Çünkü yansımalı olmayan her modelde $Rww$'nin
+geçerli olmadığı en az bir $w$ dünyası vardır. $V(p)=W\setminus\{w\}$
+olarak belirlersek $p$, $w$ dışındaki bütün dünyalarda ve dolayısıyla
+$w$'den erişilebilen bütün dünyalarda doğru olur ($w$'ye $w$'den
+erişilemediği güvence altındadır ve $p$'nin yanlış olduğu tek dünya $w$'dir).
+Öte yandan $p$, $w$'de yanlıştır; dolayısıyla $\Box p\lif p$ de $w$'de
+yanlıştır.
+
+Bu, değerlemesi olmayan model yapıları için bir gösterim getirmemiz
+gerektiğini düşündürür: bunlara \emph{çerçeve} diyeceğiz. Bir
+$\mModel{F}$ çerçevesi, bir dünyalar kümesi ile bir erişilebilirlik
+bağıntısından oluşan $\tuple{W,R}$ ikilisidir. Bu durumda her
+$\tuple{W,R,V}$ modeli, dediğimiz gibi, $\tuple{W,R}$ çerçevesine
+\emph{dayanır}. Tersine, bir çerçeve ona dayanan modeller sınıfını; bir
+çerçeveler sınıfı da sınıftaki herhangi bir çerçeveye dayanan modeller
+sınıfını belirler. Ayrıca $\mModel{F}\Entails !A$ ifadesini, yani bir
+!!a{formula}{}ün bir çerçevede \emph{geçerli} olması kavramını şöyle
+tanımlayabiliriz: $\mModel{F}$'ye dayanan bütün $\mModel{M}$ modelleri
+için $\mSat{M}{!A}$.
+
+Bu gösterimle !!{formula}s ile çerçeve sınıfları arasında karşılıklılık
+ilişkileri kurabiliriz: örneğin $\mModel{F}\Entails\Box p\lif p$ ancak ve
+ancak $\mModel{F}$ yansımalıysa geçerlidir.
+

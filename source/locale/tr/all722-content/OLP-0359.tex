@@ -1,0 +1,37 @@
+% Generated from locale/tr/content/lambda-calculus/syntax/abbreviated-syntax.tex; do not hand-edit.
+
+
+\olfileid[tr]{lam}{syn}{abb}
+\olsection{Kısaltılmış Sözdizim}
+
+\olref[trm]{defn:term} içinde tanımlanan terimleri yazmak bazen hantaldır;
+bu nedenle daha özlü bir sözdizim kullanmak yararlıdır. Elbette özlü
+gösterimdeki terimlerin de tek türlü okunabildiğinden emin olmalıyız. Yaygın
+olarak kullanılan \emph{kısaltılmış terimler} gösterimi şöyledir.
+
+\begin{enumerate}
+\item Parantezler atıldığında uygulama soldan sağa yapılır. Örneğin $M$,
+  $N$, $P$ ve~$Q$ terimse $MNPQ$, $(((MN)P)Q)$ terimini kısaltır.
+\item Yine parantezler atıldığında lambda soyutlamasına olabilecek en geniş
+  kapsam verilir. Örneğin $\lambd[x][MNP]$, $(\lambd[x][MNP])$ olarak
+  okunur.
+\item Tek bir lambda birden çok değişkeni soyutlamak için kullanılabilir.
+  Örneğin $\lambd[xyz][M]$,
+  $\lambd[x][\lambd[y][\lambd[z][M]]]$ ifadesinin kısaltmasıdır.
+\end{enumerate}
+
+Örneğin
+\[
+\lambd[xy][xxyx \lambd[z][xz]]
+\]
+ifadesi
+\[
+(\lambd[x][(\lambd[y][((((xx)y)x)(\lambd[z][(xz)]))])]).
+\]
+ifadesini kısaltır.
+
+\begin{prob}
+$\lambd[g][(\lambd[x][g (x x)])
+  \lambd[x][g (x x)]]$ kısaltılmış terimini açın.
+\end{prob}
+

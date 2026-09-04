@@ -1,0 +1,47 @@
+% Generated from locale/tr/content/first-order-logic/introduction/semantic-notions.tex; do not hand-edit.
+
+
+\olfileid[tr]{fol}{int}{sem}
+
+\olsection{Semantik Kavramlar}
+
+Yukarıda $\Sat M{!A}[s]$ olup olmadığını ele alırken, kolaylık olsun
+diye~$s$'nin bütün !!{variable}s ifadelerine değerler atamasına izin
+verdiğimizi, fakat yalnızca~$!A$ içindeki !!{variable}s ifadelerine
+atanan değerlerin kullanıldığını söyledik. Aslında yalnızca~$!A$
+içindeki \emph{serbest} değişkenlerin değerleri önemlidir. Titiz
+davrandığımız için elbette bu olguyu ispatlayacağız. !!{sentence}s
+serbest değişken içermediğinden, bir yapı içinde sağlanıp
+sağlanmamaları bakımından~$s$ hiçbir önem taşımaz. Dolayısıyla $!A$
+!!a{sentence} olduğunda $\Sat M{!A}$ ifadesini ``bütün~$s$ atamaları
+için $\Sat M{!A}[s]$'' anlamında tanımlayabiliriz. Bu da en az bir~$s$
+için $\Sat M{!A}[s]$ olmasıyla denktir. !!{formula}s için çalışan bir
+sağlama tanımı elde etmek üzere !!{variable} atamalarını tanıtmamız
+gerekir; fakat !!{sentence}s için sağlama, !!{variable} atamalarından
+bağımsızdır.
+
+``$\Sat M{!A}$'' ifadesini tanımladıktan sonra birinci dereceden
+mantığın !!{sentence}s ifadeleri açısından ``durum'' ve ``içinde
+doğru'' kavramlarının ne anlama geldiğini biliriz. Ardından
+!!{sentence}s için $\Sat M{!A}$ tanımına dayanarak temel semantik
+geçerlilik, mantıksal gerektirme ve sağlanabilirlik kavramlarını
+tanımlayabiliriz. Bir tümce, her !!{structure} onu sağlıyorsa geçerlidir:
+$\Entails !A$. Bir~$!A$ tümcesi,~$\Gamma$ içindeki bütün !!{sentence}s
+ifadelerini sağlayan her !!{structure} aynı zamanda~$!A$'yı da
+sağlıyorsa bir !!{sentence}s kümesi~$\Gamma$ tarafından mantıksal
+olarak gerektirilir: $\Gamma\Entails !A$. Bir !!{sentence}s kümesi de,
+bir !!{structure} içindeki bütün !!{sentence}s ifadelerini aynı anda
+sağlıyorsa sağlanabilirdir.
+
+!!{formula}s tümevarımlı olarak tanımlanmış ve sağlama da tek tek
+!!{formula}s ele alındığında bunların yapısı üzerinde tümevarımla
+tanımlandığından, semantiğimizin
+özelliklerini ispatlamak ve tanımlanan semantik kavramları birbiriyle
+ilişkilendirmek için tümevarımı kullanabiliriz. Bu özelliklerden
+bazılarını derleyip ispatlayacağız. Bunu kısmen her biri kendi başına
+ilginç olduğu için, fakat esas olarak semantikle !!{derivation}
+sistemleri arasındaki ilişkiyi incelemeye geçtiğimizde birçoğu yararlı
+olacağı için yapacağız. Bunun için henüz söz etmediğimiz bazı sözdizimsel
+kavram ve işlemleri de (kesin biçimde, yani tümevarımla) tanımlamamız
+gerekecektir.
+

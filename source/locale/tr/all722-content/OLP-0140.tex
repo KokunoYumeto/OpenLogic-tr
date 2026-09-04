@@ -1,0 +1,85 @@
+% Generated from locale/tr/content/first-order-logic/introduction/first-order-logic.tex; do not hand-edit.
+
+
+\olfileid[tr]{fol}{int}{fol}
+
+\olsection{Birinci Dereceden Mantık}
+
+Birinci dereceden mantığı büyük olasılıkla biçimsel mantıkla ilk
+tanışmanızdan biliyorsunuz.\footnote{Aslında bunu aşağı yukarı
+varsayıyoruz!{} Bilmiyorsanız \emph{forall x} \citep{Magnus2021} gibi
+daha temel bir ders kitabını gözden geçirebilirsiniz.} Onu
+``niceleme mantığı'' ya da ``yüklem mantığı'' adıyla tanıyor
+olabilirsiniz. Birinci dereceden mantık her şeyden önce biçimsel bir
+dildir. Yani belirli bir söz dağarcığı vardır ve ifadeleri bu söz
+dağarcığından oluşturulan dizgelerdir. Fakat her dizgeye izin verilmez.
+İzin verilen farklı ifade türleri vardır: terimler, !!{formula}s ve
+!!{sentence}s. Biz öncelikle birinci dereceden mantığın
+!!{sentence}s ifadeleriyle ilgileniyoruz. Bunlar doğal dildeki
+tümcelerin biçimsel bir karşılığını verir ve onlar hakkında bir
+mantıkçının genellikle ilgilendiği soruları sorabiliriz. Örneğin:
+\begin{itemize}
+    \item $!B$,~$!A$'dan mantıksal olarak çıkar mı?
+    \item $!A$ mantıksal olarak doğru, mantıksal olarak yanlış, yoksa
+olumsal mıdır?
+    \item $!A$ ile $!B$ denk midir?
+\end{itemize}
+
+Bu sorular öncelikle birinci dereceden mantığın !!{sentence}s
+ifadelerinin ``anlamı'' hakkındadır. Örneğin bir filozof,~$!B$'nin
+$!A$'dan mantıksal olarak çıkıp çıkmadığı sorusunu şöyle çözümlerdi:
+$!A$'nın doğru,~$!B$'nin yanlış olduğu bir durum var mıdır (öyleyse
+$!B$,~$!A$'dan çıkmaz), yoksa $!A$'yı doğru kılan her durum~$!B$'yi
+de doğru mu kılar (öyleyse $!B$,~$!A$'dan çıkar)? Fakat henüz
+``durum''un ne olduğu söylenmedi; bunu belirlemek \emph{semantiğin}
+görevidir. Birinci dereceden mantığın semantiği, filozofun sezgisel
+``durum'' fikrine ve---bu önemlidir---bir~$!A$ !!{sentence} ifadesinin
+bir durumda \emph{doğru olmasının} ne demek olduğuna matematiksel
+bakımdan kesin bir model verir. Geliştireceğimiz bu matematiksel kesin
+modele !!a{structure} diyoruz. ``İçinde doğrudur'' ifadesini kesin
+kılan bağıntıya \emph{sağlama} bağıntısı denir. Böylece
+!!{sentence}s~$!A$ ve !!{structure}s~$\Struct M$ için
+``$!A$,~$\Struct M$ içinde sağlanır'' ifadesini (simgesel olarak
+$\Sat M{!A}$) tanımlayacağız. Bunu yaptıktan sonra ``-dan çıkar'' ya da
+``mantıksal olarak doğrudur'' gibi öteki semantik terimlere de kesin
+tanımlar verebiliriz. Bu tanımlar örneğin
+\[
+\lforall[x][!A(x)\lif !B(x)],
+\lexists[x][!A(x)] \Entails \lexists[x][!B(x)]
+\]
+olup olmadığını yine matematiksel kesinlikle belirlemeyi mümkün kılar.
+Yanıt elbette ``evet''tir. Doğal dildeki tümceleri birinci dereceden
+mantıkta simgeleştirme eğitimi aldıysanız bunu örneğin ``Bütün
+karıncalar böcektir; karıncalar vardır; dolayısıyla böcekler vardır''
+çıkarımının simgeleştirmesi olarak tanırsınız. Bu açıkça geçerli bir
+çıkarımdır; dolayısıyla biçimsel dilimiz için kurduğumuz ``-dan çıkar''
+matematiksel modeli de aynı yanıtı vermelidir.
+
+Biçimsel mantıkla ilk tanışmanızdan muhtemelen hatırladığınız başka bir
+konu da \emph{!!{derivation}s} bulunmasıdır. İlk biçimsel mantık
+dersini aldıysanız eğitmeniniz bu tür !!{derivation}s bulma
+alıştırmaları, belki yukarıdaki mantıksal gerektirmenin geçerli
+olduğunu gösteren !!a{derivation} bile yaptırmıştır. !!{derivation}s
+vermenin pek çok farklı yolu vardır: ``doğal tümdengelim'' ya da
+``doğruluk ağaçları'' denen bir yöntem kullanmış olabilirsiniz, fakat
+başka birçok yöntem de vardır. !!{derivation} sistemlerinin amacı,
+mantıkçıların yukarıdaki sorularını yanıtlayabilecekleri araçlar
+sağlamaktır. Örneğin öncülleri
+$\lforall[x][!A(x)\lif !B(x)]$ ve $\lexists[x][!A(x)]$, sonucu (son
+satırı) $\lexists[x][!B(x)]$ olan doğal tümdengelim
+!!{derivation} ifadesi, $\lexists[x][!B(x)]$ ifadesinin ilk iki
+ifadeden mantıksal olarak çıktığını \emph{doğrular}.
+
+Peki neden? Görünüşte !!{derivation} sistemlerinin semantikle hiçbir
+ilgisi yoktur: biçimsel !!{derivation} vermek yalnızca simgeleri
+belirli kuralların yönettiği biçimlerde düzenlemekten ibarettir; bu
+sistemler ``durumlar''dan ya da ``içinde doğru'' olmaktan hiç söz
+etmez. !!{derivation} sistemleriyle semantik arasındaki bağlantının
+metamantıksal bir incelemeyle kurulması gerekir. Örneğin şu matematiksel
+ispat gereklidir: öncülleri $\lforall[x][!A(x)\lif !B(x)]$ ile
+$\lexists[x][!A(x)]$ olan biçimsel bir
+$\lexists[x][!B(x)]$ !!{derivation} ifadesi ancak ve ancak bu iki öncül
+birlikte $\lexists[x][!B(x)]$ ifadesini mantıksal olarak gerektiriyorsa
+mümkündür. Ancak bunu yapmadan önce sözdizim ve semantik tanımlarını
+doğru kurmak için büyük ve titiz bir çalışma gerekir.
+

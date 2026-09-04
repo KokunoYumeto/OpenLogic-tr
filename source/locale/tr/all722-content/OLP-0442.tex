@@ -1,0 +1,62 @@
+% Generated from locale/tr/content/normal-modal-logic/completeness/introduction.tex; do not hand-edit.
+
+
+\olfileid[tr]{nml}{com}{int}
+
+\olsection{Giriş}
+
+$\Sigma$ bir modal sistemse, sağlamlık teoremi şunu kurar: $\Sigma\Proves !A$
+ise $!A$, $\Sigma$ içindeki bütün !!{formula}s{}in bütün örneklerinin geçerli
+olduğu her $\mClass{C}$ modeller sınıfında geçerlidir. Özellikle
+$\Log{K}\Proves !A$ ise $!A$ bütün modellerde; $\Log{KT}\Proves !A$ ise
+bütün yansımalı modellerde; $\Log{KD}\Proves !A$ ise bütün seri modellerde
+doğrudur ve böyle devam eder.
+
+Tamlık sağlamlığın tersidir: $\Log{K}$'nin tam olması, !!a{formula} $!A$
+geçerliyse $\Log{K}\Proves !A$ olması demektir. Tamlığı ispatlamak,
+sağlamlığı ispatlamaktan çok daha zordur. Önce karşıt-ters ifadeyi ele almak
+yararlıdır: $\Log{K}$ ancak ve ancak $\Log{K}\Proves/ !A$ olduğunda bir
+karşı-model, yani $\mSat/{M}{!A}$ olacak bir $\mModel{M}$ modeli varsa
+tamdır. Denk olarak ($!A$'yı değilleyerek), $\Log{K}\Proves/\lnot !A$
+olduğunda $!A$'nın bir modeli bulunduğunu ispatlayabiliriz. Böyle bir modeli
+kurarken $!A$ içindeki bilgiyi kullanabiliriz. Belirli !!{formula}s için
+model ararken de çoğu zaman aynısını yaparız: örneğin $p\lif\Box q$ için bir
+karşı-model bulmak istiyorsak, modelde $p$'nin doğru ve $\Box q$'nun yanlış
+olduğu bir dünya bulunması gerektiğini biliriz. $\Box q$'nun bir dünyada
+yanlış olması, o dünyadan erişilebilen ve $q$'nun yanlış olduğu bir dünya
+bulunması demektir. Bilmemiz gerekenlerin tümü budur: hangi dünyaların hangi
+!!{propositional variable}s{}ni doğru yaptığı ve hangi dünyalara hangi
+dünyalardan erişilebildiği.
+
+Ne var ki tamlığı ispatlarken kendisi için model kurduğumuz belirli bir
+!!{formula} $!A$ yoktur. $\Proves/[\Sigma]\lnot !A$ olan her $!A$ için bir
+model bulunduğunu kurmak isteriz. Bu asgari bir koşuldur; çünkü
+\emph{eğer} $\Proves[\Sigma]\lnot !A$ ise sağlamlık gereğince $!A$'nın
+($\Sigma$'nın doğru olduğu) bir modeli yoktur. Şimdi
+$\Proves/[\Sigma]\lnot !A$ ancak ve ancak $!A$ $\Sigma$-tutarlıysa
+geçerlidir. ($\Proves/[\Sigma]\lnot !A$ ile
+$!A\Proves/[\Sigma]\lfalse$ ifadelerinin denk olduğunu hatırlayın.)
+Dolayısıyla görevimiz her $\Sigma$-tutarlı !!{formula} için bir model
+kurmaktır.
+
+Kullanacağımız yöntem, $!A$'yı içeren ve aynı zamanda $!A$'yı doğru yapan
+dünyanın nasıl olması gerektiğini bildiren başka formülleri de içeren
+$\Sigma$-tutarlı bir !!{formula}s kümesi bulmaktır. Böyle kümeler
+\emph{tam} $\Sigma$-tutarlı kümelerdir. $!A$'yı doğru yapmak için tek
+dünyalı bir model kurmak yeterli değildir; model birden fazla dünya ve bir
+erişilebilirlik bağıntısı içermelidir. $!A$'yı içeren tam $\Sigma$-tutarlı
+küme, $\Box !B$ ve $\Diamond !C$ biçiminde başka !!{formula}s da içerir.
+Bütün erişilebilir dünyalarda $!B$; en az birinde $!C$ doğru olmalıdır.
+Bunu sağlamak için \emph{bütün} olası tam $\Sigma$-tutarlı kümeleri dünyalar
+kümesinin temeli olarak alacağız. Zor kısım, modelimizde bir tam
+$\Sigma$-tutarlı kümenin başka birinden ne zaman erişilebilir sayılacağını
+belirlemektir.
+
+Bu biçimde tanımlanan modelde $!A$'nın bir dünyada---kendisi de tam
+$\Sigma$-tutarlı bir kümedir---ancak ve ancak $!A$ o kümenin !!a{element}{}ı
+ise doğru olduğunu göstereceğiz. $!A$ $\Sigma$-tutarlıysa en az bir tam
+$\Sigma$-tutarlı kümenin !!a{element}{}ı olacaktır (bunu ispatlayacağız) ve
+dolayısıyla $!A$'nın doğru olduğu bir dünya bulunacaktır. Böylece her
+$\Sigma$-tutarlı !!{formula} $!A$'nın bir dünyada doğru olduğu tek bir
+model elde edeceğiz. Bu tek model, $\Sigma$ için \emph{kanonik} modeldir.
+

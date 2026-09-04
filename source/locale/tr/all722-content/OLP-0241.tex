@@ -1,0 +1,85 @@
+% Generated from locale/tr/content/computability/computability-theory/ce-closed-cup-cap.tex; do not hand-edit.
+
+
+\olfileid[tr]{cmp}{thy}{clo}
+
+\olsection[Hesaplanabilir Biçimde Numaralandırılabilir Kümelerin Birleşimi ve
+Kesişimi]{Hesaplanabilir Biçimde Numaralandırılabilir Kümeler Birleşim ve
+Kesişim Altında Kapalıdır}
+
+Aşağıdaki teorem hesaplanabilir biçimde numaralandırılabilir kümeler için
+bazı kapanış özellikleri verir.
+
+\begin{thm}
+$A$ ile $B$ hesaplanabilir biçimde numaralandırılabilir olsun. O zaman
+$A\cap B$ ile $A\cup B$ de öyledir.
+\end{thm}
+
+\begin{proof}
+\olref[eqc]{thm:ce-equiv}, hesaplanabilir biçimde numaralandırılabilir
+kümelerin çeşitli karakterizasyonlarını kullanmamızı sağlar. Açıklayıcı
+olması için birkaç farklı ispat vereceğiz.
+
+İlk ispatta $A$, hesaplanabilir $f$ fonksiyonuyla; $B$ ise hesaplanabilir
+$g$ fonksiyonuyla numaralandırılsın. Şöyle tanımlayalım:
+\begin{align*}
+  h(x) & = \umin{y}{(f(y)=x\lor g(y)=x)} \text{ ve}\\
+  j(x) & = \umin{y}{(f((y)_0)=x\land g((y)_1)=x)}.
+\end{align*}
+O zaman $A\cup B$, $h$'nin; $A\cap B$ ise $j$'nin tanım kümesidir.
+
+\begin{explain}
+Hesaplama açısından olan şudur: $A$ ile $B$'yi numaralandıran yordamlar
+verildiğinde bir $x$ elemanının $A\cup B$ içinde olup olmadığına iki
+numaralandırmadan birinde $x$'i arayarak yarı karar verebiliriz. $x$'in
+$A\cap B$ içinde olup olmadığına ise aynı anda iki numaralandırmada da
+$x$'i arayarak yarı karar verebiliriz.
+\end{explain}
+
+İkinci ispatta yine $A$, $f$ ile ve $B$, $g$ ile numaralandırılsın. Şöyle
+tanımlayalım:
+\[
+  k(x)=\begin{cases}
+    f(x/2) & \text{$x$ çiftse}\\
+    g((x-1)/2) & \text{$x$ tekse.}
+  \end{cases}
+\]
+O zaman $k$, $A\cup B$'yi numaralandırır; çünkü $f$ ile $g$'nin sunduğu
+numaralandırmalar arasında sırayla geçiş yapar. $A\cap B$'yi numaralandırmak
+daha güçtür. $A\cap B$ boşsa kendiliğinden hesaplanabilir biçimde
+numaralandırılabilir. Değilse $c$, $A\cap B$'nin herhangi bir elemanı olsun
+ve $l$'yi
+\[
+  l(x)=\begin{cases}
+    f((x)_0) & \text{$f((x)_0)=g((x)_1)$ ise}\\
+    c & \text{aksi durumda}
+  \end{cases}
+\]
+ile tanımlayalım. Hesaplama açısından $l$, $f$ ile $g$ numaralandırmalarındaki
+eleman çiftleri arasında dolaşır ve bulduğu her eşleşmeyi çıktı olarak verir;
+aksi durumda $c$'yi döndürerek yerinde sayar.
+
+Son ispatta $A$, kısmi $m(x)$ fonksiyonunun; $B$ ise kısmi $n(x)$
+fonksiyonunun tanım kümesi olsun. O zaman $A\cap B$, kısmi
+$m(x)+n(x)$ fonksiyonunun tanım kümesidir.
+
+\begin{explain}
+Hesaplama açısından $A$, $m$ yordamının durduğu ve $B$, $n$ yordamının
+durduğu değerler kümesiyse $A\cap B$, iki yordamın da durduğu değerler
+kümesidir.
+\end{explain}
+
+$m$ ile $n$'yi paralel olarak benzetmek gerektiğinden $A\cup B$'yi durma
+değerleri kümesi olarak ifade etmek daha zordur. $d$, $m$'nin ve $e$,
+$n$'nin bir indisi olsun; yani $m=\cfind{d}$ ve $n=\cfind{e}$. O zaman
+$A\cup B$,
+\[
+  p(x)=\umin{y}{(T(d,x,y)\lor T(e,x,y))}
+\]
+fonksiyonunun tanım kümesidir.
+\begin{explain}
+Hesaplama açısından $p$, $x$ girdisinde $m$ ya da $n$ için duran bir hesap
+arar ve ikisinden birini bulursa durur.
+\end{explain}
+\end{proof}
+

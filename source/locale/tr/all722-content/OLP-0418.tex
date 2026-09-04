@@ -1,0 +1,83 @@
+% Generated from locale/tr/content/normal-modal-logic/syntax-and-semantics/entailment.tex; do not hand-edit.
+
+
+\olfileid[tr]{nml}{syn}{ent}
+
+\olsection{Gerektirme}
+
+\begin{explain}
+  Bir dünyada doğruluk tanımıyla !!{formula}s arasında bir gerektirme
+  bağıntısı tanımlayabiliriz. !!^a{formula}~$!B$, $!B$'nin doğru olduğu her
+  durumda $!A$ da doğruysa ve ancak o zaman $!A$'yı gerektirir. Burada ``her
+  durumda'' hem ``hangi modeli ele alırsak alalım'' hem de ``o modelde hangi
+  dünyayı ele alırsak alalım'' demektir.
+\end{explain}
+
+\begin{defn}
+  $\Gamma$ bir !!{formula}s kümesi ve $!A$ !!a{formula} olsun. Her
+  $\mModel{M} = \tuple{W, R, V}$ modeli ve her $w \in W$ dünyası için,
+  bütün $!B \in \Gamma$ bakımından $\mSat{M}{!B}[w]$ olması
+  $\mSat{M}{!A}[w]$ olmasını gerektiriyorsa ve ancak o zaman $\Gamma$,
+  $!A$'yı \emph{gerektirir}; simgesel olarak $\Gamma \Entails !A$ yazarız.
+  $\Gamma$ yalnızca $!B$ adlı bir !!{formula} içeriyorsa $!B \Entails !A$
+  yazarız.
+\end{defn}
+
+\begin{ex}
+  !!a{formula}{}ün başka bir formülü gerektirdiğini göstermek için
+  $\mSat{M}{}[w]$ tanımını kullanarak bütün modeller hakkında akıl yürütmek
+  zorundayız. Örneğin $p \lif \Diamond p \Entails \Box\lnot p \lif \lnot
+  p$ olduğunu göstermek için şöyle akıl yürütebiliriz: Bir
+  $\mModel{M} = \tuple{W, R, V}$ modeli ile $w \in W$ alalım ve
+  $\mSat{M}{p \lif \Diamond p}[w]$ olduğunu varsayalım.
+  $\mSat{M}{\Box\lnot p \lif \lnot p}[w]$ olduğunu göstermeliyiz. Tersini
+  varsayalım. O zaman $\mSat{M}{\Box\lnot p}[w]$ ve
+  $\mSat/{M}{\lnot p}[w]$ olur. $\mSat/{M}{\lnot p}[w]$ olduğundan
+  $\mSat{M}{p}[w]$ olur. Varsayım gereği $\mSat{M}{p \lif \Diamond
+  p}[w]$ olduğundan $\mSat{M}{\Diamond p}[w]$ çıkar. $\mSat{M}{\Diamond
+  p}[w]$ tanımı gereği, $Rww'$ ve $\mSat{M}{p}[w']$ olacak biçimde bir
+  $w'$ vardır. Öte yandan $\mSat{M}{\Box \lnot p}[w]$ de olduğundan
+  $\mSat{M}{\lnot p}[w']$ olur; bu bir çelişkidir.
+
+  !!a{formula}~$!B$'nin başka bir $!A$ formülünü gerektirmediğini
+  göstermek için bir karşı örnek, yani bir $\mModel{M} = \tuple{W, R,
+    V}$ modeli vermeli ve bu modelde bir $w \in W$ dünyasında
+  $\mSat{M}{!B}[w]$ fakat $\mSat/{M}{!A}[w]$ olduğunu göstermeliyiz.
+  $p \lif \Diamond p \Entails/ \Box p \lif p$ olduğunu gösterelim.
+  \olref{fig:counterex} şeklinde gösterilen modeli ele alın.
+  $\mSat{M}{\Diamond
+  p}[w_1]$ ve dolayısıyla $\mSat{M}{p \lif \Diamond p}[w_1]$ olur. Ancak
+  $\mSat{M}{\Box p}[w_1]$ olduğu hâlde $\mSat/{M}{p}[w_1]$ olduğundan
+  $\mSat/{M}{\Box p \lif p}[w_1]$ olur.
+  \begin{figure}
+  \begin{center}
+    \begin{tikzpicture}[modal]
+      \node[world] (w1) [label=right:\mFalse{p}]{$w_1$}; 
+      \node[world] (w2) [label=right:\mTrue{p}, above left=of w1]{$w_2$}; 
+      \node[world] (w3) [label=right:\mTrue{p}, above right=of w1] {$w_3$};
+      \draw[->] (w1) to (w2);
+      \draw[->] (w1) to (w3);
+    \end{tikzpicture}
+  \end{center}
+  \caption{$p \lif \Diamond p \Entails \Box p \lif p$ için bir karşı
+  örnek.}
+  \ollabel{fig:counterex}
+  \end{figure}
+  
+  Çoğu kez çok basit karşı örnekler yeterlidir. $W' = \{w\}$,
+  $R' = \emptyset$ ve $V'(p) = \emptyset$ olan $\mModel{M'} =
+  \tuple{W', R', V'}$ modeli de bir karşı örnektir: $\mSat/{M'}{p}[w]$
+  olduğundan $\mSat{M'}{p \lif \Diamond p}[w]$ olur. $w$'den erişilebilen
+  hiçbir dünya bulunmadığı için $\mSat{M'}{\Box p}[w]$ ve dolayısıyla
+  $\mSat/{M'}{\Box p \lif p}[w]$ olur.
+\end{ex}
+
+\begin{prob}
+  $\Box (!A \land !B) \Entails \Box !A$ olduğunu gösterin.
+\end{prob}
+
+\begin{prob}
+  $\Box (p \lif q) \Entails/ p \lif \Box q$ ve $p \lif \Box
+  q \Entails/\Box (p \lif q)$ olduğunu gösterin.
+\end{prob}
+

@@ -1,0 +1,123 @@
+% Generated from locale/tr/content/many-valued-logic/infinite-valued-logics/goedel.tex; do not hand-edit.
+
+
+\olfileid[tr]{mvl}{inf}{god}
+
+\olsection{G\"odel Mantıkları}
+
+\begin{editorial}
+  Bu, sonsuz değerli G\"odel mantığına ilişkin kısa bir bölüm taslağıdır.
+\end{editorial}
+
+\begin{defn}\ollabel{def:goedel} Sonsuz değerli G\"odel
+mantığı~$\LogGod[\infty]$ şu matrisle tanımlanır:
+\begin{enumerate}
+  \item $\lfalse$, $\lnot$, $\land$, $\lor$, $\lif$ bağlaçlarını içeren
+  standart önerme dili $\Lang L_0$.
+  \item Doğruluk değerleri kümesi $V_\infty$.
+  \item Tek belirlenmiş değer $1$'dir; yani $V^+ = \{1\}$.
+  \item Doğruluk fonksiyonları aşağıdaki fonksiyonlarla verilir:
+  \begin{align*}
+    \tf{\lfalse} & = 0\\
+    \tf{\lnot}[\LogGod](x) & = \begin{cases}
+      1 & \text{$x = 0$ ise}\\
+      0 & \text{aksi durumda}
+    \end{cases}\\
+    \tf{\land}[\LogGod](x,y) & = \min(x,y)\\
+    \tf{\lor}[\LogGod](x,y) & = \max(x,y)\\
+    \tf{\lif}[\LogGod](x,y) & = \begin{cases}
+      1 & \text{$x \le y$ ise}\\
+      y & \text{aksi durumda.}
+    \end{cases}
+    \end{align*}
+\end{enumerate}
+$m$-değerli G\"odel mantığı da aynı biçimde, ancak $V = V_m$ alınarak
+tanımlanır.
+\end{defn}
+
+\begin{prop}
+  \olref[thr][god]{defn:goedel} ile tanımlanan $\LogGod[3]$ mantığı,
+  \olref{def:goedel} ile tanımlanan $\LogGod[3]$ ile aynıdır.
+\end{prop}
+
+\begin{proof}
+  Bu, \olref[thr][god]{defn:goedel} içindeki bağlaç doğruluk tabloları ile
+  \olref{def:goedel} içindeki denklemlerin belirlediği doğruluk tabloları
+  karşılaştırılarak görülebilir:
+  \begin{center}
+    \begin{tabular}{c|c} 
+      $\tf{\lnot}[\LogGod[3]]$ & \\ 
+      \hline  
+      $1$ & $0$ \\ 
+      $1/2$ & $0$ \\
+      $0$ & $1$ 
+    \end{tabular}
+    \quad
+    \begin{tabular}{c|ccc} 
+      $\tf{\land}[\LogGod]$ & $1$ & $1/2$ & $0$ \\ 
+      \hline 
+      $1$ & $1$ & $1/2$ & $0$ \\ 
+      $1/2$ & $1/2$ & $1/2$ & $0$\\ 
+      $0$ & $0$ & $0$ & $0$ 
+    \end{tabular}
+    \\[2ex]
+    \begin{tabular}{c|ccc} 
+      $\tf{\lor}[\LogGod]$ & $1$ & $1/2$ & $0$ \\ 
+      \hline 
+      $1$ & $1$ & $1$ & $1$ \\ 
+      $1/2$ & $1$ & $1/2$ & $1/2$ \\
+      $0$ & $1$ & $1/2$ & $0$ 
+    \end{tabular}
+    \quad
+    \begin{tabular}{c|ccc} 
+      $\tf{\lif}[\LogGod]$ & $1$ & $1/2$ & $0$ \\ 
+      \hline 
+      $1$ & $1$ & $1/2$ & $0$ \\ 
+      $1/2$ & $1$ & $1$ & $0$  \\ 
+      $0$ & $1$ & $1$ & $1$ 
+    \end{tabular}
+  \end{center} 
+\end{proof}
+
+\begin{prop}\ollabel{prop:god-infty-m}
+  $\Gamma \Entails[\LogGod[\infty]] !B$ ise bütün $m \ge 2$ değerleri için
+  $\Gamma \Entails[\LogGod[m]] !B$.
+\end{prop}
+
+\begin{proof}
+  Alıştırma.
+\end{proof}
+
+\begin{prob}
+  \olref[mvl][inf][god]{prop:god-infty-m} önermesini ispatlayın.
+\end{prob}
+
+Aslında bunun tersi de geçerlidir.
+
+$\LogGod[3]$ gibi $\LogGod[\infty]$ da sezgisel olarak geçerli bütün
+!!{formula}s{}i totoloji olarak içerir; aynı totoloji-olmama örnekleri
+$\LogGod[\infty]$'da da totoloji değildir:
+\begin{align*}
+  & p \lor \lnot p && (p \lif q) \lif (\lnot p \lor q) \\
+  & \lnot\lnot p \lif p && \lnot(\lnot p \land \lnot q) \lif (p \lor q) \\
+  & ((p \lif q) \lif p) \lif p && \lnot(p \lif q) \lif (p \land \lnot q)
+\end{align*}
+Sezgisel olarak geçersiz bir !!{formula} olmakla birlikte $\LogGod[3]$'ün
+bir totolojisi olan $(p \lif q) \lor (q \lif p)$ örneği
+$\LogGod[\infty]$'da da bir totolojidir. Gerçekte $\LogGod[\infty]$,
+kendisine
+$(!A \lif !B) \lor (!B \lif !A)$ şeması eklenmiş sezgisel mantık olarak
+nitelenebilir. Bunu Michael Dummett göstermiştir; dolayısıyla
+$\LogGod[\infty]$'a çoğu kez G\"odel--Dummett mantığı~$\Log{LC}$ denir.
+
+\begin{prob}
+  $(p \lif q) \lor (q \lif p)$'nin $\LogGod[\infty]$'ın bir totolojisi
+  olduğunu gösterin.
+\end{prob}
+
+\begin{prob}
+  $\LogGod[3]$'ün bir totolojisi olan
+  $(p \lif q) \lor (q \lif r) \lor (r \lif s)$'nin
+  $\LogGod[\infty]$'ın bir totolojisi olmadığını gösterin.
+\end{prob}
+

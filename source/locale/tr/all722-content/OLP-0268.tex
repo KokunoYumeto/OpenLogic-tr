@@ -1,0 +1,140 @@
+% Generated from locale/tr/content/turing-machines/undecidability/halting-problem.tex; do not hand-edit.
+
+
+\olfileid[tr]{tur}{und}{hal}
+\olsection{Durma Problemi}
+
+\begin{explain}
+Turing makinesi betimlerinin bir numaralandırmasını sabitlediğimizi
+varsayalım. Böylece her Turing makinesi bir \emph{indis}, yani Turing
+makinesi betimlerinin $M_1$, $M_2$, $M_3$, \dots{} numaralandırmasındaki
+yerini alır.
+
+Turing-hesaplanabilir olmayan fonksiyonların bulunması gerektiğini biliyoruz:
+Turing makinesi betimleri kümesi ve dolayısıyla Turing makineleri kümesi
+!!{enumerable}, ama $\Nat$'ten $\Nat$'e bütün fonksiyonlar kümesi değildir.
+Bununla birlikte hesaplanamaz fonksiyonların belirli örneklerini de
+bulabiliriz. Bunlardan biri durma fonksiyonudur.
+\end{explain}
+
+\begin{defn}[Durma fonksiyonu]
+ \emph{Durma fonksiyonu}~$h$ şöyle tanımlanır:
+\[
+h(e,n) =
+\begin{cases}
+  \text{0} & \text{$M_e$ makinesi $n$ girdisinde durmazsa} \\
+  \text{1} & \text{$M_e$ makinesi $n$ girdisinde durursa}
+\end{cases}
+\]
+\end{defn}
+
+\begin{defn}[Durma problemi]
+\emph{Durma Problemi}, her $e$, $n$ için $M_e$ Turing makinesinin $n$ çizgili
+bir girdide durup durmadığını belirleme problemidir.
+\end{defn}
+
+\begin{explain}
+İlişkili bir $s$ fonksiyonunun Turing-hesaplanabilir olmadığını göstererek
+$h$'nin de Turing-hesaplanabilir olmadığını göstereceğiz. Bu kanıt, bir
+Turing makinesince hesaplanabilen her şeyin disiplinli bir Turing makinesince
+hesaplanabileceği (\olref[mac][dis]{sec}) ve iki Turing makinesinin tek bir
+makine oluşturacak biçimde birbirine bağlanabileceği
+(\olref[mac][cmb]{sec}) olgularına dayanır.
+\end{explain}
+
+\begin{defn} $s$ fonksiyonu şöyle tanımlanır:
+\[
+s(e) =
+\begin{cases}
+  \text{0} & \text{$M_e$ makinesi $e$ girdisinde durmazsa} \\
+  \text{1} & \text{$M_e$ makinesi $e$ girdisinde durursa}
+\end{cases}
+\]
+\end{defn}
+
+\begin{lem}
+$s$ fonksiyonu Turing hesaplanabilir değildir.
+\end{lem}
+
+\begin{proof}
+Çelişki elde etmek üzere $s$ fonksiyonunun Turing hesaplanabilir olduğunu
+varsayalım. O zaman $s$'yi hesaplayan bir $S$ Turing makinesi bulunurdu.
+Genelliği yitirmeden $S$ durduğunda bunu ilk kareyi tararken yaptığını (yani
+disiplinli olduğunu) varsayabiliriz. Bu makine, $0$ girdisinde
+başlatıldığında duran (yani ilk durumda şerit sonu simgesinin sağındaki kareyi
+tararken $\TMblank$ okursa duran), aksi durumda sağa doğru uzaklaşıp hiç
+durmayan başka bir $J$ makinesine ``bağlanabilir''. $S$ ile $J$'nin
+bağlanmasıyla oluşturulan $S\concat J$ bir Turing makinesidir; dolayısıyla
+bir $e$ için $M_e$'dir (yani numaralandırmanın bir yerinde bulunur). $M_e$'yi
+$e$ tane $\TMstroke$ girdisinde başlatın. İki olasılık vardır: $M_e$ ya durur
+ya da durmaz.
+\begin{enumerate}
+\item $M_e$'nin $e$ tane $\TMstroke$ girdisinde durduğunu varsayalım. O zaman
+  $s(e)=1$'dir. Dolayısıyla $S$, $e$ girdisinde başlatıldığında şeritte çıktı
+  olarak tek bir $\TMstroke$ ile durur. Ardından $J$, şeritte bir
+  $\TMstroke$ ile başlar. Bu durumda $J$ durmaz. Ancak $M_e$, $S\concat J$
+  makinesidir; dolayısıyla önce $S$'nin, sonra $J$'nin yapacağını yapmalıdır
+  (yani bu durumda sağa doğru uzaklaşıp hiç durmamalıdır). Öyleyse $M_e$,
+  $e$ tane $\TMstroke$ girdisinde duramaz.
+
+\item Şimdi $M_e$'nin $e$ tane $\TMstroke$ girdisinde durmadığını
+  varsayalım. O zaman $s(e)=0$'dır ve $S$, $e$ girdisinde başlatıldığında boş
+  bir şeritle durur. $J$ boş bir şeritte başlatıldığında hemen durur. Yine
+  $M_e$, önce $S$'nin sonra $J$'nin yapacağını yapar; dolayısıyla $M_e$, $e$
+  tane $\TMstroke$ girdisinde durmalıdır.
+\end{enumerate}
+Her iki durumda da varsayımımızla çelişkiye ulaşırız. Bu, böyle bir $S$
+Turing makinesinin bulunamayacağını gösterir: $s$ Turing hesaplanabilir
+değildir.
+\end{proof}
+
+\begin{thm}[Durma Probleminin Çözülemezliği]
+\ollabel{thm:halting-problem} Durma problemi çözülemezdir; yani $h$ fonksiyonu
+Turing hesaplanabilir değildir.
+\end{thm}
+
+\begin{proof}
+$h$'nin, diyelim bir $H$ Turing makinesince, Turing hesaplanabilir olduğunu
+varsayalım. $H$'yi $s$'yi hesaplayan bir Turing makinesi kurmak için
+kullanabilirdik: Önce girdinin bir kopyasını çıkarın (kopyaları bir
+$\TMblank$ simgesiyle ayırın). Sonra başa dönüp $H$'yi çalıştırın. İlk işlemi
+yapan bir makineyi açıkça kurabiliriz (bkz.~\cref{tur:mac:dis:prob:copier});
+$H$ var olsaydı böyle bir kopyalama makinesine onu ``bağlayarak'' $M_e$'nin
+$e$ girdisinde durup durmadığını belirleyen, yani $s$'yi hesaplayan yeni bir
+makine elde edebilirdik. Fakat böyle bir makinenin bulunamayacağını zaten
+gösterdik. Öyleyse $h$ de Turing hesaplanabilir değildir.
+\end{proof}
+
+\begin{prob}
+Üçte Durma (3-Durma) problemi, keyfî seçilmiş bir Turing makinesinin bunun
+dışında boş olan bir şeritte üç $\TMstroke$ girdisi için durup durmadığını
+belirleyen bir karar süreci verme problemidir. 3-Durma probleminin çözülemez
+olduğunu kanıtlayın.
+\end{prob}
+
+\begin{prob}
+Durma problemi, $e\neq n$ olan Turing makinesi ve girdi çiftleri $M_e$ ile
+$n$ için çözülebilirse $e=n$ durumları için de çözülebileceğini gösterin.
+\end{prob}
+
+\begin{prob}
+Girdinin, bütün Turing makinelerinin bir numaralandırması aracılığıyla bir
+$M_e$ Turing makinesini belirleyen $e$ sayısı olması durumunda durma
+probleminin çözülemez olduğunu kanıtladık. Ya
+\olref[tur][und][enu]{sec} içindeki Turing makinesi betimlerini doğrudan
+girdi olarak kullanmaya izin verirsek? İndisler yerine Turing makinelerinin
+betimlerini girdi olarak alan ve durma problemine karar veren bir Turing
+makinesi bulunabilir mi? Nedenini açıklayın.
+\end{prob}
+
+\begin{prob} Aşağıdaki gibi tanımlanan \emph{kısmi} $s'$ fonksiyonunun
+  \[
+  s'(e) =
+  \begin{cases}
+    \text{1} & \text{$M_e$ makinesi $e$ girdisinde durursa}\\
+    \text{tanımsız} & \text{$M_e$ makinesi $e$ girdisinde durmazsa}
+  \end{cases}
+  \]
+  Turing hesaplanabilir \emph{olduğunu} gösterin.
+\end{prob}
+

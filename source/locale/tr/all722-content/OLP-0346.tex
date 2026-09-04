@@ -1,0 +1,33 @@
+% Generated from locale/tr/content/lambda-calculus/introduction/church-rosser.tex; do not hand-edit.
+
+
+\olfileid[tr]{lam}{int}{cr}
+\olsection{Church--Rosser Özelliği}
+
+\begin{thm}
+\ollabel{thm:church-rosser}
+$M$, $N_1$ ve $N_2$, $M\red N_1$ ve $M\red N_2$ olacak biçimde terimler
+olsun. O zaman $N_1\red P$ ve $N_2\red P$ olacak biçimde bir $P$ terimi
+vardır.
+\end{thm}
+
+\begin{cor}
+$M$'nin normal biçime indirgenebildiğini varsayın. O zaman bu normal biçim
+tektir.
+\end{cor}
+
+\begin{proof}
+$M\red N_1$ ve $M\red N_2$ ise önceki teorem gereği $N_1$ ile $N_2$'nin
+ikisi de bir $P$ terimine indirgenir. $N_1$ ile $N_2$ normal biçimdeyse bu,
+ancak $N_1\ident P\ident N_2$ olduğunda mümkündür.
+\end{proof}
+
+Son olarak iki $M$ ve $N$ terimi ortak bir terime indirgeniyorsa
+\emph{$\beta$-eşdeğer}, kısaca \emph{eşdeğer} diyeceğiz; başka bir deyişle
+$M\red P$ ve $N\red P$ olacak biçimde bir $P$ varsa. Bu $M\equal[\beta]N$
+ile yazılır. \olref{thm:church-rosser} kullanılarak $\equal[\beta]$'nın bir
+denklik bağıntısı olduğu ve ayrıca her $M$ ve $N$ için $M\red N$ ya da
+$N\red M$ ise $M\equal[\beta]N$ olduğu denetlenebilir. (Hatta
+$\equal[\beta]$'nın bu özelliği taşıyan \emph{en küçük} denklik bağıntısı
+olduğu gösterilebilir.)
+

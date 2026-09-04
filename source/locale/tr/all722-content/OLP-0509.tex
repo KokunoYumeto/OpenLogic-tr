@@ -1,0 +1,43 @@
+% Generated from locale/tr/content/intuitionistic-logic/soundness-completeness/completeness-thm.tex; do not hand-edit.
+
+
+\olfileid[tr]{int}{sc}{cpl}
+
+\olsection{Tamlık Teoremi}
+
+\begin{thm}\ollabel{thm:completeness}
+  $\Gamma\Entails !A$ ise $\Gamma\Proves !A$.
+\end{thm}
+
+\begin{proof}
+  Karşıt tersini ispatlarız. $\Gamma\Proves/ !A$ olsun. O zaman
+  \olref[lin]{lem:lindenbaum} gereğince $\Gamma^*\supseteq\Gamma$ ve
+  $\Gamma^*\Proves/ !A$ olacak biçimde bir asal $\Gamma^*$ kümesi vardır.
+  \olref[mod]{defn:canonical-model}'de tanımlanan, $\Gamma^*$ için
+  kanonik $\mModel{M(\Gamma^*)}$ modelini ele alalım. Her
+  $!B\in\Gamma$ için $\Gamma^*\Proves !B$. Ayrıca
+  $\Gamma^*(\emptyseq)=\Gamma^*$. Doğruluk Lemması'na
+  (\olref[tru]{lem:truth}) göre her $!B\in\Gamma$ için
+  $\mSat{M(\Gamma^*)}{!B}[\emptyseq]$, fakat
+  $\mSat/{M(\Gamma^*)}{!A}[\emptyseq]$. Bu da
+  $\Gamma\Entails/ !A$ olduğunu gösterir.
+\end{proof}
+
+\begin{prob}
+  $!A$ yalnızca !!{propositional variable}s, $\lor$ ve~$\land$ içeriyorsa
+  $\Entails/ !A$ olduğunu gösterin. Buradan sezgici mantıkta $\lif$'in
+  $\lor$ ve~$\land$ kullanılarak tanımlanamayacağı sonucunu çıkarın.
+\end{prob}
+
+\begin{prob}
+  Tamlık teoremini kullanarak $\Proves !A\lor !B$ ise $\Proves !A$ ya da
+  $\Proves !B$ olduğunu ispatlayın. (İpucu: $\mSat/{M_1}{!A}$ ve
+  $\mSat/{M_2}{!B}$ varsayarak $\mSat/{M}{!A\lor !B}$ olacak biçimde yeni
+  bir $\mModel{M}$ modeli kurun.)
+\end{prob}
+
+\begin{prob}
+  $\mModel{M}$ doğrusal sıra kullanan bir bağıntısal modelse
+  $\mSat{M}{(!A\lif !B)\lor(!B\lif !A)}$ olduğunu gösterin.
+\end{prob}
+

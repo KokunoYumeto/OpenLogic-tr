@@ -1,0 +1,107 @@
+% Generated from locale/tr/content/incompleteness/representability-in-q/representable-comp.tex; do not hand-edit.
+
+
+\olfileid[tr]{inc}{req}{rpc}
+\olsection{$\Th{Q}$ İçinde Temsil Edilebilen Fonksiyonlar Hesaplanabilirdir}
+
+$\Th{Q}$ içinde temsil edilebilen her fonksiyonun hesaplanabilir olduğunu
+ispatlayacağız. Önce $\Th{Q}$ içinde temsil edilebilen fonksiyonlar hakkında
+bir lemma kurmamız gerekir.
+
+\begin{lem}\ollabel{lem:rep-q}
+  $f(x_0, \dots, x_k)$, $\Th{Q}$ içinde temsil edilebiliyorsa öyle
+  !!a{formula}~$!A(x_0, \dots, x_k, y)$ vardır ki
+  \[
+  \Th{Q} \Proves !A_f(\num{n_0}, \dots, \num{n_k}, \num{m})
+  \quad\text{ancak ve ancak}\quad m = f(n_0, \dots, n_k).
+  \]
+\end{lem}
+
+\begin{proof}
+  ``Eğer'' yönü
+\olref[int]{defn:representable-fn}\olref[int]{defn:rep:a}'dır. ``Yalnızca
+eğer'' yönü şöyle görülür: $\Th{Q} \Proves !A_f(\num{n_0},
+\dots, \num{n_k}, \num{m})$ fakat $m \neq f(n_0, \dots, n_k)$ olduğunu
+varsayın. $l=f(n_0,\dots,n_k)$ olsun.
+\olref[int]{defn:representable-fn}\olref[int]{defn:rep:a} uyarınca
+$\Th{Q} \Proves !A_f(\num{n_0}, \dots, \num{n_k}, \num{l})$ olur.
+\olref[int]{defn:representable-fn}\olref[int]{defn:rep:b} uyarınca
+$\lforall[y][(!A_f(\num{n_0}, \dots, \num{n_k}, y) \lif \num{l} =
+y)]$ olur. Mantığı ve $\Th{Q} \Proves
+!A_f(\num{n_0}, \dots, \num{n_k}, \num{m})$ varsayımını kullanarak
+$\Th{Q} \Proves \eq[\num{l}][\num{m}]$ elde ederiz. Öte yandan
+\olref[bre]{lem:q-proves-neq} uyarınca $\Th{Q} \Proves
+\eq/[\num{l}][\num{m}]$ olur. Böylece $\Th{Q}$ tutarsızdır. Fakat bu
+olanaksızdır; çünkü $\Th{Q}$ standart modelde sağlanır (bkz.
+\olref[int][def]{def:standard-model}), $\Sat{N}{\Th{Q}}$ olur ve
+Sağlamlık Teoremi uyarınca sağlanabilir kuramlar her zaman tutarlıdır
+(\tagrefs{prfAX/{fol:axd:sou:cor:consistency-soundness},
+prfSC/{fol:seq:sou:cor:consistency-soundness},
+prfND/{fol:ntd:sou:cor:consistency-soundness},
+prfTab/{fol:tab:sou:cor:consistency-soundness}}).
+\end{proof}
+
+\begin{lem}
+$\Th{Q}$ içinde temsil edilebilen her fonksiyon hesaplanabilirdir.
+\end{lem}
+
+\begin{proof}
+Önce bunun neden doğru olduğuna ilişkin sezgisel düşünceyi verelim. $f$'yi
+hesaplamak için şunları yaparız. Aritmetik dilindeki olası bütün
+!!{derivation}s{}i~$\delta$ listeleyin. Bu mekanik olarak yapılabilir.
+Her biri için bunun !!a{derivation} olup olmadığını denetleyin; türettiği
+şey $!A_f(\num{n_0}, \dots, \num{n_k}, \num{m})$ biçimindeki
+!!a{formula} olmalıdır (bu, \olref{lem:rep-q}'dan, $\Th{Q}$ içinde $f$'yi
+temsil eden !!{formula}{}dür). Öyleyse \olref{lem:rep-q} uyarınca
+$m=f(n_0,\dots,n_k)$'dır ve $f$'nin değerini bulmuşuzdur. Arama sona erer;
+çünkü $\Th{Q} \Proves !A_f(\num{n_0}, \dots, \num{n_k},
+\num{f(n_0, \dots, n_k)})$ olur ve dolayısıyla sonunda doğru türden bir
+$\delta$ buluruz.
+
+Yordamımız yalnız sayılar üzerinde değil, !!{derivation}s ve !!{formula}s
+üzerinde çalıştığı ve ``olası bütün !!{derivation}s{}i listeleme''nin neden
+mekanik olarak mümkün olduğunu tam olarak açıklamadığımız için bu henüz
+kesin değildir. Fakat gördüğümüz üzere terimleri, !!{formula}s{}i ve
+!!{derivation}s{}i Gödel sayılarıyla kodlamak mümkündür. Kesin bir hesaplama
+modelini, genel özyinelemeli fonksiyonları da tanıttık. Ayrıca $d$,
+$\Th{Q}$'nun aksiyomlarından !!a{derivation}{}in Gödel numarasıysa ve bu
+türetimin sonucu Gödel numarası $y$ olan !!{formula} ise ancak ve ancak geçerli olan
+$\Prf[\Th{Q}](d,y)$ bağıntısının (ilkel) özyinelemeli olduğunu gördük.
+Gereksineceğimiz öteki ilkel özyinelemeli fonksiyonlar $\fn{num}$
+(\olref[art][trm]{prop:num-primrec}) ve $\fn{Subst}$'tur
+(\olref[art][sub]{prop:subst-primrec}). Bunlardan $f$'yi minimizasyonla
+tanımlamak mümkündür; dolayısıyla $f$ özyinelemelidir.
+
+Önce şunu tanımlayın:
+\begin{multline*}
+  A(n_0, \dots, n_k, m) = \\
+  \fn{Subst}(\fn{Subst}(\dots\fn{Subst}(\Gn{!A_f}, \fn{num}(n_0), \Gn{x_0}),\\ \dots),
+  \fn{num}(n_k),  \Gn{x_k}), \fn{num}(m), \Gn{y})
+\end{multline*}
+Bu karmaşık görünür; fakat yalnızca $A(n_0, \dots, n_k,
+m) = \Gn{!A_f(\num{n_0}, \dots, \num{n_k}, \num{m})}$ fonksiyonudur.
+
+Şimdi $(s)_0$, $\Th{Q}$'dan
+$!A_f(\num{n_0}, \dots, \num{n_k}, \num{(s)_1})$'in !!a{derivation}{}inin
+Gödel numarası olduğunda geçerli olan $R(n_0,\dots,n_k,s)$ bağıntısını
+ele alın:
+\[
+R(n_0, \dots, n_k, s) \quad\text{ancak ve ancak}\quad \Prf[\Th{Q}]((s)_0, A(n_0,
+\dots, n_k, (s)_1))
+\]
+$R(n_0,\dots,n_k,s)$'nin geçerli olduğu bir $s$ bulabilirsek,
+$(s)_0$'ın $A_f(\num{n_0}, \dots, \num{n_k}, (s)_1)$'in
+!!a{derivation}{}inin Gödel numarası olduğu bir sayı çifti, $(s)_0$ ve
+$(s)_1$ bulmuş oluruz. Dolayısıyla $s$'yi aramak, biçimsel olmayan ispattaki
+$d$ ile $m$ çiftini aramak gibidir. Böyle bir $s$'yi ``arayan'' hesaplanabilir
+bir fonksiyon düzenli minimizasyonla tanımlanabilir. $R$'nin düzenli olduğuna
+dikkat edin: her $n_0$, \dots, $n_k$ için
+$\Th{Q} \Proves !A_f(\num{n_0}, \dots, \num{n_k},
+\num{f(n_0, \dots, n_k)})$ ifadesinin !!a{derivation}{}i~$\delta$ vardır;
+dolayısıyla $s=\tuple{\Gn{\delta},f(n_0,\dots,n_k)}$ için
+$R(n_0,\dots,n_k,s)$ geçerlidir. Böylece $f$'yi şöyle yazabiliriz:
+\[
+f(n_0,\dots,n_{k}) = (\umin{s}{R(n_0, \dots, n_k, s)})_1.
+\]
+\end{proof}
+

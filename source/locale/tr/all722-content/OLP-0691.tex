@@ -1,0 +1,190 @@
+% Generated from locale/tr/content/proof-theory/propositions-as-types/reduction.tex; do not hand-edit.
+
+
+\olfileid[tr]{int}{pty}{red}
+
+\olsection{İndirgeme}
+
+Doğal tümdengelim !!{derivation}{}inde, bir !!a{introduction} kuralını izleyen
+bir !!a{elimination} kuralı ``indirgenebilen'' bir dolambaçtır. Örneğin
+\Intro{\land}'ı izleyen \Elim{\land} ``birbirini götürür''; çünkü
+\Elim{\land}'ın sonucu her zaman \Intro{\land}'ın ürettiği ve bağlaçlı
+yapının bileşenlerinden biridir ve \Intro{\land}'ın öncülleri de iki
+bağlaşıktır. Dolayısıyla bağlaşıklardan herhangi birinin bir
+!!a{derivation}{}ine gereksinimimiz varsa ve bağlacını tanıtıp sonra
+gidermek yerine o !!{derivation}{}i doğrudan kullanabiliriz:
+\begin{gather*}
+  \bottomAlignProof
+  \AxiomC{}
+  \RightLabel{$\delta_1$}
+  \DeduceC{$!A_1$}
+  \AxiomC{}
+  \RightLabel{$\delta_2$}
+  \DeduceC{$!A_2$}
+  \RightLabel{$\Intro{\land}$}
+  \BinaryInfC{$!A_1 \land !A_2$}
+  \RightLabel{$\Elim{\land}_i$}
+  \UnaryInfC{$!A_i$}
+  \DisplayProof\bottomAlignProof
+  \quad
+  \redone
+  \quad
+  \AxiomC{}
+  \RightLabel{$\delta_i$}
+  \DeduceC{$!A_i$}
+  \DisplayProof
+\end{gather*}
+
+Bu sadeleştirmenin düşündürdüğü biçimde, ilişkili ispat terimleri üzerinde
+benzer bir indirgeme bağıntısı ele alabiliriz. $N_1$,~$\delta_1$'in;
+$N_2$ de~$\delta_2$'nin ispat terimiyse soldaki ispatın ispat teriminin
+(bir adımda) sağdaki ispatın ispat terimine indirgendiğini söyleyebiliriz:
+\[
+  \proj{i}{\pair{N_1}{N_2}} \redone N_i
+\]
+Tipli lambda kalkülüsünde bu, çarpım tipi için \emph{beta indirgeme}
+kuralıdır.
+
+Doğal tümdengelimde \Intro{\land}'ı izleyen \Elim{\land} gibi, yani
+indirgemeye konu olan bir çıkarım çiftine \emph{kesme} denir. Tipli lambda
+kalkülüsünde $\redone$ simgesinin solundaki terime \emph{indirgenen},
+sağındaki terime \emph{indirgenmiş} denir. Yalnız
+$(\lambd[x][N])Q$'nun indirgenen sayıldığı tiplenmemiş lambda kalkülüsünden
+farklı olarak tipli lambda kalkülüsünün sözdizimi $\pair{N}{M}$,
+$\proj{i}{N}$, $\inj[!A]{i}{N}$, $\dcase{N}{x_1}{M_1}{x_2}{M_2}$ ve
+$\abort{!A}{N}$ içeren terimlerle, bunlara karşılık gelen indirgenenleri de
+kapsayacak biçimde genişletilmiştir.
+
+Veya bağlacı için de benzer bir indirgeme vardır:
+\begin{gather*}
+  \bottomAlignProof
+  \AxiomC{}
+  \RightLabel{$\delta$}
+  \DeduceC{$!A_i$}
+  \RightLabel{$\Intro{\lor}$}
+  \UnaryInfC{$!A_1 \lor !A_2$}
+  \AxiomC{$\Discharge{!A_1}{x_1}$}
+  \RightLabel{$\delta_1$}
+  \DeduceC{$!C$}
+  \AxiomC{$\Discharge{!A_2}{x_2}$}
+  \RightLabel{$\delta_2$}
+  \DeduceC{$!C$}
+  \DischargeRule{$\Elim{\lor}$}{x_1,x_2}
+  \TrinaryInfC{$!C$}
+  \DisplayProof\bottomAlignProof
+  \quad
+  \redone
+  \quad
+  \AxiomC{}
+  \RightLabel{$\delta$}
+  \DeduceC{$!A_i$}
+  \RightLabel{$\delta_i$}
+  \DeduceC{$!C$}
+  \DisplayProof
+\end{gather*}
+Bu, ispat terimleri üzerinde şu indirgemeye karşılık gelir:
+\begin{gather*}
+  \dcase{\inj[!A_i]{i}{M}}{x_1}{N_1}{x_2}{N_2} \redone
+  \Subst{N_i}{M}{x_i}
+\end{gather*}
+burada $M$,~$\delta$'nın; $N_i$ ise~$\delta_i$'nin ispat terimidir. Bu,
+toplam tipleri için beta indirgeme kuralıdır. Burada
+$\Subst{N_i}{M}{x_i}$, $N_i$ içindeki $x_i$ değişkeninin bütün serbest
+geçişlerini~$M$ ile değiştirmek demektir.
+
+Fonksiyon tipinin indirgemesi, \Intro\lif'ı izleyen \Elim\lif
+dolambacının kaldırılmasına karşılık gelir:
+\begin{gather*}
+  \bottomAlignProof
+  \AxiomC{$\Discharge{!A}{x}$}
+  \RightLabel{$\delta$}
+  \DeduceC{$!B$}
+  \DischargeRule{$\Intro{\lif}$}{x}
+  \UnaryInfC{$!A \lif !B$}
+  \AxiomC{}
+  \RightLabel{$\delta'$}
+  \DeduceC{$!A$}
+  \RightLabel{$\Elim{\lif}$}
+  \BinaryInfC{$!B$}
+  \DisplayProof\bottomAlignProof
+  \quad
+  \redone
+  \quad
+  \AxiomC{}
+  \RightLabel{$\delta'$}
+  \DeduceC{$!A$}
+  \RightLabel{$\delta$}
+  \DeduceC{$!B$}
+  \DisplayProof
+\end{gather*}
+İspat terimleri için bu, sıradan beta indirgemesidir:
+\begin{gather*}
+  (\lambd[\typeof{x}{!A}][N]M)
+  \redone \Subst{N}{M}{x}
+\end{gather*}
+
+!!{proof}s üzerindeki indirgeme dönüşümlerine ek olarak yer değiştirme
+dönüşümlerini ele alabiliriz. Bunlar, \Elim{\lor} ile bitip ardından başka
+bir !!{elimination} kuralı gelen (alt-)!!{proof}{}ına uygulanır; örneğin:
+\begin{multline*}
+  \bottomAlignProof
+  \AxiomC{}
+  \RightLabel{$\delta$}
+  \DeduceC{$!A_i$}
+  \RightLabel{$\Intro{\lor}$}
+  \UnaryInfC{$!A_1 \lor !A_2$}
+  \AxiomC{$\Discharge{!A_1}{x_1}$}
+  \RightLabel{$\delta_1$}
+  \DeduceC{$!C_1 \land !C_2$}
+  \AxiomC{$\Discharge{!A_2}{x_2}$}
+  \RightLabel{$\delta_2$}
+  \DeduceC{$!C_1 \land !C_2$}
+  \DischargeRule{$\Elim{\lor}$}{x_1,x_2}
+  \TrinaryInfC{$!C_1 \land !C_2$}
+  \RightLabel{\Elim{\land}[i]}
+  \UnaryInfC{$!C_i$}
+  \DisplayProof\bottomAlignProof
+  \quad
+  \redone
+  \\
+  \AxiomC{}
+  \RightLabel{$\delta$}
+  \DeduceC{$!A_i$}
+  \RightLabel{$\Intro{\lor}$}
+  \UnaryInfC{$!A_1 \lor !A_2$}
+  \AxiomC{$\Discharge{!A_1}{x_1}$}
+  \RightLabel{$\delta_1$}
+  \DeduceC{$!C_1 \land !C_2$}
+  \RightLabel{\Elim{\land}[i]}
+  \UnaryInfC{$!C_i$}
+  \AxiomC{$\Discharge{!A_2}{x_2}$}
+  \RightLabel{$\delta_2$}
+  \DeduceC{$!C_1 \land !C_2$}
+  \RightLabel{\Elim{\land}[i]}
+  \UnaryInfC{$!C_i$}
+  \DischargeRule{$\Elim{\lor}$}{x_1,x_2}
+  \TrinaryInfC{$!C_i$}
+  \DisplayProof
+\end{multline*}
+$\delta$, $\delta_1$ ve $\delta_2$'nin ispat terimleri sırasıyla $M$,
+$N_1$ ve $N_2$ ise ispat terimleri, yani lambda terimleri için karşılık
+gelen indirgeme kuralı şöyledir:
+\[
+  \proj{i}{\dcase{M}{x_1}{N_1}{x_2}{N_2}} \redone
+  \dcase{M}{x_1}{\proj{i}{N_1}}{x_2}{\proj{i}{N_2}}
+\]
+
+Elbette dolambaçları yalnız !!{proof}{}ın sonunda değil, dolambaçla biten
+bir alt-!!{proof}{}a indirgeme dönüşümü uygulayarak !!{proof}{}ın içinde de
+giderebiliriz. Benzer biçimde $\beta$-indirgemesi lambda terimlerinin alt
+terimlerine uygulanır. $N$, $M$'nin bir alt terimi ve $N \redone N'$ ise
+$M$ içindeki $N$ alt terimini~$N'$ ile değiştirip $M'$yi elde edebiliriz.
+Bu durumda $M \redone M'$ de yazarız. $M = M_1 \redone M_2 \redone \dots
+\redone M_k = M'$ biçiminde bir dizi varsa ($k=1$, yani $M=M'$ durumu
+dâhil) $M \red M'$ yazarız.
+
+Hiçbir alt-!!{proof}{}ına dönüşüm uygulanamayan bir !!a{proof}{}a
+\emph{normal} denir. Benzer biçimde hiçbir (alt terimine) dönüşüm
+uygulanamayan bir lambda terimine \emph{normal} denir. Normal bir lambda
+terimine \emph{normal biçim} de denir.
+

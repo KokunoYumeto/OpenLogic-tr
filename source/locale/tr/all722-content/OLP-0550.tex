@@ -1,0 +1,66 @@
+% Generated from locale/tr/content/set-theory/ordinals/wo.tex; do not hand-edit.
+
+
+\olfileid[tr]{sth}{ordinals}{wo}
+\olsection{İyi Sıralamalar}
+
+Temel kavram şöyledir:
+
+\begin{defn}
+$<$ bağıntısı, aşağıdaki iki koşulu sağlıyorsa $A$'yı \emph{iyi sıralar}:
+\begin{enumerate}
+	\item $<$ bağlantılıdır; yani bütün $a,b\in A$ için ya $a<b$ ya $a=b$
+	ya da $b<a$ olur;
+	\item $A$'nın boş olmayan her alt kümesi bir $<$-minimal
+	!!{element} içerir; yani $\emptyset\neq X\subseteq A$ ise
+	$(\exists m\in X)(\forall z\in X)z\nless m$ olur.
+\end{enumerate}
+\end{defn}
+
+Az önce ele aldığımız üç örneğin gerçekten iyi sıralama bağıntıları olduğunu
+görmek kolaydır.
+
+\begin{prob}
+\Olref[sth][ordinals][idea]{sec}, doğal sayılar üzerinde üç örnek sıralama
+sundu. Her birinin iyi sıralama olduğunu denetleyin.
+\end{prob}
+
+İyi sıralamaya ilişkin bazı temel fakat son derece önemli gözlemler şunlardır.
+
+\begin{prop}\ollabel{wo:strictorder}
+$<$, $A$'yı iyi sıralıyorsa $A$'nın boş olmayan her alt kümesinin biricik
+$<$-en küçük elemanı vardır ve $<$ yansımasız, asimetrik ve geçişlidir.
+\end{prop}
+
+\begin{proof}
+$X$, $A$'nın boş olmayan bir alt kümesiyse bir $<$-minimal !!{element}
+$m$ içerir; yani $(\forall z\in X)z\nless m$ olur. $<$ bağlantılı olduğuna
+göre $(\forall z\in X)m\leq z$ olur. Böylece $m$, $X$ içinde $<$'ye göre
+en küçük !!{element} olur.
+
+Yansımasızlık için $a\in A$ sabitleyin; $\{a\}$ kümesindeki $<$-en küçük
+!!{element} $a$ olduğundan $a\nless a$'dır. Geçişlilik için $a<b<c$ ise
+$\{a,b,c\}$ kümesinin bir $<$-en küçük !!{element} içermesinden $a<c$
+çıkar. Asimetri, yansımasızlık ile geçişlilikten çıkar.
+\end{proof}
+
+\begin{prop}\ollabel{propwoinduction}
+$<$, $A$'yı iyi sıralıyorsa her $\phi(x)$ formülü için:
+\[
+	\text{eğer }(\forall a \in A)((\forall b < a)\phi(b) \lif
+		\phi(a))\text{ ise }(\forall a \in A)\phi(a).
+\]
+\end{prop}
+
+\begin{proof}
+Karşıt-tersi ispatlayacağız. $\lnot(\forall a\in A)\phi(a)$, yani
+$X=\Setabs{x\in A}{\lnot\phi(x)}\neq\emptyset$ olduğunu varsayın. O zaman
+$X$ içinde $<$-minimal !!{element}, $a$, vardır. Dolayısıyla
+$(\forall b<a)\phi(b)$ olduğu hâlde $\lnot\phi(a)$ olur.
+\end{proof}\noindent
+Bu son özellik, doğal sayılar üzerindeki güçlü tümevarım ilkesini
+hatırlatmalıdır: $(\forall n\in\omega)((\forall m<n)\phi(m)\lif\phi(n))$
+ise $(\forall n\in\omega)\phi(n)$ olur. Bu özellik, iyi sıralamayı çok
+\emph{sağlam} bir kavrama dönüştürür.\footnote{Hatırlatma: açıkça aksi
+belirtilmedikçe bütün formüller parametreler içerebilir.}
+

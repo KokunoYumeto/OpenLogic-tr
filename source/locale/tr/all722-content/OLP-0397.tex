@@ -1,0 +1,218 @@
+% Generated from locale/tr/content/many-valued-logic/three-valued-logics/multiple-designation.tex; do not hand-edit.
+
+
+\olfileid[tr]{mvl}{thr}{mul}
+
+\olsection{Yalnızca $\True$'nun Değil, Başka Değerlerin de Belirlenmesi}
+
+Şimdiye kadar gördüğümüz mantıkların hepsinde belirlenmiş doğruluk değerleri
+kümesi $V^+ = \{\True\}$ idi; yani bir şey ancak ve ancak doğruluk değeri
+$\True$ ise doğru sayılıyordu. Fakat bir şey yalnızca $\False$ değilse de
+doğru sayılabilir. O zaman örneğin matriste
+$V^+ = \{\True, \Undef\}$ koşulu konarak bir mantık elde edilir.
+
+\begin{defn}
+\emph{Paradoks mantığı}~$\LogLP$ şu matrisle tanımlanır:
+\begin{enumerate}
+  \item $\lnot$, $\land$, $\lor$, $\lif$ bağlaçlarını içeren standart
+  önerme dili $\Lang L_0$.
+  \item Doğruluk değerleri kümesi $V = \{\True, \Undef, \False\}$.
+  \item $\True$ ile $\Undef$ belirlenmiştir; yani
+  $V^+ = \{\True, \Undef\}$.
+  \item Doğruluk fonksiyonları güçlü Kleene mantığındakilerle aynıdır.
+\end{enumerate}
+\end{defn}
+
+\begin{defn}
+Halld\'en'in \emph{anlamsızlık mantığı}~$\LogHal$ şu matrisle tanımlanır:
+\begin{enumerate}
+  \item $\lnot$, $\land$, $\lor$, $\lif$ ve bir-konumlu $+$ bağlacını
+  içeren standart önerme dili $\Lang L_0$.
+  \item Doğruluk değerleri kümesi $V = \{\True, \Undef, \False\}$.
+  \item $\True$ ile $\Undef$ belirlenmiştir; yani
+  $V^+ = \{\True, \Undef\}$.
+  \item Doğruluk fonksiyonları zayıf Kleene mantığındakilerle aynıdır;
+  bunlara “anlamsızdır” işlemcisi eklenir:
+  \begin{center}
+    \begin{tabular}{c|c} 
+    $\tf{+}$ & \\ 
+    \hline  
+    $\True$ & $\False$ \\ 
+    $\Undef$ & $\True$ \\
+    $\False$ & $\False$ 
+    \end{tabular}
+  \end{center}
+\end{enumerate}
+\end{defn}
+
+Doğruluk tablolarını paylaştıkları Kleene mantıklarının tersine bunların
+\emph{totolojileri vardır}.
+
+\begin{prop}\ollabel{prop:LP-taut-CL} $\LogLP$'nin totolojileri klasik
+  önerme mantığının totolojileriyle aynıdır.
+\end{prop}
+
+\begin{proof}
+  \olref[syn][sub]{prop:mvl-cl} uyarınca $\Entails[\LogLP] !A$ ise
+  $\Entails[\LogCL] !A$. Ters yönü göstermek için
+  $\pValue v(!A)[\LogKs] = \False$ olacak biçimde
+  !!a{valuation}~$\pAssign v\colon \PVar \to \{\False, \True,
+  \Undef\}$ varsa $\pValue {v'}(!A)[\LogCL] = \False$ olacak biçimde
+  !!a{valuation}~$\pAssign {v'}\colon \PVar \to \{\False, \True\}$
+  bulunduğunu göstereceğiz. Bu, $\LogLP$ için sonucu verir; çünkü $\LogKs$
+  ile $\LogLP$ aynı karakteristik doğruluk fonksiyonlarına sahiptir ve
+  $\False$, $\LogLP$'nin belirlenmemiş olan tek doğruluk değeridir
+  ($\LogLP$ ile~$\LogKs$ arasındaki tek fark budur). Dolayısıyla
+  $\Entails/[\LogLP] !A$ ise bazı !!{valuation}~$\pAssign v$ için
+  $\pValue v(!A)[\LogLP] = \pValue v(!A)[\LogKs] = \False$ olur.
+  İspatlamakta olduğumuz sav uyarınca
+  $\pValue{v'}[\LogCL](!A) = \False$; yani
+  $\Entails/[\LogCL] !A$.
+  
+  Savı ispatlamak için önce $\pAssign {v'}$'yi şöyle tanımlayalım:
+  \[
+    \pAssign {v'}(p) = 
+    \begin{cases}
+    \True & \text{$\pAssign {v}(p) \in \{\True, \Undef\}$ ise}\\
+    \False & \text{aksi durumda}
+  \end{cases}
+  \]
+  Şimdi $!A$ üzerinde tümevarımla şunları göstereceğiz: (a)~Eğer
+  $\pValue v(!A)[\LogKs] = \False$ ise
+  $\pValue {v'}(!A)[\LogCL] = \False$; (b)~eğer
+  $\pValue v(!A)[\LogKs] = \True$ ise
+  $\pValue {v'}(!A)[\LogCL] = \True$.
+  \begin{enumerate}
+    \item Tümevarım temeli: $!A \ident p$.
+    \olref[syn][val]{defn:pValue} uyarınca
+    $\pValue v(!A)[\LogKs] = \pAssign v(p)$ ve
+    $\pValue {v'}(!A)[\LogCL] = \pAssign {v'}(p)$. İlk değer $\False$ ise
+    $\pAssign {v'}$ tanımı gereği ikinci değer de $\False$; ilk değer
+    $\True$ ise ikinci değer de $\True$ olur. Böylece hem (a) hem de (b)
+    elde edilir.
+    
+    Tümevarım adımı için şu durumları ele alın:
+    \item $!A \ident \lnot !B$. 
+    \begin{enumerate}
+      \item $\pValue v(\lnot!B)[\LogKs] = \False$ olduğunu varsayın.
+      $\tf{\lnot}[\LogKs]$ tanımı gereği
+      $\pValue v(!B)[\LogKs] = \True$. Tümevarım varsayımının (b) durumundan
+      $\pValue {v'}(!B)[\LogCL] = \True$ elde edilir; dolayısıyla
+      $\pValue {v'}(\lnot !B)[\LogCL] = \False$.
+      \item $\pValue v(\lnot!B)[\LogKs] = \True$ olduğunu varsayın.
+      $\tf{\lnot}[\LogKs]$ tanımı gereği
+      $\pValue v(!B)[\LogKs] = \False$. Tümevarım varsayımının (a) durumundan
+      $\pValue {v'}(!B)[\LogCL] = \False$ elde edilir; dolayısıyla
+      $\pValue {v'}(\lnot !B)[\LogCL] = \True$.
+    \end{enumerate}
+
+    \item $!A \ident (!B \land !C)$.
+    \begin{enumerate}
+      \item $\pValue v(!B \land !C)[\LogKs] = \False$ olduğunu varsayın.
+      $\tf{\land}[\LogKs]$ tanımı gereği
+      $\pValue v(!B)[\LogKs] = \False$ ya da
+      $\pValue v(!C)[\LogKs] = \False$. Tümevarım varsayımının (a)
+      durumundan $\pValue {v'}(!B)[\LogCL] = \False$ ya da
+      $\pValue {v'}(!C)[\LogCL] = \False$ elde edilir; dolayısıyla
+      $\pValue {v'}(!B \land !C)[\LogCL] = \False$.
+      \item $\pValue v(!B \land !C)[\LogKs] = \True$ olduğunu varsayın.
+      $\tf{\land}[\LogKs]$ tanımı gereği
+      $\pValue v(!B)[\LogKs] = \True$ ve
+      $\pValue v(!C)[\LogKs] = \True$. Tümevarım varsayımının (b)
+      durumundan $\pValue {v'}(!B)[\LogCL] = \True$ ve
+      $\pValue {v'}(!C)[\LogCL] = \True$ elde edilir; dolayısıyla
+      $\pValue {v'}(!B \land !C)[\LogCL] = \True$.
+    \end{enumerate}
+  \end{enumerate}
+
+  Öteki iki durum benzerdir ve alıştırma olarak bırakılmıştır. Başka bir
+  yoldan, yukarıdaki ispat sonucu yalnızca $\lnot$ ile~$\land$ içeren bütün
+  !!{formula}s için kurar. Şimdi hem $\LogKs$ hem de $\LogCL$ içinde her
+  $\pAssign v$ için $\pValue v(!B \lor !C) =
+  \pValue v(\lnot(\lnot!B \land \lnot !C))$ ve
+  $\pValue v(!B \lif !C) = \pValue v(\lnot(!B \land \lnot !C))$
+  olgularına başvurulabilir.
+\end{proof}
+
+\begin{prob}
+  \olref[mvl][thr][mul]{prop:LP-taut-CL} ispatını tamamlayın; yani
+  $!A \ident (!B \lor !C)$ ve $!A \ident (!B \lif !C)$ durumları için
+  (a) ile~(b)'yi kurun.
+\end{prob}
+
+\begin{prob}
+Her klasik totolojinin $\LogHal$ içinde bir totoloji olduğunu ispatlayın.
+\end{prob}
+
+Klasik mantıkla aynı totolojilere sahip olsalar da gerektirme bağıntıları
+farklıdır. Örneğin $\LogLP$, $\lnot p, p \Entails/ q$ olması anlamında
+\emph{paratutarlıdır}; dolayısıyla patlama ilkesi
+$\lnot !A, !A \Entails !B$ genel olarak geçerli değildir. (Bazı $!A$ ve
+$!B$ durumlarında, örneğin $!B$ bir totolojiyse geçerlidir.)
+
+\begin{prob}
+  Aşağıdaki bağıntılardan hangileri (a)~$\LogLP$ ve
+  (b)~$\LogHal$ içinde geçerlidir? Her biri için bir doğruluk tablosu verin.
+  \begin{enumerate}
+    \item $p, p \lif q \Entails q$
+    \item $\lnot q, p \lif q \Entails \lnot p$
+    \item $p \lor q, \lnot p \Entails q$
+    \item $\lnot p, p \Entails q$
+    \item $p \Entails p \lor q$
+    \item $p \lif q, q\lif r \Entails p \lif r$
+  \end{enumerate}
+\end{prob}
+
+$\LogLuk[3]$ içinde $\Undef$'ı belirlenmiş sayarsanız ne olur?
+
+\begin{defn}
+  \emph{3-değerli R-Mingle} mantığı~$\LogRM[3]$ şu matrisle tanımlanır:
+  \begin{enumerate}
+    \item $\lfalse$, $\lnot$, $\land$, $\lor$, $\lif$ bağlaçlarını içeren
+    standart önerme dili $\Lang L_0$.
+    \item Doğruluk değerleri kümesi $V = \{\True, \Undef, \False\}$.
+    \item $\True$ ile $\Undef$ belirlenmiştir; yani
+    $V^+ = \{\True, \Undef\}$.
+    \item Doğruluk fonksiyonları \L ukasiewicz mantığı~$\LogLuk[3]$ ile
+    aynıdır.
+  \end{enumerate}
+\end{defn}
+
+\begin{prob}
+  Aşağıdaki bağıntılardan hangileri $\LogRM[3]$ içinde geçerlidir?
+  \begin{enumerate}
+    \item $p, p \lif q \Entails q$
+    \item $p \lor q, \lnot p \Entails q$
+    \item $\lnot p, p \Entails q$
+    \item $p \Entails p \lor q$
+  \end{enumerate}
+\end{prob}
+
+Farklı doğruluk tabloları bazen yalnızca belirlenmiş değerler değiştirilerek
+aynı mantığı (gerektirme bağıntısını) üretebilir. Örneğin G\"odel mantığında
+$V^+ = \{\True\}$ yerine $V^+ = \{\True, \Undef\}$ alındığında böyle olur.
+
+\begin{prop}\ollabel{prop:gl-udes}
+  $V = \{\False, \Undef,\True\}$, $V^+=\{\True, \Undef\}$ ve $3$-değerli
+  G\"odel mantığının doğruluk fonksiyonlarından oluşan matris klasik mantığı
+  tanımlar.
+\end{prop}
+
+\begin{proof}
+  Alıştırma.
+\end{proof}
+
+\begin{prob}
+  \olref[mvl][thr][mul]{prop:gl-udes} önermesini şöyle ispatlayın:
+  G\"odel mantığı gibi, fakat $V^+=\{\True,\Undef\}$ ile tanımlanan
+  $\Log L$ mantığı için $\Gamma \Entails/[\Log L] !B$ ise
+  $\Gamma \Entails/[\LogCL] !B$ olduğunu gösterin.
+  \olref[mvl][thr][mul]{prop:LP-taut-CL} düşüncelerini kullanın; fakat
+  (a) ve~(b) özelliklerini ispatlamak yerine
+  $\pValue v(!A)[\LogGod] = \False$ ancak ve ancak
+  $\pValue {v'}(!A)[\LogCL] = \False$ olduğunu (dolayısıyla
+  $\pValue v(!A)[\LogGod] \in \{\True,\Undef\}$ ancak ve ancak
+  $\pValue {v'}(!A)[\LogCL] = \True$ olduğunu) gösterin. Bunun önermeyi
+  neden kurduğunu açıklayın.
+\end{prob}
+

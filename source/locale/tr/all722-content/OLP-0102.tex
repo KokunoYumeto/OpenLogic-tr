@@ -1,0 +1,86 @@
+% Generated from locale/tr/content/first-order-logic/tableaux/derivations.tex; do not hand-edit.
+
+
+\iftag{FOL}
+      {\olfileid[tr]{fol}{tab}{der}}
+      {\olfileid[tr]{pl}{tab}{der}}
+
+\olsection{\usetoken{P}{tableau}}
+
+\begin{explain}
+Bir varsayımın ne olduğunu söyledik ve çıkarım kurallarını verdik.
+!!^{tableau}s bunlardan tümevarımsal olarak oluşturulur: her !!{tableau} ya
+bir veya daha fazla varsayımdan oluşan tek bir daldır ya da !!a{tableau}'nun
+bir dalına çıkarım kurallarından birinin uygulanmasıyla elde edilir.
+\end{explain}
+
+\begin{defn}[!!^{tableau}]
+$\sFmla{S_1}{!A_1}$, \dots, $\sFmla{S_n}{!A_n}$ varsayımları için bir
+!!^a{tableau} (her $S_i$, $\True$ ya da~$\False$ olmak üzere), aşağıdaki
+koşulları sağlayan sonlu bir !!{signed formula}s ağacıdır:
+\begin{enumerate}
+\item Ağacın en üstteki $n$ !!{signed formula}s{}i, alt alta yazılmış
+  $\sFmla{S_i}{!A_i}$ ifadeleridir.
+\item Ağaçta varsayımlardan biri olmayan her !!{signed formula}, üstündeki
+  dalda bulunan !!a{signed formula}'ya bir çıkarım kuralının doğru
+  uygulanmasıyla elde edilir.
+\end{enumerate}
+!!a{tableau}'nun bir dalı hem $\sFmla{\True}{!A}$ hem
+de~$\sFmla{\False}{!A}$ içeriyorsa ve ancak o zaman \emph{kapalı}, aksi
+hâlde \emph{açık}tır. Her dalı kapalı olan !!^a{tableau}, (varsayımlar kümesi
+için) \emph{kapalı bir !!{tableau}}'dur. !!a{tableau} kapalı değilse, yani
+en az bir açık dal içeriyorsa \emph{açıktır}.
+\end{defn}
+
+\begin{ex}
+  Her varsayım kümesi tek başına !!a{tableau}'dur, ancak genellikle kapalı
+  değildir. (Açıktır ki ancak varsayımlar zaten
+  $\sFmla{\True}{!A}$ ile~$\sFmla{\False}{!A}$ biçimindeki bir
+  !!{signed formula}s çiftini içeriyorsa kapalıdır.)
+
+  Bir !!a{tableau}'dan (açık ya da kapalı) içindeki
+  !!a{signed formula}~$\sFmla{S}{!A}$'ya
+  çıkarım kurallarından birini uygulayarak yeni ve daha büyük bir tableau
+  elde edebiliriz. Kural, uygulandığı~$\sFmla{S}{!A}$ geçişini içeren her dalın sonuna
+  bir veya daha fazla !!{signed formula}s ekler.
+
+  Örneğin $\sFmla{\True}{!A \land \lnot !A}$ varsayımını ele alalım.
+  Yalnızca bu varsayımdan oluşan (açık) !!{tableau} şöyledir:
+  \begin{center}
+    \begin{tableau}{}
+      [\sFmla{\True}{\formula{A} \land \lnot \formula{A}}, just=\TAss]
+    \end{tableau}{}
+  \end{center}
+  Varsayıma $\TRule{\True}{\land}$ kuralını uygulayarak bundan yeni bir
+  !!{tableau} elde ederiz. Bu kural !!{tableau}'ya iki yeni satır,
+  $\sFmla{\True}{!A}$ ve $\sFmla{\True}{\lnot !A}$ eklememize izin verir:
+  \begin{center}
+    \begin{tableau}{}
+      [\sFmla{\True}{\formula{A} \land \lnot \formula{A}}, just=\TAss
+        [\sFmla{\True}{\formula{A}}, just={\TRule{\True}{\land}[1]},
+          [\sFmla{\True}{\lnot \formula{A}}, just={\TRule{\True}{\land}[1]}
+          ]
+        ]
+      ]
+    \end{tableau}{}
+  \end{center}
+  !!{tableau}s yazarken uyguladığımız kuralları sağ tarafta kaydederiz
+  (örneğin $\TRule{\True}{\land} 1$, o satırdaki !!{signed formula}'nın
+  $1$.~satırdaki !!{signed formula}'ya $\TRule{\True}{\land}$ kuralının
+  uygulanmasıyla elde edildiği anlamına gelir). Bu yeni !!{tableau} artık
+  ek !!{signed formula}s içerir; ancak yalnızca birine
+  ($\sFmla{\True}{\lnot !A}$) kural uygulayabiliriz (burada
+  $\TRule{\True}{\lnot}$ kuralını). Böylece şu kapalı !!{tableau} elde edilir:
+  \begin{center}
+    \begin{tableau}{}
+      [\sFmla{\True}{\formula{A} \land \lnot \formula{A}}, just=\TAss
+        [\sFmla{\True}{\formula{A}}, just={\TRule{\True}{\land}[1]}
+          [\sFmla{\True}{\lnot \formula{A}}, just={\TRule{\True}{\land}[1]}
+            [\sFmla{\False}{\formula{A}}, just={\TRule{\True}{\lnot}[3]}, close]
+          ]
+        ]
+      ]
+    \end{tableau}{}
+  \end{center}
+\end{ex}
+

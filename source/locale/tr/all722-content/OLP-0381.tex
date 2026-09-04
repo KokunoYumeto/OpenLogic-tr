@@ -1,0 +1,33 @@
+% Generated from locale/tr/content/lambda-calculus/lambda-definability/partial-recursive-functions.tex; do not hand-edit.
+
+
+\olfileid[tr]{lam}{ldf}{par}
+\olsection{Kısmi Özyinelemeli Fonksiyonlar \usetoken{S}{lambda definable}}
+
+Kısmi özyinelemeli fonksiyonlar, temel fonksiyonlardan bileşke, ilkel
+özyineleme ve sınırsız minimizasyonla elde edilen fonksiyonlardır. Genel
+özyinelemeli fonksiyonlardan farkları, sınırsız aramada kullanılan
+fonksiyonların düzenli olmasının gerekmemesidir. Düzenlilik istenmediğinde
+minimizasyonla tanımlanan fonksiyonlar bazı durumlarda tanımsız olabilir.
+
+İlk bakışta bütün tümel genel özyinelemeli fonksiyonların !!{lambda definable}
+olduğunu göstermek için kullanılan yöntemlerle bütün kısmi özyinelemeli
+fonksiyonların da !!{lambda definable} olduğu ispatlanabilir gibi görünür.
+Örneğin $F,G$ terimleri sırasıyla $f,g$'yi !!{lambda define}.
+Bu durumda $\lambd[x][F(Gx)]$ terimi $f$ ile $g$'nin bileşkesini
+!!{lambda define}. Ancak fonksiyonlar kısmi olduğunda sorun çıkar.
+$g(x)$ tanımsızsa $Gx$'in normal biçimi yoktur. Çoğu durumda $F(Gx)$'in de
+normal biçimi olmaması, istediğimiz sonuçtur. Fakat $F$'nin
+$\lambd[x][\lambd[y][y]]$ olduğunu düşünün; bu durumda $F(Gx)$'in normal
+biçimi $\lambd[y][y]$ vardır.
+
+Bu sorun aşılmaz değildir. Bütün kısmi özyinelemeli fonksiyonları, tanımsız
+değerleri normal biçimi olmayan terimlerle gösterecek biçimde
+!!{lambda define} eden yöntemler vardır. Ancak bu yöntemler, genel
+özyinelemeli fonksiyonlar için kullandığımız yaklaşımdan daha karmaşık ve daha
+az sezgiseldir. Teoremi burada ispatsız kaydediyoruz:
+
+\begin{thm}
+  Bütün kısmi özyinelemeli fonksiyonlar !!{lambda definable}.
+\end{thm}
+
