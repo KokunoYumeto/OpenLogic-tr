@@ -38,7 +38,9 @@ reader contexts without silently dropping source bodies.
 
 The exact PDF passed the build, source-preservation, text/link, and visual
 checks recorded in [FINAL_QA.json](evidence/reader722/FINAL_QA.json).
-These checks verify the PDF itself. Publication is recorded separately.
+These checks verify the PDF itself. The [public release receipt](evidence/reader722/PUBLICATION_RECEIPT.json)
+separately confirms anonymous download, byte-count, and SHA-256 verification
+of all five release files on both GitHub and Zenodo.
 
 ## Kaynaklar ve kararlar / Sources and decisions
 
@@ -104,6 +106,8 @@ distribution.
 ## Sürüm ve atıf / Version and citation
 
 - Version: `OLP-0722-READER-20260904`.
+- [Corrected 722-module Zenodo edition](https://doi.org/10.5281/zenodo.22306530).
+- [Download the GitHub correction release](https://github.com/KokunoYumeto/OpenLogic-tr/releases/tag/tr-olp-0722-reader-complete-20260904).
 - Stable Turkish concept DOI: [10.5281/zenodo.21921844](https://doi.org/10.5281/zenodo.21921844).
 - [Previous published version](https://doi.org/10.5281/zenodo.21927145): 722 translated source modules, but a 642-module reader.
 - [Historical GitHub release](https://github.com/KokunoYumeto/OpenLogic-tr/releases/tag/tr-olp-0722-20260814).

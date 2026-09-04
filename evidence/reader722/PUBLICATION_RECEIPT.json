@@ -1,0 +1,167 @@
+{
+  "schema": 1,
+  "repository": "KokunoYumeto/OpenLogic-tr",
+  "tag": "tr-olp-0722-reader-complete-20260904",
+  "commit": "5539e86df1047fad869503d62f83b95a05ac7653",
+  "conceptrecid": "21921844",
+  "source_record": 21927145,
+  "inventory": {
+    "00_OPENLOGIC_tr_COMPLETE_LINKED_READER_OLP-0722.pdf": {
+      "size": 6200006,
+      "sha256": "4af08c16e61aa058500cc1e96acb5d700c988718a729d4d6cbbe4aea9664df94"
+    },
+    "01_OPENLOGIC_tr_EDITABLE_SOURCES_OLP-0722.zip": {
+      "size": 1633656,
+      "sha256": "af72e92af87b90608dc2140cd0a740a7d79b5f472f511767457fea7b0ad7efe3"
+    },
+    "02_OPENLOGIC_tr_EVIDENCE_AND_PROVENANCE_OLP-0722.zip": {
+      "size": 5198722,
+      "sha256": "2cdda103905e163f3c372557b5ce91b9185e8fbbf3f515b47bcf1a4dcd054cde"
+    },
+    "03_OPENLOGIC_tr_SHA256_MANIFEST_OLP-0722.txt": {
+      "size": 466,
+      "sha256": "1181ec80936af8ef709e0c97524134fe4e8405eacfceb5eb9b7d94d347ea7eaf"
+    },
+    "04_OPENLOGIC_tr_READER_CORRECTION_OLP-0722.zip": {
+      "size": 1493049,
+      "sha256": "5503de6401130379d9d2c2f2d8d2dfd398218152462f1192b787163310a9023a"
+    }
+  },
+  "created": "2026-09-04T14:23:56.741506+00:00",
+  "events": [
+    {
+      "at": "2026-09-04T14:23:58.838151+00:00",
+      "operation": "github_create_attempt"
+    },
+    {
+      "at": "2026-09-04T14:24:09.804016+00:00",
+      "operation": "github_public_readback_complete"
+    },
+    {
+      "at": "2026-09-04T14:24:10.754214+00:00",
+      "operation": "zenodo_newversion_attempt"
+    },
+    {
+      "at": "2026-09-04T14:24:11.337849+00:00",
+      "operation": "zenodo_metadata_update_attempt",
+      "record_id": 22306530
+    },
+    {
+      "at": "2026-09-04T14:24:11.519206+00:00",
+      "operation": "zenodo_replace_in_new_draft_attempt",
+      "asset": "00_OPENLOGIC_tr_COMPLETE_LINKED_READER_OLP-0722.pdf"
+    },
+    {
+      "at": "2026-09-04T14:24:11.625836+00:00",
+      "operation": "zenodo_upload_attempt",
+      "asset": "00_OPENLOGIC_tr_COMPLETE_LINKED_READER_OLP-0722.pdf"
+    },
+    {
+      "at": "2026-09-04T14:24:16.090473+00:00",
+      "operation": "zenodo_replace_in_new_draft_attempt",
+      "asset": "01_OPENLOGIC_tr_EDITABLE_SOURCES_OLP-0722.zip"
+    },
+    {
+      "at": "2026-09-04T14:24:16.206753+00:00",
+      "operation": "zenodo_upload_attempt",
+      "asset": "01_OPENLOGIC_tr_EDITABLE_SOURCES_OLP-0722.zip"
+    },
+    {
+      "at": "2026-09-04T14:24:16.909595+00:00",
+      "operation": "zenodo_replace_in_new_draft_attempt",
+      "asset": "02_OPENLOGIC_tr_EVIDENCE_AND_PROVENANCE_OLP-0722.zip"
+    },
+    {
+      "at": "2026-09-04T14:24:17.093365+00:00",
+      "operation": "zenodo_upload_attempt",
+      "asset": "02_OPENLOGIC_tr_EVIDENCE_AND_PROVENANCE_OLP-0722.zip"
+    },
+    {
+      "at": "2026-09-04T14:24:19.477902+00:00",
+      "operation": "zenodo_replace_in_new_draft_attempt",
+      "asset": "03_OPENLOGIC_tr_SHA256_MANIFEST_OLP-0722.txt"
+    },
+    {
+      "at": "2026-09-04T14:24:19.637149+00:00",
+      "operation": "zenodo_upload_attempt",
+      "asset": "03_OPENLOGIC_tr_SHA256_MANIFEST_OLP-0722.txt"
+    },
+    {
+      "at": "2026-09-04T14:24:19.785363+00:00",
+      "operation": "zenodo_upload_attempt",
+      "asset": "04_OPENLOGIC_tr_READER_CORRECTION_OLP-0722.zip"
+    },
+    {
+      "at": "2026-09-04T14:24:20.600221+00:00",
+      "operation": "zenodo_publish_attempt",
+      "record_id": 22306530
+    },
+    {
+      "at": "2026-09-04T14:24:28.640312+00:00",
+      "operation": "zenodo_public_readback_complete"
+    },
+    {
+      "at": "2026-09-04T14:24:28.641589+00:00",
+      "operation": "complete"
+    }
+  ],
+  "updated": "2026-09-04T14:24:28.641813+00:00",
+  "github": {
+    "id": 382788892,
+    "url": "https://github.com/KokunoYumeto/OpenLogic-tr/releases/tag/tr-olp-0722-reader-complete-20260904",
+    "commit": "5539e86df1047fad869503d62f83b95a05ac7653",
+    "readback": {
+      "00_OPENLOGIC_tr_COMPLETE_LINKED_READER_OLP-0722.pdf": {
+        "size": 6200006,
+        "sha256": "4af08c16e61aa058500cc1e96acb5d700c988718a729d4d6cbbe4aea9664df94"
+      },
+      "01_OPENLOGIC_tr_EDITABLE_SOURCES_OLP-0722.zip": {
+        "size": 1633656,
+        "sha256": "af72e92af87b90608dc2140cd0a740a7d79b5f472f511767457fea7b0ad7efe3"
+      },
+      "02_OPENLOGIC_tr_EVIDENCE_AND_PROVENANCE_OLP-0722.zip": {
+        "size": 5198722,
+        "sha256": "2cdda103905e163f3c372557b5ce91b9185e8fbbf3f515b47bcf1a4dcd054cde"
+      },
+      "03_OPENLOGIC_tr_SHA256_MANIFEST_OLP-0722.txt": {
+        "size": 466,
+        "sha256": "1181ec80936af8ef709e0c97524134fe4e8405eacfceb5eb9b7d94d347ea7eaf"
+      },
+      "04_OPENLOGIC_tr_READER_CORRECTION_OLP-0722.zip": {
+        "size": 1493049,
+        "sha256": "5503de6401130379d9d2c2f2d8d2dfd398218152462f1192b787163310a9023a"
+      }
+    }
+  },
+  "zenodo_newversion_attempted": true,
+  "zenodo_newversion_attempts": 1,
+  "zenodo_draft_id": 22306530,
+  "zenodo": {
+    "id": 22306530,
+    "doi": "10.5281/zenodo.22306530",
+    "url": "https://zenodo.org/records/22306530",
+    "readback": {
+      "00_OPENLOGIC_tr_COMPLETE_LINKED_READER_OLP-0722.pdf": {
+        "size": 6200006,
+        "sha256": "4af08c16e61aa058500cc1e96acb5d700c988718a729d4d6cbbe4aea9664df94"
+      },
+      "01_OPENLOGIC_tr_EDITABLE_SOURCES_OLP-0722.zip": {
+        "size": 1633656,
+        "sha256": "af72e92af87b90608dc2140cd0a740a7d79b5f472f511767457fea7b0ad7efe3"
+      },
+      "02_OPENLOGIC_tr_EVIDENCE_AND_PROVENANCE_OLP-0722.zip": {
+        "size": 5198722,
+        "sha256": "2cdda103905e163f3c372557b5ce91b9185e8fbbf3f515b47bcf1a4dcd054cde"
+      },
+      "03_OPENLOGIC_tr_SHA256_MANIFEST_OLP-0722.txt": {
+        "size": 466,
+        "sha256": "1181ec80936af8ef709e0c97524134fe4e8405eacfceb5eb9b7d94d347ea7eaf"
+      },
+      "04_OPENLOGIC_tr_READER_CORRECTION_OLP-0722.zip": {
+        "size": 1493049,
+        "sha256": "5503de6401130379d9d2c2f2d8d2dfd398218152462f1192b787163310a9023a"
+      }
+    }
+  },
+  "status": "PUBLIC_BOTH_MIRRORS_BYTE_VERIFIED"
+}
