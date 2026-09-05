@@ -1,0 +1,256 @@
+{
+  "credential_material_persisted": false,
+  "github": {
+    "anonymous_readback": "PASS",
+    "assets": [
+      {
+        "bytes": 6200006,
+        "filename": "00_OPENLOGIC_tr_COMPLETE_LINKED_READER_OLP-0722.pdf",
+        "sha256": "4af08c16e61aa058500cc1e96acb5d700c988718a729d4d6cbbe4aea9664df94"
+      },
+      {
+        "bytes": 1633656,
+        "filename": "01_OPENLOGIC_tr_EDITABLE_SOURCES_OLP-0722.zip",
+        "sha256": "af72e92af87b90608dc2140cd0a740a7d79b5f472f511767457fea7b0ad7efe3"
+      },
+      {
+        "bytes": 5198722,
+        "filename": "02_OPENLOGIC_tr_EVIDENCE_AND_PROVENANCE_OLP-0722.zip",
+        "sha256": "2cdda103905e163f3c372557b5ce91b9185e8fbbf3f515b47bcf1a4dcd054cde"
+      },
+      {
+        "bytes": 466,
+        "filename": "03_OPENLOGIC_tr_SHA256_MANIFEST_OLP-0722.txt",
+        "sha256": "1181ec80936af8ef709e0c97524134fe4e8405eacfceb5eb9b7d94d347ea7eaf"
+      },
+      {
+        "bytes": 1493049,
+        "filename": "04_OPENLOGIC_tr_READER_CORRECTION_OLP-0722.zip",
+        "sha256": "5503de6401130379d9d2c2f2d8d2dfd398218152462f1192b787163310a9023a"
+      },
+      {
+        "bytes": 2965,
+        "filename": "START_HERE.md",
+        "sha256": "56a7cff142c691d48300cc557b018704eb2c90dd8c50bc54137f3ece04719fab"
+      },
+      {
+        "bytes": 2525670,
+        "filename": "TRANSLATION_DECISIONS_FULL.md",
+        "sha256": "888bebf77552444d2de98bc7a01abc4f2e8752bc32494c92324581c73bc15d7d"
+      },
+      {
+        "bytes": 47449,
+        "filename": "PRIORITY_REVIEW.md",
+        "sha256": "a6e0c481cd92f5b1b993c8ec1e36ca6679e24b7974565fcb03186020878a700b"
+      },
+      {
+        "bytes": 11978302,
+        "filename": "DECISION_OCCURRENCES.csv",
+        "sha256": "c60fcd2e4484fe3ae52a2fe19b5f16a4ea6998f0b3a21cdfab988e8ea4078cd6"
+      },
+      {
+        "bytes": 25204977,
+        "filename": "DECISIONS.json",
+        "sha256": "d612a11f6077897108c9b7438c5a25d738ec553ab7b33fc1964c8109853aed6e"
+      },
+      {
+        "bytes": 10787,
+        "filename": "translation-decision.schema.json",
+        "sha256": "50e7fa407b62c711f92f8b93be591d3b4a6e1c4adb1386c398bb5f76844d9f90"
+      },
+      {
+        "bytes": 5190,
+        "filename": "TRANSLATION_DECISION_QA.json",
+        "sha256": "3c6d5d510c68d380ce44ef29dbcb5a4f049f37e7e59d19de892fad5448ccf3de"
+      },
+      {
+        "bytes": 2770572,
+        "filename": "OPENLOGIC_tr_TRANSLATION_DECISION_REVIEW_INDEX_OLP-0722_20260905.zip",
+        "sha256": "3040d3182267a3bf6b98a5ff0c27aa68560379eb70fe49bc03fab12f636c3525"
+      },
+      {
+        "bytes": 3583,
+        "filename": "PUBLICATION_ASSET_MANIFEST_REVIEW_INDEX_20260905.json",
+        "sha256": "d57b9afafb178375c5e10ef80387410decc53b577b429f5fba6657d15d4fc20a"
+      },
+      {
+        "bytes": 1455,
+        "filename": "SHA256SUMS_REVIEW_INDEX_20260905",
+        "sha256": "c6112ef6c9289ee5e3822122a6b19371d580baaa1f7c13dc29df26847a4a3abd"
+      }
+    ],
+    "commit": "0b866ce9a3a831b93c8205b7df8f899c5376faf3",
+    "metadata_transport": "anonymous_rest",
+    "release": "https://github.com/KokunoYumeto/OpenLogic-tr/releases/tag/tr-olp-0722-review-index-20260905",
+    "repository": "KokunoYumeto/OpenLogic-tr",
+    "tagged_repository_surfaces": [
+      {
+        "bytes": 3241,
+        "path": "START_HERE.md",
+        "sha256": "a93a1c59f6d231a8c6188261e176ff7f5c027e83dc65a6d4f5a24be1793bec83",
+        "url": "https://raw.githubusercontent.com/KokunoYumeto/OpenLogic-tr/0b866ce9a3a831b93c8205b7df8f899c5376faf3/START_HERE.md"
+      },
+      {
+        "bytes": 8467,
+        "path": "README.md",
+        "sha256": "13f58718fb21fe00d137181f1264ea75797d6cb69926fd5b0c2120984e264f31",
+        "url": "https://raw.githubusercontent.com/KokunoYumeto/OpenLogic-tr/0b866ce9a3a831b93c8205b7df8f899c5376faf3/README.md"
+      },
+      {
+        "bytes": 1097,
+        "path": "CITATION.cff",
+        "sha256": "910cd753a29af96ff1b3c77ea1bde343d049774634390cd0af6265c8a3ddd597",
+        "url": "https://raw.githubusercontent.com/KokunoYumeto/OpenLogic-tr/0b866ce9a3a831b93c8205b7df8f899c5376faf3/CITATION.cff"
+      },
+      {
+        "bytes": 2856,
+        "path": ".zenodo.json",
+        "sha256": "67e9ac9744e99ef72846cda6542855a67c34394172d2f6821203dc555221a8d1",
+        "url": "https://raw.githubusercontent.com/KokunoYumeto/OpenLogic-tr/0b866ce9a3a831b93c8205b7df8f899c5376faf3/.zenodo.json"
+      },
+      {
+        "bytes": 2965,
+        "path": "evidence/reviewer-index/START_HERE.md",
+        "sha256": "56a7cff142c691d48300cc557b018704eb2c90dd8c50bc54137f3ece04719fab",
+        "url": "https://raw.githubusercontent.com/KokunoYumeto/OpenLogic-tr/0b866ce9a3a831b93c8205b7df8f899c5376faf3/evidence/reviewer-index/START_HERE.md"
+      },
+      {
+        "bytes": 2525670,
+        "path": "evidence/reviewer-index/TRANSLATION_DECISIONS_FULL.md",
+        "sha256": "888bebf77552444d2de98bc7a01abc4f2e8752bc32494c92324581c73bc15d7d",
+        "url": "https://raw.githubusercontent.com/KokunoYumeto/OpenLogic-tr/0b866ce9a3a831b93c8205b7df8f899c5376faf3/evidence/reviewer-index/TRANSLATION_DECISIONS_FULL.md"
+      },
+      {
+        "bytes": 47449,
+        "path": "evidence/reviewer-index/PRIORITY_REVIEW.md",
+        "sha256": "a6e0c481cd92f5b1b993c8ec1e36ca6679e24b7974565fcb03186020878a700b",
+        "url": "https://raw.githubusercontent.com/KokunoYumeto/OpenLogic-tr/0b866ce9a3a831b93c8205b7df8f899c5376faf3/evidence/reviewer-index/PRIORITY_REVIEW.md"
+      },
+      {
+        "bytes": 11978302,
+        "path": "evidence/reviewer-index/DECISION_OCCURRENCES.csv",
+        "sha256": "c60fcd2e4484fe3ae52a2fe19b5f16a4ea6998f0b3a21cdfab988e8ea4078cd6",
+        "url": "https://raw.githubusercontent.com/KokunoYumeto/OpenLogic-tr/0b866ce9a3a831b93c8205b7df8f899c5376faf3/evidence/reviewer-index/DECISION_OCCURRENCES.csv"
+      },
+      {
+        "bytes": 25204977,
+        "path": "evidence/reviewer-index/DECISIONS.json",
+        "sha256": "d612a11f6077897108c9b7438c5a25d738ec553ab7b33fc1964c8109853aed6e",
+        "url": "https://raw.githubusercontent.com/KokunoYumeto/OpenLogic-tr/0b866ce9a3a831b93c8205b7df8f899c5376faf3/evidence/reviewer-index/DECISIONS.json"
+      },
+      {
+        "bytes": 10787,
+        "path": "evidence/reviewer-index/translation-decision.schema.json",
+        "sha256": "50e7fa407b62c711f92f8b93be591d3b4a6e1c4adb1386c398bb5f76844d9f90",
+        "url": "https://raw.githubusercontent.com/KokunoYumeto/OpenLogic-tr/0b866ce9a3a831b93c8205b7df8f899c5376faf3/evidence/reviewer-index/translation-decision.schema.json"
+      },
+      {
+        "bytes": 5190,
+        "path": "evidence/reviewer-index/TRANSLATION_DECISION_QA.json",
+        "sha256": "3c6d5d510c68d380ce44ef29dbcb5a4f049f37e7e59d19de892fad5448ccf3de",
+        "url": "https://raw.githubusercontent.com/KokunoYumeto/OpenLogic-tr/0b866ce9a3a831b93c8205b7df8f899c5376faf3/evidence/reviewer-index/TRANSLATION_DECISION_QA.json"
+      }
+    ]
+  },
+  "inherited_bytes_replaced": false,
+  "result": "PASS",
+  "schema_version": "openlogic-reviewer-index-publication-receipt/1.0.0",
+  "successor": {
+    "publication_date": "2026-09-05",
+    "tag": "tr-olp-0722-review-index-20260905",
+    "tag_message": "Turkish Open Logic OLP-0722 reviewer index, 2026-09-05",
+    "version": "OLP-0722-REVIEW-INDEX-20260905"
+  },
+  "verified_at_utc": "2026-09-05T14:40:19.679172+00:00",
+  "zenodo": {
+    "access": "open",
+    "anonymous_readback": "PASS",
+    "assets": [
+      {
+        "bytes": 6200006,
+        "filename": "00_OPENLOGIC_tr_COMPLETE_LINKED_READER_OLP-0722.pdf",
+        "sha256": "4af08c16e61aa058500cc1e96acb5d700c988718a729d4d6cbbe4aea9664df94"
+      },
+      {
+        "bytes": 1633656,
+        "filename": "01_OPENLOGIC_tr_EDITABLE_SOURCES_OLP-0722.zip",
+        "sha256": "af72e92af87b90608dc2140cd0a740a7d79b5f472f511767457fea7b0ad7efe3"
+      },
+      {
+        "bytes": 5198722,
+        "filename": "02_OPENLOGIC_tr_EVIDENCE_AND_PROVENANCE_OLP-0722.zip",
+        "sha256": "2cdda103905e163f3c372557b5ce91b9185e8fbbf3f515b47bcf1a4dcd054cde"
+      },
+      {
+        "bytes": 466,
+        "filename": "03_OPENLOGIC_tr_SHA256_MANIFEST_OLP-0722.txt",
+        "sha256": "1181ec80936af8ef709e0c97524134fe4e8405eacfceb5eb9b7d94d347ea7eaf"
+      },
+      {
+        "bytes": 1493049,
+        "filename": "04_OPENLOGIC_tr_READER_CORRECTION_OLP-0722.zip",
+        "sha256": "5503de6401130379d9d2c2f2d8d2dfd398218152462f1192b787163310a9023a"
+      },
+      {
+        "bytes": 2965,
+        "filename": "START_HERE.md",
+        "sha256": "56a7cff142c691d48300cc557b018704eb2c90dd8c50bc54137f3ece04719fab"
+      },
+      {
+        "bytes": 2525670,
+        "filename": "TRANSLATION_DECISIONS_FULL.md",
+        "sha256": "888bebf77552444d2de98bc7a01abc4f2e8752bc32494c92324581c73bc15d7d"
+      },
+      {
+        "bytes": 47449,
+        "filename": "PRIORITY_REVIEW.md",
+        "sha256": "a6e0c481cd92f5b1b993c8ec1e36ca6679e24b7974565fcb03186020878a700b"
+      },
+      {
+        "bytes": 11978302,
+        "filename": "DECISION_OCCURRENCES.csv",
+        "sha256": "c60fcd2e4484fe3ae52a2fe19b5f16a4ea6998f0b3a21cdfab988e8ea4078cd6"
+      },
+      {
+        "bytes": 25204977,
+        "filename": "DECISIONS.json",
+        "sha256": "d612a11f6077897108c9b7438c5a25d738ec553ab7b33fc1964c8109853aed6e"
+      },
+      {
+        "bytes": 10787,
+        "filename": "translation-decision.schema.json",
+        "sha256": "50e7fa407b62c711f92f8b93be591d3b4a6e1c4adb1386c398bb5f76844d9f90"
+      },
+      {
+        "bytes": 5190,
+        "filename": "TRANSLATION_DECISION_QA.json",
+        "sha256": "3c6d5d510c68d380ce44ef29dbcb5a4f049f37e7e59d19de892fad5448ccf3de"
+      },
+      {
+        "bytes": 2770572,
+        "filename": "OPENLOGIC_tr_TRANSLATION_DECISION_REVIEW_INDEX_OLP-0722_20260905.zip",
+        "sha256": "3040d3182267a3bf6b98a5ff0c27aa68560379eb70fe49bc03fab12f636c3525"
+      },
+      {
+        "bytes": 3583,
+        "filename": "PUBLICATION_ASSET_MANIFEST_REVIEW_INDEX_20260905.json",
+        "sha256": "d57b9afafb178375c5e10ef80387410decc53b577b429f5fba6657d15d4fc20a"
+      },
+      {
+        "bytes": 1455,
+        "filename": "SHA256SUMS_REVIEW_INDEX_20260905",
+        "sha256": "c6112ef6c9289ee5e3822122a6b19371d580baaa1f7c13dc29df26847a4a3abd"
+      }
+    ],
+    "concept_doi": "10.5281/zenodo.21921844",
+    "doi": "10.5281/zenodo.22347312",
+    "reader_fronting": {
+      "filename": "00_OPENLOGIC_tr_COMPLETE_LINKED_READER_OLP-0722.pdf",
+      "first_description_link": true,
+      "landing_page_public": true,
+      "lexically_first": true
+    },
+    "record": "https://zenodo.org/records/22347312",
+    "record_id": 22347312
+  }
+}
