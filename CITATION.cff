@@ -1,18 +1,18 @@
 cff-version: 1.2.0
-message: "Please cite this Turkish reader using the stable concept DOI. Version and PDF identity are recorded in the reader documentation."
-title: "Open Logic Project — Türkçe: 722 modülün tamamı / All 722 modules in the Turkish reader"
+message: "Please cite this Turkish reviewer-index edition using its version DOI. The stable concept DOI identifies the complete Turkish lineage."
+title: "Open Logic Project — Türkçe: 722-module reader and translation-decision reviewer index"
 type: software
 authors: [{"name": "Open Logic Project"}]
 repository-code: "https://github.com/KokunoYumeto/OpenLogic-tr"
-version: "OLP-0722-READER-20260904"
-doi: "10.5281/zenodo.21921844"
-abstract: "Verified reader-completeness correction: all 722 translated modules in the PDF, including the 80 omitted from the previous reader. All translated target bodies retain their frozen hashes."
+version: "OLP-0722-REVIEW-INDEX-20260905"
+doi: "10.5281/zenodo.22347312"
+abstract: "Complete 722-module Turkish reader plus an additive, replayable reviewer index of 194 historical translation decisions and 6,944 located occurrences. The accepted Turkish corpus and reader PDF are unchanged from the preceding version."
 preferred-citation:
   type: book
-  title: "Open Logic Project — Türkçe: 722 modülün tamamı / All 722 modules in the Turkish reader"
+  title: "Open Logic Project — Türkçe: 722-module reader and translation-decision reviewer index"
   authors: [{"name": "Open Logic Project"}]
   translators: [{"name": "OpenAI 5.6 Sol, Ultra mode"}]
   languages: ["tur"]
-  version: "OLP-0722-READER-20260904"
-  doi: "10.5281/zenodo.21921844"
-  url: "https://doi.org/10.5281/zenodo.21921844"
+  version: "OLP-0722-REVIEW-INDEX-20260905"
+  doi: "10.5281/zenodo.22347312"
+  url: "https://doi.org/10.5281/zenodo.22347312"

@@ -1,0 +1,91 @@
+{
+  "schema": "turkish-openlogic-translation-decision-qa/1.0.0",
+  "status": "PASS",
+  "generated_utc": "2026-09-05T00:00:00Z",
+  "canonical_schema": {
+    "schema_version": "openlogic-translation-decisions/1.0.0",
+    "bytes": 10787,
+    "sha256": "50e7fa407b62c711f92f8b93be591d3b4a6e1c4adb1386c398bb5f76844d9f90",
+    "strict_validation_error_count": 0
+  },
+  "counts": {
+    "closure_units": 722,
+    "legacy_decisions": 194,
+    "occurrence_rows": 6944,
+    "units_with_indexed_occurrences": 626,
+    "units_with_recovered_legacy_term_occurrences": 626,
+    "closure_units_without_recovered_legacy_term_occurrences": 96,
+    "post_olp0068_rebound_occurrence_rows": 5513,
+    "reader_locator_status": {
+      "available": 2404,
+      "not_applicable": 188,
+      "pending": 4352
+    },
+    "source_line_status": {
+      "available": 906,
+      "pending": 6038
+    },
+    "target_line_status": {
+      "available": 6944
+    },
+    "review_priority": {
+      "high": 107,
+      "low": 2,
+      "normal": 85
+    },
+    "authority_status": {
+      "checked_context_only": 353,
+      "checked_supports": 17,
+      "not_found": 9
+    },
+    "explicit_exclusions": 64,
+    "legacy_decisions_without_exact_current_surface": 28
+  },
+  "assertions": {
+    "deterministic_generator_rerun_byte_identical": true,
+    "frozen_schema_byte_identical": true,
+    "all_194_legacy_decisions_exactly_once": true,
+    "all_decisions_have_occurrences": true,
+    "all_review_questions_nonempty_and_bilingual": true,
+    "all_722_closure_ids_contiguous_and_hash_bound": true,
+    "all_722_target_files_searched_with_unit_coverage_distinguished": true,
+    "all_available_locator_spans_replayed": true,
+    "all_available_reader_pages_match_finished_page_evidence": true,
+    "csv_json_occurrence_order_and_ids_equal": true,
+    "full_markdown_contains_all_decisions_and_occurrences": true,
+    "priority_markdown_matches_high_priority_set": true,
+    "utf8_nfc_lf_only": true,
+    "privacy_and_credential_lint_pass": true,
+    "no_human_dependent_hold": true
+  },
+  "input_sha256": {
+    "control/TERMS.csv": "fb88987e1e19eb33afa5badd538f8624dd4df93c3952c5646c6e439fd7a07818",
+    "control/CLOSURE_0722.csv": "4f0dfaa58c38b54c00180de30ae09507d0df9fbea1e0ed6729db7e2fa77aac2f",
+    "control/reviewer_index/review_index_config.json": "c29055d1075ad50d6524162229ecd9d2f8a2a5bb72422223553ed8cb827eb500",
+    "control/reviewer_index/MATCH_RULES.json": "0914a102cb578786150a0e0d0edb81759badf69bb259402ca2de5c0d349c3317",
+    "control/reviewer_index/EVIDENCE_CROSSWALK.json": "87a2b7ad899a0fad24ee2666fcec5b58b39f0ba5d4f6c2ec6f2cc80d4adb76e2",
+    "control/reviewer_index/page_maps/TURKISH_PAGE_EVIDENCE.json": "e964fbb22b92302fed4bd71291e3912cab2d0113a428679333ea8147ed7e9c11",
+    "control/reviewer_index/page_maps/TURKISH_PAGE_EVIDENCE_QA.json": "2dff8b999b044a6990126cb13967321a7f5e672ddacb9328b5b6c7815ea15428",
+    "control/reviewer_index/generate_reviewer_index.py": "0060d9976a85a5d644651a71a48bbe1a611f138f0f8569ffb477207734343689",
+    "control/reviewer_index/validate_reviewer_index.py": "acaddb77d755b0210c0c1830adae977aa88ca4a86a3579ceb5c0a19ef057d84c",
+    "publication/openlogic-tr/reader/00_OPENLOGIC_tr_COMPLETE_LINKED_READER_OLP-0722.pdf": "4af08c16e61aa058500cc1e96acb5d700c988718a729d4d6cbbe4aea9664df94"
+  },
+  "output_sha256": {
+    "START_HERE.md": "56a7cff142c691d48300cc557b018704eb2c90dd8c50bc54137f3ece04719fab",
+    "TRANSLATION_DECISIONS_FULL.md": "888bebf77552444d2de98bc7a01abc4f2e8752bc32494c92324581c73bc15d7d",
+    "PRIORITY_REVIEW.md": "a6e0c481cd92f5b1b993c8ec1e36ca6679e24b7974565fcb03186020878a700b",
+    "DECISION_OCCURRENCES.csv": "c60fcd2e4484fe3ae52a2fe19b5f16a4ea6998f0b3a21cdfab988e8ea4078cd6",
+    "DECISIONS.json": "d612a11f6077897108c9b7438c5a25d738ec553ab7b33fc1964c8109853aed6e",
+    "translation-decision.schema.json": "50e7fa407b62c711f92f8b93be591d3b4a6e1c4adb1386c398bb5f76844d9f90"
+  },
+  "coverage_boundary": [
+    "Translation and reader closure are complete for OLP-0001--0722.",
+    "The exact legacy decision universe is the 194 terminology rows recorded through the OLP-0068 production checkpoint.",
+    "The finite matcher recovered one or more legacy-term surfaces in 626 modules; the other 96 closure modules have no such indexed surface and are not assigned synthetic decision occurrences.",
+    "Occurrences after OLP-0068 are deterministic rebindings of that earlier universe, not proof of exhaustive later decision logging.",
+    "The matcher records exact Unicode case-insensitive literal surfaces with Unicode word boundaries in active TeX source and the two Turkish locale style files; it does not infer semantic sense from a surface match.",
+    "TeX token/environment macro calls are excluded from literal occurrence counts; their exact Turkish definition loci are indexed when the chosen surface occurs in a locale style file.",
+    "Exact reader pages are available only where the finished page-evidence sidecar proved a unique extracted-text page; all others remain pending rather than receiving a guessed module-start page.",
+    "Human review is useful for a future revision but is not a hold, validation gate, or publication gate."
+  ]
+}

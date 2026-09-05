@@ -1,5 +1,7 @@
 [**Türkçe PDF'yi aç / Read the Turkish PDF — 1,198 pages**](reader/00_OPENLOGIC_tr_COMPLETE_LINKED_READER_OLP-0722.pdf)
 
+[**Karar dizininden başlayın / Start with the translation-decision index**](START_HERE.md) · [Öncelikli inceleme / Priority review](evidence/reviewer-index/PRIORITY_REVIEW.md) · [Tam dizin / Full index](evidence/reviewer-index/TRANSLATION_DECISIONS_FULL.md)
+
 # Open Logic Project — Türkçe
 
 **722 modülün tamamı tek okuyucuda. / All 722 modules in one reader.**
@@ -42,6 +44,23 @@ These checks verify the PDF itself. The [public release receipt](evidence/reader
 separately confirms anonymous download, byte-count, and SHA-256 verification
 of all five release files on both GitHub and Zenodo.
 
+## Çeviri karar dizini / Translation-decision index
+
+This additive release makes the translation methodology inspectable without
+changing the accepted Turkish corpus or the reader PDF. It indexes all **194
+historical term decisions** recorded through the OLP-0068 production
+checkpoint against all 722 current target modules, yielding **6,944 located
+occurrences**. The readable index explains alternatives, rationale,
+confidence, source evidence, and concrete review questions; the CSV, JSON,
+schema, and QA files provide the replayable data surfaces. Exact scope and
+locator caveats are stated in [START_HERE.md](START_HERE.md).
+
+Bu ek sürüm, kabul edilmiş Türkçe derlemi veya okuyucu PDF'sini değiştirmeden
+çeviri yöntemini incelenebilir hâle getirir. OLP-0068 üretim noktasına kadar
+kaydedilmiş **194 tarihsel terim kararı**, 722 güncel hedef modülün tamamına
+karşı taranmış ve **6.944 konumlandırılmış oluşum** elde edilmiştir. Kapsam ve
+konum sınırlamaları [START_HERE.md](START_HERE.md) dosyasında açıkça belirtilir.
+
 ## Kaynaklar ve kararlar / Sources and decisions
 
 This is **Turkish**, not Inter-Turkic and not a substitute edition for other
@@ -80,6 +99,12 @@ reader QA does not certify the corrected PDF.
 | `03_OPENLOGIC_tr_SHA256_MANIFEST_OLP-0722.txt` | Hashes of this correction payload |
 | `04_OPENLOGIC_tr_READER_CORRECTION_OLP-0722.zip` | Reader inputs, reproducible build, decisions, and new QA |
 
+The five files above are inherited byte-for-byte. The successor also adds the
+seven standalone files under [evidence/reviewer-index](evidence/reviewer-index),
+`OPENLOGIC_tr_TRANSLATION_DECISION_REVIEW_INDEX_OLP-0722_20260905.zip`,
+`PUBLICATION_ASSET_MANIFEST_REVIEW_INDEX_20260905.json`, and
+`SHA256SUMS_REVIEW_INDEX_20260905` to both public release mirrors.
+
 Reader identity: **6,200,006 bytes**; SHA-256
 `4af08c16e61aa058500cc1e96acb5d700c988718a729d4d6cbbe4aea9664df94`.
 
@@ -105,10 +130,11 @@ distribution.
 
 ## Sürüm ve atıf / Version and citation
 
-- Version: `OLP-0722-READER-20260904`.
-- [Corrected 722-module Zenodo edition](https://doi.org/10.5281/zenodo.22306530).
-- [Download the GitHub correction release](https://github.com/KokunoYumeto/OpenLogic-tr/releases/tag/tr-olp-0722-reader-complete-20260904).
+- Version: `OLP-0722-REVIEW-INDEX-20260905`.
+- [Reviewer-index Zenodo edition](https://doi.org/10.5281/zenodo.22347312).
+- [Download the GitHub reviewer-index release](https://github.com/KokunoYumeto/OpenLogic-tr/releases/tag/tr-olp-0722-review-index-20260905).
 - Stable Turkish concept DOI: [10.5281/zenodo.21921844](https://doi.org/10.5281/zenodo.21921844).
+- [Preceding reader-completeness version](https://doi.org/10.5281/zenodo.22306530) · [GitHub release](https://github.com/KokunoYumeto/OpenLogic-tr/releases/tag/tr-olp-0722-reader-complete-20260904).
 - [Previous published version](https://doi.org/10.5281/zenodo.21927145): 722 translated source modules, but a 642-module reader.
 - [Historical GitHub release](https://github.com/KokunoYumeto/OpenLogic-tr/releases/tag/tr-olp-0722-20260814).
 - [GitHub repository and release inventory](https://github.com/KokunoYumeto/OpenLogic-tr).
