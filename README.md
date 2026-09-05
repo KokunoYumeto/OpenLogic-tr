@@ -6,6 +6,13 @@
 
 **722 modülün tamamı tek okuyucuda. / All 722 modules in one reader.**
 
+The current reader removes one internal source-revision hash from the title
+page while retaining that exact revision in the technical provenance. No
+translation body, mathematical content, pagination, bookmark, or link changed.
+[Correction evidence](evidence/reader-frontmatter-correction-20260905/README.md)
+contains the exact source delta, deterministic build receipts, PDF checks, and
+before/after visual evidence.
+
 Önceki PDF, çevrilmiş 722 modülden yalnızca 642'sini içeriyordu. Diğer
 80 modülün çevirileri kaynak paketindeydi, fakat okuyucuda yoktu. Bu sürüm,
 o 80 modülün metinlerini, kanıtlarını, alıştırmalarını ve kural tablolarını
@@ -40,23 +47,28 @@ reader contexts without silently dropping source bodies.
 
 The exact PDF passed the build, source-preservation, text/link, and visual
 checks recorded in [FINAL_QA.json](evidence/reader722/FINAL_QA.json).
-These checks verify the PDF itself. The [public release receipt](evidence/reader722/PUBLICATION_RECEIPT.json)
-separately confirms anonymous download, byte-count, and SHA-256 verification
-of all five release files on both GitHub and Zenodo.
+These checks verify the PDF itself. The
+[preceding public release receipt](evidence/reader722/PUBLICATION_RECEIPT.json)
+remains immutable historical evidence for the preceding PDF; publication of
+these successor bytes receives a separate receipt after public readback.
 
 ## Çeviri karar dizini / Translation-decision index
 
-This additive release makes the translation methodology inspectable without
-changing the accepted Turkish corpus or the reader PDF. It indexes all **194
+This successor keeps the accepted Turkish corpus unchanged and rebinds the
+translation-decision index to the corrected reader PDF. It indexes all **194
 historical term decisions** recorded through the OLP-0068 production
 checkpoint against all 722 current target modules, yielding **6,944 located
-occurrences**. The readable index explains alternatives, rationale,
-confidence, source evidence, and concrete review questions; the CSV, JSON,
-schema, and QA files provide the replayable data surfaces. Exact scope and
-locator caveats are stated in [START_HERE.md](START_HERE.md).
+occurrences**. The readable index records the recovered rationale, confidence,
+source evidence, and concrete review questions; the CSV, JSON, schema, and QA
+files provide the replayable data surfaces. The historical ledger did not
+record rejected alternatives for these 194 rows, so the machine-readable
+`alternatives` arrays are explicitly empty rather than invented. Exact scope,
+locator caveats, and the later evidence-backfill boundary are stated in
+[START_HERE.md](START_HERE.md).
 
-Bu ek sürüm, kabul edilmiş Türkçe derlemi veya okuyucu PDF'sini değiştirmeden
-çeviri yöntemini incelenebilir hâle getirir. OLP-0068 üretim noktasına kadar
+Bu ek sürüm, kabul edilmiş Türkçe çeviri gövdelerini değiştirmeden karar
+dizinini düzeltilmiş okuyucu PDF'sine bağlar ve çeviri yöntemini incelenebilir
+hâle getirir. OLP-0068 üretim noktasına kadar
 kaydedilmiş **194 tarihsel terim kararı**, 722 güncel hedef modülün tamamına
 karşı taranmış ve **6.944 konumlandırılmış oluşum** elde edilmiştir. Kapsam ve
 konum sınırlamaları [START_HERE.md](START_HERE.md) dosyasında açıkça belirtilir.
@@ -76,37 +88,56 @@ claim new linguistic validation, or claim human comprehension testing.
 
 ## Mahremiyet ve geçmiş / Privacy and historical evidence
 
-The new source and evidence ZIPs are privacy-safe derivatives. Across
-48 metadata/log entries, the private profile identifier is replaced
-with `[maintainer]`, case-insensitively. Entry names and every other entry
-byte are preserved. **None of the 722 translated target bodies changed.**
+The successor source and evidence ZIPs are privacy-safe derivatives. The prior
+redaction changed 48 metadata/log entries; this successor additionally catches
+two line-wrapped occurrences in one build log by scanning text again after
+ASCII-whitespace normalization. Every unaffected member byte is preserved,
+and both top-level member manifests are regenerated against the actual enclosed
+bytes. **None of the 722 translated target bodies changed.**
 The [privacy receipt](evidence/reader722/PRIVACY_REDACTION_RECEIPT.json)
 records each changed entry's original and derivative hashes and verifies
-the complete translated corpus against its frozen closure.
+the complete translated corpus against its frozen closure. The additive
+[archive-repair receipt](evidence/reader-frontmatter-correction-20260905/INHERITED_ARCHIVE_MANIFEST_AND_PRIVACY_REPAIR.json)
+binds the successor ZIP identities, the 48 repaired manifest rows, and the two
+additional split-log replacements.
 
 The previous public archives and releases remain unchanged. Historical
 hashes inside the derivative evidence still identify historical bytes;
 the privacy receipt supplies the explicit before/after mapping. Historical
 reader QA does not certify the corrected PDF.
 
+The unversioned repository path
+[`evidence/ARTIFACT_SHA256.tsv`](evidence/ARTIFACT_SHA256.tsv) is explicitly a
+historical predecessor snapshot, not the active successor manifest. Current
+successor asset identities are governed by
+`PUBLICATION_ASSET_MANIFEST_FRONTMATTER_CORRECTION_20260905.json` and
+`SHA256SUMS_FRONTMATTER_CORRECTION_20260905`.
+
 ## Dosyalar / Release files
 
 | File | What it contains |
 |---|---|
-| `00_OPENLOGIC_tr_COMPLETE_LINKED_READER_OLP-0722.pdf` | The corrected reader |
-| `01_OPENLOGIC_tr_EDITABLE_SOURCES_OLP-0722.zip` | Privacy-safe source package; all 722 target bodies unchanged |
-| `02_OPENLOGIC_tr_EVIDENCE_AND_PROVENANCE_OLP-0722.zip` | Privacy-safe derivative of the original translation/provenance evidence |
-| `03_OPENLOGIC_tr_SHA256_MANIFEST_OLP-0722.txt` | Hashes of this correction payload |
-| `04_OPENLOGIC_tr_READER_CORRECTION_OLP-0722.zip` | Reader inputs, reproducible build, decisions, and new QA |
+| `00_OPENLOGIC_tr_COMPLETE_LINKED_READER_OLP-0722.pdf` | The corrected reader with a clean title page |
+| `01_OPENLOGIC_tr_EDITABLE_SOURCES_OLP-0722.zip` | Frozen 722-target source base with its embedded member manifest repaired |
+| `02_OPENLOGIC_tr_EVIDENCE_AND_PROVENANCE_OLP-0722.zip` | Historical translation/provenance base with split-path privacy repair and a regenerated member manifest |
+| `03_OPENLOGIC_tr_SHA256_MANIFEST_OLP-0722.txt` | Hashes of the current four-part reader payload |
+| `04_OPENLOGIC_tr_READER_CORRECTION_OLP-0722.zip` | Current reader inputs, reproducible build material, QA, and front-matter evidence |
 
-The five files above are inherited byte-for-byte. The successor also adds the
-seven standalone files under [evidence/reviewer-index](evidence/reviewer-index),
+The translated source bodies and historical evidence payload remain unchanged,
+but `01` and `02` are rebuilt because their inherited top-level member manifests
+still described pre-redaction bytes; `02` also removes two whitespace-split
+private-profile occurrences from one build log. Asset `01` additionally repairs
+its source-authority closure locator to the actual archive-root
+`SOURCE_CLOSURE_0722.csv`. The PDF, `03`, and `04` are rebuilt for this
+successor as well. The successor also carries the seven
+standalone files under
+[evidence/reviewer-index](evidence/reviewer-index),
 `OPENLOGIC_tr_TRANSLATION_DECISION_REVIEW_INDEX_OLP-0722_20260905.zip`,
-`PUBLICATION_ASSET_MANIFEST_REVIEW_INDEX_20260905.json`, and
-`SHA256SUMS_REVIEW_INDEX_20260905` to both public release mirrors.
+`PUBLICATION_ASSET_MANIFEST_FRONTMATTER_CORRECTION_20260905.json`, and
+`SHA256SUMS_FRONTMATTER_CORRECTION_20260905`.
 
-Reader identity: **6,200,006 bytes**; SHA-256
-`4af08c16e61aa058500cc1e96acb5d700c988718a729d4d6cbbe4aea9664df94`.
+Reader identity: **6,200,714 bytes**; SHA-256
+`b21aea2ea90b7129ba8a11e6548a4b8b116e1fa9ef3228d59414c5be58099675`.
 
 ## Yeniden derleme / Rebuild
 
@@ -130,9 +161,9 @@ distribution.
 
 ## Sürüm ve atıf / Version and citation
 
-- Version: `OLP-0722-REVIEW-INDEX-20260905`.
-- [Reviewer-index Zenodo edition](https://doi.org/10.5281/zenodo.22347312).
-- [Download the GitHub reviewer-index release](https://github.com/KokunoYumeto/OpenLogic-tr/releases/tag/tr-olp-0722-review-index-20260905).
+- Version: `OLP-0722-READER-FRONTMATTER-CORRECTION-20260905`.
+- [GitHub successor release](https://github.com/KokunoYumeto/OpenLogic-tr/releases/tag/tr-olp-0722-reader-frontmatter-correction-20260905).
+- [Preceding reviewer-index Zenodo edition](https://doi.org/10.5281/zenodo.22347312) · [GitHub release](https://github.com/KokunoYumeto/OpenLogic-tr/releases/tag/tr-olp-0722-review-index-20260905).
 - Stable Turkish concept DOI: [10.5281/zenodo.21921844](https://doi.org/10.5281/zenodo.21921844).
 - [Preceding reader-completeness version](https://doi.org/10.5281/zenodo.22306530) · [GitHub release](https://github.com/KokunoYumeto/OpenLogic-tr/releases/tag/tr-olp-0722-reader-complete-20260904).
 - [Previous published version](https://doi.org/10.5281/zenodo.21927145): 722 translated source modules, but a 642-module reader.

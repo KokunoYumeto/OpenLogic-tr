@@ -1,0 +1,982 @@
+{
+  "schema_version": "turkish-reader722-pdf-qa-v1",
+  "pdf_file": "open-logic-all722.pdf",
+  "pdf_bytes": 6200006,
+  "pdf_sha256": "4af08c16e61aa058500cc1e96acb5d700c988718a729d4d6cbbe4aea9664df94",
+  "pages": 1198,
+  "encrypted": false,
+  "text_characters": 2148856,
+  "bookmarks": 904,
+  "internal_links": 3172,
+  "named_destinations": 9698,
+  "broken_internal_links": [],
+  "text_scan_findings": [],
+  "extra80": [
+    {
+      "id": "OLP-0643",
+      "text_pages": [
+        1153
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0643 — İspatlanabilirliğin özellikleri",
+          "page": 1153
+        }
+      ]
+    },
+    {
+      "id": "OLP-0644",
+      "text_pages": [
+        1157
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0644 — Maksimal tutarlı kümeler",
+          "page": 1157
+        }
+      ]
+    },
+    {
+      "id": "OLP-0645",
+      "text_pages": [
+        1159
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0645 — Birinci dereceden sözdizim ve semantiğe giriş",
+          "page": 1159
+        }
+      ]
+    },
+    {
+      "id": "OLP-0646",
+      "text_pages": [
+        1161
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0646 — Sözdizim ve semantik: alternatif bölüm düzeni",
+          "page": 1161
+        }
+      ]
+    },
+    {
+      "id": "OLP-0647",
+      "text_pages": [
+        1161
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0647 — C ile temsil edilebilirlik",
+          "page": 1161
+        }
+      ]
+    },
+    {
+      "id": "OLP-0648",
+      "text_pages": [
+        1164
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0648 — C fonksiyonları",
+          "page": 1164
+        }
+      ]
+    },
+    {
+      "id": "OLP-0649",
+      "text_pages": [
+        1165
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0649 — Sezgisel semantikte önermeler",
+          "page": 1165
+        }
+      ]
+    },
+    {
+      "id": "OLP-0650",
+      "text_pages": [
+        1165
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0650 — Listeler",
+          "page": 1165
+        }
+      ]
+    },
+    {
+      "id": "OLP-0651",
+      "text_pages": [
+        1166
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0651 — Dönüştürme ve indirgeme",
+          "page": 1166
+        }
+      ]
+    },
+    {
+      "id": "OLP-0652",
+      "text_pages": [
+        1166
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0652 — İspat kuramsal kavramlar",
+          "page": 1166
+        }
+      ]
+    },
+    {
+      "id": "OLP-0653",
+      "text_pages": [
+        1168
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0653 — Standart olmayan aritmetik",
+          "page": 1168
+        }
+      ]
+    },
+    {
+      "id": "OLP-0654",
+      "text_pages": [
+        1172
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0654 — Normal modal mantıklar",
+          "page": 1172
+        }
+      ]
+    },
+    {
+      "id": "OLP-0655",
+      "text_pages": [
+        1073
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0655 — En büyük kesmelerin kaldırılması",
+          "page": 1073
+        }
+      ]
+    },
+    {
+      "id": "OLP-0656",
+      "text_pages": [
+        1064
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0656 — En üst kesmelerin kaldırılması",
+          "page": 1064
+        }
+      ]
+    },
+    {
+      "id": "OLP-0657",
+      "text_pages": [
+        1062
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0657 — Kesme kaldırma",
+          "page": 1062
+        }
+      ]
+    },
+    {
+      "id": "OLP-0658",
+      "text_pages": [
+        1081
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0658 — Maehara lemması ve Craig ara değerleme teoremi",
+          "page": 1081
+        }
+      ]
+    },
+    {
+      "id": "OLP-0659",
+      "text_pages": [
+        1062
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0659 — Kesme kaldırmaya giriş",
+          "page": 1062
+        }
+      ]
+    },
+    {
+      "id": "OLP-0660",
+      "text_pages": [
+        1173
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0660 — Sezgisel kesme kaldırma: ek ispat parçası",
+          "page": 1173
+        }
+      ]
+    },
+    {
+      "id": "OLP-0661",
+      "text_pages": [
+        1077
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0661 — Orta sekant ve Herbrand teoremleri",
+          "page": 1077
+        }
+      ]
+    },
+    {
+      "id": "OLP-0662",
+      "text_pages": [
+        1102
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0662 — İspatların aşılanması",
+          "page": 1102
+        }
+      ]
+    },
+    {
+      "id": "OLP-0663",
+      "text_pages": [
+        1091
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0663 — Doğal türetime giriş",
+          "page": 1091
+        }
+      ]
+    },
+    {
+      "id": "OLP-0664",
+      "text_pages": [
+        1091
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0664 — Doğal türetim",
+          "page": 1091
+        }
+      ]
+    },
+    {
+      "id": "OLP-0665",
+      "text_pages": [
+        1100
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0665 — Doğal türetimde niceleyiciler",
+          "page": 1100
+        }
+      ]
+    },
+    {
+      "id": "OLP-0666",
+      "text_pages": [
+        1096
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0666 — N1 kuralları",
+          "page": 1096
+        }
+      ]
+    },
+    {
+      "id": "OLP-0667",
+      "text_pages": [
+        1098
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0667 — N2 kuralları",
+          "page": 1098
+        }
+      ]
+    },
+    {
+      "id": "OLP-0668",
+      "text_pages": [
+        1093
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0668 — Doğal türetim kuralları ve ispatlar",
+          "page": 1093
+        }
+      ]
+    },
+    {
+      "id": "OLP-0669",
+      "text_pages": [
+        1097
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0669 — Sekantlar",
+          "page": 1097
+        }
+      ]
+    },
+    {
+      "id": "OLP-0670",
+      "text_pages": [
+        1104
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0670 — G2i sistemine çeviri",
+          "page": 1104
+        }
+      ]
+    },
+    {
+      "id": "OLP-0671",
+      "text_pages": [
+        1107
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0671 — N2i sistemine çeviri",
+          "page": 1107
+        }
+      ]
+    },
+    {
+      "id": "OLP-0672",
+      "text_pages": [
+        1109
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0672 — Normalleştirmeye giriş",
+          "page": 1109
+        }
+      ]
+    },
+    {
+      "id": "OLP-0673",
+      "text_pages": [
+        1118
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0673 — Normalleştirme teoremi",
+          "page": 1118
+        }
+      ]
+    },
+    {
+      "id": "OLP-0674",
+      "text_pages": [
+        1109
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0674 — Normalleştirme",
+          "page": 1109
+        }
+      ]
+    },
+    {
+      "id": "OLP-0675",
+      "text_pages": [
+        1111
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0675 — Permütasyon dönüştürmeleri",
+          "page": 1111
+        }
+      ]
+    },
+    {
+      "id": "OLP-0676",
+      "text_pages": [
+        1114
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0676 — İndirgeme dönüştürmeleri",
+          "page": 1114
+        }
+      ]
+    },
+    {
+      "id": "OLP-0677",
+      "text_pages": [
+        1110
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0677 — Parçalar ve kesmeler",
+          "page": 1110
+        }
+      ]
+    },
+    {
+      "id": "OLP-0678",
+      "text_pages": [
+        1119
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0678 — Normalleştirme çevirileri",
+          "page": 1119
+        }
+      ]
+    },
+    {
+      "id": "OLP-0679",
+      "text_pages": [
+        1146
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0679 — İspat aramanın tamlığı",
+          "page": 1146
+        }
+      ]
+    },
+    {
+      "id": "OLP-0680",
+      "text_pages": [
+        1142
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0680 — İspat aramaya giriş",
+          "page": 1142
+        }
+      ]
+    },
+    {
+      "id": "OLP-0681",
+      "text_pages": [
+        1142
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0681 — İspat arama",
+          "page": 1142
+        }
+      ]
+    },
+    {
+      "id": "OLP-0682",
+      "text_pages": [
+        1150
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0682 — Tc kuralları",
+          "page": 1150
+        }
+      ]
+    },
+    {
+      "id": "OLP-0683",
+      "text_pages": [
+        1144
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0683 — Arama algoritması",
+          "page": 1144
+        }
+      ]
+    },
+    {
+      "id": "OLP-0684",
+      "text_pages": [
+        1149
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0684 — Tablolar",
+          "page": 1149
+        }
+      ]
+    },
+    {
+      "id": "OLP-0685",
+      "text_pages": [
+        1034
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0685 — İspat teorisi",
+          "page": 1034
+        }
+      ]
+    },
+    {
+      "id": "OLP-0686",
+      "text_pages": [
+        1124
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0686 — Tipler olarak önermelere giriş",
+          "page": 1124
+        }
+      ]
+    },
+    {
+      "id": "OLP-0687",
+      "text_pages": [
+        1137
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0687 — Tipli ispatların normalleştirilmesi",
+          "page": 1137
+        }
+      ]
+    },
+    {
+      "id": "OLP-0688",
+      "text_pages": [
+        1126
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0688 — İspat terimleri",
+          "page": 1126
+        }
+      ]
+    },
+    {
+      "id": "OLP-0689",
+      "text_pages": [
+        1128
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0689 — İspatlardan terimlere",
+          "page": 1128
+        }
+      ]
+    },
+    {
+      "id": "OLP-0690",
+      "text_pages": [
+        1124
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0690 — Tipler olarak önermeler",
+          "page": 1124
+        }
+      ]
+    },
+    {
+      "id": "OLP-0691",
+      "text_pages": [
+        1133
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0691 — İndirgeme",
+          "page": 1133
+        }
+      ]
+    },
+    {
+      "id": "OLP-0692",
+      "text_pages": [
+        1129
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0692 — tN2 kuralları",
+          "page": 1129
+        }
+      ]
+    },
+    {
+      "id": "OLP-0693",
+      "text_pages": [
+        1132
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0693 — tN3 kuralları",
+          "page": 1132
+        }
+      ]
+    },
+    {
+      "id": "OLP-0694",
+      "text_pages": [
+        1173
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0694 — Sekant biçiminde doğal türetim",
+          "page": 1173
+        }
+      ]
+    },
+    {
+      "id": "OLP-0695",
+      "text_pages": [
+        1130
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0695 — Terimlerden ispatlara",
+          "page": 1130
+        }
+      ]
+    },
+    {
+      "id": "OLP-0696",
+      "text_pages": [
+        1135
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0696 — Tipin korunması",
+          "page": 1135
+        }
+      ]
+    },
+    {
+      "id": "OLP-0697",
+      "text_pages": [
+        1131
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0697 — Tipler",
+          "page": 1131
+        }
+      ]
+    },
+    {
+      "id": "OLP-0698",
+      "text_pages": [
+        1051
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0698 — Kabul edilebilir ve türetilebilir kurallar",
+          "page": 1051
+        }
+      ]
+    },
+    {
+      "id": "OLP-0699",
+      "text_pages": [
+        1046
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0699 — Kuralların yorumu",
+          "page": 1046
+        }
+      ]
+    },
+    {
+      "id": "OLP-0700",
+      "text_pages": [
+        1035
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0700 — Sekant hesabına giriş",
+          "page": 1035
+        }
+      ]
+    },
+    {
+      "id": "OLP-0701",
+      "text_pages": [
+        1054
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0701 — Kuralların tersinirliği",
+          "page": 1054
+        }
+      ]
+    },
+    {
+      "id": "OLP-0702",
+      "text_pages": [
+        1041
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0702 — İspat örnekleri",
+          "page": 1041
+        }
+      ]
+    },
+    {
+      "id": "OLP-0703",
+      "text_pages": [
+        1049
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0703 — Düzenli ispatlar ve yerine koyma",
+          "page": 1049
+        }
+      ]
+    },
+    {
+      "id": "OLP-0704",
+      "text_pages": [
+        1037
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0704 — G1c kuralları",
+          "page": 1037
+        }
+      ]
+    },
+    {
+      "id": "OLP-0705",
+      "text_pages": [
+        1176
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0705 — G1i kuralları",
+          "page": 1176
+        }
+      ]
+    },
+    {
+      "id": "OLP-0706",
+      "text_pages": [
+        1048
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0706 — G2c kuralları",
+          "page": 1048
+        }
+      ]
+    },
+    {
+      "id": "OLP-0707",
+      "text_pages": [
+        1038
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0707 — G3c kuralları",
+          "page": 1038
+        }
+      ]
+    },
+    {
+      "id": "OLP-0708",
+      "text_pages": [
+        1177
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0708 — G3i kuralları",
+          "page": 1177
+        }
+      ]
+    },
+    {
+      "id": "OLP-0709",
+      "text_pages": [
+        1178
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0709 — LK kuralları",
+          "page": 1178
+        }
+      ]
+    },
+    {
+      "id": "OLP-0710",
+      "text_pages": [
+        1179
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0710 — mG3i kuralları",
+          "page": 1179
+        }
+      ]
+    },
+    {
+      "id": "OLP-0711",
+      "text_pages": [
+        1038
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0711 — Sekant kuralları ve ispatlar",
+          "page": 1038
+        }
+      ]
+    },
+    {
+      "id": "OLP-0712",
+      "text_pages": [
+        1035
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0712 — Sekant hesabı",
+          "page": 1035
+        }
+      ]
+    },
+    {
+      "id": "OLP-0713",
+      "text_pages": [
+        1060
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0713 — G1c ile G3c arasında çeviri",
+          "page": 1060
+        }
+      ]
+    },
+    {
+      "id": "OLP-0714",
+      "text_pages": [
+        1175
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0714 — Önerme mantığının tamlığı",
+          "page": 1175
+        }
+      ]
+    },
+    {
+      "id": "OLP-0715",
+      "text_pages": [
+        1180
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0715 — Önerme mantığının sağlamlığı",
+          "page": 1180
+        }
+      ]
+    },
+    {
+      "id": "OLP-0716",
+      "text_pages": [
+        1180
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0716 — İkinci dereceden mantığın dili",
+          "page": 1180
+        }
+      ]
+    },
+    {
+      "id": "OLP-0717",
+      "text_pages": [
+        1181
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0717 — İzomorfizma",
+          "page": 1181
+        }
+      ]
+    },
+    {
+      "id": "OLP-0718",
+      "text_pages": [
+        1181
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0718 — Tümevarımlı tanımlara ve ispatlara giriş",
+          "page": 1181
+        }
+      ]
+    },
+    {
+      "id": "OLP-0719",
+      "text_pages": [
+        1184
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0719 — Bağıntılar: alternatif bölüm düzeni",
+          "page": 1184
+        }
+      ]
+    },
+    {
+      "id": "OLP-0720",
+      "text_pages": [
+        1186
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0720 — Kümeler, bağıntılar, fonksiyonlar: alternatif kısım düzeni",
+          "page": 1186
+        }
+      ]
+    },
+    {
+      "id": "OLP-0721",
+      "text_pages": [
+        1187
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0721 — Kümeler hakkında ispatlar",
+          "page": 1187
+        }
+      ]
+    },
+    {
+      "id": "OLP-0722",
+      "text_pages": [
+        1187
+      ],
+      "bookmarks": [
+        {
+          "title": "OLP-0722 — Kümelerin büyüklüğü: alternatif bölüm düzeni",
+          "page": 1187
+        }
+      ]
+    }
+  ],
+  "missing_extra80_text_ids": [],
+  "missing_extra80_bookmarks": [],
+  "extra80_bookmark_body_page_mismatches": [],
+  "unresolved_locale_bookmarks": [],
+  "status": "PASS_TEXT_AND_LINKS_REQUIRES_VISUAL_QA",
+  "claim_boundary": "Text/link/inventory inspection, not linguistic-quality or visual-layout certification."
+}

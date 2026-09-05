@@ -1,0 +1,31 @@
+{
+  "schema_version": "turkish-reader-frontmatter-visual-qa-v1",
+  "status": "PASS",
+  "pdf_sha256": "b21aea2ea90b7129ba8a11e6548a4b8b116e1fa9ef3228d59414c5be58099675",
+  "affected_physical_pages": [
+    1
+  ],
+  "renderer": "Poppler pdftoppm 26.07.0",
+  "render_parameters": "-f 1 -l 1 -r 180 -png",
+  "inspection_method": "Model visual inspection of the original-resolution Poppler before/after renders.",
+  "renders": {
+    "before": {
+      "path": "control/reviewer_index/manager_qa/front_pages/before-0001.png",
+      "bytes": 100591,
+      "sha256": "0e7886e4d9c4935ab2f71b2bd5ee852da6a033c037de150999ccd810367f4e6d"
+    },
+    "after": {
+      "path": "control/reviewer_index/manager_qa/front_pages/after-0001.png",
+      "bytes": 90756,
+      "sha256": "7c5188263519e82ce9c75fb898d6068999ce0bdec1a59b42c79a35c46dc7174a"
+    }
+  },
+  "verified": [
+    "The frozen-source commit hash is absent from the corrected title page.",
+    "The Turkish title, 722-module subtitle, project attribution, source label, date, CC BY 4.0 notice, and both marks remain visible.",
+    "No clipping, overlap, missing glyph, replacement glyph, or unintended raw TeX is visible on the affected page.",
+    "The whitespace left by the removed technical line is clean and does not collide with adjacent title-page elements."
+  ],
+  "findings": [],
+  "claim_boundary": "Visual inspection is limited to the sole affected physical page. All other pages are bound separately by text, structure, link, bookmark, and deterministic-build checks."
+}

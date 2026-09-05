@@ -1,0 +1,48 @@
+% All-722 Turkish reader: original reader plus actual supplemental bodies.
+\documentclass[openany]{memoir}
+\PassOptionsToPackage{english}{babel}
+\newcommand*{\olpath}{../..}
+\newcommand*{\ollangid}{tr}
+\newcommand*{\ollanguage}{english}
+\usepackage{mathpazo}
+\usepackage{helvet}
+\usepackage{courier}
+\linespread{1.05}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\setlength{\emergencystretch}{1em}
+\input{\olpath/sty/open-logic.sty}
+\babelprovide[import]{turkish}
+\AtBeginDocument{\selectlanguage{turkish}}
+\input{\olpath/sty/open-logic-defer.sty}
+\includeenv{editorial}
+\problemsperchapter
+\let\cleardoublepage\clearpage
+\pagestyle{plain}
+\input{all722-support.tex}
+\input{all722-definitions.tex}
+\begin{document}
+\begin{titlingpage}
+\begin{raggedleft}
+\HUGE\selectfont\bfseries\sffamily\MakeUppercase{\OLTname}
+\vskip 3ex
+\normalfont\huge Tam Derleme: 722 Kaynak Modülü (Türkçe)
+\vskip 4ex
+\textbf{\href{http://openlogicproject.org/}{\OLPname}}
+\vskip 4ex
+\Large Kaynak: Open Logic Project\\
+4 Eylül 2026
+\end{raggedleft}
+\vfill
+{\def\OLTlinkname{https://github.com/OpenLogicProject/OpenLogic}\ollicense}
+\end{titlingpage}
+\pagestyle{headings}
+\nouppercaseheads
+\clearpage\allmodulesimport{OLP-0001}\clearpage
+\tableofcontents*
+\allmodulesimport{OLP-0002}
+\input{all722-supplement.tex}
+\allmodulesphotocredits
+\bibliographystyle{\olpath/bib/natbib-oup}
+\bibliography{\olpath/bib/open-logic}
+\end{document}

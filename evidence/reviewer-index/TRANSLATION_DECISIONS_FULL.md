@@ -4,6 +4,8 @@
 
 This is the complete readable view of the finite OLP-0068 historical term-decision universe, rebound across the current 722-file edition and locale styles. It is not a claim that every later phrase-level decision was historically logged. / Bu sayfa, OLP-0068'de tamamlanan sonlu 194 terim kararı evreninin güncel 722 dosyalık sürümdeki ve yerel ayar dosyalarındaki yeniden bağlanmış tam okunabilir görünümüdür; daha sonraki her ifade kararının tarihsel olarak kaydedildiği anlamına gelmez.
 
+The recovered historical ledger did not record rejected alternatives for these 194 rows, so every machine-readable `alternatives` array is explicitly empty. A future evidence backfill may add documented alternatives without delaying this corrective release. / Kurtarılan tarihsel kayıt bu 194 satır için reddedilen seçenekleri kaydetmediğinden, makinece okunabilir bütün `alternatives` dizileri açıkça boştur. Gelecekteki bir kanıt tamamlama çalışması belgelenmiş seçenekleri ekleyebilir; bu durum düzeltme sürümünü geciktirmez.
+
 Reader page `pending` means the exact occurrence page was not proved. A module-start page is never substituted for it. / Okuyucu sayfasının `pending` olması, kesin oluşum sayfasının kanıtlanmadığı anlamına gelir; modül başlangıç sayfası onun yerine geçirilmez.
 
 [Priority review](PRIORITY_REVIEW.md) · [Occurrence CSV](DECISION_OCCURRENCES.csv) · [Machine JSON](DECISIONS.json) · [Schema](translation-decision.schema.json) · [QA](TRANSLATION_DECISION_QA.json)

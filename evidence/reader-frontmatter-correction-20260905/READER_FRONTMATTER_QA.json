@@ -1,0 +1,108 @@
+{
+  "schema_version": "turkish-reader-frontmatter-manager-qa-v1",
+  "status": "PASS",
+  "intentional_change": "Removed one reader-facing frozen-source commit hash line from the current 722-unit title page; technical provenance remains unchanged.",
+  "source": {
+    "driver": "repo/locale/tr/open-logic-all722.tex",
+    "before_sha256": "5e3f0627c2c4e0058db05b26aacd45e7b1379e12397b9d01587d95fc4a809d39",
+    "after_sha256": "70855b0792733ad9c2546b1017a88dc61be6976baeb2bfa7f2083e02353c7229",
+    "public_mirror_sha256": "70855b0792733ad9c2546b1017a88dc61be6976baeb2bfa7f2083e02353c7229",
+    "exact_source_delta_only": true
+  },
+  "reader": {
+    "path": "publication/openlogic-tr/reader/00_OPENLOGIC_tr_COMPLETE_LINKED_READER_OLP-0722.pdf",
+    "before_sha256": "4af08c16e61aa058500cc1e96acb5d700c988718a729d4d6cbbe4aea9664df94",
+    "after_sha256": "b21aea2ea90b7129ba8a11e6548a4b8b116e1fa9ef3228d59414c5be58099675",
+    "bytes": 6200714,
+    "pages": 1198,
+    "bookmarks": 904,
+    "internal_links": 3172,
+    "broken_internal_links": 0
+  },
+  "deterministic_replay": {
+    "status": "PASS",
+    "full_builds": 2,
+    "byte_identical": true,
+    "sha256": "b21aea2ea90b7129ba8a11e6548a4b8b116e1fa9ef3228d59414c5be58099675",
+    "mutex": "Global\\InterlanguageTeXSlotV1",
+    "fixed_source_date_epoch": "2026-09-05T00:00:00Z",
+    "build_receipts": [
+      "control/reviewer_index/manager_qa/BUILD_REPLAY_01.json",
+      "control/reviewer_index/manager_qa/BUILD_REPLAY_02.json"
+    ]
+  },
+  "text_delta": {
+    "old_exact_hash_occurrences": 1,
+    "new_exact_hash_occurrences": 0,
+    "raw_changed_physical_pages": [
+      1
+    ],
+    "semantic_changed_pages_after_intentional_deletion": [],
+    "normalized_tokens_after_intentional_deletion": 402519,
+    "old_text_sha256": "9e10e237db21c04e074ddd8ea657d89c2a6104884fb6c6a46d705548164393f3",
+    "new_text_sha256": "93cf53d669cc8541d64fa7f8a4cd8046cfd9602e9e1876787e5d9f29f3f6a4e1"
+  },
+  "closure_and_pdf_qa": {
+    "closure_units": 722,
+    "runtime_includes": 722,
+    "supplemental_bookmark_anchors": 80,
+    "source_target_hashes_verified": 722,
+    "overlay_hashes_verified": 722,
+    "body_round_trips_verified": 722,
+    "pdf_qa_sha256": "1c8353eca782688b765bb4a3c638dc907a43b01a0064e3e3ff25614c0ef006cf"
+  },
+  "technical_provenance_retained": {
+    "source_revision": "9620cc73f9c8e0ad003c514a5d3748f29611c4c0",
+    "authority_files": {
+      "control/AUTHORITY.json": "2fd26b3f70589ea0a74e0639f67420093b788a260ba1f97e29f2ca1db8f99275",
+      "publication/openlogic-tr/evidence/SOURCE_AUTHORITY.json": "15f2fa5072fd91c6db56b2a8672b57360a06b6df714fb1eed00f02f5a1ee5c10",
+      "control/CLOSURE_0722.csv": "4f0dfaa58c38b54c00180de30ae09507d0df9fbea1e0ed6729db7e2fa77aac2f"
+    }
+  },
+  "page_evidence": {
+    "status": "PASS",
+    "pdf_sha256": "b21aea2ea90b7129ba8a11e6548a4b8b116e1fa9ef3228d59414c5be58099675",
+    "modules": 722,
+    "render_instances": 774,
+    "term_occurrences": 4469,
+    "json": {
+      "path": "control/reviewer_index/page_maps/TURKISH_PAGE_EVIDENCE.json",
+      "bytes": 8415909,
+      "sha256": "ea924caf84d669c2360a01add82506cb2ce9b240fa106284aeb154c9293db4df"
+    },
+    "csv": {
+      "path": "control/reviewer_index/page_maps/TURKISH_PAGE_EVIDENCE.csv",
+      "bytes": 2889634,
+      "sha256": "9f076108c1ce336aac533cfeda7d913a763fd288c2f208486cb64fbb410d7e79"
+    },
+    "qa": {
+      "path": "control/reviewer_index/page_maps/TURKISH_PAGE_EVIDENCE_QA.json",
+      "bytes": 5824,
+      "sha256": "98983a9bb142c87bbcc0a8c9d53234b643e667603f6fe726521b09ddd039d1c7"
+    }
+  },
+  "reviewer_index_rebind": {
+    "status": "PASS",
+    "decisions": 194,
+    "occurrences": 6944,
+    "reader_locator_status": {
+      "pending": 4352,
+      "available": 2404,
+      "not_applicable": 188
+    },
+    "available_locator_pdf_hash_updates": 2404,
+    "page_or_status_changes": 0,
+    "non_binding_semantic_changes": 0,
+    "qa_path": "publication/openlogic-tr/evidence/reviewer-index/TRANSLATION_DECISION_QA.json",
+    "qa_sha256": "7e2780ca19225a6c21f1e2bb9d9565bf90b79f714102fed1304337354714075e"
+  },
+  "visual_qa": {
+    "status": "PASS",
+    "affected_physical_pages": [
+      1
+    ],
+    "receipt": "control/reviewer_index/manager_qa/VISUAL_FRONTMATTER_QA.json",
+    "receipt_sha256": "3db73ee2802a0d852cd9c3ab2ca1c98cbe0df8e4a0f5d3cdfccb5ccd90e2fe5d"
+  },
+  "claim_boundary": "This receipt proves the one-line presentation deletion, deterministic 722-unit PDF replay, technical source retention, structural/link/bookmark checks, unchanged extracted text after the intended deletion, and mechanical reviewer-locator rebinding. It does not re-evaluate accepted Turkish linguistic choices."
+}

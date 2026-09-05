@@ -1,0 +1,136 @@
+{
+  "schema": "turkish-olp0722-page-evidence-qa-v1",
+  "status": "PASS",
+  "input_sha256": {
+    "publication/openlogic-tr/reader/00_OPENLOGIC_tr_COMPLETE_LINKED_READER_OLP-0722.pdf": "b21aea2ea90b7129ba8a11e6548a4b8b116e1fa9ef3228d59414c5be58099675",
+    "repo/locale/tr/open-logic-all722.pdf": "b21aea2ea90b7129ba8a11e6548a4b8b116e1fa9ef3228d59414c5be58099675",
+    "repo/locale/tr/open-logic-all722.aux": "e1af97f5611c892a1f564036143c1eaeed2e32e6ebc579c182d1c421f9d11363",
+    "repo/locale/tr/open-logic-all722.toc": "c5574cf1c062d57521e727e9b8116516d58a46bd402a0851690054421a1b855f",
+    "repo/locale/tr/open-logic-all722.out": "72ed31e05a7da5d396b1fb3bd4816dec40d6cf02fa119da0ca9ff99cac896846",
+    "repo/locale/tr/open-logic-all722.modules.csv": "1517a53f9d8f45b7f4e369674ffe271fd2586d3e1f5b0d1fa99f9be23b379be7",
+    "publication/openlogic-tr/evidence/reader722/RUNTIME_MODULES.csv": "1517a53f9d8f45b7f4e369674ffe271fd2586d3e1f5b0d1fa99f9be23b379be7",
+    "publication/openlogic-tr/evidence/reader722/SOURCE_IMPORT_MANIFEST.json": "560d650f61ede3881ff16328fb85c02cf99ef68024c731fde970bd0ec8b117eb",
+    "control/CLOSURE_0722.csv": "4f0dfaa58c38b54c00180de30ae09507d0df9fbea1e0ed6729db7e2fa77aac2f",
+    "control/TERMS.csv": "fb88987e1e19eb33afa5badd538f8624dd4df93c3952c5646c6e439fd7a07818"
+  },
+  "output_sha256": {
+    "control/reviewer_index/page_maps/TURKISH_PAGE_EVIDENCE.json": "ea924caf84d669c2360a01add82506cb2ce9b240fa106284aeb154c9293db4df",
+    "control/reviewer_index/page_maps/TURKISH_PAGE_EVIDENCE.csv": "9f076108c1ce336aac533cfeda7d913a763fd288c2f208486cb64fbb410d7e79",
+    "control/reviewer_index/page_maps/generate_page_evidence.py": "af58fdc1dd4f7a2d93fa599621cbdf5dd457539ce47ee3a567b1c1aeaa4d6299"
+  },
+  "assertions": {
+    "published_pdf_equals_build_pdf": true,
+    "published_runtime_log_equals_build_runtime_log": true,
+    "physical_page_count": 1198,
+    "pdf_page_label_count": 1198,
+    "distinct_pdf_page_labels": 1197,
+    "duplicate_pdf_page_labels": {
+      "1": [
+        1,
+        2
+      ]
+    },
+    "expected_module_count": 722,
+    "actual_module_count": 722,
+    "runtime_include_event_count": 774,
+    "module_render_instance_count_distribution": {
+      "1": 670,
+      "2": 52
+    },
+    "all_render_instances_have_in_range_physical_pages": true,
+    "all_render_instance_labels_match_pdf_page_labels": true,
+    "supplement_module_count": 80,
+    "aux_module_label_count": 80,
+    "out_module_bookmark_id_count": 80,
+    "pdf_named_module_destination_count": 80,
+    "supplement_aux_pdf_page_agreement_count": 80,
+    "supplement_runtime_anchor_page_agreement_count": 60,
+    "supplement_runtime_anchor_disagreement_count": 20,
+    "toc_entry_page_value_count": 905,
+    "toc_page_values_resolve_in_pdf_page_labels": true,
+    "target_source_hash_mismatch_count": 0
+  },
+  "module_page_evidence_method_counts": {
+    "exact_heading_text_near_runtime_label": 544,
+    "exact_source_context_near_runtime_label": 144,
+    "pdf_named_destination+aux_module_label": 80,
+    "runtime_label_crosschecked_against_pdf_page_labels": 6
+  },
+  "module_page_evidence_granularity_counts": {
+    "module_inclusion_invocation_page": 6,
+    "visible_heading_page": 544,
+    "visible_module_anchor": 80,
+    "visible_source_context_page": 144
+  },
+  "terminology": {
+    "term_inventory_row_count": 194,
+    "exact_literal_target_source_occurrence_count": 4469,
+    "unique_pdf_page_count": 2465,
+    "ambiguous_or_unmatched_pdf_page_count": 2004,
+    "ambiguity_reason_counts": {
+      "normalized_context_not_found_in_pdf_text": 1741,
+      "normalized_context_occurs_on_multiple_pdf_pages": 252,
+      "term_not_recoverable_in_visible_source_context": 11
+    },
+    "terms_without_exact_literal_target_source_occurrence_count": 51,
+    "terms_without_exact_literal_target_source_occurrence": [
+      "OLP-TR-TERM-0020",
+      "OLP-TR-TERM-0027",
+      "OLP-TR-TERM-0031",
+      "OLP-TR-TERM-0061",
+      "OLP-TR-TERM-0064",
+      "OLP-TR-TERM-0066",
+      "OLP-TR-TERM-0071",
+      "OLP-TR-TERM-0072",
+      "OLP-TR-TERM-0073",
+      "OLP-TR-TERM-0074",
+      "OLP-TR-TERM-0075",
+      "OLP-TR-TERM-0078",
+      "OLP-TR-TERM-0079",
+      "OLP-TR-TERM-0080",
+      "OLP-TR-TERM-0081",
+      "OLP-TR-TERM-0082",
+      "OLP-TR-TERM-0085",
+      "OLP-TR-TERM-0086",
+      "OLP-TR-TERM-0094",
+      "OLP-TR-TERM-0095",
+      "OLP-TR-TERM-0100",
+      "OLP-TR-TERM-0105",
+      "OLP-TR-TERM-0106",
+      "OLP-TR-TERM-0112",
+      "OLP-TR-TERM-0114",
+      "OLP-TR-TERM-0119",
+      "OLP-TR-TERM-0121",
+      "OLP-TR-TERM-0129",
+      "OLP-TR-TERM-0133",
+      "OLP-TR-TERM-0134",
+      "OLP-TR-TERM-0138",
+      "OLP-TR-TERM-0145",
+      "OLP-TR-TERM-0147",
+      "OLP-TR-TERM-0150",
+      "OLP-TR-TERM-0154",
+      "OLP-TR-TERM-0155",
+      "OLP-TR-TERM-0158",
+      "OLP-TR-TERM-0162",
+      "OLP-TR-TERM-0172",
+      "OLP-TR-TERM-0173",
+      "OLP-TR-TERM-0174",
+      "OLP-TR-TERM-0176",
+      "OLP-TR-TERM-0178",
+      "OLP-TR-TERM-0183",
+      "OLP-TR-TERM-0185",
+      "OLP-TR-TERM-0186",
+      "OLP-TR-TERM-0187",
+      "OLP-TR-TERM-0188",
+      "OLP-TR-TERM-0189",
+      "OLP-TR-TERM-0190",
+      "OLP-TR-TERM-0191"
+    ]
+  },
+  "limitations": [
+    "No SyncTeX file exists for the bound build; source-line to PDF-page claims therefore require unique extracted text context.",
+    "A module inclusion invocation is retained as the fallback granularity when the module has no independently recoverable visible heading or source-text anchor.",
+    "A printed page label can be structurally assigned by PDF PageLabels even when that number is not visible in the extracted header or footer on a chapter-opening page.",
+    "The PDF assigns label 1 to physical pages 1 and 2; OLP-0001 is disambiguated by its exact visible source heading/context, never by the runtime label alone."
+  ]
+}

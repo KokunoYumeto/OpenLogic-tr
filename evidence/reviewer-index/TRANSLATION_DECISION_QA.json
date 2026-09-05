@@ -61,21 +61,21 @@
   "input_sha256": {
     "control/TERMS.csv": "fb88987e1e19eb33afa5badd538f8624dd4df93c3952c5646c6e439fd7a07818",
     "control/CLOSURE_0722.csv": "4f0dfaa58c38b54c00180de30ae09507d0df9fbea1e0ed6729db7e2fa77aac2f",
-    "control/reviewer_index/review_index_config.json": "c29055d1075ad50d6524162229ecd9d2f8a2a5bb72422223553ed8cb827eb500",
+    "control/reviewer_index/review_index_config.json": "5340529da5383424865cfae9f7dfbe950055c58046a156d365d7b5bdd4ccabef",
     "control/reviewer_index/MATCH_RULES.json": "0914a102cb578786150a0e0d0edb81759badf69bb259402ca2de5c0d349c3317",
     "control/reviewer_index/EVIDENCE_CROSSWALK.json": "87a2b7ad899a0fad24ee2666fcec5b58b39f0ba5d4f6c2ec6f2cc80d4adb76e2",
-    "control/reviewer_index/page_maps/TURKISH_PAGE_EVIDENCE.json": "e964fbb22b92302fed4bd71291e3912cab2d0113a428679333ea8147ed7e9c11",
-    "control/reviewer_index/page_maps/TURKISH_PAGE_EVIDENCE_QA.json": "2dff8b999b044a6990126cb13967321a7f5e672ddacb9328b5b6c7815ea15428",
-    "control/reviewer_index/generate_reviewer_index.py": "0060d9976a85a5d644651a71a48bbe1a611f138f0f8569ffb477207734343689",
-    "control/reviewer_index/validate_reviewer_index.py": "acaddb77d755b0210c0c1830adae977aa88ca4a86a3579ceb5c0a19ef057d84c",
-    "publication/openlogic-tr/reader/00_OPENLOGIC_tr_COMPLETE_LINKED_READER_OLP-0722.pdf": "4af08c16e61aa058500cc1e96acb5d700c988718a729d4d6cbbe4aea9664df94"
+    "control/reviewer_index/page_maps/TURKISH_PAGE_EVIDENCE.json": "ea924caf84d669c2360a01add82506cb2ce9b240fa106284aeb154c9293db4df",
+    "control/reviewer_index/page_maps/TURKISH_PAGE_EVIDENCE_QA.json": "98983a9bb142c87bbcc0a8c9d53234b643e667603f6fe726521b09ddd039d1c7",
+    "control/reviewer_index/generate_reviewer_index.py": "1982faeb69dd834fbe89148aa1741b0595f26881871e58bcf9177b4df519863a",
+    "control/reviewer_index/validate_reviewer_index.py": "8215e56c06cb34828837acccc4b0260ddef3b5038043c22cb32f073847d934ac",
+    "publication/openlogic-tr/reader/00_OPENLOGIC_tr_COMPLETE_LINKED_READER_OLP-0722.pdf": "b21aea2ea90b7129ba8a11e6548a4b8b116e1fa9ef3228d59414c5be58099675"
   },
   "output_sha256": {
-    "START_HERE.md": "56a7cff142c691d48300cc557b018704eb2c90dd8c50bc54137f3ece04719fab",
-    "TRANSLATION_DECISIONS_FULL.md": "888bebf77552444d2de98bc7a01abc4f2e8752bc32494c92324581c73bc15d7d",
+    "START_HERE.md": "e3a74e91b78ad7e162a15ac55bffe5465ad3950d1e3a3280227a17d2ab26544f",
+    "TRANSLATION_DECISIONS_FULL.md": "c9c131e18a8962405040a18089e34039624f2af84319c2161b624e536ae0a363",
     "PRIORITY_REVIEW.md": "a6e0c481cd92f5b1b993c8ec1e36ca6679e24b7974565fcb03186020878a700b",
-    "DECISION_OCCURRENCES.csv": "c60fcd2e4484fe3ae52a2fe19b5f16a4ea6998f0b3a21cdfab988e8ea4078cd6",
-    "DECISIONS.json": "d612a11f6077897108c9b7438c5a25d738ec553ab7b33fc1964c8109853aed6e",
+    "DECISION_OCCURRENCES.csv": "3950d899ab5ab46f6cb7af84a4a8d6318c8bb2538d6fb1d2d98618e3bfe978b5",
+    "DECISIONS.json": "655488dbb1dd6251d96716ea05fec60c336dcb07aa56c807776f8a7d2bbde0ad",
     "translation-decision.schema.json": "50e7fa407b62c711f92f8b93be591d3b4a6e1c4adb1386c398bb5f76844d9f90"
   },
   "coverage_boundary": [
@@ -83,6 +83,7 @@
     "The exact legacy decision universe is the 194 terminology rows recorded through the OLP-0068 production checkpoint.",
     "The finite matcher recovered one or more legacy-term surfaces in 626 modules; the other 96 closure modules have no such indexed surface and are not assigned synthetic decision occurrences.",
     "Occurrences after OLP-0068 are deterministic rebindings of that earlier universe, not proof of exhaustive later decision logging.",
+    "The recovered historical ledger records no rejected alternatives for these 194 decisions; all alternatives arrays are explicitly empty and require a later evidence backfill rather than invented content.",
     "The matcher records exact Unicode case-insensitive literal surfaces with Unicode word boundaries in active TeX source and the two Turkish locale style files; it does not infer semantic sense from a surface match.",
     "TeX token/environment macro calls are excluded from literal occurrence counts; their exact Turkish definition loci are indexed when the chosen surface occurs in a locale style file.",
     "Exact reader pages are available only where the finished page-evidence sidecar proved a unique extracted-text page; all others remain pending rather than receiving a guessed module-start page.",

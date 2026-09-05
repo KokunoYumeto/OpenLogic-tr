@@ -1,0 +1,136 @@
+{
+  "schema_version": "turkish-inherited-archive-manifest-repair/1.0.0",
+  "status": "PASS_SUCCESSOR_ARCHIVES",
+  "scope": "successor assets 01 and 02; predecessor public releases and historical receipts remain unchanged",
+  "repair_rationale": "The inherited top-level ARTIFACT_SHA256.tsv rows identified pre-redaction payloads rather than the enclosed derivative bytes. Rebinding those tables is the minimal self-verification repair. Asset 01 also repairs SOURCE_AUTHORITY.json to name its actual archive-root closure member. Asset 02 replaces two local-profile occurrences split by ASCII whitespace in one build log.",
+  "privacy_scan_contract": "Every member name and every member byte string was scanned for profile and home-path variants in UTF-8/ASCII, UTF-16LE, and UTF-16BE, both contiguous and with ASCII whitespace normalized away. No private pattern value is persisted.",
+  "archives": [
+    {
+      "filename": "01_OPENLOGIC_tr_EDITABLE_SOURCES_OLP-0722.zip",
+      "predecessor": {
+        "bytes": 1633656,
+        "sha256": "af72e92af87b90608dc2140cd0a740a7d79b5f472f511767457fea7b0ad7efe3"
+      },
+      "successor": {
+        "bytes": 1627069,
+        "sha256": "c8f532f2577850c4cc93efbb9dd083eeac9abbe07d473d6a11966fbf18e0a3e2",
+        "md5": "ebdffbc7e5c4d65763bcf7ad81a46579"
+      },
+      "entry_count": 746,
+      "top_level_manifest_rows": 745,
+      "stale_rows_before": 6,
+      "stale_rows_after": 0,
+      "split_profile_occurrences_sanitized": 0,
+      "source_authority_pointer_repaired": {
+        "member": "SOURCE_AUTHORITY.json",
+        "field": "source_closure_manifest",
+        "resolved_member": "SOURCE_CLOSURE_0722.csv",
+        "resolved_member_bytes": 1058824,
+        "resolved_member_sha256": "4f0dfaa58c38b54c00180de30ae09507d0df9fbea1e0ed6729db7e2fa77aac2f"
+      },
+      "changed_members": [
+        "ARTIFACT_SHA256.tsv",
+        "SOURCE_AUTHORITY.json"
+      ],
+      "unchanged_entry_count": 744,
+      "zip_crc": "PASS",
+      "deterministic_replay": "PASS",
+      "recursive_profile_and_home_path_scan": "PASS"
+    },
+    {
+      "filename": "02_OPENLOGIC_tr_EVIDENCE_AND_PROVENANCE_OLP-0722.zip",
+      "predecessor": {
+        "bytes": 5198722,
+        "sha256": "2cdda103905e163f3c372557b5ce91b9185e8fbbf3f515b47bcf1a4dcd054cde"
+      },
+      "successor": {
+        "bytes": 5106720,
+        "sha256": "252adfe8c2cf87411f671b856c69660f164c681af8d6f2ea8b3530e2c426d92d",
+        "md5": "06a6f8daa0d90a7e1d1acd4af4d5b243"
+      },
+      "entry_count": 312,
+      "top_level_manifest_rows": 311,
+      "stale_rows_before": 42,
+      "stale_rows_after": 0,
+      "split_profile_occurrences_sanitized": 2,
+      "sanitized_build_log": {
+        "bytes": 2291777,
+        "sha256": "d577a47c087be2953ed784d21e3d2c738fdc731da999e4f75ac5c6197632b5c9"
+      },
+      "changed_members": [
+        "ARTIFACT_SHA256.tsv",
+        "build_and_render_evidence/open-logic-complete-tr.log"
+      ],
+      "unchanged_entry_count": 310,
+      "zip_crc": "PASS",
+      "deterministic_replay": "PASS",
+      "recursive_profile_and_home_path_scan": "PASS"
+    }
+  ],
+  "active_archive_member_integrity_manifest": {
+    "path_within_each_archive": "ARTIFACT_SHA256.tsv",
+    "scope": "Every other member of that same archive; the manifest excludes only itself.",
+    "status": "PASS_EXACT_MEMBER_BYTES_AND_SHA256"
+  },
+  "inactive_nested_manifest_dispositions": [
+    {
+      "archive": "02_OPENLOGIC_tr_EVIDENCE_AND_PROVENANCE_OLP-0722.zip",
+      "path": "doi_methodology/07_COPYABLE_LANGUAGE_RELEASE_SCAFFOLD/evidence/ARTIFACT_SHA256.tsv",
+      "bytes": 76,
+      "sha256": "a48bf021ac72e701a7e2f79d17affc91a30b02e0b479776b6894cb99f25ac4a1",
+      "active": false,
+      "classification": "copyable template",
+      "row_disposition": "One placeholder row; it makes no claim about enclosed archive members."
+    },
+    {
+      "archive": "02_OPENLOGIC_tr_EVIDENCE_AND_PROVENANCE_OLP-0722.zip",
+      "path": "publication_metadata/evidence/ARTIFACT_SHA256.tsv",
+      "bytes": 1538,
+      "sha256": "c37bf895d08bcacbc9df05ef67b13e84359af97901e30773bcd440d3f210c409",
+      "active": false,
+      "classification": "predecessor publication-metadata snapshot",
+      "row_disposition": "Nine rows: four external release assets absent by design, three enclosed evidence members matching exactly, and two stale build-log/recorder identities retained as historical metadata."
+    }
+  ],
+  "nested_manifest_policy": "Nested methodology, template, and publication-metadata tables are preserved provenance records with their original scopes; they are not current whole-archive member inventories. Only the root ARTIFACT_SHA256.tsv governs current member integrity.",
+  "repository_predecessor_manifest_disposition": {
+    "path": "publication/openlogic-tr/evidence/ARTIFACT_SHA256.tsv",
+    "bytes": 1789,
+    "sha256": "18cf0e66560503773bcfd0eb5fd97c67988bd77da4f375d0aaa075f4274889ca",
+    "md5": "31512723f4f78f23d25e2dee793ea406",
+    "active": false,
+    "classification": "explicitly labelled historical predecessor snapshot",
+    "current_successor_identity_sources": [
+      "PUBLICATION_ASSET_MANIFEST_FRONTMATTER_CORRECTION_20260905.json",
+      "SHA256SUMS_FRONTMATTER_CORRECTION_20260905"
+    ]
+  },
+  "totals": {
+    "stale_rows_repaired": 48,
+    "split_profile_occurrences_sanitized": 2,
+    "source_authority_pointer_repairs": 1,
+    "unchanged_entries": 1054
+  },
+  "deterministic_repair_script": {
+    "path": "control/reviewer_index/successor_packaging_20260905/repair_inherited_archive_manifests.py",
+    "sha256": "b675f6268d68c431326cb7354537a0e2d89ad92d88edeb74ed7e2ffc3ac08305",
+    "scope": "initial inherited top-level manifest and split-profile repair"
+  },
+  "deterministic_successor_builder": {
+    "path": "control/reviewer_index/successor_packaging_20260905/build_successor_package.py",
+    "bytes": 38001,
+    "sha256": "14cd4c0cabaffa9f02955bff22fe1e6500016ded214a1b5c973154165a7aec8c",
+    "scope": "final archive rebuild, asset-01 authority-pointer repair, correction archive, and successor controls"
+  },
+  "checks": {
+    "all_top_level_manifest_rows_match_enclosed_bytes": "PASS",
+    "all_other_member_bytes_preserved": "PASS",
+    "source_authority_pointer_resolves_inside_asset_01": "PASS",
+    "repository_predecessor_manifest_explicitly_classified": "PASS",
+    "inactive_nested_manifest_records_preserved_and_explicitly_classified": "PASS",
+    "all_zip_crcs": "PASS",
+    "deterministic_archive_replay": "PASS",
+    "recursive_privacy_scan": "PASS",
+    "historical_public_assets_rewritten": false
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": "turkish-reader722-build-v1",
+  "started_utc": "2026-09-05T14:51:51.0679735Z",
+  "driver": "open-logic-all722.tex",
+  "driver_sha256": "70855b0792733ad9c2546b1017a88dc61be6976baeb2bfa7f2083e02353c7229",
+  "mutex_name": "Global\\InterlanguageTeXSlotV1",
+  "acquired": true,
+  "abandoned_mutex_recovered": false,
+  "worker_pid": 43328,
+  "status": "BUILT_REQUIRES_PDF_QA",
+  "exit_code": 0,
+  "elapsed_seconds": 82.24,
+  "command": "latexmk -pdf -synctex=0 -interaction=nonstopmode -halt-on-error -file-line-error open-logic-all722.tex",
+  "input_sha256": {
+    "repo/locale/tr/open-logic-all722.tex": "70855b0792733ad9c2546b1017a88dc61be6976baeb2bfa7f2083e02353c7229",
+    "repo/locale/tr/all722-support.tex": "5802446b7964376ec8666a26a5d4c23eb87d0f74d21cd36c455d67853386efb5",
+    "repo/locale/tr/all722-definitions.tex": "86cc0b19d9926ea42531ea6d2514acfd1e40ce6987b35c93e81944b6b0871e7f",
+    "repo/locale/tr/all722-supplement.tex": "7e5873f27ecc9f94559066b4c9ff0af28108fa5cedc678ea3cd16a1c0e9e8669",
+    "control/reader722_fix/SOURCE_IMPORT_MANIFEST.json": "560d650f61ede3881ff16328fb85c02cf99ef68024c731fde970bd0ec8b117eb"
+  },
+  "log_sha256": "a4334199f0413b0a03f5e2c4ae69a0be054a01b144968fc7b385422210cab22a",
+  "diagnostics": {
+    "undefined_control_sequences": 0,
+    "missing_characters": 0,
+    "undefined_references": 0,
+    "undefined_citations": 0,
+    "duplicate_labels": 0,
+    "overfull_boxes": 218
+  },
+  "pdf": {
+    "path": "repo/locale/tr/open-logic-all722.pdf",
+    "bytes": 6200714,
+    "sha256": "b21aea2ea90b7129ba8a11e6548a4b8b116e1fa9ef3228d59414c5be58099675"
+  },
+  "finished_utc": "2026-09-05T14:53:13.3489534Z"
+}

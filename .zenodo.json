@@ -10,11 +10,11 @@
       "type": "Other"
     }
   ],
-  "title": "Open Logic Project — Türkçe: 722-module reader and translation-decision reviewer index",
-  "version": "OLP-0722-REVIEW-INDEX-20260905",
+  "title": "Open Logic Project — Türkçe: corrected 722-module reader and translation-decision reviewer index",
+  "version": "OLP-0722-READER-FRONTMATTER-CORRECTION-20260905",
   "publication_date": "2026-09-05",
   "access_right": "open",
-  "description": "<p><strong><a href=\"https://zenodo.org/records/22347312/files/00_OPENLOGIC_tr_COMPLETE_LINKED_READER_OLP-0722.pdf?download=1\">Türkçe okuyucuyu aç / Open the complete 722-module Turkish reader</a></strong></p><p><a href=\"https://zenodo.org/records/22347312/files/START_HERE.md?download=1\">Reviewer index: start here</a> · <a href=\"https://zenodo.org/records/22347312/files/PRIORITY_REVIEW.md?download=1\">Priority review</a> · <a href=\"https://zenodo.org/records/22347312/files/TRANSLATION_DECISIONS_FULL.md?download=1\">Full readable index</a></p><p>This additive version preserves the complete 722-module Turkish reader, editable sources, and existing provenance byte-for-byte. It adds a retrospective, auditable index of all 194 historical term decisions recorded through OLP-0068, mapped to 6,944 occurrences across the current 722-file translation closure. Exact source and target locators, reader-page evidence where deterministically available, alternatives, rationale, confidence, and concrete review questions are included. Expert response is welcome but is not a release gate.</p><p>Frozen source: Open Logic Project commit <code>9620cc73f9c8e0ad003c514a5d3748f29611c4c0</code>. This is Turkish, not Inter-Turkic.</p><p><a href=\"https://doi.org/10.5281/zenodo.21921844\">Stable Turkish concept DOI</a> · <a href=\"https://github.com/KokunoYumeto/OpenLogic-tr/releases/tag/tr-olp-0722-review-index-20260905\">GitHub release</a> · <a href=\"https://doi.org/10.5281/zenodo.22306530\">preceding reader-completeness version</a>.</p>",
+  "description": "<p><strong>Türkçe: 722 modülün tamamı tek okuyucuda / All 722 modules in one Turkish reader — 1,198 pages.</strong></p><p>This successor removes one internal frozen-source commit-hash line from the reader title page while preserving that exact revision in technical provenance. No Turkish translation body, mathematical content, pagination, bookmark, or link changed.</p><p>The exact corrected PDF is 6,200,714 bytes, SHA-256 <code>b21aea2ea90b7129ba8a11e6548a4b8b116e1fa9ef3228d59414c5be58099675</code>. Two deterministic full builds were byte-identical. Text, links, bookmarks, source closure, and the affected title-page rendering passed the recorded checks.</p><p>The accompanying reviewer index contains all 194 historical term decisions recorded through OLP-0068, mapped to 6,944 occurrences across the complete 722-file translation closure. Its 2,404 available reader locators are rebound to the corrected PDF; unresolved exact pages remain explicit rather than guessed. The recovered ledger did not record rejected alternatives, so those arrays remain explicitly empty pending a later evidence backfill; this is not represented as a complete history of all later linguistic choices.</p><p>The source and evidence ZIPs are deterministically rebuilt to repair inherited top-level member manifests. The evidence ZIP also removes two whitespace-split local-profile occurrences from one build log; every unaffected member byte and all 722 translated target bodies remain unchanged.</p><p>Frozen source: Open Logic Project commit <code>9620cc73f9c8e0ad003c514a5d3748f29611c4c0</code>. This is Turkish, not Inter-Turkic. Expert review may inform a later revision but is not a release gate.</p><p><a href=\"https://doi.org/10.5281/zenodo.21921844\">Stable Turkish concept DOI</a> · <a href=\"https://github.com/KokunoYumeto/OpenLogic-tr/releases/tag/tr-olp-0722-reader-frontmatter-correction-20260905\">GitHub successor release</a> · <a href=\"https://doi.org/10.5281/zenodo.22347312\">preceding reviewer-index version</a>.</p>",
   "related_identifiers": [
     {
       "identifier": "https://github.com/OpenLogicProject/OpenLogic/commit/9620cc73f9c8e0ad003c514a5d3748f29611c4c0",
@@ -27,9 +27,14 @@
       "resource_type": "software"
     },
     {
-      "identifier": "https://github.com/KokunoYumeto/OpenLogic-tr/releases/tag/tr-olp-0722-review-index-20260905",
+      "identifier": "https://github.com/KokunoYumeto/OpenLogic-tr/releases/tag/tr-olp-0722-reader-frontmatter-correction-20260905",
       "relation": "isSupplementedBy",
       "resource_type": "software"
+    },
+    {
+      "identifier": "https://doi.org/10.5281/zenodo.22347312",
+      "relation": "isNewVersionOf",
+      "resource_type": "publication"
     }
   ],
   "keywords": [

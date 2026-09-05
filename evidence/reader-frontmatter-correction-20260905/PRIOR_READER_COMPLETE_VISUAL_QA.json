@@ -1,0 +1,29 @@
+{
+  "schema_version": "turkish-reader722-visual-qa-v1",
+  "status": "PASS",
+  "pdf_sha256": "4af08c16e61aa058500cc1e96acb5d700c988718a729d4d6cbbe4aea9664df94",
+  "pages": 1198,
+  "renderer": "Poppler pdftoppm 26.07.0",
+  "rendered_page_ranges": [[1, 50], [1030, 1198]],
+  "reviewed_pages_total": 219,
+  "inspected_pages": [24, 1030, 1031, 1032, 1172, 1173, 1190, 1191, 1192, 1193, 1194, 1195, 1196, 1197, 1198],
+  "reviewed_pixel_identical_pages": 205,
+  "pixel_identity_evidence": "VISUAL_PIXEL_COMPARISON.json",
+  "baseline_pdf_sha256": "7ffe1dc13a86cfab95e7da41d326ad434791ccdadd17b535f8948c486ae720e7",
+  "baseline_inspection": {
+    "contact_sheets": "01 through 19",
+    "page_ranges": [[1, 50], [1033, 1199]],
+    "additional_full_page_checks": [49, 1104, 1106, 1120, 1122, 1129, 1132, 1150, 1158, 1159, 1173, 1175, 1176, 1177, 1178, 1179, 1180, 1183, 1187, 1199]
+  },
+  "findings": [],
+  "verified": [
+    "Contents and running heads use Turkish titles rather than the literal locale marker.",
+    "Mathematical G2i and N2i identifiers retain lowercase i in the headers.",
+    "Added rule tables and proof diagrams have no observed clipping or overlapping proof bars.",
+    "Repaired references render as numbered links, with no visible undefined-reference markers.",
+    "OLP-0660 begins on its bookmark destination page with its complete proof fragment.",
+    "The empty generated photo-credit page is absent; bibliography layout and final page are intact.",
+    "All changed or newly rendered pages were inspected; unchanged reviewed pages were bound by exact RGB pixel hashes."
+  ],
+  "claim_boundary": "Visual inspection covers the front matter and the complete supplemental/end-matter range, not a fresh linguistic assessment of the translation or completion of unfinished source proofs."
+}

@@ -1,10 +1,10 @@
 relative_path	bytes	sha256	state
-00_OPENLOGIC_tr_COMPLETE_LINKED_READER_OLP-0722.pdf	5470171	2D9939692A971EDF468D3B41F38C57283C046BE9D110783CF50D10CDB3152900	public GitHub and Zenodo byte-for-byte readback verified; publication receipts record host state
-01_OPENLOGIC_tr_EDITABLE_SOURCES_OLP-0722.zip			EXTERNAL_MANIFEST: public GitHub and Zenodo readback verified; exact identity remains noncircularly recorded in the outer manifest and receipts
-02_OPENLOGIC_tr_EVIDENCE_AND_PROVENANCE_OLP-0722.zip			EXTERNAL_MANIFEST: public GitHub and Zenodo readback verified; self-identity remains recorded only outside this ZIP
-03_OPENLOGIC_tr_SHA256_MANIFEST_OLP-0722.txt			EXTERNAL_MANIFEST: public GitHub and Zenodo readback verified; its own identity is recorded in the non-embedded package/publication receipts
-source_authority/CLOSURE_0722.csv	1058824	4F0DFAA58C38B54C00180DE30AE09507D0DF9FBEA1E0ED6729DB7E2FA77AAC2F	final verified package input; 722 aggregate-admitted rows
-package_control/COMPLETE_0722_STRUCTURAL_QA.json	2443209	46F5FE080693D3A99DE234A9588C28D5A683D0FDACFA62AD2323AC3B8EB01499	PASS 722/722
-build_and_render_evidence/Open_Logic_Project_Complete_Turkish_Edition_OLP-0722.txt	2593270	26D2CAE84B478ADD70D9EDBC8088F6BD2C761FD47EF01F5DED5E008F6EBFC286	final verified text layer
-build_and_render_evidence/open-logic-complete-tr.log	2290271	3C93282140F5593B2C9C2C64CEDE86E128F5B91EC201B5DE050EAAADE000FCA4	build exit 0; diagnostic gates clean
-build_and_render_evidence/open-logic-complete-tr.fls	387389	D9095CEA4E2CAEC0F1AD5481E6B6BB2A8B86603E48195A16017659DF6F8F2574	final recorder file
+00_OPENLOGIC_tr_COMPLETE_LINKED_READER_OLP-0722.pdf	5470171	2D9939692A971EDF468D3B41F38C57283C046BE9D110783CF50D10CDB3152900	HISTORICAL PREDECESSOR SNAPSHOT: prior public GitHub and Zenodo byte-for-byte readback; not the corrected successor reader
+01_OPENLOGIC_tr_EDITABLE_SOURCES_OLP-0722.zip			EXTERNAL_MANIFEST: HISTORICAL PREDECESSOR SNAPSHOT; prior public GitHub and Zenodo readback; exact identity was recorded outside the archive
+02_OPENLOGIC_tr_EVIDENCE_AND_PROVENANCE_OLP-0722.zip			EXTERNAL_MANIFEST: HISTORICAL PREDECESSOR SNAPSHOT; prior public GitHub and Zenodo readback; self-identity was recorded outside the archive
+03_OPENLOGIC_tr_SHA256_MANIFEST_OLP-0722.txt			EXTERNAL_MANIFEST: HISTORICAL PREDECESSOR SNAPSHOT; prior public GitHub and Zenodo readback; self-identity was recorded outside the archive
+source_authority/CLOSURE_0722.csv	1058824	4F0DFAA58C38B54C00180DE30AE09507D0DF9FBEA1E0ED6729DB7E2FA77AAC2F	HISTORICAL PREDECESSOR SNAPSHOT: verified package input; 722 aggregate-admitted rows
+package_control/COMPLETE_0722_STRUCTURAL_QA.json	2443209	46F5FE080693D3A99DE234A9588C28D5A683D0FDACFA62AD2323AC3B8EB01499	HISTORICAL PREDECESSOR SNAPSHOT: PASS 722/722
+build_and_render_evidence/Open_Logic_Project_Complete_Turkish_Edition_OLP-0722.txt	2593270	26D2CAE84B478ADD70D9EDBC8088F6BD2C761FD47EF01F5DED5E008F6EBFC286	HISTORICAL PREDECESSOR SNAPSHOT: verified text layer
+build_and_render_evidence/open-logic-complete-tr.log	2290271	3C93282140F5593B2C9C2C64CEDE86E128F5B91EC201B5DE050EAAADE000FCA4	HISTORICAL PREDECESSOR SNAPSHOT: build exit 0; diagnostic gates clean
+build_and_render_evidence/open-logic-complete-tr.fls	387389	D9095CEA4E2CAEC0F1AD5481E6B6BB2A8B86603E48195A16017659DF6F8F2574	HISTORICAL PREDECESSOR SNAPSHOT: recorder file
