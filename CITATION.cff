@@ -1,19 +1,19 @@
 cff-version: 1.2.0
-message: "Please cite this corrected Turkish reader using the stable concept DOI. The release inventory records the exact version and PDF identity."
-title: "Open Logic Project — Türkçe: corrected 722-module reader and translation-decision reviewer index"
+message: "Türkçe baskıya atıf için aşağıdaki kitap kaydını kullanın. Özgün eserin yazar ve katkı bildirimleri korunur."
+title: "Open Logic Project — Türkçe"
 type: software
 authors: [{"name": "Open Logic Project"}]
 repository-code: "https://github.com/KokunoYumeto/OpenLogic-tr"
 version: "OLP-0722-READER-FRONTMATTER-CORRECTION-20260905"
 date-released: 2026-09-05
 doi: "10.5281/zenodo.21921844"
-abstract: "Complete 722-module Turkish reader with a clean title page, plus a replayable reviewer index of 194 recovered historical term decisions and 6,944 located occurrences. The internal source-revision hash was removed from the reader-facing page and retained in technical provenance; no translated body changed. Rejected alternatives were not present in the recovered ledger and are not invented. The successor source/evidence archives repair their member manifests and remove two whitespace-split private-path occurrences from one build log."
+abstract: "Open Logic Project metninin 722 kaynak birimini içeren Türkçe baskı. 1.198 sayfalık tek PDF; tanımlar, teoremler, kanıtlar, örnekler, alıştırmalar ve ek malzemeyi kapsar. Modüler LaTeX kaynakları ve derleme girdileri ayrı ZIP dosyalarındadır. Türkçe baskı Inter-Turkic araştırma dilinden ayrıdır. Çeviri kaydı: OpenAI 5.6 Sol, Ultra mode; yapay zekâ çevirisi. Katalog ve tanıtım metni: OpenAI Codex — GPT-6 Astra, Ultra. İnsan çevirisi veya insan uzman onayı iddia edilmez."
 preferred-citation:
   type: book
-  title: "Open Logic Project — Türkçe: corrected 722-module reader and translation-decision reviewer index"
+  title: "Open Logic Project — Türkçe"
   authors: [{"name": "Open Logic Project"}]
   translators: [{"name": "OpenAI 5.6 Sol, Ultra mode"}]
   languages: ["tur"]
   version: "OLP-0722-READER-FRONTMATTER-CORRECTION-20260905"
-  doi: "10.5281/zenodo.21921844"
-  url: "https://doi.org/10.5281/zenodo.21921844"
+  doi: "10.5281/zenodo.22368314"
+  url: "https://github.com/KokunoYumeto/OpenLogic-tr"
