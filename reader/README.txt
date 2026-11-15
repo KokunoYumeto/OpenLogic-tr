@@ -29,6 +29,6 @@ correction evidence. Historical public archives remain untouched.
 Rebuild using build/BUILD.ps1 or build/BUILD_ALL722.ps1 with both the 01
 source ZIP and the 04 correction inputs present.
 
-Stable concept DOI: https://doi.org/10.5281/zenodo.21921844
-Previous 642-module reader: https://doi.org/10.5281/zenodo.21927145
+Stable concept DOI: DOI 10.5281/zenodo.21921844
+Previous 642-module reader: DOI 10.5281/zenodo.21927145
 Source commit: 9620cc73f9c8e0ad003c514a5d3748f29611c4c0
